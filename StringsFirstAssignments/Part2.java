@@ -69,7 +69,7 @@ public class Part2 {
 
     }
 public static void main(String[] args) {
-        Part1 p = new Part1();
+        Part2 p = new Part2();
         p.testSimpleGene();
     }
 }
