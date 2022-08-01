@@ -30,8 +30,8 @@ public class Part2 {
         dnaList.add("GATGCTATATAATAGTTATATAGC");
         dnaList.add("GGCTATGATATATGATATAGC");
 
-        ArrayList<String> startCodonListIsoleucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA", "b"));
-        System.out.println(startCodonListIsoleucine);
+        ArrayList<String> Isoleucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA"));
+        ArrayList<String> Leucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA"));
 
         List<String> stopCodonList= new ArrayList<>();
         stopCodonList.add("TAA");
@@ -47,3 +47,10 @@ public static void main(String[] args) {
         p.testSimpleGene();
     }
 }
+
+/*
+ * Data sources:
+ * https://pubmed.ncbi.nlm.nih.gov/12804578/
+ * https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
+ * http://algoart.com/aatable.htm
+ */

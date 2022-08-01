@@ -7,3 +7,7 @@ My software begins by examining the nucleotides for start and stop codons, which
 ## APIs Used
 * Duke University (edu.duke.*)
 * Apache CSV (parsing)
+## Data sources:
+* https://pubmed.ncbi.nlm.nih.gov/12804578/
+* https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
+* http://algoart.com/aatable.htm
