@@ -19,9 +19,7 @@ public class Part2 {
         }
     }
 
-    // List DNA sequences for testing
     public void testSimpleGene() {
-        ArrayList<String> dnaList = new ArrayList<>(Arrays.asList("ATGGCTATATATAATATATAGC", "ATGCATTAATTAATTAATAATGC", "GCGCATGCATGCATGCTAAGC", "GATGCCTAATGGCTAGCTATAAGCTGC", "GCATGCGCGCGCGCGCTAAGCGGC", "GCGCCGGCCATGGATCTAAGGCCGGCGC", "GCTACATGGTACGTACGTAATAGC", "GATGCTATATAATAGTTATATAGC", "GGCTATGATATATGATATAGC", "ATGATATATATATATATATAGC"));
 
         /* All 64 potential three-letter combinations of the DNA coding units T, C, A, and G are employed to
         * encode one of these amino acids or to signify the end of a sequence. While DNA can be decoded without 
@@ -29,7 +27,7 @@ public class Part2 {
         * numerous start codons, several DNA sequences might represent the same protein sequence.
         */
 
-        // Amino acid codon table
+        // Amino acid start codon table
         ArrayList<String> Isoleucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA"));
         ArrayList<String> Leucine = new ArrayList<>(Arrays.asList("CTT", "CTC", "CTA", "CTG", "TTA", "TTG"));
         ArrayList<String> Valine = new ArrayList<>(Arrays.asList("GTT", "GTC", "GTA", "GTG"));
@@ -51,15 +49,28 @@ public class Part2 {
         ArrayList<String> Lysine = new ArrayList<>(Arrays.asList("AAA", "AAG"));
         ArrayList<String> Arginine = new ArrayList<>(Arrays.asList("CGT", "CGC", "CGA", "CGG", "AGA", "AGG"));
         
+        // Amino acid stop codon table
         ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
         
         // Asks user for the amino acid that they want to search for and returns the list of start codons for that amino acid
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter the amino acid you want to search for: ");
+        System.out.println("Enter the DNA sequence: ");
+        String dna = userInput.nextLine();
+        System.out.println("Enter the amino acid: ");
         String aminoAcid = userInput.nextLine();
-        // based on user input, print the corresponding list of start codons.
+        userInput.close();
+
+        // Uses the amino acid input from the user to find the start codons for that amino acid
         if (aminoAcid.equals("I") || aminoAcid.equals("isoleucine") || aminoAcid.equals("Isoleucine") || aminoAcid.equals("i")) {
-            System.out.println("The start codons for Isoleucine are: " + Isoleucine);
+            for (String startcodon : Isoleucine) {
+                int startcodonindex = dna.indexOf(startcodon);
+                for (String stopcodon : Stop) {
+                    int stopcodonindex = dna.indexOf(stopcodon);
+                    if (startcodonindex != -1 && stopcodonindex != -1) {
+                        System.out.println("Gene is " + dna.substring(startcodonindex, stopcodonindex + 3));
+                    }
+                }
+            }
         }
         else if (aminoAcid.equals("L") || aminoAcid.equals("leucine") || aminoAcid.equals("Leucine") || aminoAcid.equals("l")) {
             System.out.println("The start codons for Leucine are: " + Leucine);
