@@ -1,5 +1,5 @@
 # Algorithm for Analyzing Genes in DNA
-This software analyzes genomic sequences.
+This software analyzes genomic sequences algorithmically.
 ## Background Information
 The human genome is comprised of over 3 billion base pairs, making manual analysis nearly impossible. Finding information in the genome hence necessitates computer techniques. Furthermore, the genome is highly complicated and contains several types of data. 
 ## How Does it Work?
