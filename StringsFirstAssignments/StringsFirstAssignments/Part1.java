@@ -20,11 +20,15 @@ public class Part1 {
 
     public void testSimpleGene() {
         List<String> dnaList = new ArrayList<>();
-        dnaList.add("ATGATCTAATTTATGCTGCAACGGTGAAGA");
-        dnaList.add("TAAGCTTTCCCTAAAGGGCCGAG");
-        dnaList.add("ATGATCTAATAG");
-        dnaList.add("ATGATCTAATTTATGCTGCAACGGTAATGAAGA");
-        dnaList.add("ATGATCTAATTTATGCTGCAACGGTGAAGA");
+        dnaList.add("GCTATATATATATATAGC");
+        dnaList.add("GCATTAATTAATTAATGC");
+        dnaList.add("GCGCATGCATGCATGCGC");
+        dnaList.add("GCCTAGCTAGCTAGCTGC");
+        dnaList.add("GCCGCGCGCGCGCGCGGC");
+        dnaList.add("GCGCCGGCCGGCCGGCGC");
+        dnaList.add("GCTACGTACGTACGTAGC");
+        dnaList.add("GCTATATAGTTATATAGC");
+        dnaList.add("GGCTATATATATATAGC");
         for (String dna : dnaList) {
             System.out.println("DNA strand is " + dna);
             String gene = findSimpleGene(dna);
