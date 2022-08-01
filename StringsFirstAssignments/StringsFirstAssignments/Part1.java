@@ -4,18 +4,18 @@ class Part1 {
     public String findSimpleGene(String dna) {
         int startIndex = dna.indexOf("ATG");
         if (startIndex == -1) {
-            return "Gene not found";
+            return "Error: start codon (ATG) not found";
         }
         int stopIndex = dna.indexOf("TAA");
         if (stopIndex == -1) {
-            return "Gene not found";
+            return "Error: stop codon (TAA) not found";
         }
         if (((stopIndex - startIndex + 1) % 3) == 0) {
             String gene = "Gene is " + dna.substring(startIndex, stopIndex + 3);
             return gene;
         }
         else {
-            return "Gene not found";
+            return "Error: gene length is not a multiple of 3";
         }
     }
 
