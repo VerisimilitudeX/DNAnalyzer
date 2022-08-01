@@ -6,5 +6,4 @@ The human genome is comprised of over 3 billion base pairs, making manual analys
 My software begins by examining the nucleotides for start and stop codons, which indicate where proteins (usually amino acids) are located. In addition to genes, my software searches for regulatory elements and proteins known as transcription factors, which aid in the activation and deactivation of genes.
 ## APIs Used
 * Duke University (edu.duke.*)
-* Apache CSV
-  * For parsing CSV files
+* Apache CSV (parsing)
