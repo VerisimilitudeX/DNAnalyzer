@@ -10,29 +10,26 @@ class Part1 {
         if (stopIndex == -1) {
             return "";
         }
-        if (((stopIndex - startIndex) % 3) == 0) {
-            return dna.substring(startIndex, stopIndex + 3);
-        }
-        else {
-            return "";
+        if (((stopIndex - startIndex + 1) % 3) == 0) {
+            String gene = "Gene is " + dna.substring(startIndex, stopIndex + 3);
+            return gene;
         }
     }
 
     public void testSimpleGene() {
         List<String> dnaList = new ArrayList<>();
-        dnaList.add("GCTATATATATATATAGC");
-        dnaList.add("GCATTAATTAATTAATGC");
+        dnaList.add("ATGGCTATATATATATATAGC");
+        dnaList.add("GCATTAATTAATTAATAATGC");
         dnaList.add("GCGCATGCATGCATGCGC");
-        dnaList.add("GCCTAGCTAGCTAGCTGC");
-        dnaList.add("GCCGCGCGCGCGCGCGGC");
-        dnaList.add("GCGCCGGCCGGCCGGCGC");
-        dnaList.add("GCTACGTACGTACGTAGC");
-        dnaList.add("GCTATATAGTTATATAGC");
-        dnaList.add("GGCTATATATATATAGC");
+        dnaList.add("GATGCCTAATGGCTAGCTATAAGCTGC");
+        dnaList.add("GCATGCGCGCGCGCGCTAAGCGGC");
+        dnaList.add("GCGCCGGCCATGTAAGGCCGGCGC");
+        dnaList.add("GCTACATGGTACGTACGTAATAGC");
+        dnaList.add("GATGCTATATAATAGTTATATAGC");
+        dnaList.add("GGCTATATATATGATATAGTAAC");
         for (String dna : dnaList) {
             System.out.println("DNA strand is " + dna);
-            String gene = findSimpleGene(dna);
-            System.out.println("Gene is " + gene);
+            System.out.println(findSimpleGene(dna));
         }
     }
 public static void main(String[] args) {
