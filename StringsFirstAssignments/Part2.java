@@ -60,8 +60,11 @@ public class Part2 {
         ArrayList<String> Arginine = new ArrayList<>(Arrays.asList("CGT", "CGC", "CGA", "CGG", "AGA", "AGG"));
         ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
         
-
         // ask user for the amino acid that they want to search for in the DNA strand, using the corresponding amino acid lists above.
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Enter the amino acid you want to search for: ");
+        String aminoAcid = userInput.nextLine();
+        System.out.println(aminoAcid);
 
     }
 public static void main(String[] args) {

@@ -30,7 +30,7 @@ class Part1 {
         dnaList.add("GATGCTATATAATAGTTATATAGC");
         dnaList.add("GGCTATGATATATGATATAGC");
         for (String dna : dnaList) {
-            System.out.println("DNA strand is " + dna);
+            System.out.println("DNA strand is hello" + dna);
             System.out.println(findSimpleGene(dna) + "\n");
         }
     }
