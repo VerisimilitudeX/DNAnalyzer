@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Part1 {
+class Part1 {
     public String findSimpleGene(String dna) {
         int startIndex = dna.indexOf("ATG");
         if (startIndex == -1) {
@@ -34,5 +34,9 @@ public class Part1 {
             String gene = findSimpleGene(dna);
             System.out.println("Gene is " + gene);
         }
+    }
+public static void main(String[] args) {
+        Part1 p = new Part1();
+        p.testSimpleGene();
     }
 }

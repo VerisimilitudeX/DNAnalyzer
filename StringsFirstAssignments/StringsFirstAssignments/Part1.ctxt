@@ -4,4 +4,6 @@ comment1.params=dna
 comment1.target=java.lang.String\ findSimpleGene(java.lang.String)
 comment2.params=
 comment2.target=void\ testSimpleGene()
-numComments=3
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+numComments=4
