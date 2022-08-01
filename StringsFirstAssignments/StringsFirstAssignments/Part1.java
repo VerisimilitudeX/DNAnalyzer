@@ -11,8 +11,7 @@ class Part1 {
             return "Error: stop codon (TAA) not found";
         }
         if (((stopIndex - startIndex + 1) % 3) == 0) {
-            String gene = "Gene is " + dna.substring(startIndex, stopIndex + 3);
-            return gene;
+            return ("Gene is " + dna.substring(startIndex, stopIndex + 3));
         }
         else {
             return "Error: gene length is not a multiple of 3";
@@ -29,7 +28,7 @@ class Part1 {
         dnaList.add("GCGCCGGCCATGGATCTAAGGCCGGCGC");
         dnaList.add("GCTACATGGTACGTACGTAATAGC");
         dnaList.add("GATGCTATATAATAGTTATATAGC");
-        dnaList.add("GGCTATGATATATGATATAGTAAC");
+        dnaList.add("GGCTATGATATATGATATAGC");
         for (String dna : dnaList) {
             System.out.println("DNA strand is " + dna);
             System.out.println(findSimpleGene(dna) + "\n");
