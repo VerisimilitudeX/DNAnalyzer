@@ -64,6 +64,7 @@ public class Part2 {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the amino acid you want to search for: ");
         String aminoAcid = userInput.nextLine();
+        userInput.close();
         System.out.println(aminoAcid);
 
     }

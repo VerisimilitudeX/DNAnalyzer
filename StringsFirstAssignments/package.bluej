@@ -2,10 +2,10 @@
 dependency1.from=Part2
 dependency1.to=Part1
 dependency1.type=UsesDependency
-editor.fx.0.height=686
-editor.fx.0.width=1294
-editor.fx.0.x=-7
-editor.fx.0.y=-7
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
 objectbench.height=183
 objectbench.width=1256
 package.divider.horizontal=0.6
