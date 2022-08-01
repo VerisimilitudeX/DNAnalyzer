@@ -64,8 +64,43 @@ public class Part2 {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the amino acid you want to search for: ");
         String aminoAcid = userInput.nextLine();
-        userInput.close();
-        System.out.println(aminoAcid);
+        // based on user input, print the corresponding list of codons.
+        if (aminoAcid.equals("I") || aminoAcid.equals("isoleucine") || aminoAcid.equals("Isoleucine") || aminoAcid.equals("i")) {
+            System.out.println("The codons for Isoleucine are: " + Isoleucine);
+        }
+        else if (aminoAcid.equals("L") || aminoAcid.equals("leucine") || aminoAcid.equals("Leucine") || aminoAcid.equals("l")) {
+            System.out.println("The codons for Leucine are: " + Leucine);
+        }
+        else if (aminoAcid.equals("V") ||aminoAcid.equals("valine") || aminoAcid.equals("Valine") || aminoAcid.equals("v"))) {
+            System.out.println("The codons for Valine are: " + Valine);
+        }
+        else if (aminoAcid.equals("F") || aminoAcid.equals("phenylalanine") || aminoAcid.equals("Phenylalanine") || aminoAcid.equals("f")) {
+            System.out.println("The codons for Phenylalanine are: " + Phenylalanine);
+        }
+        else if (aminoAcid.equals("M") || aminoAcid.equals("methionine") || aminoAcid.equals("Methionine") || aminoAcid.equals("m")) {
+            System.out.println("The codons for Methionine are: " + Methionine);
+        }
+        else if (aminoAcid.equals("C") || aminoAcid.equals("cysteine") || aminoAcid.equals("Cysteine") || aminoAcid.equals("c")) {
+            System.out.println("The codons for Cysteine are: " + Cysteine);
+        }
+        else if (aminoAcid.equals("A") || aminoAcid.equals("alanine") || aminoAcid.equals("Alanine") || aminoAcid.equals("a")) {
+            System.out.println("The codons for Alanine are: " + Alanine);
+        }
+        else if (aminoAcid.equals("G") || aminoAcid.equals("glycine") || aminoAcid.equals("Glycine") || aminoAcid.equals("g")) {
+            System.out.println("The codons for Glycine are: " + Glycine);
+        }
+        else if (aminoAcid.equals("P") || aminoAcid.equals("proline") || aminoAcid.equals("Proline") || aminoAcid.equals("p")) {
+            System.out.println("The codons for Proline are: " + Proline);
+        }
+        else if (aminoAcid.equals("T") || aminoAcid.equals("threonine") || aminoAcid.equals("Threonine") || aminoAcid.equals("t")) {
+            System.out.println("The codons for Threonine are: " + Threonine);
+        }
+        else if (aminoAcid.equals("S") || aminoAcid.equals("serine") || aminoAcid.equals("Serine") || aminoAcid.equals("s")) {
+            System.out.println("The codons for Serine are: " + Serine);
+        }
+        else if (aminoAcid.equals("Y") || aminoAcid.equals("tyrosine") || aminoAcid.equals("Tyrosine") || aminoAcid.equals("y")) {
+            System.out.println("The codons for Tyrosine are: " + Tyrosine);
+        }
 
     }
 public static void main(String[] args) {
