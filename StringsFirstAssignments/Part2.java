@@ -60,81 +60,105 @@ public class Part2 {
         String aminoAcid = userInput.nextLine().toLowerCase();
         userInput.close();
 
-        // Uses the amino acid input from the user to find the start codons for that amino acid
-        if (aminoAcid.equals("I") || aminoAcid.equals("isoleucine") || aminoAcid.equals("Isoleucine") || aminoAcid.equals("i")) {
-            int count = 1;
-            for (String startcodon : Isoleucine) {
-                int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                if (startcodonindex == -1) {
-                    continue;
-                }
-                for (String stopcodon : Stop) {
-                    int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                    if (stopcodonindex == -1) {
-                        break;
+        // Input can either be the amino acid name or the amino acid's one-letter symbol. We have plans to add a way to search for the amino acid's three-letter symbol as well.
+        if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
+            int loopcount = 0;
+            while (loopcount < 6) {
+                int count = 1;
+                for (String startcodon : Isoleucine) {
+                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
+                    if (startcodonindex == -1) {
+                        continue;
                     }
-                    if (startcodonindex != -1 && stopcodonindex != -1) {
-                        System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                        count++;
+                    for (String stopcodon : Stop) {
+                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
+                        if (stopcodonindex == -1) {
+                            break;
+                        }
+                        if (startcodonindex != -1 && stopcodonindex != -1) {
+                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
+                            count++;
+                        }
                     }
                 }
+                loopcount++;
             }
         }
-        else if (aminoAcid.equals("L") || aminoAcid.equals("leucine") || aminoAcid.equals("Leucine") || aminoAcid.equals("l")) {
-            System.out.println("The start codons for Leucine are: " + Leucine);
+        else if (aminoAcid.equals("leucine") || aminoAcid.equals("l")) {
+            int loopcount = 0;
+            while (loopcount < 6) {
+                int count = 1;
+                for (String startcodon : Leucine) {
+                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
+                    if (startcodonindex == -1) {
+                        continue;
+                    }
+                    for (String stopcodon : Stop) {
+                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
+                        if (stopcodonindex == -1) {
+                            break;
+                        }
+                        if (startcodonindex != -1 && stopcodonindex != -1) {
+                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
+                            count++;
+                        }
+                    }
+                }
+                loopcount++;
+            }
         }
-        else if (aminoAcid.equals("V") ||aminoAcid.equals("valine") || aminoAcid.equals("Valine") || aminoAcid.equals("v")) {
+        else if (aminoAcid.equals("valine") || aminoAcid.equals("v")) {
             System.out.println("The start codons for Valine are: " + Valine);
         }
-        else if (aminoAcid.equals("F") || aminoAcid.equals("phenylalanine") || aminoAcid.equals("Phenylalanine") || aminoAcid.equals("f")) {
+        else if (aminoAcid.equals("phenylalanine") || aminoAcid.equals("f")) {
             System.out.println("The start codons for Phenylalanine are: " + Phenylalanine);
         }
-        else if (aminoAcid.equals("M") || aminoAcid.equals("methionine") || aminoAcid.equals("Methionine") || aminoAcid.equals("m")) {
+        else if (aminoAcid.equals("methionine") || aminoAcid.equals("m")) {
             System.out.println("The start codons for Methionine are: " + Methionine);
         }
-        else if (aminoAcid.equals("C") || aminoAcid.equals("cysteine") || aminoAcid.equals("Cysteine") || aminoAcid.equals("c")) {
+        else if (aminoAcid.equals("cysteine") || aminoAcid.equals("c")) {
             System.out.println("The start codons for Cysteine are: " + Cysteine);
         }
-        else if (aminoAcid.equals("A") || aminoAcid.equals("alanine") || aminoAcid.equals("Alanine") || aminoAcid.equals("a")) {
+        else if (aminoAcid.equals("alanine") || aminoAcid.equals("a")) {
             System.out.println("The start codons for Alanine are: " + Alanine);
         }
-        else if (aminoAcid.equals("G") || aminoAcid.equals("glycine") || aminoAcid.equals("Glycine") || aminoAcid.equals("g")) {
+        else if (aminoAcid.equals("glycine") || aminoAcid.equals("g")) {
             System.out.println("The start codons for Glycine are: " + Glycine);
         }
-        else if (aminoAcid.equals("P") || aminoAcid.equals("proline") || aminoAcid.equals("Proline") || aminoAcid.equals("p")) {
+        else if (aminoAcid.equals("proline") || aminoAcid.equals("p")) {
             System.out.println("The start codons for Proline are: " + Proline);
         }
-        else if (aminoAcid.equals("T") || aminoAcid.equals("threonine") || aminoAcid.equals("Threonine") || aminoAcid.equals("t")) {
+        else if (aminoAcid.equals("threonine") || aminoAcid.equals("t")) {
             System.out.println("The start codons for Threonine are: " + Threonine);
         }
-        else if (aminoAcid.equals("S") || aminoAcid.equals("serine") || aminoAcid.equals("Serine") || aminoAcid.equals("s")) {
+        else if (aminoAcid.equals("serine") || aminoAcid.equals("s")) {
             System.out.println("The start codons for Serine are: " + Serine);
         }
-        else if (aminoAcid.equals("Y") || aminoAcid.equals("tyrosine") || aminoAcid.equals("Tyrosine") || aminoAcid.equals("y")) {
+        else if (aminoAcid.equals("tyrosine") || aminoAcid.equals("y")) {
             System.out.println("The start codons for Tyrosine are: " + Tyrosine);
         }
-        else if (aminoAcid.equals("W") || aminoAcid.equals("tryptophan") || aminoAcid.equals("Tryptophan") || aminoAcid.equals("w")) {
+        else if (aminoAcid.equals("tryptophan") || aminoAcid.equals("w")) {
             System.out.println("The start codons for Tryptophan are: " + Tryptophan);
         }
-        else if (aminoAcid.equals("Q") || aminoAcid.equals("glutamine") || aminoAcid.equals("Glutamine") || aminoAcid.equals("q")) {
+        else if (aminoAcid.equals("glutamine") || aminoAcid.equals("q")) {
             System.out.println("The start codons for Glutamine are: " + Glutamine);
         }
-        else if (aminoAcid.equals("N") || aminoAcid.equals("asparagine") || aminoAcid.equals("Asparagine") || aminoAcid.equals("n")) {
+        else if (aminoAcid.equals("asparagine") || aminoAcid.equals("n")) {
             System.out.println("The start codons for Asparagine are: " + Asparagine);
         }
-        else if (aminoAcid.equals("H") || aminoAcid.equals("histidine") || aminoAcid.equals("Histidine") || aminoAcid.equals("h")) {
+        else if (aminoAcid.equals("histidine") || aminoAcid.equals("h")) {
             System.out.println("The start codons for Histidine are: " + Histidine);
         }
-        else if (aminoAcid.equals("D") || aminoAcid.equals("glutamic acid") || aminoAcid.equals("Glutamic Acid") || aminoAcid.equals("d")) {
+        else if (aminoAcid.equals("glutamic acid") || aminoAcid.equals("d")) {
             System.out.println("The start codons for Glutamic Acid are: " + GlutamicAcid);
         }
-        else if (aminoAcid.equals("E") || aminoAcid.equals("aspartic acid") || aminoAcid.equals("Aspartic Acid") || aminoAcid.equals("e")) {
+        else if (aminoAcid.equals("aspartic acid") || aminoAcid.equals("e")) {
             System.out.println("The start codons for Aspartic Acid are: " + AsparticAcid);
         }
-        else if (aminoAcid.equals("K") || aminoAcid.equals("lysine") || aminoAcid.equals("Lysine") || aminoAcid.equals("k")) {
+        else if (aminoAcid.equals("lysine") || aminoAcid.equals("k")) {
             System.out.println("The start codons for Lysine are: " + Lysine);
         }
-        else if (aminoAcid.equals("R") || aminoAcid.equals("arginine") || aminoAcid.equals("Arginine") || aminoAcid.equals("r")) {
+        else if (aminoAcid.equals("arginine") || aminoAcid.equals("r")) {
             System.out.println("The start codons for Arginine are: " + Arginine);
         }
         else {
