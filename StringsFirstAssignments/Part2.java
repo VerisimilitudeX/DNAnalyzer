@@ -55,19 +55,27 @@ public class Part2 {
         // Asks user for the amino acid that they want to search for and returns the list of start codons for that amino acid
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the DNA sequence: ");
-        String dna = userInput.nextLine();
+        String dna = userInput.nextLine().toLowerCase();
         System.out.println("Enter the amino acid: ");
-        String aminoAcid = userInput.nextLine();
+        String aminoAcid = userInput.nextLine().toLowerCase();
         userInput.close();
 
         // Uses the amino acid input from the user to find the start codons for that amino acid
         if (aminoAcid.equals("I") || aminoAcid.equals("isoleucine") || aminoAcid.equals("Isoleucine") || aminoAcid.equals("i")) {
+            int count = 1;
             for (String startcodon : Isoleucine) {
-                int startcodonindex = dna.indexOf(startcodon);
+                int startcodonindex = dna.indexOf(startcodon.toLowerCase());
+                if (startcodonindex == -1) {
+                    continue;
+                }
                 for (String stopcodon : Stop) {
-                    int stopcodonindex = dna.indexOf(stopcodon);
+                    int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
+                    if (stopcodonindex == -1) {
+                        break;
+                    }
                     if (startcodonindex != -1 && stopcodonindex != -1) {
-                        System.out.println("Gene is " + dna.substring(startcodonindex, stopcodonindex + 3));
+                        System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
+                        count++;
                     }
                 }
             }
@@ -105,7 +113,33 @@ public class Part2 {
         else if (aminoAcid.equals("Y") || aminoAcid.equals("tyrosine") || aminoAcid.equals("Tyrosine") || aminoAcid.equals("y")) {
             System.out.println("The start codons for Tyrosine are: " + Tyrosine);
         }
-
+        else if (aminoAcid.equals("W") || aminoAcid.equals("tryptophan") || aminoAcid.equals("Tryptophan") || aminoAcid.equals("w")) {
+            System.out.println("The start codons for Tryptophan are: " + Tryptophan);
+        }
+        else if (aminoAcid.equals("Q") || aminoAcid.equals("glutamine") || aminoAcid.equals("Glutamine") || aminoAcid.equals("q")) {
+            System.out.println("The start codons for Glutamine are: " + Glutamine);
+        }
+        else if (aminoAcid.equals("N") || aminoAcid.equals("asparagine") || aminoAcid.equals("Asparagine") || aminoAcid.equals("n")) {
+            System.out.println("The start codons for Asparagine are: " + Asparagine);
+        }
+        else if (aminoAcid.equals("H") || aminoAcid.equals("histidine") || aminoAcid.equals("Histidine") || aminoAcid.equals("h")) {
+            System.out.println("The start codons for Histidine are: " + Histidine);
+        }
+        else if (aminoAcid.equals("D") || aminoAcid.equals("glutamic acid") || aminoAcid.equals("Glutamic Acid") || aminoAcid.equals("d")) {
+            System.out.println("The start codons for Glutamic Acid are: " + GlutamicAcid);
+        }
+        else if (aminoAcid.equals("E") || aminoAcid.equals("aspartic acid") || aminoAcid.equals("Aspartic Acid") || aminoAcid.equals("e")) {
+            System.out.println("The start codons for Aspartic Acid are: " + AsparticAcid);
+        }
+        else if (aminoAcid.equals("K") || aminoAcid.equals("lysine") || aminoAcid.equals("Lysine") || aminoAcid.equals("k")) {
+            System.out.println("The start codons for Lysine are: " + Lysine);
+        }
+        else if (aminoAcid.equals("R") || aminoAcid.equals("arginine") || aminoAcid.equals("Arginine") || aminoAcid.equals("r")) {
+            System.out.println("The start codons for Arginine are: " + Arginine);
+        }
+        else {
+            System.out.println("Invalid input");
+        }
     }
 public static void main(String[] args) {
         Part2 p = new Part2();
