@@ -2,6 +2,13 @@ import java.util.*;
 import edu.duke.*;
 
 public class Part2 {
+    /*
+     * Find the longest gene in a DNA string.
+     * @param dna is a String containing the DNA sequence
+     * @return the longest gene found or an empty string if no gene is found
+    */
+
+    /*
     public String findSimpleGene(String dna, String startCodon, String stopCodon) {
         int startIndex = dna.indexOf("ATG");
         if (startIndex == -1) {
@@ -18,6 +25,7 @@ public class Part2 {
             return "Error: gene length is not a multiple of 3";
         }
     }
+    */
 
     public void testSimpleGene() {
 
@@ -84,445 +92,81 @@ public class Part2 {
                 loopcount++;
             }
         }
-        else if (aminoAcid.equals("leucine") || aminoAcid.equals("l")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Leucine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
+        // Insert code that was deleted here.
+    }
+    
+    public String findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList <String> Isoleucine, ArrayList <String> Leucine, ArrayList <String> Valine, ArrayList <String> Phenylalanine, ArrayList <String> Methionine, ArrayList <String> Cysteine, ArrayList <String> Alanine, ArrayList <String> Glycine, ArrayList <String> Proline, ArrayList <String> Threonine, ArrayList <String> Serine, ArrayList <String> Tyrosine, ArrayList <String> Tryptophan, ArrayList <String> Glutamine, ArrayList <String> Asparagine, ArrayList <String> Histidine, ArrayList <String> GlutamicAcid, ArrayList <String> AsparticAcid, ArrayList <String> Lysine, ArrayList <String> Arginine, ArrayList <String> Stop) {
+        // match the amino acid entered to one of the lists above and store it in a variable called aminoAcidList
+        ArrayList<String> aminoAcidList = new ArrayList<String>();
+        if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
+            aminoAcidList.addAll(Isoleucine);
+        } else if (aminoAcid.equals("leucine") || aminoAcid.equals("l")) {
+            aminoAcidList.addAll(Leucine);
+        } else if (aminoAcid.equals("valine") || aminoAcid.equals("v")) {
+            aminoAcidList.addAll(Valine);
+        } else if (aminoAcid.equals("phenylalanine") || aminoAcid.equals("f")) {
+            aminoAcidList.addAll(Phenylalanine);
+        } else if (aminoAcid.equals("methionine") || aminoAcid.equals("m")) {
+            aminoAcidList.addAll(Methionine);
+        } else if (aminoAcid.equals("cysteine") || aminoAcid.equals("c")) {
+            aminoAcidList.addAll(Cysteine);
+        } else if (aminoAcid.equals("alanine") || aminoAcid.equals("a")) {
+            aminoAcidList.addAll(Alanine);
+        } else if (aminoAcid.equals("glycine") || aminoAcid.equals("g")) {
+            aminoAcidList.addAll(Glycine);
+        } else if (aminoAcid.equals("proline") || aminoAcid.equals("p")) {
+            aminoAcidList.addAll(Proline);
+        } else if (aminoAcid.equals("threonine") || aminoAcid.equals("t")) {
+            aminoAcidList.addAll(Threonine);
+        } else if (aminoAcid.equals("serine") || aminoAcid.equals("s")) {
+            aminoAcidList.addAll(Serine);
+        } else if (aminoAcid.equals("tyrosine") || aminoAcid.equals("y")) {
+            aminoAcidList.addAll(Tyrosine);
+        } else if (aminoAcid.equals("tryptophan") || aminoAcid.equals("w")) {
+            aminoAcidList.addAll(Tryptophan);
+        } else if (aminoAcid.equals("glutamine") || aminoAcid.equals("q")) {
+            aminoAcidList.addAll(Glutamine);
+        } else if (aminoAcid.equals("asparagine") || aminoAcid.equals("n")) {
+            aminoAcidList.addAll(Asparagine);
+        } else if (aminoAcid.equals("histidine") || aminoAcid.equals("h")) {
+            aminoAcidList.addAll(Histidine);
+        } else if (aminoAcid.equals("glutamicacid") || aminoAcid.equals("e")) {
+            aminoAcidList.addAll(GlutamicAcid);
+        } else if (aminoAcid.equals("asparticacid") || aminoAcid.equals("d")) {
+            aminoAcidList.addAll(AsparticAcid);
+        } else if (aminoAcid.equals("lysine") || aminoAcid.equals("k")) {
+            aminoAcidList.addAll(Lysine);
+        } else if (aminoAcid.equals("arginine") || aminoAcid.equals("r")) {
+            aminoAcidList.addAll(Arginine);
+        } else if (aminoAcid.equals("stop") || aminoAcid.equals("*")) {
+            aminoAcidList.addAll(Stop);
+        } else {
+            System.out.println("Invalid amino acid");
+            return "";
+        }
+        
+        String gene = "";
+
+        int loopcount = 0;
+        while (loopcount < 6) {
+            int count = 1;
+            for (String startcodon : aminoAcidList) {
+                int startcodonindex = dna.indexOf(startcodon.toLowerCase());
+                if (startcodonindex == -1) {
+                    continue;
+                }
+                for (String stopcodon : Stop) {
+                    int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
+                    if (stopcodonindex == -1) {
+                        break;
                     }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
+                    if (startcodonindex != -1 && stopcodonindex != -1) {
+                        gene.concat("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
+                        count++;
                     }
                 }
-                loopcount++;
             }
-        }
-        else if (aminoAcid.equals("valine") || aminoAcid.equals("v")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Valine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("phenylalanine") || aminoAcid.equals("f")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Phenylalanine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("methionine") || aminoAcid.equals("m")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Methionine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("cysteine") || aminoAcid.equals("c")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Cysteine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("alanine") || aminoAcid.equals("a")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Alanine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("glycine") || aminoAcid.equals("g")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Glycine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("proline") || aminoAcid.equals("p")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Proline) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("threonine") || aminoAcid.equals("t")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Threonine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("serine") || aminoAcid.equals("s")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Serine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("tyrosine") || aminoAcid.equals("y")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Tyrosine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("tryptophan") || aminoAcid.equals("w")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Tryptophan) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("glutamine") || aminoAcid.equals("q")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Glutamine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("asparagine") || aminoAcid.equals("n")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Asparagine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("histidine") || aminoAcid.equals("h")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Histidine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("glutamic acid") || aminoAcid.equals("d")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : GlutamicAcid) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("aspartic acid") || aminoAcid.equals("b")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : AsparticAcid) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("lysine") || aminoAcid.equals("k")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Lysine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else if (aminoAcid.equals("arginine") || aminoAcid.equals("r")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Arginine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        else {
-            System.out.println("Invalid input");
+            loopcount++;
         }
     }
 public static void main(String[] args) {
