@@ -1,41 +1,7 @@
 import java.util.*;
-import edu.duke.*;
 
 public class Part2 {
-    /*
-     * Find the longest gene in a DNA string.
-     * @param dna is a String containing the DNA sequence
-     * @return the longest gene found or an empty string if no gene is found
-    */
-
-    /*
-    public String findSimpleGene(String dna, String startCodon, String stopCodon) {
-        int startIndex = dna.indexOf("ATG");
-        if (startIndex == -1) {
-            return "Error: start codon (ATG) not found";
-        }
-        int stopIndex = dna.indexOf("TAA");
-        if (stopIndex == -1) {
-            return "Error: stop codon (TAA) not found";
-        }
-        if (((stopIndex - startIndex + 1) % 3) == 0) {
-            return ("Gene is " + dna.substring(startIndex, stopIndex + 3));
-        }
-        else {
-            return "Error: gene length is not a multiple of 3";
-        }
-    }
-    */
-
     public void testSimpleGene() {
-
-        /* All 64 potential three-letter combinations of the DNA coding units T, C, A, and G are employed to
-        * encode one of these amino acids or to signify the end of a sequence. While DNA can be decoded without 
-        * ambiguity, a DNA sequence cannot be predicted from its protein sequence. Because most amino acids have 
-        * numerous start codons, several DNA sequences might represent the same protein sequence.
-        */
-
-        // Amino acid start codon table
         ArrayList<String> Isoleucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA"));
         ArrayList<String> Leucine = new ArrayList<>(Arrays.asList("CTT", "CTC", "CTA", "CTG", "TTA", "TTG"));
         ArrayList<String> Valine = new ArrayList<>(Arrays.asList("GTT", "GTC", "GTA", "GTG"));
@@ -65,6 +31,7 @@ public class Part2 {
         System.out.println("Enter the amino acid: ");
         String aminoAcid = userInput.nextLine().toLowerCase();
         userInput.close();
+        findGeneWithAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
     }
     
     public String findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList <String> Isoleucine, ArrayList <String> Leucine, ArrayList <String> Valine, ArrayList <String> Phenylalanine, ArrayList <String> Methionine, ArrayList <String> Cysteine, ArrayList <String> Alanine, ArrayList <String> Glycine, ArrayList <String> Proline, ArrayList <String> Threonine, ArrayList <String> Serine, ArrayList <String> Tyrosine, ArrayList <String> Tryptophan, ArrayList <String> Glutamine, ArrayList <String> Asparagine, ArrayList <String> Histidine, ArrayList <String> GlutamicAcid, ArrayList <String> AsparticAcid, ArrayList <String> Lysine, ArrayList <String> Arginine, ArrayList <String> Stop) {
@@ -109,25 +76,15 @@ public class Part2 {
             aminoAcidList.addAll(Lysine);
         } else if (aminoAcid.equals("arginine") || aminoAcid.equals("r")) {
             aminoAcidList.addAll(Arginine);
-        } else if (aminoAcid.equals("stop") || aminoAcid.equals("*")) {
-            aminoAcidList.addAll(Stop);
         } else {
-            System.out.println("Invalid amino acid");
-            return "";
+            return "Invalid amino acid";
         }
-        
         String gene = "";
         int count = 1;
         for (String startcodon : aminoAcidList) {
             int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-            if (startcodonindex == -1) {
-                continue;
-            }
             for (String stopcodon : Stop) {
                 int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                if (stopcodonindex == -1) {
-                    break;
-                }
                 if (startcodonindex != -1 && stopcodonindex != -1) {
                     gene.concat("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
                     count++;
