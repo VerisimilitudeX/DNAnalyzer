@@ -55,6 +55,7 @@ public class findGeneWithAminoAcid {
         }
         String gene = "";
         int count = 1;
+        System.out.println("");
         for (String startcodon : aminoAcidList) {
             int startcodonindex = dna.indexOf(startcodon.toLowerCase());
             for (String stopcodon : stop) {
