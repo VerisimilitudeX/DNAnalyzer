@@ -1,10 +1,9 @@
 public class entryPoint {
-   
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         dnaSequencer ds = new dnaSequencer();
-        ds.getSequenceAndAminoAcid(codonData.Isoleucine, codonData.Leucine, codonData.Valine, codonData.Phenylalanine, codonData.Methionine, codonData.Cysteine, codonData.Alanine, codonData.Glycine, codonData.Proline, codonData.Threonine, codonData.Serine, codonData.Tyrosine, codonData.Tryptophan, codonData.Glutamine, codonData.Asparagine, codonData.Histidine, codonData.GlutamicAcid, codonData.AsparticAcid, codonData.Lysine, codonData.Arginine, codonData.Stop);
-    }
-    
+        codonData cd = new codonData();
+        ds.getSequenceAndAminoAcid(cd.Isoleucine, cd.Leucine, cd.Valine, cd.Phenylalanine, cd.Methionine, cd.Cysteine, cd.Alanine, cd.Glycine, cd.Proline, cd.Threonine, cd.Serine, cd.Tyrosine, cd.Tryptophan, cd.Glutamine, cd.Asparagine, cd.Histidine, cd.GlutamicAcid, cd.AsparticAcid, cd.Lysine, cd.Arginine, cd.Stop);
+    }   
 }
 
 /*
