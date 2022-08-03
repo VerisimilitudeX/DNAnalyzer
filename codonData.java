@@ -1,8 +1,6 @@
 // Imports Java Utilities necessary for creating ArrayLists and Arrays.
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.time.Duration;
-import java.time.Instant;
 
 // This method returns the codon data for the given amino acid.
 public class codonData {

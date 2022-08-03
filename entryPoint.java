@@ -1,12 +1,15 @@
+// Imports the Java Time Library for measuring the time it takes for the program to run. 
 import java.time.Duration;
 import java.time.Instant;
 
+// Program starts here.
 public class entryPoint {
     public static void main(String[] args) {
+        
         // Start measuring time
         Instant start = Instant.now();
         
-        // Original code
+        // Create a new instance of the dnaSequence and codonData classes and send the information to the dnaSequencer's ds constructor.
         int count = 0;
         while (count < 1000) {
             dnaSequencer ds = new dnaSequencer();
@@ -14,7 +17,7 @@ public class entryPoint {
             ds.getSequenceAndAminoAcid(cd.getIsoleucine(), cd.getLeucine(), cd.getValine(), cd.getPhenylalanine(), cd.getMethionine(), cd.getCysteine(), cd.getAlanine(), cd.getGlycine(), cd.getProline(), cd.getThreonine(), cd.getSerine(), cd.getTyrosine(), cd.getTryptophan(), cd.getGlutamine(), cd.getAsparagine(), cd.getHistidine(), cd.getGlutamicAcid(), cd.getAsparticAcid(), cd.getLysine(), cd.getArginine(), cd.getStop());
             count++;
         }
-        
+
         // Stop measuring time
         findGeneWithAminoAcid.main(args);
         Instant end = Instant.now();
