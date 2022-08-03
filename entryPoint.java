@@ -1,9 +1,22 @@
+import java.time.Duration;
+import java.time.Instant;
+
 public class entryPoint {
-        public static void main(String[] args) {
+    public static void main(String[] args) {
+        // Start measuring time
+        Instant start = Instant.now();
+        
+        // Original code
         dnaSequencer ds = new dnaSequencer();
         codonData cd = new codonData();
-        ds.getSequenceAndAminoAcid(cd.Isoleucine, cd.Leucine, cd.Valine, cd.Phenylalanine, cd.Methionine, cd.Cysteine, cd.Alanine, cd.Glycine, cd.Proline, cd.Threonine, cd.Serine, cd.Tyrosine, cd.Tryptophan, cd.Glutamine, cd.Asparagine, cd.Histidine, cd.GlutamicAcid, cd.AsparticAcid, cd.Lysine, cd.Arginine, cd.Stop);
-    }   
+        ds.getSequenceAndAminoAcid(cd.getIsoleucine(), cd.getLeucine(), cd.getValine(), cd.getPhenylalanine(), cd.getMethionine(), cd.getCysteine(), cd.getAlanine(), cd.getGlycine(), cd.getProline(), cd.getThreonine(), cd.getSerine(), cd.getTyrosine(), cd.getTryptophan(), cd.getGlutamine(), cd.getAsparagine(), cd.getHistidine(), cd.getGlutamicAcid(), cd.getAsparticAcid(), cd.getLysine(), cd.getArginine(), cd.getStop());
+        
+        // Stop measuring time
+        findGeneWithAminoAcid.main(args);
+        Instant end = Instant.now();
+        Duration timeTaken = Duration.between(start, end);
+        System.out.println("Time taken: " + timeTaken.toMillis() + " milliseconds");
+    }
 }
 
 /*

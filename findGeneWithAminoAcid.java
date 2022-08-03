@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.time.Duration;
+import java.time.Instant;
 
 public class findGeneWithAminoAcid {
     public findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
@@ -75,6 +77,9 @@ public class findGeneWithAminoAcid {
         else {
             System.out.println(gene);
         }
+    }
+
+    public static void main(String[] args) {
     }
 
 }

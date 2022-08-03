@@ -1,7 +1,10 @@
 import java.util.*;
+import java.time.Duration;
+import java.time.Instant;
 
 public class dnaSequencer {
     public void getSequenceAndAminoAcid(ArrayList<String> Isoleucine, ArrayList<String> Leucine, ArrayList<String> Valine, ArrayList<String> Phenylalanine, ArrayList<String> Methionine, ArrayList<String> Cysteine, ArrayList<String> Alanine, ArrayList<String> Glycine, ArrayList<String> Proline, ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine, ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine, ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid, ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) {
+        /*
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the DNA sequence: ");
         String dna = userInput.nextLine().toLowerCase();
@@ -13,6 +16,14 @@ public class dnaSequencer {
         System.out.println("Enter the amino acid: ");
         String aminoAcid = userInput.nextLine().toLowerCase();
         userInput.close();
+
+        // Prevents the user from entering an RNA sequence. In the last decade, using DNA sequences instead of RNA sequences has been a more common practice.
+        dna = dna.replaceAll("u", "t");
+        */
+
+        String dna = "ggggtacattcgggtcaccgtaatttacgaggggttccggcaaggggtcgcgaggggagcttatttttattgtagaaaccttggctagcaaggcaaacgccatggccaaacattaatgaggcccgagccacgaagtacgttgtgaaacaagcgcgaggtggccctatacacgtgtatgagtgtaggttgacccagggtgt";
+        String aminoAcid = "l";
+
         new findGeneWithAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
     }
 }
