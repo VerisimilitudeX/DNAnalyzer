@@ -56,47 +56,18 @@ public class Part2 {
         ArrayList<String> AsparticAcid = new ArrayList<>(Arrays.asList("GAT", "GAC"));
         ArrayList<String> Lysine = new ArrayList<>(Arrays.asList("AAA", "AAG"));
         ArrayList<String> Arginine = new ArrayList<>(Arrays.asList("CGT", "CGC", "CGA", "CGG", "AGA", "AGG"));
-        
-        // Amino acid stop codon table
+
         ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
-        
-        // Asks user for the amino acid that they want to search for and returns the list of start codons for that amino acid
+
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the DNA sequence: ");
         String dna = userInput.nextLine().toLowerCase();
         System.out.println("Enter the amino acid: ");
         String aminoAcid = userInput.nextLine().toLowerCase();
         userInput.close();
-
-        // Input can either be the amino acid name or the amino acid's one-letter symbol. We have plans to add a way to search for the amino acid's three-letter symbol as well.
-        if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
-            int loopcount = 0;
-            while (loopcount < 6) {
-                int count = 1;
-                for (String startcodon : Isoleucine) {
-                    int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                    if (startcodonindex == -1) {
-                        continue;
-                    }
-                    for (String stopcodon : Stop) {
-                        int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                        if (stopcodonindex == -1) {
-                            break;
-                        }
-                        if (startcodonindex != -1 && stopcodonindex != -1) {
-                            System.out.println("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                            count++;
-                        }
-                    }
-                }
-                loopcount++;
-            }
-        }
-        // Insert code that was deleted here.
     }
     
     public String findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList <String> Isoleucine, ArrayList <String> Leucine, ArrayList <String> Valine, ArrayList <String> Phenylalanine, ArrayList <String> Methionine, ArrayList <String> Cysteine, ArrayList <String> Alanine, ArrayList <String> Glycine, ArrayList <String> Proline, ArrayList <String> Threonine, ArrayList <String> Serine, ArrayList <String> Tyrosine, ArrayList <String> Tryptophan, ArrayList <String> Glutamine, ArrayList <String> Asparagine, ArrayList <String> Histidine, ArrayList <String> GlutamicAcid, ArrayList <String> AsparticAcid, ArrayList <String> Lysine, ArrayList <String> Arginine, ArrayList <String> Stop) {
-        // match the amino acid entered to one of the lists above and store it in a variable called aminoAcidList
         ArrayList<String> aminoAcidList = new ArrayList<String>();
         if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
             aminoAcidList.addAll(Isoleucine);
@@ -146,27 +117,22 @@ public class Part2 {
         }
         
         String gene = "";
-
-        int loopcount = 0;
-        while (loopcount < 6) {
-            int count = 1;
-            for (String startcodon : aminoAcidList) {
-                int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-                if (startcodonindex == -1) {
-                    continue;
+        int count = 1;
+        for (String startcodon : aminoAcidList) {
+            int startcodonindex = dna.indexOf(startcodon.toLowerCase());
+            if (startcodonindex == -1) {
+                continue;
+            }
+            for (String stopcodon : Stop) {
+                int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
+                if (stopcodonindex == -1) {
+                    break;
                 }
-                for (String stopcodon : Stop) {
-                    int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                    if (stopcodonindex == -1) {
-                        break;
-                    }
-                    if (startcodonindex != -1 && stopcodonindex != -1) {
-                        gene.concat("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
-                        count++;
-                    }
+                if (startcodonindex != -1 && stopcodonindex != -1) {
+                    gene.concat("Gene " + count + " is " + dna.substring(startcodonindex, stopcodonindex + 3));
+                    count++;
                 }
             }
-            loopcount++;
         }
         return gene;
     }
