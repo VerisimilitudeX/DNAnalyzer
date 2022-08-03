@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class findGeneWithAminoAcid {
-
     public findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
             ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
             ArrayList<String> cysteine, ArrayList<String> alanine, ArrayList<String> glycine, ArrayList<String> proline,
@@ -55,7 +54,11 @@ public class findGeneWithAminoAcid {
         }
         String gene = "";
         int count = 1;
-        System.out.println("");
+        for (int i = 0; i < 100; i++) {
+            System.out.println();
+        }
+        System.out.println("List of genes coded for " + aminoAcid + " in the DNA strand: ");
+        System.out.println("----------------------------------------------------");
         for (String startcodon : aminoAcidList) {
             int startcodonindex = dna.indexOf(startcodon.toLowerCase());
             for (String stopcodon : stop) {
