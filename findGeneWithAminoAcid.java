@@ -1,6 +1,5 @@
+// Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
-import java.time.Duration;
-import java.time.Instant;
 
 public class findGeneWithAminoAcid {
     public findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
