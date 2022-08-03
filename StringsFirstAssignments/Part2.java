@@ -168,6 +168,7 @@ public class Part2 {
             }
             loopcount++;
         }
+        return gene;
     }
 public static void main(String[] args) {
         Part2 p = new Part2();
