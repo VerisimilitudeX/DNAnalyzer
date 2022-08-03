@@ -24,7 +24,7 @@ public class entryPoint {
 
     static ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         dnaSequencer ds = new dnaSequencer();
         ds.getSequenceAndAminoAcid(Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
     }
