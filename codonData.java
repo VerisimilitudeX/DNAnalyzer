@@ -2,7 +2,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 // This method returns the codon data for the given amino acid.
 public class codonData {
@@ -30,7 +29,7 @@ public class codonData {
     private final ArrayList<String> Arginine = new ArrayList<>(Arrays.asList("CGT", "CGC", "CGA", "CGG", "AGA", "AGG"));
     
     // Declares the stop codon data for the 20 amino acids. Note: the stop codons are the same for all amino acids.
-    Map<String, Integer> Stop = new HashMap<String, Integer>();  
+    HashMap<String, Integer> Stop = new HashMap<String, Integer>();  
 
     // Returns the start codon data for the amino acid called. This uses encapsulation to ensure that the codon data is available to the rest of the program (i.e. the dnaSequencer class).
     public ArrayList<String> getIsoleucine() {
@@ -93,7 +92,7 @@ public class codonData {
     public ArrayList<String> getArginine() {
         return Arginine;
     }
-    public Map<String, Integer> getStop() {
+    public HashMap<String, Integer> getStop() {
         Stop.put("TAA", 0);
         Stop.put("TAG", 0);
         Stop.put("TGA", 0);
