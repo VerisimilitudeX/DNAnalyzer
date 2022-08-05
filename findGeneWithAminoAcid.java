@@ -1,6 +1,6 @@
 // Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map.Entry;
 
 public class findGeneWithAminoAcid {
@@ -10,7 +10,7 @@ public class findGeneWithAminoAcid {
             ArrayList<String> threonine, ArrayList<String> serine, ArrayList<String> tyrosine,
             ArrayList<String> tryptophan, ArrayList<String> glutamine, ArrayList<String> asparagine,
             ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
-            ArrayList<String> lysine, ArrayList<String> arginine, HashMap<String, Integer> Stop) {
+            ArrayList<String> lysine, ArrayList<String> arginine, Hashtable<String, Integer> stop) {
                 ArrayList<String> aminoAcidList = new ArrayList<String>();
         if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
             aminoAcidList.addAll(isoleucine);
@@ -64,14 +64,24 @@ public class findGeneWithAminoAcid {
         System.out.println("----------------------------------------------------");
         for (String startcodon : aminoAcidList) {
             int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-            for (Entry<String, Integer> stopcodon : Stop.entrySet()) {
-                ((HashMap<String, Integer>)stopcodon).put(stopcodon.getKey(), dna.indexOf(stopcodon.getKey().toLowerCase(), startcodonindex + 3));
-                if ((stopcodon.getValue() - startcodonindex) % 3 != 0) {
+            for (String stopcodon : stop.keySet()) {
+                int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
+                stop.put(stopcodon, stopcodonindex);
+                if ((stopcodonindex - startcodonindex) % 3 != 0) {
                     continue;
-                } 
-                else if (startcodonindex != -1 && stopcodon.getValue() != -1) {
-                    gene += ("Gene " + count + ": " + dna.substring(startcodonindex, stopcodon.getValue() + 3).toUpperCase() + "\n");
-                    count++;
+                }
+                // sort stop hashtable by smallest to largest values
+                if (startcodonindex >= 0 && stopcodonindex != -1) {
+                    int leastvaluestopcodonindex = 0;
+                    for (Entry<String, Integer> entry : stop.entrySet()) {
+                        if (entry.getValue() < stop.get(stopcodon)) {
+                            leastvaluestopcodonindex = entry.getValue();
+                        }
+                    }
+                    if (leastvaluestopcodonindex >= 0) {
+                        gene += ("Gene " + count + ": " + dna.substring(startcodonindex, leastvaluestopcodonindex + 3).toUpperCase() + "\n");
+                        count++;
+                    }
                 }
             }
         }
