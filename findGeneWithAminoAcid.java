@@ -1,5 +1,6 @@
 // Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
+import java.util.Map;
 
 public class findGeneWithAminoAcid {
     public findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
@@ -8,7 +9,7 @@ public class findGeneWithAminoAcid {
             ArrayList<String> threonine, ArrayList<String> serine, ArrayList<String> tyrosine,
             ArrayList<String> tryptophan, ArrayList<String> glutamine, ArrayList<String> asparagine,
             ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
-            ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
+            ArrayList<String> lysine, ArrayList<String> arginine, Map<String, Integer> Stop) {
                 ArrayList<String> aminoAcidList = new ArrayList<String>();
         if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
             aminoAcidList.addAll(isoleucine);
@@ -62,8 +63,9 @@ public class findGeneWithAminoAcid {
         System.out.println("----------------------------------------------------");
         for (String startcodon : aminoAcidList) {
             int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-            for (String stopcodon : stop) {
-                int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
+            
+            for (Map.Entry<String, Integer> stopcodon : Stop.entrySet()) {
+                int stopcodonindex = dna.indexOf(stopcodon.getKey().toLowerCase(), startcodonindex + 3);
                 if ((stopcodonindex - startcodonindex) % 3 != 0) {
                     continue;
                 } 

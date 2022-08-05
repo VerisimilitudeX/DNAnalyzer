@@ -1,12 +1,13 @@
 // Import the Java Utility library's Scanner class for reading user input and ArrayList for receiving the amino acid sequence.
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 // Creates a new instance of the findGeneWithAminoAcid class after getting the DNA and amino acid from the user.
 public class dnaSequencer {
 
     // Receives the codons of the amino acid.
-    public void getSequenceAndAminoAcid(ArrayList<String> Isoleucine, ArrayList<String> Leucine, ArrayList<String> Valine, ArrayList<String> Phenylalanine, ArrayList<String> Methionine, ArrayList<String> Cysteine, ArrayList<String> Alanine, ArrayList<String> Glycine, ArrayList<String> Proline, ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine, ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine, ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid, ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) {
+    public void getSequenceAndAminoAcid(ArrayList<String> Isoleucine, ArrayList<String> Leucine, ArrayList<String> Valine, ArrayList<String> Phenylalanine, ArrayList<String> Methionine, ArrayList<String> Cysteine, ArrayList<String> Alanine, ArrayList<String> Glycine, ArrayList<String> Proline, ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine, ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine, ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid, ArrayList<String> Lysine, ArrayList<String> Arginine, Map<String, Integer> Stop) {
         
         // Gets the DNA sequence from the user.
         Scanner userInput = new Scanner(System.in);
