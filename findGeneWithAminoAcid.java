@@ -66,7 +66,7 @@ public class findGeneWithAminoAcid {
                 int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
                 if ((stopcodonindex - startcodonindex) % 3 != 0) {
                     continue;
-                } 
+                }
                 else if (startcodonindex != -1 && stopcodonindex != -1) {
                     gene += ("Gene " + count + ": " + dna.substring(startcodonindex, stopcodonindex + 3).toUpperCase() + "\n");
                     count++;
