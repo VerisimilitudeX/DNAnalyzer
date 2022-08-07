@@ -80,7 +80,6 @@ public class findGeneWithAminoAcid {
             System.out.println(gene);
         }
     }
-
     public static void main(String[] args) {
     }
 
