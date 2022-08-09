@@ -22,7 +22,7 @@ public class findProperties {
         float gclen = 0;
         for (String letter : dna.split("")) {
             System.out.println(letter);
-            if (letter == "c" || letter == "g") {
+            if (letter.equals("c") || letter.equals("g")) {
                 gclen++;
             }
         }
