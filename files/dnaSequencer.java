@@ -38,6 +38,10 @@ public class dnaSequencer {
         // Finds properties of the amino acid/gene strand.
         findProperties fp = new findProperties(); 
         fp.printGeneList(geneList, dna, aminoAcid);
-        fp.getGCContent(dna);
+
+        String gcContent = fp.getGCContent(dna);
+        System.out.println(gcContent);
+
+        processGenes pg = new processGenes();
     }
 }

@@ -17,7 +17,7 @@ public class findProperties {
             count++;
         }
     }
-    public void getGCContent(String dna) {
+    public String getGCContent(String dna) {
         dna = dna.toLowerCase();
         float gclen = 0;
         for (String letter : dna.split("")) {
@@ -26,6 +26,6 @@ public class findProperties {
                 gclen++;
             }
         }
-        System.out.println("The GC-content is: " + gclen / dna.length());
+        return ("The GC-content is: " + gclen / dna.length());
     }
 }
