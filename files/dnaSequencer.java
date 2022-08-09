@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Creates a new instance of the findGeneWithAminoAcid class after getting the DNA and amino acid from the user.
+// Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the user.
 public class dnaSequencer {
 
     // Receives the codons of the amino acid.
@@ -28,7 +28,7 @@ public class dnaSequencer {
         // Prevents the user from entering an RNA sequence. In the last decade, using DNA sequences instead of RNA sequences has been a more common practice.
         dna = dna.replaceAll("u", "t");
 
-        // Creates a new instance of the findGeneWithAminoAcid class and sends the DNA, amino acid, and start codons to the class.
+        // Creates a new instance of the getAminoAcid class and sends the DNA, amino acid, and start codons to the class.
         new findGeneWithAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
     }
 }

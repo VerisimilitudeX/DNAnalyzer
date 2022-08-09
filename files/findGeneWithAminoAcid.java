@@ -1,9 +1,9 @@
 // Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
-import fileresource.FileResource;
+import fileresource.StorageResource;
 
 public class findGeneWithAminoAcid {
-    public findGeneWithAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
+    public StorageResource getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
             ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
             ArrayList<String> cysteine, ArrayList<String> alanine, ArrayList<String> glycine, ArrayList<String> proline,
             ArrayList<String> threonine, ArrayList<String> serine, ArrayList<String> tyrosine,
@@ -54,7 +54,7 @@ public class findGeneWithAminoAcid {
         } else {
             System.out.println("Invalid amino acid");
         }
-        String gene = "";
+        StorageResource geneList = new StorageResource();
         int count = 1;
         for (int i = 0; i < 100; i++) {
             System.out.println();
@@ -69,19 +69,19 @@ public class findGeneWithAminoAcid {
                     continue;
                 }
                 else if (startcodonindex != -1 && stopcodonindex != -1 && count == 1) {
-                    gene += ("Gene " + count + ": " + dna.substring(startcodonindex, stopcodonindex + 3).toUpperCase() + "\n");
+                    geneList.add(dna.substring(startcodonindex, stopcodonindex + 3).toUpperCase());
                     break;
                 }
             }
         }
-        if (gene.length() == 0) {
+        if (geneList.size() == 0) {
             System.out.println("No gene found");
+            geneList.clear();
+            geneList.add("No gene found");
+            return geneList;
         } 
         else {
-            System.out.println(gene);
+            return geneList;
         }
     }
-    public static void main(String[] args) {
-    }
-
 }
