@@ -74,7 +74,7 @@ public class findGeneWithAminoAcid {
             for (int i = 0; i < 100; i++) {
                 System.out.println();
             }
-            System.out.println("List of genes coded for " + aminoAcid + " in the DNA strand: ");
+            System.out.println("Genes coded for " + aminoAcid + " in the DNA strand: ");
             System.out.println("----------------------------------------------------");
             System.out.println("No gene found");
             geneList.clear();
