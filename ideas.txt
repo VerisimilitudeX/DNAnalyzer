@@ -1,0 +1,4 @@
+- output to html webpage
+- count number of genes outputted
+- print high gc genes
+- save genes to a file
