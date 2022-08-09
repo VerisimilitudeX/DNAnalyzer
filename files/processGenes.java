@@ -15,4 +15,16 @@ public class processGenes {
             }
         }
     }
+    public void longestGene(StorageResource geneList) {
+        int maxlen = 0;
+        String longestGene = "";
+        for (String gene : geneList.data()) {
+            if (gene.length() > maxlen) {
+                maxlen = gene.length();
+                longestGene = gene;
+            }
+        }
+        System.out.println();
+        System.out.println("Longest gene (" + maxlen + "nucleotides): " + longestGene);
+    }
 }

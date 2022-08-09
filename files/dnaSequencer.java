@@ -35,14 +35,20 @@ public class dnaSequencer {
         findGeneWithAminoAcid fgwaa = new findGeneWithAminoAcid(); // Can be replaced with printGeneWithAminoAcid.
         StorageResource geneList = fgwaa.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
         
-        // Finds properties of the amino acid/gene strand.
-        findProperties fp = new findProperties(); 
+        // The findProperties class finds properties of the amino acid/gene strand.
+        findProperties fp = new findProperties();
+
+        // Prints the list of amino acid genes found in the StoragerResource object.
         fp.printGeneList(geneList, dna, aminoAcid);
 
+        // Prints the GC-content of the genomic sequence.
         String gcContent = fp.getGCContent(dna);
         System.out.println(gcContent);
 
+        // Finds and prints GC-content higher than 0.35 
         processGenes pg = new processGenes();
         pg.highGCContent(dna, gcContent, geneList);
+        // Finds and prints the longest gene in the DNA sequence and its length.
+        pg.longestGene(geneList);
     }
 }
