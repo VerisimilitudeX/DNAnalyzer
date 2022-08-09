@@ -1,6 +1,6 @@
 # Algorithm for Analyzing Genes in DNA
 
-<img src="https://user-images.githubusercontent.com/96280466/182701235-67ac54c0-2cc2-465d-9458-0a9bef98f439.png" width="500"/>
+<img src="https://user-images.githubusercontent.com/96280466/182701235-67ac54c0-2cc2-465d-9458-0a9bef98f439.png" width="400"/>
 
 ## Overview
 This beta software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for amino acids, codons, transcription factors, and regulatory elements.
