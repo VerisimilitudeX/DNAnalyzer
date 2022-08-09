@@ -2,6 +2,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import resources.StorageResource;
+
 // Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the user.
 public class dnaSequencer {
 
@@ -29,6 +31,13 @@ public class dnaSequencer {
         dna = dna.replaceAll("u", "t");
 
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino acid, and start codons to the class.
-        new findGeneWithAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
+        // Gets a StorageResource containing the genes of the amino acid.
+        findGeneWithAminoAcid fgwaa = new findGeneWithAminoAcid(); // Can be replaced with printGeneWithAminoAcid.
+        StorageResource geneList = fgwaa.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
+        
+        // Finds properties of the amino acid/gene strand.
+        findProperties fp = new findProperties(); 
+        fp.printGeneList(geneList, dna, aminoAcid);
+        fp.getGCContent(dna);
     }
 }
