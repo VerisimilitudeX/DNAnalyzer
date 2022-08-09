@@ -2,3 +2,4 @@
 - count number of genes outputted
 - print high gc genes
 - save genes to a file
+- take input from a file, one gene per line
