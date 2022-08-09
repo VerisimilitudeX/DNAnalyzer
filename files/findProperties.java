@@ -21,11 +21,10 @@ public class findProperties {
         dna = dna.toLowerCase();
         float gclen = 0;
         for (String letter : dna.split("")) {
-            System.out.println(letter);
             if (letter.equals("c") || letter.equals("g")) {
                 gclen++;
             }
         }
-        return ("The GC-content is: " + gclen / dna.length());
+        return ("GC-content: " + gclen / dna.length());
     }
 }

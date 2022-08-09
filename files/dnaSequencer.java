@@ -43,5 +43,6 @@ public class dnaSequencer {
         System.out.println(gcContent);
 
         processGenes pg = new processGenes();
+        pg.highGCContent(dna, gcContent, geneList);
     }
 }
