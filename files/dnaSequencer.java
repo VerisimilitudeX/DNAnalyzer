@@ -48,6 +48,7 @@ public class dnaSequencer {
         // Finds and prints GC-content higher than 0.35 
         processGenes pg = new processGenes();
         pg.highGCContent(dna, gcContent, geneList);
+
         // Finds and prints the longest gene in the DNA sequence and its length.
         pg.longestGene(geneList);
     }
