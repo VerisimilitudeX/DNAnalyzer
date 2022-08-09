@@ -1,4 +1,4 @@
-package fileresource;
+package resources;
 
 import java.io.File;
 import java.util.ArrayList;

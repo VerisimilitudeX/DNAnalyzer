@@ -1,4 +1,4 @@
-package edu.piyush.acharya;
+package resources;
 
 import java.io.File;
 import javax.swing.JFileChooser;

@@ -1,6 +1,6 @@
 // Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
-import fileresource.StorageResource;
+import resources.StorageResource;
 
 public class findGeneWithAminoAcid {
     public StorageResource getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
@@ -10,7 +10,8 @@ public class findGeneWithAminoAcid {
             ArrayList<String> tryptophan, ArrayList<String> glutamine, ArrayList<String> asparagine,
             ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
             ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
-                ArrayList<String> aminoAcidList = new ArrayList<String>();
+                ArrayList<String>
+        aminoAcidList = new ArrayList<String>();
         if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
             aminoAcidList.addAll(isoleucine);
         } else if (aminoAcid.equals("leucine") || aminoAcid.equals("l")) {
