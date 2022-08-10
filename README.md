@@ -10,21 +10,20 @@ The human genome is comprised of over 3 billion base pairs, making manual analys
 
 ## Features
 * Start and stop codons
-  * Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.
+  * Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.`[2]`
 * High coverage regions
-  * Regions of a DNA genome that code for a protein and have a relatively high proportion (45-60% GC-content) of cytosine and guanine nucleotides to the 4 nucleotide bases.
+  * Regions of a DNA genome that code for a protein and have a relatively high proportion (45-60% GC-content) of cytosine and guanine nucleotides to the 4 nucleotide bases.`[3]`
 * Longest genes
-  * Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism)
+  * Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism).`[4]`
 * Transcription factors
-  * Proteins that help turn specific genes "on" or "off" by binding to nearby DNA.
+  * Proteins that help turn specific genes "on" or "off" by binding to nearby DNA.`[5]`
 * Regulatory elements
-  * Binding sites for transcription factors, which are involved in gene regulation.
+  * Binding sites for transcription factors, which are involved in gene regulation.`[6]`
 * FASTA files (.fa)
-  * Supports multi-line and single-line FASTA database files.
+  * Supports multi-line and single-line FASTA database files.`[7]`
 
 ## Impact
 Researchers are working to extract valuable information from software such as this in order to better understand human health and disease.
-<!--https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/-->
 
 ## Future Support and Improvements
 
@@ -32,17 +31,22 @@ Researchers are working to extract valuable information from software such as th
   A GUI-based application that will run natively on Windows/macOS/Linux to perform the algorithms implemented in the software.
 
   ### Needleman-Wunsch Algorithm
-  This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences.
-  https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+  This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences.`[8]`
 
   ### Cytogenic Location
   This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome's long arm, in the 3rd region on the 1st band, and the 2nd sub-band
 
 ## Citations
 1. Genomic Data Science Fact Sheet. (n.d.). Genome.gov. https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
-2. 
+2. DNA and RNA codon tables. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
+3. GC-content - an overview | ScienceDirect Topics. (n.d.). Www.sciencedirect.com. https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content
+4. Length matters: Disease implications for long genes. (2013, October 22). Spectrum | Autism Research News. https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/#:~:text=For%20example%2C%20neurexin%201%20%28NRXN1%29%20and%20contactin%20associated
+5. Suter, D. M. (2020). Transcription Factors and DNA Play Hide and Seek. Trends in Cell Biology. https://doi.org/10.1016/j.tcb.2020.03.003
+6. What is noncoding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov. https://medlineplus.gov/genetics/understanding/basics/noncodingdna/#:~:text=Noncoding%20DNA%20contains%20many%20types%20of%20regulatory%20elements%3A
+7. BLAST TOPICS. (2019). Nih.gov. https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp
+8. Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+
 ### Data sources:
- * https://pubmed.ncbi.nlm.nih.gov/12804578/
  * https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
  * http://algoart.com/aatable.htm
  * https://www.bioinformatics.org/sms2/shuffle_dna.html
