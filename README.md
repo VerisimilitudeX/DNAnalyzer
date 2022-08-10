@@ -14,7 +14,7 @@ The human genome is comprised of over 3 billion base pairs, making manual analys
 * High coverage regions (45-60% GC-content)
   * Regions of a DNA genome that code for a protein and have a relatively high proportion of cytosine and guanine nucleotides to the 4 nucleotide bases.
 * Longest genes
- * Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism)
+  * Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism)
 * Transcription factors
   * Proteins that help turn specific genes "on" or "off" by binding to nearby DNA.
 * Regulatory elements
