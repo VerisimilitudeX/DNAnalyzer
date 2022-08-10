@@ -6,7 +6,7 @@
 This software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements. In the near future, machine learning models and artificial intelligence will be added to enhance the algorithm.
 
 ## Background
-The human genome is comprised of over 3 billion base pairs, making manual analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of structured data types, which need to be organized and structured appropriately.
+The human genome is comprised of over 3 billion base pairs, making manual analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of structured data types, which need to be organized and structured appropriately.`[1]`
 
 ## Features
 * Start and stop codons
@@ -32,9 +32,17 @@ Researchers are working to extract valuable information from software such as th
   A GUI-based application that will run natively on Windows/macOS/Linux to perform the algorithms implemented in the software.
 
   ### Needleman-Wunsch Algorithm
-  This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. For a physical and interactive understanding of the software used you can go to http://experiments.mostafa.io/public/needleman-wunsch/. It is a very interesting algorithm and I would suggest you check it out.
-
+  This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences.
   https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 
   ### Cytogenic Location
   This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome's long arm, in the 3rd region on the 1st band, and the 2nd sub-band
+
+## Citations
+1. Genomic Data Science Fact Sheet. (n.d.). Genome.gov. https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
+2. 
+### Data sources:
+ * https://pubmed.ncbi.nlm.nih.gov/12804578/
+ * https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
+ * http://algoart.com/aatable.htm
+ * https://www.bioinformatics.org/sms2/shuffle_dna.html
