@@ -19,7 +19,7 @@ public class dnaSequencer {
         String dna = fr.asString().toLowerCase();
         
         // Checks if the DNA sequence is valid (contains only A, T, G, and C nucleotides).
-        if (dna == null || dna.length() == 0 || dna.indexOf("b") >= 0 || dna.indexOf("d") >= 0 || dna.indexOf("e") >= 0 || dna.indexOf("f") >= 0 || dna.indexOf("h") >= 0 || dna.indexOf("i") >= 0 || dna.indexOf("j") >= 0 || dna.indexOf("k") >= 0 || dna.indexOf("l") >= 0 || dna.indexOf("m") >= 0 || dna.indexOf("n") >= 0 || dna.indexOf("o") >= 0 || dna.indexOf("p") >= 0 || dna.indexOf("q") >= 0 || dna.indexOf("r") >= 0 || dna.indexOf("s") >= 0 || dna.indexOf("v") >= 0 || dna.indexOf("w") >= 0 || dna.indexOf("x") >= 0 || dna.indexOf("y") >= 0 || dna.indexOf("z") >= 0 || dna.indexOf(1) >= 0 || dna.indexOf(2) >= 0 || dna.indexOf(3) >= 0 || dna.indexOf(4) >= 0 || dna.indexOf(5) >= 0 || dna.indexOf(6) >= 0 || dna.indexOf(7) >= 0 || dna.indexOf(8) >= 0 || dna.indexOf(9) >= 0 || dna.indexOf(0) >= 0 || dna.indexOf(" ") >= 0 || dna.indexOf(",") >= 0 || dna.indexOf(".") >= 0 || dna.indexOf(";") >= 0 || dna.indexOf("'") >= 0 || dna.indexOf("\"") >= 0 || dna.indexOf("!") >= 0 || dna.indexOf("?") >= 0 || dna.indexOf("/") >= 0 || dna.indexOf("\\") >= 0 || dna.indexOf("(") >= 0 || dna.indexOf(")") >= 0 || dna.indexOf("[") >= 0 || dna.indexOf("]") >= 0 || dna.indexOf("{") >= 0 || dna.indexOf("}") >= 0 || dna.indexOf("<") >= 0 || dna.indexOf(">") >= 0 || dna.indexOf("=") >= 0 || dna.indexOf("+") >= 0 || dna.indexOf("-") >= 0 || dna.indexOf("*") >= 0 || dna.indexOf("&") >= 0 || dna.indexOf("^") >= 0 || dna.indexOf("%") >= 0 || dna.indexOf("$") >= 0 || dna.indexOf("#") >= 0 || dna.indexOf("@") >= 0 || dna.indexOf("!") >= 0 || dna.indexOf("~") >= 0 || dna.indexOf("`") >= 0 || dna.indexOf("|") >= 0 || dna.indexOf(".") >= 0 || dna.indexOf(";") >= 0 || dna.indexOf(":") >= 0 || dna.indexOf("'") >= 0 || dna.indexOf("\"") >= 0 || dna.indexOf("<") >= 0 || dna.indexOf(">") >= 0 || dna.indexOf("=") >= 0 || dna.indexOf("+") >= 0 || dna.indexOf("-") >= 0 || dna.indexOf("*") >= 0 || dna.indexOf("&") >= 0 || dna.indexOf("^") >= 0 || dna.indexOf("%") >= 0 || dna.indexOf("$") >= 0 || dna.indexOf("#") >= 0 || dna.indexOf("@") >= 0 || dna.indexOf("!") >= 0) {
+        if ((dna.length() == 0) || dna.contains("b") || dna.contains("d") || dna.contains("e") || dna.contains("f") || dna.contains("h") || dna.contains("i") || dna.contains("j") || dna.contains("k") || dna.contains("l") || dna.contains("m") || dna.contains("n") || dna.contains("o") || dna.contains("p") || dna.contains("q") || dna.contains("r") || dna.contains("s") || dna.contains("v") || dna.contains("w") || dna.contains("x") || dna.contains("y") || dna.contains("z") || (dna.indexOf(1) >= 0) || (dna.indexOf(2) >= 0) || (dna.indexOf(3) >= 0) || (dna.indexOf(4) >= 0) || (dna.indexOf(5) >= 0) || (dna.indexOf(6) >= 0) || (dna.indexOf(7) >= 0) || (dna.indexOf(8) >= 0) || (dna.indexOf(9) >= 0) || (dna.indexOf(0) >= 0) || dna.contains(" ") || dna.contains(",") || dna.contains(".") || dna.contains(";") || dna.contains("'") || dna.contains("\"") || dna.contains("!") || dna.contains("?") || dna.contains("/") || dna.contains("\\") || dna.contains("(") || dna.contains(")") || dna.contains("[") || dna.contains("]") || dna.contains("{") || dna.contains("}") || dna.contains("<") || dna.contains(">") || dna.contains("=") || dna.contains("+") || dna.contains("-") || dna.contains("*") || dna.contains("&") || dna.contains("^") || dna.contains("%") || dna.contains("$") || dna.contains("#") || dna.contains("@") || dna.contains("~") || dna.contains("`") || dna.contains("|") || dna.contains(":")) {
             System.out.println("Error: Invalid characters are present in DNA sequence.");
             userInput.close();
             return;
@@ -35,14 +35,14 @@ public class dnaSequencer {
 
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
-        findGeneWithAminoAcid fgwaa = new findGeneWithAminoAcid(); // Can be replaced with printGeneWithAminoAcid.
-        StorageResource geneList = fgwaa.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
+        findGeneWithAminoAcid findGene = new findGeneWithAminoAcid(); // Can be replaced with printGeneWithAminoAcid.
+        StorageResource geneList = findGene.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
         
         // The findProperties class finds properties of the amino acid/gene strand.
         findProperties fp = new findProperties();
 
-        // Prints the list of amino acid genes found in the StoragerResource object.
-        fp.printGeneList(geneList, dna, aminoAcid);
+        // Prints the list of amino acid genes found in the StorageResource object.
+        fp.printGeneList(geneList, aminoAcid);
 
         // Prints the GC-content of the genomic sequence.
         double gcContent = fp.getGCContent(dna);
@@ -50,7 +50,7 @@ public class dnaSequencer {
 
         // Finds and prints GC-content higher than 0.35 
         processGenes pg = new processGenes();
-        pg.highGCContent(dna, gcContent, geneList);
+        pg.highGCContent(geneList);
 
         // Finds and prints the longest gene in the DNA sequence and its length.
         pg.longestGene(geneList);

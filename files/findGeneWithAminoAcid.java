@@ -11,61 +11,37 @@ public class findGeneWithAminoAcid {
             ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
             ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
                 ArrayList<String>
-        aminoAcidList = new ArrayList<String>();
-        if (aminoAcid.equals("isoleucine") || aminoAcid.equals("i")) {
-            aminoAcidList.addAll(isoleucine);
-        } else if (aminoAcid.equals("leucine") || aminoAcid.equals("l")) {
-            aminoAcidList.addAll(leucine);
-        } else if (aminoAcid.equals("valine") || aminoAcid.equals("v")) {
-            aminoAcidList.addAll(valine);
-        } else if (aminoAcid.equals("phenylalanine") || aminoAcid.equals("f")) {
-            aminoAcidList.addAll(phenylalanine);
-        } else if (aminoAcid.equals("methionine") || aminoAcid.equals("m")) {
-            aminoAcidList.addAll(methionine);
-        } else if (aminoAcid.equals("cysteine") || aminoAcid.equals("c")) {
-            aminoAcidList.addAll(cysteine);
-        } else if (aminoAcid.equals("alanine") || aminoAcid.equals("a")) {
-            aminoAcidList.addAll(alanine);
-        } else if (aminoAcid.equals("glycine") || aminoAcid.equals("g")) {
-            aminoAcidList.addAll(glycine);
-        } else if (aminoAcid.equals("proline") || aminoAcid.equals("p")) {
-            aminoAcidList.addAll(proline);
-        } else if (aminoAcid.equals("threonine") || aminoAcid.equals("t")) {
-            aminoAcidList.addAll(threonine);
-        } else if (aminoAcid.equals("serine") || aminoAcid.equals("s")) {
-            aminoAcidList.addAll(serine);
-        } else if (aminoAcid.equals("tyrosine") || aminoAcid.equals("y")) {
-            aminoAcidList.addAll(tyrosine);
-        } else if (aminoAcid.equals("tryptophan") || aminoAcid.equals("w")) {
-            aminoAcidList.addAll(tryptophan);
-        } else if (aminoAcid.equals("glutamine") || aminoAcid.equals("q")) {
-            aminoAcidList.addAll(glutamine);
-        } else if (aminoAcid.equals("asparagine") || aminoAcid.equals("n")) {
-            aminoAcidList.addAll(asparagine);
-        } else if (aminoAcid.equals("histidine") || aminoAcid.equals("h")) {
-            aminoAcidList.addAll(histidine);
-        } else if (aminoAcid.equals("glutamicacid") || aminoAcid.equals("e")) {
-            aminoAcidList.addAll(glutamicAcid);
-        } else if (aminoAcid.equals("asparticacid") || aminoAcid.equals("d")) {
-            aminoAcidList.addAll(asparticAcid);
-        } else if (aminoAcid.equals("lysine") || aminoAcid.equals("k")) {
-            aminoAcidList.addAll(lysine);
-        } else if (aminoAcid.equals("arginine") || aminoAcid.equals("r")) {
-            aminoAcidList.addAll(arginine);
-        } else {
-            System.out.println("Invalid amino acid");
+        aminoAcidList = new ArrayList<>();
+        switch (aminoAcid) {
+            case "isoleucine", "i" -> aminoAcidList.addAll(isoleucine);
+            case "leucine", "l" -> aminoAcidList.addAll(leucine);
+            case "valine", "v" -> aminoAcidList.addAll(valine);
+            case "phenylalanine", "f" -> aminoAcidList.addAll(phenylalanine);
+            case "methionine", "m" -> aminoAcidList.addAll(methionine);
+            case "cysteine", "c" -> aminoAcidList.addAll(cysteine);
+            case "alanine", "a" -> aminoAcidList.addAll(alanine);
+            case "glycine", "g" -> aminoAcidList.addAll(glycine);
+            case "proline", "p" -> aminoAcidList.addAll(proline);
+            case "threonine", "t" -> aminoAcidList.addAll(threonine);
+            case "serine", "s" -> aminoAcidList.addAll(serine);
+            case "tyrosine", "y" -> aminoAcidList.addAll(tyrosine);
+            case "tryptophan", "w" -> aminoAcidList.addAll(tryptophan);
+            case "glutamine", "q" -> aminoAcidList.addAll(glutamine);
+            case "asparagine", "n" -> aminoAcidList.addAll(asparagine);
+            case "histidine", "h" -> aminoAcidList.addAll(histidine);
+            case "glutamic acid", "e" -> aminoAcidList.addAll(glutamicAcid);
+            case "aspartic acid", "d" -> aminoAcidList.addAll(asparticAcid);
+            case "lysine", "k" -> aminoAcidList.addAll(lysine);
+            case "arginine", "r" -> aminoAcidList.addAll(arginine);
+            default -> System.out.println("Invalid amino acid");
         }
         StorageResource geneList = new StorageResource();
-        int count = 1;
-        for (String startcodon : aminoAcidList) {
-            int startcodonindex = dna.indexOf(startcodon.toLowerCase());
-            for (String stopcodon : stop) {
-                int stopcodonindex = dna.indexOf(stopcodon.toLowerCase(), startcodonindex + 3);
-                if ((stopcodonindex - startcodonindex) % 3 != 0) {
-                    continue;
-                }
-                else if (startcodonindex != -1 && stopcodonindex != -1 && count == 1) {
-                    geneList.add(dna.substring(startcodonindex, stopcodonindex + 3).toUpperCase());
+        for (String start_codon : aminoAcidList) {
+            int start_index = dna.indexOf(start_codon.toLowerCase());
+            for (String stop_codon : stop) {
+                int stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
+                if (start_index != -1 && stop_index != -1) {
+                    geneList.add(dna.substring(start_index, stop_index + 3).toUpperCase());
                     break;
                 }
             }
@@ -76,10 +52,7 @@ public class findGeneWithAminoAcid {
             }
             geneList.clear();
             geneList.add("No gene found");
-            return geneList;
-        } 
-        else {
-            return geneList;
         }
+        return geneList;
     }
 }

@@ -1,7 +1,7 @@
 import resources.StorageResource;
 
 public class findProperties {
-    public void printGeneList(StorageResource geneList, String dna, String aminoAcid) {
+    public void printGeneList(StorageResource geneList, String aminoAcid) {
         int count = 1;
         for (int i = 0; i < 100; i++) {
             System.out.println();
@@ -19,12 +19,12 @@ public class findProperties {
     }
     public double getGCContent(String dna) {
         dna = dna.toLowerCase();
-        double gclen = 0;
+        double gcLen = 0;
         for (String letter : dna.split("")) {
             if (letter.equals("c") || letter.equals("g")) {
-                gclen++;
+                gcLen++;
             }
         }
-        return (gclen / dna.length());
+        return (gcLen / dna.length());
     }
 }
