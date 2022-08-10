@@ -1,4 +1,4 @@
-package edu.piyush.acharya;
+package resources;
 
 import java.util.List;
 import java.util.ArrayList;

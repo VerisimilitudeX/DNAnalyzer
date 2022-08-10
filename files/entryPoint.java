@@ -14,4 +14,5 @@ public class entryPoint {
  * https://pubmed.ncbi.nlm.nih.gov/12804578/
  * https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
  * http://algoart.com/aatable.htm
+ * https://www.bioinformatics.org/sms2/shuffle_dna.html
  */
