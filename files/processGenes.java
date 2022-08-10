@@ -1,15 +1,15 @@
 import resources.StorageResource;
 
 public class processGenes {
-    public void highGCContent(String aminoAcid, String gcContent, StorageResource geneList) {
+    public void highGCContent(String aminoAcid, Float gcContent, StorageResource geneList) {
         System.out.println();
-        System.out.println("Genes with a GC-content greater than 0.35: ");
+        System.out.println("Gene(s) with the highest coverage: ");
         System.out.println("----------------------------------------------------");
         int count = 1;
         for (String gene : geneList.data()) {
             findProperties fp = new findProperties();
-            String geneGCContent = fp.getGCContent(gene);
-            if (Float.valueOf(geneGCContent) >= 0.35) {
+            float geneGCContent = fp.getGCContent(gene);
+            if (geneGCContent >= 0.45 && geneGCContent <= 0.60) {
                 System.out.println(count + ". " + gene);
                 count++;
             }
@@ -25,6 +25,6 @@ public class processGenes {
             }
         }
         System.out.println();
-        System.out.println("Longest gene (" + maxlen + "nucleotides): " + longestGene);
+        System.out.println("Longest gene (" + maxlen + " nucleotides): " + longestGene);
     }
 }
