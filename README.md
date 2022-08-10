@@ -34,7 +34,12 @@ Researchers are working to extract valuable information from software such as th
   This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences.`[8]`
 
   ### Cytogenic Location
-  This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome's long arm, in the 3rd region on the 1st band, and the 2nd sub-band
+  This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome's long arm, in the 3rd region on the 1st band, and the 2nd sub-band.`[9]`
+
+### Data sources:
+ * https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
+ * http://algoart.com/aatable.htm
+ * https://www.bioinformatics.org/sms2/shuffle_dna.html
 
 ## Citations
 1. Genomic Data Science Fact Sheet. (n.d.). Genome.gov. https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
@@ -45,8 +50,4 @@ Researchers are working to extract valuable information from software such as th
 6. What is noncoding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov. https://medlineplus.gov/genetics/understanding/basics/noncodingdna/#:~:text=Noncoding%20DNA%20contains%20many%20types%20of%20regulatory%20elements%3A
 7. BLAST TOPICS. (2019). Nih.gov. https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp
 8. Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
-
-### Data sources:
- * https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
- * http://algoart.com/aatable.htm
- * https://www.bioinformatics.org/sms2/shuffle_dna.html
+9. Cytogenic Location. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/Cytogenic_Location
