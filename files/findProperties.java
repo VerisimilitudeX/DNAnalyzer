@@ -17,9 +17,9 @@ public class findProperties {
             count++;
         }
     }
-    public float getGCContent(String dna) {
+    public double getGCContent(String dna) {
         dna = dna.toLowerCase();
-        float gclen = 0;
+        double gclen = 0;
         for (String letter : dna.split("")) {
             if (letter.equals("c") || letter.equals("g")) {
                 gclen++;

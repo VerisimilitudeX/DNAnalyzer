@@ -1,14 +1,14 @@
 import resources.StorageResource;
 
 public class processGenes {
-    public void highGCContent(String aminoAcid, Float gcContent, StorageResource geneList) {
+    public void highGCContent(String aminoAcid, Double gcContent, StorageResource geneList) {
         System.out.println();
         System.out.println("Gene(s) with the highest coverage: ");
         System.out.println("----------------------------------------------------");
         int count = 1;
         for (String gene : geneList.data()) {
             findProperties fp = new findProperties();
-            float geneGCContent = fp.getGCContent(gene);
+            double geneGCContent = fp.getGCContent(gene);
             if (geneGCContent >= 0.45 && geneGCContent <= 0.60) {
                 System.out.println(count + ". " + gene);
                 count++;
