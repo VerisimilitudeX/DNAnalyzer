@@ -12,10 +12,11 @@ public class dnaSequencer {
         
         // Gets the DNA sequence from the user.
         Scanner userInput = new Scanner(System.in);
-        FileResource fr = new FileResource("GRch38dnapart.fa");
+        System.out.println("Enter the filename: ");
+        String filename = userInput.nextLine().toLowerCase();
+
+        FileResource fr = new FileResource("dna/" + filename);
         String dna = fr.asString().toLowerCase();
-        // System.out.println("Enter the DNA sequence: ");
-        // String dna = userInput.nextLine().toLowerCase();
         
         // Checks if the DNA sequence is valid (contains only A, T, G, and C nucleotides).
         if (dna == null || dna.length() == 0 || dna.indexOf("b") >= 0 || dna.indexOf("d") >= 0 || dna.indexOf("e") >= 0 || dna.indexOf("f") >= 0 || dna.indexOf("h") >= 0 || dna.indexOf("i") >= 0 || dna.indexOf("j") >= 0 || dna.indexOf("k") >= 0 || dna.indexOf("l") >= 0 || dna.indexOf("m") >= 0 || dna.indexOf("n") >= 0 || dna.indexOf("o") >= 0 || dna.indexOf("p") >= 0 || dna.indexOf("q") >= 0 || dna.indexOf("r") >= 0 || dna.indexOf("s") >= 0 || dna.indexOf("v") >= 0 || dna.indexOf("w") >= 0 || dna.indexOf("x") >= 0 || dna.indexOf("y") >= 0 || dna.indexOf("z") >= 0 || dna.indexOf(1) >= 0 || dna.indexOf(2) >= 0 || dna.indexOf(3) >= 0 || dna.indexOf(4) >= 0 || dna.indexOf(5) >= 0 || dna.indexOf(6) >= 0 || dna.indexOf(7) >= 0 || dna.indexOf(8) >= 0 || dna.indexOf(9) >= 0 || dna.indexOf(0) >= 0 || dna.indexOf(" ") >= 0 || dna.indexOf(",") >= 0 || dna.indexOf(".") >= 0 || dna.indexOf(";") >= 0 || dna.indexOf("'") >= 0 || dna.indexOf("\"") >= 0 || dna.indexOf("!") >= 0 || dna.indexOf("?") >= 0 || dna.indexOf("/") >= 0 || dna.indexOf("\\") >= 0 || dna.indexOf("(") >= 0 || dna.indexOf(")") >= 0 || dna.indexOf("[") >= 0 || dna.indexOf("]") >= 0 || dna.indexOf("{") >= 0 || dna.indexOf("}") >= 0 || dna.indexOf("<") >= 0 || dna.indexOf(">") >= 0 || dna.indexOf("=") >= 0 || dna.indexOf("+") >= 0 || dna.indexOf("-") >= 0 || dna.indexOf("*") >= 0 || dna.indexOf("&") >= 0 || dna.indexOf("^") >= 0 || dna.indexOf("%") >= 0 || dna.indexOf("$") >= 0 || dna.indexOf("#") >= 0 || dna.indexOf("@") >= 0 || dna.indexOf("!") >= 0 || dna.indexOf("~") >= 0 || dna.indexOf("`") >= 0 || dna.indexOf("|") >= 0 || dna.indexOf(".") >= 0 || dna.indexOf(";") >= 0 || dna.indexOf(":") >= 0 || dna.indexOf("'") >= 0 || dna.indexOf("\"") >= 0 || dna.indexOf("<") >= 0 || dna.indexOf(">") >= 0 || dna.indexOf("=") >= 0 || dna.indexOf("+") >= 0 || dna.indexOf("-") >= 0 || dna.indexOf("*") >= 0 || dna.indexOf("&") >= 0 || dna.indexOf("^") >= 0 || dna.indexOf("%") >= 0 || dna.indexOf("$") >= 0 || dna.indexOf("#") >= 0 || dna.indexOf("@") >= 0 || dna.indexOf("!") >= 0) {
@@ -44,7 +45,7 @@ public class dnaSequencer {
         fp.printGeneList(geneList, dna, aminoAcid);
 
         // Prints the GC-content of the genomic sequence.
-        Float gcContent = fp.getGCContent(dna);
+        double gcContent = fp.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent);
 
         // Finds and prints GC-content higher than 0.35 
