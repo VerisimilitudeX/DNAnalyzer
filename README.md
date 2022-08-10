@@ -3,7 +3,7 @@
 <img src="https://user-images.githubusercontent.com/96280466/182701235-67ac54c0-2cc2-465d-9458-0a9bef98f439.png" width="400"/>
 
 ## Overview
-This beta software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements.
+This software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements. In the near future, machine learning models and artificial intelligence will be added to enhance the algorithm.
 
 ## Background
 The human genome is comprised of over 3 billion base pairs, making manual analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of structured data types, which need to be organized and structured appropriately.
