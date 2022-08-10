@@ -26,9 +26,7 @@ The human genome is comprised of over 3 billion base pairs, making manual analys
 Researchers are working to extract valuable information from software such as this in order to better understand human health and disease.
 <!--https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/-->
 
-# Future
-
-## Support for the following:
+## Future Support and Improvements
 
   ### GUI
   A GUI-based application that will run natively on Windows/macOS/Linux to perform the algorithms implemented in the software.
