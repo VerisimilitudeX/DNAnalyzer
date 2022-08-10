@@ -11,8 +11,8 @@ The human genome is comprised of over 3 billion base pairs, making manual analys
 ## Features
 * Start and stop codons
   * Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.
-* High coverage regions (45-60% GC-content)
-  * Regions of a DNA genome that code for a protein and have a relatively high proportion of cytosine and guanine nucleotides to the 4 nucleotide bases.
+* High coverage regions
+  * Regions of a DNA genome that code for a protein and have a relatively high proportion (45-60% GC-content) of cytosine and guanine nucleotides to the 4 nucleotide bases.
 * Longest genes
   * Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism)
 * Transcription factors
