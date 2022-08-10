@@ -19,6 +19,8 @@ The human genome is comprised of over 3 billion base pairs, making manual analys
   * Proteins that help turn specific genes "on" or "off" by binding to nearby DNA.
 * Regulatory elements
   * Binding sites for transcription factors, which are involved in gene regulation.
+* FASTA files (.fa)
+  * Supports multi-line and single-line FASTA database files.
 
 ## Impact
 Researchers are working to extract valuable information from software such as this in order to better understand human health and disease.
