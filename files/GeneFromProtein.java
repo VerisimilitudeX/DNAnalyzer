@@ -1,17 +1,18 @@
+
 // Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
 import resources.StorageResource;
 
 public class GeneFromProtein {
-    public StorageResource getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
+    public StorageResource getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
+            ArrayList<String> leucine,
             ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
             ArrayList<String> cysteine, ArrayList<String> alanine, ArrayList<String> glycine, ArrayList<String> proline,
             ArrayList<String> threonine, ArrayList<String> serine, ArrayList<String> tyrosine,
             ArrayList<String> tryptophan, ArrayList<String> glutamine, ArrayList<String> asparagine,
             ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
             ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
-                ArrayList<String>
-        aminoAcidList = new ArrayList<>();
+        ArrayList<String> aminoAcidList = new ArrayList<>();
         switch (aminoAcid) {
             case "isoleucine", "i" -> aminoAcidList.addAll(isoleucine);
             case "leucine", "l" -> aminoAcidList.addAll(leucine);

@@ -15,6 +15,7 @@ public class GeneInfo {
             }
         }
     }
+
     public void longestGene(StorageResource geneList) {
         int maxLen = 0;
         String longestGene = "";
