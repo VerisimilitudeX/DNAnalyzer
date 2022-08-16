@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 import resources.StorageResource;
 
-public class findGeneWithAminoAcid {
+public class FindGeneWithAminoAcid {
     public StorageResource getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine, ArrayList<String> leucine,
             ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
             ArrayList<String> cysteine, ArrayList<String> alanine, ArrayList<String> glycine, ArrayList<String> proline,

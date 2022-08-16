@@ -5,7 +5,7 @@ import resources.FileResource;
 import resources.StorageResource;
 
 // Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the user.
-public class dnaSequencer {
+public class GenomeSequencer {
 
     // Receives the codons of the amino acid.
     public void getSequenceAndAminoAcid(ArrayList<String> Isoleucine, ArrayList<String> Leucine, ArrayList<String> Valine, ArrayList<String> Phenylalanine, ArrayList<String> Methionine, ArrayList<String> Cysteine, ArrayList<String> Alanine, ArrayList<String> Glycine, ArrayList<String> Proline, ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine, ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine, ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid, ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) {
@@ -35,11 +35,11 @@ public class dnaSequencer {
 
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
-        findGeneWithAminoAcid findGene = new findGeneWithAminoAcid(); // Can be replaced with printGeneWithAminoAcid.
+        FindGeneWithAminoAcid findGene = new FindGeneWithAminoAcid(); // Can be replaced with printGeneWithAminoAcid.
         StorageResource geneList = findGene.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
         
         // The findProperties class finds properties of the amino acid/gene strand.
-        findProperties fp = new findProperties();
+        FindProperties fp = new FindProperties();
 
         // Prints the list of amino acid genes found in the StorageResource object.
         fp.printGeneList(geneList, aminoAcid);
@@ -49,7 +49,7 @@ public class dnaSequencer {
         System.out.println("\nGC-content (genome): " + gcContent);
 
         // Finds and prints GC-content higher than 0.35 
-        processGenes pg = new processGenes();
+        ProcessGenes pg = new ProcessGenes();
         pg.highGCContent(geneList);
 
         // Finds and prints the longest gene in the DNA sequence and its length.

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 // This method returns the codon data for the given amino acid.
-public class codonData {
+public class CodonData {
 
     // Declares the start codon data for the 20 amino acids. Adding 'final' after 'private' makes the variable immutable.
     private final ArrayList<String> Isoleucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA"));

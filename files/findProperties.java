@@ -1,6 +1,6 @@
 import resources.StorageResource;
 
-public class findProperties {
+public class FindProperties {
     public void printGeneList(StorageResource geneList, String aminoAcid) {
         int count = 1;
         for (int i = 0; i < 100; i++) {
