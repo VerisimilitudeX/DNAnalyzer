@@ -35,24 +35,24 @@ public class GenomeSequencer {
 
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
-        FindGeneWithAminoAcid findGene = new FindGeneWithAminoAcid(); // Can be replaced with printGeneWithAminoAcid.
-        StorageResource geneList = findGene.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
+        GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
+        StorageResource geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine, Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine, Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
         
         // The findProperties class finds properties of the amino acid/gene strand.
-        FindProperties fp = new FindProperties();
+        Properties p = new Properties();
 
         // Prints the list of amino acid genes found in the StorageResource object.
-        fp.printGeneList(geneList, aminoAcid);
+        p.printGeneList(geneList, aminoAcid);
 
         // Prints the GC-content of the genomic sequence.
-        double gcContent = fp.getGCContent(dna);
+        double gcContent = p.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent);
 
         // Finds and prints GC-content higher than 0.35 
-        ProcessGenes pg = new ProcessGenes();
-        pg.highGCContent(geneList);
+        GeneInfo gi = new GeneInfo();
+        gi.highGCContent(geneList);
 
         // Finds and prints the longest gene in the DNA sequence and its length.
-        pg.longestGene(geneList);
+        gi.longestGene(geneList);
     }
 }

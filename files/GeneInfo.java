@@ -1,6 +1,6 @@
 import resources.StorageResource;
 
-public class ProcessGenes {
+public class GeneInfo {
     public void highGCContent(StorageResource geneList) {
         System.out.println("");
         System.out.println("Gene(s) with the highest coverage: ");
