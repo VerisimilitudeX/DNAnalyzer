@@ -39,6 +39,7 @@ public class Properties {
         nucleotideCount.put("C", 0);
 
         for (String letter : dna.split("")) {
+            letter = letter.toUpperCase();
             if (letter.equals("A")) {
                 nucleotideCount.put("A", nucleotideCount.get("A") + 1);
             } else if (letter.equals("T")) {
