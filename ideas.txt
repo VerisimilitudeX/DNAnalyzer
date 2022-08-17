@@ -1,5 +1,0 @@
-- output to html webpage
-- count number of genes outputted
-- save genes to a file
-- take input from a file, one gene per line
-- add a parenthesis after the longest gene and say highest coverage and length and then delete the separate section for it
