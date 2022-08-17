@@ -1,9 +1,10 @@
-
-// Import the Java Utility library's Scanner class for reading user input and ArrayList for receiving the amino acid sequence.
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
-import resources.FileResource;
-import resources.StorageResource;
 
 // Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the user.
 public class GenomeSequencer {
@@ -15,15 +16,14 @@ public class GenomeSequencer {
             ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine,
             ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine,
             ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid,
-            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) {
+            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws FileNotFoundException {
 
         // Gets the DNA sequence from the user.
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("Enter the filename: ");
-        String filename = userInput.nextLine().toLowerCase();
-
-        FileResource fr = new FileResource("dna/" + filename);
-        String dna = fr.asString().toLowerCase();
+        Scanner sc = new Scanner(new File("files/dna/brca1line.fa"));
+        String dna = "";
+        while (sc.hasNextLine()) {
+            dna += sc.nextLine().trim().toLowerCase();
+        }
 
         // Checks if the DNA sequence is valid (contains only A, T, G, and C
         // nucleotides).
@@ -42,11 +42,11 @@ public class GenomeSequencer {
                 || dna.contains("^") || dna.contains("%") || dna.contains("$") || dna.contains("#") || dna.contains("@")
                 || dna.contains("~") || dna.contains("`") || dna.contains("|") || dna.contains(":")) {
             System.out.println("Error: Invalid characters are present in DNA sequence.");
-            userInput.close();
             return;
         }
 
         // Gets the amino acid from the user.
+        Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the amino acid: ");
         String aminoAcid = userInput.nextLine().toLowerCase();
         userInput.close();
@@ -59,7 +59,7 @@ public class GenomeSequencer {
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
         GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
-        StorageResource geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine,
+        ArrayList<String> geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine,
                 Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine,
                 Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
 
@@ -73,7 +73,8 @@ public class GenomeSequencer {
         double gcContent = p.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent);
 
-        // Returns a HashMap containing the number of each nucleotide in the DNA sequence.
+        // Returns a HashMap containing the number of each nucleotide in the DNA
+        // sequence.
         System.out.println("Nucleotide count: " + p.getNucleotideCount(dna));
 
         // Finds and prints GC-content higher than 0.35

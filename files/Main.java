@@ -1,6 +1,8 @@
+import java.io.FileNotFoundException;
+
 // Program starts here.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         // Create a new instance of the dnaSequence and codonData classes and send the
         // information to the dnaSequencer's ds constructor.
