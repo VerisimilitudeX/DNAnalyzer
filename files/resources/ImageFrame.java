@@ -15,7 +15,7 @@ class ImageFrame extends JFrame {
     /**
      * Creates an ImageFrame.
      */
-    public ImageFrame (String fileName, Image image) {
+    public ImageFrame(String fileName, Image image) {
         setTitle(fileName);
         // setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -24,7 +24,7 @@ class ImageFrame extends JFrame {
     /**
      * Displays an image in this frame.
      */
-    void show (Image image) {
+    void show(Image image) {
         if (myPanel == null) {
             myPanel = new ImagePanel(image, image.getWidth(this), image.getHeight(this));
             Container c = getContentPane();
@@ -37,7 +37,6 @@ class ImageFrame extends JFrame {
         setVisible(true);
     }
 
-
     // This class implements a panel for displaying an image.
     static class ImagePanel extends JPanel {
         private static final long serialVersionUID = 1L;
@@ -46,7 +45,7 @@ class ImageFrame extends JFrame {
         /**
          * Creates an ImagePanel.
          */
-        public ImagePanel (Image image, int width, int height) {
+        public ImagePanel(Image image, int width, int height) {
             setBackground(Color.white);
             setPreferredSize(new Dimension(width, height));
             myImage = image;
@@ -55,7 +54,7 @@ class ImageFrame extends JFrame {
         /**
          * Resets the image and redraws it in the panel.
          */
-        public void setImage (Image image, int width, int height) {
+        public void setImage(Image image, int width, int height) {
             this.myImage = image;
             setPreferredSize(new Dimension(width, height));
             repaint();
@@ -65,7 +64,7 @@ class ImageFrame extends JFrame {
          * Draws the image in the panel if the image is not null.
          */
         @Override
-        public void paintComponent (Graphics g) {
+        public void paintComponent(Graphics g) {
             super.paintComponent(g);
             if (myImage != null) {
                 g.drawImage(myImage, 0, 0, Color.white, this);

@@ -22,45 +22,47 @@ public class ImageResource {
     private ImageFrame myDisplay;
 
     /**
-     * Create an <code>ImageResource</code> object that represents the file chosen by the user using
+     * Create an <code>ImageResource</code> object that represents the file chosen
+     * by the user using
      * a file selection dialog box.
      * 
      * @throws exception if no file is selected by the user
      */
-    public ImageResource () {
+    public ImageResource() {
         File file = FileSelector.selectFile(ImageIO.getReaderFileSuffixes());
         if (file == null) {
             throw new ResourceException("ImageResource: No image file choosen");
-        }
-        else {
+        } else {
             init(file);
         }
     }
 
     /**
-     * Create an <code>ImageResource</code> object whose size is the width and height passed as
+     * Create an <code>ImageResource</code> object whose size is the width and
+     * height passed as
      * parameters and whose pixels are all black.
      * 
-     * @param width the width of the image in pixels
+     * @param width  the width of the image in pixels
      * @param height the height of the image in pixels
      * @throws exception if the width or height are not positive values
      */
-    public ImageResource (int width, int height) {
+    public ImageResource(int width, int height) {
         if (width <= 0 || height <= 0) {
-            throw new ResourceException("ImageResource: witdh and height values must be positive [" + width + "x" + height + "]");
-        }
-        else {
+            throw new ResourceException(
+                    "ImageResource: witdh and height values must be positive [" + width + "x" + height + "]");
+        } else {
             init("", getBlankImage(width, height));
         }
     }
 
     /**
-     * Create an <code>ImageResource</code> object from the file name passed as a parameter.
+     * Create an <code>ImageResource</code> object from the file name passed as a
+     * parameter.
      * 
      * @param fileName the name of the file
      * @throws exception if the file cannot be accessed or is not in an image format
      */
-    public ImageResource (String fileName) {
+    public ImageResource(String fileName) {
         init(fileName, getImageFromFile(fileName));
     }
 
@@ -70,7 +72,7 @@ public class ImageResource {
      * @param file the file representing an image
      * @throws exception if the file cannot be accessed or is not in an image format
      */
-    public ImageResource (File file) {
+    public ImageResource(File file) {
         init(file);
     }
 
@@ -79,7 +81,7 @@ public class ImageResource {
      * 
      * @param other the original image being copied
      */
-    public ImageResource (ImageResource other) {
+    public ImageResource(ImageResource other) {
         init(other.myPath + other.myFileName, other.myImage);
     }
 
@@ -88,7 +90,7 @@ public class ImageResource {
      * 
      * @return the image's width in pixels
      */
-    public int getWidth () {
+    public int getWidth() {
         return myImage.getWidth(myDisplay);
     }
 
@@ -97,16 +99,17 @@ public class ImageResource {
      * 
      * @return the image's height in pixels
      */
-    public int getHeight () {
+    public int getHeight() {
         return myImage.getHeight(myDisplay);
     }
 
     /**
      * Allow access to this image one pixel at a time.
      * 
-     * @return an <code>Iterable</code> that will allow access to each pixel in this image
+     * @return an <code>Iterable</code> that will allow access to each pixel in this
+     *         image
      */
-    public Iterable<Pixel> pixels () {
+    public Iterable<Pixel> pixels() {
         if (myPixels == null) {
             throw new ResourceException("ImageResource: not ready to iterate over pixels");
         }
@@ -116,7 +119,7 @@ public class ImageResource {
     /**
      * Displays this image in a separate window.
      */
-    public void draw () {
+    public void draw() {
         updateImage();
         myDisplay.show(myImage);
     }
@@ -124,22 +127,24 @@ public class ImageResource {
     /**
      * Returns the file name associated with this image.
      *
-     * @return the name of the file used to create this image or an empty string if it was created
+     * @return the name of the file used to create this image or an empty string if
+     *         it was created
      *         as a sized image
      */
-    public String getFileName () {
+    public String getFileName() {
         return myFileName;
     }
 
     /**
      * Resets the file name associated with this image.
      * 
-     * Useful, for example, when saving the results of changes to this image in a different file
+     * Useful, for example, when saving the results of changes to this image in a
+     * different file
      * than the original.
      * 
      * @param name the new name for the file
      */
-    public void setFileName (String name) {
+    public void setFileName(String name) {
         if (!name.equals("")) {
             myFileName = name;
             myDisplay.setTitle(myFileName);
@@ -153,7 +158,7 @@ public class ImageResource {
      * @param y the row position of the pixel
      * @return the Pixel at the given (x, y) coordinates
      */
-    public Pixel getPixel (int x, int y) {
+    public Pixel getPixel(int x, int y) {
         // System.out.printf("get %d %d\n",x,y);
         return myPixels[y * getWidth() + x];
     }
@@ -165,7 +170,7 @@ public class ImageResource {
      * @param y the row position of the pixel
      * @param p the new pixel values to use
      */
-    public void setPixel (int x, int y, Pixel p) {
+    public void setPixel(int x, int y, Pixel p) {
         if (0 <= x && x < getWidth() && 0 <= y && y < getHeight()) {
             myPixels[y * getWidth() + x] = p;
         }
@@ -176,23 +181,25 @@ public class ImageResource {
      * 
      * @return a string representation of the image
      */
-    public String toString () {
+    public String toString() {
         if (myImage == null) {
             return "";
-        }
-        else {
-            return "IMAGE\n" + "File name: " + myFileName + "\n" + "Width: " + getWidth() + "\n" + "Height: " + getHeight();
+        } else {
+            return "IMAGE\n" + "File name: " + myFileName + "\n" + "Width: " + getWidth() + "\n" + "Height: "
+                    + getHeight();
         }
     }
 
     /**
-     * Saves the image as a JPEG using its current file name or opens a file selection dialog box to
-     * allow the user to choose a name if no file name set (for example if this image was created as
+     * Saves the image as a JPEG using its current file name or opens a file
+     * selection dialog box to
+     * allow the user to choose a name if no file name set (for example if this
+     * image was created as
      * a blank sized image).
      * 
      * @throws exception if the current filename cannot be accessed for saving
      */
-    public void save () {
+    public void save() {
         if (myFileName.equals("")) {
             saveAs();
         }
@@ -200,29 +207,27 @@ public class ImageResource {
             updateImage();
             File file = new File(myPath + myFileName);
             ImageIO.write(myImage, "jpg", file);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new ResourceException("ImageResource: unable to save image to a file ", e);
         }
     }
 
     /**
-     * Saves the image as a JPEG by opening a file selection dialog box to allow the user to choose
+     * Saves the image as a JPEG by opening a file selection dialog box to allow the
+     * user to choose
      * the new name for the file.
      * 
      * @throws exception if no file is selected by the user
      */
-    public void saveAs () {
+    public void saveAs() {
         File f = FileSelector.saveFile(ImageIO.getWriterFileSuffixes());
         if (f == null) {
             throw new ResourceException("ImageResource: no file chosen for save.");
-        }
-        else {
+        } else {
             try {
                 setPath(f.getCanonicalPath());
                 save();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 // should never happen because we got the file from a dialog box
                 throw new ResourceException("ImageResource: unable to save image to " + f, e);
             }
@@ -230,15 +235,14 @@ public class ImageResource {
     }
 
     // Maps the image into the array of pixels
-    private Pixel[] imageToPixels (Image image) {
+    private Pixel[] imageToPixels(Image image) {
         int w = getWidth();
         int h = getHeight();
         int[] pixels = new int[w * h];
         PixelGrabber pg = new PixelGrabber(image, 0, 0, w, h, pixels, 0, w);
         try {
             pg.grabPixels();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             System.err.println("Interrupted waiting for pixels!");
             return null;
         }
@@ -251,7 +255,7 @@ public class ImageResource {
     }
 
     // Maps an array of int to an array of pixels
-    private Pixel[] intsToPixels (int[] pixels, int width, int height) {
+    private Pixel[] intsToPixels(int[] pixels, int width, int height) {
         if (pixels == null) {
             throw new ResourceException(String.format("ImageResource: no pixels for %d %d\n", width, height));
         }
@@ -267,7 +271,7 @@ public class ImageResource {
     }
 
     // Maps an array of pixels to an array of int
-    private int[] pixelsToInts (Pixel[] pixels) {
+    private int[] pixelsToInts(Pixel[] pixels) {
         int[] pix = new int[pixels.length];
         for (int i = 0; i < pixels.length; i++)
             pix[i] = pixels[i].getValue();
@@ -275,7 +279,7 @@ public class ImageResource {
     }
 
     // update Java image to reflect pixel values
-    private void updateImage () {
+    private void updateImage() {
         int width = getWidth();
         int height = getHeight();
         myImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -283,12 +287,12 @@ public class ImageResource {
     }
 
     // Creates an image of width w and height h with black pixels
-    private BufferedImage getBlankImage (int width, int height) {
+    private BufferedImage getBlankImage(int width, int height) {
         return new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     }
 
     // Reads an image from a file and updates the pixels array
-    private BufferedImage getImageFromFile (String fileName) {
+    private BufferedImage getImageFromFile(String fileName) {
         try {
             File file = new File(fileName);
             BufferedImage image = ImageIO.read(file);
@@ -296,20 +300,18 @@ public class ImageResource {
                 // wait for size to be known
             }
             return image;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println(e);
             return null;
         }
     }
 
     // breaks the path into the root and simple file name
-    private void setPath (String fileName) {
+    private void setPath(String fileName) {
         int index = fileName.lastIndexOf(File.separator);
         if (index == -1) {
             myPath = "";
-        }
-        else {
+        } else {
             myFileName = fileName.substring(index + 1);
             myPath = fileName.substring(0, index + 1);
         }
@@ -317,26 +319,24 @@ public class ImageResource {
     }
 
     // creates an image from the given file
-    private void init (File f) {
+    private void init(File f) {
         try {
             String path = f.getCanonicalPath();
             init(path, getImageFromFile(path));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new ResourceException("ImageResource: unable to find " + f);
         }
     }
 
     // associates the given image with the given filename
-    private void init (String fileName, BufferedImage image) {
+    private void init(String fileName, BufferedImage image) {
         try {
             setPath(fileName);
             myImage = image;
             myDisplay = new ImageFrame(fileName, image);
             myPixels = imageToPixels(myImage);
             // System.out.printf("init: %d %d %s\n", getWidth(), getHeight(), myPath);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new ResourceException("ImageResource: not an image file " + fileName);
         }
     }

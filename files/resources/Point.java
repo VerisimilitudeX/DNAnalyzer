@@ -10,7 +10,7 @@ public class Point {
      * @param startx is the x-coordinate
      * @param starty is the y-coordinate
      */
-    public Point (int startx, int starty) {
+    public Point(int startx, int starty) {
         x = startx;
         y = starty;
     }
@@ -20,7 +20,7 @@ public class Point {
      * 
      * @return x coordinate
      */
-    public int getX () {
+    public int getX() {
         return x;
     }
 
@@ -29,7 +29,7 @@ public class Point {
      * 
      * @return y coordinate
      */
-    public int getY () {
+    public int getY() {
         return y;
     }
 
@@ -39,24 +39,23 @@ public class Point {
      * @param otherPt the other point to which distance is calculated
      * @return the distance from this point to otherPt
      */
-    public double distance (Point otherPt) {
+    public double distance(Point otherPt) {
         int dx = x - otherPt.getX();
         int dy = y - otherPt.getY();
         return Math.sqrt(dx * dx + dy * dy);
     }
-    
+
     /**
      * Returns a string representation of this point.
      * 
      * @return (x,y) for this point.
      */
-    public String toString(){
-        return "("+x+","+y+")";
+    public String toString() {
+        return "(" + x + "," + y + ")";
     }
 
-
     // for testing only!
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Point p1 = new Point(3, 4);
         Point p2 = new Point(6, 8);
         System.out.println(p1.distance(p2));

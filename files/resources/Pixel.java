@@ -13,7 +13,7 @@ public class Pixel {
      * @param x the x-coordinate of this pixel in the image
      * @param y the y-coordinate of this pixel in the image
      */
-    Pixel (int i, int x, int y) {
+    Pixel(int i, int x, int y) {
         myX = x;
         myY = y;
         setValue(i);
@@ -29,7 +29,7 @@ public class Pixel {
      * @param x the x-coordinate of this pixel in the image
      * @param y the y-coordinate of this pixel in the image
      */
-    Pixel (int r, int g, int b, int a, int x, int y) {
+    Pixel(int r, int g, int b, int a, int x, int y) {
         red = r;
         green = g;
         blue = b;
@@ -47,7 +47,7 @@ public class Pixel {
      * @param x the x-coordinate of this pixel in the image
      * @param y the y-coordinate of this pixel in the image
      */
-    Pixel (int r, int g, int b, int x, int y) {
+    Pixel(int r, int g, int b, int x, int y) {
         this(r, g, b, MAX_VALUE, x, y);
     }
 
@@ -57,9 +57,9 @@ public class Pixel {
      * 
      * @param other another pixel
      */
-    public Pixel (Pixel other) {
-        this(other.getRed(), other.getGreen(), other.getBlue(), 
-             other.getAlpha(), other.getX(), other.getY());
+    public Pixel(Pixel other) {
+        this(other.getRed(), other.getGreen(), other.getBlue(),
+                other.getAlpha(), other.getX(), other.getY());
     }
 
     /**
@@ -67,7 +67,7 @@ public class Pixel {
      *
      * @return the x-coordinate of this pixel.
      */
-    public int getX () {
+    public int getX() {
         return myX;
     }
 
@@ -76,7 +76,7 @@ public class Pixel {
      *
      * @return the y-coordinate of this pixel.
      */
-    public int getY () {
+    public int getY() {
         return myY;
     }
 
@@ -85,7 +85,7 @@ public class Pixel {
      * 
      * @return the pixel's red value within the range 0-255
      */
-    public int getRed () {
+    public int getRed() {
         return red;
     }
 
@@ -94,7 +94,7 @@ public class Pixel {
      * 
      * @return the pixel's green value within the range 0-255
      */
-    public int getGreen () {
+    public int getGreen() {
         return green;
     }
 
@@ -103,7 +103,7 @@ public class Pixel {
      * 
      * @return the pixel's blue value within the range 0-255
      */
-    public int getBlue () {
+    public int getBlue() {
         return blue;
     }
 
@@ -112,47 +112,51 @@ public class Pixel {
      * 
      * @return the pixel's alpha value within the range 0-255
      */
-    public int getAlpha () {
+    public int getAlpha() {
         return alpha;
     }
 
     /**
-     * Resets the value of the pixel's red component to the value passed as a parameter.
+     * Resets the value of the pixel's red component to the value passed as a
+     * parameter.
      * If it is not in the range of 0-255 it is changed to be in that range.
      * 
      * @param r the red value
      */
-    public void setRed (int r) {
+    public void setRed(int r) {
         red = clamp(r);
     }
 
     /**
-     * Resets the value of the pixel's green component to the value passed as a parameter.
+     * Resets the value of the pixel's green component to the value passed as a
+     * parameter.
      * If it is not in the range of 0-255 it is changed to be in that range.
      * 
      * @param g the green value
      */
-    public void setGreen (int g) {
+    public void setGreen(int g) {
         green = clamp(g);
     }
 
     /**
-     * Resets the value of the pixel's blue component to the value passed as a parameter.
+     * Resets the value of the pixel's blue component to the value passed as a
+     * parameter.
      * If it is not in the range of 0-255 it is changed to be in that range.
      * 
      * @param b the blue value
      */
-    public void setBlue (int b) {
+    public void setBlue(int b) {
         blue = clamp(b);
     }
 
     /**
-     * Resets the value of the pixel's alpha (or transparency) component to the value passed as a parameter.
+     * Resets the value of the pixel's alpha (or transparency) component to the
+     * value passed as a parameter.
      * If it is not in the range of 0-255 it is changed to be in that range.
      * 
      * @param a the alpha value
      */
-    public void setAlpha (int a) {
+    public void setAlpha(int a) {
         alpha = clamp(a);
     }
 
@@ -161,17 +165,17 @@ public class Pixel {
      * 
      * @return a string containing the RGB values
      */
-    public String toString () {
+    public String toString() {
         return "Pixel R: " + red + " G: " + green + " B: " + blue;
     }
 
     // returns the integer value of the pixel.
-    int getValue () {
+    int getValue() {
         return (alpha << 24) | (red << 16) | (green << 8) | blue;
     }
 
     // resets the pixel to an integer value.
-    void setValue (int pixel) {
+    void setValue(int pixel) {
         alpha = (pixel >> 24) & 0xff;
         red = (pixel >> 16) & 0xff;
         green = (pixel >> 8) & 0xff;
@@ -179,7 +183,7 @@ public class Pixel {
     }
 
     // clamps the given value to a valid pixel value
-    private int clamp (int value) {
-        return Math.max(0,  Math.min(value, MAX_VALUE));
+    private int clamp(int value) {
+        return Math.max(0, Math.min(value, MAX_VALUE));
     }
 }
