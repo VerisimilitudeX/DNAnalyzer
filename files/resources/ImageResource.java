@@ -8,37 +8,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.util.Arrays;
 
-
-/**
- * The <code>ImageResource</code> class represents an image as a grid of <code>Pixel</code> objects
- * and allows access to all of them, using the method <code>pixels</code>. These pixels can then be
- * iterated over using a <code>for</code> loop.
- * 
- * <P>
- * Note, no changes made to the pixels in this image affect the original image opened unless you use
- * the method <code>save</code>.
- * 
- * <P>
- * Example usage:
- * 
- * <pre>
- * ImageResource image = new ImageResource();
- * for (Pixel p : image.pixels()) {
- *     int red = p.getRed();
- *     int green = p.getGreen();
- *     int blue = p.getBlue();
- *     int average = (red + green + blue) / 3;
- *     p.setRed(average);
- *     p.setGreen(average);
- *     p.setBlue(average);
- * }
- * image.draw();
- * </pre>
- * 
- * <p>
- * This is open-source software released under the terms of the GPL
- * (http://www.gnu.org/licenses/gpl.html).
- */
 public class ImageResource {
     // Default width and height of blank images
     static final int WIDTH = 200;

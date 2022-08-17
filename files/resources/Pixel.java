@@ -1,37 +1,5 @@
 package resources;
 
-
-/**
- * The <code>Pixel</code> class represents a color as its component values of
- * red, green, blue, as well as alpha (for transparency).
- * 
- * <P>
- * Each of the component values of a pixel must have a value between 0 and 255.
- * If a value is given outside that range, it is changed to be within that range.
- * As such, a negative value would be set to 0 and a value greater than 255 would
- * be set to 255.
- * 
- * <P>
- * Example usage:
- * 
- * <pre>
- * ImageResource image = new ImageResource();
- * for (Pixel p : image.pixels()) {
- *     int red = p.getRed();
- *     int green = p.getGreen();
- *     int blue = p.getBlue();
- *     int average = (red + green + blue) / 3;
- *     p.setRed(average);
- *     p.setGreen(average);
- *     p.setBlue(average);
- * }
- * image.draw();
- * </pre>
- * 
- * <P>
- * This is open-source software released under the terms of the GPL
- * (http://www.gnu.org/licenses/gpl.html).
- */
 public class Pixel {
     static final int MAX_VALUE = 255;
     private int alpha = MAX_VALUE, red = 0, green = 0, blue = 0;

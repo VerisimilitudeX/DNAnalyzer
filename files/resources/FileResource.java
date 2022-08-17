@@ -15,45 +15,6 @@ import java.io.StringReader;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
-
-/**
- * The <code>FileResource</code> class represents a file and allows access to its contents a line at
- * a time, using the method <code>lines</code>, or a word at a time, using the method
- * <code>words</code>. These strings can then be iterated over using a <code>for</code> loop.
- * 
- * <P>
- * Example usage:
- * 
- * <PRE>
- * FileResource fr = new FileResource();
- * for (String s : fr.words()) {
- *     // print or process s
- * }
- * </PRE>
- *
- * <P>
- * If each line of the file represents separated data values, because its a CSV file, then the user
- * can get a <code>getCSVParser</code> object to access that data more directly, using one of the
- * <code>getCSVParser</code> methods.
- *
- * <P>
- * Example CSV usage:
- * 
- * <PRE>
- * FileResource fr = new FileResource("food.csv");
- * for (CSVRecord record : fr.getCSVParser()) {
- *     // print or process fields in record
- *     String name = record.get("Name");
- *     // other processing
- * }
- * </PRE>
- * 
- * <P>
- * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
- * 
- * @author Duke Software Team
- */
 public class FileResource {
     private String myPath;
     private String mySource;

@@ -9,46 +9,6 @@ import java.net.URL;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
-
-/**
- * The <code>URLResource</code> class opens a connection to a URL and allows access to the contents
- * of the web page a line at a time, using the method <code>lines</code>, or a word at a time, using
- * the method <code>words</code>. These strings can then be iterated over using a <code>for</code>
- * loop.
- * 
- * <P>
- * Example usage:
- * 
- * <PRE>
- * URLResource ur = new URLResource("http://www.dukelearntoprogram.com/");
- * for (String s : ur.lines()) {
- *     // print or process s
- * }
- * </PRE>
- *
- * <P>
- * If each line of the web page represents separated data values, because its a CSV file, then the
- * user can get a <code>getCSVParser</code> object to access that data more directly, using one of the
- * <code>getCSVParser</code> methods.
- * 
- * <P>
- * Example CSV usage:
- * 
- * <PRE>
- * URLResource ur = new URLResource("http://www.dukelearntoprogram.com/course2/java/food.csv");
- * for (CSVRecord record : ur.getCSVParser()) {
- *     // print or process fields in record
- *     String name = record.get("Name");
- *     // other processing
- * }
- * </PRE>
- * 
- * <P>
- * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
- * 
- * @author Duke Software Team
- */
 public class URLResource {
     private String myPath;
     private String mySource;

@@ -8,15 +8,6 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-/**
- * This utility class implements a panel for displaying an image.
- * 
- * @author Duke Software Team
- * 
- *         This software is licensed with an Apache 2 license, see
- *         http://www.apache.org/licenses/LICENSE-2.0 for details.
- */
 class ImageFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     private ImagePanel myPanel;

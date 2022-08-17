@@ -2,54 +2,6 @@ package resources;
 
 import java.util.ArrayList;
 
-
-/**
- * The <code>Shape</code> class represents a collection of <code>Point</code>s that can easily 
- * model a polygonal shape. Points can be added in order via code or given using a file, one 
- * point per line separated by a comma. The points can then be accessed in the order they were 
- * added one at a time, using the method <code>getPoints</code>.
- * 
- * <P>
- * Example usage: 
- * 
- * <PRE>
- * Point a = new Point(3, 4);
- * Point b = new Point(2, 5);
- * Shape s = new Shape();
- * s.addPoint(a);
- * s.addPoint(b);
- * s.addPoint(new Point(1, 1));
- * for (Point p : s.getPoints()) {
- *     System.out.println(p);
- * }
- * </PRE>
- * 
- * <P>
- * A <code>Shape</code> can also be created using file in the following format:
- * 
- * <PRE>
- * 3, 4
- * 2, 5
- * 1, 1
- * </PRE>
- *
- * <P>
- * Example file usage:
- * 
- * <PRE>
- * FileResource fr = new FileResource();
- * Shape s = new Shape(fr);
- * for (Point p : s.getPoints()) {
- *     System.out.println(p);
- * }
- * </PRE>
- * 
- * <P>
- * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
- * 
- * @author Duke Coursera Team
- */
 public class Shape {
     private ArrayList<Point> points;
 

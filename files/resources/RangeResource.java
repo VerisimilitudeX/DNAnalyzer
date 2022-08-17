@@ -3,42 +3,6 @@ package resources;
 import java.util.List;
 import java.util.ArrayList;
 
-
-/**
- * The <code>RangeResource</code> class represents a range of integer (or whole) numbers and allows
- * access to these numbers using the method <code>sequence</code>. The integers can then be iterated
- * over using a <code>for</code> loop
- * 
- * <P>
- * Example usage:
- * 
- * <PRE>
- * // this prints the square number sequence for the first 9 numbers:
- * //   1, 4, 9, 16, 25, 36, 49, 64, 81 
- * RangeResource rr = new RangeResource(1, 10);
- * for (int value : rr.sequence()) {
- *     System.out.println(value * value);
- * }
- * </PRE>
- *
- * <P>
- * Another example usage:
- * 
- * <PRE>
- * // this prints the odd numbers in decreasing order within the given range:
- * //   37, 35, 33, 31, 29, 27, 25, 23
- * RangeResource rr = new RangeResource(37, 21, -2);
- * for (int value : rr.sequence()) {
- *     System.out.println(value);
- * }
- * </PRE>
- *
- * <P>
- * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
- * 
- * @author Duke Software Team
- */
 public class RangeResource {
     private int myStart;
     private int myEnd;

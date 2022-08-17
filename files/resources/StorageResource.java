@@ -4,39 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
-/**
- * The <code>StorageResource</code> class stores any number of <code>String</code> objects and
- * allows access to these stored values one at a time, using the method <code>data</code>. These
- * strings can then be iterated over in the order they were added using a <code>for</code> loop.
- * 
- * <P>
- * This class mirrors an <code>ArrayList&lt;String&gt;</code> in some functionality, but is simpler
- * to use and fits the Duke/Coursersa model of creating and using iterables.
- * 
- * <P>
- * Example usage:
- * 
- * <PRE>
- * FileResource fr = new FileResource();
- * StorageResource store = new StorageResource();
- * for (String s : fr.words()) {
- *     store.add(s);
- * }
- * // can process store here, e.g.,
- * // get number of strings stored
- * int x = store.size();
- * for (String s : store.data()) {
- *     // print or process s
- * }
- * </PRE>
- * 
- * <P>
- * This software is licensed with an Apache 2 license, see
- * http://www.apache.org/licenses/LICENSE-2.0 for details.
- * 
- * @author Duke Software Team
- */
 public class StorageResource {
     private List<String> myStrings;
 
