@@ -73,7 +73,8 @@ public class GenomeSequencer {
         double gcContent = p.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent);
 
-        // Returns a HashMap containing the number of each nucleotide in the DNA sequence.
+        // Returns a HashMap containing the number of each nucleotide in the DNA
+        // sequence.
         System.out.println("Nucleotide count: " + p.getNucleotideCount(dna));
 
         // Finds and prints GC-content higher than 0.35

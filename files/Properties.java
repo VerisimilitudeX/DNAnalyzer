@@ -50,7 +50,7 @@ public class Properties {
                 nucleotideCount.put("C", nucleotideCount.get("C") + 1);
             }
         }
-        
+
         return nucleotideCount;
     }
 }
