@@ -1,5 +1,3 @@
-
-// Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
 
 // This class is used to find genes in a DNA sequence.
