@@ -1,6 +1,6 @@
 import java.io.FileNotFoundException;
 
-// Program starts here.
+// Main Class
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
