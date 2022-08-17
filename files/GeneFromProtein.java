@@ -36,7 +36,7 @@ public class GeneFromProtein {
             case "arginine", "r" -> aminoAcidList.addAll(arginine);
             default -> System.out.println("Invalid amino acid");
         }
-        ArrayList<String> geneList = new ArrayList<String>();
+        ArrayList<String> geneList = new ArrayList<>();
         for (String start_codon : aminoAcidList) {
             int start_index = dna.indexOf(start_codon.toLowerCase());
             for (String stop_codon : stop) {
@@ -51,7 +51,6 @@ public class GeneFromProtein {
             for (int i = 0; i < 100; i++) {
                 System.out.println();
             }
-            geneList.clear();
             geneList.add("No gene found");
         }
         return geneList;

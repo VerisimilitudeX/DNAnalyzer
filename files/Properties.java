@@ -31,7 +31,7 @@ public class Properties {
     }
 
     public HashMap<String, Integer> getNucleotideCount(String dna) {
-        HashMap<String, Integer> nucleotideCount = new HashMap<String, Integer>();
+        HashMap<String, Integer> nucleotideCount = new HashMap<>();
         nucleotideCount.put("A", 0);
         nucleotideCount.put("T", 0);
         nucleotideCount.put("G", 0);
@@ -39,14 +39,11 @@ public class Properties {
 
         for (String letter : dna.split("")) {
             letter = letter.toUpperCase();
-            if (letter.equals("A")) {
-                nucleotideCount.put("A", nucleotideCount.get("A") + 1);
-            } else if (letter.equals("T")) {
-                nucleotideCount.put("T", nucleotideCount.get("T") + 1);
-            } else if (letter.equals("G")) {
-                nucleotideCount.put("G", nucleotideCount.get("G") + 1);
-            } else if (letter.equals("C")) {
-                nucleotideCount.put("C", nucleotideCount.get("C") + 1);
+            switch (letter) {
+                case "A" -> nucleotideCount.put("A", nucleotideCount.get("A") + 1);
+                case "T" -> nucleotideCount.put("T", nucleotideCount.get("T") + 1);
+                case "G" -> nucleotideCount.put("G", nucleotideCount.get("G") + 1);
+                case "C" -> nucleotideCount.put("C", nucleotideCount.get("C") + 1);
             }
         }
 

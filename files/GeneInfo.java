@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class GeneInfo {
     public void highGCContent(ArrayList<String> geneList) {
-        System.out.println("");
+        System.out.println();
         System.out.println("Gene(s) with the highest coverage: ");
         System.out.println("----------------------------------------------------");
         int count = 1;
