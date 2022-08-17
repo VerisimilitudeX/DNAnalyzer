@@ -3,6 +3,7 @@
 import java.util.ArrayList;
 import resources.StorageResource;
 
+// This class is used to find genes in a DNA sequence.
 public class GeneFromProtein {
     public StorageResource getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
             ArrayList<String> leucine,
