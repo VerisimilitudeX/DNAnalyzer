@@ -10,28 +10,30 @@ public class GeneFromProtein {
             ArrayList<String> tryptophan, ArrayList<String> glutamine, ArrayList<String> asparagine,
             ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
             ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
+
+        // Maps the the amino acid that the user entered to the start codon list.
         ArrayList<String> aminoAcidList = new ArrayList<>();
         switch (aminoAcid) {
-            case "isoleucine", "i" -> aminoAcidList.addAll(isoleucine);
-            case "leucine", "l" -> aminoAcidList.addAll(leucine);
-            case "valine", "v" -> aminoAcidList.addAll(valine);
-            case "phenylalanine", "f" -> aminoAcidList.addAll(phenylalanine);
-            case "methionine", "m" -> aminoAcidList.addAll(methionine);
-            case "cysteine", "c" -> aminoAcidList.addAll(cysteine);
-            case "alanine", "a" -> aminoAcidList.addAll(alanine);
-            case "glycine", "g" -> aminoAcidList.addAll(glycine);
-            case "proline", "p" -> aminoAcidList.addAll(proline);
-            case "threonine", "t" -> aminoAcidList.addAll(threonine);
-            case "serine", "s" -> aminoAcidList.addAll(serine);
-            case "tyrosine", "y" -> aminoAcidList.addAll(tyrosine);
-            case "tryptophan", "w" -> aminoAcidList.addAll(tryptophan);
-            case "glutamine", "q" -> aminoAcidList.addAll(glutamine);
-            case "asparagine", "n" -> aminoAcidList.addAll(asparagine);
-            case "histidine", "h" -> aminoAcidList.addAll(histidine);
-            case "glutamic acid", "e" -> aminoAcidList.addAll(glutamicAcid);
-            case "aspartic acid", "d" -> aminoAcidList.addAll(asparticAcid);
-            case "lysine", "k" -> aminoAcidList.addAll(lysine);
-            case "arginine", "r" -> aminoAcidList.addAll(arginine);
+            case "isoleucine", "i", "ile" -> aminoAcidList.addAll(isoleucine);
+            case "leucine", "l", "leu" -> aminoAcidList.addAll(leucine);
+            case "valine", "v", "val" -> aminoAcidList.addAll(valine);
+            case "phenylalanine", "f", "phe" -> aminoAcidList.addAll(phenylalanine);
+            case "methionine", "m", "met" -> aminoAcidList.addAll(methionine);
+            case "cysteine", "c", "cys" -> aminoAcidList.addAll(cysteine);
+            case "alanine", "a", "ala" -> aminoAcidList.addAll(alanine);
+            case "glycine", "g", "gly" -> aminoAcidList.addAll(glycine);
+            case "proline", "p", "pro" -> aminoAcidList.addAll(proline);
+            case "threonine", "t", "thr" -> aminoAcidList.addAll(threonine);
+            case "serine", "s", "ser" -> aminoAcidList.addAll(serine);
+            case "tyrosine", "y", "tyr" -> aminoAcidList.addAll(tyrosine);
+            case "tryptophan", "w", "trp" -> aminoAcidList.addAll(tryptophan);
+            case "glutamine", "q", "gln" -> aminoAcidList.addAll(glutamine);
+            case "asparagine", "n", "asn" -> aminoAcidList.addAll(asparagine);
+            case "histidine", "h", "his" -> aminoAcidList.addAll(histidine);
+            case "glutamic acid", "e", "glu" -> aminoAcidList.addAll(glutamicAcid);
+            case "aspartic acid", "d", "asp" -> aminoAcidList.addAll(asparticAcid);
+            case "lysine", "k", "lys" -> aminoAcidList.addAll(lysine);
+            case "arginine", "r", "arg" -> aminoAcidList.addAll(arginine);
             default -> System.out.println("Invalid amino acid");
         }
         ArrayList<String> geneList = new ArrayList<>();
