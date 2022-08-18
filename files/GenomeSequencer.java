@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 // Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the user.
@@ -24,20 +25,34 @@ public class GenomeSequencer {
 
         // Checks if the DNA sequence is valid (contains only A, T, G, and C
         // nucleotides).
-        if ((dna.length() == 0) || dna.toString().contains("b") || dna.toString().contains("d") || dna.toString().contains("e") || dna.toString().contains("f")
-                || dna.toString().contains("h") || dna.toString().contains("i") || dna.toString().contains("j") || dna.toString().contains("k") || dna.toString().contains("l")
-                || dna.toString().contains("m") || dna.toString().contains("n") || dna.toString().contains("o") || dna.toString().contains("p") || dna.toString().contains("q")
-                || dna.toString().contains("r") || dna.toString().contains("s") || dna.toString().contains("v") || dna.toString().contains("w") || dna.toString().contains("x")
-                || dna.toString().contains("y") || dna.toString().contains("z") || (dna.toString().indexOf(1) >= 0) || (dna.toString().indexOf(2) >= 0)
-                || (dna.toString().indexOf(3) >= 0) || (dna.toString().indexOf(4) >= 0) || (dna.toString().indexOf(5) >= 0) || (dna.toString().indexOf(6) >= 0)
-                || (dna.toString().indexOf(7) >= 0) || (dna.toString().indexOf(8) >= 0) || (dna.toString().indexOf(9) >= 0) || (dna.toString().indexOf(0) >= 0)
-                || dna.toString().contains(" ") || dna.toString().contains(",") || dna.toString().contains(".") || dna.toString().contains(";") || dna.toString().contains("'")
-                || dna.toString().contains("\"") || dna.toString().contains("!") || dna.toString().contains("?") || dna.toString().contains("/")
-                || dna.toString().contains("\\") || dna.toString().contains("(") || dna.toString().contains(")") || dna.toString().contains("[")
-                || dna.toString().contains("]") || dna.toString().contains("{") || dna.toString().contains("}") || dna.toString().contains("<") || dna.toString().contains(">")
-                || dna.toString().contains("=") || dna.toString().contains("+") || dna.toString().contains("-") || dna.toString().contains("*") || dna.toString().contains("&")
-                || dna.toString().contains("^") || dna.toString().contains("%") || dna.toString().contains("$") || dna.toString().contains("#") || dna.toString().contains("@")
-                || dna.toString().contains("~") || dna.toString().contains("`") || dna.toString().contains("|") || dna.toString().contains(":")) {
+        if ((dna.length() == 0) || dna.toString().contains("b") || dna.toString().contains("d")
+                || dna.toString().contains("e") || dna.toString().contains("f")
+                || dna.toString().contains("h") || dna.toString().contains("i") || dna.toString().contains("j")
+                || dna.toString().contains("k") || dna.toString().contains("l")
+                || dna.toString().contains("m") || dna.toString().contains("n") || dna.toString().contains("o")
+                || dna.toString().contains("p") || dna.toString().contains("q")
+                || dna.toString().contains("r") || dna.toString().contains("s") || dna.toString().contains("v")
+                || dna.toString().contains("w") || dna.toString().contains("x")
+                || dna.toString().contains("y") || dna.toString().contains("z") || (dna.toString().indexOf(1) >= 0)
+                || (dna.toString().indexOf(2) >= 0)
+                || (dna.toString().indexOf(3) >= 0) || (dna.toString().indexOf(4) >= 0)
+                || (dna.toString().indexOf(5) >= 0) || (dna.toString().indexOf(6) >= 0)
+                || (dna.toString().indexOf(7) >= 0) || (dna.toString().indexOf(8) >= 0)
+                || (dna.toString().indexOf(9) >= 0) || (dna.toString().indexOf(0) >= 0)
+                || dna.toString().contains(" ") || dna.toString().contains(",") || dna.toString().contains(".")
+                || dna.toString().contains(";") || dna.toString().contains("'")
+                || dna.toString().contains("\"") || dna.toString().contains("!") || dna.toString().contains("?")
+                || dna.toString().contains("/")
+                || dna.toString().contains("\\") || dna.toString().contains("(") || dna.toString().contains(")")
+                || dna.toString().contains("[")
+                || dna.toString().contains("]") || dna.toString().contains("{") || dna.toString().contains("}")
+                || dna.toString().contains("<") || dna.toString().contains(">")
+                || dna.toString().contains("=") || dna.toString().contains("+") || dna.toString().contains("-")
+                || dna.toString().contains("*") || dna.toString().contains("&")
+                || dna.toString().contains("^") || dna.toString().contains("%") || dna.toString().contains("$")
+                || dna.toString().contains("#") || dna.toString().contains("@")
+                || dna.toString().contains("~") || dna.toString().contains("`") || dna.toString().contains("|")
+                || dna.toString().contains(":")) {
             System.out.println("Error: Invalid characters are present in DNA sequence.");
             return;
         }
@@ -56,7 +71,8 @@ public class GenomeSequencer {
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
         GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
-        ArrayList<String> geneList = gfp.getAminoAcid(dna.toString(), aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine,
+        ArrayList<String> geneList = gfp.getAminoAcid(dna.toString(), aminoAcid, Isoleucine, Leucine, Valine,
+                Phenylalanine,
                 Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine,
                 Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
 
@@ -72,7 +88,8 @@ public class GenomeSequencer {
 
         // Returns a HashMap containing the number of each nucleotide in the DNA
         // sequence.
-        System.out.println("Nucleotide count: " + p.getNucleotideCount(dna.toString()));
+        HashMap<String, Integer> nucleotideCount = p.getNucleotideCount(dna.toString());
+        System.out.println("Nucleotide count: " + nucleotideCount);
 
         // Finds and prints GC-content higher than 0.35
         GeneInfo gi = new GeneInfo();
@@ -80,5 +97,6 @@ public class GenomeSequencer {
 
         // Finds and prints the longest gene in the DNA sequence and its length.
         gi.longestGene(geneList);
+        System.out.println();
     }
 }

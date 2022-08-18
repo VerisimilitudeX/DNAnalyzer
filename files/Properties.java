@@ -3,11 +3,43 @@ import java.util.HashMap;
 
 public class Properties {
     public void printGeneList(ArrayList<String> geneList, String aminoAcid) {
-        int count = 1;
-        for (int i = 0; i < 100; i++) {
-            System.out.println();
+        // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
+        // full name
+        String aminoAcidFull = "";
+        switch (aminoAcid) {
+            case "a", "alanine", "ala" -> aminoAcidFull = "Alanine";
+            case "c", "cysteine", "cys" -> aminoAcidFull = "Cysteine";
+            case "d", "aspartic acid", "asp" -> aminoAcidFull = "Aspartic acid";
+            case "e", "glutamic acid", "glu" -> aminoAcidFull = "Glutamic acid";
+            case "f", "phenylalanine", "phe" -> aminoAcidFull = "Phenylalanine";
+            case "g", "glycine", "gly" -> aminoAcidFull = "Glycine";
+            case "h", "histidine", "his" -> aminoAcidFull = "Histidine";
+            case "i", "isoleucine", "ile" -> aminoAcidFull = "Isoleucine";
+            case "k", "lysine", "lys" -> aminoAcidFull = "Lysine";
+            case "l", "leucine", "leu" -> aminoAcidFull = "Leucine";
+            case "m", "methionine", "met" -> aminoAcidFull = "Methionine";
+            case "n", "asparagine", "asn" -> aminoAcidFull = "Asparagine";
+            case "p", "proline", "pro" -> aminoAcidFull = "Proline";
+            case "q", "glutamine", "gln" -> aminoAcidFull = "Glutamine";
+            case "r", "arginine", "arg" -> aminoAcidFull = "Arginine";
+            case "s", "serine", "ser" -> aminoAcidFull = "Serine";
+            case "t", "threonine", "thr" -> aminoAcidFull = "Threonine";
+            case "v", "valine", "val" -> aminoAcidFull = "Valine";
+            case "w", "tryptophan", "trp" -> aminoAcidFull = "Tryptophan";
+            default -> System.out.println("Invalid amino acid");
         }
-        System.out.println("List of genes coded for " + aminoAcid + " in the DNA strand: ");
+
+        // "Clears" the console screen
+        int count = 1;
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("Genes coded for " + aminoAcidFull + ": ");
         System.out.println("----------------------------------------------------");
         for (String gene : geneList) {
             if (geneList.contains("No gene found")) {

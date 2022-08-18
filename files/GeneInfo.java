@@ -2,18 +2,24 @@ import java.util.ArrayList;
 
 public class GeneInfo {
     public void highGCContent(ArrayList<String> geneList) {
-        System.out.println();
-        System.out.println("Gene(s) with the highest coverage: ");
-        System.out.println("----------------------------------------------------");
         int count = 1;
+        // print the list of genes with the highest GC content
+        System.out.println();
+        System.out.println("High coverage regions: ");
+        System.out.println("----------------------------------------------------");
+
+        Properties p = new Properties();
+
         for (String gene : geneList) {
-            Properties fp = new Properties();
-            double geneGCContent = fp.getGCContent(gene);
-            if (geneGCContent >= 0.45 && geneGCContent <= 0.60) {
+            if (geneList.contains("No gene found")) {
+                System.out.println("No gene found");
+                break;
+            } else if (p.getGCContent(gene) > 0.40 && p.getGCContent(gene) < 0.60) {
                 System.out.println(count + ". " + gene);
                 count++;
             }
         }
+
     }
 
     public void longestGene(ArrayList<String> geneList) {
