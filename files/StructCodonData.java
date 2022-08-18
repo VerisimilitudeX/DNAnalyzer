@@ -1,7 +1,6 @@
-
-// Imports Java Utilities necessary for creating ArrayLists and Arrays.
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 // This method returns the codon data for the given amino acid.
 public class StructCodonData {
@@ -12,7 +11,7 @@ public class StructCodonData {
     private final ArrayList<String> Leucine = new ArrayList<>(Arrays.asList("CTT", "CTC", "CTA", "CTG", "TTA", "TTG"));
     private final ArrayList<String> Valine = new ArrayList<>(Arrays.asList("GTT", "GTC", "GTA", "GTG"));
     private final ArrayList<String> Phenylalanine = new ArrayList<>(Arrays.asList("TTT", "TTC"));
-    private final ArrayList<String> Methionine = new ArrayList<>(Arrays.asList("ATG"));
+    private final ArrayList<String> Methionine = new ArrayList<>(List.of("ATG"));
     private final ArrayList<String> Cysteine = new ArrayList<>(Arrays.asList("TGT", "TGC"));
     private final ArrayList<String> Alanine = new ArrayList<>(Arrays.asList("GCT", "GCC", "GCA", "GCG"));
     private final ArrayList<String> Glycine = new ArrayList<>(Arrays.asList("GGT", "GGC", "GGA", "GGG"));
@@ -20,7 +19,7 @@ public class StructCodonData {
     private final ArrayList<String> Threonine = new ArrayList<>(Arrays.asList("ACT", "ACC", "ACA", "ACG"));
     private final ArrayList<String> Serine = new ArrayList<>(Arrays.asList("TCT", "TCC", "TCA", "TCG", "AGT", "AGC"));
     private final ArrayList<String> Tyrosine = new ArrayList<>(Arrays.asList("TAT", "TAC"));
-    private final ArrayList<String> Tryptophan = new ArrayList<>(Arrays.asList("TGG"));
+    private final ArrayList<String> Tryptophan = new ArrayList<>(List.of("TGG"));
     private final ArrayList<String> Glutamine = new ArrayList<>(Arrays.asList("CAA", "CAG"));
     private final ArrayList<String> Asparagine = new ArrayList<>(Arrays.asList("AAT", "AAC"));
     private final ArrayList<String> Histidine = new ArrayList<>(Arrays.asList("CAT", "CAC"));

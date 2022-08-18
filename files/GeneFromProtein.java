@@ -1,11 +1,8 @@
-
-// Imports the Java ArrayList Library for storing the start and stop codon data.
 import java.util.ArrayList;
-import resources.StorageResource;
 
 // This class is used to find genes in a DNA sequence.
 public class GeneFromProtein {
-    public StorageResource getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
+    public ArrayList<String> getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
             ArrayList<String> leucine,
             ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
             ArrayList<String> cysteine, ArrayList<String> alanine, ArrayList<String> glycine, ArrayList<String> proline,
@@ -37,7 +34,7 @@ public class GeneFromProtein {
             case "arginine", "r" -> aminoAcidList.addAll(arginine);
             default -> System.out.println("Invalid amino acid");
         }
-        StorageResource geneList = new StorageResource();
+        ArrayList<String> geneList = new ArrayList<>();
         for (String start_codon : aminoAcidList) {
             int start_index = dna.indexOf(start_codon.toLowerCase());
             for (String stop_codon : stop) {
@@ -52,7 +49,6 @@ public class GeneFromProtein {
             for (int i = 0; i < 100; i++) {
                 System.out.println();
             }
-            geneList.clear();
             geneList.add("No gene found");
         }
         return geneList;
