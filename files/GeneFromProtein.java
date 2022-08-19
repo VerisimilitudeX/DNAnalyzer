@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 // This class is used to find genes in a DNA sequence.
 public class GeneFromProtein {
+    private static final ArrayList<String> aminoAcidList = new ArrayList<String>();
+    private static final ArrayList<String> geneList = new ArrayList<>();
+
     public ArrayList<String> getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
             ArrayList<String> leucine,
             ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
@@ -12,7 +15,6 @@ public class GeneFromProtein {
             ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
 
         // Maps the the amino acid that the user entered to the start codon list.
-        ArrayList<String> aminoAcidList = new ArrayList<>();
         switch (aminoAcid) {
             case "isoleucine", "i", "ile" -> aminoAcidList.addAll(isoleucine);
             case "leucine", "l", "leu" -> aminoAcidList.addAll(leucine);
@@ -36,7 +38,6 @@ public class GeneFromProtein {
             case "arginine", "r", "arg" -> aminoAcidList.addAll(arginine);
             default -> System.out.println("Invalid amino acid");
         }
-        ArrayList<String> geneList = new ArrayList<>();
         for (String start_codon : aminoAcidList) {
             int start_index = dna.indexOf(start_codon.toLowerCase());
             for (String stop_codon : stop) {
