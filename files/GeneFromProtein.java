@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 // This class is used to find genes in a DNA sequence.
 public class GeneFromProtein {
-    private static final ArrayList<String> aminoAcidList = new ArrayList<String>();
+    private static final ArrayList<String> aminoAcidList = new ArrayList<>();
     private static final ArrayList<String> geneList = new ArrayList<>();
 
     public ArrayList<String> getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
