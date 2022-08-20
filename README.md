@@ -1,6 +1,4 @@
-# Algorithm for Analyzing Genes in DNA
-
-<img src="https://user-images.githubusercontent.com/96280466/182701235-67ac54c0-2cc2-465d-9458-0a9bef98f439.png" width="400"/>
+<img src="https://user-images.githubusercontent.com/96280466/185725182-d437413c-dbbb-497f-acc1-a3ddc9594a68.png" width="400"/>
 
 ## Overview
 This software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements. In the near future, machine learning models and artificial intelligence will be added to enhance the algorithm.
