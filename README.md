@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/96280466/185725182-d437413c-dbbb-497f-acc1-a3ddc9594a68.png" width="400"/>
+<img src="https://user-images.githubusercontent.com/96280466/185725239-a7cbb1d0-4cf3-472d-867e-b806504b50fc.png" width="400"/>
 
 ## Overview
 This software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements. In the near future, machine learning models and artificial intelligence will be added to enhance the algorithm.
