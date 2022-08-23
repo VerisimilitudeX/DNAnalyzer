@@ -83,8 +83,7 @@ public class GenomeSequencer {
         startTime = System.currentTimeMillis();
         // Returns a HashMap containing the number of each nucleotide in the DNA
         // sequence.
-        HashMap<Character, Integer> nucleotideCount = p.getNucleotideCount(dna.toString());
-        System.out.println("Nucleotide count: " + nucleotideCount);
+        p.printNucleotideCount(dna.toString());
         System.out.println("Nucleotide count time: " + (System.currentTimeMillis() - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
