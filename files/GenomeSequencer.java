@@ -17,7 +17,7 @@ public class GenomeSequencer {
             ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws FileNotFoundException {
 
         // Load DNA file and concatenate lines
-        Scanner sc = new Scanner(new File("files/dna/brca1line.fa"));
+        Scanner sc = new Scanner(new File("files/dna/dnalong.fa"));
         StringBuilder dna = new StringBuilder();
         while (sc.hasNextLine()) {
             dna.append(sc.nextLine().trim().toLowerCase());
