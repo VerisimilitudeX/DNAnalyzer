@@ -1,5 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -14,16 +15,12 @@ public class GenomeSequencer {
             ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine,
             ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine,
             ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid,
-            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws FileNotFoundException {
+            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws IOException {
 
 
         long startTime = System.currentTimeMillis();
         // Load DNA file and concatenate lines
-        Scanner sc = new Scanner(new File("files/dna/dnalong.fa"));
-        StringBuilder dna = new StringBuilder();
-        while (sc.hasNextLine()) {
-            dna.append(sc.nextLine().trim().toLowerCase());
-        }
+        String dna = Files.readString(Path.of("files/dna/dnalong.fa")).replace("\n", "");
         System.out.println("Load time: " + (System.currentTimeMillis() - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
@@ -57,7 +54,7 @@ public class GenomeSequencer {
         startTime = System.currentTimeMillis();
         // Prevents the user from entering an RNA sequence. In the last decade, using
         // DNA sequences instead of RNA sequences has been a more common practice.
-        dna = new StringBuilder(dna.toString().replace("u", "t"));
+        dna = dna.replace("u", "t");
         System.out.println("Replace time: " + (System.currentTimeMillis() - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
