@@ -14,7 +14,7 @@ public class GenomeSequencer {
             ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine,
             ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine,
             ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid,
-            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws IOException {
+            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws IOException, InterruptedException {
 
         long startTime = System.currentTimeMillis();
         // Load DNA file and concatenate lines

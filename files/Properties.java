@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Properties {
-    public void printGeneList(ArrayList<String> geneList, String aminoAcid) {
+    public void printGeneList(ArrayList<String> geneList, String aminoAcid) throws InterruptedException, IOException {
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
         String aminoAcidFull = "";
@@ -29,7 +30,13 @@ public class Properties {
         }
 
         // "Clears" the console screen
-        int count = 1;
+        if (System.getProperty("os.name").contains("Windows")) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } else {
+            System.out.print("\u001b[H\u001b[2J");
+            System.out.flush();
+        }
+
         for (int i = 0; i < 50; i++) {
             System.out.println();
             try {
@@ -40,6 +47,7 @@ public class Properties {
         }
         System.out.println("Genes coded for " + aminoAcidFull + ": ");
         System.out.println("----------------------------------------------------");
+        int count = 1;
         for (String gene : geneList) {
             if (geneList.contains("No gene found")) {
                 System.out.println("No gene found");
