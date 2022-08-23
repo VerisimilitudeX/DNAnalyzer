@@ -45,6 +45,7 @@ public class GenomeSequencer {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the amino acid: ");
         String aminoAcid = userInput.nextLine().toLowerCase();
+
         userInput.close();
 
         // Prevents the user from entering an RNA sequence. In the last decade, using
@@ -82,5 +83,8 @@ public class GenomeSequencer {
         // Finds and prints the longest gene in the DNA sequence and its length.
         gi.longestGene(geneList);
         System.out.println();
+
+        AminoAcidProperties aap = new AminoAcidProperties(dna, 1, 0, 5);
+        aap.printCodonCounts();
     }
 }

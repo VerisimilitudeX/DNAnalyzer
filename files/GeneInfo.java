@@ -23,7 +23,6 @@ public class GeneInfo {
                 count++;
             }
         }
-
     }
 
     public void longestGene(ArrayList<String> geneList) {
