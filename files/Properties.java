@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.lang.Character;
 
 public class Properties {
     public void printGeneList(ArrayList<String> geneList, String aminoAcid) {
@@ -54,29 +55,23 @@ public class Properties {
     public double getGCContent(String dna) {
         dna = dna.toLowerCase();
         double gcLen = 0;
-        for (String letter : dna.split("")) {
-            if (letter.equals("c") || letter.equals("g")) {
+        for (char letter : dna.toCharArray()) {
+            if (letter == 'c'|| letter == 'g') {
                 gcLen++;
             }
         }
         return (gcLen / dna.length());
     }
 
-    public HashMap<String, Integer> getNucleotideCount(String dna) {
-        HashMap<String, Integer> nucleotideCount = new HashMap<>();
-        nucleotideCount.put("A", 0);
-        nucleotideCount.put("T", 0);
-        nucleotideCount.put("G", 0);
-        nucleotideCount.put("C", 0);
+    public HashMap<Character, Integer> getNucleotideCount(String dna) {
+        HashMap<Character, Integer> nucleotideCount = new HashMap<>();
+        nucleotideCount.put('A', 0);
+        nucleotideCount.put('T', 0);
+        nucleotideCount.put('G', 0);
+        nucleotideCount.put('C', 0);
 
-        for (String letter : dna.split("")) {
-            letter = letter.toUpperCase();
-            switch (letter) {
-                case "A" -> nucleotideCount.put("A", nucleotideCount.get("A") + 1);
-                case "T" -> nucleotideCount.put("T", nucleotideCount.get("T") + 1);
-                case "G" -> nucleotideCount.put("G", nucleotideCount.get("G") + 1);
-                case "C" -> nucleotideCount.put("C", nucleotideCount.get("C") + 1);
-            }
+        for (char letter : dna.toCharArray()) {
+            nucleotideCount.put(Character.toUpperCase(letter), nucleotideCount.get('A') + 1);
         }
 
         return nucleotideCount;
