@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.lang.Character;
 
 public class Properties {
     public void printGeneList(ArrayList<String> geneList, String aminoAcid) {

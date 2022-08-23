@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 // Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the user.
@@ -62,7 +61,7 @@ public class GenomeSequencer {
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
         GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
-        ArrayList<String> geneList = gfp.getAminoAcid(dna.toString(), aminoAcid, Isoleucine, Leucine, Valine,
+        ArrayList<String> geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine,
                 Phenylalanine,
                 Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine,
                 Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
@@ -76,14 +75,14 @@ public class GenomeSequencer {
 
         startTime = System.currentTimeMillis();
         // Prints the GC-con    tent of the genomic sequence.
-        double gcContent = p.getGCContent(dna.toString());
+        double gcContent = p.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent);
         System.out.println("GC-Content time: " + (System.currentTimeMillis() - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
         // Returns a HashMap containing the number of each nucleotide in the DNA
         // sequence.
-        p.printNucleotideCount(dna.toString());
+        p.printNucleotideCount(dna);
         System.out.println("Nucleotide count time: " + (System.currentTimeMillis() - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
