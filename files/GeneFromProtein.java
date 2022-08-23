@@ -14,7 +14,7 @@ public class GeneFromProtein {
             ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
             ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
 
-        // Maps the the amino acid that the user entered to the start codon list.
+        // Maps the amino acid that the user entered to the start codon list.
         switch (aminoAcid) {
             case "isoleucine", "i", "ile" -> aminoAcidList.addAll(isoleucine);
             case "leucine", "l", "leu" -> aminoAcidList.addAll(leucine);

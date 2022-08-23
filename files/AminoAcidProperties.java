@@ -1,19 +1,21 @@
 import java.util.HashMap;
 
 public class AminoAcidProperties {
-    private HashMap<String, Integer> codonCounts;
-    private int startRefFrame;
-    private int min;
-    private int max;
+    private final HashMap<String, Integer> codonCounts;
+    private final int startRefFrame;
+    private final int min;
+    private final int max;
+    private final StringBuilder dna;
 
-    public AminoAcidProperties(int startRefFrame, int min, int max) {
-        codonCounts = new HashMap<String, Integer>();
+    public AminoAcidProperties(StringBuilder dna, int startRefFrame, int min, int max) {
+        codonCounts = new HashMap<>();
         this.startRefFrame = startRefFrame;
         this.min = min;
         this.max = max;
+        this.dna = dna;
     }
 
-    private void buildCodonMap(int startRefFrame, String dna) {
+    private void buildCodonMap(int startRefFrame, StringBuilder dna) {
         codonCounts.clear();
         for (int i = startRefFrame; i < dna.length(); i += 3) {
             try {
@@ -29,7 +31,7 @@ public class AminoAcidProperties {
     }
 
     public void printCodonCounts() {
-        buildCodonMap(startRefFrame, "CGTTCAAGTTCAA");
+        buildCodonMap(startRefFrame, dna);
         for (String codon : codonCounts.keySet()) {
             if (codonCounts.get(codon) >= min && codonCounts.get(codon) <= max) {
                 System.out.println(codon + "\t" + codonCounts.get(codon));

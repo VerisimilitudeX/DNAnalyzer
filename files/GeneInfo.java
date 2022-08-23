@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class GeneInfo {
+
     public void highGCContent(ArrayList<String> geneList) {
         int count = 1;
         // print the list of genes with the highest GC content
@@ -19,7 +20,6 @@ public class GeneInfo {
                 count++;
             }
         }
-
     }
 
     public void longestGene(ArrayList<String> geneList) {
