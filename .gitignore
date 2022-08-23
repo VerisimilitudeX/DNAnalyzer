@@ -1,3 +1,4 @@
 out/*
 .idea/*
-files/dna/dnalong.fa # Too big
+# Large file
+files/dna/dnalong.fa
