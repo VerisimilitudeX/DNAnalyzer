@@ -31,10 +31,11 @@ public class GenomeSequencer {
         }
         for (int i = 0; i < dna.length(); i++) {
             switch (dna.charAt(i)) {
-                case 'a': continue;
-                case 't': continue;
-                case 'g': continue;
-                case 'c': continue;
+                case 'a':
+                case 't':
+                case 'g':
+                case 'c':
+                    continue;
                 default: break;
             }
             System.out.println("Error: Invalid characters are present in DNA sequence.");
