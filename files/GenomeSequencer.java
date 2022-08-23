@@ -16,7 +16,6 @@ public class GenomeSequencer {
             ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid,
             ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws IOException {
 
-
         long startTime = System.currentTimeMillis();
         // Load DNA file and concatenate lines
         String dna = Files.readString(Path.of("files/dna/dnalong.fa")).replace("\n", "");
@@ -36,7 +35,8 @@ public class GenomeSequencer {
                 case 'g':
                 case 'c':
                     continue;
-                default: break;
+                default:
+                    break;
             }
             System.out.println("Error: Invalid characters are present in DNA sequence.");
             return;
@@ -74,7 +74,7 @@ public class GenomeSequencer {
         System.out.println("Properties time: " + (System.currentTimeMillis() - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
-        // Prints the GC-con    tent of the genomic sequence.
+        // Prints the GC-con tent of the genomic sequence.
         double gcContent = p.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent);
         System.out.println("GC-Content time: " + (System.currentTimeMillis() - startTime) + "ms");
