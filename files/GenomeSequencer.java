@@ -18,7 +18,7 @@ public class GenomeSequencer {
 
         long startTime = System.currentTimeMillis();
         // Load DNA file and concatenate lines
-        String dna = Files.readString(Path.of("files/dna/dnalong.fa")).replace("\n", "");
+        String dna = Files.readString(Path.of("files/dna/brca1line.fa")).replace("\n", "");
         System.out.println("Load time: " + (System.currentTimeMillis() - startTime) + "ms");
 
         startTime = System.currentTimeMillis();
