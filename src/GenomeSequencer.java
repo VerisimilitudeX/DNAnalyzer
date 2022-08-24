@@ -81,7 +81,7 @@ public class GenomeSequencer {
         gi.longestGene(geneList);
         System.out.println();
 
-        AminoAcidProperties aap = new AminoAcidProperties(dna, 1, 0, 5);
-        aap.printCodonCounts();
+        AminoAcidProperties aap = new AminoAcidProperties(dna);
+        aap.printCodonCounts(2, 0, 10);
     }
 }
