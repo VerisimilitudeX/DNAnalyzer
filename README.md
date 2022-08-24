@@ -50,4 +50,4 @@ Researchers are working to extract valuable information from software such as th
 8. Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 9. Cytogenic Location. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/Cytogenic_Location
 
-Copyright (c) 2022, Piyush Acharya. All rights reserved.
+Copyright (c) 2022, DNAnalyzer. All rights reserved.
