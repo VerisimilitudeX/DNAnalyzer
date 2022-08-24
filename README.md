@@ -1,6 +1,8 @@
-<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" width="400"/>
+<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" width="400" align="right/>
 
-## Overview
+# DNAnalyzer
+> A highly efficient, powerful, and feature-rich algorithm for analyzing genomic sequences
+
 This software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements. In the near future, machine learning models and artificial intelligence will be added to enhance the algorithm.
 
 ## Background
