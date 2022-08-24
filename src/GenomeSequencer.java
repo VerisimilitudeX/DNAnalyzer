@@ -18,7 +18,7 @@ public class GenomeSequencer {
             throws IOException, InterruptedException {
 
         // Load DNA file and concatenate lines
-        String dna = Files.readString(Path.of("files/dna/dnalong.fa")).replace("\n", "").toLowerCase();
+        String dna = Files.readString(Path.of("assets/dna/dnalong.fa")).replace("\n", "").toLowerCase();
 
         // Checks if the DNA sequence is valid (contains only A, T, G, and C
         // nucleotides).
@@ -67,7 +67,7 @@ public class GenomeSequencer {
 
         // Prints the GC-con tent of the genomic sequence.
         double gcContent = p.getGCContent(dna);
-        System.out.println("\nGC-content (genome): " + gcContent);
+        System.out.println("\nGC-content (genome): " + gcContent + "\n");
 
         // Returns a HashMap containing the number of each nucleotide in the DNA
         // sequence.
