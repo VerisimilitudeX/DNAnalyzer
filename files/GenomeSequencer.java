@@ -34,10 +34,9 @@ public class GenomeSequencer {
                 case 'c':
                     continue;
                 default:
+                    System.out.println("Error: Invalid characters are present in DNA sequence.");
                     break;
             }
-            System.out.println("Error: Invalid characters are present in DNA sequence.");
-            return;
         }
 
         // Gets the amino acid from the user.

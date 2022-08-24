@@ -69,35 +69,27 @@ public class Properties {
         return (gcLen / dna.length());
     }
 
-    void printNucleotideChar(String dna, int count, String lett) {
-        System.out.println(lett + ": " + count + " (" + (double) count / dna.length() * 100 + "%)");
+    private void printNucleotideChar(String dna, int count, String nucleotide) {
+        System.out.println(nucleotide + ": " + count + " (" + (double) count / dna.length() * 100 + "%)");
     }
 
     public void printNucleotideCount(String dna) {
         int[] nucleotideCount = new int[4];
         for (char letter : dna.toCharArray()) {
             switch (letter) {
-                case 'a':
-                    nucleotideCount[0]++;
-                    break;
-                case 't':
-                    nucleotideCount[1]++;
-                    break;
-                case 'g':
-                    nucleotideCount[2]++;
-                    break;
-                case 'c':
-                    nucleotideCount[2]++;
-                    break;
-                default:
-                    break;
+                case 'a' -> nucleotideCount[0]++;
+                case 't' -> nucleotideCount[1]++;
+                case 'g' -> nucleotideCount[2]++;
+                case 'c' -> nucleotideCount[3]++;
+                default -> {
+                }
             }
         }
 
         System.out.println("Nucleotide count:");
         printNucleotideChar(dna, nucleotideCount[0], "A");
-        printNucleotideChar(dna, nucleotideCount[0], "T");
-        printNucleotideChar(dna, nucleotideCount[0], "G");
-        printNucleotideChar(dna, nucleotideCount[0], "C");
+        printNucleotideChar(dna, nucleotideCount[1], "T");
+        printNucleotideChar(dna, nucleotideCount[2], "G");
+        printNucleotideChar(dna, nucleotideCount[3], "C");
     }
 }
