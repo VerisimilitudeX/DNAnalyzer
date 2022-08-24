@@ -127,5 +127,5 @@
   <li>Cytogenic Location. (2020, December 13). Wikipedia. 
   </li>
 </ol>
-<p>Copyright (c) 2022, DNAnalyzer. All rights reserved.
+<p><b>Copyright (c) 2022, DNAnalyzer. All rights reserved.</b>
 </p>
