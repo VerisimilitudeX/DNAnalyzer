@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" width="400" align="right"/>
+<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" width="300" align="right"/>
 
 # DNAnalyzer
 > A highly efficient, powerful, and feature-rich algorithm for analyzing genomic sequences
