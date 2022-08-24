@@ -1,0 +1,4 @@
+out/*
+.idea/*
+# Large file
+files/dna/dnalong.fa

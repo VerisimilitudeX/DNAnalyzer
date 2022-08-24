@@ -5,9 +5,9 @@ public class AminoAcidProperties {
     private final int startRefFrame;
     private final int min;
     private final int max;
-    private final StringBuilder dna;
+    private final String dna;
 
-    public AminoAcidProperties(StringBuilder dna, int startRefFrame, int min, int max) {
+    public AminoAcidProperties(String dna, int startRefFrame, int min, int max) {
         codonCounts = new HashMap<>();
         this.startRefFrame = startRefFrame;
         this.min = min;
@@ -15,7 +15,7 @@ public class AminoAcidProperties {
         this.dna = dna;
     }
 
-    private void buildCodonMap(int startRefFrame, StringBuilder dna) {
+    private void buildCodonMap(int startRefFrame, String dna) {
         codonCounts.clear();
         for (int i = startRefFrame; i < dna.length(); i += 3) {
             try {
