@@ -8,8 +8,7 @@ public class GeneInfo {
     public void highGCContent(ArrayList<String> geneList) {
         int count = 1;
         // print the list of genes with the highest GC content
-        System.out.println();
-        System.out.println("High coverage regions: ");
+        System.out.println("\nHigh coverage regions: ");
         System.out.println("----------------------------------------------------");
 
         Properties p = new Properties();
@@ -32,7 +31,6 @@ public class GeneInfo {
                 longestGene = gene;
             }
         }
-        System.out.println();
-        System.out.println("Longest gene (" + longestGene.length() + " nucleotides): " + longestGene);
+        System.out.println("\nLongest gene (" + longestGene.length() + " nucleotides): " + longestGene);
     }
 }

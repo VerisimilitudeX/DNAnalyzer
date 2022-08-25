@@ -1,17 +1,17 @@
 import java.util.HashMap;
 
 public class AminoAcidProperties {
-    private HashMap<String, Integer> codonCounts;
-    private String DNA;
+    private final HashMap<String, Integer> codonCounts;
+    private final String DNA;
 
     public AminoAcidProperties(String DNA) {
-        codonCounts = new HashMap<String, Integer>();
+        codonCounts = new HashMap<>();
         this.DNA = DNA;
     }
 
-    private void buildCodonMap(int startReadingFrame, int start, int stop) {
+    private void buildCodonMap(int startReadingFrame) {
         codonCounts.clear();
-        for (int i = start; i < DNA.length(); i += 3) {
+        for (int i = startReadingFrame; i < DNA.length(); i += 3) {
             try {
                 if (codonCounts.containsKey(DNA.substring(i, i + 3))) {
                     codonCounts.put(DNA.substring(i, i + 3), codonCounts.get(DNA.substring(i, i + 3)) + 1);
@@ -24,8 +24,8 @@ public class AminoAcidProperties {
         }
     }
 
-    public void printCodonCounts(int START_READING_FRAME, int start, int end) {
-        buildCodonMap(START_READING_FRAME, start, end);
+    public void printCodonCounts(int startReadingFrame, int start, int end) {
+        buildCodonMap(startReadingFrame);
         int count = 0;
         for (String codon : codonCounts.keySet()) {
             if (codonCounts.get(codon) >= start && codonCounts.get(codon) <= end) {
