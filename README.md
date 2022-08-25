@@ -5,6 +5,8 @@
 DNAnalyzer
 ==========
 
+[![wakatime](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg)](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer)
+
 > A highly efficient, powerful, and feature-rich algorithm for analyzing genomic sequences
 
 This software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements. In the near future, machine learning models and artificial intelligence will be added to enhance the algorithm.
@@ -69,4 +71,8 @@ Citations
 8.  Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 9.  Cytogenic Location. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/Cytogenetics
 
+<<<<<<< HEAD
 **Copyright © 2022, DNAnalyzer. All rights reserved.**
+=======
+**Copyright (c) 2022, DNAnalyzer. All rights reserved.**
+>>>>>>> 9d5da94bfc11777af1943a7ab669541eb65cbd50
