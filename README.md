@@ -1,4 +1,4 @@
-![](https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png)
+<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" width="400"/>
 
 [![wakatime](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg)](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer)
 
@@ -69,4 +69,4 @@ Citations
 8.  Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 9.  Cytogenic Location. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/Cytogenetics
 
-**Copyright (c) 2022, DNAnalyzer. All rights reserved.**
+**Copyright © 2022, DNAnalyzer. All rights reserved.**
