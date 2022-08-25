@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fb8151b-17f6-4e41-942b-e764f270c795" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/files/GenomeSequencer.java" beforeDir="false" afterPath="$PROJECT_DIR$/files/GenomeSequencer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/files/Properties.java" afterDir="false" />
+    <list default="true" id="a9bc1011-2954-41fb-836b-35b808f81f05" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/AminoAcidProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AminoAcidProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GeneInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GeneInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +16,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2DlrxGT9CCcZvAIk9kqnJ9onQoh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2DpEIfvnKf6OoCCzhAfFrTmDV0Y" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,23 +26,20 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/achar/OneDrive/Documents/GitHub/DNAnalyzer&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/achar/OneDrive/Documents/GitHub/Java-Programming--Arrays-Lists-and-Structured-Data&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7fb8151b-17f6-4e41-942b-e764f270c795" name="Changes" comment="" />
-      <created>1661284760003</created>
+      <changelist id="a9bc1011-2954-41fb-836b-35b808f81f05" name="Changes" comment="" />
+      <created>1661387552278</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1661284760003</updated>
-      <workItem from="1661284763202" duration="250000" />
-      <workItem from="1661288682263" duration="1345000" />
+      <updated>1661387552278</updated>
+      <workItem from="1661387553854" duration="612000" />
+      <workItem from="1661456722756" duration="149000" />
     </task>
     <servers />
   </component>
