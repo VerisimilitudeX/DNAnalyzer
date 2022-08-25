@@ -1,9 +1,6 @@
-<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" width="400"/>
+# DNAnalyzer
 
-[![wakatime](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg)](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer)
-
-DNAnalyzer
-==========
+<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" align="right" width="400"/>
 
 [![wakatime](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg)](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer)
 
@@ -72,7 +69,11 @@ Citations
 9.  Cytogenic Location. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/Cytogenetics
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Copyright © 2022, DNAnalyzer. All rights reserved.**
+=======
+**Copyright (c) 2022, DNAnalyzer. All rights reserved.**
+>>>>>>> 9d5da94bfc11777af1943a7ab669541eb65cbd50
 =======
 **Copyright (c) 2022, DNAnalyzer. All rights reserved.**
 >>>>>>> 9d5da94bfc11777af1943a7ab669541eb65cbd50
