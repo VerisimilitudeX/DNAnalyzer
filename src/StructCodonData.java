@@ -39,86 +39,86 @@ public class StructCodonData {
     // encapsulation to ensure that the codon data is available to the rest of the
     // program (i.e. the dnaSequencer class).
     public ArrayList<String> getIsoleucine() {
-        return Isoleucine;
+        return StructCodonData.Isoleucine;
     }
 
     public ArrayList<String> getLeucine() {
-        return Leucine;
+        return StructCodonData.Leucine;
     }
 
     public ArrayList<String> getValine() {
-        return Valine;
+        return StructCodonData.Valine;
     }
 
     public ArrayList<String> getPhenylalanine() {
-        return Phenylalanine;
+        return StructCodonData.Phenylalanine;
     }
 
     public ArrayList<String> getMethionine() {
-        return Methionine;
+        return StructCodonData.Methionine;
     }
 
     public ArrayList<String> getCysteine() {
-        return Cysteine;
+        return StructCodonData.Cysteine;
     }
 
     public ArrayList<String> getAlanine() {
-        return Alanine;
+        return StructCodonData.Alanine;
     }
 
     public ArrayList<String> getGlycine() {
-        return Glycine;
+        return StructCodonData.Glycine;
     }
 
     public ArrayList<String> getProline() {
-        return Proline;
+        return StructCodonData.Proline;
     }
 
     public ArrayList<String> getThreonine() {
-        return Threonine;
+        return StructCodonData.Threonine;
     }
 
     public ArrayList<String> getSerine() {
-        return Serine;
+        return StructCodonData.Serine;
     }
 
     public ArrayList<String> getTyrosine() {
-        return Tyrosine;
+        return StructCodonData.Tyrosine;
     }
 
     public ArrayList<String> getTryptophan() {
-        return Tryptophan;
+        return StructCodonData.Tryptophan;
     }
 
     public ArrayList<String> getGlutamine() {
-        return Glutamine;
+        return StructCodonData.Glutamine;
     }
 
     public ArrayList<String> getAsparagine() {
-        return Asparagine;
+        return StructCodonData.Asparagine;
     }
 
     public ArrayList<String> getHistidine() {
-        return Histidine;
+        return StructCodonData.Histidine;
     }
 
     public ArrayList<String> getGlutamicAcid() {
-        return GlutamicAcid;
+        return StructCodonData.GlutamicAcid;
     }
 
     public ArrayList<String> getAsparticAcid() {
-        return AsparticAcid;
+        return StructCodonData.AsparticAcid;
     }
 
     public ArrayList<String> getLysine() {
-        return Lysine;
+        return StructCodonData.Lysine;
     }
 
     public ArrayList<String> getArginine() {
-        return Arginine;
+        return StructCodonData.Arginine;
     }
 
     public ArrayList<String> getStop() {
-        return Stop;
+        return StructCodonData.Stop;
     }
 }
