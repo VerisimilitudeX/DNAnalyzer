@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 
 public class GeneInfo {
-    // High GC content range
-    private final double MIN_GC_CONTENT = 0.40;
-    private final double MAX_GC_CONTENT = 0.60;
 
     public void highGCContent(ArrayList<String> geneList) {
         int count = 1;
@@ -14,10 +11,13 @@ public class GeneInfo {
         Properties p = new Properties();
 
         for (String gene : geneList) {
+            // High GC content range
+            double MIN_GC_CONTENT = 0.40;
+            double MAX_GC_CONTENT = 0.60;
             if (geneList.contains("No gene found")) {
                 System.out.println("No gene found");
                 break;
-            } else if (p.getGCContent(gene) > this.MIN_GC_CONTENT && p.getGCContent(gene) < this.MAX_GC_CONTENT) {
+            } else if (p.getGCContent(gene) > MIN_GC_CONTENT && p.getGCContent(gene) < MAX_GC_CONTENT) {
                 System.out.println(count + ". " + gene);
                 count++;
             }

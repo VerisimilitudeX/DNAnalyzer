@@ -8,16 +8,16 @@ public class Main {
         // information to the dnaSequencer's ds constructor.
         GenomeSequencer ds = new GenomeSequencer();
         StructCodonData scd = new StructCodonData();
-        ds.getSequenceAndAminoAcid(scd.getCodonType(AminoAcid.ISOLEUCINE), scd.getCodonType(AminoAcid.LEUCINE),
-                scd.getCodonType(AminoAcid.VALINE), scd.getCodonType(AminoAcid.PHENYLALANINE),
-                scd.getCodonType(AminoAcid.METHIONINE), scd.getCodonType(AminoAcid.CYSTEINE),
-                scd.getCodonType(AminoAcid.ALANINE), scd.getCodonType(AminoAcid.GLYCINE),
-                scd.getCodonType(AminoAcid.PROLINE), scd.getCodonType(AminoAcid.THREONINE),
-                scd.getCodonType(AminoAcid.SERINE), scd.getCodonType(AminoAcid.TYROSINE),
-                scd.getCodonType(AminoAcid.TRYPTOPHAN), scd.getCodonType(AminoAcid.GLUTAMINE),
-                scd.getCodonType(AminoAcid.ASPARAGINE), scd.getCodonType(AminoAcid.HISTIDINE),
-                scd.getCodonType(AminoAcid.GLUTAMIC_ACID), scd.getCodonType(AminoAcid.ASPARTIC_ACID),
-                scd.getCodonType(AminoAcid.LYSINE), scd.getCodonType(AminoAcid.ARGININE),
-                scd.getCodonType(AminoAcid.STOP));
+        ds.getSequenceAndAminoAcid(scd.getAminoAcid(AminoAcid.ISOLEUCINE), scd.getAminoAcid(AminoAcid.LEUCINE),
+                scd.getAminoAcid(AminoAcid.VALINE), scd.getAminoAcid(AminoAcid.PHENYLALANINE),
+                scd.getAminoAcid(AminoAcid.METHIONINE), scd.getAminoAcid(AminoAcid.CYSTEINE),
+                scd.getAminoAcid(AminoAcid.ALANINE), scd.getAminoAcid(AminoAcid.GLYCINE),
+                scd.getAminoAcid(AminoAcid.PROLINE), scd.getAminoAcid(AminoAcid.THREONINE),
+                scd.getAminoAcid(AminoAcid.SERINE), scd.getAminoAcid(AminoAcid.TYROSINE),
+                scd.getAminoAcid(AminoAcid.TRYPTOPHAN), scd.getAminoAcid(AminoAcid.GLUTAMINE),
+                scd.getAminoAcid(AminoAcid.ASPARAGINE), scd.getAminoAcid(AminoAcid.HISTIDINE),
+                scd.getAminoAcid(AminoAcid.GLUTAMIC_ACID), scd.getAminoAcid(AminoAcid.ASPARTIC_ACID),
+                scd.getAminoAcid(AminoAcid.LYSINE), scd.getAminoAcid(AminoAcid.ARGININE),
+                scd.getAminoAcid(AminoAcid.STOP));
     }
 }
