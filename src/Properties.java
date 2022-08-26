@@ -62,7 +62,7 @@ public class Properties {
         dna = dna.toLowerCase();
         double gcLen = 0;
         for (final char letter : dna.toCharArray()) {
-            if (letter == 'c' || letter == 'g') {
+            if ((letter == 'c') || (letter == 'g')) {
                 gcLen++;
             }
         }

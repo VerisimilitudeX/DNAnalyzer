@@ -17,7 +17,7 @@ public class GeneInfo {
             if (geneList.contains("No gene found")) {
                 System.out.println("No gene found");
                 break;
-            } else if (p.getGCContent(gene) > MIN_GC_CONTENT && p.getGCContent(gene) < MAX_GC_CONTENT) {
+            } else if ((p.getGCContent(gene) > MIN_GC_CONTENT) && (p.getGCContent(gene) < MAX_GC_CONTENT)) {
                 System.out.println(count + ". " + gene);
                 count++;
             }

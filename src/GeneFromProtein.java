@@ -42,7 +42,7 @@ public class GeneFromProtein {
             final int start_index = dna.indexOf(start_codon.toLowerCase());
             for (final String stop_codon : stop) {
                 final int stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
-                if (start_index != -1 && stop_index != -1) {
+                if ((start_index != -1) && (stop_index != -1)) {
                     this.geneList.add(dna.substring(start_index, stop_index + 3).toUpperCase());
                     break;
                 }
