@@ -28,7 +28,7 @@ public class AminoAcidProperties {
         buildCodonMap(startReadingFrame);
         int count = 0;
         for (final String codon : this.codonCounts.keySet()) {
-            if (this.codonCounts.get(codon) >= start && this.codonCounts.get(codon) <= end) {
+            if ((this.codonCounts.get(codon) >= start) && (this.codonCounts.get(codon) <= end)) {
                 count++;
                 System.out.println(codon + "\t" + this.codonCounts.get(codon));
             }
