@@ -2,12 +2,12 @@ import java.io.IOException;
 
 // Main Class
 public class Main {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(final String[] args) throws IOException, InterruptedException {
 
         // Create a new instance of the dnaSequence and codonData classes and send the
         // information to the dnaSequencer's ds constructor.
-        GenomeSequencer ds = new GenomeSequencer();
-        StructCodonData scd = new StructCodonData();
+        final GenomeSequencer ds = new GenomeSequencer();
+        final StructCodonData scd = new StructCodonData();
         ds.getSequenceAndAminoAcid(scd.getAminoAcid(AminoAcid.ISOLEUCINE), scd.getAminoAcid(AminoAcid.LEUCINE),
                 scd.getAminoAcid(AminoAcid.VALINE), scd.getAminoAcid(AminoAcid.PHENYLALANINE),
                 scd.getAminoAcid(AminoAcid.METHIONINE), scd.getAminoAcid(AminoAcid.CYSTEINE),

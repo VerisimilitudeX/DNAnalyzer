@@ -8,13 +8,13 @@ import java.util.Scanner;
 public class GenomeSequencer {
 
     // Receives the codons of the amino acid.
-    public void getSequenceAndAminoAcid(ArrayList<String> Isoleucine, ArrayList<String> Leucine,
-            ArrayList<String> Valine, ArrayList<String> Phenylalanine, ArrayList<String> Methionine,
-            ArrayList<String> Cysteine, ArrayList<String> Alanine, ArrayList<String> Glycine, ArrayList<String> Proline,
-            ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine,
-            ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine,
-            ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid,
-            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop)
+    public void getSequenceAndAminoAcid(final ArrayList<String> Isoleucine, final ArrayList<String> Leucine,
+            final ArrayList<String> Valine, final ArrayList<String> Phenylalanine, final ArrayList<String> Methionine,
+            final ArrayList<String> Cysteine, final ArrayList<String> Alanine, final ArrayList<String> Glycine, final ArrayList<String> Proline,
+            final ArrayList<String> Threonine, final ArrayList<String> Serine, final ArrayList<String> Tyrosine,
+            final ArrayList<String> Tryptophan, final ArrayList<String> Glutamine, final ArrayList<String> Asparagine,
+            final ArrayList<String> Histidine, final ArrayList<String> GlutamicAcid, final ArrayList<String> AsparticAcid,
+            final ArrayList<String> Lysine, final ArrayList<String> Arginine, final ArrayList<String> Stop)
             throws IOException, InterruptedException {
 
         // Load DNA file and concatenate lines
@@ -40,9 +40,9 @@ public class GenomeSequencer {
         }
 
         // Gets the amino acid from the user.
-        Scanner userInput = new Scanner(System.in);
+        final Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the amino acid: ");
-        String aminoAcid = userInput.nextLine().toLowerCase();
+        final String aminoAcid = userInput.nextLine().toLowerCase();
 
         userInput.close();
 
@@ -53,20 +53,20 @@ public class GenomeSequencer {
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
-        GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
-        ArrayList<String> geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine,
+        final GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
+        final ArrayList<String> geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine,
                 Phenylalanine,
                 Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine,
                 Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
 
         // The findProperties class finds properties of the amino acid/gene strand.
-        Properties p = new Properties();
+        final Properties p = new Properties();
 
         // Prints the list of amino acid genes found in the StorageResource object.
         p.printGeneList(geneList, aminoAcid);
 
         // Prints the GC-con tent of the genomic sequence.
-        double gcContent = p.getGCContent(dna);
+        final double gcContent = p.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent + "\n");
 
         // Returns a HashMap containing the number of each nucleotide in the DNA
@@ -74,14 +74,14 @@ public class GenomeSequencer {
         p.printNucleotideCount(dna);
 
         // Finds and prints GC-content higher than 0.35
-        GeneInfo gi = new GeneInfo();
+        final GeneInfo gi = new GeneInfo();
         gi.highGCContent(geneList);
 
         // Finds and prints the longest gene in the DNA sequence and its length.
         gi.longestGene(geneList);
         System.out.println();
 
-        AminoAcidProperties aap = new AminoAcidProperties(dna);
+        final AminoAcidProperties aap = new AminoAcidProperties(dna);
         aap.printCodonCounts(2, 0, 10);
     }
 }

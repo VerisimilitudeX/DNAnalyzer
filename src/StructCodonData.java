@@ -35,7 +35,7 @@ public class StructCodonData {
     // are the same for all amino acids.
     private static final ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
 
-    public ArrayList<String> getAminoAcid(AminoAcid type) {
+    public ArrayList<String> getAminoAcid(final AminoAcid type) {
         return switch (type) {
             case ISOLEUCINE -> StructCodonData.Isoleucine;
             case LEUCINE -> StructCodonData.Leucine;
