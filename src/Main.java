@@ -8,10 +8,16 @@ public class Main {
         // information to the dnaSequencer's ds constructor.
         GenomeSequencer ds = new GenomeSequencer();
         StructCodonData scd = new StructCodonData();
-        ds.getSequenceAndAminoAcid(scd.getIsoleucine(), scd.getLeucine(), scd.getValine(), scd.getPhenylalanine(),
-                scd.getMethionine(), scd.getCysteine(), scd.getAlanine(), scd.getGlycine(), scd.getProline(),
-                scd.getThreonine(), scd.getSerine(), scd.getTyrosine(), scd.getTryptophan(), scd.getGlutamine(),
-                scd.getAsparagine(), scd.getHistidine(), scd.getGlutamicAcid(), scd.getAsparticAcid(), scd.getLysine(),
-                scd.getArginine(), scd.getStop());
+        ds.getSequenceAndAminoAcid(scd.getCodonType(AminoAcid.ISOLEUCINE), scd.getCodonType(AminoAcid.LEUCINE),
+                scd.getCodonType(AminoAcid.VALINE), scd.getCodonType(AminoAcid.PHENYLALANINE),
+                scd.getCodonType(AminoAcid.METHIONINE), scd.getCodonType(AminoAcid.CYSTEINE),
+                scd.getCodonType(AminoAcid.ALANINE), scd.getCodonType(AminoAcid.GLYCINE),
+                scd.getCodonType(AminoAcid.PROLINE), scd.getCodonType(AminoAcid.THREONINE),
+                scd.getCodonType(AminoAcid.SERINE), scd.getCodonType(AminoAcid.TYROSINE),
+                scd.getCodonType(AminoAcid.TRYPTOPHAN), scd.getCodonType(AminoAcid.GLUTAMINE),
+                scd.getCodonType(AminoAcid.ASPARAGINE), scd.getCodonType(AminoAcid.HISTIDINE),
+                scd.getCodonType(AminoAcid.GLUTAMIC_ACID), scd.getCodonType(AminoAcid.ASPARTIC_ACID),
+                scd.getCodonType(AminoAcid.LYSINE), scd.getCodonType(AminoAcid.ARGININE),
+                scd.getCodonType(AminoAcid.STOP));
     }
 }
