@@ -35,90 +35,29 @@ public class StructCodonData {
     // are the same for all amino acids.
     private static final ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
 
-    // Returns the start codon data for the amino acid called. This uses
-    // encapsulation to ensure that the codon data is available to the rest of the
-    // program (i.e. the dnaSequencer class).
-    public ArrayList<String> getIsoleucine() {
-        return StructCodonData.Isoleucine;
-    }
-
-    public ArrayList<String> getLeucine() {
-        return StructCodonData.Leucine;
-    }
-
-    public ArrayList<String> getValine() {
-        return StructCodonData.Valine;
-    }
-
-    public ArrayList<String> getPhenylalanine() {
-        return StructCodonData.Phenylalanine;
-    }
-
-    public ArrayList<String> getMethionine() {
-        return StructCodonData.Methionine;
-    }
-
-    public ArrayList<String> getCysteine() {
-        return StructCodonData.Cysteine;
-    }
-
-    public ArrayList<String> getAlanine() {
-        return StructCodonData.Alanine;
-    }
-
-    public ArrayList<String> getGlycine() {
-        return StructCodonData.Glycine;
-    }
-
-    public ArrayList<String> getProline() {
-        return StructCodonData.Proline;
-    }
-
-    public ArrayList<String> getThreonine() {
-        return StructCodonData.Threonine;
-    }
-
-    public ArrayList<String> getSerine() {
-        return StructCodonData.Serine;
-    }
-
-    public ArrayList<String> getTyrosine() {
-        return StructCodonData.Tyrosine;
-    }
-
-    public ArrayList<String> getTryptophan() {
-        return StructCodonData.Tryptophan;
-    }
-
-    public ArrayList<String> getGlutamine() {
-        return StructCodonData.Glutamine;
-    }
-
-    public ArrayList<String> getAsparagine() {
-        return StructCodonData.Asparagine;
-    }
-
-    public ArrayList<String> getHistidine() {
-        return StructCodonData.Histidine;
-    }
-
-    public ArrayList<String> getGlutamicAcid() {
-        return StructCodonData.GlutamicAcid;
-    }
-
-    public ArrayList<String> getAsparticAcid() {
-        return StructCodonData.AsparticAcid;
-    }
-
-    public ArrayList<String> getLysine() {
-        return StructCodonData.Lysine;
-    }
-
-    public ArrayList<String> getArginine() {
-        return StructCodonData.Arginine;
-    }
-
-    public ArrayList<String> getStop() {
-        return StructCodonData.Stop;
+    public ArrayList<String> getAminoAcid(final AminoAcid type) {
+        return switch (type) {
+            case ISOLEUCINE -> StructCodonData.Isoleucine;
+            case LEUCINE -> StructCodonData.Leucine;
+            case VALINE -> StructCodonData.Valine;
+            case PHENYLALANINE -> StructCodonData.Phenylalanine;
+            case METHIONINE -> StructCodonData.Methionine;
+            case CYSTEINE -> StructCodonData.Cysteine;
+            case ALANINE -> StructCodonData.Alanine;
+            case GLYCINE -> StructCodonData.Glycine;
+            case PROLINE -> StructCodonData.Proline;
+            case THREONINE -> StructCodonData.Threonine;
+            case SERINE -> StructCodonData.Serine;
+            case TYROSINE -> StructCodonData.Tyrosine;
+            case TRYPTOPHAN -> StructCodonData.Tryptophan;
+            case GLUTAMINE -> StructCodonData.Glutamine;
+            case ASPARAGINE -> StructCodonData.Asparagine;
+            case HISTIDINE -> StructCodonData.Histidine;
+            case GLUTAMIC_ACID -> StructCodonData.GlutamicAcid;
+            case ASPARTIC_ACID -> StructCodonData.AsparticAcid;
+            case LYSINE -> StructCodonData.Lysine;
+            case ARGININE -> StructCodonData.Arginine;
+            case STOP -> StructCodonData.Stop;
+        };
     }
 }

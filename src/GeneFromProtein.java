@@ -5,14 +5,14 @@ public class GeneFromProtein {
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> geneList = new ArrayList<>();
 
-    public ArrayList<String> getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
-            ArrayList<String> leucine,
-            ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
-            ArrayList<String> cysteine, ArrayList<String> alanine, ArrayList<String> glycine, ArrayList<String> proline,
-            ArrayList<String> threonine, ArrayList<String> serine, ArrayList<String> tyrosine,
-            ArrayList<String> tryptophan, ArrayList<String> glutamine, ArrayList<String> asparagine,
-            ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
-            ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
+    public ArrayList<String> getAminoAcid(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
+            final ArrayList<String> leucine,
+            final ArrayList<String> valine, final ArrayList<String> phenylalanine, final ArrayList<String> methionine,
+            final ArrayList<String> cysteine, final ArrayList<String> alanine, final ArrayList<String> glycine, final ArrayList<String> proline,
+            final ArrayList<String> threonine, final ArrayList<String> serine, final ArrayList<String> tyrosine,
+            final ArrayList<String> tryptophan, final ArrayList<String> glutamine, final ArrayList<String> asparagine,
+            final ArrayList<String> histidine, final ArrayList<String> glutamicAcid, final ArrayList<String> asparticAcid,
+            final ArrayList<String> lysine, final ArrayList<String> arginine, final ArrayList<String> stop) {
 
         // Maps the amino acid that the user entered to the start codon list.
         switch (aminoAcid) {
@@ -38,11 +38,11 @@ public class GeneFromProtein {
             case "arginine", "r", "arg" -> this.aminoAcidList.addAll(arginine);
             default -> System.out.println("Invalid amino acid");
         }
-        for (String start_codon : this.aminoAcidList) {
-            int start_index = dna.indexOf(start_codon.toLowerCase());
-            for (String stop_codon : stop) {
-                int stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
-                if (start_index != -1 && stop_index != -1) {
+        for (final String start_codon : this.aminoAcidList) {
+            final int start_index = dna.indexOf(start_codon.toLowerCase());
+            for (final String stop_codon : stop) {
+                final int stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
+                if ((start_index != -1) && (stop_index != -1)) {
                     this.geneList.add(dna.substring(start_index, stop_index + 3).toUpperCase());
                     break;
                 }

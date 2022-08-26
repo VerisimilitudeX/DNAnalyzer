@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Properties {
-    public void printGeneList(ArrayList<String> geneList, String aminoAcid) throws InterruptedException, IOException {
+    public void printGeneList(final ArrayList<String> geneList, final String aminoAcid) throws InterruptedException, IOException {
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
         String aminoAcidFull = "";
@@ -41,14 +41,14 @@ public class Properties {
             System.out.println();
             try {
                 Thread.sleep(5);
-            } catch (InterruptedException e) {
+            } catch (final InterruptedException e) {
                 e.printStackTrace();
             }
         }
         System.out.println("Genes coded for " + aminoAcidFull + ": ");
         System.out.println("----------------------------------------------------");
         int count = 1;
-        for (String gene : geneList) {
+        for (final String gene : geneList) {
             if (geneList.contains("No gene found")) {
                 System.out.println("No gene found");
                 break;
@@ -61,21 +61,21 @@ public class Properties {
     public double getGCContent(String dna) {
         dna = dna.toLowerCase();
         double gcLen = 0;
-        for (char letter : dna.toCharArray()) {
-            if (letter == 'c' || letter == 'g') {
+        for (final char letter : dna.toCharArray()) {
+            if ((letter == 'c') || (letter == 'g')) {
                 gcLen++;
             }
         }
         return (gcLen / dna.length());
     }
 
-    private void printNucleotideChar(String dna, int count, String nucleotide) {
+    private void printNucleotideChar(final String dna, final int count, final String nucleotide) {
         System.out.println(nucleotide + ": " + count + " (" + (double) count / dna.length() * 100 + "%)");
     }
 
-    public void printNucleotideCount(String dna) {
-        int[] nucleotideCount = new int[4];
-        for (char letter : dna.toCharArray()) {
+    public void printNucleotideCount(final String dna) {
+        final int[] nucleotideCount = new int[4];
+        for (final char letter : dna.toCharArray()) {
             switch (letter) {
                 case 'a' -> nucleotideCount[0]++;
                 case 't' -> nucleotideCount[1]++;

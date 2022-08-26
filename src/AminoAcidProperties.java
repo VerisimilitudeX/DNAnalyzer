@@ -4,12 +4,12 @@ public class AminoAcidProperties {
     private final HashMap<String, Integer> codonCounts;
     private final String DNA;
 
-    public AminoAcidProperties(String DNA) {
+    public AminoAcidProperties(final String DNA) {
         this.codonCounts = new HashMap<>();
         this.DNA = DNA;
     }
 
-    private void buildCodonMap(int startReadingFrame) {
+    private void buildCodonMap(final int startReadingFrame) {
         this.codonCounts.clear();
         for (int i = startReadingFrame; i < this.DNA.length(); i += 3) {
             try {
@@ -18,17 +18,17 @@ public class AminoAcidProperties {
                 } else {
                     this.codonCounts.put(this.DNA.substring(i, i + 3), 1);
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 // do nothing
             }
         }
     }
 
-    public void printCodonCounts(int startReadingFrame, int start, int end) {
+    public void printCodonCounts(final int startReadingFrame, final int start, final int end) {
         buildCodonMap(startReadingFrame);
         int count = 0;
-        for (String codon : this.codonCounts.keySet()) {
-            if (this.codonCounts.get(codon) >= start && this.codonCounts.get(codon) <= end) {
+        for (final String codon : this.codonCounts.keySet()) {
+            if ((this.codonCounts.get(codon) >= start) && (this.codonCounts.get(codon) <= end)) {
                 count++;
                 System.out.println(codon + "\t" + this.codonCounts.get(codon));
             }
