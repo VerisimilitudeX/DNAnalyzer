@@ -68,4 +68,4 @@ Citations
 8.  Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
 9.  Cytogenic Location. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/Cytogenetics
 
-**Copyright © 2022, DNAnalyzer. All rights reserved.**
+**Copyright © Piyush Acharya 2022. All rights reserved.**
