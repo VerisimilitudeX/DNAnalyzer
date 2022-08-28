@@ -7,7 +7,7 @@
 
 > A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences
 
-DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am developing a deep learning model that will allow physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am developing a deep learning model that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
 Background
 ----------
