@@ -3,3 +3,4 @@
 .github/*
 # Large file
 files/dna/dnalong.fa
+/bin/

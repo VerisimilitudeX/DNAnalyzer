@@ -1,6 +1,4 @@
 import java.io.IOException;
-import io.cryptolens.*;
-import io.cryptolens.*;
 
 // Main Class
 public class Main {
