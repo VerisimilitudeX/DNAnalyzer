@@ -182,6 +182,6 @@
 </p>
 
 <p>
-  <strong>Copyright (pending) © Piyush Acharya 2022. All rights reserved.
+  <strong>Copyright Pending © Piyush Acharya 2022. All rights reserved.
   </strong>
 </p>
