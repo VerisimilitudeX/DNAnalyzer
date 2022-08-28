@@ -80,15 +80,6 @@
     </ul>
   </li>
 
-  <li>Start and stop codons
-    <ul>
-      <li>Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. 
-        <code>[2]
-        </code>
-      </li>
-    </ul>
-  </li>
-
   <li>Command-line interface (DNAnalyzer CLI)
     <ul>
       <li>
