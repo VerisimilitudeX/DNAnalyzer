@@ -1,0 +1,495 @@
+----------------------------------------------------
+README.md
+----------------------------------------------------
+
+
+# DNAnalyzer
+ 
+<img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" width="400"/>
+
+## Overview
+This software uses a modified version of the Boyer-Moore algorithm to analyze genomic sequences for the genes of amino acids, start and stop codons, regions with high GC-content, transcription factors, and regulatory elements. In the near future, machine learning models and artificial intelligence will be added to enhance the algorithm.
+
+## Background
+The human genome is comprised of over 3 billion base pairs, making manual analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of structured data types, which need to be organized and converted into analyzable data appropriately.`[1]`
+
+## Features
+* Start and stop codons
+  * Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.`[2]`
+* High coverage regions
+  * Regions of a DNA genome that code for a protein and have a relatively high proportion (45-60% GC-content) of cytosine and guanine nucleotides to the 4 nucleotide bases.`[3]`
+* Longest genes
+  * Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism).`[4]`
+* Transcription factors
+  * Proteins that help turn specific genes "on" or "off" by binding to nearby DNA.`[5]`
+* Regulatory elements
+  * Binding sites for transcription factors, which are involved in gene regulation.`[6]`
+* FASTA files (.fa)
+  * Supports multi-line and single-line FASTA database files.`[7]`
+
+## Impact
+Researchers are working to extract valuable information from software such as this in order to better understand human health and disease.
+
+## Future Support and Improvements
+
+  ### GUI
+  A GUI-based application that will run natively on Windows/macOS/Linux to perform the algorithms implemented in the software.
+
+  ### Needleman-Wunsch Algorithm
+  This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences.`[8]`
+
+  ### Cytogenic Location
+  This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome's long arm, in the 3rd region on the 1st band, and the 2nd sub-band.`[9]`
+
+### Data sources:
+ * https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
+ * http://algoart.com/aatable.htm
+ * https://www.bioinformatics.org/sms2/shuffle_dna.html
+
+## Citations
+1. Genomic Data Science Fact Sheet. (n.d.). Genome.gov. https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
+2. DNA and RNA codon tables. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
+3. GC-content - an overview | ScienceDirect Topics. (n.d.). Www.sciencedirect.com. https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content
+4. Length matters: Disease implications for long genes. (2013, October 22). Spectrum | Autism Research News. https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/#:~:text=For%20example%2C%20neurexin%201%20%28NRXN1%29%20and%20contactin%20associated
+5. Suter, D. M. (2020). Transcription Factors and DNA Play Hide and Seek. Trends in Cell Biology. https://doi.org/10.1016/j.tcb.2020.03.003
+6. What is noncoding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov. https://medlineplus.gov/genetics/understanding/basics/noncodingdna/#:~:text=Noncoding%20DNA%20contains%20many%20types%20of%20regulatory%20elements%3A
+7. BLAST TOPICS. (2019). Nih.gov. https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=BlastHelp
+8. Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
+9. Cytogenic Location. (2020, December 13). Wikipedia. https://en.wikipedia.org/wiki/Cytogenic_Location
+
+By: Piyush Acharya
+
+----------------------------------------------------
+AminoAcidProperties.java
+----------------------------------------------------
+
+import java.util.HashMap;
+
+public class AminoAcidProperties {
+    private final HashMap<String, Integer> codonCounts;
+    private final int startRefFrame;
+    private final int min;
+    private final int max;
+    private final StringBuilder dna;
+
+    public AminoAcidProperties(StringBuilder dna, int startRefFrame, int min, int max) {
+        codonCounts = new HashMap<>();
+        this.startRefFrame = startRefFrame;
+        this.min = min;
+        this.max = max;
+        this.dna = dna;
+    }
+
+    private void buildCodonMap(int startRefFrame, StringBuilder dna) {
+        codonCounts.clear();
+        for (int i = startRefFrame; i < dna.length(); i += 3) {
+            try {
+                if (codonCounts.containsKey(dna.substring(i, i + 3))) {
+                    codonCounts.put(dna.substring(i, i + 3), codonCounts.get(dna.substring(i, i + 3)) + 1);
+                } else {
+                    codonCounts.put(dna.substring(i, i + 3), 1);
+                }
+            } catch (Exception e) {
+                // do nothing
+            }
+        }
+    }
+
+    public void printCodonCounts() {
+        buildCodonMap(startRefFrame, dna);
+        for (String codon : codonCounts.keySet()) {
+            if (codonCounts.get(codon) >= min && codonCounts.get(codon) <= max) {
+                System.out.println(codon + "\t" + codonCounts.get(codon));
+            }
+        }
+    }
+}
+
+----------------------------------------------------
+GeneFromProtein.java
+----------------------------------------------------
+
+import java.util.ArrayList;
+
+// This class is used to find genes in a DNA sequence.
+public class GeneFromProtein {
+    private static final ArrayList<String> aminoAcidList = new ArrayList<>();
+    private static final ArrayList<String> geneList = new ArrayList<>();
+
+    public ArrayList<String> getAminoAcid(String dna, String aminoAcid, ArrayList<String> isoleucine,
+            ArrayList<String> leucine,
+            ArrayList<String> valine, ArrayList<String> phenylalanine, ArrayList<String> methionine,
+            ArrayList<String> cysteine, ArrayList<String> alanine, ArrayList<String> glycine, ArrayList<String> proline,
+            ArrayList<String> threonine, ArrayList<String> serine, ArrayList<String> tyrosine,
+            ArrayList<String> tryptophan, ArrayList<String> glutamine, ArrayList<String> asparagine,
+            ArrayList<String> histidine, ArrayList<String> glutamicAcid, ArrayList<String> asparticAcid,
+            ArrayList<String> lysine, ArrayList<String> arginine, ArrayList<String> stop) {
+
+        // Maps the amino acid that the user entered to the start codon list.
+        switch (aminoAcid) {
+            case "isoleucine", "i", "ile" -> aminoAcidList.addAll(isoleucine);
+            case "leucine", "l", "leu" -> aminoAcidList.addAll(leucine);
+            case "valine", "v", "val" -> aminoAcidList.addAll(valine);
+            case "phenylalanine", "f", "phe" -> aminoAcidList.addAll(phenylalanine);
+            case "methionine", "m", "met" -> aminoAcidList.addAll(methionine);
+            case "cysteine", "c", "cys" -> aminoAcidList.addAll(cysteine);
+            case "alanine", "a", "ala" -> aminoAcidList.addAll(alanine);
+            case "glycine", "g", "gly" -> aminoAcidList.addAll(glycine);
+            case "proline", "p", "pro" -> aminoAcidList.addAll(proline);
+            case "threonine", "t", "thr" -> aminoAcidList.addAll(threonine);
+            case "serine", "s", "ser" -> aminoAcidList.addAll(serine);
+            case "tyrosine", "y", "tyr" -> aminoAcidList.addAll(tyrosine);
+            case "tryptophan", "w", "trp" -> aminoAcidList.addAll(tryptophan);
+            case "glutamine", "q", "gln" -> aminoAcidList.addAll(glutamine);
+            case "asparagine", "n", "asn" -> aminoAcidList.addAll(asparagine);
+            case "histidine", "h", "his" -> aminoAcidList.addAll(histidine);
+            case "glutamic acid", "e", "glu" -> aminoAcidList.addAll(glutamicAcid);
+            case "aspartic acid", "d", "asp" -> aminoAcidList.addAll(asparticAcid);
+            case "lysine", "k", "lys" -> aminoAcidList.addAll(lysine);
+            case "arginine", "r", "arg" -> aminoAcidList.addAll(arginine);
+            default -> System.out.println("Invalid amino acid");
+        }
+        for (String start_codon : aminoAcidList) {
+            int start_index = dna.indexOf(start_codon.toLowerCase());
+            for (String stop_codon : stop) {
+                int stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
+                if (start_index != -1 && stop_index != -1) {
+                    geneList.add(dna.substring(start_index, stop_index + 3).toUpperCase());
+                    break;
+                }
+            }
+        }
+        if (geneList.size() == 0) {
+            for (int i = 0; i < 100; i++) {
+                System.out.println();
+            }
+            geneList.add("No gene found");
+        }
+        return geneList;
+    }
+}
+
+----------------------------------------------------
+GeneInfo.java
+----------------------------------------------------
+
+import java.util.ArrayList;
+
+public class GeneInfo {
+
+    public void highGCContent(ArrayList<String> geneList) {
+        int count = 1;
+        // print the list of genes with the highest GC content
+        System.out.println();
+        System.out.println("High coverage regions: ");
+        System.out.println("----------------------------------------------------");
+
+        Properties p = new Properties();
+
+        for (String gene : geneList) {
+            if (geneList.contains("No gene found")) {
+                System.out.println("No gene found");
+                break;
+            } else if (p.getGCContent(gene) > 0.40 && p.getGCContent(gene) < 0.60) {
+                System.out.println(count + ". " + gene);
+                count++;
+            }
+        }
+    }
+
+    public void longestGene(ArrayList<String> geneList) {
+        int maxLen = 0;
+        String longestGene = "";
+        for (String gene : geneList) {
+            if (gene.length() > maxLen) {
+                maxLen = gene.length();
+                longestGene = gene;
+            }
+        }
+        System.out.println();
+        System.out.println("Longest gene (" + maxLen + " nucleotides): " + longestGene);
+    }
+}
+
+----------------------------------------------------
+GenomeSequencer.java
+----------------------------------------------------
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+// Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the user.
+public class GenomeSequencer {
+
+    // Receives the codons of the amino acid.
+    public void getSequenceAndAminoAcid(ArrayList<String> Isoleucine, ArrayList<String> Leucine,
+            ArrayList<String> Valine, ArrayList<String> Phenylalanine, ArrayList<String> Methionine,
+            ArrayList<String> Cysteine, ArrayList<String> Alanine, ArrayList<String> Glycine, ArrayList<String> Proline,
+            ArrayList<String> Threonine, ArrayList<String> Serine, ArrayList<String> Tyrosine,
+            ArrayList<String> Tryptophan, ArrayList<String> Glutamine, ArrayList<String> Asparagine,
+            ArrayList<String> Histidine, ArrayList<String> GlutamicAcid, ArrayList<String> AsparticAcid,
+            ArrayList<String> Lysine, ArrayList<String> Arginine, ArrayList<String> Stop) throws FileNotFoundException {
+
+        // Gets the DNA sequence from the user.
+        Scanner sc = new Scanner(new File("files/dna/brca1line.fa"));
+        StringBuilder dna = new StringBuilder();
+        while (sc.hasNextLine()) {
+            dna.append(sc.nextLine().trim().toLowerCase());
+        }
+
+        // Checks if the DNA sequence is valid (contains only A, T, G, and C
+        // nucleotides).
+        if ((dna.length() == 0) || dna.toString().contains("b") || dna.toString().contains("d")
+                || dna.toString().contains("e") || dna.toString().contains("f")
+                || dna.toString().contains("h") || dna.toString().contains("i") || dna.toString().contains("j")
+                || dna.toString().contains("k") || dna.toString().contains("l")
+                || dna.toString().contains("m") || dna.toString().contains("n") || dna.toString().contains("o")
+                || dna.toString().contains("p") || dna.toString().contains("q")
+                || dna.toString().contains("r") || dna.toString().contains("s") || dna.toString().contains("v")
+                || dna.toString().contains("w") || dna.toString().contains("x")
+                || dna.toString().contains("y") || dna.toString().contains("z") || (dna.toString().indexOf(1) >= 0)
+                || (dna.toString().indexOf(2) >= 0)
+                || (dna.toString().indexOf(3) >= 0) || (dna.toString().indexOf(4) >= 0)
+                || (dna.toString().indexOf(5) >= 0) || (dna.toString().indexOf(6) >= 0)
+                || (dna.toString().indexOf(7) >= 0) || (dna.toString().indexOf(8) >= 0)
+                || (dna.toString().indexOf(9) >= 0) || (dna.toString().indexOf(0) >= 0)
+                || dna.toString().contains(" ") || dna.toString().contains(",") || dna.toString().contains(".")
+                || dna.toString().contains(";") || dna.toString().contains("'")
+                || dna.toString().contains("\"") || dna.toString().contains("!") || dna.toString().contains("?")
+                || dna.toString().contains("/")
+                || dna.toString().contains("\\") || dna.toString().contains("(") || dna.toString().contains(")")
+                || dna.toString().contains("[")
+                || dna.toString().contains("]") || dna.toString().contains("{") || dna.toString().contains("}")
+                || dna.toString().contains("<") || dna.toString().contains(">")
+                || dna.toString().contains("=") || dna.toString().contains("+") || dna.toString().contains("-")
+                || dna.toString().contains("*") || dna.toString().contains("&")
+                || dna.toString().contains("^") || dna.toString().contains("%") || dna.toString().contains("$")
+                || dna.toString().contains("#") || dna.toString().contains("@")
+                || dna.toString().contains("~") || dna.toString().contains("`") || dna.toString().contains("|")
+                || dna.toString().contains(":")) {
+            System.out.println("Error: Invalid characters are present in DNA sequence.");
+            return;
+        }
+
+        // Gets the amino acid from the user.
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Enter the amino acid: ");
+        String aminoAcid = userInput.nextLine().toLowerCase();
+
+        userInput.close();
+
+        // Prevents the user from entering an RNA sequence. In the last decade, using
+        // DNA sequences instead of RNA sequences has been a more common practice.
+        dna = new StringBuilder(dna.toString().replaceAll("u", "t"));
+
+        // Creates a new instance of the getAminoAcid class and sends the DNA, amino
+        // acid, and start codons to the class.
+        // Gets a StorageResource containing the genes of the amino acid.
+        GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
+        ArrayList<String> geneList = gfp.getAminoAcid(dna.toString(), aminoAcid, Isoleucine, Leucine, Valine,
+                Phenylalanine,
+                Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine,
+                Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
+
+        // The findProperties class finds properties of the amino acid/gene strand.
+        Properties p = new Properties();
+
+        // Prints the list of amino acid genes found in the StorageResource object.
+        p.printGeneList(geneList, aminoAcid);
+
+        // Prints the GC-content of the genomic sequence.
+        double gcContent = p.getGCContent(dna.toString());
+        System.out.println("\nGC-content (genome): " + gcContent);
+
+        // Returns a HashMap containing the number of each nucleotide in the DNA
+        // sequence.
+        HashMap<String, Integer> nucleotideCount = p.getNucleotideCount(dna.toString());
+        System.out.println("Nucleotide count: " + nucleotideCount);
+
+        // Finds and prints GC-content higher than 0.35
+        GeneInfo gi = new GeneInfo();
+        gi.highGCContent(geneList);
+
+        // Finds and prints the longest gene in the DNA sequence and its length.
+        gi.longestGene(geneList);
+        System.out.println();
+
+        AminoAcidProperties aap = new AminoAcidProperties(dna, 1, 0, 5);
+        aap.printCodonCounts();
+    }
+}
+----------------------------------------------------
+Main.java
+----------------------------------------------------
+
+import java.io.FileNotFoundException;
+
+// Main Class
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+
+        // Create a new instance of the dnaSequence and codonData classes and send the
+        // information to the dnaSequencer's ds constructor.
+        GenomeSequencer ds = new GenomeSequencer();
+        StructCodonData scd = new StructCodonData();
+        ds.getSequenceAndAminoAcid(scd.getIsoleucine(), scd.getLeucine(), scd.getValine(), scd.getPhenylalanine(),
+                scd.getMethionine(), scd.getCysteine(), scd.getAlanine(), scd.getGlycine(), scd.getProline(),
+                scd.getThreonine(), scd.getSerine(), scd.getTyrosine(), scd.getTryptophan(), scd.getGlutamine(),
+                scd.getAsparagine(), scd.getHistidine(), scd.getGlutamicAcid(), scd.getAsparticAcid(), scd.getLysine(),
+                scd.getArginine(), scd.getStop());
+    }
+}
+----------------------------------------------------
+Main.java
+----------------------------------------------------
+
+import java.io.FileNotFoundException;
+
+// Main Class
+public class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+
+        // Create a new instance of the dnaSequence and codonData classes and send the
+        // information to the dnaSequencer's ds constructor.
+        GenomeSequencer ds = new GenomeSequencer();
+        StructCodonData scd = new StructCodonData();
+        ds.getSequenceAndAminoAcid(scd.getIsoleucine(), scd.getLeucine(), scd.getValine(), scd.getPhenylalanine(),
+                scd.getMethionine(), scd.getCysteine(), scd.getAlanine(), scd.getGlycine(), scd.getProline(),
+                scd.getThreonine(), scd.getSerine(), scd.getTyrosine(), scd.getTryptophan(), scd.getGlutamine(),
+                scd.getAsparagine(), scd.getHistidine(), scd.getGlutamicAcid(), scd.getAsparticAcid(), scd.getLysine(),
+                scd.getArginine(), scd.getStop());
+    }
+}
+----------------------------------------------------
+StructCodonData.java
+----------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+// This method returns the codon data for the given amino acid.
+public class StructCodonData {
+
+    // Declares the start codon data for the 20 amino acids. Adding 'final' after
+    // 'private' makes the variable immutable.
+    private static final ArrayList<String> Isoleucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA"));
+    private static final ArrayList<String> Leucine = new ArrayList<>(
+            Arrays.asList("CTT", "CTC", "CTA", "CTG", "TTA", "TTG"));
+    private static final ArrayList<String> Valine = new ArrayList<>(Arrays.asList("GTT", "GTC", "GTA", "GTG"));
+    private static final ArrayList<String> Phenylalanine = new ArrayList<>(Arrays.asList("TTT", "TTC"));
+    private static final ArrayList<String> Methionine = new ArrayList<>(List.of("ATG"));
+    private static final ArrayList<String> Cysteine = new ArrayList<>(Arrays.asList("TGT", "TGC"));
+    private static final ArrayList<String> Alanine = new ArrayList<>(Arrays.asList("GCT", "GCC", "GCA", "GCG"));
+    private static final ArrayList<String> Glycine = new ArrayList<>(Arrays.asList("GGT", "GGC", "GGA", "GGG"));
+    private static final ArrayList<String> Proline = new ArrayList<>(Arrays.asList("CCT", "CCC", "CCA", "CCG"));
+    private static final ArrayList<String> Threonine = new ArrayList<>(Arrays.asList("ACT", "ACC", "ACA", "ACG"));
+    private static final ArrayList<String> Serine = new ArrayList<>(
+            Arrays.asList("TCT", "TCC", "TCA", "TCG", "AGT", "AGC"));
+    private static final ArrayList<String> Tyrosine = new ArrayList<>(Arrays.asList("TAT", "TAC"));
+    private static final ArrayList<String> Tryptophan = new ArrayList<>(List.of("TGG"));
+    private static final ArrayList<String> Glutamine = new ArrayList<>(Arrays.asList("CAA", "CAG"));
+    private static final ArrayList<String> Asparagine = new ArrayList<>(Arrays.asList("AAT", "AAC"));
+    private static final ArrayList<String> Histidine = new ArrayList<>(Arrays.asList("CAT", "CAC"));
+    private static final ArrayList<String> GlutamicAcid = new ArrayList<>(Arrays.asList("GAA", "GAG"));
+    private static final ArrayList<String> AsparticAcid = new ArrayList<>(Arrays.asList("GAT", "GAC"));
+    private static final ArrayList<String> Lysine = new ArrayList<>(Arrays.asList("AAA", "AAG"));
+    private static final ArrayList<String> Arginine = new ArrayList<>(
+            Arrays.asList("CGT", "CGC", "CGA", "CGG", "AGA", "AGG"));
+
+    // Declares the stop codon data for the 20 amino acids. Note: the stop codons
+    // are the same for all amino acids.
+    private static final ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
+
+    // Returns the start codon data for the amino acid called. This uses
+    // encapsulation to ensure that the codon data is available to the rest of the
+    // program (i.e. the dnaSequencer class).
+    public ArrayList<String> getIsoleucine() {
+        return Isoleucine;
+    }
+
+    public ArrayList<String> getLeucine() {
+        return Leucine;
+    }
+
+    public ArrayList<String> getValine() {
+        return Valine;
+    }
+
+    public ArrayList<String> getPhenylalanine() {
+        return Phenylalanine;
+    }
+
+    public ArrayList<String> getMethionine() {
+        return Methionine;
+    }
+
+    public ArrayList<String> getCysteine() {
+        return Cysteine;
+    }
+
+    public ArrayList<String> getAlanine() {
+        return Alanine;
+    }
+
+    public ArrayList<String> getGlycine() {
+        return Glycine;
+    }
+
+    public ArrayList<String> getProline() {
+        return Proline;
+    }
+
+    public ArrayList<String> getThreonine() {
+        return Threonine;
+    }
+
+    public ArrayList<String> getSerine() {
+        return Serine;
+    }
+
+    public ArrayList<String> getTyrosine() {
+        return Tyrosine;
+    }
+
+    public ArrayList<String> getTryptophan() {
+        return Tryptophan;
+    }
+
+    public ArrayList<String> getGlutamine() {
+        return Glutamine;
+    }
+
+    public ArrayList<String> getAsparagine() {
+        return Asparagine;
+    }
+
+    public ArrayList<String> getHistidine() {
+        return Histidine;
+    }
+
+    public ArrayList<String> getGlutamicAcid() {
+        return GlutamicAcid;
+    }
+
+    public ArrayList<String> getAsparticAcid() {
+        return AsparticAcid;
+    }
+
+    public ArrayList<String> getLysine() {
+        return Lysine;
+    }
+
+    public ArrayList<String> getArginine() {
+        return Arginine;
+    }
+
+    public ArrayList<String> getStop() {
+        return Stop;
+    }
+}
+
+----------------------------------------------------

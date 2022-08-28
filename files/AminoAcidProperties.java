@@ -32,9 +32,11 @@ public class AminoAcidProperties {
 
     public void printCodonCounts() {
         buildCodonMap(startRefFrame, dna);
+        System.out.println("Codon counts in reading frame " + startRefFrame);
+        System.out.println("-------------------------------------");
         for (String codon : codonCounts.keySet()) {
             if (codonCounts.get(codon) >= min && codonCounts.get(codon) <= max) {
-                System.out.println(codon + "\t" + codonCounts.get(codon));
+                System.out.println(codon.toUpperCase() + ": " + codonCounts.get(codon));
             }
         }
     }
