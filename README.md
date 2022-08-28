@@ -81,12 +81,6 @@
   </li>
 </ul>
 
-<h2 id="impact">Impact
-</h2>
-
-<p>Researchers are working to extract valuable information from software such as this in order to better understand human health and disease.
-</p>
-
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
 
