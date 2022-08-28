@@ -16,7 +16,11 @@
 	</natures>
 	<filteredResources>
 		<filter>
+<<<<<<< HEAD
 			<id>1661648082964</id>
+=======
+			<id>1661664592024</id>
+>>>>>>> c8d814e (Tested on Eclipse)
 			<name></name>
 			<type>30</type>
 			<matcher>
