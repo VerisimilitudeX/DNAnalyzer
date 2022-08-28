@@ -18,7 +18,7 @@ public class GenomeSequencer {
             throws IOException, InterruptedException {
 
         // Load DNA file and concatenate lines
-        String dna = Files.readString(Path.of("assets/dna/dnalong.fa")).replace("\n", "").toLowerCase();
+        String dna = Files.readString(Path.of("assets/dna/random/dnalong.fa")).replace("\n", "").toLowerCase();
 
         // Checks if the DNA sequence is valid (contains only A, T, G, and C
         // nucleotides).

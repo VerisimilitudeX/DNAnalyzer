@@ -119,15 +119,10 @@
 
 <ul>
   <li>
-    <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
-    </a>
+    <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">Codon Tables</a>
   </li>
   <li>
-    <a href="https://algoart.com/aatable.htm">https://algoart.com/aatable.htm    </a>
-  </li>
-  <li>
-    <a href="https://www.bioinformatics.org/sms2/shuffle_dna.html">https://www.bioinformatics.org/sms2/shuffle_dna.html
-    </a>
+    <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/dna/Random%20DNA%20Generator.py">DNA Generator</a>
   </li>
 </ul>
 
