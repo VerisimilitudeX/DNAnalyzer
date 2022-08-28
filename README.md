@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/copyright-%C2%A9%20Piyush%20Acharya-blue"  alt="Copyright"/>
+  <img src="https://img.shields.io/badge/copyright-pending-blue"  alt="Copyright"/>
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
@@ -16,13 +16,13 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am developing a deep learning model that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am working on removing all dependencies and developing a deep learning model that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease (refer to the <a href="https://github.com/Verisimilitude11/DNAnalyzer/projects/roadmap2025">Project Roadmap 2025</a> for more information).
 </p>
 
 <h2 id="background">Background
 </h2>
 
-<p>The human genome is composed of over 3 billion base pairs, making manual analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of structured data types, which need to be organized and converted into analyzable data appropriately. 
+<p>The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of data, which need to be organized and converted into analyzable data appropriately. Current analytical tools and software make it arduous for both geneticists and physicians to do so, thus restricting them from acquiring crucial information to better understand humans.
   <code>[1]
   </code>
 </p>
@@ -41,7 +41,7 @@
   </li>
   <li>High coverage regions
     <ul>
-      <li>Regions of a DNA genome that code for a protein and have a relatively high proportion (45-60% GC-content) of cytosine and guanine nucleotides to the 4 nucleotide bases. 
+      <li>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). 
         <code>[3]
         </code>
       </li>
@@ -73,17 +73,17 @@
   </li>
   <li>FASTA files (.fa)
     <ul>
-      <li>Supports multi-line and single-line FASTA database files. 
+      <li>Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web.
         <code>[7]
         </code>
       </li>
     </ul>
   </li>
 
-  <li>Command-line interface (DNAnalyzer CLI)
+  <li>Command-line interface (Met CLI)
     <ul>
       <li>
-        App Center command-line interface is a unified tool for running App Center services from the command-line. The CLI is a powerful tool for using App Center services and scripting a sequence of commands to execute. You can currently log in and view or configure all the apps that you have access to in App Center. To get more information on CLI installation and currently supported commands, refer to App Center CLI GitHub repo.
+        The Methionine command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for using DNAnalyzer services and scripting a sequence of commands to execute. You can currently access all the core features present in DNAnalyzer without having to log in, although account support will be implemented soon. To get more information on Met CLI installation and currently supported commands, refer to Met CLI GitHub repository.
       </li>
     </ul>
   </li>
@@ -95,13 +95,13 @@
 <h3 id="gui">GUI
 </h3>
 
-<p>A GUI-based application that will run natively on Windows/macOS/Linux to perform the algorithms implemented in the software.
+<p>A cross-platform GUI-based application that will perform the algorithms implemented in the software. Currently, the Met CLI is used as an expedient for this feature. Once implemented, the Met CLI would continue to be the main tool for power users.
 </p>
 
 <h3 id="needleman-wunsch-algorithm">Needleman-Wunsch Algorithm
 </h3>
 
-<p>This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. 
+<p>This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing. 
   <code>[8]
   </code>
 </p>
@@ -123,8 +123,7 @@
     </a>
   </li>
   <li>
-    <a href="http://algoart.com/aatable.htm">http://algoart.com/aatable.htm
-    </a>
+    <a href="https://algoart.com/aatable.htm">https://algoart.com/aatable.htm    </a>
   </li>
   <li>
     <a href="https://www.bioinformatics.org/sms2/shuffle_dna.html">https://www.bioinformatics.org/sms2/shuffle_dna.html
@@ -177,12 +176,12 @@
 <h2 id="terms-of-use">Terms of Use
 </h2>
 
-<p>You are entirely responsible for the use of this application, including any and all activities that occur. While the developers strive to fix any major bugs that may be either reported by a user or discovered while debugging, the DNAnalyzer Team will not be held liable for any loss that you may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: 
+<p>You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: 
   <code>DNAnalyzer@piyushacharya.com
   </code>
 </p>
 
 <p>
-  <strong>Copyright © Piyush Acharya 2022. All rights reserved.
+  <strong>Copyright (pending) © Piyush Acharya 2022. All rights reserved.
   </strong>
 </p>
