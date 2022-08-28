@@ -81,7 +81,16 @@ public class GenomeSequencer {
         gi.longestGene(geneList);
         System.out.println();
 
-        final AminoAcidProperties aap = new AminoAcidProperties(dna);
-        aap.printCodonCounts(2, 0, 10);
+        final int READING_FRAME = 1;
+        final int MIN_COUNT = 520860;
+        final int MAX_COUNT = 520880;
+
+        final AminoAcidProperties aap = new AminoAcidProperties(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
+        aap.printCodonCounts();
+
+        boolean randomtf = p.isRandomDNA(dna);
+        if (randomtf) {
+            System.out.println("\nWARNING: DNA sequence has been detected to be random.\n");
+        }
     }
 }

@@ -92,4 +92,26 @@ public class Properties {
         printNucleotideChar(dna, nucleotideCount[2], "G");
         printNucleotideChar(dna, nucleotideCount[3], "C");
     }
+
+    // Check if the DNA is random or not
+    public boolean isRandomDNA(final String dna) {
+        final int[] nucleotideCount = new int[4];
+        for (final char letter : dna.toCharArray()) {
+            switch (letter) {
+                case 'a' -> nucleotideCount[0]++;
+                case 't' -> nucleotideCount[1]++;
+                case 'g' -> nucleotideCount[2]++;
+                case 'c' -> nucleotideCount[3]++;
+                default -> {
+                }
+            }
+        }
+        int max = Math.max(Math.max(nucleotideCount[0], nucleotideCount[1]), Math.max(nucleotideCount[2], nucleotideCount[3]));
+        int min = Math.min(Math.min(nucleotideCount[0], nucleotideCount[1]), Math.min(nucleotideCount[2], nucleotideCount[3]));
+
+        max = Integer.parseInt(("" + max).substring(0, 3));
+        min = Integer.parseInt(("" + min).substring(0, 3));
+
+        return (max - min) <= 1;
+    }
 }
