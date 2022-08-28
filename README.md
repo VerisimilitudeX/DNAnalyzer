@@ -1,6 +1,6 @@
 # DNAnalyzer
 
-<ig src="https://img.shields.io/badge/copyright-%C2%A9%20Piyush%20Acharya-blue" /> [![wakatime](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg)](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer) [![wakatime](https://img.shields.io/github/v/release/Verisimilitude11/DNAnalyzer)](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer) ![](https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer)
+<ig src="https://img.shields.io/badge/copyright-%C2%A9%20Piyush%20Acharya-blue" /> ![](https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg) ![](https://img.shields.io/github/v/release/Verisimilitude11/DNAnalyzer) ![](https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer)
 
 <img src="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" align="right" height="300"/>
 
