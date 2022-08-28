@@ -79,6 +79,23 @@
       </li>
     </ul>
   </li>
+
+  <li>Start and stop codons
+    <ul>
+      <li>Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. 
+        <code>[2]
+        </code>
+      </li>
+    </ul>
+  </li>
+
+  <li>Command-line interface (DNAnalyzer CLI)
+    <ul>
+      <li>
+        App Center command-line interface is a unified tool for running App Center services from the command-line. The CLI is a powerful tool for using App Center services and scripting a sequence of commands to execute. You can currently log in and view or configure all the apps that you have access to in App Center. To get more information on CLI installation and currently supported commands, refer to App Center CLI GitHub repo.
+      </li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="future-support-and-improvements">Future Support and Improvements
