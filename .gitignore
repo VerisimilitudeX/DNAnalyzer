@@ -1,3 +1,5 @@
 .idea/*
 .config/*
 .github/*
+# Large file
+files/dna/dnalong.fa
