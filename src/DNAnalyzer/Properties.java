@@ -110,10 +110,10 @@ public class Properties {
             }
         }
 
-        int a = nucleotideCount[0] / dna.length() * 100;
-        int t = nucleotideCount[1] / dna.length() * 100;
-        int g = nucleotideCount[2] / dna.length() * 100;
-        int c = nucleotideCount[3] / dna.length() * 100;
+        final int a = nucleotideCount[0] / dna.length() * 100;
+        final int t = nucleotideCount[1] / dna.length() * 100;
+        final int g = nucleotideCount[2] / dna.length() * 100;
+        final int c = nucleotideCount[3] / dna.length() * 100;
 
         if ((a == t) && (t == g) && (g == c)) {
             return true;

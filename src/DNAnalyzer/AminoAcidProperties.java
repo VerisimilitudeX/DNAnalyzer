@@ -9,7 +9,7 @@ public class AminoAcidProperties {
     private final int max;
     private final String dna;
 
-    public AminoAcidProperties(String dna, int startRefFrame, int min, int max) {
+    public AminoAcidProperties(final String dna, final int startRefFrame, final int min, final int max) {
         codonCounts = new HashMap<>();
         this.readingFrame = startRefFrame;
         this.min = min;
@@ -17,7 +17,7 @@ public class AminoAcidProperties {
         this.dna = dna;
     }
 
-    private void buildCodonMap(int readingFrame2, String dna) {
+    private void buildCodonMap(final int readingFrame2, final String dna) {
         codonCounts.clear();
         for (int i = (int) readingFrame2; i < dna.length(); i += 3) {
             try {
@@ -26,7 +26,7 @@ public class AminoAcidProperties {
                 } else {
                     codonCounts.put(dna.substring(i, i + 3), 1);
                 }
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 // do nothing
             }
         }
@@ -36,7 +36,7 @@ public class AminoAcidProperties {
         buildCodonMap(readingFrame, dna);
         System.out.println("Codons in reading frame " + readingFrame + " (" + min + "-" + max + " occurrences)" + ":");
         System.out.println("----------------------------------------------------");
-        for (String codon : codonCounts.keySet()) {
+        for (final String codon : codonCounts.keySet()) {
             if (codonCounts.get(codon) >= min && codonCounts.get(codon) <= max) {
                 System.out.println(codon.toUpperCase() + ": " + codonCounts.get(codon));
             }

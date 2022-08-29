@@ -92,7 +92,7 @@ public class GenomeSequencer {
         final AminoAcidProperties aap = new AminoAcidProperties(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
         aap.printCodonCounts();
 
-        boolean randomtf = p.isRandomDNA(dna);
+        final boolean randomtf = p.isRandomDNA(dna);
         if (randomtf) {
             System.out.println("\nWARNING: DNA sequence has been detected to be random.\n");
         }
