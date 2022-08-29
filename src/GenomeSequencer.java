@@ -18,7 +18,7 @@ public class GenomeSequencer {
             throws IOException, InterruptedException {
 
         // Load DNA file and concatenate lines
-        String dna = Files.readString(Path.of("assets/dna/random/dnalong.fa")).replace("\n", "").toLowerCase();
+        String dna = Files.readString(Path.of("assets/dna/real/Axl2p.fa")).replace("\n", "").toLowerCase();
 
         // Checks if the DNA sequence is valid (contains only A, T, G, and C
         // nucleotides).
@@ -82,8 +82,8 @@ public class GenomeSequencer {
         System.out.println();
 
         final int READING_FRAME = 1;
-        final int MIN_COUNT = 520860;
-        final int MAX_COUNT = 520880;
+        final int MIN_COUNT = 5;
+        final int MAX_COUNT = 10;
 
         final AminoAcidProperties aap = new AminoAcidProperties(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
         aap.printCodonCounts();
