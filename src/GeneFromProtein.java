@@ -8,10 +8,12 @@ public class GeneFromProtein {
     public ArrayList<String> getAminoAcid(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
             final ArrayList<String> leucine,
             final ArrayList<String> valine, final ArrayList<String> phenylalanine, final ArrayList<String> methionine,
-            final ArrayList<String> cysteine, final ArrayList<String> alanine, final ArrayList<String> glycine, final ArrayList<String> proline,
+            final ArrayList<String> cysteine, final ArrayList<String> alanine, final ArrayList<String> glycine,
+            final ArrayList<String> proline,
             final ArrayList<String> threonine, final ArrayList<String> serine, final ArrayList<String> tyrosine,
             final ArrayList<String> tryptophan, final ArrayList<String> glutamine, final ArrayList<String> asparagine,
-            final ArrayList<String> histidine, final ArrayList<String> glutamicAcid, final ArrayList<String> asparticAcid,
+            final ArrayList<String> histidine, final ArrayList<String> glutamicAcid,
+            final ArrayList<String> asparticAcid,
             final ArrayList<String> lysine, final ArrayList<String> arginine, final ArrayList<String> stop) {
 
         // Maps the amino acid that the user entered to the start codon list.

@@ -1,4 +1,4 @@
-public enum AminoAcid {
+public enum AminoAcidNames {
     ISOLEUCINE,
     LEUCINE,
     VALINE,

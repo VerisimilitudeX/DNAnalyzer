@@ -2,7 +2,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Properties {
-    public void printGeneList(final ArrayList<String> geneList, final String aminoAcid) throws InterruptedException, IOException {
+    public void printGeneList(final ArrayList<String> geneList, final String aminoAcid)
+            throws InterruptedException, IOException {
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
         String aminoAcidFull = "";
@@ -106,12 +107,16 @@ public class Properties {
                 }
             }
         }
-        int max = Math.max(Math.max(nucleotideCount[0], nucleotideCount[1]), Math.max(nucleotideCount[2], nucleotideCount[3]));
-        int min = Math.min(Math.min(nucleotideCount[0], nucleotideCount[1]), Math.min(nucleotideCount[2], nucleotideCount[3]));
 
-        max = Integer.parseInt(("" + max).substring(0, 3));
-        min = Integer.parseInt(("" + min).substring(0, 3));
+        int a = nucleotideCount[0] / dna.length() * 100;
+        int t = nucleotideCount[1] / dna.length() * 100;
+        int g = nucleotideCount[2] / dna.length() * 100;
+        int c = nucleotideCount[3] / dna.length() * 100;
 
-        return (max - min) <= 1;
+        if ((a == t) && (t == g) && (g == c)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

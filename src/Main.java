@@ -7,17 +7,18 @@ public class Main {
         // Create a new instance of the dnaSequence and codonData classes and send the
         // information to the dnaSequencer's ds constructor.
         final GenomeSequencer ds = new GenomeSequencer();
-        final StructCodonData scd = new StructCodonData();
-        ds.getSequenceAndAminoAcid(scd.getAminoAcid(AminoAcid.ISOLEUCINE), scd.getAminoAcid(AminoAcid.LEUCINE),
-                scd.getAminoAcid(AminoAcid.VALINE), scd.getAminoAcid(AminoAcid.PHENYLALANINE),
-                scd.getAminoAcid(AminoAcid.METHIONINE), scd.getAminoAcid(AminoAcid.CYSTEINE),
-                scd.getAminoAcid(AminoAcid.ALANINE), scd.getAminoAcid(AminoAcid.GLYCINE),
-                scd.getAminoAcid(AminoAcid.PROLINE), scd.getAminoAcid(AminoAcid.THREONINE),
-                scd.getAminoAcid(AminoAcid.SERINE), scd.getAminoAcid(AminoAcid.TYROSINE),
-                scd.getAminoAcid(AminoAcid.TRYPTOPHAN), scd.getAminoAcid(AminoAcid.GLUTAMINE),
-                scd.getAminoAcid(AminoAcid.ASPARAGINE), scd.getAminoAcid(AminoAcid.HISTIDINE),
-                scd.getAminoAcid(AminoAcid.GLUTAMIC_ACID), scd.getAminoAcid(AminoAcid.ASPARTIC_ACID),
-                scd.getAminoAcid(AminoAcid.LYSINE), scd.getAminoAcid(AminoAcid.ARGININE),
-                scd.getAminoAcid(AminoAcid.STOP));
+        final CodonData scd = new CodonData();
+        ds.getSequenceAndAminoAcid(scd.getAminoAcid(AminoAcidNames.ISOLEUCINE),
+                scd.getAminoAcid(AminoAcidNames.LEUCINE),
+                scd.getAminoAcid(AminoAcidNames.VALINE), scd.getAminoAcid(AminoAcidNames.PHENYLALANINE),
+                scd.getAminoAcid(AminoAcidNames.METHIONINE), scd.getAminoAcid(AminoAcidNames.CYSTEINE),
+                scd.getAminoAcid(AminoAcidNames.ALANINE), scd.getAminoAcid(AminoAcidNames.GLYCINE),
+                scd.getAminoAcid(AminoAcidNames.PROLINE), scd.getAminoAcid(AminoAcidNames.THREONINE),
+                scd.getAminoAcid(AminoAcidNames.SERINE), scd.getAminoAcid(AminoAcidNames.TYROSINE),
+                scd.getAminoAcid(AminoAcidNames.TRYPTOPHAN), scd.getAminoAcid(AminoAcidNames.GLUTAMINE),
+                scd.getAminoAcid(AminoAcidNames.ASPARAGINE), scd.getAminoAcid(AminoAcidNames.HISTIDINE),
+                scd.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID), scd.getAminoAcid(AminoAcidNames.ASPARTIC_ACID),
+                scd.getAminoAcid(AminoAcidNames.LYSINE), scd.getAminoAcid(AminoAcidNames.ARGININE),
+                scd.getAminoAcid(AminoAcidNames.STOP));
     }
 }

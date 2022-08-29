@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // This method returns the codon data for the given amino acid.
-public class StructCodonData {
+public class CodonData {
 
     // Declares the start codon data for the 20 amino acids. Adding 'final' after
     // 'private' makes the variable immutable.
@@ -35,29 +35,29 @@ public class StructCodonData {
     // are the same for all amino acids.
     private static final ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
 
-    public ArrayList<String> getAminoAcid(final AminoAcid type) {
-        return switch (type) {
-            case ISOLEUCINE -> StructCodonData.Isoleucine;
-            case LEUCINE -> StructCodonData.Leucine;
-            case VALINE -> StructCodonData.Valine;
-            case PHENYLALANINE -> StructCodonData.Phenylalanine;
-            case METHIONINE -> StructCodonData.Methionine;
-            case CYSTEINE -> StructCodonData.Cysteine;
-            case ALANINE -> StructCodonData.Alanine;
-            case GLYCINE -> StructCodonData.Glycine;
-            case PROLINE -> StructCodonData.Proline;
-            case THREONINE -> StructCodonData.Threonine;
-            case SERINE -> StructCodonData.Serine;
-            case TYROSINE -> StructCodonData.Tyrosine;
-            case TRYPTOPHAN -> StructCodonData.Tryptophan;
-            case GLUTAMINE -> StructCodonData.Glutamine;
-            case ASPARAGINE -> StructCodonData.Asparagine;
-            case HISTIDINE -> StructCodonData.Histidine;
-            case GLUTAMIC_ACID -> StructCodonData.GlutamicAcid;
-            case ASPARTIC_ACID -> StructCodonData.AsparticAcid;
-            case LYSINE -> StructCodonData.Lysine;
-            case ARGININE -> StructCodonData.Arginine;
-            case STOP -> StructCodonData.Stop;
+    public ArrayList<String> getAminoAcid(final AminoAcidNames name) {
+        return switch (name) {
+            case ISOLEUCINE -> CodonData.Isoleucine;
+            case LEUCINE -> CodonData.Leucine;
+            case VALINE -> CodonData.Valine;
+            case PHENYLALANINE -> CodonData.Phenylalanine;
+            case METHIONINE -> CodonData.Methionine;
+            case CYSTEINE -> CodonData.Cysteine;
+            case ALANINE -> CodonData.Alanine;
+            case GLYCINE -> CodonData.Glycine;
+            case PROLINE -> CodonData.Proline;
+            case THREONINE -> CodonData.Threonine;
+            case SERINE -> CodonData.Serine;
+            case TYROSINE -> CodonData.Tyrosine;
+            case TRYPTOPHAN -> CodonData.Tryptophan;
+            case GLUTAMINE -> CodonData.Glutamine;
+            case ASPARAGINE -> CodonData.Asparagine;
+            case HISTIDINE -> CodonData.Histidine;
+            case GLUTAMIC_ACID -> CodonData.GlutamicAcid;
+            case ASPARTIC_ACID -> CodonData.AsparticAcid;
+            case LYSINE -> CodonData.Lysine;
+            case ARGININE -> CodonData.Arginine;
+            case STOP -> CodonData.Stop;
         };
     }
 }
