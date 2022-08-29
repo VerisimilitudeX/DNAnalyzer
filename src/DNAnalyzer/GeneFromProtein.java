@@ -1,3 +1,5 @@
+package DNAnalyzer;
+
 import java.util.ArrayList;
 
 // This class is used to find genes in a DNA sequence.

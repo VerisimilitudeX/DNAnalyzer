@@ -1,3 +1,5 @@
+package DNAnalyzer;
+
 public enum AminoAcidNames {
     ISOLEUCINE,
     LEUCINE,

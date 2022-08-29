@@ -1,3 +1,5 @@
+package DNAnalyzer;
+
 import java.util.HashMap;
 
 public class AminoAcidProperties {

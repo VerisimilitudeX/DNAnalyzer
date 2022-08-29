@@ -1,3 +1,5 @@
+package DNAnalyzer;
+
 import java.io.IOException;
 
 // Main Class
