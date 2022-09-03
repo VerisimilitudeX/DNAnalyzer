@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "DNAnalyzer.Main",
+            "projectName": "DNAnalyzer"
+        },
+        {
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",

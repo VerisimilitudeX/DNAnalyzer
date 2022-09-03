@@ -10,17 +10,10 @@ import java.util.Scanner;
 public class GenomeSequencer {
 
     // Receives the codons of the amino acid.
-    public void getSequenceAndAminoAcid(final ArrayList<String> Isoleucine, final ArrayList<String> Leucine,
-            final ArrayList<String> Valine, final ArrayList<String> Phenylalanine, final ArrayList<String> Methionine,
-            final ArrayList<String> Cysteine, final ArrayList<String> Alanine, final ArrayList<String> Glycine,
-            final ArrayList<String> Proline, final ArrayList<String> Threonine, final ArrayList<String> Serine,
-            final ArrayList<String> Tyrosine, final ArrayList<String> Tryptophan, final ArrayList<String> Glutamine,
-            final ArrayList<String> Asparagine, final ArrayList<String> Histidine, final ArrayList<String> GlutamicAcid,
-            final ArrayList<String> AsparticAcid, final ArrayList<String> Lysine, final ArrayList<String> Arginine,
-            final ArrayList<String> Stop) throws IOException, InterruptedException {
+    public void getSequenceAndAminoAcid(final CodonData cd) throws IOException, InterruptedException {
 
         // Load DNA file and concatenate lines
-        String dna = Files.readString(Path.of("assets/dna/real/Axl2p.fa")).replace("\n", "").toLowerCase();
+        String dna = Files.readString(Path.of("assets/dna/random/dnalong.fa")).replace("\n", "").toLowerCase();
 
         // Checks if the DNA sequence is valid (contains only A, T, G, and C
         // nucleotides).
@@ -44,7 +37,7 @@ public class GenomeSequencer {
         // Gets the amino acid from the user.
         final Scanner userInput = new Scanner(System.in);
         System.out.println("Enter the amino acid: ");
-        final String aminoAcid = userInput.nextLine().toLowerCase();
+        final String userAminoAcid = userInput.nextLine().toLowerCase();
 
         userInput.close();
 
@@ -56,15 +49,13 @@ public class GenomeSequencer {
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
         final GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
-        final ArrayList<String> geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine,
-                Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine,
-                Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
+        final ArrayList<String> geneList = gfp.getAminoAcid(dna, userAminoAcid, cd.getAminoAcid(AminoAcidNames.ISOLEUCINE), cd.getAminoAcid(AminoAcidNames.LEUCINE), cd.getAminoAcid(AminoAcidNames.VALINE), cd.getAminoAcid(AminoAcidNames.PHENYLALANINE), cd.getAminoAcid(AminoAcidNames.METHIONINE), cd.getAminoAcid(AminoAcidNames.CYSTEINE), cd.getAminoAcid(AminoAcidNames.ALANINE), cd.getAminoAcid(AminoAcidNames.GLYCINE), cd.getAminoAcid(AminoAcidNames.PROLINE), cd.getAminoAcid(AminoAcidNames.THREONINE), cd.getAminoAcid(AminoAcidNames.SERINE), cd.getAminoAcid(AminoAcidNames.TYROSINE), cd.getAminoAcid(AminoAcidNames.TRYPTOPHAN), cd.getAminoAcid(AminoAcidNames.GLUTAMINE), cd.getAminoAcid(AminoAcidNames.ASPARAGINE), cd.getAminoAcid(AminoAcidNames.HISTIDINE), cd.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID), cd.getAminoAcid(AminoAcidNames.ASPARTIC_ACID), cd.getAminoAcid(AminoAcidNames.LYSINE), cd.getAminoAcid(AminoAcidNames.ARGININE), cd.getAminoAcid(AminoAcidNames.STOP));
 
         // The findProperties class finds properties of the amino acid/gene strand.
         final Properties p = new Properties();
 
         // Prints the list of amino acid genes found in the StorageResource object.
-        p.printGeneList(geneList, aminoAcid);
+        p.printGeneList(geneList, userAminoAcid);
 
         // Prints the GC-con tent of the genomic sequence.
         final double gcContent = p.getGCContent(dna);

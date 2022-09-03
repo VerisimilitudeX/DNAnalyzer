@@ -42,10 +42,14 @@ public class GeneFromProtein {
             case "arginine", "r", "arg" -> this.aminoAcidList.addAll(arginine);
             default -> System.out.println("Invalid amino acid");
         }
+
+        int start_index;
+        int stop_index;
+
         for (final String start_codon : this.aminoAcidList) {
-            final int start_index = dna.indexOf(start_codon.toLowerCase());
+            start_index = dna.indexOf(start_codon.toLowerCase());
             for (final String stop_codon : stop) {
-                final int stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
+                stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
                 if ((start_index != -1) && (stop_index != -1)) {
                     this.geneList.add(dna.substring(start_index, stop_index + 3).toUpperCase());
                     break;
