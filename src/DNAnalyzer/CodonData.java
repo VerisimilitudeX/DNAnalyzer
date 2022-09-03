@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// This method returns the codon data for the given amino acid.
 public class CodonData {
 
-    // Declares the start codon data for the 20 amino acids. Adding 'final' after
-    // 'private' makes the variable immutable.
+    // Declares the start codon data for the 20 amino acids.
     private static final ArrayList<String> Isoleucine = new ArrayList<>(Arrays.asList("ATT", "ATC", "ATA"));
     private static final ArrayList<String> Leucine = new ArrayList<>(
             Arrays.asList("CTT", "CTC", "CTA", "CTG", "TTA", "TTG"));
@@ -37,6 +35,7 @@ public class CodonData {
     // are the same for all amino acids.
     private static final ArrayList<String> Stop = new ArrayList<>(Arrays.asList("TAA", "TAG", "TGA"));
 
+    // This method returns the codon data ArrayList for the user-selected amino acid
     public ArrayList<String> getAminoAcid(final AminoAcidNames name) {
         return switch (name) {
             case ISOLEUCINE -> CodonData.Isoleucine;

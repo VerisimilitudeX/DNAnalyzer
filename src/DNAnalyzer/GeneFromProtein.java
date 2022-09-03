@@ -2,7 +2,7 @@ package DNAnalyzer;
 
 import java.util.ArrayList;
 
-// This class is used to find genes in a DNA sequence.
+// This class is used to find proteins in a DNA sequence.
 public class GeneFromProtein {
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> geneList = new ArrayList<>();
@@ -46,6 +46,9 @@ public class GeneFromProtein {
         int start_index;
         int stop_index;
 
+        // MAIN ALGORITHM: Finds proteins in the DNA sequence.
+
+        // Loops through the start codons for the amino acid that the user entered.
         for (final String start_codon : this.aminoAcidList) {
             start_index = dna.indexOf(start_codon.toLowerCase());
             for (final String stop_codon : stop) {
@@ -56,12 +59,14 @@ public class GeneFromProtein {
                 }
             }
         }
+
         if (this.geneList.size() == 0) {
             for (int i = 0; i < 100; i++) {
                 System.out.println();
             }
             this.geneList.add("No gene found");
         }
+
         return this.geneList;
     }
 }
