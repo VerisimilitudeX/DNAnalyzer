@@ -13,13 +13,11 @@ public class GenomeSequencer {
     public void getSequenceAndAminoAcid(final ArrayList<String> Isoleucine, final ArrayList<String> Leucine,
             final ArrayList<String> Valine, final ArrayList<String> Phenylalanine, final ArrayList<String> Methionine,
             final ArrayList<String> Cysteine, final ArrayList<String> Alanine, final ArrayList<String> Glycine,
-            final ArrayList<String> Proline,
-            final ArrayList<String> Threonine, final ArrayList<String> Serine, final ArrayList<String> Tyrosine,
-            final ArrayList<String> Tryptophan, final ArrayList<String> Glutamine, final ArrayList<String> Asparagine,
-            final ArrayList<String> Histidine, final ArrayList<String> GlutamicAcid,
-            final ArrayList<String> AsparticAcid,
-            final ArrayList<String> Lysine, final ArrayList<String> Arginine, final ArrayList<String> Stop)
-            throws IOException, InterruptedException {
+            final ArrayList<String> Proline, final ArrayList<String> Threonine, final ArrayList<String> Serine,
+            final ArrayList<String> Tyrosine, final ArrayList<String> Tryptophan, final ArrayList<String> Glutamine,
+            final ArrayList<String> Asparagine, final ArrayList<String> Histidine, final ArrayList<String> GlutamicAcid,
+            final ArrayList<String> AsparticAcid, final ArrayList<String> Lysine, final ArrayList<String> Arginine,
+            final ArrayList<String> Stop) throws IOException, InterruptedException {
 
         // Load DNA file and concatenate lines
         String dna = Files.readString(Path.of("assets/dna/real/Axl2p.fa")).replace("\n", "").toLowerCase();
@@ -58,8 +56,7 @@ public class GenomeSequencer {
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
         final GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
-        final ArrayList<String> geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine,
-                Phenylalanine,
+        final ArrayList<String> geneList = gfp.getAminoAcid(dna, aminoAcid, Isoleucine, Leucine, Valine, Phenylalanine,
                 Methionine, Cysteine, Alanine, Glycine, Proline, Threonine, Serine, Tyrosine, Tryptophan, Glutamine,
                 Asparagine, Histidine, GlutamicAcid, AsparticAcid, Lysine, Arginine, Stop);
 
