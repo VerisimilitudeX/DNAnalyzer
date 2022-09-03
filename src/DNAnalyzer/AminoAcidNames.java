@@ -1,5 +1,7 @@
 package DNAnalyzer;
 
+
+// Enumerated type for the 20 amino acids and 3 stop codons.
 public enum AminoAcidNames {
     ISOLEUCINE,
     LEUCINE,
