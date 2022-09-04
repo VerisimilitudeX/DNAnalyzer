@@ -1,6 +1,7 @@
 package DNAnalyzer;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class AminoAcidProperties {
     private final HashMap<String, Integer> codonCounts;
@@ -42,9 +43,9 @@ public class AminoAcidProperties {
         buildCodonMap(readingFrame, dna);
         System.out.println("Codons in reading frame " + readingFrame + " (" + min + "-" + max + " occurrences)" + ":");
         System.out.println("----------------------------------------------------");
-        for (final String codon : codonCounts.keySet()) {
-            if (codonCounts.get(codon) >= min && codonCounts.get(codon) <= max) {
-                System.out.println(codon.toUpperCase() + ": " + codonCounts.get(codon));
+        for (final Entry<String, Integer> entry : codonCounts.entrySet()) {
+            if (codonCounts.get(entry.getKey()) >= min && codonCounts.get(entry.getKey()) <= max) {
+                System.out.println(entry.getKey().toUpperCase() + ": " + codonCounts.get(entry.getKey()));
             }
         }
     }
