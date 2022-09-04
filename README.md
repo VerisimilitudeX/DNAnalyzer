@@ -9,6 +9,7 @@
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
   <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
+  <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>
 </p>
 
 <blockquote>
