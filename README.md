@@ -7,8 +7,10 @@
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
-  <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/>
+  <!--- <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/> --->
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
+  <!--- <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'> --->
+  <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
 <blockquote>
@@ -16,7 +18,7 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am working on removing all dependencies and developing a deep learning model that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease (refer to <a href="https://github.com/Verisimilitude11/DNAnalyzer/projects/roadmap2025">Project Roadmap 2025</a> for more information).
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am working on removing all dependencies and developing a deep learning model that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 </p>
 
 <h2 id="background">Background
