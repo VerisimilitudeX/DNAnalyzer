@@ -53,7 +53,7 @@ public class Properties {
             default -> System.out.println("Invalid amino acid");
         }
 
-        System.out.println("Genes coded for " + aminoAcidFullName + ": ");
+        System.out.println("Proteins coded for " + aminoAcidFullName + ": ");
         System.out.println("----------------------------------------------------");
         int count = 1;
         for (final String gene : proteinList) {

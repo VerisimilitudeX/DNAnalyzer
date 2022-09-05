@@ -46,11 +46,11 @@ public class ProteinAnalysis {
      * 
      * @see https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
      * @category Properties
-     * @param geneList The list of genes in the DNA sequence
+     * @param proteinList The list of proteins in the DNA sequence
      */
-    public void printLongestProtein(final ArrayList<String> geneList) {
+    public void printLongestProtein(final ArrayList<String> proteinList) {
         String longestGene = "";
-        for (final String gene : geneList) {
+        for (final String gene : proteinList) {
             if (gene.length() > longestGene.length()) {
                 longestGene = gene;
             }
