@@ -22,32 +22,24 @@ public class GenomeSequencer {
     }
 
     private String getAminoAcidInput() {
-        // Get amino acid from user
-        final Scanner sc = new Scanner(System.in);
-        System.out.print("Enter an amino acid: ");
-        return sc.nextLine().toLowerCase();
+        Scanner sc = null;
+        try {
+            sc = new Scanner(System.in);
+            // Get amino acid from user
+            System.out.print("Enter an amino acid: ");
+            return sc.nextLine().toLowerCase();
+        } finally {
+            sc.close();
+        }
     }
 
-    // Receives the codons of the amino acid.
-    public void getSequenceAndAminoAcid(final CodonData cd) throws IOException, InterruptedException {
-        String dna = readFile("assets/dna/real/brca1line.fa");
-        
-        if (!isValidDNA(dna)) {
-            System.out.println("Error: Invalid characters are present in DNA sequence.");
-            return;
-        }        
-
-        String userAminoAcid = getAminoAcidInput();
-
-        // Prevents the user from entering an RNA sequence. In the last decade, using
-        // DNA sequences instead of RNA sequences has been a more common practice.
-        dna = dna.replace("u", "t");
+    private ArrayList<String> createGeneList(String dna, String userAminoAcid, CodonData cd) {
 
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
         final GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
-        final ArrayList<String> geneList = gfp.getAminoAcid(
+        return gfp.getAminoAcid(
                 dna,
                 userAminoAcid,
                 cd.getAminoAcid(AminoAcidNames.ISOLEUCINE),
@@ -71,6 +63,24 @@ public class GenomeSequencer {
                 cd.getAminoAcid(AminoAcidNames.LYSINE),
                 cd.getAminoAcid(AminoAcidNames.ARGININE),
                 cd.getAminoAcid(AminoAcidNames.STOP));
+    }
+
+    // Receives the codons of the amino acid.
+    public void getSequenceAndAminoAcid(final CodonData cd) throws IOException, InterruptedException {
+        String dna = readFile("assets/dna/real/brca1line.fa");
+
+        if (!isValidDNA(dna)) {
+            System.out.println("Error: Invalid characters are present in DNA sequence.");
+            return;
+        }
+
+        String userAminoAcid = getAminoAcidInput();
+
+        // Prevents the user from entering an RNA sequence. In the last decade, using
+        // DNA sequences instead of RNA sequences has been a more common practice.
+        dna = dna.replace("u", "t");
+
+        ArrayList<String> geneList = createGeneList(dna, userAminoAcid, cd);
 
         // The findProperties class finds properties of the amino acid/gene strand.
         final Properties p = new Properties();
