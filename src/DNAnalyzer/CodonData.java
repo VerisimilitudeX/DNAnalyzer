@@ -54,7 +54,7 @@ public class CodonData {
      * @returns An ArrayList of codon data for the user-selected amino acid or stop
      *          codon.
      */
-    public ArrayList<String> getAminoAcid(final AminoAcidNames name) {
+    public static ArrayList<String> getAminoAcid(final AminoAcidNames name) {
         return switch (name) {
             case ISOLEUCINE -> CodonData.Isoleucine;
             case LEUCINE -> CodonData.Leucine;

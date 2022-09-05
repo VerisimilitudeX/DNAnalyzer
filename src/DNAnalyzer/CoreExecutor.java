@@ -61,47 +61,45 @@ public class CoreExecutor {
      * 
      * @param dna           The DNA to be searched
      * @param userAminoAcid The amino acid to be searched for
-     * @param cd            The start and stop codon data
      * @category Protein
      * @returns The ArrayList of proteins
      */
-    private ArrayList<String> createProteinList(String dna, String userAminoAcid, CodonData cd) {
+    private ArrayList<String> createProteinList(String dna, String userAminoAcid) {
         final ProteinFinder gfp = new ProteinFinder();
         return gfp.getProtein(
                 dna,
                 userAminoAcid,
-                cd.getAminoAcid(AminoAcidNames.ISOLEUCINE),
-                cd.getAminoAcid(AminoAcidNames.LEUCINE),
-                cd.getAminoAcid(AminoAcidNames.VALINE),
-                cd.getAminoAcid(AminoAcidNames.PHENYLALANINE),
-                cd.getAminoAcid(AminoAcidNames.METHIONINE),
-                cd.getAminoAcid(AminoAcidNames.CYSTEINE),
-                cd.getAminoAcid(AminoAcidNames.ALANINE),
-                cd.getAminoAcid(AminoAcidNames.GLYCINE),
-                cd.getAminoAcid(AminoAcidNames.PROLINE),
-                cd.getAminoAcid(AminoAcidNames.THREONINE),
-                cd.getAminoAcid(AminoAcidNames.SERINE),
-                cd.getAminoAcid(AminoAcidNames.TYROSINE),
-                cd.getAminoAcid(AminoAcidNames.TRYPTOPHAN),
-                cd.getAminoAcid(AminoAcidNames.GLUTAMINE),
-                cd.getAminoAcid(AminoAcidNames.ASPARAGINE),
-                cd.getAminoAcid(AminoAcidNames.HISTIDINE),
-                cd.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID),
-                cd.getAminoAcid(AminoAcidNames.ASPARTIC_ACID),
-                cd.getAminoAcid(AminoAcidNames.LYSINE),
-                cd.getAminoAcid(AminoAcidNames.ARGININE),
-                cd.getAminoAcid(AminoAcidNames.STOP));
+                CodonData.getAminoAcid(AminoAcidNames.ISOLEUCINE),
+                CodonData.getAminoAcid(AminoAcidNames.LEUCINE),
+                CodonData.getAminoAcid(AminoAcidNames.VALINE),
+                CodonData.getAminoAcid(AminoAcidNames.PHENYLALANINE),
+                CodonData.getAminoAcid(AminoAcidNames.METHIONINE),
+                CodonData.getAminoAcid(AminoAcidNames.CYSTEINE),
+                CodonData.getAminoAcid(AminoAcidNames.ALANINE),
+                CodonData.getAminoAcid(AminoAcidNames.GLYCINE),
+                CodonData.getAminoAcid(AminoAcidNames.PROLINE),
+                CodonData.getAminoAcid(AminoAcidNames.THREONINE),
+                CodonData.getAminoAcid(AminoAcidNames.SERINE),
+                CodonData.getAminoAcid(AminoAcidNames.TYROSINE),
+                CodonData.getAminoAcid(AminoAcidNames.TRYPTOPHAN),
+                CodonData.getAminoAcid(AminoAcidNames.GLUTAMINE),
+                CodonData.getAminoAcid(AminoAcidNames.ASPARAGINE),
+                CodonData.getAminoAcid(AminoAcidNames.HISTIDINE),
+                CodonData.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID),
+                CodonData.getAminoAcid(AminoAcidNames.ASPARTIC_ACID),
+                CodonData.getAminoAcid(AminoAcidNames.LYSINE),
+                CodonData.getAminoAcid(AminoAcidNames.ARGININE),
+                CodonData.getAminoAcid(AminoAcidNames.STOP));
     }
 
     /**
      * Calls the other methods to output the results
      * 
-     * @param cd The start and stop codon data
      * @category Output
      * @throws IOException
      * @throws InterruptedException
      */
-    public void defaultCaller(final CodonData cd) throws IOException, InterruptedException {
+    public void defaultCaller() throws IOException, InterruptedException {
         // Change the file to be analyzed here
         String dna = readFile("assets/dna/random/dnalong.fa");
 
@@ -120,7 +118,7 @@ public class CoreExecutor {
         dna = dna.replace("u", "t");
 
         // Create a list of proteins found in the DNA
-        ArrayList<String> geneList = createProteinList(dna, userAminoAcid, cd);
+        ArrayList<String> geneList = createProteinList(dna, userAminoAcid);
 
         // Output the proteins, GC content, and quantities of each nucleotide found in
         // the DNA

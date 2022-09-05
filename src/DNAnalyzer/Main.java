@@ -39,7 +39,6 @@ public class Main {
         clearTerminal();
 
         final CoreExecutor gs = new CoreExecutor();
-        final CodonData cd = new CodonData();
-        gs.defaultCaller(cd);
+        gs.defaultCaller();
     }
 }
