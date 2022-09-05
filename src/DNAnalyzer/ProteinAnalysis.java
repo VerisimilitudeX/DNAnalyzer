@@ -3,7 +3,7 @@ package DNAnalyzer;
 import java.util.ArrayList;
 
 // Prints properties of the proteins in the DNA.
-public class AnalyzeProteins {
+public class ProteinAnalysis {
 
     public void printHighCoverageRegions(final ArrayList<String> geneList) {
         int count = 1;

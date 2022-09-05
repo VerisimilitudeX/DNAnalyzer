@@ -38,7 +38,7 @@ public class CoreExecutor {
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
-        final FindProteins gfp = new FindProteins(); // Can be replaced with printGeneWithAminoAcid.
+        final ProteinFinder gfp = new ProteinFinder(); // Can be replaced with printGeneWithAminoAcid.
         return gfp.getProtein(
                 dna,
                 userAminoAcid,
@@ -97,7 +97,7 @@ public class CoreExecutor {
         p.printNucleotideCount(dna);
 
         // Finds and prints GC-content higher than 0.35
-        final AnalyzeProteins gi = new AnalyzeProteins();
+        final ProteinAnalysis gi = new ProteinAnalysis();
         gi.printHighCoverageRegions(geneList);
 
         // Finds and prints the longest gene in the DNA sequence and its length.
