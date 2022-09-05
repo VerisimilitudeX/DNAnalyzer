@@ -107,8 +107,7 @@ public class CoreExecutor {
 
         // Notifies user if DNA is invalid
         if (!isValidDNA(dna)) {
-            System.out.println("Error: Invalid characters are present in DNA sequence.");
-            return;
+            throw new IllegalArgumentException("Invalid characters are present in DNA sequence.");
         }
 
         String userAminoAcid = getAminoAcidInput();

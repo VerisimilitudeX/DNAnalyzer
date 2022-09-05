@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ProteinFinder {
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
-    private final ArrayList<String> geneList = new ArrayList<>();
+    private final ArrayList<String> proteinList = new ArrayList<>();
 
     public ArrayList<String> getProtein(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
             final ArrayList<String> leucine,
@@ -45,7 +45,7 @@ public class ProteinFinder {
             case "aspartic acid", "d", "asp" -> this.aminoAcidList.addAll(asparticAcid);
             case "lysine", "k", "lys" -> this.aminoAcidList.addAll(lysine);
             case "arginine", "r", "arg" -> this.aminoAcidList.addAll(arginine);
-            default -> System.out.println("Invalid amino acid");
+            default -> throw new IllegalStateException("Invalid Amino Acid: " + aminoAcid);
         }
 
         // MAIN ALGORITHM: Finds proteins in the DNA sequence.
@@ -58,17 +58,17 @@ public class ProteinFinder {
             for (final String stop_codon : stop) {
                 stop_index = dna.indexOf(stop_codon.toLowerCase(), start_index + 3);
                 if ((start_index != -1) && (stop_index != -1)) {
-                    this.geneList.add(dna.substring(start_index, stop_index + 3).toUpperCase());
+                    this.proteinList.add(dna.substring(start_index, stop_index + 3).toUpperCase());
                     break;
                 }
             }
         }
 
-        if (this.geneList.isEmpty()) {
-            System.out.println("No gene found");
+        if (this.proteinList.isEmpty()) {
+            System.out.println("No proteins found");
             return null;
         }
 
-        return this.geneList;
+        return this.proteinList;
     }
 }
