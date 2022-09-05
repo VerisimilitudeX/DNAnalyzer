@@ -7,7 +7,7 @@ public class FindProteins {
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> geneList = new ArrayList<>();
 
-    public ArrayList<String> getAminoAcid(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
+    public ArrayList<String> getProtein(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
             final ArrayList<String> leucine,
             final ArrayList<String> valine, final ArrayList<String> phenylalanine, final ArrayList<String> methionine,
             final ArrayList<String> cysteine, final ArrayList<String> alanine, final ArrayList<String> glycine,
@@ -43,11 +43,10 @@ public class FindProteins {
             default -> System.out.println("Invalid amino acid");
         }
 
-        int start_index;
-        int stop_index;
-
         // MAIN ALGORITHM: Finds proteins in the DNA sequence.
 
+        int start_index;
+        int stop_index;
         // Loops through the start codons for the amino acid that the user entered.
         for (final String start_codon : this.aminoAcidList) {
             start_index = dna.indexOf(start_codon.toLowerCase());
@@ -60,11 +59,9 @@ public class FindProteins {
             }
         }
 
-        if (this.geneList.size() == 0) {
-            for (int i = 0; i < 100; i++) {
-                System.out.println();
-            }
-            this.geneList.add("No gene found");
+        if (this.geneList.size() <= 0) {
+            System.out.println("No gene found");
+            return null;
         }
 
         return this.geneList;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Properties {
     public void printGeneList(final ArrayList<String> geneList, final String aminoAcid)
             throws InterruptedException, IOException {
-        CoreExecutor.clearTerminal();
+        Main.clearTerminal();
 
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
@@ -38,10 +38,6 @@ public class Properties {
         System.out.println("----------------------------------------------------");
         int count = 1;
         for (final String gene : geneList) {
-            if (geneList.contains("No gene found")) {
-                System.out.println("No gene found");
-                break;
-            }
             System.out.println(count + ". " + gene);
             count++;
         }

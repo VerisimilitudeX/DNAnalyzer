@@ -10,16 +10,6 @@ import java.util.Scanner;
 // user.
 public class CoreExecutor {
 
-    public static void clearTerminal() throws InterruptedException, IOException {
-        // Clears the console screen
-        if (System.getProperty("os.name").contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } else {
-            System.out.print("\u001b[H\u001b[2J");
-            System.out.flush();
-        }
-    }
-
     // Reads the inputted file to a string
     private String readFile(final String fileName) throws IOException {
         // Load DNA file and concatenate lines
@@ -49,7 +39,7 @@ public class CoreExecutor {
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
         final FindProteins gfp = new FindProteins(); // Can be replaced with printGeneWithAminoAcid.
-        return gfp.getAminoAcid(
+        return gfp.getProtein(
                 dna,
                 userAminoAcid,
                 cd.getAminoAcid(AminoAcidNames.ISOLEUCINE),
