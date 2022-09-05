@@ -98,10 +98,10 @@ public class CoreExecutor {
 
         // Finds and prints GC-content higher than 0.35
         final AnalyzeProteins gi = new AnalyzeProteins();
-        gi.highGCContent(geneList);
+        gi.printHighCoverageRegions(geneList);
 
         // Finds and prints the longest gene in the DNA sequence and its length.
-        gi.longestGene(geneList);
+        gi.printLongestGene(geneList);
         System.out.println();
 
         final int READING_FRAME = 1;

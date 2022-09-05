@@ -2,10 +2,12 @@ package DNAnalyzer;
 
 import java.util.ArrayList;
 
+// Prints properties of the proteins in the DNA.
 public class AnalyzeProteins {
 
-    public void highGCContent(final ArrayList<String> geneList) {
+    public void printHighCoverageRegions(final ArrayList<String> geneList) {
         int count = 1;
+
         // print the list of genes with the highest GC content
         System.out.println("\nHigh coverage regions: ");
         System.out.println("----------------------------------------------------");
@@ -13,6 +15,7 @@ public class AnalyzeProteins {
         final Properties p = new Properties();
 
         for (final String gene : geneList) {
+
             // High GC content range
             final double MIN_GC_CONTENT = 0.40;
             final double MAX_GC_CONTENT = 0.60;
@@ -26,7 +29,7 @@ public class AnalyzeProteins {
         }
     }
 
-    public void longestGene(final ArrayList<String> geneList) {
+    public void printLongestGene(final ArrayList<String> geneList) {
         String longestGene = "";
         for (final String gene : geneList) {
             if (gene.length() > longestGene.length()) {
