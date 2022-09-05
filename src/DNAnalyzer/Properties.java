@@ -39,7 +39,7 @@ public class Properties {
             System.out.print("\u001b[H\u001b[2J");
             System.out.flush();
         }
-        
+
         System.out.println("Genes coded for " + aminoAcidFull + ": ");
         System.out.println("----------------------------------------------------");
         int count = 1;
