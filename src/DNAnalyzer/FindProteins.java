@@ -3,7 +3,7 @@ package DNAnalyzer;
 import java.util.ArrayList;
 
 // This class is used to find proteins in a DNA sequence.
-public class GeneFromProtein {
+public class FindProteins {
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> geneList = new ArrayList<>();
 

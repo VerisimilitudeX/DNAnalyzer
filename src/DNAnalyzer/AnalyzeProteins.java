@@ -2,7 +2,7 @@ package DNAnalyzer;
 
 import java.util.ArrayList;
 
-public class GeneInfo {
+public class AnalyzeProteins {
 
     public void highGCContent(final ArrayList<String> geneList) {
         int count = 1;

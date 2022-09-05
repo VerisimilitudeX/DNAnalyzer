@@ -3,7 +3,7 @@ package DNAnalyzer;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-public class AminoAcidProperties {
+public class ReadingFrames {
     private final HashMap<String, Integer> codonCounts;
     private final String dna;
 
@@ -13,7 +13,7 @@ public class AminoAcidProperties {
     private final int max;
 
     // Constructor to get the DNA sequence and reading frame properties
-    public AminoAcidProperties(
+    public ReadingFrames(
             final String dna, final int startRefFrame, final int min, final int max) {
         codonCounts = new HashMap<>();
         this.readingFrame = startRefFrame;

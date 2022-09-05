@@ -8,7 +8,17 @@ import java.util.Scanner;
 
 // Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the
 // user.
-public class GenomeSequencer {
+public class CoreExecutor {
+
+    public static void clearTerminal() throws InterruptedException, IOException {
+        // Clears the console screen
+        if (System.getProperty("os.name").contains("Windows")) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } else {
+            System.out.print("\u001b[H\u001b[2J");
+            System.out.flush();
+        }
+    }
 
     // Reads the inputted file to a string
     private String readFile(final String fileName) throws IOException {
@@ -38,7 +48,7 @@ public class GenomeSequencer {
         // Creates a new instance of the getAminoAcid class and sends the DNA, amino
         // acid, and start codons to the class.
         // Gets a StorageResource containing the genes of the amino acid.
-        final GeneFromProtein gfp = new GeneFromProtein(); // Can be replaced with printGeneWithAminoAcid.
+        final FindProteins gfp = new FindProteins(); // Can be replaced with printGeneWithAminoAcid.
         return gfp.getAminoAcid(
                 dna,
                 userAminoAcid,
@@ -67,7 +77,7 @@ public class GenomeSequencer {
 
     // Receives the codons of the amino acid.
     public void getSequenceAndAminoAcid(final CodonData cd) throws IOException, InterruptedException {
-        String dna = readFile("assets/dna/real/brca1line.fa");
+        String dna = readFile("assets/dna/random/dnalong.fa");
 
         if (!isValidDNA(dna)) {
             System.out.println("Error: Invalid characters are present in DNA sequence.");
@@ -97,7 +107,7 @@ public class GenomeSequencer {
         p.printNucleotideCount(dna);
 
         // Finds and prints GC-content higher than 0.35
-        final GeneInfo gi = new GeneInfo();
+        final AnalyzeProteins gi = new AnalyzeProteins();
         gi.highGCContent(geneList);
 
         // Finds and prints the longest gene in the DNA sequence and its length.
@@ -108,7 +118,7 @@ public class GenomeSequencer {
         final int MIN_COUNT = 5;
         final int MAX_COUNT = 10;
 
-        final AminoAcidProperties aap = new AminoAcidProperties(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
+        final ReadingFrames aap = new ReadingFrames(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
         aap.printCodonCounts();
 
         final boolean randomtf = p.isRandomDNA(dna);

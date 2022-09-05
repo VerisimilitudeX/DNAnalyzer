@@ -4,19 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Properties {
-    public static void clearTerminal() throws InterruptedException, IOException {
-        // Clears the console screen
-        if (System.getProperty("os.name").contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } else {
-            System.out.print("\u001b[H\u001b[2J");
-            System.out.flush();
-        }
-    }
-
     public void printGeneList(final ArrayList<String> geneList, final String aminoAcid)
             throws InterruptedException, IOException {
-        clearTerminal();
+        CoreExecutor.clearTerminal();
 
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
