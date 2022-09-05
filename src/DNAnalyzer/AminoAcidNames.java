@@ -17,7 +17,6 @@ package DNAnalyzer;
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
-
 public enum AminoAcidNames {
     ISOLEUCINE,
     LEUCINE,
