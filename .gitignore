@@ -1,6 +1,7 @@
 .idea/*
 .config/*
-.github/*
+
 # Large file
-files/dna/dnalong.fa
-/bin/
+# files/dna/dnalong.fa
+bin/*
+.vs/*
