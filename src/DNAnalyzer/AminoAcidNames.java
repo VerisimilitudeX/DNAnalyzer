@@ -3,8 +3,7 @@ package DNAnalyzer;
 /**
  * Enumerated type for the 20 amino acids and 3 stop codons.
  * 
- * @author @Verisimilitude11 (Piyush Acharya)
- * @author @Nv7-GitHub (Nishant Vikramaditya)
+ * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
 

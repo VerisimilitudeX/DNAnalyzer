@@ -4,53 +4,72 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Prints the lit of proteins and their respective properties found in the DNA.
+ * Prints the list of proteins and their respective properties found in the DNA.
  * 
- * @author @Verisimilitude11 (Piyush Acharya)
- * @author @Nv7-GitHub (Nishant Vikramaditya)
+ * @author Piyush Acharya (@Verisimilitude11)
+ * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
-
 public class Properties {
-    public void printGeneList(final ArrayList<String> geneList, final String aminoAcid)
+
+    /**
+     * Prints the list of proteins found in the DNA.
+     * 
+     * @category Output
+     * @param proteinList The list of proteins to be printed
+     * @param aminoAcid   The amino acid to be searched for
+     * @throws InterruptedException
+     * @throws IOException
+     */
+    public void printProteinList(final ArrayList<String> proteinList, final String aminoAcid)
             throws InterruptedException, IOException {
+
+        // Clears the console
         Main.clearTerminal();
 
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
-        String aminoAcidFull = "";
+        String aminoAcidFullName = "";
         switch (aminoAcid) {
-            case "a", "alanine", "ala" -> aminoAcidFull = "Alanine";
-            case "c", "cysteine", "cys" -> aminoAcidFull = "Cysteine";
-            case "d", "aspartic acid", "asp" -> aminoAcidFull = "Aspartic acid";
-            case "e", "glutamic acid", "glu" -> aminoAcidFull = "Glutamic acid";
-            case "f", "phenylalanine", "phe" -> aminoAcidFull = "Phenylalanine";
-            case "g", "glycine", "gly" -> aminoAcidFull = "Glycine";
-            case "h", "histidine", "his" -> aminoAcidFull = "Histidine";
-            case "i", "isoleucine", "ile" -> aminoAcidFull = "Isoleucine";
-            case "k", "lysine", "lys" -> aminoAcidFull = "Lysine";
-            case "l", "leucine", "leu" -> aminoAcidFull = "Leucine";
-            case "m", "methionine", "met" -> aminoAcidFull = "Methionine";
-            case "n", "asparagine", "asn" -> aminoAcidFull = "Asparagine";
-            case "p", "proline", "pro" -> aminoAcidFull = "Proline";
-            case "q", "glutamine", "gln" -> aminoAcidFull = "Glutamine";
-            case "r", "arginine", "arg" -> aminoAcidFull = "Arginine";
-            case "s", "serine", "ser" -> aminoAcidFull = "Serine";
-            case "t", "threonine", "thr" -> aminoAcidFull = "Threonine";
-            case "v", "valine", "val" -> aminoAcidFull = "Valine";
-            case "w", "tryptophan", "trp" -> aminoAcidFull = "Tryptophan";
+            case "a", "alanine", "ala" -> aminoAcidFullName = "Alanine";
+            case "c", "cysteine", "cys" -> aminoAcidFullName = "Cysteine";
+            case "d", "aspartic acid", "asp" -> aminoAcidFullName = "Aspartic acid";
+            case "e", "glutamic acid", "glu" -> aminoAcidFullName = "Glutamic acid";
+            case "f", "phenylalanine", "phe" -> aminoAcidFullName = "Phenylalanine";
+            case "g", "glycine", "gly" -> aminoAcidFullName = "Glycine";
+            case "h", "histidine", "his" -> aminoAcidFullName = "Histidine";
+            case "i", "isoleucine", "ile" -> aminoAcidFullName = "Isoleucine";
+            case "k", "lysine", "lys" -> aminoAcidFullName = "Lysine";
+            case "l", "leucine", "leu" -> aminoAcidFullName = "Leucine";
+            case "m", "methionine", "met" -> aminoAcidFullName = "Methionine";
+            case "n", "asparagine", "asn" -> aminoAcidFullName = "Asparagine";
+            case "p", "proline", "pro" -> aminoAcidFullName = "Proline";
+            case "q", "glutamine", "gln" -> aminoAcidFullName = "Glutamine";
+            case "r", "arginine", "arg" -> aminoAcidFullName = "Arginine";
+            case "s", "serine", "ser" -> aminoAcidFullName = "Serine";
+            case "t", "threonine", "thr" -> aminoAcidFullName = "Threonine";
+            case "v", "valine", "val" -> aminoAcidFullName = "Valine";
+            case "w", "tryptophan", "trp" -> aminoAcidFullName = "Tryptophan";
             default -> System.out.println("Invalid amino acid");
         }
 
-        System.out.println("Genes coded for " + aminoAcidFull + ": ");
+        System.out.println("Genes coded for " + aminoAcidFullName + ": ");
         System.out.println("----------------------------------------------------");
         int count = 1;
-        for (final String gene : geneList) {
+        for (final String gene : proteinList) {
             System.out.println(count + ". " + gene);
             count++;
         }
     }
 
+    /**
+     * Gets the GC content of a gene.
+     * 
+     * @see https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content
+     * @category Properties
+     * @param dna The DNA sequence to be analyzed
+     * @return The GC content of the DNA sequence
+     */
     public double getGCContent(String dna) {
         dna = dna.toLowerCase();
         double gcLen = 0;
@@ -62,10 +81,25 @@ public class Properties {
         return (gcLen / dna.length());
     }
 
-    private void printNucleotideChar(final String dna, final int count, final String nucleotide) {
+    /**
+     * Formats the nucleotide sequence into a readable format.
+     * 
+     * @category Output
+     * @param dna        The DNA sequence that was analyzed
+     * @param count      The count of the nucleotide in the DNA sequence
+     * @param nucleotide The nucleotide that was searched for
+     */
+    private void formatNucleotideCount(final String dna, final int count, final String nucleotide) {
         System.out.println(nucleotide + ": " + count + " (" + (double) count / dna.length() * 100 + "%)");
     }
 
+    /**
+     * Counts the number of nucleotides in the DNA sequence.
+     * 
+     * @category Properties
+     * @param dna
+     * @return The list of the number of nucleotides in the DNA sequence.
+     */
     private int[] countNucleotides(final String dna) {
         final int[] nucleotideCount = new int[4];
         for (final char letter : dna.toCharArray()) {
@@ -82,17 +116,29 @@ public class Properties {
         return nucleotideCount;
     }
 
+    /**
+     * Prints the nucleotide count of the DNA sequence.
+     * 
+     * @category Output
+     * @param dna The DNA sequence that was analyzed
+     */
     public void printNucleotideCount(final String dna) {
         final int[] nucleotideCount = countNucleotides(dna);
 
         System.out.println("Nucleotide count:");
-        printNucleotideChar(dna, nucleotideCount[0], "A");
-        printNucleotideChar(dna, nucleotideCount[1], "T");
-        printNucleotideChar(dna, nucleotideCount[2], "G");
-        printNucleotideChar(dna, nucleotideCount[3], "C");
+        formatNucleotideCount(dna, nucleotideCount[0], "A");
+        formatNucleotideCount(dna, nucleotideCount[1], "T");
+        formatNucleotideCount(dna, nucleotideCount[2], "G");
+        formatNucleotideCount(dna, nucleotideCount[3], "C");
     }
 
-    // Check if the DNA is random or not
+    /**
+     * Checks if the DNA sequence is random or not.
+     * 
+     * @category Properties
+     * @param dna The DNA sequence that was analyzed
+     * @return Whether the DNA sequence is random or not
+     */
     public boolean isRandomDNA(final String dna) {
         final int[] nucleotideCount = countNucleotides(dna);
 

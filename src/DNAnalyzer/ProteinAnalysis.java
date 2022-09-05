@@ -5,12 +5,19 @@ import java.util.ArrayList;
 /**
  * Prints properties of the proteins in the DNA.
  * 
- * @author @Verisimilitude11 (Piyush Acharya)
+ * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
-
 public class ProteinAnalysis {
 
+    /**
+     * Prints high coverage regions. High coverage regions are regions of a DNA
+     * sequence that code for a protein and have a relatively high proportion of
+     * guanine and cytosine nucleotides to the 4 nucleotide bases (45-60%
+     * GC-content).
+     * 
+     * @param geneList
+     */
     public void printHighCoverageRegions(final ArrayList<String> geneList) {
         int count = 1;
 
@@ -25,17 +32,23 @@ public class ProteinAnalysis {
             // High GC content range
             final double MIN_GC_CONTENT = 0.40;
             final double MAX_GC_CONTENT = 0.60;
-            if (geneList.contains("No gene found")) {
-                System.out.println("No gene found");
-                break;
-            } else if ((p.getGCContent(gene) > MIN_GC_CONTENT) && (p.getGCContent(gene) < MAX_GC_CONTENT)) {
+            if ((p.getGCContent(gene) > MIN_GC_CONTENT) && (p.getGCContent(gene) < MAX_GC_CONTENT)) {
                 System.out.println(count + ". " + gene);
                 count++;
             }
         }
     }
 
-    public void printLongestGene(final ArrayList<String> geneList) {
+    /**
+     * Prints the longest protein in the DNA sequence along with its length. Longer
+     * genes are most susceptible to disease implications and are especially linked
+     * to neurodevelopmental disorders (e.g., autism).
+     * 
+     * @see https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
+     * @category Properties
+     * @param geneList The list of genes in the DNA sequence
+     */
+    public void printLongestProtein(final ArrayList<String> geneList) {
         String longestGene = "";
         for (final String gene : geneList) {
             if (gene.length() > longestGene.length()) {

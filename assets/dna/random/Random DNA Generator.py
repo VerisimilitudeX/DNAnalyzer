@@ -1,8 +1,9 @@
-__author__      = "@Nv7-GitHub (Nishant Vikramaditya)"
-__version__     = "2.0.1"
-
-# Generate a random DNA file that is 100MB
 from random import choice
+
+__summary__ = "Generate a random DNA file that is 100MB"
+__package__ = "Random DNA Generator"
+__author__ = "@Nv7-GitHub (Nishant Vikramaditya)"
+__version__ = "2.0.1"
 
 SIZE = 100000000
 codes = ["a", "t", "g", "c"]

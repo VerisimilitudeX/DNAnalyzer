@@ -6,11 +6,10 @@ import java.util.Map.Entry;
 /**
  * Reading frame data for the highest occurring codons.
  * 
- * @author @Verisimilitude11 (Piyush Acharya)
- * @author @Nv7-GitHub (Nishant Vikramaditya)
+ * @author Piyush Acharya (@Verisimilitude11)
+ * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
-
 public class ReadingFrames {
     private final HashMap<String, Integer> codonCounts;
     private final String dna;
@@ -20,20 +19,33 @@ public class ReadingFrames {
     private final int min;
     private final int max;
 
-    // Constructor to get the DNA sequence and reading frame properties
-    public ReadingFrames(
-            final String dna, final int startRefFrame, final int min, final int max) {
+    /**
+     * Constructor for the ReadingFrames class.
+     * 
+     * @param dna          DNA sequence
+     * @param readingFrame The reading frame to look at
+     * @param min          Minimum codon count
+     * @param max          Maximum codon count
+     * @category Codon
+     */
+    public ReadingFrames(final String dna, final int readingFrame, final int min, final int max) {
         codonCounts = new HashMap<>();
-        this.readingFrame = startRefFrame;
+        this.readingFrame = readingFrame;
         this.min = min;
         this.max = max;
         this.dna = dna;
     }
 
-    // Method to get the codon counts in the specified reading frame
-    private void buildCodonMap(final int readingFrame2, final String dna) {
+    /**
+     * Get codon counts in the specified reading frame
+     * 
+     * @param dna The DNA sequence
+     * @category Codon
+     * @return The HashMap of codon counts in the specified reading frame
+     */
+    private void buildCodonMap(final String dna) {
         codonCounts.clear();
-        for (int i = (int) readingFrame2; i < dna.length(); i += 3) {
+        for (int i = (int) readingFrame; i < dna.length(); i += 3) {
             try {
                 if (codonCounts.containsKey(dna.substring(i, i + 3))) {
                     codonCounts.put(dna.substring(i, i + 3), codonCounts.get(dna.substring(i, i + 3)) + 1);
@@ -46,12 +58,15 @@ public class ReadingFrames {
         }
     }
 
-    // Method to filter through the codon counts found in the specified reading
-    // frame based on the min and max values
+    /**
+     * Method to filter through the codon counts found in the specified reading
+     * frame based on the min and max values
+     * 
+     * @category Codon
+     */
     public void printCodonCounts() {
-        buildCodonMap(readingFrame, dna);
-        System.out.println(
-                "Codons in reading frame " + readingFrame + " (" + min + "-" + max + " occurrences)" + ":");
+        buildCodonMap(dna);
+        System.out.println("Codons in reading frame " + readingFrame + " (" + min + "-" + max + " occurrences)" + ":");
         System.out.println("----------------------------------------------------");
         for (final Entry<String, Integer> entry : codonCounts.entrySet()) {
             if (codonCounts.get(entry.getKey()) >= min && codonCounts.get(entry.getKey()) <= max) {

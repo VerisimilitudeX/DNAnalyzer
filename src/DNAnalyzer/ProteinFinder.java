@@ -5,10 +5,9 @@ import java.util.ArrayList;
 /**
  * Find proteins in a DNA sequence (contains the main algorithm).
  * 
- * @author @Verisimilitude11 (Piyush Acharya)
+ * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
-
 public class ProteinFinder {
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> geneList = new ArrayList<>();
@@ -65,7 +64,7 @@ public class ProteinFinder {
             }
         }
 
-        if (this.geneList.size() <= 0) {
+        if (this.geneList.isEmpty()) {
             System.out.println("No gene found");
             return null;
         }

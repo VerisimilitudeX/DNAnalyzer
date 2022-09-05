@@ -10,28 +10,45 @@ import java.util.Scanner;
  * Creates a new instance of the getAminoAcid class after getting the DNA and
  * amino acid from the user.
  * 
- * @author @Verisimilitude11 (Piyush Acharya)
+ * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
-
 public class CoreExecutor {
 
-    // Reads the inputted file to a string
+    /**
+     * Reads the inputted file to a string
+     * 
+     * @param fileName The name of the file to be read
+     * @category File IO
+     * @returns The contents of the file as a string
+     * @throws IOException
+     */
     private String readFile(final String fileName) throws IOException {
         // Load DNA file and concatenate lines
         return Files.readString(Path.of(fileName)).replace("\n", "").toLowerCase();
     }
 
+    /**
+     * Checks if DNA is valid
+     * 
+     * @param dna The DNA to be checked
+     * @category DNA
+     * @returns True if DNA is valid, false otherwise
+     */
     private boolean isValidDNA(final String dna) {
-        // Check if DNA is valid
         return dna.matches("[atgc]+");
     }
 
+    /**
+     * Gets the amino acid from the user
+     * 
+     * @returns The amino acid
+     * @category Input
+     */
     private String getAminoAcidInput() {
         Scanner sc = null;
         try {
             sc = new Scanner(System.in);
-            // Get amino acid from user
             System.out.print("Enter an amino acid: ");
             return sc.nextLine().toLowerCase();
         } finally {
@@ -39,12 +56,17 @@ public class CoreExecutor {
         }
     }
 
-    private ArrayList<String> createGeneList(String dna, String userAminoAcid, CodonData cd) {
-
-        // Creates a new instance of the getAminoAcid class and sends the DNA, amino
-        // acid, and start codons to the class.
-        // Gets a StorageResource containing the genes of the amino acid.
-        final ProteinFinder gfp = new ProteinFinder(); // Can be replaced with printGeneWithAminoAcid.
+    /**
+     * Returns the list of proteins in the DNA
+     * 
+     * @param dna           The DNA to be searched
+     * @param userAminoAcid The amino acid to be searched for
+     * @param cd            The start and stop codon data
+     * @category Protein
+     * @returns The ArrayList of proteins
+     */
+    private ArrayList<String> createProteinList(String dna, String userAminoAcid, CodonData cd) {
+        final ProteinFinder gfp = new ProteinFinder();
         return gfp.getProtein(
                 dna,
                 userAminoAcid,
@@ -71,10 +93,19 @@ public class CoreExecutor {
                 cd.getAminoAcid(AminoAcidNames.STOP));
     }
 
-    // Receives the codons of the amino acid.
-    public void getSequenceAndAminoAcid(final CodonData cd) throws IOException, InterruptedException {
+    /**
+     * Calls the other methods to output the results
+     * 
+     * @param cd The start and stop codon data
+     * @category Output
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public void defaultCaller(final CodonData cd) throws IOException, InterruptedException {
+        // Change the file to be analyzed here
         String dna = readFile("assets/dna/random/dnalong.fa");
 
+        // Notifies user if DNA is invalid
         if (!isValidDNA(dna)) {
             System.out.println("Error: Invalid characters are present in DNA sequence.");
             return;
@@ -82,43 +113,41 @@ public class CoreExecutor {
 
         String userAminoAcid = getAminoAcidInput();
 
-        // Prevents the user from entering an RNA sequence. In the last decade, using
-        // DNA sequences instead of RNA sequences has been a more common practice.
+        // Prevents an error from occurring when the user enters an RNA sequence.
+        // Recently, using
+        // DNA sequences instead of RNA sequences has been a more common practice. In
+        // RNA, uracil
+        // is replaced with thymine.
         dna = dna.replace("u", "t");
 
-        ArrayList<String> geneList = createGeneList(dna, userAminoAcid, cd);
+        // Create a list of proteins found in the DNA
+        ArrayList<String> geneList = createProteinList(dna, userAminoAcid, cd);
 
-        // The findProperties class finds properties of the amino acid/gene strand.
+        // Output the proteins, GC content, and quantities of each nucleotide found in
+        // the DNA
         final Properties p = new Properties();
-
-        // Prints the list of amino acid genes found in the StorageResource object.
-        p.printGeneList(geneList, userAminoAcid);
-
-        // Prints the GC-con tent of the genomic sequence.
+        p.printProteinList(geneList, userAminoAcid);
         final double gcContent = p.getGCContent(dna);
         System.out.println("\nGC-content (genome): " + gcContent + "\n");
-
-        // Returns a HashMap containing the number of each nucleotide in the DNA
-        // sequence.
         p.printNucleotideCount(dna);
 
-        // Finds and prints GC-content higher than 0.35
+        // Output high coverage regions and the longest protein
         final ProteinAnalysis gi = new ProteinAnalysis();
         gi.printHighCoverageRegions(geneList);
-
-        // Finds and prints the longest gene in the DNA sequence and its length.
-        gi.printLongestGene(geneList);
+        gi.printLongestProtein(geneList);
         System.out.println();
 
+        // Output the number of codons based on the reading frame the user wants to look
+        // at, and minimum and maximum filters
         final int READING_FRAME = 1;
         final int MIN_COUNT = 5;
         final int MAX_COUNT = 10;
-
         final ReadingFrames aap = new ReadingFrames(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
         aap.printCodonCounts();
 
-        final boolean randomtf = p.isRandomDNA(dna);
-        if (randomtf) {
+        // Notifies the user if the DNA sequence is random.
+        final boolean randomDNA = p.isRandomDNA(dna);
+        if (randomDNA) {
             System.out.println("\nWARNING: DNA sequence has been detected to be random.\n");
         }
     }
