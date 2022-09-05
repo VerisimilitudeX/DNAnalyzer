@@ -1,7 +1,6 @@
 from random import choice
 
 __summary__ = "Generate a random DNA file that is 100MB"
-__package__ = "Random DNA Generator"
 __author__ = "@Nv7-GitHub (Nishant Vikramaditya)"
 __version__ = "2.0.1"
 
