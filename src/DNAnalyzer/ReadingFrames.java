@@ -3,6 +3,14 @@ package DNAnalyzer;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/**
+ * Reading frame data for the highest occurring codons.
+ * 
+ * @author @Verisimilitude11 (Piyush Acharya)
+ * @author @Nv7-GitHub (Nishant Vikramaditya)
+ * @version 1.2.1
+ */
+
 public class ReadingFrames {
     private final HashMap<String, Integer> codonCounts;
     private final String dna;

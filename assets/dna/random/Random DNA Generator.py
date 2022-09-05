@@ -1,3 +1,6 @@
+__author__      = "@Nv7-GitHub (Nishant Vikramaditya)"
+__version__     = "2.0.1"
+
 # Generate a random DNA file that is 100MB
 from random import choice
 
