@@ -68,7 +68,7 @@ public class Properties {
         System.out.println(nucleotide + ": " + count + " (" + (double) count / dna.length() * 100 + "%)");
     }
 
-    public void printNucleotideCount(final String dna) {
+    private int[] countNucleotides(final String dna) {
         final int[] nucleotideCount = new int[4];
         for (final char letter : dna.toCharArray()) {
             switch (letter) {
@@ -80,6 +80,12 @@ public class Properties {
                 }
             }
         }
+
+        return nucleotideCount;
+    }
+
+    public void printNucleotideCount(final String dna) {
+        final int[] nucleotideCount = countNucleotides(dna);
 
         System.out.println("Nucleotide count:");
         printNucleotideChar(dna, nucleotideCount[0], "A");
@@ -102,15 +108,14 @@ public class Properties {
             }
         }
 
-        final int a = nucleotideCount[0] / dna.length() * 100;
-        final int t = nucleotideCount[1] / dna.length() * 100;
-        final int g = nucleotideCount[2] / dna.length() * 100;
-        final int c = nucleotideCount[3] / dna.length() * 100;
+        final int a = (int) (((double) nucleotideCount[0]) / dna.length() * 100);
+        final int t = (int) (((double) nucleotideCount[1]) / dna.length() * 100);
+        final int g = (int) (((double) nucleotideCount[2]) / dna.length() * 100);
+        final int c = (int) (((double) nucleotideCount[3]) / dna.length() * 100);
 
-        if ((a == t) && (t == g) && (g == c)) {
-            return true;
-        } else {
-            return false;
-        }
+        // If the percentage of each nucleotide is between 2% of one another, then it is
+        // random
+        return (Math.abs(a - t) <= 2) && (Math.abs(a - g) <= 2) && (Math.abs(a - c) <= 2) && (Math.abs(t - g) <= 2)
+                && (Math.abs(t - c) <= 2) && (Math.abs(g - c) <= 2);
     }
 }
