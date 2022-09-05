@@ -64,32 +64,19 @@ public class CoreExecutor {
      * @category Protein
      * @returns The ArrayList of proteins
      */
-    private ArrayList<String> createProteinList(String dna, String userAminoAcid) {
+    private ArrayList<String> createProteinList(final String dna, final String userAminoAcid) {
         final ProteinFinder gfp = new ProteinFinder();
-        return gfp.getProtein(
-                dna,
-                userAminoAcid,
-                CodonData.getAminoAcid(AminoAcidNames.ISOLEUCINE),
-                CodonData.getAminoAcid(AminoAcidNames.LEUCINE),
-                CodonData.getAminoAcid(AminoAcidNames.VALINE),
-                CodonData.getAminoAcid(AminoAcidNames.PHENYLALANINE),
-                CodonData.getAminoAcid(AminoAcidNames.METHIONINE),
-                CodonData.getAminoAcid(AminoAcidNames.CYSTEINE),
-                CodonData.getAminoAcid(AminoAcidNames.ALANINE),
-                CodonData.getAminoAcid(AminoAcidNames.GLYCINE),
-                CodonData.getAminoAcid(AminoAcidNames.PROLINE),
-                CodonData.getAminoAcid(AminoAcidNames.THREONINE),
-                CodonData.getAminoAcid(AminoAcidNames.SERINE),
-                CodonData.getAminoAcid(AminoAcidNames.TYROSINE),
-                CodonData.getAminoAcid(AminoAcidNames.TRYPTOPHAN),
-                CodonData.getAminoAcid(AminoAcidNames.GLUTAMINE),
-                CodonData.getAminoAcid(AminoAcidNames.ASPARAGINE),
-                CodonData.getAminoAcid(AminoAcidNames.HISTIDINE),
-                CodonData.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID),
-                CodonData.getAminoAcid(AminoAcidNames.ASPARTIC_ACID),
-                CodonData.getAminoAcid(AminoAcidNames.LYSINE),
-                CodonData.getAminoAcid(AminoAcidNames.ARGININE),
-                CodonData.getAminoAcid(AminoAcidNames.STOP));
+        return gfp.getProtein(dna, userAminoAcid, CodonData.getAminoAcid(AminoAcidNames.ISOLEUCINE),
+                CodonData.getAminoAcid(AminoAcidNames.LEUCINE), CodonData.getAminoAcid(AminoAcidNames.VALINE),
+                CodonData.getAminoAcid(AminoAcidNames.PHENYLALANINE), CodonData.getAminoAcid(AminoAcidNames.METHIONINE),
+                CodonData.getAminoAcid(AminoAcidNames.CYSTEINE), CodonData.getAminoAcid(AminoAcidNames.ALANINE),
+                CodonData.getAminoAcid(AminoAcidNames.GLYCINE), CodonData.getAminoAcid(AminoAcidNames.PROLINE),
+                CodonData.getAminoAcid(AminoAcidNames.THREONINE), CodonData.getAminoAcid(AminoAcidNames.SERINE),
+                CodonData.getAminoAcid(AminoAcidNames.TYROSINE), CodonData.getAminoAcid(AminoAcidNames.TRYPTOPHAN),
+                CodonData.getAminoAcid(AminoAcidNames.GLUTAMINE), CodonData.getAminoAcid(AminoAcidNames.ASPARAGINE),
+                CodonData.getAminoAcid(AminoAcidNames.HISTIDINE), CodonData.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID),
+                CodonData.getAminoAcid(AminoAcidNames.ASPARTIC_ACID), CodonData.getAminoAcid(AminoAcidNames.LYSINE),
+                CodonData.getAminoAcid(AminoAcidNames.ARGININE), CodonData.getAminoAcid(AminoAcidNames.STOP));
     }
 
     /**
@@ -105,20 +92,18 @@ public class CoreExecutor {
 
         // Notifies user if DNA is invalid
         if (!isValidDNA(dna)) {
-            throw new IllegalArgumentException("Invalid characters are present in DNA sequence.");
+            throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
         }
 
-        String userAminoAcid = getAminoAcidInput();
+        final String userAminoAcid = getAminoAcidInput();
 
         // Prevents an error from occurring when the user enters an RNA sequence.
-        // Recently, using
-        // DNA sequences instead of RNA sequences has been a more common practice. In
-        // RNA, uracil
-        // is replaced with thymine.
+        // Recently, using DNA sequences instead of RNA sequences has been a more common
+        // practice. In RNA, uracil is replaced with thymine (U -> T).
         dna = dna.replace("u", "t");
 
         // Create a list of proteins found in the DNA
-        ArrayList<String> geneList = createProteinList(dna, userAminoAcid);
+        final ArrayList<String> geneList = createProteinList(dna, userAminoAcid);
 
         // Output the proteins, GC content, and quantities of each nucleotide found in
         // the DNA
@@ -143,8 +128,7 @@ public class CoreExecutor {
         aap.printCodonCounts();
 
         // Notifies the user if the DNA sequence is random.
-        final boolean randomDNA = p.isRandomDNA(dna);
-        if (randomDNA) {
+        if (p.isRandomDNA(dna)) {
             System.out.println("\nWARNING: DNA sequence has been detected to be random.\n");
         }
     }
