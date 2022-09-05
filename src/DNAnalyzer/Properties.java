@@ -3,6 +3,12 @@ package DNAnalyzer;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/** 
+ * Prints the lit of proteins and their respective properties found in the DNA.
+ * @author @Verisimilitude11 (Piyush Acharya)
+ * @version 1.2.1
+*/
+
 public class Properties {
     public void printGeneList(final ArrayList<String> geneList, final String aminoAcid)
             throws InterruptedException, IOException {

@@ -2,7 +2,13 @@ package DNAnalyzer;
 
 import java.util.ArrayList;
 
-// Prints properties of the proteins in the DNA.
+/**
+ * Prints properties of the proteins in the DNA.
+ * 
+ * @author @Verisimilitude11 (Piyush Acharya)
+ * @version 1.2.1
+ */
+
 public class ProteinAnalysis {
 
     public void printHighCoverageRegions(final ArrayList<String> geneList) {

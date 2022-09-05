@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Declares the codon data for the 20 amino acids and 3 stop codons and provides
+ * access points.
+ * 
+ * @author @Verisimilitude11 (Piyush Acharya)
+ * @version 1.2.1
+ */
+
 public class CodonData {
 
     // Declares the start codon data for the 20 amino acids.

@@ -6,8 +6,14 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the
-// user.
+/**
+ * Creates a new instance of the getAminoAcid class after getting the DNA and
+ * amino acid from the user.
+ * 
+ * @author @Verisimilitude11 (Piyush Acharya)
+ * @version 1.2.1
+ */
+
 public class CoreExecutor {
 
     // Reads the inputted file to a string

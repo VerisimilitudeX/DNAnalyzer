@@ -2,7 +2,13 @@ package DNAnalyzer;
 
 import java.io.IOException;
 
-// Main Class
+/**
+ * Main Class for the DNAnalyzer program (run this).
+ * 
+ * @author @Verisimilitude11 (Piyush Acharya)
+ * @version 1.2.1
+ */
+
 public class Main {
     public static void clearTerminal() throws InterruptedException, IOException {
         // Clears the console screen depending on the user's OS
