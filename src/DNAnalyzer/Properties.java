@@ -96,17 +96,7 @@ public class Properties {
 
     // Check if the DNA is random or not
     public boolean isRandomDNA(final String dna) {
-        final int[] nucleotideCount = new int[4];
-        for (final char letter : dna.toCharArray()) {
-            switch (letter) {
-                case 'a' -> nucleotideCount[0]++;
-                case 't' -> nucleotideCount[1]++;
-                case 'g' -> nucleotideCount[2]++;
-                case 'c' -> nucleotideCount[3]++;
-                default -> {
-                }
-            }
-        }
+        final int[] nucleotideCount = countNucleotides(dna);
 
         final int a = (int) (((double) nucleotideCount[0]) / dna.length() * 100);
         final int t = (int) (((double) nucleotideCount[1]) / dna.length() * 100);
