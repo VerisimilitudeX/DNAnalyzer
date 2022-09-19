@@ -1,0 +1,16 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: "Welcome to DNAnalyzer, contributor! Please make sure to read the contributing documentation, which can be found in the `docs` folder in this repository. Please remember that the code for this project is not public, and should be treated as confidential. (c) 2022 Piyush Acharya. All Rights Reserved"
+        pr-message: "Congratulations on opening your first pull request! Our PR Reviewer Team should review your request within the next 24-48 hours. Thank you for your patience and contributions to this project. Again, please remember that the code for this project is not public, and should be treated as confidential. (c) 2022 Piyush Acharya. All Rights Reserved"
