@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, DNAnalyzer and/or its affiliates. All rights reserved.
+ * Copyright © 2022 DNAnalyzer. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
