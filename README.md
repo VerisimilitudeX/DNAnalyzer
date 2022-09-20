@@ -179,6 +179,6 @@
 </p>
 
 <p>
-  <strong>Copyright Pending © Piyush Acharya 2022. All rights reserved.
+  <strong>Copyright Pending © 2022 DNAnalyzer. All rights reserved. This is not an open source project.
   </strong>
 </p>
