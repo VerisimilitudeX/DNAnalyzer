@@ -53,9 +53,8 @@ public class ProteinAnalysis {
 
   /**
    * Prints the longest protein in the DNA sequence along with its length. Longer
-   * genes are most
-   * susceptible to disease implications and are especially linked to
-   * neurodevelopmental disorders
+   * genes are most susceptible to disease implications and are especially linked
+   * to neurodevelopmental disorders
    * (e.g., autism).
    *
    * @see
