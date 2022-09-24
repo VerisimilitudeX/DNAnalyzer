@@ -81,9 +81,9 @@ public class Properties {
      * @param dna The DNA sequence to be analyzed
      * @return The GC content of the DNA sequence
      */
-    public double getGCContent(String dna) {
+    public float getGCContent(String dna) {
         dna = dna.toLowerCase();
-        double gcLen = 0;
+        float gcLen = 0;
         for (final char letter : dna.toCharArray()) {
             if ((letter == 'c') || (letter == 'g')) {
                 gcLen++;
@@ -101,7 +101,7 @@ public class Properties {
      * @param nucleotide The nucleotide that was searched for
      */
     private void formatNucleotideCount(final String dna, final int count, final String nucleotide) {
-        System.out.println(nucleotide + ": " + count + " (" + (double) count / dna.length() * 100 + "%)");
+        System.out.println(nucleotide + ": " + count + " (" + (float) count / dna.length() * 100 + "%)");
     }
 
     /**
@@ -153,10 +153,10 @@ public class Properties {
     public boolean isRandomDNA(final String dna) {
         final int[] nucleotideCount = countNucleotides(dna);
 
-        final int a = (int) (((double) nucleotideCount[0]) / dna.length() * 100);
-        final int t = (int) (((double) nucleotideCount[1]) / dna.length() * 100);
-        final int g = (int) (((double) nucleotideCount[2]) / dna.length() * 100);
-        final int c = (int) (((double) nucleotideCount[3]) / dna.length() * 100);
+        final int a = (int) (((float) nucleotideCount[0]) / dna.length() * 100);
+        final int t = (int) (((float) nucleotideCount[1]) / dna.length() * 100);
+        final int g = (int) (((float) nucleotideCount[2]) / dna.length() * 100);
+        final int c = (int) (((float) nucleotideCount[3]) / dna.length() * 100);
 
         // If the percentage of each nucleotide is between 2% of one another, then it is
         // random

@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the
+ * Creates a new instance of the getAminoAcid class after getting the DNA and
+ * amino acid from the
  * user.
  *
  * @author Piyush Acharya (@Verisimilitude11)
@@ -70,7 +71,7 @@ public class CoreExecutor {
   /**
    * Returns the list of proteins in the DNA
    *
-   * @param dna The DNA to be searched
+   * @param dna           The DNA to be searched
    * @param userAminoAcid The amino acid to be searched for
    * @category Protein
    * @returns The ArrayList of proteins
@@ -133,7 +134,7 @@ public class CoreExecutor {
     // the DNA
     final Properties p = new Properties();
     p.printProteinList(geneList, userAminoAcid);
-    final double gcContent = p.getGCContent(dna);
+    final float gcContent = p.getGCContent(dna);
     System.out.println("\nGC-content (genome): " + gcContent + "\n");
     p.printNucleotideCount(dna);
 
@@ -146,8 +147,8 @@ public class CoreExecutor {
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
     final int READING_FRAME = 1;
-    final int MIN_COUNT = 5;
-    final int MAX_COUNT = 10;
+    final int MIN_COUNT = 520860;
+    final int MAX_COUNT = 520880;
     final ReadingFrames aap = new ReadingFrames(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
     aap.printCodonCounts();
 
