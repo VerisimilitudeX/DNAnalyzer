@@ -33,10 +33,10 @@ public class ReadingFrames {
   /**
    * Constructor for the ReadingFrames class.
    *
-   * @param dna DNA sequence
+   * @param dna          DNA sequence
    * @param readingFrame The reading frame to look at
-   * @param min Minimum codon count
-   * @param max Maximum codon count
+   * @param min          Minimum codon count
+   * @param max          Maximum codon count
    * @category Codon
    */
   public ReadingFrames(final String dna, final int readingFrame, final int min, final int max) {
@@ -70,12 +70,13 @@ public class ReadingFrames {
   }
 
   /**
-   * Method to filter through the codon counts found in the specified reading frame based on the min
+   * Method to filter through the codon counts found in the specified reading
+   * frame based on the min
    * and max values
    *
    * @category Codon
    */
-  public void printCodonCounts() {
+  public void printCodonCounts() throws StringIndexOutOfBoundsException {
     buildCodonMap(dna);
     System.out.println(
         "Codons in reading frame " + readingFrame + " (" + min + "-" + max + " occurrences)" + ":");
