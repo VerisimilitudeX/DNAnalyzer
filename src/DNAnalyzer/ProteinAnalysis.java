@@ -22,10 +22,8 @@ import java.util.ArrayList;
 public class ProteinAnalysis {
 
   /**
-   * Prints high coverage regions. High coverage regions are regions of a DNA
-   * sequence that code for
-   * a protein and have a relatively high proportion of guanine and cytosine
-   * nucleotides to the 4
+   * Prints high coverage regions. High coverage regions are regions of a DNA sequence that code for
+   * a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4
    * nucleotide bases (45-60% GC-content).
    *
    * @param geneList
@@ -52,13 +50,12 @@ public class ProteinAnalysis {
   }
 
   /**
-   * Prints the longest protein in the DNA sequence along with its length. Longer
-   * genes are most susceptible to disease implications and are especially linked
-   * to neurodevelopmental disorders
+   * Prints the longest protein in the DNA sequence along with its length. Longer genes are most
+   * susceptible to disease implications and are especially linked to neurodevelopmental disorders
    * (e.g., autism).
    *
    * @see
-   *      https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
+   *     https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
    * @category Properties
    * @param proteinList The list of proteins in the DNA sequence
    */
