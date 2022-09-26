@@ -31,7 +31,7 @@ public class ProteinAnalysis {
    * @param geneList
    */
   public void printHighCoverageRegions(final ArrayList<String> geneList) {
-    int count = 1;
+    short count = 1;
 
     // print the list of genes with the highest GC content
     System.out.println("\nHigh coverage regions: ");

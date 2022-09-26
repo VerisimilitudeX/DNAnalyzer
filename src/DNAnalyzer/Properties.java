@@ -66,7 +66,7 @@ public class Properties {
 
         System.out.println("Proteins coded for " + aminoAcidFullName + ": ");
         System.out.println("----------------------------------------------------");
-        int count = 1;
+        short count = 1;
         for (final String gene : proteinList) {
             System.out.println(count + ". " + gene);
             count++;

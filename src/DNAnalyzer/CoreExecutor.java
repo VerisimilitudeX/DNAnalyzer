@@ -146,7 +146,7 @@ public class CoreExecutor {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    final int READING_FRAME = 1;
+    final short READING_FRAME = 1;
     final int MIN_COUNT = 520860;
     final int MAX_COUNT = 520880;
     final ReadingFrames aap = new ReadingFrames(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);

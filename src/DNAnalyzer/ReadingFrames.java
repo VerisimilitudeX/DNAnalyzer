@@ -26,7 +26,7 @@ public class ReadingFrames {
   private final String dna;
 
   // Variables for reading frame properties
-  private final int readingFrame;
+  private final short readingFrame;
   private final int min;
   private final int max;
 
@@ -39,7 +39,7 @@ public class ReadingFrames {
    * @param max Maximum codon count
    * @category Codon
    */
-  public ReadingFrames(final String dna, final int readingFrame, final int min, final int max) {
+  public ReadingFrames(final String dna, final short readingFrame, final int min, final int max) {
     codonCounts = new HashMap<>();
     this.readingFrame = readingFrame;
     this.min = min;
