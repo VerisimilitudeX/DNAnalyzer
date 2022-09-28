@@ -177,6 +177,7 @@
   <!---<li>Aryan Agrawal</li>--->
   <!---<li>Aishwarya Agrawal</li>--->
   <!---<li>Abhidi Brahnmath</li>--->
+</ol>
 
 <h2 id="terms-of-use">Terms of Use
 </h2>
