@@ -175,7 +175,7 @@
   <li>Piyush Acharya (@Verisimilitude11)</li>
   <li>Nishant Vikramaditya (@Nv7-GitHub)</li>
   <!---<li>Aryan Agrawal</li>--->
-  <li>Aishwarya Agrawal</li>--->
+  <!---<li>Aishwarya Agrawal</li>--->
   <!---<li>Abhidi Brahnmath</li>--->
 
 <h2 id="terms-of-use">Terms of Use
