@@ -12,6 +12,7 @@
 package DNAnalyzer;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Main Class for the DNAnalyzer program.
@@ -50,6 +51,9 @@ public class Main {
     clearTerminal();
 
     final CoreExecutor gs = new CoreExecutor();
-    gs.defaultCaller();
+
+    try (Scanner sc = new Scanner(System.in)) {
+      gs.defaultCaller(sc);
+    }
   }
 }

@@ -28,6 +28,18 @@ import java.util.Scanner;
 public class CoreExecutor {
 
   /**
+   * Gets the path to the file to be analyzed
+   *
+   * @param sc The input scanner
+   * @returns The path to file
+   * @category Input
+   */
+  private String getFilePathInput(final Scanner sc) {
+    System.out.print("Enter the path to the file to be analyzed: ");
+    return sc.nextLine();
+  }
+
+  /**
    * Reads the inputted file to a string
    *
    * @param fileName The name of the file to be read
@@ -54,18 +66,13 @@ public class CoreExecutor {
   /**
    * Gets the amino acid from the user
    *
+   * @param sc The input scanner
    * @returns The amino acid
    * @category Input
    */
-  private String getAminoAcidInput() {
-    Scanner sc = null;
-    try {
-      sc = new Scanner(System.in);
-      System.out.print("Enter an amino acid: ");
-      return sc.nextLine().toLowerCase();
-    } finally {
-      sc.close();
-    }
+  private String getAminoAcidInput(final Scanner sc) {
+    System.out.print("Enter an amino acid: ");
+    return sc.nextLine().toLowerCase();
   }
 
   /**
@@ -108,19 +115,28 @@ public class CoreExecutor {
    * Calls the other methods to output the results
    *
    * @category Output
+   * @param sc The input scanner
    * @throws IOException
    * @throws InterruptedException
    */
-  public void defaultCaller() throws IOException, InterruptedException {
-    // Change the file to be analyzed here
-    String dna = readFile("assets/dna/random/dnalong.fa");
+  public void defaultCaller(final Scanner sc) throws IOException, InterruptedException {
+    String dna = null;
+
+    while (true) {
+      try {
+        dna = readFile(getFilePathInput(sc));
+        break;
+      } catch (final IOException e) {
+        System.out.println("File not found. Please try again.");
+      }
+    }
 
     // Notifies user if DNA is invalid
     if (!isValidDNA(dna)) {
       throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
     }
 
-    final String userAminoAcid = getAminoAcidInput();
+    final String userAminoAcid = getAminoAcidInput(sc);
 
     // Prevents an error from occurring when the user enters an RNA sequence.
     // Recently, using DNA sequences instead of RNA sequences has been a more common
