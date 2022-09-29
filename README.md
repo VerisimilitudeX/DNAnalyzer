@@ -188,6 +188,6 @@
 </p>
 
 <p>
-  <strong>Copyright Pending © 2022 DNAnalyzer. All rights reserved. This is not an open source project.
+  <strong>Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
   </strong>
 </p>
