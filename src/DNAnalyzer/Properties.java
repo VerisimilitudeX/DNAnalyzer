@@ -13,6 +13,7 @@ package DNAnalyzer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
@@ -153,14 +154,16 @@ public class Properties {
     public boolean isRandomDNA(final String dna) {
         final int[] nucleotideCount = countNucleotides(dna);
 
-        final int a = (int) (((float) nucleotideCount[0]) / dna.length() * 100);
-        final int t = (int) (((float) nucleotideCount[1]) / dna.length() * 100);
-        final int g = (int) (((float) nucleotideCount[2]) / dna.length() * 100);
-        final int c = (int) (((float) nucleotideCount[3]) / dna.length() * 100);
+        //sort array to get min and max value
+        Arrays.sort(nucleotideCount);
+
+        final int maxPercent = (int) ((float) nucleotideCount[3]) / dna.length() * 100;
+        final int minPercent = (int) ((float) nucleotideCount[0]) / dna.length() * 100;
 
         // If the percentage of each nucleotide is between 2% of one another, then it is
         // random
-        return (Math.abs(a - t) <= 2) && (Math.abs(a - g) <= 2) && (Math.abs(a - c) <= 2) && (Math.abs(t - g) <= 2)
-                && (Math.abs(t - c) <= 2) && (Math.abs(g - c) <= 2);
+        // As 4 percentages need to add up to 100%, this is equivalent to all percentages being
+        // between 24% and 26%
+        return minPercent >= 24 && maxPercent <= 26;
     }
 }
