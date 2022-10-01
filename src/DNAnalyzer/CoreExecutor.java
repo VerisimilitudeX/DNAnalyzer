@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the
+ * Creates a new instance of the getAminoAcid class after getting the DNA and
+ * amino acid from the
  * user.
  *
  * @author Piyush Acharya (@Verisimilitude11)
@@ -77,7 +78,7 @@ public class CoreExecutor {
   /**
    * Returns the list of proteins in the DNA
    *
-   * @param dna The DNA to be searched
+   * @param dna           The DNA to be searched
    * @param userAminoAcid The amino acid to be searched for
    * @category Protein
    * @returns The ArrayList of proteins
