@@ -55,7 +55,9 @@ public class ReadingFrames {
    * @return The HashMap of codon counts in the specified reading frame
    */
   private void buildCodonMap(final String dna) {
+    // reset the hashmap
     codonCounts.clear();
+    // loop over DNA in steps of 3 and store the codon and its corresponding count
     for (int i = (int) readingFrame; i < dna.length(); i += 3) {
       try {
         if (codonCounts.containsKey(dna.substring(i, i + 3))) {
@@ -74,9 +76,13 @@ public class ReadingFrames {
    * and max values
    *
    * @category Codon
+   * @throws StringIndexOutOfBoundsException
    */
   public void printCodonCounts() throws StringIndexOutOfBoundsException {
+    // Get codon counts for the dna in the specified reading frame
     buildCodonMap(dna);
+
+    // pretty print all the codon counts
     System.out.println(
         "Codons in reading frame " + readingFrame + " (" + min + "-" + max + " occurrences)" + ":");
     System.out.println("----------------------------------------------------");
