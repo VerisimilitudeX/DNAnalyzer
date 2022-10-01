@@ -33,7 +33,7 @@ public class Main {
   public static void clearTerminal() throws InterruptedException, IOException {
     if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows
       new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-    } else { 
+    } else {
       System.out.print("\u001b[H\u001b[2J"); // unicode string to clear everything logged above this
       System.out.flush();
     }
