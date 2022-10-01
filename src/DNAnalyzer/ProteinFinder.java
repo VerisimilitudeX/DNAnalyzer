@@ -23,6 +23,34 @@ public class ProteinFinder {
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> proteinList = new ArrayList<>();
 
+    /**
+     * A method to return the list of proteins in the DNA
+     * 
+     * @param dna The DNA to be searched
+     * @param aminoAcid The amino acid to be searched for
+     * @param isoleucine List of Isoleucine
+     * @param leucine List of Leucine
+     * @param valine List of Valine
+     * @param phenylalanine List of Phenylalanine
+     * @param methionine List of Methionine
+     * @param cysteine List of Cysteine
+     * @param alanine List of Alanine
+     * @param glycine List of Glycine
+     * @param proline List of Proline
+     * @param threonine List of Threonine
+     * @param serine List of Serine
+     * @param tyrosine List of Tyrosine
+     * @param tryptophan List of Tryptophan
+     * @param glutamine List of Glutamine
+     * @param asparagine List of Asparagine
+     * @param histidine List of Histidine
+     * @param glutamicAcid List of GlutamicAcid
+     * @param asparticAcid List of AsparticAcid
+     * @param lysine List of Lysine
+     * @param arginine List of Arginine
+     * @param stop List of stop
+     * @return
+     */
     public ArrayList<String> getProtein(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
             final ArrayList<String> leucine,
             final ArrayList<String> valine, final ArrayList<String> phenylalanine, final ArrayList<String> methionine,
@@ -34,7 +62,8 @@ public class ProteinFinder {
             final ArrayList<String> asparticAcid,
             final ArrayList<String> lysine, final ArrayList<String> arginine, final ArrayList<String> stop) {
 
-        // Maps the amino acid that the user entered to the start codon list.
+        // Maps the amino acid's 1 letter or 3 letter abbreviation of the amino acids
+        // into the full name
         switch (aminoAcid) {
             case "isoleucine", "i", "ile" -> this.aminoAcidList.addAll(isoleucine);
             case "leucine", "l", "leu" -> this.aminoAcidList.addAll(leucine);
@@ -63,7 +92,14 @@ public class ProteinFinder {
 
         int start_index;
         int stop_index;
-        // Loops through the start codons for the amino acid that the user entered.
+
+        // Outer loop loops through the start codons for the amino acids that the user
+        // entered.
+        // store the start index
+        // Inner loop loops through the stop that the user entered.
+        // store the stop_index
+        // if index is not -1 then store the substring of dna with start and stop index
+        // in the protein list
         for (final String start_codon : this.aminoAcidList) {
             start_index = dna.indexOf(start_codon.toLowerCase());
             for (final String stop_codon : stop) {
@@ -75,6 +111,7 @@ public class ProteinFinder {
             }
         }
 
+        // if no proteins are found, return null
         if (this.proteinList.isEmpty()) {
             System.out.println("No proteins found");
             return null;
