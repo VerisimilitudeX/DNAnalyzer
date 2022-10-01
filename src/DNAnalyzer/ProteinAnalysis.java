@@ -30,21 +30,19 @@ public class ProteinAnalysis {
    *
    * @param geneList
    */
-  public void printHighCoverageRegions(final ArrayList<String> geneList) {
+  public static void printHighCoverageRegions(final ArrayList<String> geneList) {
     short count = 1;
 
     // print the list of genes with the highest GC content
     System.out.println("\nHigh coverage regions: ");
     System.out.println("----------------------------------------------------");
 
-    final Properties p = new Properties();
-
     for (final String gene : geneList) {
 
       // High GC content range
       final float MIN_GC_CONTENT = 0.40f;
       final float MAX_GC_CONTENT = 0.60f;
-      if ((p.getGCContent(gene) > MIN_GC_CONTENT) && (p.getGCContent(gene) < MAX_GC_CONTENT)) {
+      if ((Properties.getGCContent(gene) > MIN_GC_CONTENT) && (Properties.getGCContent(gene) < MAX_GC_CONTENT)) {
         System.out.println(count + ". " + gene);
         count++;
       }
@@ -62,7 +60,7 @@ public class ProteinAnalysis {
    * @category Properties
    * @param proteinList The list of proteins in the DNA sequence
    */
-  public void printLongestProtein(final ArrayList<String> proteinList) {
+  public static void printLongestProtein(final ArrayList<String> proteinList) {
     String longestGene = "";
     for (final String gene : proteinList) {
       if (gene.length() > longestGene.length()) {
