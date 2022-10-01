@@ -84,30 +84,7 @@ public class CoreExecutor {
    */
   private ArrayList<String> createProteinList(final String dna, final String userAminoAcid) {
     final ProteinFinder gfp = new ProteinFinder();
-    return gfp.getProtein(
-        dna,
-        userAminoAcid,
-        CodonData.getAminoAcid(AminoAcidNames.ISOLEUCINE),
-        CodonData.getAminoAcid(AminoAcidNames.LEUCINE),
-        CodonData.getAminoAcid(AminoAcidNames.VALINE),
-        CodonData.getAminoAcid(AminoAcidNames.PHENYLALANINE),
-        CodonData.getAminoAcid(AminoAcidNames.METHIONINE),
-        CodonData.getAminoAcid(AminoAcidNames.CYSTEINE),
-        CodonData.getAminoAcid(AminoAcidNames.ALANINE),
-        CodonData.getAminoAcid(AminoAcidNames.GLYCINE),
-        CodonData.getAminoAcid(AminoAcidNames.PROLINE),
-        CodonData.getAminoAcid(AminoAcidNames.THREONINE),
-        CodonData.getAminoAcid(AminoAcidNames.SERINE),
-        CodonData.getAminoAcid(AminoAcidNames.TYROSINE),
-        CodonData.getAminoAcid(AminoAcidNames.TRYPTOPHAN),
-        CodonData.getAminoAcid(AminoAcidNames.GLUTAMINE),
-        CodonData.getAminoAcid(AminoAcidNames.ASPARAGINE),
-        CodonData.getAminoAcid(AminoAcidNames.HISTIDINE),
-        CodonData.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID),
-        CodonData.getAminoAcid(AminoAcidNames.ASPARTIC_ACID),
-        CodonData.getAminoAcid(AminoAcidNames.LYSINE),
-        CodonData.getAminoAcid(AminoAcidNames.ARGININE),
-        CodonData.getAminoAcid(AminoAcidNames.STOP));
+    return gfp.getProtein(dna, userAminoAcid);
   }
 
   /**
