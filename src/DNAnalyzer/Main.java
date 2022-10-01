@@ -50,10 +50,8 @@ public class Main {
   public static void main(final String[] args) throws IOException, InterruptedException {
     clearTerminal();
 
-    final CoreExecutor gs = new CoreExecutor();
-
     try (Scanner sc = new Scanner(System.in)) {
-      gs.defaultCaller(sc);
+      CoreExecutor.defaultCaller(sc);
     }
   }
 }
