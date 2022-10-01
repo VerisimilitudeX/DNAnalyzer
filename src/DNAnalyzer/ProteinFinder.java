@@ -24,7 +24,8 @@ public class ProteinFinder {
     private final ArrayList<String> proteinList = new ArrayList<>();
 
     /**
-     * A method to return the list of proteins in the DNA
+     * This method inculdes the main algorithm to return the proteins present in 
+     * a DNA sequence.
      * 
      * @param dna The DNA to be searched
      * @param aminoAcid The amino acid to be searched for
@@ -49,7 +50,7 @@ public class ProteinFinder {
      * @param lysine List of Lysine
      * @param arginine List of Arginine
      * @param stop List of stop
-     * @return
+     * @return List of proteins found in the DNA sequence. null otherwise
      */
     public ArrayList<String> getProtein(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
             final ArrayList<String> leucine,
