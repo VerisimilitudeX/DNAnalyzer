@@ -20,7 +20,9 @@ import java.util.List;
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
-public class ProteinFinder {
+
+public class ProteinFinder {     
+  
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> proteinList = new ArrayList<>();
 
@@ -33,8 +35,8 @@ public class ProteinFinder {
      * @return List of proteins found in the DNA sequence. null if no proteins found.
      */
     public ArrayList<String> getProtein(final String dna, final String aminoAcid) {
-
-        // Maps the amino acid that the user entered to the start codon list.
+        // Maps the amino acid's 1 letter or 3 letter abbreviation of the amino acids
+        // into the full name
         switch (aminoAcid) {
             case "isoleucine", "i", "ile" -> this.aminoAcidList.addAll(CodonData.getAminoAcid(AminoAcidNames.ISOLEUCINE));
             case "leucine", "l", "leu" -> this.aminoAcidList.addAll(CodonData.getAminoAcid(AminoAcidNames.LEUCINE));
@@ -64,7 +66,14 @@ public class ProteinFinder {
         int start_index;
         int stop_index;
         List<String> stop = CodonData.getAminoAcid(AminoAcidNames.STOP);
-        // Loops through the start codons for the amino acid that the user entered.
+        
+        // Outer loop loops through the start codons for the amino acids that the user
+        // entered.
+        // store the start index
+        // Inner loop loops through the stop that the user entered.
+        // store the stop_index
+        // if index is not -1 then store the substring of dna with start and stop index
+        // in the protein list
         for (final String start_codon : this.aminoAcidList) {
             start_index = dna.indexOf(start_codon.toLowerCase());
             for (final String stop_codon : stop) {
@@ -76,11 +85,14 @@ public class ProteinFinder {
             }
         }
 
+        // if no proteins are found, return null
         if (this.proteinList.isEmpty()) {
+            // Return null if no protein found in DNA sequence
             System.out.println("No proteins found");
             return null;
         }
 
+        // Return list of proteins found in the DNA sequence 
         return this.proteinList;
     }
 }
