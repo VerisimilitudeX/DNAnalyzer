@@ -33,7 +33,7 @@ public class Properties {
      * @throws InterruptedException
      * @throws IOException
      */
-    public void printProteinList(final ArrayList<String> proteinList, final String aminoAcid)
+    public static void printProteinList(final ArrayList<String> proteinList, final String aminoAcid)
             throws InterruptedException, IOException {
 
         // Clears the console
@@ -82,7 +82,7 @@ public class Properties {
      * @param dna The DNA sequence to be analyzed
      * @return The GC content of the DNA sequence
      */
-    public float getGCContent(String dna) {
+    public static float getGCContent(String dna) {
         dna = dna.toLowerCase();
         float gcLen = 0;
         //increment gcLen for each 'g' or 'c' encountered in a dna 
@@ -102,7 +102,7 @@ public class Properties {
      * @param count      The count of the nucleotide in the DNA sequence
      * @param nucleotide The nucleotide that was searched for
      */
-    private void formatNucleotideCount(final String dna, final int count, final String nucleotide) {
+    private static void formatNucleotideCount(final String dna, final int count, final String nucleotide) {
         System.out.println(nucleotide + ": " + count + " (" + (float) count / dna.length() * 100 + "%)");
     }
 
@@ -113,7 +113,7 @@ public class Properties {
      * @param dna
      * @return The list of the number of nucleotides in the DNA sequence.
      */
-    private int[] countNucleotides(final String dna) {
+    private static int[] countNucleotides(final String dna) {
         final int[] nucleotideCount = new int[4];
         for (final char letter : dna.toCharArray()) {
             switch (letter) {
@@ -135,7 +135,7 @@ public class Properties {
      * @category Output
      * @param dna The DNA sequence that was analyzed
      */
-    public void printNucleotideCount(final String dna) {
+    public static void printNucleotideCount(final String dna) {
         final int[] nucleotideCount = countNucleotides(dna);
 
         System.out.println("Nucleotide count:");
@@ -152,7 +152,7 @@ public class Properties {
      * @param dna The DNA sequence that was analyzed
      * @return Whether the DNA sequence is random or not
      */
-    public boolean isRandomDNA(final String dna) {
+    public static boolean isRandomDNA(final String dna) {
         final int[] nucleotideCount = countNucleotides(dna);
 
         //sort array to get min and max value

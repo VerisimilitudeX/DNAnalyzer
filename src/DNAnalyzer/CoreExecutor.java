@@ -33,7 +33,7 @@ public class CoreExecutor {
    * @returns The path to file
    * @category Input
    */
-  private String getFilePathInput(final Scanner sc) {
+  private static String getFilePathInput(final Scanner sc) {
     System.out.print("Enter the path to the file to be analyzed: ");
     return sc.nextLine();
   }
@@ -46,7 +46,7 @@ public class CoreExecutor {
    * @returns The contents of the file as a string
    * @throws IOException
    */
-  private String readFile(final String fileName) throws IOException {
+  private static String readFile(final String fileName) throws IOException {
     // Load DNA file and concatenate lines
     return Files.readString(Path.of(fileName)).replace("\n", "").toLowerCase();
   }
@@ -58,7 +58,7 @@ public class CoreExecutor {
    * @category DNA
    * @returns True if DNA is valid, false otherwise
    */
-  private boolean isValidDNA(final String dna) {
+  private static boolean isValidDNA(final String dna) {
     return dna.matches("[atgc]+");
   }
 
@@ -69,7 +69,7 @@ public class CoreExecutor {
    * @returns The amino acid
    * @category Input
    */
-  private String getAminoAcidInput(final Scanner sc) {
+  private static String getAminoAcidInput(final Scanner sc) {
     System.out.print("Enter an amino acid: ");
     return sc.nextLine().toLowerCase();
   }
@@ -82,32 +82,9 @@ public class CoreExecutor {
    * @category Protein
    * @returns The ArrayList of proteins
    */
-  private ArrayList<String> createProteinList(final String dna, final String userAminoAcid) {
+  private static ArrayList<String> createProteinList(final String dna, final String userAminoAcid) {
     final ProteinFinder gfp = new ProteinFinder();
-    return gfp.getProtein(
-        dna,
-        userAminoAcid,
-        CodonData.getAminoAcid(AminoAcidNames.ISOLEUCINE),
-        CodonData.getAminoAcid(AminoAcidNames.LEUCINE),
-        CodonData.getAminoAcid(AminoAcidNames.VALINE),
-        CodonData.getAminoAcid(AminoAcidNames.PHENYLALANINE),
-        CodonData.getAminoAcid(AminoAcidNames.METHIONINE),
-        CodonData.getAminoAcid(AminoAcidNames.CYSTEINE),
-        CodonData.getAminoAcid(AminoAcidNames.ALANINE),
-        CodonData.getAminoAcid(AminoAcidNames.GLYCINE),
-        CodonData.getAminoAcid(AminoAcidNames.PROLINE),
-        CodonData.getAminoAcid(AminoAcidNames.THREONINE),
-        CodonData.getAminoAcid(AminoAcidNames.SERINE),
-        CodonData.getAminoAcid(AminoAcidNames.TYROSINE),
-        CodonData.getAminoAcid(AminoAcidNames.TRYPTOPHAN),
-        CodonData.getAminoAcid(AminoAcidNames.GLUTAMINE),
-        CodonData.getAminoAcid(AminoAcidNames.ASPARAGINE),
-        CodonData.getAminoAcid(AminoAcidNames.HISTIDINE),
-        CodonData.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID),
-        CodonData.getAminoAcid(AminoAcidNames.ASPARTIC_ACID),
-        CodonData.getAminoAcid(AminoAcidNames.LYSINE),
-        CodonData.getAminoAcid(AminoAcidNames.ARGININE),
-        CodonData.getAminoAcid(AminoAcidNames.STOP));
+    return gfp.getProtein(dna, userAminoAcid);
   }
 
   /**
@@ -118,7 +95,7 @@ public class CoreExecutor {
    * @throws IOException
    * @throws InterruptedException
    */
-  public void defaultCaller(final Scanner sc) throws IOException, InterruptedException {
+  public static void defaultCaller(final Scanner sc) throws IOException, InterruptedException {
     String dna = null;
 
     while (true) {
@@ -147,16 +124,14 @@ public class CoreExecutor {
 
     // Output the proteins, GC content, and quantities of each nucleotide found in
     // the DNA
-    final Properties p = new Properties();
-    p.printProteinList(geneList, userAminoAcid);
-    final float gcContent = p.getGCContent(dna);
+    Properties.printProteinList(geneList, userAminoAcid);
+    final float gcContent = Properties.getGCContent(dna);
     System.out.println("\nGC-content (genome): " + gcContent + "\n");
-    p.printNucleotideCount(dna);
+    Properties.printNucleotideCount(dna);
 
     // Output high coverage regions and the longest protein
-    final ProteinAnalysis gi = new ProteinAnalysis();
-    gi.printHighCoverageRegions(geneList);
-    gi.printLongestProtein(geneList);
+    ProteinAnalysis.printHighCoverageRegions(geneList);
+    ProteinAnalysis.printLongestProtein(geneList);
     System.out.println();
 
     // Output the number of codons based on the reading frame the user wants to look
@@ -168,7 +143,7 @@ public class CoreExecutor {
     aap.printCodonCounts();
 
     // Notifies the user if the DNA sequence is random.
-    if (p.isRandomDNA(dna)) {
+    if (Properties.isRandomDNA(dna)) {
       System.out.println("\nWARNING: DNA sequence has been detected to be random.\n");
     }
   }
