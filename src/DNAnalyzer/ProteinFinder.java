@@ -19,39 +19,46 @@ import java.util.ArrayList;
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
-public class ProteinFinder {
+
+public class ProteinFinder {     
+  
     private final ArrayList<String> aminoAcidList = new ArrayList<>();
     private final ArrayList<String> proteinList = new ArrayList<>();
-
-    /**
-     * This method inculdes the main algorithm to return the proteins present in 
-     * a DNA sequence.
-     * 
-     * @param dna The DNA to be searched
-     * @param aminoAcid The amino acid to be searched for
-     * @param isoleucine List of Isoleucine
-     * @param leucine List of Leucine
-     * @param valine List of Valine
-     * @param phenylalanine List of Phenylalanine
-     * @param methionine List of Methionine
-     * @param cysteine List of Cysteine
-     * @param alanine List of Alanine
-     * @param glycine List of Glycine
-     * @param proline List of Proline
-     * @param threonine List of Threonine
-     * @param serine List of Serine
-     * @param tyrosine List of Tyrosine
-     * @param tryptophan List of Tryptophan
-     * @param glutamine List of Glutamine
-     * @param asparagine List of Asparagine
-     * @param histidine List of Histidine
-     * @param glutamicAcid List of GlutamicAcid
-     * @param asparticAcid List of AsparticAcid
-     * @param lysine List of Lysine
-     * @param arginine List of Arginine
-     * @param stop List of stop
-     * @return List of proteins found in the DNA sequence. null otherwise
-     */
+    
+   /**
+   * This method inculdes the main algorithm to return the proteins present in 
+   * a DNA sequence.
+   * The method first maps the amino acid that the user entered to the start 
+   * codon list. The main algorithm then finds proteins in the DNA sequence by 
+   * looping through the start codons for the amino acid that the user entered.
+   * Returns the list of proteins found in the enetred DNA sequence
+   *
+   * @param dna           String to store DNA sequence
+   * @param aminoAcid     String to store amino acid that user has passed
+   * @param isoleucine    List for isoleucine amino acid
+   * @param leucine       List for leucine amino acid
+   * @param valine        List for valine amino acid
+   * @param phenylalanine List for phenylalanine amino acid
+   * @param methionine    List for methionine amino acid
+   * @param cysteine      List for cysteine amino acid
+   * @param alanine       List for alanine amino acid
+   * @param glycine       List for glycine amino acid
+   * @param proline       List for proline amino acid
+   * @param threonine     List for threonine amino acid
+   * @param serine        List for serine amino acid
+   * @param tyrosine      List for tyrosine amino acid
+   * @param tryptophan    List for tryptophan amino acid
+   * @param glutamine     List for glutamine amino acid
+   * @param asparagine    List for asparagine amino acid
+   * @param histidine     List for histidine amino acid
+   * @param glutamicAcid  List for glutamicAcid amino acid
+   * @param asparticAcid  List for asparticAcid amino acid
+   * @param lysine        List for lysine amino acid
+   * @param arginine      List for arginine amino acid
+   * @param stop          List for stop to be used in main algorithm
+   *
+   * @return proteinList  List of proteins found in the DNA sequence. null if no proteins found.  
+   */   
     public ArrayList<String> getProtein(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
             final ArrayList<String> leucine,
             final ArrayList<String> valine, final ArrayList<String> phenylalanine, final ArrayList<String> methionine,
@@ -114,10 +121,12 @@ public class ProteinFinder {
 
         // if no proteins are found, return null
         if (this.proteinList.isEmpty()) {
+            // Return null if no protein found in DNA sequence
             System.out.println("No proteins found");
             return null;
         }
 
+        // Return list of proteins found in the DNA sequence 
         return this.proteinList;
     }
 }
