@@ -85,6 +85,7 @@ public class Properties {
     public float getGCContent(String dna) {
         dna = dna.toLowerCase();
         float gcLen = 0;
+        //increment gcLen for each 'g' or 'c' encountered in a dna 
         for (final char letter : dna.toCharArray()) {
             if ((letter == 'c') || (letter == 'g')) {
                 gcLen++;
