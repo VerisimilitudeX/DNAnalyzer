@@ -11,7 +11,7 @@
 
 package DNAnalyzer;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Prints properties of the proteins in the DNA.
@@ -28,9 +28,9 @@ public class ProteinAnalysis {
    * nucleotides to the 4
    * nucleotide bases (45-60% GC-content).
    *
-   * @param geneList
+   * @param geneList list of genes
    */
-  public static void printHighCoverageRegions(final ArrayList<String> geneList) {
+  public static void printHighCoverageRegions(List<String> geneList) {
     short count = 1;
 
     // print the list of genes with the highest GC content
@@ -56,11 +56,11 @@ public class ProteinAnalysis {
    * (e.g., autism).
    *
    * @see
-   *      https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
+   *      "https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/"
    * @category Properties
    * @param proteinList The list of proteins in the DNA sequence
    */
-  public static void printLongestProtein(final ArrayList<String> proteinList) {
+  public static void printLongestProtein(List<String> proteinList) {
     String longestGene = "";
     for (final String gene : proteinList) {
       if (gene.length() > longestGene.length()) {

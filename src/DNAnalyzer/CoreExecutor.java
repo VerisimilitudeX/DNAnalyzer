@@ -14,7 +14,7 @@ package DNAnalyzer;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -83,7 +83,8 @@ public class CoreExecutor {
    * @category Protein
    * @returns The ArrayList of proteins
    */
-  private static ArrayList<String> createProteinList(final String dna, final String userAminoAcid) {
+
+  private static List<String> createProteinList(final String dna, final String userAminoAcid) {
     final ProteinFinder gfp = new ProteinFinder();
     return gfp.getProtein(dna, userAminoAcid);
   }
@@ -121,7 +122,7 @@ public class CoreExecutor {
     dna = dna.replace("u", "t");
 
     // Create a list of proteins found in the DNA
-    final ArrayList<String> geneList = createProteinList(dna, userAminoAcid);
+    final List<String> geneList = createProteinList(dna, userAminoAcid);
 
     // Output the proteins, GC content, and quantities of each nucleotide found in
     // the DNA
