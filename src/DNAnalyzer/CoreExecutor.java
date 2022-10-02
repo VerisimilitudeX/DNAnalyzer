@@ -39,11 +39,25 @@ public class CoreExecutor {
     return sc.nextLine();
   }
 
+  /**
+   * Gets the minimum count of the reading frame
+   *
+   * @param sc The input scanner
+   * @returns the minimum count of the reading frame
+   * @category Input
+   */
   private static int getMinCountReadingFrame(final Scanner sc) {
     System.out.print("Enter Minimum Count of reading frame: ");
     return Integer.parseInt(sc.nextLine());
   }
 
+  /**
+   * Gets the maximum count of the reading frame
+   *
+   * @param sc The input scanner
+   * @returns the maximum count of the reading frame
+   * @category Input
+   */
   private static int getMaxCountReadingFrame(final Scanner sc) {
     System.out.print("Enter Maximum Count of reading frame: ");
     return Integer.parseInt(sc.nextLine());
