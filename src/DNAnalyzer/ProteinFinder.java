@@ -39,14 +39,11 @@ public class ProteinFinder {
         // Maps the amino acid's 1 letter or 3 letter abbreviation of the amino acids
         // into the full name
         switch (aminoAcid) {
-            case "isoleucine", "i", "ile" ->
-                this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ISOLEUCINE));
+            case "isoleucine", "i", "ile" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ISOLEUCINE));
             case "leucine", "l", "leu" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.LEUCINE));
             case "valine", "v", "val" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.VALINE));
-            case "phenylalanine", "f", "phe" ->
-                this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.PHENYLALANINE));
-            case "methionine", "m", "met" ->
-                this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.METHIONINE));
+            case "phenylalanine", "f", "phe" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.PHENYLALANINE));
+            case "methionine", "m", "met" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.METHIONINE));
             case "cysteine", "c", "cys" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.CYSTEINE));
             case "alanine", "a", "ala" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ALANINE));
             case "glycine", "g", "gly" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.GLYCINE));
@@ -54,21 +51,15 @@ public class ProteinFinder {
             case "threonine", "t", "thr" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.THREONINE));
             case "serine", "s", "ser" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.SERINE));
             case "tyrosine", "y", "tyr" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.TYROSINE));
-            case "tryptophan", "w", "trp" ->
-                this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.TRYPTOPHAN));
+            case "tryptophan", "w", "trp" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.TRYPTOPHAN));
             case "glutamine", "q", "gln" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.GLUTAMINE));
-            case "asparagine", "n", "asn" ->
-                this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ASPARAGINE));
+            case "asparagine", "n", "asn" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ASPARAGINE));
             case "histidine", "h", "his" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.HISTIDINE));
-            case "glutamic acid", "e", "glu" ->
-                this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID));
-            case "aspartic acid", "d", "asp" ->
-                this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ASPARTIC_ACID));
+            case "glutamic acid", "e", "glu" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.GLUTAMIC_ACID));
+            case "aspartic acid", "d", "asp" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ASPARTIC_ACID));
             case "lysine", "k", "lys" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.LYSINE));
             case "arginine", "r", "arg" -> this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidNames.ARGININE));
-            default -> throw new IllegalStateException("Invalid Amino Acid: " + aminoAcid);
         }
-
         // MAIN ALGORITHM: Finds proteins in the DNA sequence.
 
         int start_index;
