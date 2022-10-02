@@ -10,8 +10,7 @@
  */
 package DNAnalyzer;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Declares the codon data for the 20 amino acids
@@ -60,4 +59,35 @@ public class CodonDataConstants {
     // Declares the stop codon data for the 20 amino acids. Note that the stop
     // codons are the same for all amino acids.
     protected static final List<String> Stop = Arrays.asList("TAA", "TAG", "TGA");
+
+    // Block to put all AminoAcidNames and their respective codon data into an enum map for faster retrieval
+    protected static EnumMap<AminoAcidNames, List<String>> CodonDataAcidMap = new EnumMap<>(AminoAcidNames.class);
+    static {
+        //Putting in 10 acids at a time because the Map.of() method can take in 20 params at a time
+        CodonDataAcidMap.putAll(
+                Map.of(AminoAcidNames.ISOLEUCINE, Isoleucine,
+                        AminoAcidNames.LEUCINE, Leucine,
+                        AminoAcidNames.VALINE, Valine,
+                        AminoAcidNames.PHENYLALANINE, Phenylalanine,
+                        AminoAcidNames.METHIONINE, Methionine,
+                        AminoAcidNames.CYSTEINE, Cysteine,
+                        AminoAcidNames.ALANINE, Alanine,
+                        AminoAcidNames.GLYCINE, Glycine,
+                        AminoAcidNames.PROLINE, Proline,
+                        AminoAcidNames.THREONINE, Threonine));
+
+        CodonDataAcidMap.putAll(
+                Map.of(AminoAcidNames.SERINE, Serine,
+                        AminoAcidNames.TYROSINE, Tyrosine,
+                        AminoAcidNames.TRYPTOPHAN, Tryptophan,
+                        AminoAcidNames.GLUTAMINE, Glutamine,
+                        AminoAcidNames.ASPARAGINE, Asparagine,
+                        AminoAcidNames.HISTIDINE, Histidine,
+                        AminoAcidNames.GLUTAMIC_ACID, GlutamicAcid,
+                        AminoAcidNames.ASPARTIC_ACID, AsparticAcid,
+                        AminoAcidNames.LYSINE, Lysine,
+                        AminoAcidNames.ARGININE, Arginine));
+
+        CodonDataAcidMap.put(AminoAcidNames.STOP, Stop);
+    }
 }
