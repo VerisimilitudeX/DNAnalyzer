@@ -39,6 +39,24 @@ public class CoreExecutor {
   }
 
   /**
+   * Gets the reading frame from the user
+   *
+   * @param sc The input scanner
+   * @returns reading frame
+   * @category Input
+   */
+  private static short getReadingFrame(final Scanner sc) {
+    while (true) {
+      try {
+        System.out.print("Enter reading frame: ");
+        return Short.parseShort(sc.nextLine());
+      } catch (NumberFormatException ex) {
+        System.out.println("Not an int type, Please try again.");
+      }
+    }
+  }
+
+  /**
    * Gets the minimum count of the reading frame
    *
    * @param sc The input scanner
@@ -125,6 +143,7 @@ public class CoreExecutor {
     String filePathInput = getFilePathInput(sc);
     final int MIN_COUNT = getMinCountReadingFrame(sc);
     final int MAX_COUNT = getMaxCountReadingFrame(sc);
+    final short READING_FRAME = getReadingFrame(sc);
 
     while (true) {
       try {
@@ -164,7 +183,6 @@ public class CoreExecutor {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    final short READING_FRAME = 1;
     final ReadingFrames aap =
         new ReadingFrames(new CodonFrame(dna, READING_FRAME, MIN_COUNT, MAX_COUNT));
     aap.printCodonCounts();
