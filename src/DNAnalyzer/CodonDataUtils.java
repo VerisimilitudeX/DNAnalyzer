@@ -21,7 +21,6 @@ import java.util.List;
  * @version 1.2.1
  */
 public class CodonDataUtils {
-
   /**
    * Returns the codon data for the amino acid.
    *

@@ -112,3 +112,4 @@ public class CodonDataConstants {
     CodonDataAcidMap.put(AminoAcidNames.STOP, Stop);
   }
 }
+
