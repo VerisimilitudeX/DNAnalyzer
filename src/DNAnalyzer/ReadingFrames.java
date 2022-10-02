@@ -12,6 +12,7 @@
 package DNAnalyzer;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /**
@@ -22,29 +23,17 @@ import java.util.Map.Entry;
  * @version 1.2.1
  */
 public class ReadingFrames {
-  private final HashMap<String, Integer> codonCounts;
-  private final String dna;
-
-  // Variables for reading frame properties
-  private final short readingFrame;
-  private final int min;
-  private final int max;
+  private final Map<String, Integer> codonCounts;
+  private final CodonFrame codonFrame;
 
   /**
    * Constructor for the ReadingFrames class.
-   *
-   * @param dna          DNA sequence
-   * @param readingFrame The reading frame to look at
-   * @param min          Minimum codon count
-   * @param max          Maximum codon count
+   * @param {@link CodonFrame} frame for codon data
    * @category Codon
    */
-  public ReadingFrames(final String dna, final short readingFrame, final int min, final int max) {
-    codonCounts = new HashMap<>();
-    this.readingFrame = readingFrame;
-    this.min = min;
-    this.max = max;
-    this.dna = dna;
+  public ReadingFrames(CodonFrame codonFrame) {
+    this.codonCounts = new HashMap<>();
+    this.codonFrame = codonFrame;
   }
 
   /**
@@ -58,7 +47,7 @@ public class ReadingFrames {
     // reset the hashmap
     codonCounts.clear();
     // loop over DNA in steps of 3 and store the codon and its corresponding count
-    for (int i = (int) readingFrame; i < dna.length(); i += 3) {
+    for (int i = (int) codonFrame.getReadingFrame(); i < dna.length(); i += 3) {
       try {
         if (codonCounts.containsKey(dna.substring(i, i + 3))) {
           codonCounts.put(dna.substring(i, i + 3), codonCounts.get(dna.substring(i, i + 3)) + 1);
@@ -81,14 +70,14 @@ public class ReadingFrames {
    */
   public void printCodonCounts() throws StringIndexOutOfBoundsException {
     // Get codon counts for the dna in the specified reading frame
-    buildCodonMap(dna);
+    buildCodonMap(codonFrame.getDna());
 
     // pretty print all the codon counts
     System.out.println(
-        "Codons in reading frame " + readingFrame + " (" + min + "-" + max + " occurrences)" + ":");
+        "Codons in reading frame " + codonFrame.getReadingFrame() + " (" + codonFrame.getMin() + "-" + codonFrame.getMax() + " occurrences)" + ":");
     System.out.println("----------------------------------------------------");
     for (final Entry<String, Integer> entry : codonCounts.entrySet()) {
-      if (codonCounts.get(entry.getKey()) >= min && codonCounts.get(entry.getKey()) <= max) {
+      if (codonCounts.get(entry.getKey()) >= codonFrame.getMin() && codonCounts.get(entry.getKey()) <= codonFrame.getMax()) {
         System.out.println(entry.getKey().toUpperCase() + ": " + codonCounts.get(entry.getKey()));
       }
     }
