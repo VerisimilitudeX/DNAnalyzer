@@ -140,7 +140,7 @@ public class CoreExecutor {
     final short READING_FRAME = 1;
     final int MIN_COUNT = 520860;
     final int MAX_COUNT = 520880;
-    final ReadingFrames aap = new ReadingFrames(dna, READING_FRAME, MIN_COUNT, MAX_COUNT);
+    final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, MIN_COUNT, MAX_COUNT));
     aap.printCodonCounts();
 
     // Notifies the user if the DNA sequence is random.
