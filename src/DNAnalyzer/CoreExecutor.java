@@ -18,8 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Creates a new instance of the getAminoAcid class after getting the DNA and
- * amino acid from the
+ * Creates a new instance of the getAminoAcid class after getting the DNA and amino acid from the
  * user.
  *
  * @author Piyush Acharya (@Verisimilitude11)
@@ -102,12 +101,11 @@ public class CoreExecutor {
   /**
    * Returns the list of proteins in the DNA
    *
-   * @param dna           The DNA to be searched
+   * @param dna The DNA to be searched
    * @param userAminoAcid The amino acid to be searched for
    * @category Protein
    * @returns The ArrayList of proteins
    */
-
   private static List<String> createProteinList(final String dna, final String userAminoAcid) {
     final ProteinFinder gfp = new ProteinFinder();
     return gfp.getProtein(dna, userAminoAcid);
@@ -124,7 +122,7 @@ public class CoreExecutor {
   public static void defaultCaller(final Scanner sc) throws IOException, InterruptedException {
     String dna = null;
 
-    String filePathInput= getFilePathInput(sc);
+    String filePathInput = getFilePathInput(sc);
     final int MIN_COUNT = getMinCountReadingFrame(sc);
     final int MAX_COUNT = getMaxCountReadingFrame(sc);
 
@@ -167,7 +165,8 @@ public class CoreExecutor {
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
     final short READING_FRAME = 1;
-    final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, MIN_COUNT, MAX_COUNT));
+    final ReadingFrames aap =
+        new ReadingFrames(new CodonFrame(dna, READING_FRAME, MIN_COUNT, MAX_COUNT));
     aap.printCodonCounts();
 
     // Notifies the user if the DNA sequence is random.
