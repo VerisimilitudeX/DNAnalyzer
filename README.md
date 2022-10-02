@@ -124,7 +124,7 @@
     <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">Codon Tables</a>
   </li>
   <li>
-    <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/dna/Random%20DNA%20Generator.py">DNA Generator</a>
+    <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/dna/random/Random%20DNA%20Generator.py">DNA Generator</a>
   </li>
 </ul>
 
