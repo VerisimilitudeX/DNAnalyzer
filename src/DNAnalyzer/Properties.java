@@ -12,7 +12,7 @@
 package DNAnalyzer;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
@@ -32,7 +32,7 @@ public class Properties {
      * @throws InterruptedException
      * @throws IOException
      */
-    public static void printProteinList(final ArrayList<String> proteinList, final String aminoAcid)
+    public static void printProteinList(List<String> proteinList, final String aminoAcid)
             throws InterruptedException, IOException {
 
         // Clears the console
@@ -76,7 +76,7 @@ public class Properties {
     /**
      * Gets the GC content of a gene.
      * 
-     * @see https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content
+     * @see "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
      * @category Properties
      * @param dna The DNA sequence to be analyzed
      * @return The GC content of the DNA sequence
