@@ -13,6 +13,8 @@ package DNAnalyzer;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
@@ -109,23 +111,16 @@ public class Properties {
      * Counts the number of nucleotides in the DNA sequence.
      * 
      * @category Properties
-     * @param dna
-     * @return The list of the number of nucleotides in the DNA sequence.
+     * @param dna sequence
+     * @return The mapping between the nucleotides and their count in given DNA sequence.
      */
-    private static int[] countNucleotides(final String dna) {
-        final int[] nucleotideCount = new int[4];
-        for (final char letter : dna.toCharArray()) {
-            switch (letter) {
-                case 'a' -> nucleotideCount[0]++;
-                case 't' -> nucleotideCount[1]++;
-                case 'g' -> nucleotideCount[2]++;
-                case 'c' -> nucleotideCount[3]++;
-                default -> {
-                }
-            }
-        }
-
-        return nucleotideCount;
+    private static Map<Character, Integer> countNucleotides(final String dna) {
+        final Map<Character, Integer> nucleotidesCount = new HashMap<>(Map.of('a', 0, 't', 0, 'g', 0, 'c', 0));
+        dna.chars().mapToObj(c -> (char) c).forEach(letter -> {
+            final int newValue = nucleotidesCount.get(letter) + 1;
+            nucleotidesCount.replace(letter, newValue);
+        });
+        return nucleotidesCount;
     }
 
     /**
@@ -135,13 +130,12 @@ public class Properties {
      * @param dna The DNA sequence that was analyzed
      */
     public static void printNucleotideCount(final String dna) {
-        final int[] nucleotideCount = countNucleotides(dna);
-
+        final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
         System.out.println("Nucleotide count:");
-        formatNucleotideCount(dna, nucleotideCount[0], "A");
-        formatNucleotideCount(dna, nucleotideCount[1], "T");
-        formatNucleotideCount(dna, nucleotideCount[2], "G");
-        formatNucleotideCount(dna, nucleotideCount[3], "C");
+        formatNucleotideCount(dna, nucleotideCountMapping.get('a'), "A");
+        formatNucleotideCount(dna, nucleotideCountMapping.get('t'), "T");
+        formatNucleotideCount(dna, nucleotideCountMapping.get('g'), "G");
+        formatNucleotideCount(dna, nucleotideCountMapping.get('c'), "C");
     }
 
     /**
@@ -152,16 +146,25 @@ public class Properties {
      * @return Whether the DNA sequence is random or not
      */
     public static boolean isRandomDNA(final String dna) {
-        final int[] nucleotideCount = countNucleotides(dna);
+        final Map<Character, Integer> nucleotideCount = countNucleotides(dna);
 
-        final int a = (int) (((float) nucleotideCount[0]) / dna.length() * 100);
-        final int t = (int) (((float) nucleotideCount[1]) / dna.length() * 100);
-        final int g = (int) (((float) nucleotideCount[2]) / dna.length() * 100);
-        final int c = (int) (((float) nucleotideCount[3]) / dna.length() * 100);
+        final int a = nucleotidePercentage(nucleotideCount.get('a'), dna);
+        final int t = nucleotidePercentage(nucleotideCount.get('t'), dna);;
+        final int g = nucleotidePercentage(nucleotideCount.get('g'), dna);;
+        final int c = nucleotidePercentage(nucleotideCount.get('c'), dna);;
 
-        // If the percentage of each nucleotide is between 2% of one another, then it is
-        // random
+        // If the percentage of each nucleotide is between 2% of one another, then it is random
         return (Math.abs(a - t) <= 2) && (Math.abs(a - g) <= 2) && (Math.abs(a - c) <= 2) && (Math.abs(t - g) <= 2)
                 && (Math.abs(t - c) <= 2) && (Math.abs(g - c) <= 2);
+    }
+
+    /**
+     * Calculates the percentage of given amount of nucleotide in the dna sequence/
+     * @param nucleotideCount
+     * @param dna
+     * @return
+     */
+    private static int nucleotidePercentage(final int nucleotideCount, final String dna) {
+        return (int) (((float) nucleotideCount) / dna.length() * 100);
     }
 }
