@@ -30,28 +30,6 @@ public class CodonDataUtils {
      *          codon.
      */
     public static List<String> getAminoAcid(final AminoAcidNames name) {
-        return switch (name) {
-            case ISOLEUCINE -> CodonDataConstants.Isoleucine;
-            case LEUCINE -> CodonDataConstants.Leucine;
-            case VALINE -> CodonDataConstants.Valine;
-            case PHENYLALANINE -> CodonDataConstants.Phenylalanine;
-            case METHIONINE -> CodonDataConstants.Methionine;
-            case CYSTEINE -> CodonDataConstants.Cysteine;
-            case ALANINE -> CodonDataConstants.Alanine;
-            case GLYCINE -> CodonDataConstants.Glycine;
-            case PROLINE -> CodonDataConstants.Proline;
-            case THREONINE -> CodonDataConstants.Threonine;
-            case SERINE -> CodonDataConstants.Serine;
-            case TYROSINE -> CodonDataConstants.Tyrosine;
-            case TRYPTOPHAN -> CodonDataConstants.Tryptophan;
-            case GLUTAMINE -> CodonDataConstants.Glutamine;
-            case ASPARAGINE -> CodonDataConstants.Asparagine;
-            case HISTIDINE -> CodonDataConstants.Histidine;
-            case GLUTAMIC_ACID -> CodonDataConstants.GlutamicAcid;
-            case ASPARTIC_ACID -> CodonDataConstants.AsparticAcid;
-            case LYSINE -> CodonDataConstants.Lysine;
-            case ARGININE -> CodonDataConstants.Arginine;
-            case STOP -> CodonDataConstants.Stop;
-        };
+        return CodonDataConstants.codonDataMappings.get(name);
     }
 }

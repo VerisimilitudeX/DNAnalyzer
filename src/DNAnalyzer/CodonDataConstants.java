@@ -10,8 +10,9 @@
  */
 package DNAnalyzer;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+import static DNAnalyzer.AminoAcidNames.*;
 
 /**
  * Declares the codon data for the 20 amino acids
@@ -60,4 +61,31 @@ public class CodonDataConstants {
     // Declares the stop codon data for the 20 amino acids. Note that the stop
     // codons are the same for all amino acids.
     protected static final List<String> Stop = Arrays.asList("TAA", "TAG", "TGA");
+
+    protected static final Map<AminoAcidNames, List<String>> codonDataMappings;
+
+    static {
+        Map<AminoAcidNames, List<String>> mappings = new HashMap<>();
+        mappings.put(ISOLEUCINE, Isoleucine);
+        mappings.put(LEUCINE, Leucine);
+        mappings.put(VALINE, Valine);
+        mappings.put(PHENYLALANINE, Phenylalanine);
+        mappings.put(METHIONINE, Methionine);
+        mappings.put(CYSTEINE, Cysteine);
+        mappings.put(ALANINE, Alanine);
+        mappings.put(GLYCINE, Glycine);
+        mappings.put(PROLINE, Proline);
+        mappings.put(THREONINE, Threonine);
+        mappings.put(SERINE, Serine);
+        mappings.put(TYROSINE, Tyrosine);
+        mappings.put(TRYPTOPHAN, Tryptophan);
+        mappings.put(GLUTAMINE, Glutamine);
+        mappings.put(ASPARAGINE, Asparagine);
+        mappings.put(HISTIDINE, Histidine);
+        mappings.put(GLUTAMIC_ACID, GlutamicAcid);
+        mappings.put(LYSINE, Lysine);
+        mappings.put(ARGININE, Arginine);
+        mappings.put(STOP, Stop);
+        codonDataMappings = Collections.unmodifiableMap(mappings);
+    }
 }
