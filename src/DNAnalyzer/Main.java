@@ -50,9 +50,6 @@ public class Main {
    * @throws InterruptedException
    */
   public static void main(final String[] args) throws IOException, InterruptedException {
-    CmdArgs cmdArgs = new CmdArgs();
-    new CommandLine(cmdArgs).parseArgs(args);
-    clearTerminal();
-    CoreExecutor.defaultCaller(cmdArgs);
+    new CommandLine(new CmdArgs()).execute(args);
   }
 }
