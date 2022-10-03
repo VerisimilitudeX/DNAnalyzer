@@ -11,6 +11,7 @@
 
 package DNAnalyzer;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,19 +26,6 @@ import java.util.Scanner;
  * @version 1.2.1
  */
 public class CoreExecutor {
-
-  /**
-   * Gets the path to the file to be analyzed
-   *
-   * @param sc The input scanner
-   * @returns The path to file
-   * @category Input
-   */
-  private static String getFilePathInput(final Scanner sc) {
-    System.out.print("Enter the path to the file to be analyzed: ");
-    return sc.nextLine();
-  }
-
   /**
    * Gets the minimum count of the reading frame
    *
@@ -70,9 +58,9 @@ public class CoreExecutor {
    * @returns The contents of the file as a string
    * @throws IOException
    */
-  private static String readFile(final String fileName) throws IOException {
+  private static String readFile(File file) throws IOException {
     // Load DNA file and concatenate lines
-    return Files.readString(Path.of(fileName)).replace("\n", "").toLowerCase();
+    return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
   }
 
   /**
@@ -119,28 +107,13 @@ public class CoreExecutor {
    * @throws IOException
    * @throws InterruptedException
    */
-  public static void defaultCaller(final Scanner sc) throws IOException, InterruptedException {
-    String dna = null;
-
-    String filePathInput = getFilePathInput(sc);
-    final int MIN_COUNT = getMinCountReadingFrame(sc);
-    final int MAX_COUNT = getMaxCountReadingFrame(sc);
-
-    while (true) {
-      try {
-        dna = readFile(filePathInput);
-        break;
-      } catch (final IOException e) {
-        System.out.println("File not found. Please try again.");
-      }
-    }
+  public static void defaultCaller(CmdArgs args) throws IOException, InterruptedException {
+    String dna = readFile(args.dna);
 
     // Notifies user if DNA is invalid
     if (!isValidDNA(dna)) {
       throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
     }
-
-    final String userAminoAcid = getAminoAcidInput(sc);
 
     // Prevents an error from occurring when the user enters an RNA sequence.
     // Recently, using DNA sequences instead of RNA sequences has been a more common
@@ -148,11 +121,11 @@ public class CoreExecutor {
     dna = dna.replace("u", "t");
 
     // Create a list of proteins found in the DNA
-    final List<String> geneList = createProteinList(dna, userAminoAcid);
+    final List<String> geneList = createProteinList(dna, args.aminoAcid);
 
     // Output the proteins, GC content, and quantities of each nucleotide found in
     // the DNA
-    Properties.printProteinList(geneList, userAminoAcid);
+    Properties.printProteinList(geneList, args.aminoAcid);
     final float gcContent = Properties.getGCContent(dna);
     System.out.println("\nGC-content (genome): " + gcContent + "\n");
     Properties.printNucleotideCount(dna);
@@ -166,7 +139,7 @@ public class CoreExecutor {
     // at, and minimum and maximum filters
     final short READING_FRAME = 1;
     final ReadingFrames aap =
-        new ReadingFrames(new CodonFrame(dna, READING_FRAME, MIN_COUNT, MAX_COUNT));
+        new ReadingFrames(new CodonFrame(dna, READING_FRAME, args.minCount, args.maxCount));
     aap.printCodonCounts();
 
     // Notifies the user if the DNA sequence is random.
