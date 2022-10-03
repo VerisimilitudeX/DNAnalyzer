@@ -21,6 +21,27 @@
 <p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
 </p>
 
+<h2 id="requirements">System Requirements
+</h2>
+To build and run the DNAnalyzer, you need
+* JDK 17 or greater
+* a JAVA\_HOME environment variabl pointing to your JDK 17, or the java executable in your PATH
+
+<h2 id="build_and_run">Build & Run</h2>
+We use [Gradle|https://gradle.org] for the build. The Gradle wrapper takes care of downloading the dependencies etc. - simply run
+```
+gradlew build
+```
+On UNIX-like operating systems, you might have to prefix this with './' to ensure the OS looks in the current directory, so the above becomes
+```
+./gradlew build
+```
+
+Afterwards, you can run the DNAnalyzer with
+```
+java -cp build/classes/java/main/ DNAnalyzer.Main
+```
+
 <h2 id="background">Background
 </h2>
 
