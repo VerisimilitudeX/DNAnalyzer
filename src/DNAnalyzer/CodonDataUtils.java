@@ -21,13 +21,14 @@ import java.util.List;
  * @version 1.2.1
  */
 public class CodonDataUtils {
-  /**
-   * Returns the codon data for the amino acid.
-   *
-   * @param name The name of the amino acid.
-   * @return A List of codon data for the user-selected amino acid or stop codon.
-   */
-  public static List<String> getAminoAcid(final AminoAcidNames name) {
-    return CodonDataConstants.CodonDataAcidMap.getOrDefault(name, List.of());
-  }
+
+    /**
+     * Returns the codon data for the amino acid.
+     *
+     * @param name The name of the amino acid.
+     * @return A List of codon data for the user-selected amino acid or stop codon.
+     */
+    public static List<String> getAminoAcid(final AminoAcidNames name) {
+        return CodonDataConstants.CodonDataAcidMap.getOrDefault(name, List.of());
+    }
 }
