@@ -91,6 +91,27 @@
   </li>
 </ul>
 
+<h2 id="getting-started">Getting Started
+</h2>
+
+For compilation navigate to `src` folder, then run
+
+> javac -d . DNAnalyzer/Main.java
+
+Once compiled you'll see `.class` files for each of corresponding `.java` files in the DNAnalyzer folder
+
+To execute run below command from `src` directory itself
+
+> java DNAnalyzer.Main
+
+<h2 id="demo">Demo
+</h2>
+
+<video width="100%" autoplay>
+  <source src="./assets/demo/demo.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
 
