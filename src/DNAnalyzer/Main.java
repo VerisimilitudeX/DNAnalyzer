@@ -12,8 +12,6 @@
 package DNAnalyzer;
 
 import java.io.IOException;
-import java.util.Scanner;
-
 import picocli.CommandLine;
 
 /**
