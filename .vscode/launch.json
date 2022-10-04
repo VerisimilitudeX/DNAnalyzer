@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch DNAnalyzer",
+      "request": "launch",
+      "mainClass": "DNAnalyzer.Main",
+      "projectName": "DNAnalyzer",
+      "args": "assets/dna/random/dnalong.fa --amino=ser"
+    }
+  ]
+}

@@ -14,6 +14,8 @@ package DNAnalyzer;
 import java.io.IOException;
 import java.util.Scanner;
 
+import picocli.CommandLine;
+
 /**
  * Main Class for the DNAnalyzer program.
  *
@@ -48,10 +50,6 @@ public class Main {
    * @throws InterruptedException
    */
   public static void main(final String[] args) throws IOException, InterruptedException {
-    clearTerminal();
-
-    try (Scanner sc = new Scanner(System.in)) {
-      CoreExecutor.defaultCaller(sc);
-    }
+    new CommandLine(new CmdArgs()).execute(args);
   }
 }
