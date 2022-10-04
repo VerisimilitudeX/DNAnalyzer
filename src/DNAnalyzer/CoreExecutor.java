@@ -151,6 +151,7 @@ public class CoreExecutor {
         break;
       } catch (final IOException e) {
         System.out.println("File not found. Please try again.");
+        return;
       }
     }
 
