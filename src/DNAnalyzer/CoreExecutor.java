@@ -27,6 +27,24 @@ import java.util.Scanner;
  */
 public class CoreExecutor {
   /**
+   * Gets the reading frame from the user
+   *
+   * @param sc The input scanner
+   * @returns reading frame
+   * @category Input
+   */
+  private static short getReadingFrame(final Scanner sc) {
+    while (true) {
+      try {
+        System.out.print("Enter reading frame: ");
+        return Short.parseShort(sc.nextLine());
+      } catch (NumberFormatException ex) {
+        System.out.println("Not an int type, Please try again.");
+      }
+    }
+  }
+
+  /**
    * Gets the minimum count of the reading frame
    *
    * @param sc The input scanner
@@ -107,6 +125,7 @@ public class CoreExecutor {
    * @throws IOException
    * @throws InterruptedException
    */
+
   public static void defaultCaller(CmdArgs args) throws IOException, InterruptedException {
     String dna = readFile(args.dna);
 
@@ -137,7 +156,6 @@ public class CoreExecutor {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    final short READING_FRAME = 1;
     final ReadingFrames aap =
         new ReadingFrames(new CodonFrame(dna, READING_FRAME, args.minCount, args.maxCount));
     aap.printCodonCounts();
