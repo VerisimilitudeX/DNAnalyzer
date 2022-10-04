@@ -107,10 +107,7 @@ To execute run below command from `src` directory itself
 <h2 id="demo">Demo
 </h2>
 
-<video width="100%" autoplay>
-  <source src="./assets/demo/demo.mp4" type="video/mp4">
-Your browser does not support the video tag.
-</video>
+[![Watch the video](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)
 
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
