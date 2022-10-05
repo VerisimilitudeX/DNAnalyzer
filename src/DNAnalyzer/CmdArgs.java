@@ -23,16 +23,23 @@ public class CmdArgs implements Runnable {
   @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.") 
   File dnaFile;
 
+  @Option(names = {"--find"}, description = "The DNA sequence to be found within the FASTA file.")
+  File proteinFile;
+
   String readFile(File file) throws IOException {
     return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
   }
 
   @Override
   public void run() {
-    String dna = "";
+    String dna = null;
+    String protein = null;
     try {
       Main.clearTerminal();
       dna = readFile(dnaFile);
+      if (proteinFile != null) {
+        protein = readFile(proteinFile);
+      }
     } catch (IOException | InterruptedException e) {
       e.printStackTrace();
       return;
@@ -50,7 +57,6 @@ public class CmdArgs implements Runnable {
     ProteinFinder gfp = new ProteinFinder();
     List<String> proteins = gfp.getProtein(dna, aminoAcid);
 
-
     // Output the proteins, GC content, and nucleotide cnt found in the DNA
     Properties.printProteinList(proteins, aminoAcid);
     final float gcContent = Properties.getGCContent(dna);
@@ -60,6 +66,17 @@ public class CmdArgs implements Runnable {
     // Output the number of codons based on the reading frame the user wants to look at, and minimum and maximum filters
     final short READING_FRAME = 1;
     final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
+    System.out.print("\n");
     aap.printCodonCounts();
+
+    // Find protein sequence in DNA
+    if (protein != null) {
+      final int proteinIndex = dna.indexOf(protein);
+      if (proteinIndex != -1) {
+        System.out.println("\nProtein sequence found at index " + proteinIndex + " in the DNA sequence.");
+      } else {
+        System.out.println("\nProtein sequence not found in the DNA sequence.");
+      }
+    }
   }
 }
