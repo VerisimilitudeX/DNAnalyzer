@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -23,8 +25,8 @@ public class CmdArgs implements Runnable {
   @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.") 
   File dnaFile;
 
-  /*@Option(names = {"--find"}, description = "The DNA sequence to be found within the FASTA file.")
-  File proteinFile;*/
+  @Option(names = {"--find"}, description = "The DNA sequence to be found within the FASTA file.")
+  File proteinFile;
 
   String readFile(File file) throws IOException {
     return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
@@ -33,13 +35,13 @@ public class CmdArgs implements Runnable {
   @Override
   public void run() {
     String dna = null;
-    //String protein = null;
+    String protein = null;
     try {
       Main.clearTerminal();
       dna = readFile(dnaFile);
-      /*if (proteinFile != null) {
+      if (proteinFile != null) {
         protein = readFile(proteinFile);
-      }*/
+      }
     } catch (IOException | InterruptedException e) {
       e.printStackTrace();
       return;
@@ -70,13 +72,14 @@ public class CmdArgs implements Runnable {
     aap.printCodonCounts();
 
     // Find protein sequence in DNA
-    /*if (protein != null) {
-      final int proteinIndex = dna.indexOf(protein);
-      if (proteinIndex != -1) {
-        System.out.println("\nProtein sequence found at index " + proteinIndex + " in the DNA sequence.");
+    if (protein != null) {
+      Pattern p = Pattern.compile(protein);
+      Matcher m = p.matcher(dna);
+      if (m.find()) {
+        System.out.println("\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
       } else {
         System.out.println("\nProtein sequence not found in the DNA sequence.");
       }
-    }*/
+    }
   }
 }
