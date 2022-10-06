@@ -12,6 +12,7 @@
 package DNAnalyzer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Find proteins in a DNA sequence (contains the main algorithm).
@@ -19,51 +20,46 @@ import java.util.ArrayList;
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  */
+
 public class ProteinFinder {
-    private final ArrayList<String> aminoAcidList = new ArrayList<>();
-    private final ArrayList<String> proteinList = new ArrayList<>();
+    /**
+     * Amino acid list
+     */
 
-    public ArrayList<String> getProtein(final String dna, final String aminoAcid, final ArrayList<String> isoleucine,
-            final ArrayList<String> leucine,
-            final ArrayList<String> valine, final ArrayList<String> phenylalanine, final ArrayList<String> methionine,
-            final ArrayList<String> cysteine, final ArrayList<String> alanine, final ArrayList<String> glycine,
-            final ArrayList<String> proline,
-            final ArrayList<String> threonine, final ArrayList<String> serine, final ArrayList<String> tyrosine,
-            final ArrayList<String> tryptophan, final ArrayList<String> glutamine, final ArrayList<String> asparagine,
-            final ArrayList<String> histidine, final ArrayList<String> glutamicAcid,
-            final ArrayList<String> asparticAcid,
-            final ArrayList<String> lysine, final ArrayList<String> arginine, final ArrayList<String> stop) {
+    private final List<String> aminoAcidList;
+    /**
+     * protein list
+     */
+    private final List<String> proteinList;
 
-        // Maps the amino acid that the user entered to the start codon list.
-        switch (aminoAcid) {
-            case "isoleucine", "i", "ile" -> this.aminoAcidList.addAll(isoleucine);
-            case "leucine", "l", "leu" -> this.aminoAcidList.addAll(leucine);
-            case "valine", "v", "val" -> this.aminoAcidList.addAll(valine);
-            case "phenylalanine", "f", "phe" -> this.aminoAcidList.addAll(phenylalanine);
-            case "methionine", "m", "met" -> this.aminoAcidList.addAll(methionine);
-            case "cysteine", "c", "cys" -> this.aminoAcidList.addAll(cysteine);
-            case "alanine", "a", "ala" -> this.aminoAcidList.addAll(alanine);
-            case "glycine", "g", "gly" -> this.aminoAcidList.addAll(glycine);
-            case "proline", "p", "pro" -> this.aminoAcidList.addAll(proline);
-            case "threonine", "t", "thr" -> this.aminoAcidList.addAll(threonine);
-            case "serine", "s", "ser" -> this.aminoAcidList.addAll(serine);
-            case "tyrosine", "y", "tyr" -> this.aminoAcidList.addAll(tyrosine);
-            case "tryptophan", "w", "trp" -> this.aminoAcidList.addAll(tryptophan);
-            case "glutamine", "q", "gln" -> this.aminoAcidList.addAll(glutamine);
-            case "asparagine", "n", "asn" -> this.aminoAcidList.addAll(asparagine);
-            case "histidine", "h", "his" -> this.aminoAcidList.addAll(histidine);
-            case "glutamic acid", "e", "glu" -> this.aminoAcidList.addAll(glutamicAcid);
-            case "aspartic acid", "d", "asp" -> this.aminoAcidList.addAll(asparticAcid);
-            case "lysine", "k", "lys" -> this.aminoAcidList.addAll(lysine);
-            case "arginine", "r", "arg" -> this.aminoAcidList.addAll(arginine);
-            default -> throw new IllegalStateException("Invalid Amino Acid: " + aminoAcid);
-        }
+    /**
+     * ProteinFinder default constructor to initialize aminoAcidList and proteinList
+     */
+    public ProteinFinder() {
+        aminoAcidList = new ArrayList<>();
+        proteinList = new ArrayList<>();
+    }
 
-        // MAIN ALGORITHM: Finds proteins in the DNA sequence.
+    /**
+     * Gets proteins from dna and amino acid
+     * @param dna dna
+     * @param aminoAcid amino acid
+     * @return list of proteins
+     */
+    public List<String> getProtein(String dna, String aminoAcid) {
+        this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidMapping.getAminoAcidMapping(aminoAcid)));
 
         int start_index;
         int stop_index;
-        // Loops through the start codons for the amino acid that the user entered.
+        List<String> stop = CodonDataUtils.getAminoAcid(AminoAcidNames.STOP);
+
+        // Outer loop loops through the start codons for the amino acids that the user
+        // entered.
+        // store the start index
+        // Inner loop loops through the stop that the user entered.
+        // store the stop_index
+        // if index is not -1 then store the substring of dna with start and stop index
+        // in the protein list
         for (final String start_codon : this.aminoAcidList) {
             start_index = dna.indexOf(start_codon.toLowerCase());
             for (final String stop_codon : stop) {
@@ -75,11 +71,16 @@ public class ProteinFinder {
             }
         }
 
+        // if no proteins are found, return null
         if (this.proteinList.isEmpty()) {
+            // Return null if no protein found in DNA sequence
             System.out.println("No proteins found");
             return null;
         }
 
+        // Return list of proteins found in the DNA sequence
         return this.proteinList;
     }
+
+
 }

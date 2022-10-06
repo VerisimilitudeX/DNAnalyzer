@@ -18,7 +18,7 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am working on removing all dependencies and developing a deep learning model that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
 </p>
 
 <h2 id="background">Background
@@ -91,6 +91,24 @@
   </li>
 </ul>
 
+<h2 id="getting-started">Getting Started
+</h2>
+
+For compilation navigate to `src` folder, then run
+
+> javac -d . DNAnalyzer/Main.java
+
+Once compiled you'll see `.class` files for each of corresponding `.java` files in the DNAnalyzer folder
+
+To execute run below command from `src` directory itself
+
+> java DNAnalyzer.Main
+
+<h2 id="demo">Demo
+</h2>
+
+[![Watch the video](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)
+
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
 
@@ -124,7 +142,7 @@
     <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">Codon Tables</a>
   </li>
   <li>
-    <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/dna/Random%20DNA%20Generator.py">DNA Generator</a>
+    <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/dna/random/Random%20DNA%20Generator.py">DNA Generator</a>
   </li>
 </ul>
 
@@ -168,15 +186,6 @@
     <a href="https://en.wikipedia.org/wiki/Cytogenetics">https://en.wikipedia.org/wiki/Cytogenetics
     </a>
   </li>
-</ol>
-
-<h2>The Developer Team</h2>
-<ol>
-  <li>Piyush Acharya (@Verisimilitude11)</li>
-  <li>Nishant Vikramaditya (@Nv7-GitHub)</li>
-  <!---<li>Aryan Agrawal</li>--->
-  <!---<li>Aishwarya Agrawal</li>--->
-  <!---<li>Abhidi Brahnmath</li>--->
 </ol>
 
 <h2 id="terms-of-use">Terms of Use

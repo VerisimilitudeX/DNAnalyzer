@@ -12,7 +12,7 @@
 package DNAnalyzer;
 
 import java.io.IOException;
-import java.util.Scanner;
+import picocli.CommandLine;
 
 /**
  * Main Class for the DNAnalyzer program.
@@ -31,10 +31,10 @@ public class Main {
    * @throws IOException
    */
   public static void clearTerminal() throws InterruptedException, IOException {
-    if (System.getProperty("os.name").contains("Windows")) {
+    if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows
       new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     } else {
-      System.out.print("\u001b[H\u001b[2J");
+      System.out.print("\u001b[H\u001b[2J"); // unicode string to clear everything logged above this
       System.out.flush();
     }
   }
@@ -48,12 +48,6 @@ public class Main {
    * @throws InterruptedException
    */
   public static void main(final String[] args) throws IOException, InterruptedException {
-    clearTerminal();
-
-    final CoreExecutor gs = new CoreExecutor();
-
-    try (Scanner sc = new Scanner(System.in)) {
-      gs.defaultCaller(sc);
-    }
+    new CommandLine(new CmdArgs()).execute(args);
   }
 }
