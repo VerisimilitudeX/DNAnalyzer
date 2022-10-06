@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -20,12 +19,14 @@ public class CmdArgs implements Runnable {
   int minCount = 0;
 
   @Option(names = { "--max" }, description = "The maximum count of the reading frame.")
+
   int maxCount = 0;
 
   @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
   File dnaFile;
 
   @Option(names = { "--find" }, description = "The DNA sequence to be found within the FASTA file.")
+
   File proteinFile;
 
   String readFile(File file) throws IOException {
@@ -67,8 +68,10 @@ public class CmdArgs implements Runnable {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
+
     final short READING_FRAME = 1;
-    final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
+    final ReadingFrames aap =
+        new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
     System.out.print("\n");
     aap.printCodonCounts();
 
@@ -77,7 +80,8 @@ public class CmdArgs implements Runnable {
       Pattern p = Pattern.compile(protein);
       Matcher m = p.matcher(dna);
       if (m.find()) {
-        System.out.println("\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
+        System.out.println(
+            "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
       } else {
         System.out.println("\nProtein sequence not found in the DNA sequence.");
       }
