@@ -19,74 +19,74 @@ package DNAnalyzer;
  */
 public class AminoAcidMapping {
 
-    /**
-     * @param aminoAcid name of amino acid
-     * @return AminoAcidName Enum mapping for given aminoAcid name
-     */
-    public static AminoAcidNames getAminoAcidMapping(String aminoAcid) {
-        // Maps the amino acid that the user entered to the start codon list.
-        switch (aminoAcid) {
-            case "isoleucine", "i", "ile" -> {
-                return AminoAcidNames.ISOLEUCINE;
-            }
-            case "leucine", "l", "leu" -> {
-                return AminoAcidNames.LEUCINE;
-            }
-            case "valine", "v", "val" -> {
-                return AminoAcidNames.VALINE;
-            }
-            case "phenylalanine", "f", "phe" -> {
-                return AminoAcidNames.PHENYLALANINE;
-            }
-            case "methionine", "m", "met" -> {
-                return AminoAcidNames.METHIONINE;
-            }
-            case "cysteine", "c", "cys" -> {
-                return AminoAcidNames.CYSTEINE;
-            }
-            case "alanine", "a", "ala" -> {
-                return AminoAcidNames.ALANINE;
-            }
-            case "glycine", "g", "gly" -> {
-                return AminoAcidNames.GLYCINE;
-            }
-            case "proline", "p", "pro" -> {
-                return AminoAcidNames.PROLINE;
-            }
-            case "threonine", "t", "thr" -> {
-                return AminoAcidNames.THREONINE;
-            }
-            case "serine", "s", "ser" -> {
-                return AminoAcidNames.SERINE;
-            }
-            case "tyrosine", "y", "tyr" -> {
-                return AminoAcidNames.TYROSINE;
-            }
-            case "tryptophan", "w", "trp" -> {
-                return AminoAcidNames.TRYPTOPHAN;
-            }
-            case "glutamine", "q", "gln" -> {
-                return AminoAcidNames.GLUTAMINE;
-            }
-            case "asparagine", "n", "asn" -> {
-                return AminoAcidNames.ASPARAGINE;
-            }
-            case "histidine", "h", "his" -> {
-                return AminoAcidNames.HISTIDINE;
-            }
-            case "glutamic acid", "e", "glu" -> {
-                return AminoAcidNames.GLUTAMIC_ACID;
-            }
-            case "aspartic acid", "d", "asp" -> {
-                return AminoAcidNames.ASPARTIC_ACID;
-            }
-            case "lysine", "k", "lys" -> {
-                return AminoAcidNames.LYSINE;
-            }
-            case "arginine", "r", "arg" -> {
-                return AminoAcidNames.ARGININE;
-            }
-            default -> throw new IllegalStateException("Invalid Amino Acid: " + aminoAcid);
-        }
-    }
+	/**
+	 * @param aminoAcid name of amino acid
+	 * @return AminoAcidName Enum mapping for given aminoAcid name
+	 */
+	public static AminoAcidNames getAminoAcidMapping(String aminoAcid) {
+		// Maps the amino acid that the user entered to the start codon list.
+		switch (aminoAcid) {
+			case "isoleucine", "i", "ile" -> {
+				return AminoAcidNames.ISOLEUCINE;
+			}
+			case "leucine", "l", "leu" -> {
+				return AminoAcidNames.LEUCINE;
+			}
+			case "valine", "v", "val" -> {
+				return AminoAcidNames.VALINE;
+			}
+			case "phenylalanine", "f", "phe" -> {
+				return AminoAcidNames.PHENYLALANINE;
+			}
+			case "methionine", "m", "met" -> {
+				return AminoAcidNames.METHIONINE;
+			}
+			case "cysteine", "c", "cys" -> {
+				return AminoAcidNames.CYSTEINE;
+			}
+			case "alanine", "a", "ala" -> {
+				return AminoAcidNames.ALANINE;
+			}
+			case "glycine", "g", "gly" -> {
+				return AminoAcidNames.GLYCINE;
+			}
+			case "proline", "p", "pro" -> {
+				return AminoAcidNames.PROLINE;
+			}
+			case "threonine", "t", "thr" -> {
+				return AminoAcidNames.THREONINE;
+			}
+			case "serine", "s", "ser" -> {
+				return AminoAcidNames.SERINE;
+			}
+			case "tyrosine", "y", "tyr" -> {
+				return AminoAcidNames.TYROSINE;
+			}
+			case "tryptophan", "w", "trp" -> {
+				return AminoAcidNames.TRYPTOPHAN;
+			}
+			case "glutamine", "q", "gln" -> {
+				return AminoAcidNames.GLUTAMINE;
+			}
+			case "asparagine", "n", "asn" -> {
+				return AminoAcidNames.ASPARAGINE;
+			}
+			case "histidine", "h", "his" -> {
+				return AminoAcidNames.HISTIDINE;
+			}
+			case "glutamic acid", "e", "glu" -> {
+				return AminoAcidNames.GLUTAMIC_ACID;
+			}
+			case "aspartic acid", "d", "asp" -> {
+				return AminoAcidNames.ASPARTIC_ACID;
+			}
+			case "lysine", "k", "lys" -> {
+				return AminoAcidNames.LYSINE;
+			}
+			case "arginine", "r", "arg" -> {
+				return AminoAcidNames.ARGININE;
+			}
+			default -> throw new IllegalStateException("Invalid Amino Acid: " + aminoAcid);
+		}
+	}
 }
