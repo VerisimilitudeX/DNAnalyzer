@@ -24,6 +24,7 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
     /**
      * gets dna
+     * 
      * @return dna
      */
     public String getDna() {
@@ -32,6 +33,7 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
     /**
      * gets reading frame
+     * 
      * @return reading frame
      */
     public short getReadingFrame() {
@@ -40,6 +42,7 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
     /**
      * gets min
+     * 
      * @return min
      */
     public int getMin() {
@@ -48,6 +51,7 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
     /**
      * gets max
+     * 
      * @return max
      */
     public int getMax() {
@@ -56,10 +60,13 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CodonFrame)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof CodonFrame))
+            return false;
         CodonFrame that = (CodonFrame) o;
-        return getReadingFrame() == that.getReadingFrame() && getMin() == that.getMin() && getMax() == that.getMax() && getDna().equals(that.getDna());
+        return getReadingFrame() == that.getReadingFrame() && getMin() == that.getMin() && getMax() == that.getMax()
+                && getDna().equals(that.getDna());
     }
 
     @Override

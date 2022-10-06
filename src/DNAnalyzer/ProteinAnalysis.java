@@ -61,12 +61,12 @@ public class ProteinAnalysis {
    * @param proteinList The list of proteins in the DNA sequence
    */
   public static void printLongestProtein(List<String> proteinList) {
-    String longestGene = "";
-    for (final String gene : proteinList) {
-      if (gene.length() > longestGene.length()) {
-        longestGene = gene;
+    String longestProtein = "";
+    for (final String protein : proteinList) {
+      if (protein.length() > longestProtein.length()) {
+        longestProtein = protein;
       }
     }
-    System.out.println("\nLongest gene (" + longestGene.length() + " nucleotides): " + longestGene);
+    System.out.println("\nLongest gene (" + longestProtein.length() + " nucleotides): " + longestProtein);
   }
 }
