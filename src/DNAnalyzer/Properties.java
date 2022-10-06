@@ -34,11 +34,7 @@ public class Properties {
      * @throws InterruptedException
      * @throws IOException
      */
-    public static void printProteinList(List<String> proteinList, final String aminoAcid)
-            throws InterruptedException, IOException {
-
-        // Clears the console
-        Main.clearTerminal();
+    public static void printProteinList(List<String> proteinList, final String aminoAcid) {
 
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
