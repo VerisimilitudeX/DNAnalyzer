@@ -9,7 +9,6 @@ You should keep these practices in mind all the time while contributing to DNAna
 ### Source File Structure
 
 - A source file consists of, in order:
-
   - License or copyright information, if present
   - Package statement
   - Import statements
@@ -24,7 +23,6 @@ You should keep these practices in mind all the time while contributing to DNAna
 - Import statements are not line-wrapped.
 
 - Imports are ordered as follows:
-
   - All static imports in a single block.
   - All non-static imports in a single block.
   - If there are both static and non-static imports, a single blank line separates the two blocks. There are no other blank lines between import statements.
@@ -38,7 +36,6 @@ You should keep these practices in mind all the time while contributing to DNAna
 ### Formatting
 
 - Braces
-
   - Braces are used with if, else, for, do and while statements, even when the body is empty or contains only a single statement.
   - No line break before the opening brace, except as detailed below.
   - Line break after the opening brace.
@@ -47,11 +44,9 @@ You should keep these practices in mind all the time while contributing to DNAna
   - An empty block or block-like construct may be closed immediately after it is opened, with no characters or line break in between ({}).
 
 - Block Indentation
-
   - Each time a new block or block-like construct is opened, the indent increases by two spaces. When the block ends, the indent returns to the previous indent level. The indent level applies to both code and comments throughout the block.
 
 - Whitespace
-
   - Indents shall be 4 spaces, no tabs.
     - [set this as your setting on vscode](https://stackoverflow.com/a/38556923)
 
@@ -63,29 +58,23 @@ You should keep these practices in mind all the time while contributing to DNAna
 ### Naming
 
 - Package names
-
   - Package names use only lowercase letters and digits (no underscores). Consecutive words are simply concatenated together. For example, com.example.deepspace, not com.example.deepSpace or com.example.deep_space.
 
 - Class names
-
   - Class names are written in UpperCamelCase.
   - Class names are typically nouns or noun phrases. For example, Character or ImmutableList. Interface names may also be nouns or noun phrases (for example, List), but may sometimes be adjectives or adjective phrases instead (for example, Readable).
 
 - Method names
-
   - Method names are written in lowerCamelCase.
   - Method names are typically verbs or verb phrases. For example, sendMessage or stop.
 
 - Constant names
-
   - Constant names use UPPER_SNAKE_CASE: all uppercase letters, with each word separated from the next by a single underscore
 
 - Non-constant field names
-
   - Non-constant field names (static or otherwise) are written in lowerCamelCase.- These names are typically nouns or noun phrases. For example, computedValues or index.
 
 - Local variable names
-
   - Local variable names are written in lowerCamelCase.
   - Even when final and immutable, local variables are not considered to be constants, and should not be styled as constants.
 
