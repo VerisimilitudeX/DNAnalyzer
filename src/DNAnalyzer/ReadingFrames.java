@@ -28,6 +28,7 @@ public class ReadingFrames {
 
   /**
    * Constructor for the ReadingFrames class.
+   * 
    * @param {@link CodonFrame} frame for codon data
    * @category Codon
    */
@@ -74,10 +75,12 @@ public class ReadingFrames {
 
     // pretty print all the codon counts
     System.out.println(
-        "Codons in reading frame " + codonFrame.getReadingFrame() + " (" + codonFrame.getMin() + "-" + codonFrame.getMax() + " occurrences)" + ":");
+        "Codons in reading frame " + codonFrame.getReadingFrame() + " (" + codonFrame.getMin() + "-"
+            + codonFrame.getMax() + " occurrences)" + ":");
     System.out.println("----------------------------------------------------");
     for (final Entry<String, Integer> entry : codonCounts.entrySet()) {
-      if (codonCounts.get(entry.getKey()) >= codonFrame.getMin() && codonCounts.get(entry.getKey()) <= codonFrame.getMax()) {
+      if (codonCounts.get(entry.getKey()) >= codonFrame.getMin()
+          && codonCounts.get(entry.getKey()) <= codonFrame.getMax()) {
         System.out.println(entry.getKey().toUpperCase() + ": " + codonCounts.get(entry.getKey()));
       }
     }

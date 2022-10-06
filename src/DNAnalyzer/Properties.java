@@ -108,7 +108,8 @@ public class Properties {
      * 
      * @category Properties
      * @param dna sequence
-     * @return The mapping between the nucleotides and their count in given DNA sequence.
+     * @return The mapping between the nucleotides and their count in given DNA
+     *         sequence.
      */
     private static Map<Character, Integer> countNucleotides(final String dna) {
         final Map<Character, Integer> nucleotidesCount = new HashMap<>(Map.of('a', 0, 't', 0, 'g', 0, 'c', 0));
@@ -145,17 +146,22 @@ public class Properties {
         final Map<Character, Integer> nucleotideCount = countNucleotides(dna);
 
         final int a = nucleotidePercentage(nucleotideCount.get('a'), dna);
-        final int t = nucleotidePercentage(nucleotideCount.get('t'), dna);;
-        final int g = nucleotidePercentage(nucleotideCount.get('g'), dna);;
-        final int c = nucleotidePercentage(nucleotideCount.get('c'), dna);;
+        final int t = nucleotidePercentage(nucleotideCount.get('t'), dna);
+        ;
+        final int g = nucleotidePercentage(nucleotideCount.get('g'), dna);
+        ;
+        final int c = nucleotidePercentage(nucleotideCount.get('c'), dna);
+        ;
 
-        // If the percentage of each nucleotide is between 2% of one another, then it is random
+        // If the percentage of each nucleotide is between 2% of one another, then it is
+        // random
         return (Math.abs(a - t) <= 2) && (Math.abs(a - g) <= 2) && (Math.abs(a - c) <= 2) && (Math.abs(t - g) <= 2)
                 && (Math.abs(t - c) <= 2) && (Math.abs(g - c) <= 2);
     }
 
     /**
      * Calculates the percentage of given amount of nucleotide in the dna sequence/
+     * 
      * @param nucleotideCount
      * @param dna
      * @return

@@ -42,7 +42,8 @@ public class ProteinFinder {
 
     /**
      * Gets proteins from dna and amino acid
-     * @param dna dna
+     * 
+     * @param dna       dna
      * @param aminoAcid amino acid
      * @return list of proteins
      */
@@ -81,6 +82,5 @@ public class ProteinFinder {
         // Return list of proteins found in the DNA sequence
         return this.proteinList;
     }
-
 
 }

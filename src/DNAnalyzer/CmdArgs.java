@@ -10,33 +10,23 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@Command(
-    name = "DNAnalyzer",
-    mixinStandardHelpOptions = true,
-    description = "A program to analyze DNA sequences.")
+@Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-  @Option(
-      required = true,
-      names = {"--amino"},
-      description = "The amino acid representing the start of a gene.")
+  @Option(required = true, names = { "--amino" }, description = "The amino acid representing the start of a gene.")
   String aminoAcid;
 
-  @Option(
-      names = {"--min"},
-      description = "The minimum count of the reading frame.")
+  @Option(names = { "--min" }, description = "The minimum count of the reading frame.")
   int minCount = 0;
 
-  @Option(
-      names = {"--max"},
-      description = "The maximum count of the reading frame.")
+  @Option(names = { "--max" }, description = "The maximum count of the reading frame.")
+
   int maxCount = 0;
 
   @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
   File dnaFile;
 
-  @Option(
-      names = {"--find"},
-      description = "The DNA sequence to be found within the FASTA file.")
+  @Option(names = { "--find" }, description = "The DNA sequence to be found within the FASTA file.")
+
   File proteinFile;
 
   String readFile(File file) throws IOException {
@@ -76,8 +66,9 @@ public class CmdArgs implements Runnable {
     System.out.println("\nGC-content (genome): " + gcContent + "\n");
     Properties.printNucleotideCount(dna);
 
-    // Output the number of codons based on the reading frame the user wants to look at, and minimum
-    // and maximum filters
+    // Output the number of codons based on the reading frame the user wants to look
+    // at, and minimum and maximum filters
+
     final short READING_FRAME = 1;
     final ReadingFrames aap =
         new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
