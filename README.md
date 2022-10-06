@@ -104,6 +104,35 @@ To execute run below command from `src` directory itself
 
 > java DNAnalyzer.Main
 
+<h2 id="usage">Usage
+</h2>
+
+DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
+
+```
+<executable> assets/dna/random/dnalong.fa --amino=ser
+```
+
+or
+
+```
+<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100
+```
+
+Help message:
+
+```
+Usage: DNAnalyzer [-hV] --amino=<aminoAcid> [--max=<maxCount>]
+                  [--min=<minCount>] DNA
+A program to analyze DNA sequences.
+      DNA                   The FASTA file to be analyzed.
+      --amino=<aminoAcid>   The amino acid representing the start of a gene.
+  -h, --help                Show this help message and exit.
+      --max=<maxCount>      The maximum count of the reading frame.
+      --min=<minCount>      The minimum count of the reading frame.
+  -V, --version             Print version information and exit.
+```
+
 <h2 id="demo">Demo
 </h2>
 
