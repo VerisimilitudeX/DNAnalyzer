@@ -8,7 +8,7 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    id 'application'
 }
 
 repositories {
@@ -18,18 +18,26 @@ repositories {
 
 dependencies {
     // Use JUnit test framework.
-    testImplementation("junit:junit:4.13.2")
+    testImplementation "junit:junit:4.13.2"
 
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:31.0.1-jre")
+    implementation "com.google.guava:guava:31.0.1-jre"
+
+    // Picocli
+    implementation "info.picocli:picocli:4.6.3"
 }
 
 application {
     // Define the main class for the application.
-    mainClass.set("DNAnalyzer.Main")
+    mainClass = "DNAnalyzer.Main"
 }
 
-tasks.named<JavaExec>("run") {
-    // ensure STDIN works correctly (see https://stackoverflow.com/a/13172566/610979)
-    standardInput = System.`in`
+jar {
+    manifest {
+        attributes 'Main-Class': 'DNAnalyzer.Main'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
