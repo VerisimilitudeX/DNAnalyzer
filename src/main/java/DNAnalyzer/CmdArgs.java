@@ -85,5 +85,8 @@ public class CmdArgs implements Runnable {
 				System.out.println("\nProtein sequence not found in the DNA sequence.");
 			}
 		}
+
+		// Find longest protein in DNA
+		ProteinAnalysis.printLongestProtein(proteins);
 	}
 }
