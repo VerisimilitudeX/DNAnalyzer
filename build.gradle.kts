@@ -22,6 +22,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.0.1-jre")
+
+    // Picocli
+    implementation("info.picocli:picocli:4.6.3")
 }
 
 application {
