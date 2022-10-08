@@ -66,8 +66,8 @@ public class CmdArgs implements Runnable {
   }
 
   /**
-   * Output a list of proteins, GC content, Nucleotide content, and other
-   * information found in a DNA sequence.
+   * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
+   * sequence.
    *
    * @throws IllegalArgumentException when the DNA FASTA file contains an invalid DNA sequence
    */
