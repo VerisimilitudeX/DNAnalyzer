@@ -158,8 +158,8 @@ public class Properties {
         //sort array to get min and max value
         Arrays.sort(nucleotideCount);
 
-        final int maxPercent = (int) ((float) nucleotideCount[3]) / dna.length() * 100;
-        final int minPercent = (int) ((float) nucleotideCount[0]) / dna.length() * 100;
+        final int maxPercent = (int) (((float) nucleotideCount[3]) / dna.length() * 100);
+        final int minPercent = (int) (((float) nucleotideCount[0]) / dna.length() * 100);
 
         // If the percentage of each nucleotide is between 2% of one another, then it is
         // random
