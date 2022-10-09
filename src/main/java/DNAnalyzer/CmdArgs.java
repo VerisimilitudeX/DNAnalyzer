@@ -54,6 +54,9 @@ public class CmdArgs implements Runnable {
       description = "The DNA sequence to be found within the FASTA file.")
   File proteinFile;
 
+  @Option(names = {"--reverse", "-r"}, description = "Reverse the DNA sequence before processing.")
+  boolean reverse;
+
   /**
    * Reads the contents of a file, stripping out newlines and converting everything to lowercase.
    *
@@ -93,6 +96,14 @@ public class CmdArgs implements Runnable {
 
     // Replace Uracil with Thymine (in case user entered RNA and not DNA)
     dna = dna.replace("u", "t");
+
+    // Reverse
+    if (reverse) {
+      StringBuilder rev = new StringBuilder();
+      rev.append(dna);
+      rev.reverse();
+      dna = rev.toString();
+    }
 
     // Create protein list
     ProteinFinder gfp = new ProteinFinder();
