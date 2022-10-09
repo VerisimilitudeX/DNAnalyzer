@@ -38,31 +38,9 @@ public class Properties {
 
 		// Changes the 1 letter or 3 letter abbreviation of the amino acids into the
 		// full name
-		String aminoAcidFullName = "";
-		switch (aminoAcid) {
-			case "a", "alanine", "ala" -> aminoAcidFullName = "Alanine";
-			case "c", "cysteine", "cys" -> aminoAcidFullName = "Cysteine";
-			case "d", "aspartic acid", "asp" -> aminoAcidFullName = "Aspartic acid";
-			case "e", "glutamic acid", "glu" -> aminoAcidFullName = "Glutamic acid";
-			case "f", "phenylalanine", "phe" -> aminoAcidFullName = "Phenylalanine";
-			case "g", "glycine", "gly" -> aminoAcidFullName = "Glycine";
-			case "h", "histidine", "his" -> aminoAcidFullName = "Histidine";
-			case "i", "isoleucine", "ile" -> aminoAcidFullName = "Isoleucine";
-			case "k", "lysine", "lys" -> aminoAcidFullName = "Lysine";
-			case "l", "leucine", "leu" -> aminoAcidFullName = "Leucine";
-			case "m", "methionine", "met" -> aminoAcidFullName = "Methionine";
-			case "n", "asparagine", "asn" -> aminoAcidFullName = "Asparagine";
-			case "p", "proline", "pro" -> aminoAcidFullName = "Proline";
-			case "q", "glutamine", "gln" -> aminoAcidFullName = "Glutamine";
-			case "r", "arginine", "arg" -> aminoAcidFullName = "Arginine";
-			case "s", "serine", "ser" -> aminoAcidFullName = "Serine";
-			case "t", "threonine", "thr" -> aminoAcidFullName = "Threonine";
-			case "v", "valine", "val" -> aminoAcidFullName = "Valine";
-			case "w", "tryptophan", "trp" -> aminoAcidFullName = "Tryptophan";
-			default -> System.out.println("Invalid amino acid");
-		}
+		AminoAcid acid = AminoAcidFactory.getProtein(aminoAcid);
 
-		System.out.println("Proteins coded for " + aminoAcidFullName + ": ");
+		System.out.println("Proteins coded for " + acid.getFullName() + ": ");
 		System.out.println("----------------------------------------------------");
 		short count = 1;
 		for (final String gene : proteinList) {
