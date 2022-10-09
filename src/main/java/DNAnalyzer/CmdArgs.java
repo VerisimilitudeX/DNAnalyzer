@@ -1,3 +1,13 @@
+/*
+ * Copyright © 2022 DNAnalyzer. Some rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * You are entirely responsible for the use of this application, including any and all activities that occur.
+ * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
+ * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
+ *
+ * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ */
 package DNAnalyzer;
 
 import java.io.File;
@@ -10,6 +20,11 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+/**
+ * Class for handling command-line arguments.
+ *
+ * @version 1.2.1
+ */
 @Command(
     name = "DNAnalyzer",
     mixinStandardHelpOptions = true,
@@ -39,10 +54,23 @@ public class CmdArgs implements Runnable {
       description = "The DNA sequence to be found within the FASTA file.")
   File proteinFile;
 
+  /**
+   * Reads the contents of a file, stripping out newlines and converting everything to lowercase.
+   *
+   * @param file the file to read
+   * @throws IOException if there is an error reading the file
+   * @return String with the contents of the file (newlines removed and converted to lowercase)
+   */
   String readFile(File file) throws IOException {
     return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
   }
 
+  /**
+   * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
+   * sequence.
+   *
+   * @throws IllegalArgumentException when the DNA FASTA file contains an invalid DNA sequence
+   */
   @Override
   public void run() {
     String dna = null;
