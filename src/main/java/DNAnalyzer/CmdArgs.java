@@ -54,7 +54,9 @@ public class CmdArgs implements Runnable {
       description = "The DNA sequence to be found within the FASTA file.")
   File proteinFile;
 
-  @Option(names = {"--reverse", "-r"}, description = "Reverse the DNA sequence before processing.")
+  @Option(
+      names = {"--reverse", "-r"},
+      description = "Reverse the DNA sequence before processing.")
   boolean reverse;
 
   /**
