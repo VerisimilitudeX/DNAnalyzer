@@ -244,7 +244,7 @@ A program to analyze DNA sequences.
   </code>
 </p>
 
-## Contribution Guideline :
+## Contribution Guidelines :
 
 - Drop a :star: on the Github repository (It's optional)<br/>
 
