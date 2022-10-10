@@ -7,8 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MainTest {
-    @Test public void mainClassshouldExist() {
-        Main classUnderTest = new Main();
-        assertNotNull("main should be not null", classUnderTest);
+    @Test public void mainClassshouldExist() throws ClassNotFoundException {
+        Class.forName("DNAnalyzer.Main");
     }
 }
