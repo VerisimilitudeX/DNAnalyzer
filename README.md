@@ -111,6 +111,11 @@ On UNIX-like operating systems, you might have to prefix this with './' to ensur
 ./gradlew build
 ```
 
+Then, use this to run the CLI
+```
+java -jar build/libs/DNAnalyzer.jar <arguments>
+```
+
 Afterwards, you can run the DNAnalyzer with
 ```
 java -cp build/classes/java/main/ DNAnalyzer.Main
@@ -134,15 +139,17 @@ or
 Help message:
 
 ```
-Usage: DNAnalyzer [-hV] --amino=<aminoAcid> [--max=<maxCount>]
-                  [--min=<minCount>] DNA
+Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
+                  [--max=<maxCount>] [--min=<minCount>] DNA
 A program to analyze DNA sequences.
-      DNA                   The FASTA file to be analyzed.
-      --amino=<aminoAcid>   The amino acid representing the start of a gene.
-  -h, --help                Show this help message and exit.
-      --max=<maxCount>      The maximum count of the reading frame.
-      --min=<minCount>      The minimum count of the reading frame.
-  -V, --version             Print version information and exit.
+      DNA                    The FASTA file to be analyzed.
+      --amino=<aminoAcid>    The amino acid representing the start of a gene.
+      --find=<proteinFile>   The DNA sequence to be found within the FASTA file.
+  -h, --help                 Show this help message and exit.
+      --max=<maxCount>       The maximum count of the reading frame.
+      --min=<minCount>       The minimum count of the reading frame.
+  -r, --reverse              Reverse the DNA sequence before processing.
+  -V, --version              Print version information and exit.
 ```
 
 <h2 id="demo">Demo
