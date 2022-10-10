@@ -111,6 +111,11 @@ On UNIX-like operating systems, you might have to prefix this with './' to ensur
 ./gradlew build
 ```
 
+Then, use this to run the CLI
+```
+java -jar build/libs/DNAnalyzer.jar <arguments>
+```
+
 Afterwards, you can run the DNAnalyzer with
 ```
 java -cp build/classes/java/main/ DNAnalyzer.Main
