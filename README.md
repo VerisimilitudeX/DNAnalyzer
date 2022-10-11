@@ -155,7 +155,8 @@ A program to analyze DNA sequences.
 <h2 id="demo">Demo
 </h2>
 
-[![Watch the video](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)
+
+https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov
 
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
