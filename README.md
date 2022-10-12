@@ -96,27 +96,33 @@
 <h3 id="requirements">System Requirements
 </h3>
 To build and run the DNAnalyzer, you need
+
 * JDK 17 or greater
 * a JAVA\_HOME environment variable pointing to your JDK 17, or the java executable in your PATH
 
 <h3 id="build_and_run">Build & Run</h3>
-We use <a href="https://gradle.org">Gradle</a> for the build. The Gradle wrapper takes care of downloading the dependencies etc. - simply run
+We use <a href="https://gradle.org">Gradle</a> for the build. The Gradle wrapper takes care of downloading the
+dependencies etc. - simply run
 
 ```
 gradlew build
 ```
 
-On UNIX-like operating systems, you might have to prefix this with './' to ensure the OS looks in the current directory, so the above becomes
+On UNIX-like operating systems, you might have to prefix this with './' to ensure the OS looks in the current directory,
+so the above becomes
+
 ```
 ./gradlew build
 ```
 
 Then, use this to run the CLI
+
 ```
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
 Afterwards, you can run the DNAnalyzer with
+
 ```
 java -cp build/classes/java/main/ DNAnalyzer.Main
 ```
@@ -154,7 +160,6 @@ A program to analyze DNA sequences.
 
 <h2 id="demo">Demo
 </h2>
-
 
 https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov
 
@@ -249,13 +254,17 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 
 - Drop a :star: on the Github repository (It's optional)<br/>
 
-- Before Contribute Please read [Contributing_Guidelines.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/Contributing_Guidelines.md)) and [CODE_OF_CONDUCT.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/CODE_OF_CONDUCT.md)).
+- Before Contribute Please
+  read [Contributing_Guidelines.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/Contributing_Guidelines.md))
+  and [CODE_OF_CONDUCT.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/CODE_OF_CONDUCT.md)).
 
-- Create an issue of the project or a feature you would like to add in the project and get the task assigned for youself.(Issue can be any bug fixes or any feature you want to add in this project).
+- Create an issue of the project or a feature you would like to add in the project and get the task assigned for
+  youself.(Issue can be any bug fixes or any feature you want to add in this project).
 
 - Fork the repo to your Github.<br/>
 
-- Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this command with your forked repository link in place of below given link: <br/>
+- Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this
+  command with your forked repository link in place of below given link: <br/>
   `git clone https://github.com/Verisimilitude11/DNAnalyzer`
 - Create a branch using below command.
   `git branch <your branch name>`
@@ -271,6 +280,7 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 - Make a pull request! (compare your branch with the owner main branch)
 
 # Contributors🌟
+
 <br>
 <h4 align="center">
  <b>✨THANKS TO THESE PEOPLE✨
