@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -26,119 +27,119 @@ import picocli.CommandLine.Parameters;
  * @version 1.2.1
  */
 @Command(
-    name = "DNAnalyzer",
-    mixinStandardHelpOptions = true,
-    description = "A program to analyze DNA sequences.")
+        name = "DNAnalyzer",
+        mixinStandardHelpOptions = true,
+        description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-  @Option(
-      required = true,
-      names = {"--amino"},
-      description = "The amino acid representing the start of a gene.")
-  String aminoAcid;
+    @Option(
+            required = true,
+            names = {"--amino"},
+            description = "The amino acid representing the start of a gene.")
+    String aminoAcid;
 
-  @Option(
-      names = {"--min"},
-      description = "The minimum count of the reading frame.")
-  int minCount = 0;
+    @Option(
+            names = {"--min"},
+            description = "The minimum count of the reading frame.")
+    int minCount = 0;
 
-  @Option(
-      names = {"--max"},
-      description = "The maximum count of the reading frame.")
-  int maxCount = 0;
+    @Option(
+            names = {"--max"},
+            description = "The maximum count of the reading frame.")
+    int maxCount = 0;
 
-  @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
-  File dnaFile;
+    @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
+    File dnaFile;
 
-  @Option(
-      names = {"--find"},
-      description = "The DNA sequence to be found within the FASTA file.")
-  File proteinFile;
+    @Option(
+            names = {"--find"},
+            description = "The DNA sequence to be found within the FASTA file.")
+    File proteinFile;
 
-  @Option(
-      names = {"--reverse", "-r"},
-      description = "Reverse the DNA sequence before processing.")
-  boolean reverse;
+    @Option(
+            names = {"--reverse", "-r"},
+            description = "Reverse the DNA sequence before processing.")
+    boolean reverse;
 
-  /**
-   * Reads the contents of a file, stripping out newlines and converting everything to lowercase.
-   *
-   * @param file the file to read
-   * @throws IOException if there is an error reading the file
-   * @return String with the contents of the file (newlines removed and converted to lowercase)
-   */
-  String readFile(final File file) throws IOException {
-    return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
-  }
-
-  /**
-   * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
-   * sequence.
-   *
-   * @throws IllegalArgumentException when the DNA FASTA file contains an invalid DNA sequence
-   */
-  @Override
-  public void run() {
-    String dna = null;
-    String protein = null;
-    try {
-      Main.clearTerminal();
-      dna = readFile(dnaFile);
-      if (proteinFile != null) {
-        protein = readFile(proteinFile);
-      }
-    } catch (IOException | InterruptedException e) {
-      e.printStackTrace();
-      return;
+    /**
+     * Reads the contents of a file, stripping out newlines and converting everything to lowercase.
+     *
+     * @param file the file to read
+     * @return String with the contents of the file (newlines removed and converted to lowercase)
+     * @throws IOException if there is an error reading the file
+     */
+    String readFile(final File file) throws IOException {
+        return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
     }
 
-    // Valid DNA?
-    if (!dna.matches("[atgc]+")) {
-      throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
+    /**
+     * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
+     * sequence.
+     *
+     * @throws IllegalArgumentException when the DNA FASTA file contains an invalid DNA sequence
+     */
+    @Override
+    public void run() {
+        String dna = null;
+        String protein = null;
+        try {
+            Main.clearTerminal();
+            dna = readFile(dnaFile);
+            if (proteinFile != null) {
+                protein = readFile(proteinFile);
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        // Valid DNA?
+        if (!dna.matches("[atgc]+")) {
+            throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
+        }
+
+        // Replace Uracil with Thymine (in case user entered RNA and not DNA)
+        dna = dna.replace("u", "t");
+
+        // Reverse
+        if (reverse) {
+            final StringBuilder rev = new StringBuilder();
+            rev.append(dna);
+            rev.reverse();
+            dna = rev.toString();
+        }
+
+        // Create protein list
+        final ProteinFinder gfp = new ProteinFinder();
+        final List<String> proteins = gfp.getProtein(dna, aminoAcid);
+
+        // Output the proteins, GC content, and nucleotide cnt found in the DNA
+        Properties.printProteinList(proteins, aminoAcid);
+        final float gcContent = Properties.getGCContent(dna);
+        System.out.println("\nGC-content (genome): " + gcContent + "\n");
+        Properties.printNucleotideCount(dna);
+
+        // Output the number of codons based on the reading frame the user wants to look
+        // at, and minimum and maximum filters
+
+        final short READING_FRAME = 1;
+        final ReadingFrames aap =
+                new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
+        System.out.print("\n");
+        aap.printCodonCounts();
+
+        // Find protein sequence in DNA
+        if (protein != null) {
+            final Pattern p = Pattern.compile(protein);
+            final Matcher m = p.matcher(dna);
+            if (m.find()) {
+                System.out.println(
+                        "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
+            } else {
+                System.out.println("\nProtein sequence not found in the DNA sequence.");
+            }
+        }
+
+        // Find longest protein in DNA
+        ProteinAnalysis.printLongestProtein(proteins);
     }
-
-    // Replace Uracil with Thymine (in case user entered RNA and not DNA)
-    dna = dna.replace("u", "t");
-
-    // Reverse
-    if (reverse) {
-      final StringBuilder rev = new StringBuilder();
-      rev.append(dna);
-      rev.reverse();
-      dna = rev.toString();
-    }
-
-    // Create protein list
-    final ProteinFinder gfp = new ProteinFinder();
-    final List<String> proteins = gfp.getProtein(dna, aminoAcid);
-
-    // Output the proteins, GC content, and nucleotide cnt found in the DNA
-    Properties.printProteinList(proteins, aminoAcid);
-    final float gcContent = Properties.getGCContent(dna);
-    System.out.println("\nGC-content (genome): " + gcContent + "\n");
-    Properties.printNucleotideCount(dna);
-
-    // Output the number of codons based on the reading frame the user wants to look
-    // at, and minimum and maximum filters
-
-    final short READING_FRAME = 1;
-    final ReadingFrames aap =
-        new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
-    System.out.print("\n");
-    aap.printCodonCounts();
-
-    // Find protein sequence in DNA
-    if (protein != null) {
-      final Pattern p = Pattern.compile(protein);
-      final Matcher m = p.matcher(dna);
-      if (m.find()) {
-        System.out.println(
-            "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
-      } else {
-        System.out.println("\nProtein sequence not found in the DNA sequence.");
-      }
-    }
-
-    // Find longest protein in DNA
-    ProteinAnalysis.printLongestProtein(proteins);
-  }
 }
