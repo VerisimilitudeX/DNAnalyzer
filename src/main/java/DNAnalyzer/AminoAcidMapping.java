@@ -23,7 +23,7 @@ public class AminoAcidMapping {
 	 * @param aminoAcid name of amino acid
 	 * @return AminoAcidName Enum mapping for given aminoAcid name
 	 */
-	public static AminoAcidNames getAminoAcidMapping(String aminoAcid) {
+	public static AminoAcidNames getAminoAcidMapping(final String aminoAcid) {
 		// Maps the amino acid that the user entered to the start codon list.
 		switch (aminoAcid) {
 			case "isoleucine", "i", "ile" -> {

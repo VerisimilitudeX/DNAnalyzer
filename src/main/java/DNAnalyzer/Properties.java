@@ -34,11 +34,11 @@ public class Properties {
 	 * @throws InterruptedException
 	 * @throws IOException
 	 */
-	public static void printProteinList(List<String> proteinList, final String aminoAcid) {
+	public static void printProteinList(final List<String> proteinList, final String aminoAcid) {
 
 		// Changes the 1 letter or 3 letter abbreviation of the amino acids into the
 		// full name
-		AminoAcid acid = AminoAcidFactory.getAminoAcid(aminoAcid);
+		final AminoAcid acid = AminoAcidFactory.getAminoAcid(aminoAcid);
 
 		System.out.println("Proteins coded for " + acid.getFullName() + ": ");
 		System.out.println("----------------------------------------------------");

@@ -30,7 +30,7 @@ public class ProteinAnalysis {
 	 *
 	 * @param geneList list of genes
 	 */
-	public static void printHighCoverageRegions(List<String> geneList) {
+	public static void printHighCoverageRegions(final List<String> geneList) {
 		short count = 1;
 
 		// print the list of genes with the highest GC content
@@ -60,7 +60,7 @@ public class ProteinAnalysis {
 	 * @category Properties
 	 * @param proteinList The list of proteins in the DNA sequence
 	 */
-	public static void printLongestProtein(List<String> proteinList) {
+	public static void printLongestProtein(final List<String> proteinList) {
 		String longestProtein = "";
 		for (final String protein : proteinList) {
 			if (protein.length() > longestProtein.length()) {

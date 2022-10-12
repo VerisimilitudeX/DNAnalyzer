@@ -59,12 +59,12 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o)
 			return true;
 		if (!(o instanceof CodonFrame))
 			return false;
-		CodonFrame that = (CodonFrame) o;
+		final CodonFrame that = (CodonFrame) o;
 		return getReadingFrame() == that.getReadingFrame() && getMin() == that.getMin() && getMax() == that.getMax()
 				&& getDna().equals(that.getDna());
 	}

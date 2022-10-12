@@ -46,7 +46,7 @@ public enum AminoAcid {
      * @param fullName full name of the amino acid.
      * @param abbreviations a list of abbreviations that an acid can be searched by.
      */
-    AminoAcid(String fullName, String...abbreviations) {
+    AminoAcid(final String fullName, final String...abbreviations) {
         this.fullName = fullName;
         this.names = List.of(abbreviations);
     }

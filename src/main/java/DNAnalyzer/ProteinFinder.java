@@ -47,12 +47,12 @@ public class ProteinFinder {
 	 * @param aminoAcid amino acid
 	 * @return list of proteins
 	 */
-	public List<String> getProtein(String dna, String aminoAcid) {
+	public List<String> getProtein(final String dna, final String aminoAcid) {
 		this.aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidMapping.getAminoAcidMapping(aminoAcid)));
 
 		int start_index;
 		int stop_index;
-		List<String> stop = CodonDataUtils.getAminoAcid(AminoAcidNames.STOP);
+		final List<String> stop = CodonDataUtils.getAminoAcid(AminoAcidNames.STOP);
 
 		// Outer loop loops through the start codons for the amino acids that the user
 		// entered.

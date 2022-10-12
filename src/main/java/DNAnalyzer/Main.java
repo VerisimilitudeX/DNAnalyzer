@@ -26,7 +26,7 @@ public class Main {
 	/**
 	 * Clears the console screen based on the operating system.
 	 *
-	 * @category User Experience
+	 * @category User ExperienceF
 	 * @throws InterruptedException
 	 * @throws IOException
 	 */

@@ -66,7 +66,7 @@ public class CmdArgs implements Runnable {
    * @throws IOException if there is an error reading the file
    * @return String with the contents of the file (newlines removed and converted to lowercase)
    */
-  String readFile(File file) throws IOException {
+  String readFile(final File file) throws IOException {
     return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
   }
 
@@ -101,15 +101,15 @@ public class CmdArgs implements Runnable {
 
     // Reverse
     if (reverse) {
-      StringBuilder rev = new StringBuilder();
+      final StringBuilder rev = new StringBuilder();
       rev.append(dna);
       rev.reverse();
       dna = rev.toString();
     }
 
     // Create protein list
-    ProteinFinder gfp = new ProteinFinder();
-    List<String> proteins = gfp.getProtein(dna, aminoAcid);
+    final ProteinFinder gfp = new ProteinFinder();
+    final List<String> proteins = gfp.getProtein(dna, aminoAcid);
 
     // Output the proteins, GC content, and nucleotide cnt found in the DNA
     Properties.printProteinList(proteins, aminoAcid);
@@ -128,8 +128,8 @@ public class CmdArgs implements Runnable {
 
     // Find protein sequence in DNA
     if (protein != null) {
-      Pattern p = Pattern.compile(protein);
-      Matcher m = p.matcher(dna);
+      final Pattern p = Pattern.compile(protein);
+      final Matcher m = p.matcher(dna);
       if (m.find()) {
         System.out.println(
             "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");

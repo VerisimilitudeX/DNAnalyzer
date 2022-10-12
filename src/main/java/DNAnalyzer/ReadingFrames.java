@@ -32,7 +32,7 @@ public class ReadingFrames {
 	 * @param {@link CodonFrame} frame for codon data
 	 * @category Codon
 	 */
-	public ReadingFrames(CodonFrame codonFrame) {
+	public ReadingFrames(final CodonFrame codonFrame) {
 		this.codonCounts = new HashMap<>();
 		this.codonFrame = codonFrame;
 	}
