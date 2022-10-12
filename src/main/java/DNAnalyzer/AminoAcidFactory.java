@@ -12,22 +12,20 @@ package DNAnalyzer;
 
 import java.util.Arrays;
 
-/**
- * ProteinFactory to get the instance of a Protein enum.
- */
+/** ProteinFactory to get the instance of a Protein enum. */
 public class AminoAcidFactory {
 
-    /**
-     * Searches for an amino acid by its name or abbreviation passed as the argument.
-     * @param aminoAcid amino acid name to search by.
-     * @return a {@link AminoAcid} value.
-     * @throws IllegalArgumentException if no acid is found by given name.
-     */
-    public static AminoAcid getAminoAcid(String aminoAcid) {
-        return  Arrays.stream(AminoAcid.values())
-                      .filter(acid ->
-                          acid.getNames().contains(aminoAcid.toLowerCase()))
-                      .findFirst()
-                      .orElseThrow(() -> new IllegalArgumentException("Unknown amino acid."));
-    }
+  /**
+   * Searches for an amino acid by its name or abbreviation passed as the argument.
+   *
+   * @param aminoAcid amino acid name to search by.
+   * @return a {@link AminoAcid} value.
+   * @throws IllegalArgumentException if no acid is found by given name.
+   */
+  public static AminoAcid getAminoAcid(String aminoAcid) {
+    return Arrays.stream(AminoAcid.values())
+        .filter(acid -> acid.getNames().contains(aminoAcid.toLowerCase()))
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Unknown amino acid."));
+  }
 }
