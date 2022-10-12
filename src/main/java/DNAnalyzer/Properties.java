@@ -38,7 +38,7 @@ public class Properties {
 
 		// Changes the 1 letter or 3 letter abbreviation of the amino acids into the
 		// full name
-		AminoAcid acid = AminoAcidFactory.getProtein(aminoAcid);
+		AminoAcid acid = AminoAcidFactory.getAminoAcid(aminoAcid);
 
 		System.out.println("Proteins coded for " + acid.getFullName() + ": ");
 		System.out.println("----------------------------------------------------");

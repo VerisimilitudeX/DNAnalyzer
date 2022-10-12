@@ -23,7 +23,7 @@ public class AminoAcidFactory {
      * @return a {@link AminoAcid} value.
      * @throws IllegalArgumentException if no acid is found by given name.
      */
-    public static AminoAcid getProtein(String aminoAcid) {
+    public static AminoAcid getAminoAcid(String aminoAcid) {
         return  Arrays.stream(AminoAcid.values())
                       .filter(acid ->
                           acid.getNames().contains(aminoAcid.toLowerCase()))
