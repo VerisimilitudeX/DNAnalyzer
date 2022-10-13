@@ -105,25 +105,25 @@ To build and run the DNAnalyzer, you need
 We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
 dependencies, testing, compiling, linking, and packaging the code.
 
-<h4>Windows</h4>:
+<h4>Windows:</h4>
 
 ```
 .\gradlew build
 ```
 
-<h4>Linux/Unix/macOS</h4>:
+<h4>Linux/Unix/macOS:</h4>
 
 ```
 ./gradlew build
 ```
 
-<h4>Executable</h4>:
+<h4>Executable:</h4>
 
 ```
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
-<h4>Arguments</h4>:
+<h4>Arguments:</h4>
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
@@ -131,13 +131,13 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 <executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
 ```
 
-<h4>Usage</h4>:
+<h4>Usage:</h4>
 
 ```
 <executable> <arguments>
 ```
 
-<h4>Help message</h4>:
+<h4>Help message:</h4>
 
 ```
 Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
