@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
   <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
-  <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>
+  <!--img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>-->
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -98,51 +98,46 @@
 To build and run the DNAnalyzer, you need
 
 * JDK 17 or greater
-* a JAVA\_HOME environment variable pointing to your JDK 17, or the java executable in your PATH
+* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+* <a href="https://gradle.org/install/">Gradle</a>
 
 <h3 id="build_and_run">Build & Run</h3>
-We use <a href="https://gradle.org">Gradle</a> for the build. The Gradle wrapper takes care of downloading the
-dependencies etc. - simply run
+We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
+dependencies, testing, compiling, linking, and packaging the code.
+
+<h4>Windows</h4>:
 
 ```
-gradlew build
+.\gradlew build
 ```
 
-On UNIX-like operating systems, you might have to prefix this with './' to ensure the OS looks in the current directory,
-so the above becomes
+<h4>Linux/Unix/macOS</h4>:
 
 ```
 ./gradlew build
 ```
 
-Then, use this to run the CLI
+<h4>Executable</h4>:
 
 ```
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
-Afterwards, you can run the DNAnalyzer with
-
-```
-java -cp build/classes/java/main/ DNAnalyzer.Main
-```
-
-<h2 id="usage">Usage
-</h2>
+<h4>Arguments</h4>:
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
 ```
-<executable> assets/dna/random/dnalong.fa --amino=ser
+<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
 ```
 
-or
+<h4>Usage</h4>:
 
 ```
-<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100
+<executable> <arguments>
 ```
 
-Help message:
+<h4>Help message</h4>:
 
 ```
 Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
