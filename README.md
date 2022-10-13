@@ -7,9 +7,9 @@
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
-  <!--- <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/> --->
+  <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
-  <!--- <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'> --->
+  <!--img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>-->
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -93,50 +93,75 @@
 
 <h2 id="getting-started">Getting Started
 </h2>
+<h3 id="requirements">System Requirements
+</h3>
+To build and run the DNAnalyzer, you need
 
-For compilation navigate to `src` folder, then run
+* JDK 17 or greater
+* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+* <a href="https://gradle.org/install/">Gradle</a>
 
-> javac -d . DNAnalyzer/Main.java
+<h3 id="build_and_run">Build & Run</h3>
+We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
+dependencies, testing, compiling, linking, and packaging the code.
 
-Once compiled you'll see `.class` files for each of corresponding `.java` files in the DNAnalyzer folder
+<h4>Windows:</h4>
 
-To execute run below command from `src` directory itself
+```
+.\gradlew build
+```
 
-> java DNAnalyzer.Main
+<h4>Linux/Unix/macOS:</h4>
 
-<h2 id="usage">Usage
-</h2>
+```
+./gradlew build
+```
+
+<h4>Executable:</h4>
+
+```
+java -jar build/libs/DNAnalyzer.jar <arguments>
+```
+
+<h4>Arguments:</h4>
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
 ```
-<executable> assets/dna/random/dnalong.fa --amino=ser
+<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
 ```
 
-or
+<h4>Usage:</h4>
 
 ```
-<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100
+<executable> <arguments>
+```
+<h5>Example:</h5>
+
+```
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100
 ```
 
-Help message:
+<h4>Help message:</h4>
 
 ```
-Usage: DNAnalyzer [-hV] --amino=<aminoAcid> [--max=<maxCount>]
-                  [--min=<minCount>] DNA
+Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
+                  [--max=<maxCount>] [--min=<minCount>] DNA
 A program to analyze DNA sequences.
-      DNA                   The FASTA file to be analyzed.
-      --amino=<aminoAcid>   The amino acid representing the start of a gene.
-  -h, --help                Show this help message and exit.
-      --max=<maxCount>      The maximum count of the reading frame.
-      --min=<minCount>      The minimum count of the reading frame.
-  -V, --version             Print version information and exit.
+      DNA                    The FASTA file to be analyzed.
+      --amino=<aminoAcid>    The amino acid representing the start of a gene.
+      --find=<proteinFile>   The DNA sequence to be found within the FASTA file.
+  -h, --help                 Show this help message and exit.
+      --max=<maxCount>       The maximum count of the reading frame.
+      --min=<minCount>       The minimum count of the reading frame.
+  -r, --reverse              Reverse the DNA sequence before processing.
+  -V, --version              Print version information and exit.
 ```
 
 <h2 id="demo">Demo
 </h2>
 
-[![Watch the video](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/demo/demo.mp4)
+https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov
 
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
@@ -175,7 +200,21 @@ A program to analyze DNA sequences.
   </li>
 </ul>
 
-<h2 id="citations">Citations
+# Contributing:
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
+
+## Contributors
+
+<h4>DNAnlyzer was develeloped with the help of the following people:
+<h4>
+<a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
+
+  <img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817" />
+
+</a>
+
+<h2 align="left" id="citations">Citations
 </h2>
 
 <ol>
@@ -225,7 +264,5 @@ A program to analyze DNA sequences.
   </code>
 </p>
 
-<p>
-  <strong>Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
-  </strong>
-</p>
+### Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
+

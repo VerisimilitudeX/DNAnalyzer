@@ -1,6 +1,9 @@
 # Terms of this license
 
-Some rights reserved. This license is a legal agreement between you and the author of the software (the "Author"). By obtaining, using, and/or copying this software, you agree that you have read, understood, and agree to be bound by the terms of this license. If you do not agree to these terms, do not obtain or use this software. The user of this software is considered to be the "Licensee" and the Author is the "Licensor".
+Some rights reserved. This license is a legal agreement between you and the author of the software (the "Author"). By
+obtaining, using, and/or copying this software, you agree that you have read, understood, and agree to be bound by the
+terms of this license. If you do not agree to these terms, do not obtain or use this software. The user of this software
+is considered to be the "Licensee" and the Author is the "Licensor".
 
 ## 1. Grant of license
 
