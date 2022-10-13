@@ -200,11 +200,11 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </li>
 </ul>
 
-## Contribution Guidelines:
-- View the following <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md"> Contributing Guidelines</a> for more information
-- Steps for <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">Contributing</a> (How to Use Git)
+# Contributing:
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
 
-# Contributors
+## Contributors
 
 <h4>DNAnlyzer was develeloped with the help of the following people:
 <h4>
