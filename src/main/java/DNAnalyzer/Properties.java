@@ -86,7 +86,7 @@ public class Properties {
      *
      * @param dna sequence
      * @return The mapping between the nucleotides and their count in given DNA
-     * sequence.
+     *         sequence.
      * @category Properties
      */
     private static Map<Character, Integer> countNucleotides(final String dna) {
@@ -125,11 +125,8 @@ public class Properties {
 
         final int a = nucleotidePercentage(nucleotideCount.get('a'), dna);
         final int t = nucleotidePercentage(nucleotideCount.get('t'), dna);
-        ;
         final int g = nucleotidePercentage(nucleotideCount.get('g'), dna);
-        ;
         final int c = nucleotidePercentage(nucleotideCount.get('c'), dna);
-        ;
 
         // If the percentage of each nucleotide is between 2% of one another, then it is
         // random
