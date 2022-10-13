@@ -7,9 +7,9 @@
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
-  <!--- <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/> --->
+  <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
-  <!--- <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'> --->
+  <!--img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>-->
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -96,47 +96,53 @@
 <h3 id="requirements">System Requirements
 </h3>
 To build and run the DNAnalyzer, you need
+
 * JDK 17 or greater
-* a JAVA\_HOME environment variable pointing to your JDK 17, or the java executable in your PATH
+* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+* <a href="https://gradle.org/install/">Gradle</a>
 
 <h3 id="build_and_run">Build & Run</h3>
-We use <a href="https://gradle.org">Gradle</a> for the build. The Gradle wrapper takes care of downloading the dependencies etc. - simply run
+We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
+dependencies, testing, compiling, linking, and packaging the code.
+
+<h4>Windows:</h4>
 
 ```
-gradlew build
+.\gradlew build
 ```
 
-On UNIX-like operating systems, you might have to prefix this with './' to ensure the OS looks in the current directory, so the above becomes
+<h4>Linux/Unix/macOS:</h4>
+
 ```
 ./gradlew build
 ```
 
-Then, use this to run the CLI
+<h4>Executable:</h4>
+
 ```
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
-Afterwards, you can run the DNAnalyzer with
-```
-java -cp build/classes/java/main/ DNAnalyzer.Main
-```
-
-<h2 id="usage">Usage
-</h2>
+<h4>Arguments:</h4>
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
 ```
-<executable> assets/dna/random/dnalong.fa --amino=ser
+<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
 ```
 
-or
+<h4>Usage:</h4>
 
 ```
-<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100
+<executable> <arguments>
+```
+<h5>Example:</h5>
+
+```
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100
 ```
 
-Help message:
+<h4>Help message:</h4>
 
 ```
 Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
@@ -154,7 +160,6 @@ A program to analyze DNA sequences.
 
 <h2 id="demo">Demo
 </h2>
-
 
 https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov
 
@@ -195,7 +200,21 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </li>
 </ul>
 
-<h2 id="citations">Citations
+# Contributing:
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
+
+## Contributors
+
+<h4>DNAnlyzer was develeloped with the help of the following people:
+<h4>
+<a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
+
+  <img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817" />
+
+</a>
+
+<h2 align="left" id="citations">Citations
 </h2>
 
 <ol>
@@ -245,42 +264,5 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-## Contribution Guidelines :
-
-- Drop a :star: on the Github repository (It's optional)<br/>
-
-- Before Contribute Please read [Contributing_Guidelines.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/Contributing_Guidelines.md)) and [CODE_OF_CONDUCT.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/CODE_OF_CONDUCT.md)).
-
-- Create an issue of the project or a feature you would like to add in the project and get the task assigned for youself.(Issue can be any bug fixes or any feature you want to add in this project).
-
-- Fork the repo to your Github.<br/>
-
-- Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this command with your forked repository link in place of below given link: <br/>
-  `git clone https://github.com/Verisimilitude11/DNAnalyzer`
-- Create a branch using below command.
-  `git branch <your branch name>`
-- Checkout to your branch.
-  `git checkout <your branch name>`
-- Add your code in your local machine folder.
-  `git add . `
-- Commit your changes.
-  `git commit -m"<add your message here>"`
-- Push your changes.
-  `git push --set-upstream origin <your branch name>`
-
-- Make a pull request! (compare your branch with the owner main branch)
-
-# Contributors🌟
-<br>
-<h4 align="center">
- <b>✨THANKS TO THESE PEOPLE✨
-<h4>
-<a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
-
-  <img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817" />
-
-</a>
-<br>
-
-## Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
+### Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
 

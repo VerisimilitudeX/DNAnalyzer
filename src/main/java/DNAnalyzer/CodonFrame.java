@@ -22,55 +22,55 @@ import java.util.Objects;
  */
 public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
-	/**
-	 * gets dna
-	 * 
-	 * @return dna
-	 */
-	public String getDna() {
-		return dna;
-	}
+    /**
+     * gets dna
+     *
+     * @return dna
+     */
+    public String getDna() {
+        return dna;
+    }
 
-	/**
-	 * gets reading frame
-	 * 
-	 * @return reading frame
-	 */
-	public short getReadingFrame() {
-		return readingFrame;
-	}
+    /**
+     * gets reading frame
+     *
+     * @return reading frame
+     */
+    public short getReadingFrame() {
+        return readingFrame;
+    }
 
-	/**
-	 * gets min
-	 * 
-	 * @return min
-	 */
-	public int getMin() {
-		return min;
-	}
+    /**
+     * gets min
+     *
+     * @return min
+     */
+    public int getMin() {
+        return min;
+    }
 
-	/**
-	 * gets max
-	 * 
-	 * @return max
-	 */
-	public int getMax() {
-		return max;
-	}
+    /**
+     * gets max
+     *
+     * @return max
+     */
+    public int getMax() {
+        return max;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof CodonFrame))
-			return false;
-		CodonFrame that = (CodonFrame) o;
-		return getReadingFrame() == that.getReadingFrame() && getMin() == that.getMin() && getMax() == that.getMax()
-				&& getDna().equals(that.getDna());
-	}
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof CodonFrame))
+            return false;
+        final CodonFrame that = (CodonFrame) o;
+        return getReadingFrame() == that.getReadingFrame() && getMin() == that.getMin() && getMax() == that.getMax()
+                && getDna().equals(that.getDna());
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getDna(), getReadingFrame(), getMin(), getMax());
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(getDna(), getReadingFrame(), getMin(), getMax());
+    }
 }

@@ -1,4 +1,0 @@
-# Setup
-
-## Eclipse
-1. 
