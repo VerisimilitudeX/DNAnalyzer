@@ -7,9 +7,9 @@
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
-  <!--- <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/> --->
+  <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
-  <!--- <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'> --->
+  <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -250,11 +250,11 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-## Contribution Guidelines :
+## Contribution Guidelines:
 
-- Drop a :star: on the Github repository (It's optional)<br/>
+- Drop a :star: on the Github repository<br/>
 
-- Before Contribute Please
+- Before contributing, please
   read [Contributing_Guidelines.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/Contributing_Guidelines.md))
   and [CODE_OF_CONDUCT.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/CODE_OF_CONDUCT.md)).
 
