@@ -188,8 +188,8 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-<h3 id="data-sources-">Data sources:
-</h3>
+<h2 id="data-sources-">Data sources:
+</h2>
 
 <ul>
   <li>
