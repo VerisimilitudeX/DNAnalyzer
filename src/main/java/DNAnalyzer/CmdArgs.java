@@ -141,5 +141,6 @@ public class CmdArgs implements Runnable {
             dna = new StringBuilder(dna).reverse().toString();
         }
         return dna;
+
     }
 }
