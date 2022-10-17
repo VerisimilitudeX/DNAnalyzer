@@ -27,47 +27,35 @@ import picocli.CommandLine.Parameters;
  *
  * @version 1.2.1
  */
-@Command(
-        name = "DNAnalyzer",
-        mixinStandardHelpOptions = true,
-        description = "A program to analyze DNA sequences.")
+@Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
     private static final short READING_FRAME = 1;
 
-    @Option(
-            required = true,
-            names = {"--amino"},
-            description = "The amino acid representing the start of a gene.")
+    @Option(required = true, names = { "--amino" }, description = "The amino acid representing the start of a gene.")
     String aminoAcid;
 
-    @Option(
-            names = {"--min"},
-            description = "The minimum count of the reading frame.")
+    @Option(names = { "--min" }, description = "The minimum count of the reading frame.")
     int minCount = 0;
 
-    @Option(
-            names = {"--max"},
-            description = "The maximum count of the reading frame.")
+    @Option(names = { "--max" }, description = "The maximum count of the reading frame.")
     int maxCount = 0;
 
     @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
     File dnaFile;
 
-    @Option(
-            names = {"--find"},
-            description = "The DNA sequence to be found within the FASTA file.")
+    @Option(names = { "--find" }, description = "The DNA sequence to be found within the FASTA file.")
     File proteinFile;
 
-    @Option(
-            names = {"--reverse", "-r"},
-            description = "Reverse the DNA sequence before processing.")
+    @Option(names = { "--reverse", "-r" }, description = "Reverse the DNA sequence before processing.")
     boolean reverse;
 
     /**
-     * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
+     * Output a list of proteins, GC content, Nucleotide content, and other
+     * information found in a DNA
      * sequence.
      *
-     * @throws IllegalArgumentException when the DNA FASTA file contains an invalid DNA sequence
+     * @throws IllegalArgumentException when the DNA FASTA file contains an invalid
+     *                                  DNA sequence
      */
     @Override
     public void run() {
@@ -93,16 +81,24 @@ public class CmdArgs implements Runnable {
 
             // Find the longest protein in DNA
             ProteinAnalysis.printLongestProtein(proteins);
+
+            // Print if DNA is random
+            if (Properties.isRandomDNA(dna)) {
+                System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+            }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
+
     /**
-     * Reads the contents of a file, stripping out newlines and converting everything to lowercase.
+     * Reads the contents of a file, stripping out newlines and converting
+     * everything to lowercase.
      *
      * @param file the file to read
      * @throws IOException if there is an error reading the file
-     * @return String with the contents of the file (newlines removed and converted to lowercase)
+     * @return String with the contents of the file (newlines removed and converted
+     *         to lowercase)
      */
     private static String readFile(File file) throws IOException {
         return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
@@ -111,7 +107,7 @@ public class CmdArgs implements Runnable {
     /**
      * Find protein sequence in DNA and print to stdout its position.
      *
-     * @param dna The DNA string
+     * @param dna     The DNA string
      * @param protein The protein string
      */
     private void findProtein(String dna, String protein) {
@@ -144,13 +140,6 @@ public class CmdArgs implements Runnable {
         if (reverse) {
             dna = new StringBuilder(dna).reverse().toString();
         }
-
-        // Find longest protein in DNA
-        ProteinAnalysis.printLongestProtein(proteins);
-
-        // Print if DNA is random
-        if (Properties.isRandomDNA(dna)) {
-            System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
-        }
+        return dna;
     }
 }
