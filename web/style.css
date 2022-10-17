@@ -43,10 +43,12 @@ p{
     justify-content: center;
     align-items: center;
     margin: 0;
+    
 }
 
 .text-center{
     text-align: center;
+    padding: 10px 15px;
 }
 
 .grid{
@@ -55,6 +57,7 @@ p{
     row-gap: 2em;
     column-gap: 3em;
     margin: 3em 0;
+    
 }
 
 .grid .flex{
@@ -75,6 +78,7 @@ p{
 
 .secondary-dark{
     color: var(--secondary-dark);
+    padding: 20px 30px;
 }
 
 .bg-light{
