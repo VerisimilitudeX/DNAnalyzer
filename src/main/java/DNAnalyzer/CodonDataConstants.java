@@ -56,30 +56,60 @@ public class CodonDataConstants {
     // codons are the same for all amino acids.
     protected static final List<String> Stop = Arrays.asList("TAA", "TAG", "TGA");
 
-	// Block to put all AminoAcidNames and their respective codon data into an enum
-	// map for faster
-	// retrieval
-	protected static EnumMap<AminoAcidNames, List<String>> CodonDataAcidMap = new EnumMap<>(Map.ofEntries(
-		Map.entry(AminoAcidNames.ISOLEUCINE, Isoleucine),
-		Map.entry(AminoAcidNames.LEUCINE, Leucine),
-		Map.entry(AminoAcidNames.VALINE, Valine),
-		Map.entry(AminoAcidNames.PHENYLALANINE, Phenylalanine),
-		Map.entry(AminoAcidNames.METHIONINE, Methionine),
-		Map.entry(AminoAcidNames.CYSTEINE, Cysteine),
-		Map.entry(AminoAcidNames.ALANINE, Alanine),
-		Map.entry(AminoAcidNames.GLYCINE, Glycine),
-		Map.entry(AminoAcidNames.PROLINE, Proline),
-		Map.entry(AminoAcidNames.THREONINE, Threonine),
-		Map.entry(AminoAcidNames.SERINE, Serine),
-		Map.entry(AminoAcidNames.TYROSINE, Tyrosine),
-		Map.entry(AminoAcidNames.TRYPTOPHAN, Tryptophan),
-		Map.entry(AminoAcidNames.GLUTAMINE, Glutamine),
-		Map.entry(AminoAcidNames.ASPARAGINE, Asparagine),
-		Map.entry(AminoAcidNames.HISTIDINE, Histidine),
-		Map.entry(AminoAcidNames.GLUTAMIC_ACID, GlutamicAcid),
-		Map.entry(AminoAcidNames.ASPARTIC_ACID, AsparticAcid),
-		Map.entry(AminoAcidNames.LYSINE, Lysine),
-		Map.entry(AminoAcidNames.ARGININE, Arginine),
-		Map.entry(AminoAcidNames.STOP, Stop)
-	));
+    // Block to put all AminoAcidNames and their respective codon data into an enum
+    // map for faster
+    // retrieval
+    protected static EnumMap<AminoAcidNames, List<String>> CodonDataAcidMap = new EnumMap<>(AminoAcidNames.class);
+
+    static {
+        // Putting in 10 acids at a time because the Map.of() method can take in 20
+        // params at a time
+        CodonDataAcidMap.putAll(
+                Map.of(
+                        AminoAcidNames.ISOLEUCINE,
+                        Isoleucine,
+                        AminoAcidNames.LEUCINE,
+                        Leucine,
+                        AminoAcidNames.VALINE,
+                        Valine,
+                        AminoAcidNames.PHENYLALANINE,
+                        Phenylalanine,
+                        AminoAcidNames.METHIONINE,
+                        Methionine,
+                        AminoAcidNames.CYSTEINE,
+                        Cysteine,
+                        AminoAcidNames.ALANINE,
+                        Alanine,
+                        AminoAcidNames.GLYCINE,
+                        Glycine,
+                        AminoAcidNames.PROLINE,
+                        Proline,
+                        AminoAcidNames.THREONINE,
+                        Threonine));
+
+        CodonDataAcidMap.putAll(
+                Map.of(
+                        AminoAcidNames.SERINE,
+                        Serine,
+                        AminoAcidNames.TYROSINE,
+                        Tyrosine,
+                        AminoAcidNames.TRYPTOPHAN,
+                        Tryptophan,
+                        AminoAcidNames.GLUTAMINE,
+                        Glutamine,
+                        AminoAcidNames.ASPARAGINE,
+                        Asparagine,
+                        AminoAcidNames.HISTIDINE,
+                        Histidine,
+                        AminoAcidNames.GLUTAMIC_ACID,
+                        GlutamicAcid,
+                        AminoAcidNames.ASPARTIC_ACID,
+                        AsparticAcid,
+                        AminoAcidNames.LYSINE,
+                        Lysine,
+                        AminoAcidNames.ARGININE,
+                        Arginine));
+
+        CodonDataAcidMap.put(AminoAcidNames.STOP, Stop);
+    }
 }
