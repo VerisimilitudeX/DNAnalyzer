@@ -144,6 +144,13 @@ public class CmdArgs implements Runnable {
         if (reverse) {
             dna = new StringBuilder(dna).reverse().toString();
         }
-        return dna;
+
+        // Find longest protein in DNA
+        ProteinAnalysis.printLongestProtein(proteins);
+
+        // Print if DNA is random
+        if (Properties.isRandomDNA(dna)) {
+            System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+        }
     }
 }
