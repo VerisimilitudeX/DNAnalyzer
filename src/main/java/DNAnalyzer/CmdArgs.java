@@ -17,9 +17,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+
+import DNAnalyzer.codon.*;
+import DNAnalyzer.protein.*;
+import DNAnalyzer.aminoAcid.*;
 
 /**
  * Class for handling command-line arguments.
