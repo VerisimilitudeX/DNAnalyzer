@@ -9,10 +9,12 @@
  * For further inquiries, please contact DNAnalyzer@piyushacharya.com
  */
 
-package DNAnalyzer;
+package DNAnalyzer.protein;
 
 import java.util.ArrayList;
 import java.util.List;
+import DNAnalyzer.codon.*;
+import DNAnalyzer.aminoAcid.*;
 
 /**
  * Find proteins in a DNA sequence (contains the main algorithm).

@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import DNAnalyzer.aminoAcid.*;
+
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
  *

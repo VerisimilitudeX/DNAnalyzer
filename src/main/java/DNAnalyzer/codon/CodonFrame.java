@@ -9,7 +9,7 @@
  * For further inquiries, please contact DNAnalyzer@piyushacharya.com
  */
 
-package DNAnalyzer;
+package DNAnalyzer.codon;
 
 import java.util.Objects;
 
