@@ -12,8 +12,6 @@
 package DNAnalyzer;
 
 import DNAnalyzer.codon.*;
-import DNAnalyzer.protein.*;
-import DNAnalyzer.aminoAcid.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;

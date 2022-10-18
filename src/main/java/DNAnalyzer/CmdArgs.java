@@ -24,7 +24,6 @@ import picocli.CommandLine.Parameters;
 
 import DNAnalyzer.codon.*;
 import DNAnalyzer.protein.*;
-import DNAnalyzer.aminoAcid.*;
 
 /**
  * Class for handling command-line arguments.
