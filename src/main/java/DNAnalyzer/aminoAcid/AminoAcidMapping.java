@@ -11,10 +11,6 @@
 
 package DNAnalyzer.aminoAcid;
 
-import DNAnalyzer.codon.*;
-import DNAnalyzer.protein.*;
-import DNAnalyzer.aminoAcid.*;
-
 /**
  * Mappings for Amino Acid Strings
  *
