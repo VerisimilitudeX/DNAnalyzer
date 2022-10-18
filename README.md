@@ -7,9 +7,9 @@
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
-  <!--- <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/> --->
+  <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer"  alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
-  <!--- <img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'> --->
+  <!--img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>-->
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -18,7 +18,7 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, I am working on removing all dependencies and developing a deep learning model that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
 </p>
 
 <h2 id="background">Background
@@ -91,6 +91,78 @@
   </li>
 </ul>
 
+<h2 id="getting-started">Getting Started
+</h2>
+<h3 id="requirements">System Requirements
+</h3>
+To build and run the DNAnalyzer, you need
+
+* JDK 17 or greater
+* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+* <a href="https://gradle.org/install/">Gradle</a>
+
+<h3 id="build_and_run">Build & Run</h3>
+We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
+dependencies, testing, compiling, linking, and packaging the code.
+
+<h4>Windows:</h4>
+
+```
+.\gradlew build
+```
+
+<h4>Linux/Unix/macOS:</h4>
+
+```
+./gradlew build
+```
+
+<h4>Executable:</h4>
+
+```
+java -jar build/libs/DNAnalyzer.jar <arguments>
+```
+
+<h4>Arguments:</h4>
+
+DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
+
+```
+<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
+```
+
+<h4>Usage:</h4>
+
+```
+<executable> <arguments>
+```
+<h5>Example:</h5>
+
+```
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100
+```
+
+<h4>Help message:</h4>
+
+```
+Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
+                  [--max=<maxCount>] [--min=<minCount>] DNA
+A program to analyze DNA sequences.
+      DNA                    The FASTA file to be analyzed.
+      --amino=<aminoAcid>    The amino acid representing the start of a gene.
+      --find=<proteinFile>   The DNA sequence to be found within the FASTA file.
+  -h, --help                 Show this help message and exit.
+      --max=<maxCount>       The maximum count of the reading frame.
+      --min=<minCount>       The minimum count of the reading frame.
+  -r, --reverse              Reverse the DNA sequence before processing.
+  -V, --version              Print version information and exit.
+```
+
+<h2 id="demo">Demo
+</h2>
+
+https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov
+
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
 
@@ -116,19 +188,33 @@
   </code>
 </p>
 
-<h3 id="data-sources-">Data sources:
-</h3>
+<h2 id="data-sources-">Data sources:
+</h2>
 
 <ul>
   <li>
     <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">Codon Tables</a>
   </li>
   <li>
-    <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/dna/Random%20DNA%20Generator.py">DNA Generator</a>
+    <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/assets/dna/random/Random%20DNA%20Generator.py">DNA Generator</a>
   </li>
 </ul>
 
-<h2 id="citations">Citations
+# Contributing:
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
+
+## Contributors
+
+<h4>DNAnlyzer was develeloped with the help of the following people:
+<h4>
+<a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
+
+  <img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817" />
+
+</a>
+
+<h2 align="left" id="citations">Citations
 </h2>
 
 <ol>
@@ -170,15 +256,6 @@
   </li>
 </ol>
 
-<h2>The Developer Team</h2>
-<ol>
-  <li>Piyush Acharya (@Verisimilitude11)</li>
-  <li>Nishant Vikramaditya (@Nv7-GitHub)</li>
-  <!---<li>Aryan Agrawal</li>--->
-  <!---<li>Aishwarya Agrawal</li>--->
-  <!---<li>Abhidi Brahnmath</li>--->
-</ol>
-
 <h2 id="terms-of-use">Terms of Use
 </h2>
 
@@ -187,7 +264,5 @@
   </code>
 </p>
 
-<p>
-  <strong>Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
-  </strong>
-</p>
+### Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
+
