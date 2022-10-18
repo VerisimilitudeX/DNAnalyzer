@@ -9,26 +9,34 @@
  * For further inquiries, please contact DNAnalyzer@piyushacharya.com
  */
 
-package DNAnalyzer;
-
-import java.util.List;
+package DNAnalyzer.aminoAcid;
 
 /**
- * provide function to access codon data from amino acid.
+ * Enumerated type for the 20 amino acids and 3 stop codons.
  *
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
- * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */
-public class CodonDataUtils {
-
-    /**
-     * Returns the codon data for the amino acid.
-     *
-     * @param name The name of the amino acid.
-     * @return A List of codon data for the user-selected amino acid or stop codon.
-     */
-    public static List<String> getAminoAcid(final AminoAcidNames name) {
-        return CodonDataConstants.CodonDataAcidMap.getOrDefault(name, List.of());
-    }
+public enum AminoAcidNames {
+    ISOLEUCINE,
+    LEUCINE,
+    VALINE,
+    PHENYLALANINE,
+    METHIONINE,
+    CYSTEINE,
+    ALANINE,
+    GLYCINE,
+    PROLINE,
+    THREONINE,
+    SERINE,
+    TYROSINE,
+    TRYPTOPHAN,
+    GLUTAMINE,
+    ASPARAGINE,
+    HISTIDINE,
+    GLUTAMIC_ACID,
+    ASPARTIC_ACID,
+    LYSINE,
+    ARGININE,
+    STOP
 }

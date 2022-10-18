@@ -9,9 +9,10 @@
  * For further inquiries, please contact DNAnalyzer@piyushacharya.com
  */
 
-package DNAnalyzer;
+package DNAnalyzer.protein;
 
 import java.util.List;
+import DNAnalyzer.Properties;
 
 /**
  * Prints properties of the proteins in the DNA.

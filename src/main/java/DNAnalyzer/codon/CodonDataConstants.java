@@ -8,8 +8,9 @@
  *
  * For further inquiries, please contact DNAnalyzer@piyushacharya.com
  */
-package DNAnalyzer;
+package DNAnalyzer.codon; 
 
+import DNAnalyzer.aminoAcid.*;
 import java.util.*;
 
 /**

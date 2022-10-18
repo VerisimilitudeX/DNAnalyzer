@@ -9,7 +9,7 @@
  * For further inquiries, please contact DNAnalyzer@piyushacharya.com
  */
 
-package DNAnalyzer;
+package DNAnalyzer.aminoAcid;
 
 /**
  * Mappings for Amino Acid Strings
