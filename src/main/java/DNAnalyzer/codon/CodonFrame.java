@@ -11,9 +11,6 @@
 
 package DNAnalyzer.codon;
 
-import DNAnalyzer.codon.*;
-import DNAnalyzer.protein.*;
-import DNAnalyzer.aminoAcid.*;
 import java.util.Objects;
 
 /**
