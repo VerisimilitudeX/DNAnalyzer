@@ -130,7 +130,9 @@ public class Properties {
    * @category Properties
    */
   public static boolean isRandomDNA(final String dna) {
-    final int[] nucleotideCount = countNucleotides(dna);
+    final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
+    // Convert Map values to Integer[]
+    final Integer[] nucleotideCount = nucleotideCountMapping.values().toArray(new Integer[0]);
 
     // This sorts the array to get min and max value
     Arrays.sort(nucleotideCount);
