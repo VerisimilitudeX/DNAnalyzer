@@ -129,21 +129,17 @@ public class Properties {
    * @category Properties
    */
   public static boolean isRandomDNA(final String dna) {
-    final Map<Character, Integer> nucleotideCount = countNucleotides(dna);
+    final int[] nucleotideCount = countNucleotides(dna);
 
-    final int a = nucleotidePercentage(nucleotideCount.get('a'), dna);
-    final int t = nucleotidePercentage(nucleotideCount.get('t'), dna);
-    final int g = nucleotidePercentage(nucleotideCount.get('g'), dna);
-    final int c = nucleotidePercentage(nucleotideCount.get('c'), dna);
-
+    // This sorts the array to get min and max value
+    Arrays.sort(nucleotideCount);
+    
+    // Only calculate 2 Percentages, as only the highest difference (max - min) is relevant
+    final int maxPercent = (int) (((float) nucleotideCount[3]) / dna.length() * 100);
+    final int minPercent = (int) (((float) nucleotideCount[0]) / dna.length() * 100);
     // If the percentage of each nucleotide is between 2% of one another, then it is
     // random
-    return (Math.abs(a - t) <= 2)
-        && (Math.abs(a - g) <= 2)
-        && (Math.abs(a - c) <= 2)
-        && (Math.abs(t - g) <= 2)
-        && (Math.abs(t - c) <= 2)
-        && (Math.abs(g - c) <= 2);
+    return (maxPercent - minPercent) <= 2;
   }
 
   /**
