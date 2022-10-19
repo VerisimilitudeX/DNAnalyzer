@@ -128,3 +128,7 @@ input[type="checkbox"]:checked{
 footer {
   border-radius: 20px
 }
+
+button {
+  border-radius: 50px
+}
