@@ -62,14 +62,39 @@ public class Properties {
    */
   public static float getGCContent(String dna) {
     dna = dna.toLowerCase();
-    float gcLen = 0;
-    // increment gcLen for each 'g' or 'c' encountered in a dna
-    for (final char letter : dna.toCharArray()) {
-      if ((letter == 'c') || (letter == 'g')) {
-        gcLen++;
+    float gcLen = (float) calculateLengthOfCG(dna);
+    float gcContent = gcLen / dna.length();
+    
+    return gcContent;
+  }
+
+  /**
+   * Calculate the total number of characters that are 'g' or 'c' of a given DNA String
+   *
+   * @param dna The DNA sequence that was analyzed
+   * @category Property
+   */
+  public static int calculateLengthOfCG(String dna) {
+    int gcLength = 0;
+    char[] dnaCharArray = dna.toCharArray();
+
+    for(char letter : dnaCharArray) {
+      if (letterIsCorG(letter)) {
+        gcLength++;
       }
     }
-    return (gcLen / dna.length());
+    
+    return gcLength;
+  }
+
+  /**
+   * Checks if a letter is either 'c' or 'g'
+   *
+   * @param aLetter The letter to check
+   * @category Property
+   */
+  public static boolean letterIsCorG(char aLetter) {
+    return (aLetter == 'c') || (aLetter == 'g');
   }
 
   /**
@@ -138,12 +163,38 @@ public class Properties {
 
     // If the percentage of each nucleotide is between 2% of one another, then it is
     // random
-    return (Math.abs(a - t) <= 2)
-        && (Math.abs(a - g) <= 2)
-        && (Math.abs(a - c) <= 2)
-        && (Math.abs(t - g) <= 2)
-        && (Math.abs(t - c) <= 2)
-        && (Math.abs(g - c) <= 2);
+    return areAllPercentagesLessOrEqualTo2(a, t, g, c);
+  }
+
+  /**
+   * Checks if the differnce between two numbers is less or equal to 2
+   *
+   * @param aNumber one number to calculate the difference
+   * @param anotherNumber the other number to calculate the difference
+   * @return Whether the difference is less or equal to 2
+   * @category Properties
+   */
+  public static boolean isDifferenceLessOrEqualTo2(int aNumber, int anotherNumber) {
+    return Math.abs(aNumber - anotherNumber) <= 2;
+  }
+
+  /**
+   * Checks if C
+   *
+   * @param a percentage for nucleotide A
+   * @param t percentage for nucleotide T
+   * @param g percentage for nucleotide G
+   * @param c percentage for nucleotide C
+   * @return Whether the percentage for all nucleotide is <=2
+   * @category Properties
+   */
+  public static boolean areAllPercentagesLessOrEqualTo2(int a, int t, int g, int c) {
+    return     (isDifferenceLessOrEqualTo2(a, t))
+            && (isDifferenceLessOrEqualTo2(a, g))
+            && (isDifferenceLessOrEqualTo2(a, c))
+            && (isDifferenceLessOrEqualTo2(t, g))
+            && (isDifferenceLessOrEqualTo2(t, c))
+            && (isDifferenceLessOrEqualTo2(g, c));
   }
 
   /**
