@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 import DNAnalyzer.aminoAcid.*;
 
@@ -129,21 +130,19 @@ public class Properties {
    * @category Properties
    */
   public static boolean isRandomDNA(final String dna) {
-    final Map<Character, Integer> nucleotideCount = countNucleotides(dna);
+    final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
+    // Convert Map values to Integer[]
+    final Integer[] nucleotideCount = nucleotideCountMapping.values().toArray(new Integer[0]);
 
-    final int a = nucleotidePercentage(nucleotideCount.get('a'), dna);
-    final int t = nucleotidePercentage(nucleotideCount.get('t'), dna);
-    final int g = nucleotidePercentage(nucleotideCount.get('g'), dna);
-    final int c = nucleotidePercentage(nucleotideCount.get('c'), dna);
-
+    // This sorts the array to get min and max value
+    Arrays.sort(nucleotideCount);
+    
+    // Only calculate 2 Percentages, as only the highest difference (max - min) is relevant
+    final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
+    final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);
     // If the percentage of each nucleotide is between 2% of one another, then it is
     // random
-    return (Math.abs(a - t) <= 2)
-        && (Math.abs(a - g) <= 2)
-        && (Math.abs(a - c) <= 2)
-        && (Math.abs(t - g) <= 2)
-        && (Math.abs(t - c) <= 2)
-        && (Math.abs(g - c) <= 2);
+    return (maxPercent - minPercent) <= 2;
   }
 
   /**
