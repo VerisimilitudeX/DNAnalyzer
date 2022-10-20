@@ -35,7 +35,7 @@ public class ProteinFinder {
     private ProteinFinder() {
     }
 
-    private static final int DNA_SIZE = 3;
+    private static final int QT_NUCLEOTIDES = 3;
 
     /**
      * Gets proteins from dna and amino acid
@@ -93,10 +93,10 @@ public class ProteinFinder {
         int stopIndex;
         for (final String stopCodon : stopCodonList) {
 
-            stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + DNA_SIZE);
+            stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + QT_NUCLEOTIDES);
 
             if ((startIndex != -1) && (stopIndex != -1)) {
-                proteinList.add(dna.substring(startIndex, stopIndex + DNA_SIZE).toUpperCase());
+                proteinList.add(dna.substring(startIndex, stopIndex + QT_NUCLEOTIDES).toUpperCase());
                 break;
             }
 
