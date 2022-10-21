@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 import DNAnalyzer.aminoAcid.*;
 
@@ -154,16 +155,20 @@ public class Properties {
    * @category Properties
    */
   public static boolean isRandomDNA(final String dna) {
-    final Map<Character, Integer> nucleotideCount = countNucleotides(dna);
+    final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
+    // Convert Map values to Integer[]
+    final Integer[] nucleotideCount = nucleotideCountMapping.values().toArray(new Integer[0]);
 
-    final int a = nucleotidePercentage(nucleotideCount.get('a'), dna);
-    final int t = nucleotidePercentage(nucleotideCount.get('t'), dna);
-    final int g = nucleotidePercentage(nucleotideCount.get('g'), dna);
-    final int c = nucleotidePercentage(nucleotideCount.get('c'), dna);
-
+    // This sorts the array to get min and max value
+    Arrays.sort(nucleotideCount);
+    
+    // Only calculate 2 Percentages, as only the highest difference (max - min) is relevant
+    final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
+    final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);
     // If the percentage of each nucleotide is between 2% of one another, then it is
     // random
-    return areAllPercentagesLessOrEqualTo2(a, t, g, c);
+    
+    return isDifferenceLessOrEqualTo2(maxPercent, minPercent);
   }
 
   /**
@@ -174,27 +179,8 @@ public class Properties {
    * @return Whether the difference is less or equal to 2
    * @category Properties
    */
-  public static boolean isDifferenceLessOrEqualTo2(int aNumber, int anotherNumber) {
+  public static boolean isDifferenceLessOrEqualTo2(int maxPercent, int minPercent) {
     return Math.abs(aNumber - anotherNumber) <= 2;
-  }
-
-  /**
-   * Checks if C
-   *
-   * @param a percentage for nucleotide A
-   * @param t percentage for nucleotide T
-   * @param g percentage for nucleotide G
-   * @param c percentage for nucleotide C
-   * @return Whether the percentage for all nucleotide is <=2
-   * @category Properties
-   */
-  public static boolean areAllPercentagesLessOrEqualTo2(int a, int t, int g, int c) {
-    return     (isDifferenceLessOrEqualTo2(a, t))
-            && (isDifferenceLessOrEqualTo2(a, g))
-            && (isDifferenceLessOrEqualTo2(a, c))
-            && (isDifferenceLessOrEqualTo2(t, g))
-            && (isDifferenceLessOrEqualTo2(t, c))
-            && (isDifferenceLessOrEqualTo2(g, c));
   }
 
   /**
