@@ -43,17 +43,21 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
         return this;
     }
 
-    // Output the number of codons based on the reading frame the user wants to look
-    // at, and minimum and maximum filters
-    public DnaAnalyzer outPutCodons(int minCount, int maxCount) {
+    //used as helper method for output-codons, used to generate reading frames
+    public ReadingFrames configureReadingFrames(int minCount, int maxCount){
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap =
                 new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
         System.out.print("\n");
         aap.printCodonCounts();
+        return aap;
+    }
 
-        // Find protein sequence in DNA
+    //used as helper method for output codons, handles protein decisions
+    public DnaAnalyzer proteinSequence() {
+        final String dna = this.dna.getDna();
+
         if (protein != null) {
             final Pattern p = Pattern.compile(protein);
             final Matcher m = p.matcher(dna);
@@ -64,6 +68,15 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
                 System.out.println("\nProtein sequence not found in the DNA sequence.");
             }
         }
+        return this; 
+    }
+
+    // Output the number of codons based on the reading frame the user wants to look
+    // at, and minimum and maximum filters
+    public DnaAnalyzer outPutCodons(int minCount, int maxCount) {
+        configureReadingFrames(minCount, maxCount);
+        proteinSequence();
+
         return this;
     }
 
