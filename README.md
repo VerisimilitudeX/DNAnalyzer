@@ -97,7 +97,7 @@
 </h3>
 To build and run the DNAnalyzer, you need
 
-* JDK 17 or greater
+* JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a> 
 * A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
 * <a href="https://gradle.org/install/">Gradle</a>
 
