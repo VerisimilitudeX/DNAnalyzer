@@ -29,7 +29,7 @@ public class Main {
      *
      * @throws InterruptedException
      * @throws IOException
-     * @category User ExperienceF
+     * @category User Experience
      */
     public static void clearTerminal() throws InterruptedException, IOException {
         if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows
