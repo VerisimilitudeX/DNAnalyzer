@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/copyright-pending-blue"  alt="Copyright"/>
+  <img src="https://img.shields.io/badge/copyright-2022-blue"  alt="Copyright"/>
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
@@ -97,7 +97,7 @@
 </h3>
 To build and run the DNAnalyzer, you need
 
-* JDK 17 or greater
+* JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a> 
 * A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
 * <a href="https://gradle.org/install/">Gradle</a>
 
@@ -264,5 +264,5 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-### Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
+### Copyright © 2022 Piyush Acharya & The DNAnalyzer Team. This is an open source project.
 
