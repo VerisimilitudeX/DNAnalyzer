@@ -264,5 +264,5 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-### Copyright © 2022 Piyush Acharya. This is an open source project.
+### Copyright © 2022 Piyush Acharya & The DNAnalyzer Team. This is an open source project.
 
