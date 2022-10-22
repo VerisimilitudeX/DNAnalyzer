@@ -8,10 +8,12 @@
  *
  * For further inquiries, please contact DNAnalyzer@piyushacharya.com
  */
-package DNAnalyzer.codon; 
+package DNAnalyzer.codon;
 
 import DNAnalyzer.aminoAcid.*;
 import java.util.*;
+
+import static java.util.Map.entry;
 
 /**
  * Declares the codon data for the 20 amino acids
@@ -63,54 +65,17 @@ public class CodonDataConstants {
     protected static EnumMap<AminoAcidNames, List<String>> CodonDataAcidMap = new EnumMap<>(AminoAcidNames.class);
 
     static {
-        // Putting in 10 acids at a time because the Map.of() method can take in 20
-        // params at a time
-        CodonDataAcidMap.putAll(
-                Map.of(
-                        AminoAcidNames.ISOLEUCINE,
-                        Isoleucine,
-                        AminoAcidNames.LEUCINE,
-                        Leucine,
-                        AminoAcidNames.VALINE,
-                        Valine,
-                        AminoAcidNames.PHENYLALANINE,
-                        Phenylalanine,
-                        AminoAcidNames.METHIONINE,
-                        Methionine,
-                        AminoAcidNames.CYSTEINE,
-                        Cysteine,
-                        AminoAcidNames.ALANINE,
-                        Alanine,
-                        AminoAcidNames.GLYCINE,
-                        Glycine,
-                        AminoAcidNames.PROLINE,
-                        Proline,
-                        AminoAcidNames.THREONINE,
-                        Threonine));
-
-        CodonDataAcidMap.putAll(
-                Map.of(
-                        AminoAcidNames.SERINE,
-                        Serine,
-                        AminoAcidNames.TYROSINE,
-                        Tyrosine,
-                        AminoAcidNames.TRYPTOPHAN,
-                        Tryptophan,
-                        AminoAcidNames.GLUTAMINE,
-                        Glutamine,
-                        AminoAcidNames.ASPARAGINE,
-                        Asparagine,
-                        AminoAcidNames.HISTIDINE,
-                        Histidine,
-                        AminoAcidNames.GLUTAMIC_ACID,
-                        GlutamicAcid,
-                        AminoAcidNames.ASPARTIC_ACID,
-                        AsparticAcid,
-                        AminoAcidNames.LYSINE,
-                        Lysine,
-                        AminoAcidNames.ARGININE,
-                        Arginine));
-
-        CodonDataAcidMap.put(AminoAcidNames.STOP, Stop);
+        CodonDataAcidMap.putAll(Map.ofEntries(
+                entry(AminoAcidNames.ISOLEUCINE, Isoleucine), entry(AminoAcidNames.LEUCINE, Leucine),
+                entry(AminoAcidNames.VALINE, Valine), entry(AminoAcidNames.PHENYLALANINE, Phenylalanine),
+                entry(AminoAcidNames.METHIONINE, Methionine), entry(AminoAcidNames.CYSTEINE, Cysteine),
+                entry(AminoAcidNames.ALANINE, Alanine), entry(AminoAcidNames.GLYCINE, Glycine),
+                entry(AminoAcidNames.PROLINE, Proline), entry(AminoAcidNames.THREONINE, Threonine),
+                entry(AminoAcidNames.SERINE, Serine), entry(AminoAcidNames.TYROSINE, Tyrosine),
+                entry(AminoAcidNames.TRYPTOPHAN, Tryptophan), entry(AminoAcidNames.GLUTAMINE, Glutamine),
+                entry(AminoAcidNames.ASPARAGINE, Asparagine), entry(AminoAcidNames.HISTIDINE, Histidine),
+                entry(AminoAcidNames.GLUTAMIC_ACID, GlutamicAcid), entry(AminoAcidNames.ASPARTIC_ACID, AsparticAcid),
+                entry(AminoAcidNames.LYSINE, Lysine), entry(AminoAcidNames.ARGININE, Arginine),
+                entry(AminoAcidNames.STOP, Stop)));
     }
 }
