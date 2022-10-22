@@ -140,7 +140,7 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 <h5>Example:</h5>
 
 ```
-java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=520518
 ```
 
 <h4>Help message:</h4>
