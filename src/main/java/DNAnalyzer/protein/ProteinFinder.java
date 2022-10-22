@@ -40,16 +40,14 @@ public class ProteinFinder {
     /**
      * Gets proteins from dna and amino acid
      *
-     * @param dna
-     *            dna
-     * @param aminoAcid
-     *            amino acid
+     * @param dna       dna
+     * @param aminoAcid amino acid
      * @return list of proteins
      */
     public static List<String> getProtein(final String dna, final String aminoAcid) {
 
-        List<String> aminoAcidList = new ArrayList<>();
-        List<String> proteinList = new ArrayList<>();
+        final List<String> aminoAcidList = new ArrayList<>();
+        final List<String> proteinList = new ArrayList<>();
 
         aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidMapping.getAminoAcidMapping(aminoAcid)));
 
@@ -77,14 +75,14 @@ public class ProteinFinder {
 
     /**
      * Add protein to protein list
-     * 
+     *
      * @param dna
      * @param proteinList
      * @param startIndex
      * @param stopCodonList
      */
-    private static void addProtein(final String dna, List<String> proteinList, int startIndex,
-            final List<String> stopCodonList) {
+    private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
+                                   final List<String> stopCodonList) {
 
         // Inner loop loops through the stop that the user entered.
         // store the stopIndex

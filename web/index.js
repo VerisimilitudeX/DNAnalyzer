@@ -1,4 +1,3 @@
-
 let toggle = document.getElementById("mode");
 
 toggle.addEventListener('click', () => {

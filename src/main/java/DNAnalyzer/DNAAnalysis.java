@@ -13,28 +13,28 @@ import static java.util.Optional.ofNullable;
 /**
  * Provides functionality to analyze the DNA
  *
- * @param dna then DNA to be analyzed
- * @param protein the DNA sequence
+ * @param dna       then DNA to be analyzed
+ * @param protein   the DNA sequence
  * @param aminoAcid name of amino acid
  */
-public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
-    public DnaAnalyzer isValidDna() {
+public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
+    public DNAAnalysis isValidDna() {
         dna.isValid();
         return this;
     }
 
-    public DnaAnalyzer replaceDNA(String input, String replacement) {
-        return new DnaAnalyzer(dna.replace(input, replacement), protein, aminoAcid);
+    public DNAAnalysis replaceDNA(final String input, final String replacement) {
+        return new DNAAnalysis(dna.replace(input, replacement), protein, aminoAcid);
     }
 
-    public DnaAnalyzer reverseDna() {
-        return new DnaAnalyzer(dna.reverse(), protein, aminoAcid);
+    public DNAAnalysis reverseDna() {
+        return new DNAAnalysis(dna.reverse(), protein, aminoAcid);
     }
 
     // Create protein list
     // Output the proteins, GC content, and nucleotide cnt found in the DNA
-    public DnaAnalyzer printProteins() {
-        ofNullable(dna).map(Dna::getDna).ifPresent(dna -> {
+    public DNAAnalysis printProteins() {
+        ofNullable(dna).map(DNATools::getDna).ifPresent(dna -> {
             Properties.printProteinList(getProteins(aminoAcid), aminoAcid);
 
             System.out.println("\nGC-content (genome): " + Properties.getGCContent(dna) + "\n");
@@ -44,18 +44,17 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
     }
 
     //used as helper method for output-codons, used to generate reading frames
-    public ReadingFrames configureReadingFrames(int minCount, int maxCount){
+    public ReadingFrames configureReadingFrames(final int minCount, final int maxCount){
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
-        final ReadingFrames aap =
-                new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
+        final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
         System.out.print("\n");
         aap.printCodonCounts();
         return aap;
     }
 
     //used as helper method for output codons, handles protein decisions
-    public DnaAnalyzer proteinSequence() {
+    public DNAAnalysis proteinSequence() {
         final String dna = this.dna.getDna();
 
         if (protein != null) {
@@ -73,19 +72,19 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    public DnaAnalyzer outPutCodons(int minCount, int maxCount) {
+    public DNAAnalysis outPutCodons(final int minCount, final int maxCount) {
         configureReadingFrames(minCount, maxCount);
         proteinSequence();
 
         return this;
     }
 
-    public DnaAnalyzer printLongestProtein() {
+    public DNAAnalysis printLongestProtein() {
         ProteinAnalysis.printLongestProtein(getProteins(aminoAcid));
         return this;
     }
 
-    private List<String> getProteins(String aminoAcid) {
+    private List<String> getProteins(final String aminoAcid) {
         return ProteinFinder.getProtein(dna.getDna(), aminoAcid);
     }
 }
