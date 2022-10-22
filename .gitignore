@@ -2,6 +2,7 @@
 .config/*
 bin/*
 .vs/*
+.settings/*
 
 ### Java ###
 *.class
