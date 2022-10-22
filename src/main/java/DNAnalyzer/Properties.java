@@ -11,13 +11,12 @@
 
 package DNAnalyzer;
 
+import DNAnalyzer.aminoAcid.*;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Arrays;
-
-import DNAnalyzer.aminoAcid.*;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
@@ -136,7 +135,7 @@ public class Properties {
 
     // This sorts the array to get min and max value
     Arrays.sort(nucleotideCount);
-    
+
     // Only calculate 2 Percentages, as only the highest difference (max - min) is relevant
     final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
     final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);

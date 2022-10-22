@@ -86,6 +86,6 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
     }
 
     private List<String> getProteins(String aminoAcid) {
-        return new ProteinFinder().getProtein(dna.getDna(), aminoAcid);
+        return ProteinFinder.getProtein(dna.getDna(), aminoAcid);
     }
 }
