@@ -101,6 +101,8 @@ To build and run the DNAnalyzer, you need
 * JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a> 
 * A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
 * <a href="https://gradle.org/install/">Gradle</a>
+* <a href="https://www.7-zip.org/download.html">7-Zip</a>
+  
 
 <h3 id="build_and_run">Build & Run</h3>
 We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
@@ -125,6 +127,8 @@ java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
 <h4>Arguments:</h4>
+
+Preparation: Decompress the sample dna files located in `assets/dna.7z`
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
