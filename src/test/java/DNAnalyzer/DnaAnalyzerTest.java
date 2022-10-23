@@ -64,4 +64,37 @@ public class DnaAnalyzerTest {
             Logger.getLogger(DnaAnalyzerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Test
+    public void testCountBasePairsWithEmptyString() {
+        String testEmptyString = "";
+        long[] expected = {0, 0, 0, 0};
+        long[] actual = DnaAnalyzer.countBasePairs(testEmptyString);
+        assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void testCountBasePairsStreamWithEmptyString() {
+        String testEmptyString = "";
+        long[] expected = {0, 0, 0, 0};
+        long[] actual = DnaAnalyzer.countBasePairsStream(testEmptyString);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testCountBasePairsWithNullString() {
+        String testNullString = null;
+        long[] expected = {0, 0, 0, 0};
+        long[] actual = DnaAnalyzer.countBasePairs(testNullString);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void testCountBasePairsStreamWithNullString() {
+        String testNullString = null;
+        long[] expected = {0, 0, 0, 0};
+        long[] actual = DnaAnalyzer.countBasePairsStream(testNullString);
+        assertArrayEquals(expected, actual);
+    }
 }

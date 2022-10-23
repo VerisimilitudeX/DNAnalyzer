@@ -82,79 +82,85 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
     /**
      * countBasePairs returns total counts of each DNA base pair found in the
      * provided String.
+     *
      * @param dnaString String of DNA bases. Accepts lowercase and uppercase
      * Strings.
-     * @return returns an array of long(primitive type). 
-     * long[0] = count of ADENINE bases
-     * long[1] = count of THYMINE bases
-     * long[2] = count of GUANINE bases
-     * long[3] = count of CYTOSINE bases
-     * 
-     * Constants for the indices can be found in public static class 
+     * @return returns an array of long(primitive type). long[0] = count of
+     * ADENINE bases long[1] = count of THYMINE bases long[2] = count of GUANINE
+     * bases long[3] = count of CYTOSINE bases
+     *
+     * Constants for the indices can be found in public static class
      * BasePairIndex for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
         long[] basePairTotals = {0, 0, 0, 0};
 
-        for (int index = 0, len = dnaString.length(); index < len; index++) {
-            char c = dnaString.charAt(index);
-            switch (c) {
-                case 'a','A' ->
-                    basePairTotals[BasePairIndex.ADENINE] = basePairTotals[BasePairIndex.ADENINE] + 1;
-                case 't','T' ->
-                    basePairTotals[BasePairIndex.THYMINE] = basePairTotals[BasePairIndex.THYMINE] + 1;
-                case 'g','G' ->
-                    basePairTotals[BasePairIndex.GUANINE] = basePairTotals[BasePairIndex.GUANINE] + 1;
-                case 'c','C' ->
-                    basePairTotals[BasePairIndex.CYTOSINE] = basePairTotals[BasePairIndex.CYTOSINE] + 1;
+        if (dnaString != null) {
+            for (int index = 0, len = dnaString.length(); index < len; index++) {
+                char c = dnaString.charAt(index);
+                switch (c) {
+                    case 'a','A' ->
+                        basePairTotals[BasePairIndex.ADENINE]
+                                = basePairTotals[BasePairIndex.ADENINE] + 1;
+                    case 't','T' ->
+                        basePairTotals[BasePairIndex.THYMINE]
+                                = basePairTotals[BasePairIndex.THYMINE] + 1;
+                    case 'g','G' ->
+                        basePairTotals[BasePairIndex.GUANINE]
+                                = basePairTotals[BasePairIndex.GUANINE] + 1;
+                    case 'c','C' ->
+                        basePairTotals[BasePairIndex.CYTOSINE]
+                                = basePairTotals[BasePairIndex.CYTOSINE] + 1;
+                }
             }
         }
 
         return basePairTotals;
     }
 
-   /**
-     * countBasePairsStream returns total counts of each DNA base pair found in 
+    /**
+     * countBasePairsStream returns total counts of each DNA base pair found in
      * the provided String. This performs the count using parallel Stream. It is
      * possible this could improve performance.
+     *
      * @param dnaString String of DNA bases. Accepts lowercase and uppercase
      * Strings.
-     * @return returns an array of long(primitive type). 
-     * long[0] = count of ADENINE bases
-     * long[1] = count of THYMINE bases
-     * long[2] = count of GUANINE bases
-     * long[3] = count of CYTOSINE bases
-     * 
-     * Constants for the indices can be found in public static class 
+     * @return returns an array of long(primitive type). long[0] = count of
+     * ADENINE bases long[1] = count of THYMINE bases long[2] = count of GUANINE
+     * bases long[3] = count of CYTOSINE bases
+     *
+     * Constants for the indices can be found in public static class
      * BasePairIndex for convenience/consistency.
      */
     public static long[] countBasePairsStream(String dnaString) {
         long[] basePairTotals = {0, 0, 0, 0};
 
-        long aCount = dnaString.chars().parallel().filter(
-                c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A)
-                .count();
-        long tCount = dnaString.chars().parallel().filter(
-                c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T)
-                .count();
-        long gCount = dnaString.chars().parallel().filter(
-                c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G)
-                .count();
-        long cCount = dnaString.chars().parallel().filter(
-                c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C)
-                .count();
+        if (dnaString != null) {
+            long aCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A)
+                    .count();
+            long tCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T)
+                    .count();
+            long gCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G)
+                    .count();
+            long cCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C)
+                    .count();
 
-        basePairTotals[BasePairIndex.ADENINE] = aCount;
-        basePairTotals[BasePairIndex.THYMINE] = tCount;
-        basePairTotals[BasePairIndex.GUANINE] = gCount;
-        basePairTotals[BasePairIndex.CYTOSINE] = cCount;
+            basePairTotals[BasePairIndex.ADENINE] = aCount;
+            basePairTotals[BasePairIndex.THYMINE] = tCount;
+            basePairTotals[BasePairIndex.GUANINE] = gCount;
+            basePairTotals[BasePairIndex.CYTOSINE] = cCount;
+        }
 
         return basePairTotals;
     }
 
     /**
-     * Constants to be used as indices for the long[] returned by
-     * countBasePairs and countBasePairsStream.
+     * Constants to be used as indices for the long[] returned by countBasePairs
+     * and countBasePairsStream.
      */
     public static class BasePairIndex {
 
