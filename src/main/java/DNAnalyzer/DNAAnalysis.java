@@ -83,7 +83,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    public DNAAnalysis outputCodons(final int minCount, final int maxCount) {
+    public DNAAnalysis outPutCodons(final int minCount, final int maxCount) {
         configureReadingFrames(minCount, maxCount);
         proteinSequence();
 

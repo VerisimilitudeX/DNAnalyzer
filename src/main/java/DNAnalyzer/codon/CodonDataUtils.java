@@ -30,7 +30,8 @@ public class CodonDataUtils {
      * @param name The name of the amino acid.
      * @return A List of codon data for the user-selected amino acid or stop codon.
      */
-    public static List<String> getAminoAcid(final AminoAcidNames name) {
-        return CodonDataConstants.CodonDataAcidMap.getOrDefault(name, List.of());
+    public static List<String> getAminoAcid(final String name) {
+        final AminoAcid aminoAcid = AminoAcidFactory.getAminoAcid(name);
+        return CodonDataConstants.CodonDataAcidMap.getOrDefault(aminoAcid, List.of());
     }
 }
