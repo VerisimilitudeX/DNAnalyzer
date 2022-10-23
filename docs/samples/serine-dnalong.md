@@ -12,6 +12,20 @@
 2. You should receieve the feedback in your terminal of the successful build.
 ![](../usage/img/build2.png)
 
+## Standard CLI Understanding
+
+The CLI is consisted of two parts.
+
+1. Executable
+```java
+java -jar build/libs/DNAnalyzer.jar <arguments>
+```
+
+2. Arguments
+```java
+<executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
+```
+
 ## Access Help Menu
 
 Use the executable to complete commands.
