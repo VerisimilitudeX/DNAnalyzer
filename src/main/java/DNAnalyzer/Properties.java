@@ -73,20 +73,6 @@ public class Properties {
     }
 
     /**
-     * Formats the nucleotide sequence into a readable format.
-     *
-     * @param dna        The DNA sequence that was analyzed
-     * @param count      The count of the nucleotide in the DNA sequence
-     * @param nucleotide The nucleotide that was searched for
-     * @category Output
-     */
-    private static void formatNucleotideCount(
-            final String dna, final int count, final String nucleotide) {
-        System.out.println(
-                nucleotide + ": " + count + " (" + (float) count / dna.length() * 100 + "%)");
-    }
-
-    /**
      * Counts the number of nucleotides in the DNA sequence.
      *
      * @param dna sequence
@@ -115,10 +101,15 @@ public class Properties {
     public static void printNucleotideCount(final String dna) {
         final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
         System.out.println("Nucleotide count:");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('a'), "A");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('t'), "T");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('g'), "G");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('c'), "C");
+        
+        System.out.println("A" + ": " + nucleotideCountMapping.get('a') + 
+                " (" + (float) nucleotideCountMapping.get('a') / dna.length() * 100 + "%)");
+        System.out.println("T" + ": " + nucleotideCountMapping.get('t') + 
+                " (" + (float) nucleotideCountMapping.get('t') / dna.length() * 100 + "%)");
+        System.out.println("G" + ": " + nucleotideCountMapping.get('g') + 
+                " (" + (float) nucleotideCountMapping.get('g') / dna.length() * 100 + "%)");
+        System.out.println("C" + ": " + nucleotideCountMapping.get('c') + 
+                " (" + (float) nucleotideCountMapping.get('c') / dna.length() * 100 + "%)");
     }
 
     /**
