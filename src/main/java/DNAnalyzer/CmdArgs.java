@@ -76,7 +76,7 @@ public class CmdArgs implements Runnable {
 
         dnaAnalyzer
                 .printProteins()
-                .outPutCodons(minCount, maxCount)
+                .outputCodons(minCount, maxCount)
                 .printLongestProtein();
 
         if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
