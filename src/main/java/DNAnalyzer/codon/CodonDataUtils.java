@@ -12,6 +12,7 @@
 package DNAnalyzer.codon;
 
 import DNAnalyzer.aminoAcid.*;
+
 import java.util.List;
 
 /**

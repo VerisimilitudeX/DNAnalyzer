@@ -13,7 +13,8 @@ package DNAnalyzer.aminoAcid;
 import java.util.List;
 
 /**
- * AminoAcid enum that represent the amino acid values. Each value can be searched by several
+ * AminoAcid enum that represent the amino acid values. Each value can be
+ * searched by several
  * abbreviations.
  */
 public enum AminoAcid {
@@ -41,9 +42,10 @@ public enum AminoAcid {
   private final List<String> names;
 
   /**
-   * Constructs an instance of an AminoAcid enum, setting its name and list of abbreviations.
+   * Constructs an instance of an AminoAcid enum, setting its name and list of
+   * abbreviations.
    *
-   * @param fullName full name of the amino acid.
+   * @param fullName      full name of the amino acid.
    * @param abbreviations a list of abbreviations that an acid can be searched by.
    */
   AminoAcid(final String fullName, final String... abbreviations) {

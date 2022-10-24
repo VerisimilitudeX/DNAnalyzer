@@ -12,6 +12,7 @@
 package DNAnalyzer.protein;
 
 import java.util.List;
+
 import DNAnalyzer.Properties;
 
 /**

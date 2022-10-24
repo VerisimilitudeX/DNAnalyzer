@@ -3,13 +3,14 @@
 </div>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/copyright-pending-blue"  alt="Copyright"/>
+  <img src="https://img.shields.io/badge/copyright-2022-blue"  alt="Copyright"/>
   <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg"  alt="WakaTime"/>
   <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer"  alt="Releases"/>
   <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer"  alt="Repository Size"/>
   <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer" alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
   <!--img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>-->
+  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" href="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml" />
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -97,7 +98,7 @@
 </h3>
 To build and run the DNAnalyzer, you need
 
-* JDK 17 or greater
+* JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a> 
 * A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
 * <a href="https://gradle.org/install/">Gradle</a>
 
@@ -139,7 +140,7 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 <h5>Example:</h5>
 
 ```
-java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=14537 --max=520518
 ```
 
 <h4>Help message:</h4>
@@ -264,5 +265,5 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-### Copyright Pending © 2022 DNAnalyzer. Some rights reserved. This is an open source project.
+#### Copyright © 2022 DNAnalyzer. This is an open source project.
 
