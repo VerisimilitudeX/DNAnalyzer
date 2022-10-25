@@ -58,14 +58,6 @@
       </li>
     </ul>
   </li>
-  <li>Transcription factors
-    <ul>
-      <li>Proteins that help turn specific genes &quot;on&quot; or &quot;off&quot; by binding to nearby DNA. 
-        <code>[5]
-        </code>
-      </li>
-    </ul>
-  </li>
   <li>Regulatory elements
     <ul>
       <li>Binding sites for transcription factors, which are involved in gene regulation. 
