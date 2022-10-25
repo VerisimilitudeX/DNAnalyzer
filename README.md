@@ -181,13 +181,6 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-<h3 id="cytogenic-location">Cytogenic Location
-</h3>
-
-<p>This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome&#39;s long arm, in the 3rd region on the 1st band, and the 2nd sub-band. 
-  <code>[9]
-  </code>
-</p>
 
 </p>
 
