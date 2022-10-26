@@ -181,10 +181,10 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 
 <p> This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's Algorithm. In the future, to use this program, all you need is a simple 150$ DNA Test to be able to experience all the features of DNAnalyzer.
 
-<h3> <a href=https://github.com/bbuchfink/diamond">Diamond</a> Implementation, a <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> fork.
+<h3> <a href=https://github.com/bbuchfink/diamond">DIAMOND</a> Implementation, a <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> fork.
 </h3>
 
-<p> This will combine <a href=https://github.com/bbuchfink/diamond">Diamond</a>'s performance advantages along with <a href=https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>'s algorithm.
+<p> This will combine <a href=https://github.com/bbuchfink/diamond>DIAMOND</a>'s performance advantage along with <a href=https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>'s algorithm.
 
 <h2 id="data-sources-">Data sources:
 </h2>
