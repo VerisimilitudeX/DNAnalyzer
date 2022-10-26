@@ -1,6 +1,18 @@
 version = 1
 
 [[analyzers]]
+name = "shell"
+enabled = true
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
+
+[[analyzers]]
 name = "java"
 enabled = true
 
@@ -20,4 +32,8 @@ enabled = true
 
 [[transformers]]
 name = "autopep8"
+enabled = true
+
+[[transformers]]
+name = "prettier"
 enabled = true

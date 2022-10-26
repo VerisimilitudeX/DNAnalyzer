@@ -73,19 +73,6 @@ public class Properties {
         return (gcLen / dna.length());
     }
 
-    /**
-     * Formats the nucleotide sequence into a readable format.
-     *
-     * @param dna        The DNA sequence that was analyzed
-     * @param count      The count of the nucleotide in the DNA sequence
-     * @param nucleotide The nucleotide that was searched for
-     * @category Output
-     */
-    private static void formatNucleotideCount(
-            final String dna, final long count, final String nucleotide) {
-        System.out.println(
-                nucleotide + ": " + count + " (" + (float) count / dna.length() * 100 + "%)");
-    }
 
     /**
      * Prints the nucleotide count of the DNA sequence.
@@ -96,11 +83,14 @@ public class Properties {
     public static void printNucleotideCount(final String dna) {
         System.out.println("Nucleotide count:");
         long[] counts = countBasePairs(dna);
-        formatNucleotideCount(dna, counts[BasePairIndex.ADENINE], "A");
-        formatNucleotideCount(dna, counts[BasePairIndex.THYMINE], "T");
-        formatNucleotideCount(dna, counts[BasePairIndex.GUANINE], "G");
-        formatNucleotideCount(dna, counts[BasePairIndex.CYTOSINE], "C");
-
+        System.out.println("A" + ": " + counts[BasePairIndex.ADENINE] + 
+                " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
+        System.out.println("T" + ": " + counts[BasePairIndex.THYMINE] + 
+                " (" + (float) counts[BasePairIndex.THYMINE] / dna.length() * 100 + "%)");
+        System.out.println("G" + ": " + counts[BasePairIndex.GUANINE] + 
+                " (" + (float)counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
+        System.out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] + 
+                " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
     }
 
     /**
