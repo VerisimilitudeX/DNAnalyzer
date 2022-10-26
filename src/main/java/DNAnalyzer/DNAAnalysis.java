@@ -19,24 +19,24 @@ import java.util.stream.Stream;
  * @param protein the DNA sequence
  * @param aminoAcid name of amino acid
  */
-public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
+public record DNAAnalysis(Dna dna, String protein, String aminoAcid) {
 
-    public DnaAnalyzer isValidDna() {
+    public DNAAnalysis isValidDna() {
         dna.isValid();
         return this;
     }
 
-    public DnaAnalyzer replaceDNA(String input, String replacement) {
-        return new DnaAnalyzer(dna.replace(input, replacement), protein, aminoAcid);
+    public DNAAnalysis replaceDNA(String input, String replacement) {
+        return new DNAAnalysis(dna.replace(input, replacement), protein, aminoAcid);
     }
 
-    public DnaAnalyzer reverseDna() {
-        return new DnaAnalyzer(dna.reverse(), protein, aminoAcid);
+    public DNAAnalysis reverseDna() {
+        return new DNAAnalysis(dna.reverse(), protein, aminoAcid);
     }
 
     // Create protein list
     // Output the proteins, GC content, and nucleotide cnt found in the DNA
-    public DnaAnalyzer printProteins() {
+    public DNAAnalysis printProteins() {
         ofNullable(dna).map(Dna::getDna).ifPresent(dna -> {
             Properties.printProteinList(getProteins(aminoAcid), aminoAcid);
 
@@ -48,7 +48,7 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    public DnaAnalyzer outPutCodons(int minCount, int maxCount) {
+    public DNAAnalysis outPutCodons(int minCount, int maxCount) {
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap
@@ -70,7 +70,7 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
         return this;
     }
 
-    public DnaAnalyzer printLongestProtein() {
+    public DNAAnalysis printLongestProtein() {
         ProteinAnalysis.printLongestProtein(getProteins(aminoAcid));
         return this;
     }
@@ -80,8 +80,8 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
     }
 
     /**
-     * countBasePairs returns total counts of each DNA base pair found in the
-     * provided String.
+     * countBasePairsStream returns total counts of each DNA base pair found in
+     * the provided String.
      *
      * @param dnaString String of DNA bases. Accepts lowercase and uppercase
      * Strings.
@@ -93,46 +93,6 @@ public record DnaAnalyzer(Dna dna, String protein, String aminoAcid) {
      * BasePairIndex for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
-        long[] basePairTotals = {0, 0, 0, 0};
-
-        if (dnaString != null) {
-            for (int index = 0, len = dnaString.length(); index < len; index++) {
-                char c = dnaString.charAt(index);
-                switch (c) {
-                    case 'a','A' ->
-                        basePairTotals[BasePairIndex.ADENINE]
-                                = basePairTotals[BasePairIndex.ADENINE] + 1;
-                    case 't','T' ->
-                        basePairTotals[BasePairIndex.THYMINE]
-                                = basePairTotals[BasePairIndex.THYMINE] + 1;
-                    case 'g','G' ->
-                        basePairTotals[BasePairIndex.GUANINE]
-                                = basePairTotals[BasePairIndex.GUANINE] + 1;
-                    case 'c','C' ->
-                        basePairTotals[BasePairIndex.CYTOSINE]
-                                = basePairTotals[BasePairIndex.CYTOSINE] + 1;
-                }
-            }
-        }
-
-        return basePairTotals;
-    }
-
-    /**
-     * countBasePairsStream returns total counts of each DNA base pair found in
-     * the provided String. This performs the count using parallel Stream. It is
-     * possible this could improve performance.
-     *
-     * @param dnaString String of DNA bases. Accepts lowercase and uppercase
-     * Strings.
-     * @return returns an array of long(primitive type). long[0] = count of
-     * ADENINE bases long[1] = count of THYMINE bases long[2] = count of GUANINE
-     * bases long[3] = count of CYTOSINE bases
-     *
-     * Constants for the indices can be found in public static class
-     * BasePairIndex for convenience/consistency.
-     */
-    public static long[] countBasePairsStream(String dnaString) {
         long[] basePairTotals = {0, 0, 0, 0};
 
         if (dnaString != null) {

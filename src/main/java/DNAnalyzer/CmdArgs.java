@@ -76,7 +76,7 @@ public class CmdArgs implements Runnable {
    */
   @Override
   public void run() {
-    DnaAnalyzer dnaAnalyzer = dnaAnalyzer(aminoAcid)
+    DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
       .isValidDna()
       .replaceDNA("u", "t");
 
@@ -98,7 +98,7 @@ public class CmdArgs implements Runnable {
      * @param aminoAcid representing the start of the gene
      * @return DnaAnalyzer which provides functions to analyze the dnaFile, protein file and supplied aminoAcid
      */
-  private DnaAnalyzer dnaAnalyzer(String aminoAcid) {
+  private DNAAnalysis dnaAnalyzer(String aminoAcid) {
     try {
       String protein = null;
       Main.clearTerminal();
@@ -106,10 +106,10 @@ public class CmdArgs implements Runnable {
       if (proteinFile != null) {
         protein = readFile(proteinFile);
       }
-      return new DnaAnalyzer(new Dna(dna), protein, aminoAcid);
+      return new DNAAnalysis(new Dna(dna), protein, aminoAcid);
     } catch (IOException | InterruptedException e) {
       e.printStackTrace();
-      return new DnaAnalyzer(null, null, aminoAcid);
+      return new DNAAnalysis(null, null, aminoAcid);
     }
   }
 }
