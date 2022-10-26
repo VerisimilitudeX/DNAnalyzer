@@ -90,9 +90,9 @@
 </h3>
 To build and run the DNAnalyzer, you need
 
-* JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a> 
-* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
-* <a href="https://gradle.org/install/">Gradle</a>
+- JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a>
+- A JAVA_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+- <a href="https://gradle.org/install/">Gradle</a>
 
 <h3 id="build_and_run">Build & Run</h3>
 We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
@@ -129,6 +129,7 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 ```
 <executable> <arguments>
 ```
+
 <h5>Example:</h5>
 
 ```
@@ -173,7 +174,6 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-
 </p>
 
 <h3 id="Genotype Data for Analysis and Machine Learning Training">Genotype Data for Analysis and Machine Learning Training
@@ -199,6 +199,7 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 </ul>
 
 # Contributing:
+
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
 
@@ -263,4 +264,3 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 </p>
 
 #### Copyright © 2022 DNAnalyzer. This is an open source project.
-
