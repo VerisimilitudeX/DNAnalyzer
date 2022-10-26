@@ -19,7 +19,7 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
 </p>
 
 <h2 id="background">Background
@@ -54,14 +54,6 @@
     <ul>
       <li>Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism). 
         <code>[4]
-        </code>
-      </li>
-    </ul>
-  </li>
-  <li>Transcription factors
-    <ul>
-      <li>Proteins that help turn specific genes &quot;on&quot; or &quot;off&quot; by binding to nearby DNA. 
-        <code>[5]
         </code>
       </li>
     </ul>
@@ -181,13 +173,18 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-<h3 id="cytogenic-location">Cytogenic Location
+
+</p>
+
+<h3 id="Genotype Data for Analysis and Machine Learning Training">Genotype Data for Analysis and Machine Learning Training
 </h3>
 
-<p>This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome&#39;s long arm, in the 3rd region on the 1st band, and the 2nd sub-band. 
-  <code>[9]
-  </code>
-</p>
+<p> This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's Algorithm. In the future, to use this program, all you need is a simple 150$ DNA Test to be able to experience all the features of DNAnalyzer.
+
+<h3> <a href=https://github.com/bbuchfink/diamond">Diamond</a> Implementation, a <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> fork.
+</h3>
+
+<p> This will combine <a href=https://github.com/bbuchfink/diamond">Diamond</a>'s performance advantages along with <a href=https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>'s algorithm.
 
 <h2 id="data-sources-">Data sources:
 </h2>
