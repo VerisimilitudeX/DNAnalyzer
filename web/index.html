@@ -5,105 +5,135 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modes</title>
+    <title>DNAnalyzer</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .alert {
+            padding: 17px;
+            background-color: #f44336;
+            border-radius: 17px;
+            color: white;
+        }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 17px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .closebtn:hover {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h1 class="text-center primary-dark">DNAnalyzer </h1>
-    <span class="secondary-dark">A highly efficient, powerful, and feature-rich algorithm for analyzing DNA
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        This site is still under development. A lot of features have not been added, and some content is missing from
+        the website. Please be patient as we roll out changes over the next couple of weeks.
+    </div>
+
+    <div class="container">
+        <h1 class="text-center primary-dark">DNAnalyzer </h1>
+        <span class="secondary-dark">A highly efficient, powerful, and feature-rich algorithm for analyzing DNA
             sequences</span>
-    <input type="checkbox" id="mode">
-    <div class="grid">
-        <div class="item bg-light">
-            <div class="flex">
-
-                <h2 class="primary-dark">Brief Introduction </h2>
-                <p class="secondary-dark text-center">DNAnalyzer identifies proteins, amino acids, start and stop
-                    codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription
-                    factors, and regulatory elements. Researchers are working to extract valuable information from
-                    such software to better understand human health and disease. Currently, we are working on
-                    developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable
-                    physicians to quickly and more easily interact with the software, enabling them to identify
-                    genetic mutations that may cause disease.</p>
-            </div>
-        </div>
-
+        <label for="mode"></label><input type="checkbox" id="mode">
         <div class="grid">
             <div class="item bg-light">
                 <div class="flex">
 
-                    <h2 class="primary-dark">Background </h2>
-                    <p class="secondary-dark text-center">The human genome is composed of over 3 billion base pairs,
-                        making human analysis nearly impossible. Consequently, using powerful computational and
-                        statistical methods to decode the functional information hidden in DNA sequences are
-                        necessary. The genome is also extremely intricate and contains a plethora of data, which
-                        need to be organized and converted into analyzable data appropriately. Current analytical
-                        tools and software make it arduous for both geneticists and physicians to do so, thus
-                        restricting them from acquiring crucial information to better understand humans.</p>
+                    <h2 class="primary-dark">Brief Introduction </h2>
+                    <p class="secondary-dark text-center">DNAnalyzer identifies proteins, amino acids, start and stop
+                        codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription
+                        factors, and regulatory elements. Researchers are working to extract valuable information from
+                        such software to better understand human health and disease. Currently, we are working on
+                        developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable
+                        physicians to quickly and more easily interact with the software, enabling them to identify
+                        genetic mutations that may cause disease.</p>
                 </div>
             </div>
-            <div class="item bg-light">
-                <div class="flex">
+
+            <div class="grid">
+                <div class="item bg-light">
+                    <div class="flex">
+
+                        <h2 class="primary-dark">Background </h2>
+                        <p class="secondary-dark text-center">The human genome is composed of over 3 billion base pairs,
+                            making human analysis nearly impossible. Consequently, using powerful computational and
+                            statistical methods to decode the functional information hidden in DNA sequences are
+                            necessary. The genome is also extremely intricate and contains a plethora of data, which
+                            need to be organized and converted into analyzable data appropriately. Current analytical
+                            tools and software make it arduous for both geneticists and physicians to do so, thus
+                            restricting them from acquiring crucial information to better understand humans.</p>
+                    </div>
+                </div>
+                <div class="item bg-light">
+                    <div class="flex">
 
 
-                    <h2 class="primary-dark">Features</h2>
+                        <h2 class="primary-dark">Features</h2>
 
-                    <p class="secondary-dark text-left">
+                        <p class="secondary-dark text-left">
 
-                        &nbsp; 1.Start and stop codons <br> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Indicate the start and
-                        stop of an amino acid. There are 20 different amino acids. A protein consists of one or
-                        more<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chains of amino acids (called polypeptides) whose
-                        sequence is encoded in a gene.<br>
-                        &nbsp; 2.High coverage regions <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regions of a DNA genome
-                        that code for a protein and have a relatively high proportion of guanine and cytosine
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nucleotides to the 4 nucleotide bases (45-60%
-                        GC-content).<br>
-                        &nbsp; 3.Longest genes <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Most susceptible to disease
-                        implications and are especially linked to neurodevelopmental disorders (e.g., autism).<br>
-                        &nbsp; 4.Transcription factors <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proteins that help turn
-                        specific genes "on" or "off" by binding to nearby DNA. <br>
-                        &nbsp; 5.Regulatory elements <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Binding sites for
-                        transcription factors, which are involved in gene regulation. <br>
-                        &nbsp; 6.FASTA files (.fa) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supports multi-line and
-                        single-line FASTA database files. Files can either be uploaded or linked to from the web.
-                        <br>
-                        &nbsp; 7.Command-line interface (Met CLI) <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Methionine
-                        command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer
-                        services<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from the command-line. The CLI is a powerful tool
-                        for using DNAnalyzer services and scripting a sequence of<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        commands to execute. You can currently access all the core features present in DNAnalyzer
-                        without having to log &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in,although account support will
-                        be implemented soon. To get more information on Met CLI installation and <br>&emsp;&nbsp;
-                        currently supported commands,refer to Met CLI GitHub repository.
+                            &nbsp; 1.Start and stop codons <br> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Indicate the start and
+                            stop of an amino acid. There are 20 different amino acids. A protein consists of one or
+                            more<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chains of amino acids (called polypeptides) whose
+                            sequence is encoded in a gene.<br>
+                            &nbsp; 2.High coverage regions <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regions of a DNA genome
+                            that code for a protein and have a relatively high proportion of guanine and cytosine
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nucleotides to the 4 nucleotide bases (45-60%
+                            GC-content).<br>
+                            &nbsp; 3.Longest genes <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Most susceptible to disease
+                            implications and are especially linked to neurodevelopmental disorders (e.g., autism).<br>
+                            &nbsp; 4.Transcription factors <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proteins that help turn
+                            specific genes "on" or "off" by binding to nearby DNA. <br>
+                            &nbsp; 5.Regulatory elements <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Binding sites for
+                            transcription factors, which are involved in gene regulation. <br>
+                            &nbsp; 6.FASTA files (.fa) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supports multi-line and
+                            single-line FASTA database files. Files can either be uploaded or linked to from the web.
+                            <br>
+                            &nbsp; 7.Command-line interface (Met CLI) <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Methionine
+                            command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer
+                            services<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from the command-line. The CLI is a powerful tool
+                            for using DNAnalyzer services and scripting a sequence of<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            commands to execute. You can currently access all the core features present in DNAnalyzer
+                            without having to log &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in,although account support will
+                            be implemented soon. To get more information on Met CLI installation and <br>&emsp;&nbsp;
+                            currently supported commands,refer to Met CLI GitHub repository.
 
-                    </p>
+                        </p>
 
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <br>
+        <br>
 
-    <button class="btn">
-        <a href="https://github.com/Verisimilitude11/DNAnalyzer"> Github Repository </a>
-    </button>
+        <button class="btn">
+            <a href="https://github.com/Verisimilitude11/DNAnalyzer"> Github Repository </a>
+        </button>
 
-    <br>
-    <br>
+        <br>
+        <br>
 
-    <footer>
-        <p>Copyright © DNAnalyzer 2022. This is an open-source project.<br>
-        </p>
-    </footer>
-    <script src="./index.js"></script>
+        <footer>
+            <p>Copyright © DNAnalyzer 2022. This is an open-source project.<br>
+            </p>
+        </footer>
+        <script src="./index.js"></script>
 </body>
 
 </html>

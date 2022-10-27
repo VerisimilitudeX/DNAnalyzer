@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer" alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
   <!--img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>-->
-  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" href="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml" />
+  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg"   alt=""/>
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -19,7 +19,7 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
 </p>
 
 <h2 id="background">Background
@@ -58,14 +58,6 @@
       </li>
     </ul>
   </li>
-  <li>Transcription factors
-    <ul>
-      <li>Proteins that help turn specific genes &quot;on&quot; or &quot;off&quot; by binding to nearby DNA. 
-        <code>[5]
-        </code>
-      </li>
-    </ul>
-  </li>
   <li>Regulatory elements
     <ul>
       <li>Binding sites for transcription factors, which are involved in gene regulation. 
@@ -98,9 +90,9 @@
 </h3>
 To build and run the DNAnalyzer, you need
 
-* JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a> 
-* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
-* <a href="https://gradle.org/install/">Gradle</a>
+- JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a>
+- A JAVA_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+- <a href="https://gradle.org/install/">Gradle</a>
 
 <h3 id="build_and_run">Build & Run</h3>
 We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
@@ -137,6 +129,7 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 ```
 <executable> <arguments>
 ```
+
 <h5>Example:</h5>
 
 ```
@@ -181,13 +174,15 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </code>
 </p>
 
-<h3 id="cytogenic-location">Cytogenic Location
+<h3 id="Genotype Data for Analysis and Machine Learning Training">Genotype Data for Analysis and Machine Learning Training
 </h3>
 
-<p>This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome&#39;s long arm, in the 3rd region on the 1st band, and the 2nd sub-band. 
-  <code>[9]
-  </code>
-</p>
+<p> This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's Algorithm. In the future, to use this program, all you need is a simple 150$ DNA Test to be able to experience all the features of DNAnalyzer.
+
+<h3> <a href=https://github.com/bbuchfink/diamond">DIAMOND</a> Implementation, a <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> fork.
+</h3>
+
+<p> This will combine <a href=https://github.com/bbuchfink/diamond>DIAMOND</a>'s performance advantage along with <a href=https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>'s algorithm.
 
 <h2 id="data-sources-">Data sources:
 </h2>
@@ -202,18 +197,17 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 </ul>
 
 # Contributing:
+
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
 
 ## Contributors
 
-<h4>DNAnlyzer was develeloped with the help of the following people:
+<h4>DNAnalyzer was developed with the help of the following people:
 <h4>
 <a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
 
-  <img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817" />
-
-</a>
+<img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817"  alt=""/>
 
 <h2 align="left" id="citations">Citations
 </h2>
@@ -239,7 +233,7 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
     <a href="https://pubmed.ncbi.nlm.nih.gov/32413318/">https://pubmed.ncbi.nlm.nih.gov/32413318/
     </a>
   </li>
-  <li>What is noncoding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov. 
+  <li>What is non-coding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov. 
     <a href="https://medlineplus.gov/genetics/understanding/basics/noncodingdna/">https://medlineplus.gov/genetics/understanding/basics/noncodingdna/
     </a>
   </li>
@@ -266,4 +260,3 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 </p>
 
 #### Copyright © 2022 DNAnalyzer. This is an open source project.
-

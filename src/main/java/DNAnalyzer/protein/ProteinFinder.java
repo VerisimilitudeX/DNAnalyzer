@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import DNAnalyzer.aminoAcid.AminoAcidMapping;
-import DNAnalyzer.aminoAcid.AminoAcidNames;
+import DNAnalyzer.codon.CodonDataConstants;
 import DNAnalyzer.codon.CodonDataUtils;
 
 /**
@@ -46,17 +45,14 @@ public class ProteinFinder {
      */
     public static List<String> getProtein(final String dna, final String aminoAcid) {
 
-        final List<String> aminoAcidList = new ArrayList<>();
         final List<String> proteinList = new ArrayList<>();
-
-        aminoAcidList.addAll(CodonDataUtils.getAminoAcid(AminoAcidMapping.getAminoAcidMapping(aminoAcid)));
-
-        int startIndex;
-        final List<String> stopCodonList = CodonDataUtils.getAminoAcid(AminoAcidNames.STOP);
+        final List<String> aminoAcidList = new ArrayList<>(CodonDataUtils.getAminoAcid(aminoAcid));
+        final List<String> stopCodonList = CodonDataConstants.STOP;
 
         // Outer loop loops through the start codons for the amino acids that the user
         // entered.
         // store the start index
+        int startIndex;
         for (final String startCodon : aminoAcidList) {
             startIndex = dna.indexOf(startCodon.toLowerCase());
             addProtein(dna, proteinList, startIndex, stopCodonList);
@@ -76,10 +72,10 @@ public class ProteinFinder {
     /**
      * Add protein to protein list
      *
-     * @param dna
-     * @param proteinList
-     * @param startIndex
-     * @param stopCodonList
+     * @param dna DNA sequence
+     * @param proteinList List of proteins
+     * @param startIndex Start index for checking for proteins
+     * @param stopCodonList List of the 3 stop codons
      */
     private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
                                    final List<String> stopCodonList) {

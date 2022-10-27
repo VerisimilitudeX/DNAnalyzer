@@ -37,7 +37,7 @@ public class CodonDataConstants {
       Arrays.asList("CTT", "CTC", "CTA", "CTG", "TTA", "TTG");
   protected static final List<String> Valine = Arrays.asList("GTT", "GTC", "GTA", "GTG");
   protected static final List<String> Phenylalanine = Arrays.asList("TTT", "TTC");
-  protected static final List<String> Methionine = Arrays.asList("ATG");
+  protected static final List<String> Methionine = List.of("ATG");
   protected static final List<String> Cysteine = Arrays.asList("TGT", "TGC");
   protected static final List<String> Alanine = Arrays.asList("GCT", "GCC", "GCA", "GCG");
   protected static final List<String> Glycine = Arrays.asList("GGT", "GGC", "GGA", "GGG");
@@ -46,7 +46,7 @@ public class CodonDataConstants {
   protected static final List<String> Serine =
       Arrays.asList("TCT", "TCC", "TCA", "TCG", "AGT", "AGC");
   protected static final List<String> Tyrosine = Arrays.asList("TAT", "TAC");
-  protected static final List<String> Tryptophan = Arrays.asList("TGG");
+  protected static final List<String> Tryptophan = List.of("TGG");
   protected static final List<String> Glutamine = Arrays.asList("CAA", "CAG");
   protected static final List<String> Asparagine = Arrays.asList("AAT", "AAC");
   protected static final List<String> Histidine = Arrays.asList("CAT", "CAC");
@@ -58,37 +58,35 @@ public class CodonDataConstants {
 
   // Declares the stop codon data for the 20 amino acids. Note that the stop
   // codons are the same for all amino acids.
-  protected static final List<String> Stop = Arrays.asList("TAA", "TAG", "TGA");
+  public static final List<String> STOP = Arrays.asList("TAA", "TAG", "TGA");
 
   // Block to put all AminoAcidNames and their respective codon data into an enum
   // map for faster
   // retrieval
-  protected static EnumMap<AminoAcidNames, List<String>> CodonDataAcidMap =
-      new EnumMap<>(AminoAcidNames.class);
+  protected static EnumMap<AminoAcid, List<String>> CodonDataAcidMap = new EnumMap<>(AminoAcid.class);
 
   static {
     CodonDataAcidMap.putAll(
         Map.ofEntries(
-            entry(AminoAcidNames.ISOLEUCINE, Isoleucine),
-            entry(AminoAcidNames.LEUCINE, Leucine),
-            entry(AminoAcidNames.VALINE, Valine),
-            entry(AminoAcidNames.PHENYLALANINE, Phenylalanine),
-            entry(AminoAcidNames.METHIONINE, Methionine),
-            entry(AminoAcidNames.CYSTEINE, Cysteine),
-            entry(AminoAcidNames.ALANINE, Alanine),
-            entry(AminoAcidNames.GLYCINE, Glycine),
-            entry(AminoAcidNames.PROLINE, Proline),
-            entry(AminoAcidNames.THREONINE, Threonine),
-            entry(AminoAcidNames.SERINE, Serine),
-            entry(AminoAcidNames.TYROSINE, Tyrosine),
-            entry(AminoAcidNames.TRYPTOPHAN, Tryptophan),
-            entry(AminoAcidNames.GLUTAMINE, Glutamine),
-            entry(AminoAcidNames.ASPARAGINE, Asparagine),
-            entry(AminoAcidNames.HISTIDINE, Histidine),
-            entry(AminoAcidNames.GLUTAMIC_ACID, GlutamicAcid),
-            entry(AminoAcidNames.ASPARTIC_ACID, AsparticAcid),
-            entry(AminoAcidNames.LYSINE, Lysine),
-            entry(AminoAcidNames.ARGININE, Arginine),
-            entry(AminoAcidNames.STOP, Stop)));
+            entry(AminoAcid.ISOLEUCINE, Isoleucine),
+            entry(AminoAcid.LEUCINE, Leucine),
+            entry(AminoAcid.VALINE, Valine),
+            entry(AminoAcid.PHENYLALANINE, Phenylalanine),
+            entry(AminoAcid.METHIONINE, Methionine),
+            entry(AminoAcid.CYSTEINE, Cysteine),
+            entry(AminoAcid.ALANINE, Alanine),
+            entry(AminoAcid.GLYCINE, Glycine),
+            entry(AminoAcid.PROLINE, Proline),
+            entry(AminoAcid.THREONINE, Threonine),
+            entry(AminoAcid.SERINE, Serine),
+            entry(AminoAcid.TYROSINE, Tyrosine),
+            entry(AminoAcid.TRYPTOPHAN, Tryptophan),
+            entry(AminoAcid.GLUTAMINE, Glutamine),
+            entry(AminoAcid.ASPARAGINE, Asparagine),
+            entry(AminoAcid.HISTIDINE, Histidine),
+            entry(AminoAcid.GLUTAMIC_ACID, GlutamicAcid),
+            entry(AminoAcid.ASPARTIC_ACID, AsparticAcid),
+            entry(AminoAcid.LYSINE, Lysine),
+            entry(AminoAcid.ARGININE, Arginine)));
   }
 }

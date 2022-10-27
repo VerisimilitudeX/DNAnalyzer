@@ -3,8 +3,6 @@
  */
 package DNAnalyzer;
 
-// import org.junit.Test;
-
 public class MainTest {
     // @Test
     public void mainClassshouldExist() throws ClassNotFoundException {

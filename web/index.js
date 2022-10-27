@@ -1,5 +1,5 @@
-let toggle = document.getElementById("mode");
+const toggle = document.getElementById("mode");
 
-toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-})
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});

@@ -36,7 +36,8 @@ public enum AminoAcid {
   SERINE("Serine", "s", "serine", "ser"),
   THREONINE("Theornine", "t", "threonine", "thr"),
   VALINE("Valine", "v", "valine", "val"),
-  THRYPTOPHAN("Thryptophan", "w", "tryptophan", "trp");
+  TRYPTOPHAN("Tryptophan", "w", "tryptophan", "trp"),
+  TYROSINE("Tyrosine", "tyrosine", "y", "tyr");
 
   private final String fullName;
   private final List<String> names;
