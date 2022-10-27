@@ -13,6 +13,7 @@ package DNAnalyzer;
 import DNAnalyzer.aminoAcid.AminoAcid;
 import DNAnalyzer.aminoAcid.AminoAcidFactory;
 
+import java.util.Map;
 import java.util.Arrays;
 import java.util.List;
 import DNAnalyzer.DNAAnalysis.BasePairIndex;
@@ -67,26 +68,6 @@ public class Properties {
             }
         }
         return (gcLen / dna.length());
-    }
-
-    /**
-     * Counts the number of nucleotides in the DNA sequence.
-     *
-     * @param dna sequence
-     * @return The mapping between the nucleotides and their count in given DNA
-     * sequence.
-     * {@code @category} Properties
-     */
-    private static Map<Character, Integer> countNucleotides(final String dna) {
-        final Map<Character, Integer> nucleotidesCount = new HashMap<>(Map.of('a', 0, 't', 0, 'g', 0, 'c', 0));
-        dna.chars()
-                .mapToObj(c -> (char) c)
-                .forEach(
-                        letter -> {
-                            final int newValue = nucleotidesCount.get(letter) + 1;
-                            nucleotidesCount.replace(letter, newValue);
-                        });
-        return nucleotidesCount;
     }
 
     /**
