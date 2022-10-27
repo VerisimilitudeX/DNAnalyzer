@@ -14,9 +14,7 @@ import DNAnalyzer.aminoAcid.*;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import DNAnalyzer.DNAAnalysis.BasePairIndex;
 import static DNAnalyzer.DNAAnalysis.countBasePairs;
 
