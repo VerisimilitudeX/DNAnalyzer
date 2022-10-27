@@ -125,12 +125,18 @@ dependencies, testing, compiling, linking, and packaging the code.
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
-<h4>Unzip sample DNA:</h4>
+**Preparation:** Decompress the sample dna files by running following CLI
 
-Preparation: Decompress the sample dna files by running following CLI
+<h4>Windows:</h4>
+```
+Expand-Archive -LiteralPath assets/dna.zip -DestinationPath assets && rm assets/dna.zip 
+```
+<h4>Linux/Unix Terminal:</h4>
 ```
 unzip assets/dna.zip -d assets 
 ```
+
+
 <h4>Arguments:</h4>
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
