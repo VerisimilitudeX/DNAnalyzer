@@ -211,12 +211,12 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </li>
 </ul>
 
-# Contributing:
+## Contributing:
 
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
 
-## Contributors
+### Contributors
 
 <h4>DNAnalyzer was developed with the help of the following people:
 <h4>
@@ -270,7 +270,7 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 </h2>
 
 <p>You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: 
-  <code>DNAnalyzer@piyushacharya.com
+  <code>contact@dnanalyzer.live
   </code>
 </p>
 
