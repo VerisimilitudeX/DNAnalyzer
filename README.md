@@ -121,7 +121,7 @@ java -jar build/libs/DNAnalyzer.jar <arguments>
 <h4>Windows:</h4>
 
 ```
-Expand-Archive -LiteralPath assets/dna.zip -DestinationPath assets && rm assets/dna.zip 
+Expand-Archive -LiteralPath assets/dna.zip -DestinationPath assets ; rm assets/dna.zip 
 ```
 
 <h4>Linux/Unix Terminal:</h4>
