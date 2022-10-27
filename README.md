@@ -119,10 +119,13 @@ java -jar build/libs/DNAnalyzer.jar <arguments>
 **Preparation:** Decompress the sample DNA files by running following in the Powersell CLI.
 
 <h4>Windows:</h4>
+
 ```
 Expand-Archive -LiteralPath assets/dna.zip -DestinationPath assets && rm assets/dna.zip 
 ```
+
 <h4>Linux/Unix Terminal:</h4>
+
 ```
 unzip assets/dna.zip -d assets 
 ```
