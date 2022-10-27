@@ -20,16 +20,16 @@ import picocli.CommandLine;
  *
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
- * @see https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
+ * @see <a href="https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">...</a>
  */
 public class Main {
 
     /**
      * Clears the console screen based on the operating system.
      *
-     * @throws InterruptedException
-     * @throws IOException
-     * @category User Experience
+     * @throws InterruptedException Necessary for clearing the screen
+     * @throws IOException Necessary for clearing the screen
+     * {@code @category} User Experience
      */
     public static void clearTerminal() throws InterruptedException, IOException {
         if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows
@@ -44,11 +44,9 @@ public class Main {
      * Main method for the DNAnalyzer program (run this).
      *
      * @param args Command line arguments
-     * @throws IOException
-     * @throws InterruptedException
-     * @category Main
+     * {@code @category} Main
      */
-    public static void main(final String[] args) throws IOException, InterruptedException {
+    public static void main(final String[] args) {
         new CommandLine(new CmdArgs()).execute(args);
     }
 }

@@ -1,13 +1,13 @@
 ## Contribution Guideline :
 
-- Drop a :star: on the Github repository (It's optional)<br/>
+- Drop a :star: on the GitHub repository (It's optional)<br/>
 
 - Before Contribute Please
   read [Contributing_Guidelines.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/Contributing_Guidelines.md))
   and [CODE_OF_CONDUCT.md]((https://github.com/Verisimilitude11/DNAnalyzer/blob/main/CODE_OF_CONDUCT.md)).
 
 - Create an issue of the project or a feature you would like to add in the project and get the task assigned for
-  youself.(Issue can be any bug fixes or any feature you want to add in this project).
+  yourself.(Issue can be any bug fixes or any feature you want to add in this project).
 
 - Fork the repo to your Github.<br/>
 

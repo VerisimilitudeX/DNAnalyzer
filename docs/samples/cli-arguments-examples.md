@@ -10,7 +10,7 @@
 ![](../usage/img/build.png)
 
 2. You should receieve the feedback in your terminal of the successful build.
-![](../usage/img/build2.png)
+![](../usage/img/example-response.png)
 
 ## Standard CLI Understanding
 

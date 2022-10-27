@@ -102,7 +102,7 @@ You should keep these practices in mind all the time while contributing to DNAna
 
 - @Override is always used
     - A method is marked with the @Override annotation whenever it is legal. This includes a class method overriding a
-      superclass method, a class method implementing an interface method, and an interface method respecifying a
+      superclass method, a class method implementing an interface method, and an interface method re-specifying a
       superinterface method.
 - Caught exceptions are not ignored
     - it is very rarely correct to do nothing in response to a caught exception. (Typical responses are to log it, or if

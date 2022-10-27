@@ -112,6 +112,7 @@ img {
 
 input[type="checkbox"] {
     -webkit-appearance: none;
+    appearance: none;
     position: relative;
     width: 80px;
     height: 40px;
