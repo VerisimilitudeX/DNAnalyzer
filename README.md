@@ -116,7 +116,7 @@ dependencies, testing, compiling, linking, and packaging the code.
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
-**Preparation:** Decompress the sample dna files by running following CLI
+**Preparation:** Decompress the sample DNA files by running following in the Powersell CLI.
 
 <h4>Windows:</h4>
 ```
