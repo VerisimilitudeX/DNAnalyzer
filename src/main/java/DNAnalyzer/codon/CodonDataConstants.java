@@ -37,7 +37,7 @@ public class CodonDataConstants {
       Arrays.asList("CTT", "CTC", "CTA", "CTG", "TTA", "TTG");
   protected static final List<String> Valine = Arrays.asList("GTT", "GTC", "GTA", "GTG");
   protected static final List<String> Phenylalanine = Arrays.asList("TTT", "TTC");
-  protected static final List<String> Methionine = Arrays.asList("ATG");
+  protected static final List<String> Methionine = List.of("ATG");
   protected static final List<String> Cysteine = Arrays.asList("TGT", "TGC");
   protected static final List<String> Alanine = Arrays.asList("GCT", "GCC", "GCA", "GCG");
   protected static final List<String> Glycine = Arrays.asList("GGT", "GGC", "GGA", "GGG");
@@ -46,7 +46,7 @@ public class CodonDataConstants {
   protected static final List<String> Serine =
       Arrays.asList("TCT", "TCC", "TCA", "TCG", "AGT", "AGC");
   protected static final List<String> Tyrosine = Arrays.asList("TAT", "TAC");
-  protected static final List<String> Tryptophan = Arrays.asList("TGG");
+  protected static final List<String> Tryptophan = List.of("TGG");
   protected static final List<String> Glutamine = Arrays.asList("CAA", "CAG");
   protected static final List<String> Asparagine = Arrays.asList("AAT", "AAC");
   protected static final List<String> Histidine = Arrays.asList("CAT", "CAC");

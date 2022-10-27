@@ -72,10 +72,10 @@ public class ProteinFinder {
     /**
      * Add protein to protein list
      *
-     * @param dna
-     * @param proteinList
-     * @param startIndex
-     * @param stopCodonList
+     * @param dna DNA sequence
+     * @param proteinList List of proteins
+     * @param startIndex Start index for checking for proteins
+     * @param stopCodonList List of the 3 stop codons
      */
     private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
                                    final List<String> stopCodonList) {
