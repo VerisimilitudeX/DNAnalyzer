@@ -2,7 +2,7 @@ Welcome to the DNAnalyzer wiki!
 
 ![](https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png)
 
-> DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+> DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
 # [Documents](https://github.com/Verisimilitude11/DNAnalyzer/tree/main/docs)
 
@@ -25,7 +25,7 @@ You must move to your fork of the repository and clone (download) it to your loc
 
 This creates a local copy of the repository on your machine.
 
-After cloning the `DNAnalyzer` repository on Github, use the change directory command on Linux and Mac to go to that
+After cloning the `DNAnalyzer` repository on GitHub, use the change directory command on Linux and Mac to go to that
 folder.
 
 ```python
@@ -102,7 +102,7 @@ $ git
 add.
 ```
 
-Type in a message relevant for the code reveiwer using
+Type in a message relevant for the code reviewer using
 
 ```python
 # This message get associated with all files you have changed
@@ -125,14 +125,14 @@ provide a title and description, with brevity, that describe your much-appreciat
 
 ## Contribution Guideline
 
-- Drop a :star: on the Github repository (It's optional)<br/>
+- Drop a :star: on the GitHub repository (It's optional)<br/>
 
 - Before Contribute Please
   read `Contributing_Guidelines.md`
   and `CODE_OF_CONDUCT.md`
 
 - Create an issue of the project or a feature you would like to add in the project and get the task assigned for
-  youself.(Issue can be any bug fixes or any feature you want to add in this project).
+  yourself.(Issue can be any bug fixes or any feature you want to add in this project).
 
 - Fork the repo to your Github.<br/>
 

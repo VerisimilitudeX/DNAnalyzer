@@ -15,7 +15,7 @@ You must move to your fork of the repository and clone (download) it to your loc
 
 This creates a local copy of the repository on your machine.
 
-After cloning the `DNAnalyzer` repository on Github, use the change directory command on Linux and Mac to go to that
+After cloning the `DNAnalyzer` repository on GitHub, use the change directory command on Linux and Mac to go to that
 folder.
 
 ```python
@@ -92,7 +92,7 @@ $ git
 add.
 ```
 
-Type in a message relevant for the code reveiwer using
+Type in a message relevant for the code reviewer using
 
 ```python
 # This message get associated with all files you have changed

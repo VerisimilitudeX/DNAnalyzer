@@ -10,9 +10,10 @@
  */
 package DNAnalyzer;
 
-import DNAnalyzer.aminoAcid.*;
+import DNAnalyzer.aminoAcid.AminoAcid;
+import DNAnalyzer.aminoAcid.AminoAcidFactory;
 
-import java.io.IOException;
+import java.util.Map;
 import java.util.Arrays;
 import java.util.List;
 import DNAnalyzer.DNAAnalysis.BasePairIndex;
@@ -32,9 +33,7 @@ public class Properties {
      *
      * @param proteinList The list of proteins to be printed
      * @param aminoAcid   The amino acid to be searched for
-     * @throws InterruptedException
-     * @throws IOException
-     * @category Output
+     * {@code @category} Output
      */
     public static void printProteinList(final List<String> proteinList, final String aminoAcid) {
 
@@ -56,7 +55,7 @@ public class Properties {
      *
      * @param dna The DNA sequence to be analyzed
      * @return The GC content of the DNA sequence
-     * @category Properties
+     * {@code @category} Properties
      * @see "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
      */
     public static float getGCContent(String dna) {
@@ -71,12 +70,11 @@ public class Properties {
         return (gcLen / dna.length());
     }
 
-
     /**
      * Prints the nucleotide count of the DNA sequence.
      *
      * @param dna The DNA sequence that was analyzed
-     * @category Output
+     * {@code @category} Output
      */
     public static void printNucleotideCount(final String dna) {
         System.out.println("Nucleotide count:");
@@ -96,7 +94,7 @@ public class Properties {
      *
      * @param dna The DNA sequence that was analyzed
      * @return Whether the DNA sequence is random or not
-     * @category Properties
+     * {@code @category} Properties
      */
     public static boolean isRandomDNA(final String dna) {
         long[] nucleotideCount = countBasePairs(dna);
@@ -115,9 +113,9 @@ public class Properties {
     /**
      * Calculates the percentage of given amount of nucleotide in the dna sequence/
      *
-     * @param nucleotideCount
-     * @param dna
-     * @return
+     * @param nucleotideCount Number of nucleotides (int)
+     * @param dna DNA sequence
+     * @return the percentage of nucleotides in that DNA sequence
      */
 
     private static int nucleotidePercentage(final long nucleotideCount, final String dna) {

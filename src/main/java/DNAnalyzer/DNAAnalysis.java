@@ -55,17 +55,16 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     }
 
     //used as helper method for output-codons, used to generate reading frames
-    public ReadingFrames configureReadingFrames(final int minCount, final int maxCount){
+    public void configureReadingFrames(final int minCount, final int maxCount){
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
         System.out.print("\n");
         aap.printCodonCounts();
-        return aap;
     }
 
     //used as helper method for output codons, handles protein decisions
-    public DNAAnalysis proteinSequence() {
+    public void proteinSequence() {
         final String dna = this.dna.getDna();
 
         if (protein != null) {
@@ -78,21 +77,19 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
                 System.out.println("\nProtein sequence not found in the DNA sequence.");
             }
         }
-        return this; 
     }
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    public DNAAnalysis outputCodons(final int minCount, final int maxCount) {
+    public DNAAnalysis outPutCodons(final int minCount, final int maxCount) {
         configureReadingFrames(minCount, maxCount);
         proteinSequence();
 
         return this;
     }
 
-    public DNAAnalysis printLongestProtein() {
+    public void printLongestProtein() {
         ProteinAnalysis.printLongestProtein(getProteins(aminoAcid));
-        return this;
     }
 
     private List<String> getProteins(final String aminoAcid) {

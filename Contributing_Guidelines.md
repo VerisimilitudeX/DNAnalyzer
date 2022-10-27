@@ -27,7 +27,7 @@ community looks forward to your contributions. 🎉
     - [Suggesting Enhancements](#suggesting-enhancements)
     - [Your First Code Contribution](#your-first-code-contribution)
     - [Improving The Documentation](#improving-the-documentation)
-- [Styleguides](#styleguides)
+- [Styleguide](#styleguide)
     - [Commit Messages](#commit-messages)
 
 ## I Have a Question
@@ -65,12 +65,12 @@ Depending on how large the project is, you may want to outsource the questioning
 
 ### Git & GitHub
 
-Before we proceed, it's better to know the difference between Git and Github. Git is a version control system (VCS) that
+Before we proceed, it's better to know the difference between Git and GitHub. Git is a version control system (VCS) that
 allows us to keep track of the history of our source code , whereas GitHub is a service that hosts Git projects.
 
-We assume you have created an account on Github and installed Git on your System.
+We assume you have created an account on GitHub and installed Git on your System.
 
-Now enter your name and E-mail (used on Github) address in Git, by using following command.
+Now enter your name and E-mail (used on GitHub) address in Git, by using following command.
 
 `$ git config --global user.name "YOUR NAME"`
 ` $ git config --global user.email "YOUR EMAIL ADDRESS"`
@@ -80,10 +80,10 @@ This is an important step to mark your commits to your name and email.
 
 ### Fork a project
 
-You can make a copy of the project to your account. This process is called forking a project to your Github account. On
-Upper right side of project page on Github, you can see -
+You can make a copy of the project to your account. This process is called forking a project to your GitHub account. On
+Upper right side of project page on GitHub, you can see -
 
-<p align="center">  <img  src="https://i.imgur.com/P0n6f97.png">  </p>
+<p align="center">  <img  src="https://i.imgur.com/P0n6f97.png" alt="">  </p>
 Click on fork to create a copy of project to your account. This creates a separate copy for you to work on.
 
 <br />
@@ -92,7 +92,7 @@ Click on fork to create a copy of project to your account. This creates a separa
 
 ### Clone the forked project
 
-You have forked the project you want to contribute to your github account. To get this project on your development
+You have forked the project you want to contribute to your GitHub account. To get this project on your development
 machine we use clone command of git.
 
 `$ git clone https://github.com/Verisimilitude11/DNAnalyzer.git` <br/>
@@ -102,7 +102,7 @@ Now you have the project on your local machine.
 
 ### Add a remote (upstream) to original project repository
 
-Remote means the remote location of project on Github. By cloning, we have a remote called origin which points to your
+Remote means the remote location of project on GitHub. By cloning, we have a remote called origin which points to your
 forked repository. Now we will add a remote to the original repository from where we had forked.
 
 `$ cd <your-forked-project-folder>`
@@ -120,8 +120,8 @@ copy equal with the original repository. The remote added above called Upstream 
 `$ git fetch upstream`
 `$ git merge upstream/main`
 `$ git push origin main` <br/>
-The last command pushes the latest code to your forked repository on Github. The origin is the remote pointing to your
-forked repository on github.
+The last command pushes the latest code to your forked repository on GitHub. The origin is the remote pointing to your
+forked repository on GitHub.
 
 <br />
 
@@ -136,8 +136,8 @@ This will create a new branch out of master branch. Now start working on the pro
 
 `$ git add --all`
 `$ git commit -m "<commit message>"`
-The first command adds all the files or you can add specific files by removing -a and adding the file names. The second
-command gives a message to your changes so you can know in future what changes this commit makes. If you are solving an
+The first command adds all the files, or you can add specific files by removing -a and adding the file names. The second
+command gives a message to your changes, so you can know in future what changes this commit makes. If you are solving an
 issue on original repository, you should add the issue number like #35 to your commit message. This will show the
 reference to commits in the issue.
 
@@ -146,13 +146,13 @@ reference to commits in the issue.
 ### Push code and create a pull request
 
 You now have a new branch containing the modifications you want in the project you forked. Now, push your new branch to
-your remote github fork.
+your remote GitHub fork.
 
 `$ git push origin <feature-branch>`
 Now you are ready to help the project by opening a pull request means you now tell the project managers to add the
 feature or bug fix to original repository. You can open a pull request by clicking on green icon -
 
-<p align="center">  <img  src="https://i.imgur.com/aGaqAD5.png">  </p>
+<p align="center">  <img  src="https://i.imgur.com/aGaqAD5.png" alt="">  </p>
 
 Remember your upstream base branch should be main and source should be your feature branch. Click on create pull request
 and add a name to your pull request. You can also describe your feature.
@@ -187,7 +187,7 @@ following steps in advance to help us fix any potential bug as fast as possible.
   support, you might want to check [this section](#i-have-a-question)).
 - To see if other users have experienced (and potentially already solved) the same issue you are having, check if there
   is not already a bug report existing for your bug or error in the _**bug tracker**_.
-- Also make sure to search the internet (including Stack Overflow) to see if users outside of the GitHub community have
+- Also make sure to search the internet (including Stack Overflow) to see if users outside the GitHub community have
   discussed the issue.
 - Collect information about the bug:
     - Stack trace (Traceback)
@@ -201,7 +201,7 @@ following steps in advance to help us fix any potential bug as fast as possible.
 #### How Do I Submit a Good Bug Report?
 
 > You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue
-> tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to the maintainer.
+> tracker, or elsewhere in public. Instead, sensitive bugs must be sent by email to the maintainer.
 
 <!-- You may add a PGP key to allow the messages to be sent encrypted as well. -->
 
@@ -219,8 +219,8 @@ Once it's filed:
 
 - The project team will label the issue accordingly.
 - A team member will try to reproduce the issue with your provided steps. If there are no reproduction steps or no
-  obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-repro`. Bugs
-  with the `needs-repro` tag will not be addressed until they are reproduced.
+  obvious way to reproduce the issue, the team will ask you for those steps and mark the issue as `needs-info`. Bugs
+  with the `needs-info` tag will not be addressed until they are reproduced.
 - If the team is able to reproduce the issue, it will be marked `needs-fix`, as well as possibly other tags (such
   as `critical`), and the issue will be left to be [implemented by someone](#your-first-code-contribution).
 
@@ -269,10 +269,10 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Verisi
 
 ### Your First Code Contribution
 
-Contributing to open source for the first time can be scary and a little overwhelming. Perhaps you’re a Code Newbie or
+Contributing to open source for the first time can be scary and a little overwhelming. Perhaps you’re a Code Newbie, or
 maybe you’ve been coding for a while but haven’t found a project you felt comfortable contributing to.
 
-If you have never contributed to an open source project before and you’re just getting started, consider exploring these
+If you have never contributed to an open source project before, and you’re just getting started, consider exploring these
 resources.
 
 [First contributions](https://github.com/firstcontributions/first-contributions) is a hands-on tutorial that walks you
@@ -284,7 +284,7 @@ project.
 If you want to improve the documentation then first go
 through [Creating Documentation](https://octoverse.github.com/creating-documentation/) website.
 
-## Styleguides
+## Styleguide
 
 ### Commit Messages
 
