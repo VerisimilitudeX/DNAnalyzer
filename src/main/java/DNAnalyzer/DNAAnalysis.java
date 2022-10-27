@@ -95,4 +95,72 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     private List<String> getProteins(final String aminoAcid) {
         return ProteinFinder.getProtein(dna.getDna(), aminoAcid);
     }
+
+    /**
+     * countBasePairsStream returns total counts of each DNA base pair found in
+     * the provided String.
+     *
+     * @param dnaString String of DNA bases. Accepts lowercase and uppercase
+     * Strings.
+     * @return returns an array of long(primitive type). long[0] = count of
+     * ADENINE bases long[1] = count of THYMINE bases long[2] = count of GUANINE
+     * bases long[3] = count of CYTOSINE bases
+     *
+     * Constants for the indices can be found in public static class
+     * BasePairIndex for convenience/consistency.
+     */
+    public static long[] countBasePairs(String dnaString) {
+        long[] basePairTotals = {0, 0, 0, 0};
+
+        if (dnaString != null) {
+            long aCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A)
+                    .count();
+            long tCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T)
+                    .count();
+            long gCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G)
+                    .count();
+            long cCount = dnaString.chars().parallel().filter(
+                    c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C)
+                    .count();
+
+            basePairTotals[BasePairIndex.ADENINE] = aCount;
+            basePairTotals[BasePairIndex.THYMINE] = tCount;
+            basePairTotals[BasePairIndex.GUANINE] = gCount;
+            basePairTotals[BasePairIndex.CYTOSINE] = cCount;
+        }
+
+        return basePairTotals;
+    }
+
+    /**
+     * Constants to be used as indices for the long[] returned by countBasePairs
+     * and countBasePairsStream.
+     */
+    public static class BasePairIndex {
+
+        public static final int ADENINE = 0;
+        public static final int THYMINE = 1;
+        public static final int GUANINE = 2;
+        public static final int CYTOSINE = 3;
+    }
+
+    /**
+     * Constants to obtain the corresponding ASCII int values for letters used
+     * to represent DNA bases.
+     */
+    public static class AsciiInt {
+
+        public static final int UPPERCASE_A = 65;
+        public static final int UPPERCASE_T = 84;
+        public static final int UPPERCASE_G = 71;
+        public static final int UPPERCASE_C = 67;
+        public static final int LOWERCASE_A = 97;
+        public static final int LOWERCASE_T = 116;
+        public static final int LOWERCASE_G = 103;
+        public static final int LOWERCASE_C = 99;
+
+    }
 }
