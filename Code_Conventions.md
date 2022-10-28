@@ -1,6 +1,6 @@
-## DNAnalyzer Code Conventions
+## analyzer Code Conventions
 
-You should keep these practices in mind all the time while contributing to DNAnalyzer.
+You should keep these practices in mind all the time while contributing to analyzer.
 
 ### Source File Name
 

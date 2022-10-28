@@ -8,11 +8,11 @@
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer.codon;
+package analyzer.codon;
 
 import static java.util.Map.entry;
 
-import DNAnalyzer.aminoAcid.*;
+import analyzer.aminoAcid.*;
 
 import java.util.*;
 
