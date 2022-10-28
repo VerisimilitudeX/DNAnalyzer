@@ -16,6 +16,8 @@ import DNAnalyzer.protein.ProteinAnalysis;
 import DNAnalyzer.protein.ProteinFinder;
 
 import java.util.List;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -116,23 +118,16 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      *         GUANINE
      *         bases long[3] = count of CYTOSINE bases
      *
-     *         Constants for the indices can be found in public static class
-     *         BasePairIndex for convenience/consistency.
+     * Constants for the indices can be found in public static class
+     * {@link BasePairIndex} for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
-        long[] basePairTotals = { 0, 0, 0, 0 };
-        if (dnaString != null) {
-            long aCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A).count();
-            long tCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T).count();
-            long gCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G).count();
-            long cCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C).count();
-            basePairTotals = new long[]{aCount, tCount, gCount, cCount};
-        }
-        return basePairTotals;
+        return new BasePairCounter(dnaString)
+            .countAdenine()
+            .countThymine()
+            .countGuanine()
+            .countCytosine()
+            .getCounts();
     }
 
     /**
