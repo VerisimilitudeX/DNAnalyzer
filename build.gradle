@@ -16,9 +16,12 @@ repositories {
     mavenCentral()
 }
 
+def junitVersion = "5.8.2"
+
 dependencies {
     // Use JUnit test framework.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.0.1-jre'
@@ -32,9 +35,13 @@ application {
     mainClass = 'DNAnalyzer.Main'
 }
 
-tasks.named('test') {
-    useJUnitPlatform() 
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
+
 
 jar {
     manifest {
