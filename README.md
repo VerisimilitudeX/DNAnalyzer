@@ -84,6 +84,23 @@
   </li>
 </ul>
 
+<h2 id="Quick Introduction to DNA">Quick Introduction to DNA
+
+ <h3 id="DNA">DNA</h3>
+
+  <p> In a nutshell, DNA is in every cell of your body and contains the instruction on how to build more than 200 different types of cells in your body. DNA is almost like a programming language, but only for robots and by using AI and Machine learning, we can crack the code to reading and interpreting it. <p>
+ 
+<h3 id="Algorithm">Algorithm</h3>
+
+  <p> The algorithm we have is still a work in progress, but everyday it's getting improved for the better.
+  
+<h3 id="Database">Database</h3>
+
+  <p> Having a database of DNA is the best way on interpreting the DNA combined with machine learning, by the ML model learning from our current DNA it can make accurate predictions on DNA it's never seen before. This is how current DNA tests work. <p>
+
+<blockquote <p> Think of a videogame anti-cheat, the anti-chat senses all player movements and cross-references that movement with a set of confirmed cheats in that videogame. This database contains hundreds of possible known cheats players can have, usually the most common ones. When a player cheats you can assign a probability number for how likely this anti-cheat detection is correct, more common cheats are usually higher on this scale. <p>
+</blockquote>
+  
 <h2 id="getting-started">Getting Started
 </h2>
 <h3 id="requirements">System Requirements
