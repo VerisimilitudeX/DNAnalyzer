@@ -1,7 +1,7 @@
 <h2 id="usage">Command-Line Interface (CLI) Usage
 </h2>
 
-analyzer uses CLI arguments instead of `stdin`. For example, you can do:
+DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
 ```
 <executable> assets/dna/random/dnalong.fa --amino=ser
@@ -16,7 +16,7 @@ or
 Help message (--help):
 
 ```
-Usage: analyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
+Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
                   [--max=<maxCount>] [--min=<minCount>] DNA
 A program to analyze DNA sequences.
       DNA                    The FASTA file to be analyzed.

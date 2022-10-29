@@ -2,7 +2,7 @@
 
 ## 1. Fork it 🍴
 
-You can get your own fork (copy) of [analyzer](https://github.com/Verisimilitude11/DNAnalyzer) by using the `Fork`
+You can get your own fork (copy) of [DNAnalyzer](https://github.com/Verisimilitude11/DNAnalyzer) by using the `Fork`
 button at the top right of this page.
 
 ![Fork Button](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
@@ -11,7 +11,7 @@ button at the top right of this page.
 
 You must move to your fork of the repository and clone (download) it to your local machine using
 
-`$ git clone https://github.com/Your_Username/analyzer.git`
+`$ git clone https://github.com/Your_Username/DNAnalyzer.git`
 
 This creates a local copy of the repository on your machine.
 
@@ -19,16 +19,16 @@ After cloning the `DNAnalyzer` repository on GitHub, use the change directory co
 folder.
 
 ```python
-# This will change directory to a folder analyzer                                                                   
+# This will change directory to a folder DNAnalyzer                                                                   
 $ cd
-analyzer
+DNAnalyzer
 ```
 
 Move to this folder for all other commands.
 
-Let us now add a reference to the original 'analyzer' repository using:
+Let us now add a reference to the original 'DNAnalyzer' repository using:
 
-`$ git remote add upstream https://github.com/theabhishek07/analyzer.git`
+`$ git remote add upstream https://github.com/theabhishek07/DNAnalyzer.git`
 
 This adds a new remote named **_upstream_**.
 

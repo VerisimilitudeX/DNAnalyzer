@@ -1,6 +1,6 @@
 <!-- omit in toc -->
 
-# Contributing to analyzer
+# Contributing to DNAnalyzer
 
 First off, thanks for taking the time to contribute! ❤️
 
@@ -95,7 +95,7 @@ Click on fork to create a copy of project to your account. This creates a separa
 You have forked the project you want to contribute to your GitHub account. To get this project on your development
 machine we use clone command of git.
 
-`$ git clone https://github.com/Verisimilitude11/analyzer.git` <br/>
+`$ git clone https://github.com/Verisimilitude11/DNAnalyzer.git` <br/>
 Now you have the project on your local machine.
 
 <br />
@@ -106,7 +106,7 @@ Remote means the remote location of project on GitHub. By cloning, we have a rem
 forked repository. Now we will add a remote to the original repository from where we had forked.
 
 `$ cd <your-forked-project-folder>`
-`$ git remote add upstream https://github.com/Verisimilitude11/analyzer.git` <br/>
+`$ git remote add upstream https://github.com/Verisimilitude11/DNAnalyzer.git` <br/>
 You will see the benefits of adding remote later.
 
 <br />
@@ -228,7 +228,7 @@ Once it's filed:
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for analyzer, **including completely new features
+This section guides you through submitting an enhancement suggestion for DNAnalyzer, **including completely new features
 and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community
 to understand your suggestion and find related suggestions.
 
@@ -262,7 +262,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Verisi
   and Windows, and [this tool](https://github.com/colinkeenan/silentcast)
   or [this tool](https://github.com/GNOME/byzanz) on
   Linux. <!-- this should only be included if the project has a GUI -->
-- **Explain why this enhancement would be useful** to most analyzer users. You may also want to point out the other
+- **Explain why this enhancement would be useful** to most DNAnalyzer users. You may also want to point out the other
   projects that solved it better and which could serve as inspiration.
 
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->

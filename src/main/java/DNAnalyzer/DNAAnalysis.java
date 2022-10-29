@@ -9,7 +9,9 @@
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer;
+import DNAnalyzer.codon.CodonFrame;
+import DNAnalyzer.protein.ProteinAnalysis;
+import DNAnalyzer.protein.ProteinFinder;
 
 import DNAnalyzer.codon.CodonFrame;
 import DNAnalyzer.protein.ProteinAnalysis;

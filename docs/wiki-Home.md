@@ -1,4 +1,4 @@
-Welcome to the analyzer wiki!
+Welcome to the DNAnalyzer wiki!
 
 ![](https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png)
 

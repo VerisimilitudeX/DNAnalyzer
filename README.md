@@ -109,7 +109,7 @@ A <a href="https://1drv.ms/v/s!Ak23YJmC7V17iN9FpYLGHRGCLfzz3w?e=sKTHAK
 ">video tutorial</a> covering the instructions below is also available.
 <h3 id="requirements">System Requirements
 </h3>
-To build and run the analyzer, you need
+To build and run the DNAnalyzer, you need
 
 - JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a>
 - A JAVA_HOME environment variable pointing to your JDK, or the Java executable in your PATH
@@ -134,12 +134,12 @@ dependencies, testing, compiling, linking, and packaging the code.
 <h4>Executable:</h4>
 
 ```
-java -jar build/libs/analyzer.jar <arguments>
+java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
 <h4>Arguments:</h4>
 
-analyzer uses CLI arguments instead of `stdin`. For example, you can do:
+DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
 ```
 <executable> assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
@@ -160,7 +160,7 @@ java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --m
 <h4>Help message:</h4>
 
 ```
-Usage: analyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
+Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
                   [--max=<maxCount>] [--min=<minCount>] DNA
 A program to analyze DNA sequences.
       DNA                    The FASTA file to be analyzed.
