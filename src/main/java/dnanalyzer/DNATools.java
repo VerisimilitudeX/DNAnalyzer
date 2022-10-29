@@ -9,7 +9,7 @@
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer;
+package dnanalyzer;
 
 /**
  * Functionality for dna

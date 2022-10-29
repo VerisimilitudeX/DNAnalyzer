@@ -9,9 +9,9 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer.codon;
+package dnanalyzer.codon;
 
-import DNAnalyzer.aminoAcid.*;
+import dnanalyzer.aminoAcid.*;
 
 import java.util.List;
 

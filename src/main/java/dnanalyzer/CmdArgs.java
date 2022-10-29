@@ -8,7 +8,7 @@
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer;
+package dnanalyzer;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -24,7 +24,7 @@ import java.nio.file.Files;
  * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
-@Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
+@Command(name = "dnanalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
     @Option(required = true, names = { "--amino" }, description = "The amino acid representing the start of a gene.")
     String aminoAcid;

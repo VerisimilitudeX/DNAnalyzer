@@ -8,10 +8,11 @@
  *
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
+package dnanalyzer;
 
-import DNAnalyzer.codon.CodonFrame;
-import DNAnalyzer.protein.ProteinAnalysis;
-import DNAnalyzer.protein.ProteinFinder;
+import dnanalyzer.codon.CodonFrame;
+import dnanalyzer.protein.ProteinAnalysis;
+import dnanalyzer.protein.ProteinFinder;
 
 import DNAnalyzer.codon.CodonFrame;
 import DNAnalyzer.protein.ProteinAnalysis;

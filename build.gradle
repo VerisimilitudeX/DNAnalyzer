@@ -71,7 +71,7 @@ test {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'DNAnalyzer.Main'
+        attributes 'Main-Class': 'dnanalyzer.Main'
     }
 
     from {

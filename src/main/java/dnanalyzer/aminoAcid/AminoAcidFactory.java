@@ -8,7 +8,7 @@
  *
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer.aminoAcid;
+package dnanalyzer.aminoAcid;
 
 import java.util.Arrays;
 

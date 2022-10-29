@@ -8,12 +8,10 @@
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer;
 
-import DNAnalyzer.aminoAcid.AminoAcid;
-import DNAnalyzer.aminoAcid.AminoAcidFactory;
+package dnanalyzer;
 
-import DNAnalyzer.aminoAcid.*;
+import dnanalyzer.aminoAcid.*;
 
 import java.io.IOException;
 import java.util.Arrays;

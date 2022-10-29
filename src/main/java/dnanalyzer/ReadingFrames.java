@@ -9,9 +9,9 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer;
+package dnanalyzer;
 
-import DNAnalyzer.codon.*;
+import dnanalyzer.codon.*;
 
 import java.util.HashMap;
 import java.util.Map;
