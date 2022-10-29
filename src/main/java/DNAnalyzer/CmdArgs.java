@@ -76,6 +76,7 @@ public class CmdArgs implements Runnable {
 
         dnaAnalyzer
                 .printProteins()
+                .printHighCoverageRegions()
                 .outPutCodons(minCount, maxCount)
                 .printLongestProtein();
 
