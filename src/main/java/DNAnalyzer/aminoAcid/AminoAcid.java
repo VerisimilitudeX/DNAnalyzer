@@ -6,14 +6,15 @@
  * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
- * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 package DNAnalyzer.aminoAcid;
 
 import java.util.List;
 
 /**
- * AminoAcid enum that represent the amino acid values. Each value can be searched by several
+ * AminoAcid enum that represent the amino acid values. Each value can be
+ * searched by several
  * abbreviations.
  */
 public enum AminoAcid {
@@ -35,15 +36,17 @@ public enum AminoAcid {
   SERINE("Serine", "s", "serine", "ser"),
   THREONINE("Theornine", "t", "threonine", "thr"),
   VALINE("Valine", "v", "valine", "val"),
-  THRYPTOPHAN("Thryptophan", "w", "tryptophan", "trp");
+  TRYPTOPHAN("Tryptophan", "w", "tryptophan", "trp"),
+  TYROSINE("Tyrosine", "tyrosine", "y", "tyr");
 
   private final String fullName;
   private final List<String> names;
 
   /**
-   * Constructs an instance of an AminoAcid enum, setting its name and list of abbreviations.
+   * Constructs an instance of an AminoAcid enum, setting its name and list of
+   * abbreviations.
    *
-   * @param fullName full name of the amino acid.
+   * @param fullName      full name of the amino acid.
    * @param abbreviations a list of abbreviations that an acid can be searched by.
    */
   AminoAcid(final String fullName, final String... abbreviations) {

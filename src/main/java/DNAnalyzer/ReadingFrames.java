@@ -6,12 +6,13 @@
  * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
- * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
 package DNAnalyzer;
 
 import DNAnalyzer.codon.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -30,8 +31,8 @@ public class ReadingFrames {
     /**
      * Constructor for the ReadingFrames class.
      *
-     * @param {@link CodonFrame} frame for codon data
-     * @category Codon
+     * @param codonFrame frame for codon data
+     * {@code @category} Codon
      */
     public ReadingFrames(final CodonFrame codonFrame) {
         this.codonCounts = new HashMap<>();
@@ -42,14 +43,13 @@ public class ReadingFrames {
      * Get codon counts in the specified reading frame
      *
      * @param dna The DNA sequence
-     * @return The HashMap of codon counts in the specified reading frame
-     * @category Codon
+     * {@code @category} Codon
      */
     private void buildCodonMap(final String dna) {
         // reset the hashmap
         codonCounts.clear();
         // loop over DNA in steps of 3 and store the codon and its corresponding count
-        for (int i = (int) codonFrame.getReadingFrame(); i < dna.length(); i += 3) {
+        for (int i = codonFrame.getReadingFrame(); i < dna.length(); i += 3) {
             try {
                 if (codonCounts.containsKey(dna.substring(i, i + 3))) {
                     codonCounts.put(dna.substring(i, i + 3), codonCounts.get(dna.substring(i, i + 3)) + 1);
@@ -67,8 +67,8 @@ public class ReadingFrames {
      * frame based on the min
      * and max values
      *
-     * @throws StringIndexOutOfBoundsException
-     * @category Codon
+     * @throws StringIndexOutOfBoundsException when string index is out of bounds of the map
+     * {@code @category} Codon
      */
     public void printCodonCounts() throws StringIndexOutOfBoundsException {
         // Get codon counts for the dna in the specified reading frame
