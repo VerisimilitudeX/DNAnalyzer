@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import static DNAnalyzer.Utils.readFile;
+
 /**
  * Class for handling command-line arguments.
  *
@@ -46,19 +48,6 @@ public class CmdArgs implements Runnable {
 
     @Option(names = {"--reverse", "-r"}, description = "Reverse the DNA sequence before processing.")
     boolean reverse;
-
-    /**
-     * Reads the contents of a file, stripping out newlines and converting
-     * everything to lowercase.
-     *
-     * @param file the file to read
-     * @return String with the contents of the file (newlines removed and converted
-     * to lowercase)
-     * @throws IOException if there is an error reading the file
-     */
-    String readFile(final File file) throws IOException {
-        return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
-    }
 
     /**
      * Output a list of proteins, GC content, Nucleotide content, and other
