@@ -19,7 +19,7 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 </p>
 
 <h2 id="background">Background
@@ -36,7 +36,7 @@
 <ul>
   <li>Start and stop codons
     <ul>
-      <li>Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. 
+      <li>Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.
         <code>[2]
         </code>
       </li>
@@ -44,7 +44,7 @@
   </li>
   <li>High coverage regions
     <ul>
-      <li>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). 
+      <li>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content).
         <code>[3]
         </code>
       </li>
@@ -52,7 +52,7 @@
   </li>
   <li>Longest genes
     <ul>
-      <li>Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism). 
+      <li>Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism).
         <code>[4]
         </code>
       </li>
@@ -60,7 +60,7 @@
   </li>
   <li>Regulatory elements
     <ul>
-      <li>Binding sites for transcription factors, which are involved in gene regulation. 
+      <li>Binding sites for transcription factors, which are involved in gene regulation.
         <code>[6]
         </code>
       </li>
@@ -88,17 +88,17 @@
 
  <h3 id="DNA">DNA</h3>
 
-  <p> In a nutshell, DNA is in every cell of your body and contains the instruction on how to build more than 200 different types of cells in your body. DNA is almost like a programming language, but only for robots and by using AI and Machine learning, we can crack the code to reading and interpreting it. <p>
- 
+  <p>In a nutshell, DNA is found in every cell of your body and contains the instructions for building over 200 different types of cells. DNA is similar to a programming language, but only for living organisms. We can crack the code to reading and interpreting it by using Artificial Intelligence and Machine Learning, which can have life-saving benefits as well as key insights.<p>
+
 <h3 id="Algorithm">Algorithm</h3>
 
-  <p> The algorithm we have is still a work in progress, but everyday it's getting improved for the better.
+  <p>The current algorithm, while tested thoroughly, is still a work in progress in terms of features, but it is getting better every day with your help.
   
-<h3 id="Database">Database</h3>
+<h3 id="Database">Databases</h3>
 
-  <p> Having a database of DNA is the best way on interpreting the DNA combined with machine learning, by the ML model learning from our current DNA it can make accurate predictions on DNA it's never seen before. This is how current DNA tests work. <p>
+  <p>Having a database of DNA is the best way to interpret the DNA, and when combined with machine learning, the ML model can make accurate predictions on DNA it has never seen before. This is how current DNA tests function.<p>
 
-<blockquote <p> Think of a videogame anti-cheat, the anti-chat senses all player movements and cross-references that movement with a set of confirmed cheats in that videogame. This database contains hundreds of possible known cheats players can have, usually the most common ones. When a player cheats you can assign a probability number for how likely this anti-cheat detection is correct, more common cheats are usually higher on this scale. <p>
+<blockquote <p>Consider a videogame's anti-cheat; the anti-cheat detects all player movements and compares them to a list of confirmed cheats in that videogame. This database contains hundreds of known cheats that players can have, usually the most common ones. When a player cheats, you can assign a probability number to how likely this anti-cheat detection is correct; more common cheats are usually higher on this scale.<p>
 </blockquote>
   
 <h2 id="getting-started">Getting Started
@@ -172,7 +172,7 @@ A program to analyze DNA sequences.
 <h2 id="demo">Demo
 </h2>
 
-https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov
+<https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov>
 
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
@@ -186,7 +186,7 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 <h3 id="needleman-wunsch-algorithm">Needleman-Wunsch Algorithm
 </h3>
 
-<p>This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing. 
+<p>This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing.
   <code>[8]
   </code>
 </p>
@@ -213,7 +213,7 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </li>
 </ul>
 
-## Contributing:
+## Contributing
 
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
@@ -230,39 +230,39 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 </h2>
 
 <ol>
-  <li>Genomic Data Science Fact Sheet. (n.d.). Genome.gov. 
+  <li>Genomic Data Science Fact Sheet. (n.d.). Genome.gov.
     <a href="https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
     </a>
   </li>
-  <li>DNA and RNA codon tables. (2020, December 13). Wikipedia. 
+  <li>DNA and RNA codon tables. (2020, December 13). Wikipedia.
     <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
     </a>
   </li>
-  <li>GC-content - an overview | ScienceDirect Topics. (n.d.). Www.sciencedirect.com. 
+  <li>GC-content - an overview | ScienceDirect Topics. (n.d.). Www.sciencedirect.com.
     <a href="https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content">https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content
     </a>
   </li>
-  <li>Length matters: Disease implications for long genes. (2013, October 22). Spectrum | Autism Research News. 
+  <li>Length matters: Disease implications for long genes. (2013, October 22). Spectrum | Autism Research News.
     <a href="https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/">https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
     </a>
   </li>
-  <li>Suter, D. M. (2020). Transcription Factors and DNA Play Hide and Seek. Trends in Cell Biology. 
+  <li>Suter, D. M. (2020). Transcription Factors and DNA Play Hide and Seek. Trends in Cell Biology.
     <a href="https://pubmed.ncbi.nlm.nih.gov/32413318/">https://pubmed.ncbi.nlm.nih.gov/32413318/
     </a>
   </li>
-  <li>What is non-coding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov. 
+  <li>What is non-coding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov.
     <a href="https://medlineplus.gov/genetics/understanding/basics/noncodingdna/">https://medlineplus.gov/genetics/understanding/basics/noncodingdna/
     </a>
   </li>
-  <li>BLAST TOPICS. (2019). Nih.gov. 
+  <li>BLAST TOPICS. (2019). Nih.gov.
     <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=BlastHelp">https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=BlastHelp
     </a>
   </li>
-  <li>Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. 
+  <li>Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation.
     <a href="https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
     </a>
   </li>
-  <li>Cytogenic Location. (2020, December 13). Wikipedia. 
+  <li>Cytogenic Location. (2020, December 13). Wikipedia.
     <a href="https://en.wikipedia.org/wiki/Cytogenetics">https://en.wikipedia.org/wiki/Cytogenetics
     </a>
   </li>
@@ -271,9 +271,9 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 <h2 id="terms-of-use">Terms of Use
 </h2>
 
-<p>You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: 
+<p>You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address:
   <code>contact@dnanalyzer.live
   </code>
 </p>
 
-#### Copyright © 2022 DNAnalyzer. This is an open source project.
+#### Copyright © 2022 DNAnalyzer. This is an open source project
