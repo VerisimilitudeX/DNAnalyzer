@@ -148,6 +148,18 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100
 ```
 
+<h4>GUI</h4>
+DNAnalyzer also comes with a (very basic) GUI; to use it:
+```
+./gradlew run --args="--gui"
+```
+Then:
+- enter the file name of the DNA file in the text field
+- set min and max
+- click analyze
+
+The results of your analysis will be shown in the GUI on the right-hand side. 
+
 <h4>Help message:</h4>
 
 ```
