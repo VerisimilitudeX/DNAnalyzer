@@ -10,6 +10,7 @@
  */
 package DNAnalyzer;
 
+import DNAnalyzer.gui.DNAnalyzerGUI;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -25,7 +26,10 @@ import java.nio.file.Files;
  */
 @Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-    @Option(required = true, names = {"--amino"}, description = "The amino acid representing the start of a gene.")
+    @Option(names = {"--gui"}, description = "Start in GUI mode")
+    Boolean startGUI = false;
+
+    @Option(names = {"--amino"}, description = "The amino acid representing the start of a gene.")
     String aminoAcid;
 
     @Option(names = {"--min"}, description = "The minimum count of the reading frame.")
@@ -66,21 +70,28 @@ public class CmdArgs implements Runnable {
      */
     @Override
     public void run() {
-        DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
-                .isValidDna()
-                .replaceDNA("u", "t");
-
-        if (reverse) {
-            dnaAnalyzer = dnaAnalyzer.reverseDna();
+        if (startGUI) {
+            DNAnalyzerGUI gui = new DNAnalyzerGUI();
+            String[] args = new String[0];
+            gui.launchIt(args);
         }
+        else{
+            DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
+                    .isValidDna()
+                    .replaceDNA("u", "t");
 
-        dnaAnalyzer
-                .printProteins()
-                .outPutCodons(minCount, maxCount)
-                .printLongestProtein();
+            if (reverse) {
+                dnaAnalyzer = dnaAnalyzer.reverseDna();
+            }
 
-        if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
-            System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+            dnaAnalyzer
+                    .printProteins()
+                    .outPutCodons(minCount, maxCount)
+                    .printLongestProtein();
+
+            if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
+                System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+            }
         }
     }
 

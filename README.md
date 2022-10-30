@@ -124,6 +124,11 @@ dependencies, testing, compiling, linking, and packaging the code.
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
+If you prefer, you can also run it directly from Gradle:
+```
+./gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
+```
+
 <h4>Arguments:</h4>
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
@@ -266,4 +271,13 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 </p>
 
 #### Copyright © 2022 DNAnalyzer. This is an open source project.
+
+# TODO
+## GUI
+File selector
+  "assets/dna/random/dnalong.fa 
+Amino acid selector
+  --amino=ser 
+Min / Max slider (?)
+  --min=10 --max=100
 
