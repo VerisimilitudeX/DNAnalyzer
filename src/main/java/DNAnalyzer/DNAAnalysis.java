@@ -36,7 +36,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     // Output the proteins, GC content, and nucleotide cnt found in the DNA
     public DNAAnalysis printProteins(PrintStream out) {
         ofNullable(dna).map(DNATools::getDna).ifPresent(dna -> {
-            Properties.printProteinList(getProteins(aminoAcid), aminoAcid);
+            Properties.printProteinList(getProteins(aminoAcid), aminoAcid, out);
 
             out.println("\nGC-content (genome): " + Properties.getGCContent(dna) + "\n");
             Properties.printNucleotideCount(dna, out);

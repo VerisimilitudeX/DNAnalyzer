@@ -38,17 +38,17 @@ public class Properties {
      * @throws IOException
      * @category Output
      */
-    public static void printProteinList(final List<String> proteinList, final String aminoAcid) {
+    public static void printProteinList(final List<String> proteinList, final String aminoAcid, PrintStream out) {
 
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
         final AminoAcid acid = AminoAcidFactory.getAminoAcid(aminoAcid);
 
-        System.out.println("Proteins coded for " + acid.getFullName() + ": ");
-        System.out.println("----------------------------------------------------");
+        out.println("Proteins coded for " + acid.getFullName() + ": ");
+        out.println("----------------------------------------------------");
         short count = 1;
         for (final String gene : proteinList) {
-            System.out.println(count + ". " + gene);
+            out.println(count + ". " + gene);
             count++;
         }
     }

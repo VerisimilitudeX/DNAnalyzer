@@ -69,6 +69,6 @@ public class ProteinAnalysis {
                 longestProtein = protein;
             }
         }
-        System.out.println("\nLongest gene (" + longestProtein.length() + " nucleotides): " + longestProtein);
+        out.println("\nLongest gene (" + longestProtein.length() + " nucleotides): " + longestProtein);
     }
 }

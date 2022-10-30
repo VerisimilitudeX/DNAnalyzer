@@ -54,7 +54,6 @@ public class DNAnalyzerGUIFXMLController {
 
     @FXML
     private void btnAnalyzeClicked(ActionEvent event) {
-        System.out.println("analyze clicked");
         int minCount = (int)minSlider.getValue();
         int maxCount = (int)maxSlider.getValue();
         String aminoAcid = txtAmino.getText();
@@ -65,35 +64,28 @@ public class DNAnalyzerGUIFXMLController {
         String protein = readFile(new File(proteinFilename));
 
         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        final String utf8 = StandardCharsets.UTF_8.name();
-        try (PrintStream out = new PrintStream(baos, true, utf8)) {
-            String data = baos.toString(utf8);
-            //PrintStream out = System.out;
+        PrintStream out = new PrintStream(baos, true);
 
-            out.println("min: " + minCount + ", max: " + maxCount + ", amino: " + aminoAcid);
+        out.println("min: " + minCount + ", max: " + maxCount + ", amino: " + aminoAcid);
 
-            DNAAnalysis dnaAnalyzer = dnaAnalyzer(dna, protein, aminoAcid)
-                    .isValidDna()
-                    .replaceDNA("u", "t");
+        DNAAnalysis dnaAnalyzer = dnaAnalyzer(dna, protein, aminoAcid)
+                .isValidDna()
+                .replaceDNA("u", "t");
 
-            if (reverse) {
-                dnaAnalyzer = dnaAnalyzer.reverseDna();
-            }
-
-            dnaAnalyzer
-                    .printProteins(out)
-                    .outPutCodons(minCount, maxCount, out)
-                    .printLongestProtein(out);
-
-            if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
-                out.println("\n" + dnaFilename + " has been detected to be random.");
-            }
-            String output = out.toString();
-            txtOutput.setText(output);
+        if (reverse) {
+            dnaAnalyzer = dnaAnalyzer.reverseDna();
         }
-        catch (UnsupportedEncodingException e) {
-            txtOutput.setText("exception");
+
+        dnaAnalyzer
+                .printProteins(out)
+                .outPutCodons(minCount, maxCount, out)
+                .printLongestProtein(out);
+
+        if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
+            out.println("\n" + dnaFilename + " has been detected to be random.");
         }
+        String output = baos.toString();
+        txtOutput.setText(output);
     }
 
     public void initialize() {

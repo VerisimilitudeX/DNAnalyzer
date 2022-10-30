@@ -135,7 +135,7 @@
               <children>
                 <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="116.0" style="&#10;" text="Output" textAlignment="CENTER" textFill="$x2" wrapText="false" />
                         <TextArea fx:id="txtOutput" layoutX="28.0" layoutY="144.0" prefHeight="404.0" prefWidth="549.0" />
-                        <Label alignment="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="84.0" prefWidth="511.0" style="&#10;" text="Open file, click Analyze" textAlignment="CENTER" wrapText="false">
+                        <Label alignment="CENTER" layoutX="28.0" layoutY="14.0" prefHeight="84.0" prefWidth="511.0" style="&#10;" text="put filename in DNA file, and click analyze" textAlignment="CENTER" wrapText="false">
                            <font>
                               <Font size="18.0" fx:id="x12" />
                            </font>
