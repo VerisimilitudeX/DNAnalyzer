@@ -22,7 +22,6 @@ import DNAnalyzer.codon.CodonDataUtils;
  * Find proteins in a DNA sequence (contains the main algorithm).
  *
  * @author Piyush Acharya (@Verisimilitude11)
- * @author Fernando Boaglio (@boaglio)
  * @version 1.2.1
  */
 
@@ -72,13 +71,13 @@ public class ProteinFinder {
     /**
      * Add protein to protein list
      *
-     * @param dna DNA sequence
-     * @param proteinList List of proteins
-     * @param startIndex Start index for checking for proteins
+     * @param dna           DNA sequence
+     * @param proteinList   List of proteins
+     * @param startIndex    Start index for checking for proteins
      * @param stopCodonList List of the 3 stop codons
      */
     private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
-                                   final List<String> stopCodonList) {
+            final List<String> stopCodonList) {
 
         // Inner loop loops through the stop that the user entered.
         // store the stopIndex
