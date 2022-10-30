@@ -21,7 +21,6 @@ import java.util.Map.Entry;
  * Reading frame data for the highest occurring codons.
  *
  * @author Piyush Acharya (@Verisimilitude11)
- * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
 public class ReadingFrames {
@@ -32,7 +31,7 @@ public class ReadingFrames {
      * Constructor for the ReadingFrames class.
      *
      * @param codonFrame frame for codon data
-     * {@code @category} Codon
+     *                   {@code @category} Codon
      */
     public ReadingFrames(final CodonFrame codonFrame) {
         this.codonCounts = new HashMap<>();
@@ -43,7 +42,7 @@ public class ReadingFrames {
      * Get codon counts in the specified reading frame
      *
      * @param dna The DNA sequence
-     * {@code @category} Codon
+     *            {@code @category} Codon
      */
     private void buildCodonMap(final String dna) {
         // reset the hashmap
@@ -67,8 +66,9 @@ public class ReadingFrames {
      * frame based on the min
      * and max values
      *
-     * @throws StringIndexOutOfBoundsException when string index is out of bounds of the map
-     * {@code @category} Codon
+     * @throws StringIndexOutOfBoundsException when string index is out of bounds of
+     *                                         the map
+     *                                         {@code @category} Codon
      */
     public void printCodonCounts() throws StringIndexOutOfBoundsException {
         // Get codon counts for the dna in the specified reading frame

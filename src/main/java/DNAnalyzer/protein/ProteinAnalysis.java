@@ -58,7 +58,7 @@ public class ProteinAnalysis {
      * (e.g., autism).
      *
      * @param proteinList The list of proteins in the DNA sequence
-     * {@code @category} Properties
+     *                    {@code @category} Properties
      * @see "https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/"
      */
     public static void printLongestProtein(final List<String> proteinList) {
