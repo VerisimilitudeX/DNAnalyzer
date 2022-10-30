@@ -110,6 +110,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      * BasePairIndex for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
+        long[] basePairTotals = {0, 0, 0, 0};
         if (dnaString != null) {
             long aCount = dnaString.chars().parallel()
                     .filter(c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A).count();
@@ -119,8 +120,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
                     .filter(c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G).count();
             long cCount = dnaString.chars().parallel()
                     .filter(c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C).count();
-
-            long[] basePairTotals = {aCount, tCount, gCount, cCount};
+            basePairTotals = new long[]{aCount, tCount, gCount, cCount};
         }
         return basePairTotals;
     }
