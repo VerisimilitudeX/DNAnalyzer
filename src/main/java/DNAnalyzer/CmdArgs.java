@@ -74,9 +74,9 @@ public class CmdArgs implements Runnable {
             }
 
             dnaAnalyzer
-                    .printProteins()
-                    .outPutCodons(minCount, maxCount)
-                    .printLongestProtein();
+                    .printProteins(System.out)
+                    .outPutCodons(minCount, maxCount, System.out)
+                    .printLongestProtein(System.out);
 
             if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
                 System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");

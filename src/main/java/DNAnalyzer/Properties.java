@@ -14,6 +14,7 @@ package DNAnalyzer;
 import DNAnalyzer.aminoAcid.*;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -81,8 +82,8 @@ public class Properties {
      * @category Output
      */
     private static void formatNucleotideCount(
-            final String dna, final int count, final String nucleotide) {
-        System.out.println(
+            final String dna, final int count, final String nucleotide, PrintStream out) {
+        out.println(
                 nucleotide + ": " + count + " (" + (float) count / dna.length() * 100 + "%)");
     }
 
@@ -112,13 +113,13 @@ public class Properties {
      * @param dna The DNA sequence that was analyzed
      * @category Output
      */
-    public static void printNucleotideCount(final String dna) {
+    public static void printNucleotideCount(final String dna, PrintStream out) {
         final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
-        System.out.println("Nucleotide count:");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('a'), "A");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('t'), "T");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('g'), "G");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('c'), "C");
+        out.println("Nucleotide count:");
+        formatNucleotideCount(dna, nucleotideCountMapping.get('a'), "A", out);
+        formatNucleotideCount(dna, nucleotideCountMapping.get('t'), "T", out);
+        formatNucleotideCount(dna, nucleotideCountMapping.get('g'), "G", out);
+        formatNucleotideCount(dna, nucleotideCountMapping.get('c'), "C", out);
     }
 
     /**

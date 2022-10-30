@@ -13,6 +13,7 @@ package DNAnalyzer;
 
 import DNAnalyzer.codon.*;
 
+import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -71,19 +72,19 @@ public class ReadingFrames {
      * @throws StringIndexOutOfBoundsException
      * @category Codon
      */
-    public void printCodonCounts() throws StringIndexOutOfBoundsException {
+    public void printCodonCounts(PrintStream out) throws StringIndexOutOfBoundsException {
         // Get codon counts for the dna in the specified reading frame
         buildCodonMap(codonFrame.getDna());
 
         // pretty print all the codon counts
-        System.out.println(
+        out.println(
                 "Codons in reading frame " + codonFrame.getReadingFrame() + " (" + codonFrame.getMin() + "-"
                         + codonFrame.getMax() + " occurrences)" + ":");
-        System.out.println("----------------------------------------------------");
+        out.println("----------------------------------------------------");
         for (final Entry<String, Integer> entry : codonCounts.entrySet()) {
             if (codonCounts.get(entry.getKey()) >= codonFrame.getMin()
                     && codonCounts.get(entry.getKey()) <= codonFrame.getMax()) {
-                System.out.println(entry.getKey().toUpperCase() + ": " + codonCounts.get(entry.getKey()));
+                out.println(entry.getKey().toUpperCase() + ": " + codonCounts.get(entry.getKey()));
             }
         }
     }

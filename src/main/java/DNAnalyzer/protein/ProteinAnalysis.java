@@ -11,6 +11,7 @@
 
 package DNAnalyzer.protein;
 
+import java.io.PrintStream;
 import java.util.List;
 
 import DNAnalyzer.Properties;
@@ -61,7 +62,7 @@ public class ProteinAnalysis {
      * @category Properties
      * @see "https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/"
      */
-    public static void printLongestProtein(final List<String> proteinList) {
+    public static void printLongestProtein(final List<String> proteinList, PrintStream out) {
         String longestProtein = "";
         for (final String protein : proteinList) {
             if (protein.length() > longestProtein.length()) {
