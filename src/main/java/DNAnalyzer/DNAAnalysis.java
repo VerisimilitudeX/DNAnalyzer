@@ -55,7 +55,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     }
 
     //used as helper method for output-codons, used to generate reading frames
-    public void configureReadingFrames(final int minCount, final int maxCount){
+    public void configureReadingFrames(final int minCount, final int maxCount) {
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
@@ -101,37 +101,27 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      * the provided String.
      *
      * @param dnaString String of DNA bases. Accepts lowercase and uppercase
-     * Strings.
+     *                  Strings.
      * @return returns an array of long(primitive type). long[0] = count of
      * ADENINE bases long[1] = count of THYMINE bases long[2] = count of GUANINE
      * bases long[3] = count of CYTOSINE bases
-     *
+     * <p>
      * Constants for the indices can be found in public static class
      * BasePairIndex for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
-        long[] basePairTotals = {0, 0, 0, 0};
-
         if (dnaString != null) {
-            long aCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A)
-                    .count();
-            long tCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T)
-                    .count();
-            long gCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G)
-                    .count();
-            long cCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C)
-                    .count();
+            long aCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A).count();
+            long tCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T).count();
+            long gCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G).count();
+            long cCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C).count();
 
-            basePairTotals[BasePairIndex.ADENINE] = aCount;
-            basePairTotals[BasePairIndex.THYMINE] = tCount;
-            basePairTotals[BasePairIndex.GUANINE] = gCount;
-            basePairTotals[BasePairIndex.CYTOSINE] = cCount;
+            long[] basePairTotals = {aCount, tCount, gCount, cCount};
         }
-
         return basePairTotals;
     }
 
