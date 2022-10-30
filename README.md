@@ -125,9 +125,17 @@ java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
 If you prefer, you can also run it directly from Gradle:
+
+UNIX / Linux:
 ```
 ./gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
 ```
+
+Windows:
+```
+.\gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
+```
+
 
 <h4>Arguments:</h4>
 
@@ -149,10 +157,18 @@ java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --m
 ```
 
 <h4>GUI</h4>
-DNAnalyzer also comes with a (very basic) GUI; to use it:
+DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
+
+UNIX / Linux:
 ```
 ./gradlew run --args="--gui"
 ```
+
+Windows:
+```
+.\gradlew run --args="--gui"
+```
+
 Then:
 - enter the file name of the DNA file in the text field
 - set min and max
