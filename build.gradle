@@ -44,6 +44,8 @@ jar {
         attributes 'Main-Class': 'DNAnalyzer.Main'
     }
 
+    duplicatesStrategy = 'exclude'
+
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
