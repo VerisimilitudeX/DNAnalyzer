@@ -29,6 +29,7 @@ import static java.util.Optional.ofNullable;
  * @param aminoAcid name of amino acid
  */
 public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
+
     public DNAAnalysis isValidDna() {
         dna.isValid();
         return this;
@@ -71,7 +72,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
         aap.printCodonCounts();
     }
 
-    //used as helper method for output codons, handles protein decisions
+    // used as helper method for output codons, handles protein decisions
     public void proteinSequence() {
         final String dna = this.dna.getDna();
 
@@ -109,16 +110,17 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      * the provided String.
      *
      * @param dnaString String of DNA bases. Accepts lowercase and uppercase
-     * Strings.
+     *                  Strings.
      * @return returns an array of long(primitive type). long[0] = count of
-     * ADENINE bases long[1] = count of THYMINE bases long[2] = count of GUANINE
-     * bases long[3] = count of CYTOSINE bases
+     *         ADENINE bases long[1] = count of THYMINE bases long[2] = count of
+     *         GUANINE
+     *         bases long[3] = count of CYTOSINE bases
      *
-     * Constants for the indices can be found in public static class
-     * BasePairIndex for convenience/consistency.
+     *         Constants for the indices can be found in public static class
+     *         BasePairIndex for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
-        long[] basePairTotals = {0, 0, 0, 0};
+        long[] basePairTotals = { 0, 0, 0, 0 };
 
         if (dnaString != null) {
             long aCount = dnaString.chars().parallel().filter(
