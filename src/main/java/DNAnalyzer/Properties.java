@@ -23,7 +23,6 @@ import static DNAnalyzer.DNAAnalysis.countBasePairs;
  * Prints the list of proteins and their respective properties found in the DNA.
  *
  * @author Piyush Acharya (@Verisimilitude11)
- * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
 public class Properties {
@@ -33,7 +32,7 @@ public class Properties {
      *
      * @param proteinList The list of proteins to be printed
      * @param aminoAcid   The amino acid to be searched for
-     * {@code @category} Output
+     *                    {@code @category} Output
      */
     public static void printProteinList(final List<String> proteinList, final String aminoAcid) {
 
@@ -55,7 +54,7 @@ public class Properties {
      *
      * @param dna The DNA sequence to be analyzed
      * @return The GC content of the DNA sequence
-     * {@code @category} Properties
+     *         {@code @category} Properties
      * @see "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
      */
     public static float getGCContent(String dna) {
@@ -74,18 +73,18 @@ public class Properties {
      * Prints the nucleotide count of the DNA sequence.
      *
      * @param dna The DNA sequence that was analyzed
-     * {@code @category} Output
+     *            {@code @category} Output
      */
     public static void printNucleotideCount(final String dna) {
         System.out.println("Nucleotide count:");
         long[] counts = countBasePairs(dna);
-        System.out.println("A" + ": " + counts[BasePairIndex.ADENINE] + 
+        System.out.println("A" + ": " + counts[BasePairIndex.ADENINE] +
                 " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
-        System.out.println("T" + ": " + counts[BasePairIndex.THYMINE] + 
+        System.out.println("T" + ": " + counts[BasePairIndex.THYMINE] +
                 " (" + (float) counts[BasePairIndex.THYMINE] / dna.length() * 100 + "%)");
-        System.out.println("G" + ": " + counts[BasePairIndex.GUANINE] + 
-                " (" + (float)counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
-        System.out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] + 
+        System.out.println("G" + ": " + counts[BasePairIndex.GUANINE] +
+                " (" + (float) counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
+        System.out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] +
                 " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
     }
 
@@ -94,7 +93,7 @@ public class Properties {
      *
      * @param dna The DNA sequence that was analyzed
      * @return Whether the DNA sequence is random or not
-     * {@code @category} Properties
+     *         {@code @category} Properties
      */
     public static boolean isRandomDNA(final String dna) {
         long[] nucleotideCount = countBasePairs(dna);
@@ -102,7 +101,8 @@ public class Properties {
         // This sorts the array to get min and max value
         Arrays.sort(nucleotideCount);
 
-        // Only calculate 2 Percentages, as only the highest difference (max - min) is relevant
+        // Only calculate 2 Percentages, as only the highest difference (max - min) is
+        // relevant
         final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
         final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);
         // If the percentage of each nucleotide is between 2% of one another, then it is
@@ -114,7 +114,7 @@ public class Properties {
      * Calculates the percentage of given amount of nucleotide in the dna sequence/
      *
      * @param nucleotideCount Number of nucleotides (int)
-     * @param dna DNA sequence
+     * @param dna             DNA sequence
      * @return the percentage of nucleotides in that DNA sequence
      */
 
