@@ -1,13 +1,13 @@
-FASTA Compressed File Format (.fac)
----
+## FASTA Compressed File Format (.fac)
 
 The FASTA File format (.fa), currently maintained by the NIH, is---in it's current form---extremely computationally and memory inefficient. Encoded in UTF-8, each nucleotide takes up ~1 byte, even though there are only 16 possible nucleotides. This is why I propose an alternative to storing nucleotide sequences.
 
 ## Header
-The *FASTA Compressed* file format version 1 begins with a variable-length header. A question mark (?) denotes an optional parameter.
+
+The _FASTA Compressed_ file format version 1 begins with a variable-length header. A question mark (?) denotes an optional parameter.
 
 | Length  | Data                                                           |
-|---------|----------------------------------------------------------------|
+| ------- | -------------------------------------------------------------- |
 | 8 bits  | File format version number                                     |
 | String? | ASCII string of nucleotide sequence name + additional metadata |
 
@@ -18,7 +18,7 @@ After the header, the actual nucleotide sequence is included.
 The nucleotide sequence can be represented as an array of 4-bit integers, with the value of the integers corresponding to the following nucleotides:
 
 | Integer | FASTA Equivalent | Definition            |
-|---------|------------------|-----------------------|
+| ------- | ---------------- | --------------------- |
 | 0       | A                | A                     |
 | 1       | C                | C                     |
 | 2       | G                | G                     |
@@ -35,4 +35,3 @@ The nucleotide sequence can be represented as an array of 4-bit integers, with t
 | 13      | V                | Not T (or U)          |
 | 14      | N                | A, C, G, T, or U      |
 | 15      | -                | Gap of unknown length |
-
