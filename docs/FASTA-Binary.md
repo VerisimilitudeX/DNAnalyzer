@@ -7,7 +7,7 @@ The FASTA File format (.fa), currently maintained by the NIH, is---in it's curre
 The _FASTA Binary_ file format version 1 begins with a variable-length header. A question mark (?) denotes an optional parameter.
 
 | Length  | Data                                                                            |
-|---------|---------------------------------------------------------------------------------|
+| ------- | ------------------------------------------------------------------------------- |
 | 3 bytes | Literal "fab" encoded in ASCII                                                  |
 | 1 byte  | File format version number                                                      |
 | 2 bytes | Length of metadata string                                                       |
