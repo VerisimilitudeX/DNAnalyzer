@@ -11,9 +11,7 @@
 package DNAnalyzer.codon;
 
 import static java.util.Map.entry;
-
 import DNAnalyzer.aminoAcid.*;
-
 import java.util.*;
 
 /**
@@ -41,7 +39,7 @@ public class CodonDataConstants {
       codonDataAcidMap.put(aminoAcid, aminoAcid.getCodonData());
     }
   }
-=======
+
     /** Private CodonDataConstants class constructor to avoid initialization */
     private CodonDataConstants() {
     }
@@ -104,5 +102,4 @@ public class CodonDataConstants {
                         entry(AminoAcid.LYSINE, Lysine),
                         entry(AminoAcid.ARGININE, Arginine)));
     }
->>>>>>> main
 }
