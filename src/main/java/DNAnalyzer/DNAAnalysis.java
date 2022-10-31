@@ -113,27 +113,17 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      */
     public static long[] countBasePairs(String dnaString) {
         long[] basePairTotals = { 0, 0, 0, 0 };
-
         if (dnaString != null) {
-            long aCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A)
-                    .count();
-            long tCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T)
-                    .count();
-            long gCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G)
-                    .count();
-            long cCount = dnaString.chars().parallel().filter(
-                    c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C)
-                    .count();
-
-            basePairTotals[BasePairIndex.ADENINE] = aCount;
-            basePairTotals[BasePairIndex.THYMINE] = tCount;
-            basePairTotals[BasePairIndex.GUANINE] = gCount;
-            basePairTotals[BasePairIndex.CYTOSINE] = cCount;
+            long aCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A).count();
+            long tCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T).count();
+            long gCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G).count();
+            long cCount = dnaString.chars().parallel()
+                    .filter(c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C).count();
+            basePairTotals = new long[]{aCount, tCount, gCount, cCount};
         }
-
         return basePairTotals;
     }
 
