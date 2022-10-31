@@ -8,7 +8,8 @@ The *FASTA Compressed* file format version 1 begins with a variable-length heade
 
 | Length  | Data                                                           |
 |---------|----------------------------------------------------------------|
-| 8 bits  | File format version number                                     |
+| 3 bytes | Literal "fac" encoded in ASCII                                 |
+| 1 byte  | File format version number                                     |
 | String? | ASCII string of nucleotide sequence name + additional metadata |
 
 After the header, the actual nucleotide sequence is included.
