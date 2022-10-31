@@ -25,7 +25,6 @@ import java.util.*;
  */
 public class CodonDataConstants {
 
-<<<<<<< HEAD
   /** Private CodonDataConstants class constructor to avoid initialization */
   private CodonDataConstants() {}
   // Declares the stop codon data for the 20 amino acids. Note that the stop
