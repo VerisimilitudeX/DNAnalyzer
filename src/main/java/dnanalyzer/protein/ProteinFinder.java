@@ -17,6 +17,7 @@ import java.util.List;
 
 import dnanalyzer.aminoAcid.AminoAcidMapping;
 import dnanalyzer.aminoAcid.AminoAcidNames;
+import dnanalyzer.codon.CodonDataConstants;
 import dnanalyzer.codon.CodonDataUtils;
 
 /**

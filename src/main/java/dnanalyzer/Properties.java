@@ -16,8 +16,8 @@ import dnanalyzer.aminoAcid.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import DNAnalyzer.DNAAnalysis.BasePairIndex;
-import static DNAnalyzer.DNAAnalysis.countBasePairs;
+import dnanalyzer.DNAAnalysis.BasePairIndex;
+import static dnanalyzer.DNAAnalysis.countBasePairs;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
