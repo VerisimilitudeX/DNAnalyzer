@@ -42,3 +42,6 @@ gradle-app.setting
 
 # Ignore Gradle build output directory
 build
+
+# Ignore MacOS generated files
+**/.DS_Store
