@@ -6,7 +6,7 @@
  * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
- * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
 package DNAnalyzer.codon;
@@ -30,7 +30,8 @@ public class CodonDataUtils {
      * @param name The name of the amino acid.
      * @return A List of codon data for the user-selected amino acid or stop codon.
      */
-    public static List<String> getAminoAcid(final AminoAcidNames name) {
-        return CodonDataConstants.CodonDataAcidMap.getOrDefault(name, List.of());
+    public static List<String> getAminoAcid(final String name) {
+        final AminoAcid aminoAcid = AminoAcidFactory.getAminoAcid(name);
+        return CodonDataConstants.CodonDataAcidMap.getOrDefault(aminoAcid, List.of());
     }
 }

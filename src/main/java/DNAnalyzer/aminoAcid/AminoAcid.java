@@ -6,7 +6,7 @@
  * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
- * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 package DNAnalyzer.aminoAcid;
 
@@ -36,7 +36,8 @@ public enum AminoAcid {
   SERINE("Serine", "s", "serine", "ser"),
   THREONINE("Theornine", "t", "threonine", "thr"),
   VALINE("Valine", "v", "valine", "val"),
-  THRYPTOPHAN("Thryptophan", "w", "tryptophan", "trp");
+  TRYPTOPHAN("Tryptophan", "w", "tryptophan", "trp"),
+  TYROSINE("Tyrosine", "tyrosine", "y", "tyr");
 
   private final String fullName;
   private final List<String> names;

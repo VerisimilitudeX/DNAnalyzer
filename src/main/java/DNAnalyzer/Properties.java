@@ -6,25 +6,25 @@
  * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
- * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ * For further inquiries, please reach out to contact@dnanalyzer.live
  */
-
 package DNAnalyzer;
 
-import DNAnalyzer.aminoAcid.*;
+import DNAnalyzer.aminoAcid.AminoAcid;
+import DNAnalyzer.aminoAcid.AminoAcidFactory;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
+import java.util.List;
+import DNAnalyzer.DNAAnalysis.BasePairIndex;
+import static DNAnalyzer.DNAAnalysis.countBasePairs;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
  *
  * @author Piyush Acharya (@Verisimilitude11)
- * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
 public class Properties {
@@ -34,9 +34,7 @@ public class Properties {
      *
      * @param proteinList The list of proteins to be printed
      * @param aminoAcid   The amino acid to be searched for
-     * @throws InterruptedException
-     * @throws IOException
-     * @category Output
+     *                    {@code @category} Output
      */
     public static void printProteinList(final List<String> proteinList, final String aminoAcid, PrintStream out) {
 
@@ -58,7 +56,7 @@ public class Properties {
      *
      * @param dna The DNA sequence to be analyzed
      * @return The GC content of the DNA sequence
-     * @category Properties
+     *         {@code @category} Properties
      * @see "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
      */
     public static float getGCContent(String dna) {
@@ -74,52 +72,22 @@ public class Properties {
     }
 
     /**
-     * Formats the nucleotide sequence into a readable format.
-     *
-     * @param dna        The DNA sequence that was analyzed
-     * @param count      The count of the nucleotide in the DNA sequence
-     * @param nucleotide The nucleotide that was searched for
-     * @category Output
-     */
-    private static void formatNucleotideCount(
-            final String dna, final int count, final String nucleotide, PrintStream out) {
-        out.println(
-                nucleotide + ": " + count + " (" + (float) count / dna.length() * 100 + "%)");
-    }
-
-    /**
-     * Counts the number of nucleotides in the DNA sequence.
-     *
-     * @param dna sequence
-     * @return The mapping between the nucleotides and their count in given DNA
-     * sequence.
-     * @category Properties
-     */
-    private static Map<Character, Integer> countNucleotides(final String dna) {
-        final Map<Character, Integer> nucleotidesCount = new HashMap<>(Map.of('a', 0, 't', 0, 'g', 0, 'c', 0));
-        dna.chars()
-                .mapToObj(c -> (char) c)
-                .forEach(
-                        letter -> {
-                            final int newValue = nucleotidesCount.get(letter) + 1;
-                            nucleotidesCount.replace(letter, newValue);
-                        });
-        return nucleotidesCount;
-    }
-
-    /**
      * Prints the nucleotide count of the DNA sequence.
      *
      * @param dna The DNA sequence that was analyzed
-     * @category Output
+     *            {@code @category} Output
      */
     public static void printNucleotideCount(final String dna, PrintStream out) {
-        final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
         out.println("Nucleotide count:");
-        formatNucleotideCount(dna, nucleotideCountMapping.get('a'), "A", out);
-        formatNucleotideCount(dna, nucleotideCountMapping.get('t'), "T", out);
-        formatNucleotideCount(dna, nucleotideCountMapping.get('g'), "G", out);
-        formatNucleotideCount(dna, nucleotideCountMapping.get('c'), "C", out);
+        long[] counts = countBasePairs(dna);
+        out.println("A" + ": " + counts[BasePairIndex.ADENINE] +
+                " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
+        out.println("T" + ": " + counts[BasePairIndex.THYMINE] +
+                " (" + (float) counts[BasePairIndex.THYMINE] / dna.length() * 100 + "%)");
+        out.println("G" + ": " + counts[BasePairIndex.GUANINE] +
+                " (" + (float) counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
+        out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] +
+                " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
     }
 
     /**
@@ -127,12 +95,10 @@ public class Properties {
      *
      * @param dna The DNA sequence that was analyzed
      * @return Whether the DNA sequence is random or not
-     * @category Properties
+     *         {@code @category} Properties
      */
     public static boolean isRandomDNA(final String dna) {
-        final Map<Character, Integer> nucleotideCountMapping = countNucleotides(dna);
-        // Convert Map values to Integer[]
-        final Integer[] nucleotideCount = nucleotideCountMapping.values().toArray(new Integer[0]);
+        long[] nucleotideCount = countBasePairs(dna);
 
         // This sorts the array to get min and max value
         Arrays.sort(nucleotideCount);
@@ -149,11 +115,12 @@ public class Properties {
     /**
      * Calculates the percentage of given amount of nucleotide in the dna sequence/
      *
-     * @param nucleotideCount
-     * @param dna
-     * @return
+     * @param nucleotideCount Number of nucleotides (int)
+     * @param dna             DNA sequence
+     * @return the percentage of nucleotides in that DNA sequence
      */
-    private static int nucleotidePercentage(final int nucleotideCount, final String dna) {
+
+    private static int nucleotidePercentage(final long nucleotideCount, final String dna) {
         return (int) (((float) nucleotideCount) / dna.length() * 100);
     }
 }

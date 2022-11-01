@@ -6,7 +6,7 @@
  * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
- * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
 package DNAnalyzer.protein;
@@ -59,7 +59,7 @@ public class ProteinAnalysis {
      * (e.g., autism).
      *
      * @param proteinList The list of proteins in the DNA sequence
-     * @category Properties
+     *                    {@code @category} Properties
      * @see "https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/"
      */
     public static void printLongestProtein(final List<String> proteinList, PrintStream out) {

@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer" alt="Lines of Code"/>
   <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat"  alt="Hits Counter"/>
   <!--img src='https://bettercodehub.com/edge/badge/Verisimilitude11/DNAnalyzer?branch=main'>-->
-  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" href="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml" />
+  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg"   alt=""/>
   <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&show_trend=true&token=9NBX3zsf0IZ3Nii3AApiX1Wa"/></a>
 </p>
 
@@ -19,7 +19,7 @@
   </p>
 </blockquote>
 
-<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopment disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease. 
+<p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 </p>
 
 <h2 id="background">Background
@@ -36,7 +36,7 @@
 <ul>
   <li>Start and stop codons
     <ul>
-      <li>Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. 
+      <li>Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.
         <code>[2]
         </code>
       </li>
@@ -44,7 +44,7 @@
   </li>
   <li>High coverage regions
     <ul>
-      <li>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). 
+      <li>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content).
         <code>[3]
         </code>
       </li>
@@ -52,23 +52,15 @@
   </li>
   <li>Longest genes
     <ul>
-      <li>Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism). 
+      <li>Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism).
         <code>[4]
-        </code>
-      </li>
-    </ul>
-  </li>
-  <li>Transcription factors
-    <ul>
-      <li>Proteins that help turn specific genes &quot;on&quot; or &quot;off&quot; by binding to nearby DNA. 
-        <code>[5]
         </code>
       </li>
     </ul>
   </li>
   <li>Regulatory elements
     <ul>
-      <li>Binding sites for transcription factors, which are involved in gene regulation. 
+      <li>Binding sites for transcription factors, which are involved in gene regulation.
         <code>[6]
         </code>
       </li>
@@ -92,15 +84,32 @@
   </li>
 </ul>
 
+<h2 id="Quick Introduction to DNA">Quick Introduction to DNA
+
+ <h3 id="DNA">DNA</h3>
+
+  <p>In a nutshell, DNA is found in every cell of your body and contains the instructions for building over 200 different types of cells. DNA is similar to a programming language, but only for living organisms. We can crack the code to reading and interpreting it by using Artificial Intelligence and Machine Learning, which can have life-saving benefits as well as key insights.<p>
+
+<h3 id="Algorithm">Algorithm</h3>
+
+  <p>The current algorithm, while tested thoroughly, is still a work in progress in terms of features, but it is getting better every day with your help.
+  
+<h3 id="Database">Databases</h3>
+
+  <p>Having a database of DNA is the best way to interpret the DNA, and when combined with machine learning, the ML model can make accurate predictions on DNA it has never seen before. This is how current DNA tests function.<p>
+
+<blockquote <p>Consider a videogame's anti-cheat; the anti-cheat detects all player movements and compares them to a list of confirmed cheats in that videogame. This database contains hundreds of known cheats that players can have, usually the most common ones. When a player cheats, you can assign a probability number to how likely this anti-cheat detection is correct; more common cheats are usually higher on this scale.<p>
+</blockquote>
+  
 <h2 id="getting-started">Getting Started
 </h2>
 <h3 id="requirements">System Requirements
 </h3>
 To build and run the DNAnalyzer, you need
 
-* JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a> 
-* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
-* <a href="https://gradle.org/install/">Gradle</a>
+- JDK <a href="https://www.oracle.com/java/technologies/downloads/#jdk17-windows">17</a>
+- A JAVA_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+- <a href="https://gradle.org/install/">Gradle</a>
 
 <h3 id="build_and_run">Build & Run</h3>
 We use <a href="https://gradle.org">Gradle</a> for building. The Gradle wrapper takes care of downloading
@@ -150,10 +159,11 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 ```
 <executable> <arguments>
 ```
+
 <h5>Example:</h5>
 
 ```
-java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
 ```
 
 <h4>GUI</h4>
@@ -195,7 +205,7 @@ A program to analyze DNA sequences.
 <h2 id="demo">Demo
 </h2>
 
-https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov
+<https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-9773-f6d2998eef86.mov>
 
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
@@ -209,18 +219,20 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 <h3 id="needleman-wunsch-algorithm">Needleman-Wunsch Algorithm
 </h3>
 
-<p>This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing. 
+<p>This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing.
   <code>[8]
   </code>
 </p>
 
-<h3 id="cytogenic-location">Cytogenic Location
+<h3 id="Genotype Data for Analysis and Machine Learning Training">Genotype Data for Analysis and Machine Learning Training
 </h3>
 
-<p>This program will implement the Cytogenic Location organization technique which is a technique for finding where specific genes will be located by giving the chromosome, arm, region and band. 7q31.2, for example, would be the CFTR gene located on the 7th chromosome&#39;s long arm, in the 3rd region on the 1st band, and the 2nd sub-band. 
-  <code>[9]
-  </code>
-</p>
+<p> This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's Algorithm. In the future, to use this program, all you need is a simple 150$ DNA Test to be able to experience all the features of DNAnalyzer.
+
+<h3> <a href=https://github.com/bbuchfink/diamond">DIAMOND</a> Implementation, a <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> fork.
+</h3>
+
+<p> This will combine <a href=https://github.com/bbuchfink/diamond>DIAMOND</a>'s performance advantage along with <a href=https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>'s algorithm.
 
 <h2 id="data-sources-">Data sources:
 </h2>
@@ -234,57 +246,56 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
   </li>
 </ul>
 
-# Contributing:
+## Contributing
+
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
 
-## Contributors
+### Contributors
 
-<h4>DNAnlyzer was develeloped with the help of the following people:
+<h4>DNAnalyzer was developed with the help of the following people:
 <h4>
 <a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
 
-  <img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817" />
-
-</a>
+<img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817"  alt=""/>
 
 <h2 align="left" id="citations">Citations
 </h2>
 
 <ol>
-  <li>Genomic Data Science Fact Sheet. (n.d.). Genome.gov. 
+  <li>Genomic Data Science Fact Sheet. (n.d.). Genome.gov.
     <a href="https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
     </a>
   </li>
-  <li>DNA and RNA codon tables. (2020, December 13). Wikipedia. 
+  <li>DNA and RNA codon tables. (2020, December 13). Wikipedia.
     <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
     </a>
   </li>
-  <li>GC-content - an overview | ScienceDirect Topics. (n.d.). Www.sciencedirect.com. 
+  <li>GC-content - an overview | ScienceDirect Topics. (n.d.). Www.sciencedirect.com.
     <a href="https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content">https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content
     </a>
   </li>
-  <li>Length matters: Disease implications for long genes. (2013, October 22). Spectrum | Autism Research News. 
+  <li>Length matters: Disease implications for long genes. (2013, October 22). Spectrum | Autism Research News.
     <a href="https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/">https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
     </a>
   </li>
-  <li>Suter, D. M. (2020). Transcription Factors and DNA Play Hide and Seek. Trends in Cell Biology. 
+  <li>Suter, D. M. (2020). Transcription Factors and DNA Play Hide and Seek. Trends in Cell Biology.
     <a href="https://pubmed.ncbi.nlm.nih.gov/32413318/">https://pubmed.ncbi.nlm.nih.gov/32413318/
     </a>
   </li>
-  <li>What is noncoding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov. 
+  <li>What is non-coding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov.
     <a href="https://medlineplus.gov/genetics/understanding/basics/noncodingdna/">https://medlineplus.gov/genetics/understanding/basics/noncodingdna/
     </a>
   </li>
-  <li>BLAST TOPICS. (2019). Nih.gov. 
+  <li>BLAST TOPICS. (2019). Nih.gov.
     <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=BlastHelp">https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=BlastHelp
     </a>
   </li>
-  <li>Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation. 
+  <li>Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation.
     <a href="https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
     </a>
   </li>
-  <li>Cytogenic Location. (2020, December 13). Wikipedia. 
+  <li>Cytogenic Location. (2020, December 13). Wikipedia.
     <a href="https://en.wikipedia.org/wiki/Cytogenetics">https://en.wikipedia.org/wiki/Cytogenetics
     </a>
   </li>
@@ -293,19 +304,9 @@ https://user-images.githubusercontent.com/27987685/194954560-5f470ecc-e733-4757-
 <h2 id="terms-of-use">Terms of Use
 </h2>
 
-<p>You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: 
-  <code>DNAnalyzer@piyushacharya.com
+<p>You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address:
+  <code>contact@dnanalyzer.live
   </code>
 </p>
 
-#### Copyright © 2022 DNAnalyzer. This is an open source project.
-
-# TODO
-## GUI
-File selector
-  "assets/dna/random/dnalong.fa 
-Amino acid selector
-  --amino=ser 
-Min / Max slider (?)
-  --min=10 --max=100
-
+#### Copyright © 2022 DNAnalyzer. This is an open source project

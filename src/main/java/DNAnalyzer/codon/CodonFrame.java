@@ -6,7 +6,7 @@
  * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
- * For further inquiries, please contact DNAnalyzer@piyushacharya.com
+ * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
 package DNAnalyzer.codon;
@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * Declares the codon frame
  *
- * @author Shubham Jain (@shubhwip)
+ * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */

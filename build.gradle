@@ -18,6 +18,8 @@ repositories {
     mavenCentral()
 }
 
+def junitVersion = "5.8.2"
+
 javafx {
     version = "19"
     modules = [ 'javafx.controls', 'javafx.graphics', 'javafx.fxml', 'javafx.base' ]
@@ -25,19 +27,28 @@ javafx {
 
 dependencies {
     // Use JUnit test framework.
-    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 
     // This dependency is used by the application.
-    implementation "com.google.guava:guava:31.0.1-jre"
+    implementation 'com.google.guava:guava:31.0.1-jre'
 
     // Picocli
-    implementation "info.picocli:picocli:4.6.3"
+    implementation 'info.picocli:picocli:4.6.3'
 }
 
 application {
     // Define the main class for the application.
-    mainClass = "DNAnalyzer.Main"
+    mainClass = 'DNAnalyzer.Main'
 }
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
 
 jar {
     manifest {
