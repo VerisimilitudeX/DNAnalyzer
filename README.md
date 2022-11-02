@@ -82,6 +82,11 @@
       </li>
     </ul>
   </li>
+  <li>GUI
+    <ul>
+      <li>A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be supported. More information will be added to this description once more features are added. 
+    </ul>
+  </li>
 </ul>
 
 <h2 id="Quick Introduction to DNA">Quick Introduction to DNA
@@ -180,12 +185,6 @@ A program to analyze DNA sequences.
 <h2 id="future-support-and-improvements">Future Support and Improvements
 </h2>
 
-<h3 id="gui">GUI
-</h3>
-
-<p>A cross-platform GUI-based application that will perform the algorithms implemented in the software. Currently, the Met CLI is used as an expedient for this feature. Once implemented, the Met CLI would continue to be the main tool for power users.
-</p>
-
 <h3 id="needleman-wunsch-algorithm">Needleman-Wunsch Algorithm
 </h3>
 
@@ -197,12 +196,12 @@ A program to analyze DNA sequences.
 <h3 id="Genotype Data for Analysis and Machine Learning Training">Genotype Data for Analysis and Machine Learning Training
 </h3>
 
-<p> This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's Algorithm. In the future, to use this program, all you need is a simple 150$ DNA Test to be able to experience all the features of DNAnalyzer.
+<p>This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's algorithm. In the future, to use this program, all you need is a simple $150 DNA Test to be able to experience all the features of DNAnalyzer.
 
 <h3> <a href=https://github.com/bbuchfink/diamond">DIAMOND</a> Implementation, a <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> fork.
 </h3>
 
-<p> This will combine <a href=https://github.com/bbuchfink/diamond>DIAMOND</a>'s performance advantage along with <a href=https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>'s algorithm.
+<p>This will combine <a href=https://github.com/bbuchfink/diamond>DIAMOND</a>'s performance advantage along with <a href=https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>'s algorithm.
 
 <h2 id="data-sources-">Data sources:
 </h2>
