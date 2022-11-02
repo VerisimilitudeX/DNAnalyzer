@@ -103,6 +103,9 @@
   
 <h2 id="getting-started">Getting Started
 </h2>
+
+A video tutorial covering the instructions below is alaso available: https://1drv.ms/v/s!Ak23YJmC7V17iN9FpYLGHRGCLfzz3w?e=sKTHAK
+
 <h3 id="requirements">System Requirements
 </h3>
 To build and run the DNAnalyzer, you need
