@@ -55,8 +55,16 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
         return this;
     }
 
-    // used as helper method for output-codons, used to generate reading frames
-    public void configureReadingFrames(final int minCount, final int maxCount) {
+    //Outputs the high coverage regions of a DNA
+    public DNAAnalysis printHighCoverageRegions() {
+        ofNullable(dna).map(DNATools::dna).ifPresent(dna -> {
+            ProteinAnalysis.printHighCoverageRegions(getProteins(aminoAcid));
+        });
+        return this;
+    }
+
+    //used as helper method for output-codons, used to generate reading frames
+    public void configureReadingFrames(final int minCount, final int maxCount){
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
