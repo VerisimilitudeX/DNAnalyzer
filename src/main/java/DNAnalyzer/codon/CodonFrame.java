@@ -20,7 +20,7 @@ import java.util.Objects;
  * @version 1.2.1
  * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */
-public record CodonFrame(String dna, short readingFrame, int min, int max) {
+public record CodonFrame(String dna, short readingFrame, int min, int max) { // Returns Codon frame from Reading frame
 
     /**
      * gets dna
