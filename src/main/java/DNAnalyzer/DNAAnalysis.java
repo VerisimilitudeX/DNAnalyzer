@@ -9,17 +9,15 @@
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer;
-
-import DNAnalyzer.codon.CodonFrame;
-import DNAnalyzer.protein.ProteinAnalysis;
-import DNAnalyzer.protein.ProteinFinder;
+package dnanalyzer;
 
 import java.util.List;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import dnanalyzer.codon.CodonFrame;
+import dnanalyzer.protein.ProteinAnalysis;
+import dnanalyzer.protein.ProteinFinder;
 
 import static java.util.Optional.ofNullable;
 

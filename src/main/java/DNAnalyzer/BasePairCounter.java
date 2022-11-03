@@ -8,7 +8,7 @@
  *
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer;
+package dnanalyzer;
 
 import java.util.Optional;
 import java.util.function.IntPredicate;

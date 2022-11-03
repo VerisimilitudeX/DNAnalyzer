@@ -8,15 +8,16 @@
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer;
+package dnanalyzer;
 
-import DNAnalyzer.aminoAcid.AminoAcid;
-import DNAnalyzer.aminoAcid.AminoAcidFactory;
+import static dnanalyzer.DNAAnalysis.countBasePairs;
 
 import java.util.Arrays;
 import java.util.List;
-import DNAnalyzer.DNAAnalysis.BasePairIndex;
-import static DNAnalyzer.DNAAnalysis.countBasePairs;
+
+import dnanalyzer.DNAAnalysis.BasePairIndex;
+import dnanalyzer.aminoAcid.AminoAcid;
+import dnanalyzer.aminoAcid.AminoAcidFactory;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.

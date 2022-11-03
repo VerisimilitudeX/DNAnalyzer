@@ -8,7 +8,7 @@
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer;
+package dnanalyzer;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
