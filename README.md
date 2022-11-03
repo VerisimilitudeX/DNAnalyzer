@@ -211,7 +211,7 @@ A program to analyze DNA sequences.
   </li>
 </ul>
 
-<h2><a href="docs/citations.md" target="_blank">Citations</a><h2>
+<h2><a href="docs/citations.md" target="_blank">Citations</a></h2>
 
 ## Contributing
 
