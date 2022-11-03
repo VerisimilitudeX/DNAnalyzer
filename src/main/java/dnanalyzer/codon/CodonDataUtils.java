@@ -11,9 +11,9 @@
 
 package dnanalyzer.codon;
 
-import dnanalyzer.aminoAcid.*;
-
 import java.util.List;
+
+import dnanalyzer.aminoacid.*;
 
 /**
  * provide function to access codon data from amino acid.

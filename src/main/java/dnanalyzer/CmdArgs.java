@@ -10,13 +10,13 @@
  */
 package dnanalyzer;
 
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;
 
 /**
  * Class for handling command-line arguments.
@@ -26,23 +26,43 @@ import java.nio.file.Files;
  */
 @Command(name = "dnanalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-    @Option(required = true, names = { "--amino" }, description = "The amino acid representing the start of a gene.")
+    @Option(required = true, names = {"--amino"}, description = "The amino acid representing the start of a gene.")
     String aminoAcid;
 
-    @Option(names = { "--min" }, description = "The minimum count of the reading frame.")
+    @Option(names = {"--min"}, description = "The minimum count of the reading frame.")
     int minCount = 0;
 
-    @Option(names = { "--max" }, description = "The maximum count of the reading frame.")
+    @Option(names = {"--max"}, description = "The maximum count of the reading frame.")
     int maxCount = 0;
 
     @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
     File dnaFile;
 
-    @Option(names = { "--find" }, description = "The DNA sequence to be found within the FASTA file.")
+    @Option(names = {"--find"}, description = "The DNA sequence to be found within the FASTA file.")
     File proteinFile;
 
-    @Option(names = { "--reverse", "-r" }, description = "Reverse the DNA sequence before processing.")
+    @Option(names = {"--reverse", "-r"}, description = "Reverse the DNA sequence before processing.")
     boolean reverse;
+
+    /**
+     * @param aminoAcid representing the start of the gene
+     * @return DnaAnalyzer which provides functions to analyze the dnaFile, protein
+     * file and supplied aminoAcid
+     */
+    private DNAnalysis dnaAnalyzer(final String aminoAcid) {
+        try {
+            String protein = null;
+            Main.clearTerminal();
+            final String dna = readFile(dnaFile);
+            if (proteinFile != null) {
+                protein = readFile(proteinFile);
+            }
+            return new DNAnalysis(new DNATools(dna), protein, aminoAcid);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return new DNAnalysis(null, null, aminoAcid);
+        }
+    }
 
     /**
      * Reads the contents of a file, stripping out newlines and converting
@@ -50,7 +70,7 @@ public class CmdArgs implements Runnable {
      *
      * @param file the file to read
      * @return String with the contents of the file (newlines removed and converted
-     *         to lowercase)
+     * to lowercase)
      * @throws IOException if there is an error reading the file
      */
     String readFile(final File file) throws IOException {
@@ -59,17 +79,14 @@ public class CmdArgs implements Runnable {
 
     /**
      * Output a list of proteins, GC content, Nucleotide content, and other
-     * information found in a DNA
-     * sequence.
+     * information found in a DNA sequence.
      *
      * @throws IllegalArgumentException when the DNA FASTA file contains an invalid
      *                                  DNA sequence
      */
     @Override
     public void run() {
-        DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
-                .isValidDna()
-                .replaceDNA("u", "t");
+        DNAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid).isValidDna().replaceDNA("u", "t");
 
         if (reverse) {
             dnaAnalyzer = dnaAnalyzer.reverseDna();
@@ -83,26 +100,6 @@ public class CmdArgs implements Runnable {
 
         if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
             System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
-        }
-    }
-
-    /**
-     * @param aminoAcid representing the start of the gene
-     * @return DnaAnalyzer which provides functions to analyze the dnaFile, protein
-     *         file and supplied aminoAcid
-     */
-    private DNAAnalysis dnaAnalyzer(final String aminoAcid) {
-        try {
-            String protein = null;
-            Main.clearTerminal();
-            final String dna = readFile(dnaFile);
-            if (proteinFile != null) {
-                protein = readFile(proteinFile);
-            }
-            return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-            return new DNAAnalysis(null, null, aminoAcid);
         }
     }
 }

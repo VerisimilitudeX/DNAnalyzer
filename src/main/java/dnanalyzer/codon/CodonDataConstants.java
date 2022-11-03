@@ -17,8 +17,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import dnanalyzer.aminoAcid.*;
-
+import dnanalyzer.aminoacid.*;
 
 /**
  * Declares the codon data for the 20 amino acids
@@ -29,7 +28,9 @@ import dnanalyzer.aminoAcid.*;
  */
 public class CodonDataConstants {
 
-    /** Private CodonDataConstants class constructor to avoid initialization */
+    /**
+     * Private CodonDataConstants class constructor to avoid initialization
+     */
     private CodonDataConstants() {
     }
 

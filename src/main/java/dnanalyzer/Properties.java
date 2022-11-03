@@ -16,8 +16,11 @@ import dnanalyzer.aminoAcid.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import dnanalyzer.DNAAnalysis.BasePairIndex;
-import static dnanalyzer.DNAAnalysis.countBasePairs;
+
+import dnanalyzer.DNAnalysis.BasePairIndex;
+import dnanalyzer.aminoacid.*;
+
+import static dnanalyzer.DNAnalysis.countBasePairs;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
@@ -54,7 +57,7 @@ public class Properties {
      *
      * @param dna The DNA sequence to be analyzed
      * @return The GC content of the DNA sequence
-     *         {@code @category} Properties
+     * {@code @category} Properties
      * @see "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
      */
     public static float getGCContent(String dna) {
@@ -77,7 +80,7 @@ public class Properties {
      */
     public static void printNucleotideCount(final String dna) {
         System.out.println("Nucleotide count:");
-        long[] counts = countBasePairs(dna);
+        final long[] counts = countBasePairs(dna);
         System.out.println("A" + ": " + counts[BasePairIndex.ADENINE] +
                 " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
         System.out.println("T" + ": " + counts[BasePairIndex.THYMINE] +
@@ -93,10 +96,10 @@ public class Properties {
      *
      * @param dna The DNA sequence that was analyzed
      * @return Whether the DNA sequence is random or not
-     *         {@code @category} Properties
+     * {@code @category} Properties
      */
     public static boolean isRandomDNA(final String dna) {
-        long[] nucleotideCount = countBasePairs(dna);
+        final long[] nucleotideCount = countBasePairs(dna);
 
         // This sorts the array to get min and max value
         Arrays.sort(nucleotideCount);

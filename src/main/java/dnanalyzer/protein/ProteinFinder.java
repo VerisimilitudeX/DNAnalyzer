@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import dnanalyzer.aminoAcid.AminoAcidMapping;
-import dnanalyzer.aminoAcid.AminoAcidNames;
+import dnanalyzer.aminoacid.AminoAcidMapping;
+import dnanalyzer.aminoacid.AminoAcidNames;
 import dnanalyzer.codon.CodonDataConstants;
 import dnanalyzer.codon.CodonDataUtils;
 
@@ -79,7 +79,7 @@ public class ProteinFinder {
      * @param stopCodonList List of the 3 stop codons
      */
     private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
-            final List<String> stopCodonList) {
+                                   final List<String> stopCodonList) {
 
         // Inner loop loops through the stop that the user entered.
         // store the stopIndex

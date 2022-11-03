@@ -10,9 +10,7 @@
  */
 package dnanalyzer;
 
-import dnanalyzer.codon.CodonFrame;
-import dnanalyzer.protein.ProteinAnalysis;
-import dnanalyzer.protein.ProteinFinder;
+import static java.util.Optional.ofNullable;
 
 import DNAnalyzer.codon.CodonFrame;
 import DNAnalyzer.protein.ProteinAnalysis;
@@ -24,33 +22,35 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.util.Optional.ofNullable;
+import dnanalyzer.codon.CodonFrame;
+import dnanalyzer.protein.ProteinAnalysis;
+import dnanalyzer.protein.ProteinFinder;
 
 /**
  * Provides functionality to analyze the DNA
  *
  * @param dna       then DNA to be analyzed
- * @param protein   the DNA sequence
+ * @param protein   tshe DNA sequence
  * @param aminoAcid name of amino acid
  */
-public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
+public record DNAnalysis(DNATools dna, String protein, String aminoAcid) {
 
-    public DNAAnalysis isValidDna() {
+    public DNAnalysis isValidDna() {
         dna.isValid();
         return this;
     }
 
-    public DNAAnalysis replaceDNA(final String input, final String replacement) {
-        return new DNAAnalysis(dna.replace(input, replacement), protein, aminoAcid);
+    public DNAnalysis replaceDNA(final String input, final String replacement) {
+        return new DNAnalysis(dna.replace(input, replacement), protein, aminoAcid);
     }
 
-    public DNAAnalysis reverseDna() {
-        return new DNAAnalysis(dna.reverse(), protein, aminoAcid);
+    public DNAnalysis reverseDna() {
+        return new DNAnalysis(dna.reverse(), protein, aminoAcid);
     }
 
     // Create protein list
     // Output the proteins, GC content, and nucleotide cnt found in the DNA
-    public DNAAnalysis printProteins() {
+    public DNAnalysis printProteins() {
         ofNullable(dna).map(DNATools::getDna).ifPresent(dna -> {
             Properties.printProteinList(getProteins(aminoAcid), aminoAcid);
 
@@ -85,8 +85,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
             final Pattern p = Pattern.compile(protein);
             final Matcher m = p.matcher(dna);
             if (m.find()) {
-                System.out.println(
-                        "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
+                System.out.println("\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
             } else {
                 System.out.println("\nProtein sequence not found in the DNA sequence.");
             }
@@ -95,7 +94,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    public DNAAnalysis outPutCodons(final int minCount, final int maxCount) {
+    public DNAnalysis outPutCodons(final int minCount, final int maxCount) {
         configureReadingFrames(minCount, maxCount);
         proteinSequence();
 
@@ -111,8 +110,8 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     }
 
     /**
-     * countBasePairsStream returns total counts of each DNA base pair found in
-     * the provided String.
+     * countBasePairsStream returns total counts of each DNA base pair found in the
+     * provided String.
      *
      * @param dnaString String of DNA bases. Accepts lowercase and uppercase
      *                  Strings.
@@ -134,31 +133,31 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     }
 
     /**
-     * Constants to be used as indices for the long[] returned by countBasePairs
-     * and countBasePairsStream.
+     * Constants to be used as indices for the long[] returned by countBasePairs and
+     * countBasePairsStream.
      */
     public static class BasePairIndex {
 
         public static final int ADENINE = 0;
-        public static final int THYMINE = 1;
-        public static final int GUANINE = 2;
         public static final int CYTOSINE = 3;
+        public static final int GUANINE = 2;
+        public static final int THYMINE = 1;
     }
 
     /**
-     * Constants to obtain the corresponding ASCII int values for letters used
-     * to represent DNA bases.
+     * Constants to obtain the corresponding ASCII int values for letters used to
+     * represent DNA bases.
      */
     public static class AsciiInt {
 
-        public static final int UPPERCASE_A = 65;
-        public static final int UPPERCASE_T = 84;
-        public static final int UPPERCASE_G = 71;
-        public static final int UPPERCASE_C = 67;
         public static final int LOWERCASE_A = 97;
-        public static final int LOWERCASE_T = 116;
-        public static final int LOWERCASE_G = 103;
         public static final int LOWERCASE_C = 99;
+        public static final int LOWERCASE_G = 103;
+        public static final int LOWERCASE_T = 116;
+        public static final int UPPERCASE_A = 65;
+        public static final int UPPERCASE_C = 67;
+        public static final int UPPERCASE_G = 71;
+        public static final int UPPERCASE_T = 84;
 
     }
 }

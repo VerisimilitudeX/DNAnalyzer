@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DNAAnalysisTest {
+public class DNAnalyzerTest {
 
     Path projectPath = Path.of("");
     Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
@@ -22,27 +22,28 @@ public class DNAAnalysisTest {
     public void testCountBasePairs() {
         try {
             List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-            long[] expected = {25000381, 24998528, 25000967, 25000124};
-            long[] actual = DNAAnalysis.countBasePairs(inputLines.get(0));
+            long[] expected = { 25000381, 24998528, 25000967, 25000124 };
+            long[] actual = DNAnalysis.countBasePairs(inputLines.get(0));
             assertArrayEquals(expected, actual);
         } catch (IOException ex) {
-            Logger.getLogger(DNAAnalysisTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DNAnalyzerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Test
     public void testCountBasePairsWithEmptyString() {
         String testEmptyString = "";
-        long[] expected = {0, 0, 0, 0};
-        long[] actual = DNAAnalysis.countBasePairs(testEmptyString);
+        long[] expected = { 0, 0, 0, 0 };
+        long[] actual = DNAnalysis.countBasePairs(testEmptyString);
         assertArrayEquals(expected, actual);
 
     }
 
     @Test
     public void testCountBasePairsWithNullString() {
-        long[] expected = {0, 0, 0, 0};
-        long[] actual = DNAAnalysis.countBasePairs(null);
+        String testNullString = null;
+        long[] expected = { 0, 0, 0, 0 };
+        long[] actual = DNAnalysis.countBasePairs(testNullString);
         assertArrayEquals(expected, actual);
     }
 }

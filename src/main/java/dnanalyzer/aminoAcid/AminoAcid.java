@@ -8,57 +8,47 @@
  *
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
-package dnanalyzer.aminoAcid;
+package dnanalyzer.aminoacid;
 
 import java.util.List;
 
 /**
  * AminoAcid enum that represent the amino acid values. Each value can be
- * searched by several
- * abbreviations.
+ * searched by several abbreviations.
  */
 public enum AminoAcid {
-  ALANINE("Alanine", "a", "alanine", "ala"),
-  CYSTEINE("Cysteine", "c", "cysteine", "cys"),
-  ASPARTIC_ACID("Aspartic acid", "d", "aspartic acid", "asp"),
-  GLUTAMIC_ACID("Glutamic acid", "e", "glutamic acid", "glu"),
-  PHENYLALANINE("Phenylalanine", "f", "phenylalanine", "phe"),
-  GLYCINE("Glycine", "g", "glycine", "gly"),
-  HISTIDINE("Histidine", "h", "histidine", "his"),
-  ISOLEUCINE("Isoleucine", "i", "isoleucine", "ile"),
-  LYSINE("Lysine", "k", "lysine", "lys"),
-  LEUCINE("Leucine", "l", "leucine", "leu"),
-  METHIONINE("Methionine", "m", "methionine", "met"),
-  ASPARAGINE("Asparagine", "n", "asparagine", "asn"),
-  PROLINE("Proline", "p", "proline", "pro"),
-  GLUTAMINE("Glutamine", "q", "glutamine", "gln"),
-  ARGININE("Arginine", "r", "arginine", "arg"),
-  SERINE("Serine", "s", "serine", "ser"),
-  THREONINE("Theornine", "t", "threonine", "thr"),
-  VALINE("Valine", "v", "valine", "val"),
-  TRYPTOPHAN("Tryptophan", "w", "tryptophan", "trp"),
-  TYROSINE("Tyrosine", "tyrosine", "y", "tyr");
+    ALANINE("Alanine", "a", "alanine", "ala"), CYSTEINE("Cysteine", "c", "cysteine", "cys"),
+    ASPARTIC_ACID("Aspartic acid", "d", "aspartic acid", "asp"),
+    GLUTAMIC_ACID("Glutamic acid", "e", "glutamic acid", "glu"),
+    PHENYLALANINE("Phenylalanine", "f", "phenylalanine", "phe"), GLYCINE("Glycine", "g", "glycine", "gly"),
+    HISTIDINE("Histidine", "h", "histidine", "his"), ISOLEUCINE("Isoleucine", "i", "isoleucine", "ile"),
+    LYSINE("Lysine", "k", "lysine", "lys"), LEUCINE("Leucine", "l", "leucine", "leu"),
+    METHIONINE("Methionine", "m", "methionine", "met"), ASPARAGINE("Asparagine", "n", "asparagine", "asn"),
+    PROLINE("Proline", "p", "proline", "pro"), GLUTAMINE("Glutamine", "q", "glutamine", "gln"),
+    ARGININE("Arginine", "r", "arginine", "arg"), SERINE("Serine", "s", "serine", "ser"),
+    THREONINE("Theornine", "t", "threonine", "thr"), VALINE("Valine", "v", "valine", "val"),
+    TRYPTOPHAN("Tryptophan", "w", "tryptophan", "trp"), TYROSINE("Tyrosine", "tyrosine", "y", "tyr");
 
-  private final String fullName;
-  private final List<String> names;
+    private final String fullName;
+    private final List<String> names;
 
-  /**
-   * Constructs an instance of an AminoAcid enum, setting its name and list of
-   * abbreviations.
-   *
-   * @param fullName      full name of the amino acid.
-   * @param abbreviations a list of abbreviations that an acid can be searched by.
-   */
-  AminoAcid(final String fullName, final String... abbreviations) {
-    this.fullName = fullName;
-    this.names = List.of(abbreviations);
-  }
+    /**
+     * Constructs an instance of an AminoAcid enum, setting its name and list of
+     * abbreviations.
+     *
+     * @param fullName      full name of the amino acid.
+     * @param abbreviations a list of abbreviations that an acid can be searched by.
+     */
+    AminoAcid(final String fullName, final String... abbreviations) {
+        this.fullName = fullName;
+        this.names = List.of(abbreviations);
+    }
 
-  public List<String> getNames() {
-    return names;
-  }
+    public List<String> getNames() {
+        return names;
+    }
 
-  public String getFullName() {
-    return fullName;
-  }
+    public String getFullName() {
+        return fullName;
+    }
 }

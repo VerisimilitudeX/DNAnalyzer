@@ -21,7 +21,7 @@ import picocli.CommandLine;
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  * @see <a href=
- *      "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">...</a>
+ * "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">...</a>
  */
 public class Main {
 
