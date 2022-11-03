@@ -84,7 +84,7 @@
   </li>
   <li>GUI
     <ul>
-      <li>A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be supported. More information will be added to this description once more features are added. 
+      <li>A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be supported. More information will be added to this description once more features are added.
     </ul>
   </li>
 </ul>
@@ -212,7 +212,7 @@ A program to analyze DNA sequences.
 </ul>
 
 <h2>Citations</h2>
-View our in-line citations in the following document: <a href="docs/citations.md" target="_blank">Citations</a>
+View our in-line citations in the <a href="docs/citations.md" target="_blank">Citations</a> document.
 
 ## Contributing
 
