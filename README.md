@@ -227,4 +227,4 @@ View our in-line citations in the <a href="docs/citations.md" target="_blank">Ci
   </code>
 </p>
 
-#### Copyright © 2022 DNAnalyzer. This is an open source project. Some rights reserved.
+#### Copyright © 2022 Piyush Acharya and DNAnalyzer. This is an open source project. Some rights reserved.
