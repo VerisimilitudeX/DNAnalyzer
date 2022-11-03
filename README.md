@@ -94,10 +94,6 @@
  <h3 id="DNA">DNA</h3>
 
   <p>In a nutshell, DNA is found in every cell of your body and contains the instructions for building over 200 different types of cells. DNA is similar to a programming language, but only for living organisms. We can crack the code to reading and interpreting it by using Artificial Intelligence and Machine Learning, which can have life-saving benefits as well as key insights.<p>
-
-<h3 id="Algorithm">Algorithm</h3>
-
-  <p>The current algorithm, while tested thoroughly, is still a work in progress in terms of features, but it is getting better every day with your help.
   
 <h3 id="Database">Databases</h3>
 
@@ -215,60 +211,12 @@ A program to analyze DNA sequences.
   </li>
 </ul>
 
+<a href="docs/citations.md" target="_blank">Citations</a>
+
 ## Contributing
 
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
 - <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
-
-### Contributors
-
-<h4>DNAnalyzer was developed with the help of the following people:
-<h4>
-<a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
-
-<img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817"  alt=""/>
-
-<h2 align="left" id="citations">Citations
-</h2>
-
-<ol>
-  <li>Genomic Data Science Fact Sheet. (n.d.). Genome.gov.
-    <a href="https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science
-    </a>
-  </li>
-  <li>DNA and RNA codon tables. (2020, December 13). Wikipedia.
-    <a href="https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables">https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables
-    </a>
-  </li>
-  <li>GC-content - an overview | ScienceDirect Topics. (n.d.). Www.sciencedirect.com.
-    <a href="https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content">https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content
-    </a>
-  </li>
-  <li>Length matters: Disease implications for long genes. (2013, October 22). Spectrum | Autism Research News.
-    <a href="https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/">https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/
-    </a>
-  </li>
-  <li>Suter, D. M. (2020). Transcription Factors and DNA Play Hide and Seek. Trends in Cell Biology.
-    <a href="https://pubmed.ncbi.nlm.nih.gov/32413318/">https://pubmed.ncbi.nlm.nih.gov/32413318/
-    </a>
-  </li>
-  <li>What is non-coding DNA?: MedlinePlus Genetics. (n.d.). Medlineplus.gov.
-    <a href="https://medlineplus.gov/genetics/understanding/basics/noncodingdna/">https://medlineplus.gov/genetics/understanding/basics/noncodingdna/
-    </a>
-  </li>
-  <li>BLAST TOPICS. (2019). Nih.gov.
-    <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=BlastHelp">https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs&amp;DOC_TYPE=BlastHelp
-    </a>
-  </li>
-  <li>Wikipedia Contributors. (2021, March 24). Needleman–Wunsch algorithm. Wikipedia; Wikimedia Foundation.
-    <a href="https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm">https://en.wikipedia.org/wiki/Needleman%E2%80%93Wunsch_algorithm
-    </a>
-  </li>
-  <li>Cytogenic Location. (2020, December 13). Wikipedia.
-    <a href="https://en.wikipedia.org/wiki/Cytogenetics">https://en.wikipedia.org/wiki/Cytogenetics
-    </a>
-  </li>
-</ol>
 
 <h2 id="terms-of-use">Terms of Use
 </h2>
