@@ -9,14 +9,14 @@
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.protein;
+package DNAnalyzer.protein;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import dnanalyzer.codon.CodonDataConstants;
-import dnanalyzer.codon.CodonDataUtils;
+import DNAnalyzer.codon.CodonDataConstants;
+import DNAnalyzer.codon.CodonDataUtils;
 
 /**
  * Find proteins in a DNA sequence (contains the main algorithm).

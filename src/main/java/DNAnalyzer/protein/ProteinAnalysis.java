@@ -9,11 +9,11 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.protein;
+package DNAnalyzer.protein;
 
 import java.util.List;
 
-import dnanalyzer.Properties;
+import DNAnalyzer.Properties;
 
 /**
  * Prints properties of the proteins in the DNA.
