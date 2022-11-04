@@ -59,6 +59,9 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean equals(final Object o) {
         boolean result = false;
         if (this == o) {
@@ -72,6 +75,9 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         return Objects.hash(getDna(), getReadingFrame(), getMin(), getMax());
     }
