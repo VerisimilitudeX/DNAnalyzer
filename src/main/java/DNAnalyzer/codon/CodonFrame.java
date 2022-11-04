@@ -20,7 +20,7 @@ import java.util.Objects;
  * @version 1.2.1
  * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */
-public record CodonFrame(String dna, short readingFrame, int min, int max) { // Returns Codon frame from Reading frame
+public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
     /**
      * gets dna
@@ -59,6 +59,9 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) { // 
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean equals(final Object o) {
         boolean result = false;
         if (this == o) {
@@ -72,6 +75,9 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) { // 
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         return Objects.hash(getDna(), getReadingFrame(), getMin(), getMax());
     }
