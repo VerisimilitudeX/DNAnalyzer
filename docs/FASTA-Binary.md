@@ -6,14 +6,14 @@ The FASTA File format (.fa), currently maintained by the NIH, is---in it's curre
 
 The _FASTA Binary_ file format version 1 begins with a variable-length header. A question mark (?) denotes an optional parameter.
 
-| Length  | Data                                                                            |
-| ------- | ------------------------------------------------------------------------------- |
-| 3 bytes | Literal "fab" encoded in ASCII                                                  |
-| 1 byte  | File format version number                                                      |
-| 2 bytes | Length of metadata string                                                       |
-| String? | ASCII string of nucleotide sequence name + additional metadata ending with CRLF |
+| Length  | Data                                                           |
+| ------- |----------------------------------------------------------------|
+| 3 bytes | Literal "fab" encoded in ASCII                                 |
+| 1 byte  | File format version number                                     |
+| 2 bytes | Length of metadata string                                      |
+| String? | ASCII string of nucleotide sequence name + additional metadata |
 
-After the header, the actual nucleotide sequence is included.
+After the header, the actual nucleotide sequence is included, as well as a 1-byte postfix.
 
 ## Nucleotide Sequence
 
@@ -37,3 +37,6 @@ The nucleotide sequence can be represented as an array of 4-bit integers, with t
 | 13      | V                | Not T (or U)          |
 | 14      | N                | A, C, G, T, or U      |
 | 15      | -                | Gap of unknown length |
+
+# Postfix
+The 1-byte postfix mainly exists for byte-alignment purposes. If it is 0x00 then the sequence is byte-aligned. Otherwise, the last 4 bits in the nucleotide sequence should be ignored.
