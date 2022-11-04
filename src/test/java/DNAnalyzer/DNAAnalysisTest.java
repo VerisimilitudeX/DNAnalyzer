@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DNAAnalysisTest {
 
-    Path testFile = Path.of("C:\\Users\\garyg\\Documents\\projects\\DNAnalyzer\\assets\\dna\\random\\dnalong.fa");
     Path projectPath = Path.of("");
     Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
 
@@ -42,9 +41,8 @@ public class DNAAnalysisTest {
 
     @Test
     public void testCountBasePairsWithNullString() {
-        String testNullString = null;
         long[] expected = {0, 0, 0, 0};
-        long[] actual = DNAAnalysis.countBasePairs(testNullString);
+        long[] actual = DNAAnalysis.countBasePairs(null);
         assertArrayEquals(expected, actual);
     }
 }
