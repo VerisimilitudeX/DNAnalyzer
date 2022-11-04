@@ -18,29 +18,35 @@ import java.util.List;
  * abbreviations.
  */
 public enum AminoAcid {
-  ALANINE("Alanine", "a", "alanine", "ala"),
-  CYSTEINE("Cysteine", "c", "cysteine", "cys"),
-  ASPARTIC_ACID("Aspartic acid", "d", "aspartic acid", "asp"),
-  GLUTAMIC_ACID("Glutamic acid", "e", "glutamic acid", "glu"),
-  PHENYLALANINE("Phenylalanine", "f", "phenylalanine", "phe"),
-  GLYCINE("Glycine", "g", "glycine", "gly"),
-  HISTIDINE("Histidine", "h", "histidine", "his"),
-  ISOLEUCINE("Isoleucine", "i", "isoleucine", "ile"),
-  LYSINE("Lysine", "k", "lysine", "lys"),
-  LEUCINE("Leucine", "l", "leucine", "leu"),
-  METHIONINE("Methionine", "m", "methionine", "met"),
-  ASPARAGINE("Asparagine", "n", "asparagine", "asn"),
-  PROLINE("Proline", "p", "proline", "pro"),
-  GLUTAMINE("Glutamine", "q", "glutamine", "gln"),
-  ARGININE("Arginine", "r", "arginine", "arg"),
-  SERINE("Serine", "s", "serine", "ser"),
-  THREONINE("Theornine", "t", "threonine", "thr"),
-  VALINE("Valine", "v", "valine", "val"),
-  TRYPTOPHAN("Tryptophan", "w", "tryptophan", "trp"),
-  TYROSINE("Tyrosine", "tyrosine", "y", "tyr");
+  ALANINE("Alanine", List.of("a", "alanine", "ala"), List.of("GCT", "GCC", "GCA", "GCG")),
+  CYSTEINE("Cysteine", List.of("c", "cysteine", "cys"), List.of("TGT", "TGC")),
+  ASPARTIC_ACID("Aspartic acid", List.of("d", "aspartic acid", "asp"), List.of("GAT", "GAC")),
+  GLUTAMIC_ACID("Glutamic acid", List.of("e", "glutamic acid", "glu"), List.of("GAA", "GAG")),
+  PHENYLALANINE("Phenylalanine", List.of("f", "phenylalanine", "phe"), List.of("TTT", "TTC")),
+  GLYCINE("Glycine", List.of("g", "glycine", "gly"), List.of("GGT", "GGC", "GGA", "GGG")),
+  HISTIDINE("Histidine", List.of("h", "histidine", "his"), List.of("CAT", "CAC")),
+  ISOLEUCINE("Isoleucine", List.of("i", "isoleucine", "ile"), List.of("ATT", "ATC", "ATA")),
+  LYSINE("Lysine", List.of("k", "lysine", "lys"), List.of("AAA", "AAG")),
+  LEUCINE("Leucine", List.of("l", "leucine", "leu"), List.of("CTT", "CTC", "CTA", "CTG", "TTA", "TTG")),
+  METHIONINE("Methionine", List.of("m", "methionine", "met"), List.of("ATG")),
+  ASPARAGINE("Asparagine", List.of("n", "asparagine", "asn"), List.of("AAT", "AAC")),
+  PROLINE("Proline", List.of("p", "proline", "pro"), List.of("CCT", "CCC", "CCA", "CCG")),
+  GLUTAMINE("Glutamine", List.of("q", "glutamine", "gln"), List.of("CAA", "CAG")),
+  ARGININE("Arginine", List.of("r", "arginine", "arg"), List.of("CGT", "CGC", "CGA", "CGG", "AGA", "AGG")),
+  SERINE("Serine", List.of("s", "serine", "ser"), List.of("TCT", "TCC", "TCA", "TCG", "AGT", "AGC")),
+  THREONINE("Theornine", List.of("t", "threonine", "thr"), List.of("ACT", "ACC", "ACA", "ACG")),
+  VALINE("Valine", List.of("v", "valine", "val"), List.of("GTT", "GTC", "GTA", "GTG")),
+  TRYPTOPHAN("Tryptophan", List.of("w", "tryptophan", "trp"), List.of("TGG")),
+  TYROSINE("Tyrosine", List.of("tyrosine", "y", "tyr"), List.of("TAT", "TAC"));
 
   private final String fullName;
   private final List<String> names;
+
+  // Declares the start codon data for the 20 amino acids. Start and stop codons
+  // indicate the start and stop of an amino acid. There are 20 different amino
+  // acids. A protein consists of one or more chains of amino acids (called
+  // polypeptides) whose sequence is encoded in a gene.
+  private final List<String> codonData;
 
   /**
    * Constructs an instance of an AminoAcid enum, setting its name and list of
@@ -49,9 +55,10 @@ public enum AminoAcid {
    * @param fullName      full name of the amino acid.
    * @param abbreviations a list of abbreviations that an acid can be searched by.
    */
-  AminoAcid(final String fullName, final String... abbreviations) {
+  AminoAcid(final String fullName, final List<String> abbreviations, final List<String> codonData) {
     this.fullName = fullName;
-    this.names = List.of(abbreviations);
+    this.names = abbreviations;
+    this.codonData = codonData;
   }
 
   public List<String> getNames() {
@@ -60,5 +67,9 @@ public enum AminoAcid {
 
   public String getFullName() {
     return fullName;
+  }
+
+  public List<String> getCodonData(){
+    return codonData;
   }
 }
