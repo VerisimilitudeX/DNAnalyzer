@@ -10,6 +10,8 @@
  */
 package DNAnalyzer;
 
+import DNAnalyzer.fastaBinary.FastaBinary;
+import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -24,11 +26,25 @@ import java.nio.file.Files;
  * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
-@Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
-public class CmdArgs implements Runnable {
+
+@Command(name = "DNAnalyzer", description = "A program to analyze DNA sequences.", subcommands = { Analyze.class }, mixinStandardHelpOptions = true)
+public class CmdArgs {
+    @Command(name = "compress", description = "Compress a DNA sequence.", mixinStandardHelpOptions = true)
+    public void compress(@Parameters(paramLabel = "DNA", description = "The file to compress.") File input, @Parameters(paramLabel = "Output", description = "The file to output to.") File output) throws IOException {
+        DnaData fd = DnaData.fromFile(input);
+        Files.write(output.toPath(), fd.toBinaryData());
+    }
+
+    @Command(name = "decompress", description = "Decompress a DNA sequence.", mixinStandardHelpOptions = true)
+    public void decompress(@Parameters(paramLabel = "DNA", description = "The file to decompress.") File input, @Parameters(paramLabel = "Output", description = "The file to output to.") File output) throws IOException {
+        DnaData fd = DnaData.fromFile(input);
+        Files.writeString(output.toPath(), fd.toFastaData());
+    }
+}
+@Command(name = "analyze", description = "Analyze a sequence.", mixinStandardHelpOptions = true)
+class Analyze implements Runnable {
     @Option(required = true, names = { "--amino" }, description = "The amino acid representing the start of a gene.")
     String aminoAcid;
-
     @Option(names = { "--min" }, description = "The minimum count of the reading frame.")
     int minCount = 0;
 
@@ -53,8 +69,8 @@ public class CmdArgs implements Runnable {
      *         to lowercase)
      * @throws IOException if there is an error reading the file
      */
-    String readFile(final File file) throws IOException {
-        return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
+    String readDnaFile(final File file) throws IOException {
+        return DnaData.fromFile(file).toFastaData();
     }
 
     /**
@@ -94,9 +110,9 @@ public class CmdArgs implements Runnable {
         try {
             String protein = null;
             Main.clearTerminal();
-            final String dna = readFile(dnaFile);
+            final String dna = readDnaFile(dnaFile);
             if (proteinFile != null) {
-                protein = readFile(proteinFile);
+                protein = readDnaFile(proteinFile);
             }
             return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
         } catch (IOException | InterruptedException e) {
