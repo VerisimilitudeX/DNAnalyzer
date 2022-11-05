@@ -32,6 +32,7 @@ import static java.util.Optional.ofNullable;
  * @param aminoAcid name of amino acid
  */
 public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
+
     public DNAAnalysis isValidDna() {
         dna.isValid();
         return this;
@@ -57,7 +58,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
         return this;
     }
 
-    //Outputs the high coverage regions of a DNA
+    // Outputs the high coverage regions of a DNA
     public DNAAnalysis printHighCoverageRegions(PrintStream out) {
         ofNullable(dna).map(DNATools::dna).ifPresent(dna -> {
             ProteinAnalysis.printHighCoverageRegions(getProteins(aminoAcid), out);
@@ -66,7 +67,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     }
 
     // used as helper method for output-codons, used to generate reading frames
-    public void  configureReadingFrames(final int minCount, final int maxCount, PrintStream out){
+    public void configureReadingFrames(final int minCount, final int maxCount, PrintStream out) {
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
@@ -118,16 +119,16 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      *         GUANINE
      *         bases long[3] = count of CYTOSINE bases
      *
-     * Constants for the indices can be found in public static class
-     * {@link BasePairIndex} for convenience/consistency.
+     *         Constants for the indices can be found in public static class
+     *         {@link BasePairIndex} for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
         return new BasePairCounter(dnaString)
-            .countAdenine()
-            .countThymine()
-            .countGuanine()
-            .countCytosine()
-            .getCounts();
+                .countAdenine()
+                .countThymine()
+                .countGuanine()
+                .countCytosine()
+                .getCounts();
     }
 
     /**

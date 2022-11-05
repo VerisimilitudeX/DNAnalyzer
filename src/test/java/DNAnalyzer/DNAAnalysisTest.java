@@ -25,7 +25,7 @@ public class DNAAnalysisTest {
     public void testCountBasePairs() {
         try {
             List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-            long[] expected = {25000381, 24998528, 25000967, 25000124};
+            long[] expected = { 25000381, 24998528, 25000967, 25000124 };
             long[] actual = DNAAnalysis.countBasePairs(inputLines.get(0));
             assertArrayEquals(expected, actual);
         } catch (IOException ex) {
@@ -36,7 +36,7 @@ public class DNAAnalysisTest {
     @Test
     public void testCountBasePairsWithEmptyString() {
         String testEmptyString = "";
-        long[] expected = {0, 0, 0, 0};
+        long[] expected = { 0, 0, 0, 0 };
         long[] actual = DNAAnalysis.countBasePairs(testEmptyString);
         assertArrayEquals(expected, actual);
 
@@ -44,7 +44,7 @@ public class DNAAnalysisTest {
 
     @Test
     public void testCountBasePairsWithNullString() {
-        long[] expected = {0, 0, 0, 0};
+        long[] expected = { 0, 0, 0, 0 };
         long[] actual = DNAAnalysis.countBasePairs(null);
         assertArrayEquals(expected, actual);
     }

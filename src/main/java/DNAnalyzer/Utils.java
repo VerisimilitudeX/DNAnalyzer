@@ -11,7 +11,7 @@ public class Utils {
      *
      * @param file the file to read
      * @return String with the contents of the file (newlines removed and converted
-     * to lowercase)
+     *         to lowercase)
      * @throws IOException if there is an error reading the file
      */
     public static String readFile(final File file) {

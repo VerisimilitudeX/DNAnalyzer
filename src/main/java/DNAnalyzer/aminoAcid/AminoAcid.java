@@ -69,7 +69,7 @@ public enum AminoAcid {
     return fullName;
   }
 
-  public List<String> getCodonData(){
+  public List<String> getCodonData() {
     return codonData;
   }
 }

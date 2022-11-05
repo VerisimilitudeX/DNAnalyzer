@@ -54,8 +54,8 @@ public class DNAnalyzerGUIFXMLController {
 
     @FXML
     private void btnAnalyzeClicked(ActionEvent event) {
-        int minCount = (int)minSlider.getValue();
-        int maxCount = (int)maxSlider.getValue();
+        int minCount = (int) minSlider.getValue();
+        int maxCount = (int) maxSlider.getValue();
         String aminoAcid = txtAmino.getText();
         boolean reverse = false;
         String dnaFilename = txtDNAFile.getText();

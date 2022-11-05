@@ -29,10 +29,10 @@ import static DNAnalyzer.Utils.readFile;
  */
 @Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-    @Option(names = {"--gui"}, description = "Start in GUI mode")
+    @Option(names = { "--gui" }, description = "Start in GUI mode")
     Boolean startGUI = false;
 
-    @Option(names = {"--amino"}, description = "The amino acid representing the start of a gene.")
+    @Option(names = { "--amino" }, description = "The amino acid representing the start of a gene.")
     String aminoAcid;
 
     @Option(names = { "--min" }, description = "The minimum count of the reading frame.")
@@ -64,8 +64,7 @@ public class CmdArgs implements Runnable {
             DNAnalyzerGUI gui = new DNAnalyzerGUI();
             String[] args = new String[0];
             gui.launchIt(args);
-        }
-        else{
+        } else {
             DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
                     .isValidDna()
                     .replaceDNA("u", "t");
