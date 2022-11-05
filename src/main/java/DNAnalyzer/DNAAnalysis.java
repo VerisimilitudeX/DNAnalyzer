@@ -17,6 +17,8 @@ import DNAnalyzer.protein.ProteinFinder;
 
 import java.io.PrintStream;
 import java.util.List;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,18 +57,25 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
         return this;
     }
 
-    //used as helper method for output-codons, used to generate reading frames
-    public ReadingFrames configureReadingFrames(final int minCount, final int maxCount, PrintStream out){
+    //Outputs the high coverage regions of a DNA
+    public DNAAnalysis printHighCoverageRegions(PrintStream out) {
+        ofNullable(dna).map(DNATools::dna).ifPresent(dna -> {
+            ProteinAnalysis.printHighCoverageRegions(getProteins(aminoAcid), out);
+        });
+        return this;
+    }
+
+    // used as helper method for output-codons, used to generate reading frames
+    public void  configureReadingFrames(final int minCount, final int maxCount, PrintStream out){
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
         out.print("\n");
         aap.printCodonCounts(out);
-        return aap;
     }
 
-    //used as helper method for output codons, handles protein decisions
-    public DNAAnalysis proteinSequence(PrintStream out) {
+    // used as helper method for output codons, handles protein decisions
+    public void proteinSequence(PrintStream out) {
         final String dna = this.dna.getDna();
 
         if (protein != null) {
@@ -79,7 +88,6 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
                 out.println("\nProtein sequence not found in the DNA sequence.");
             }
         }
-        return this; 
     }
 
     // Output the number of codons based on the reading frame the user wants to look
@@ -110,23 +118,16 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      *         GUANINE
      *         bases long[3] = count of CYTOSINE bases
      *
-     *         Constants for the indices can be found in public static class
-     *         BasePairIndex for convenience/consistency.
+     * Constants for the indices can be found in public static class
+     * {@link BasePairIndex} for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
-        long[] basePairTotals = { 0, 0, 0, 0 };
-        if (dnaString != null) {
-            long aCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_A || c == AsciiInt.LOWERCASE_A).count();
-            long tCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_T || c == AsciiInt.LOWERCASE_T).count();
-            long gCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_G || c == AsciiInt.LOWERCASE_G).count();
-            long cCount = dnaString.chars().parallel()
-                    .filter(c -> c == AsciiInt.UPPERCASE_C || c == AsciiInt.LOWERCASE_C).count();
-            basePairTotals = new long[]{aCount, tCount, gCount, cCount};
-        }
-        return basePairTotals;
+        return new BasePairCounter(dnaString)
+            .countAdenine()
+            .countThymine()
+            .countGuanine()
+            .countCytosine()
+            .getCounts();
     }
 
     /**
