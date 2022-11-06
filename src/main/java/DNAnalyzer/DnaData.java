@@ -25,7 +25,7 @@ public class DnaData {
     public static DnaData fromFile(File file) throws IOException {
         DnaData fd = new DnaData();
         if (file.getName().endsWith(".fab")) {
-            fd.binaryData = FastaBinary.fromFAC(Files.readAllBytes(file.toPath()));
+            fd.binaryData = FastaBinary.fromFAB(Files.readAllBytes(file.toPath()));
         } else {
             String data = Files.readString(file.toPath()).toLowerCase();
 
@@ -63,6 +63,6 @@ public class DnaData {
             binaryData = FastaBinary.fromFasta(header, fastaData);
             System.out.println("Compressing...");
         }
-        return binaryData.toFAC();
+        return binaryData.toFAB();
     }
 }

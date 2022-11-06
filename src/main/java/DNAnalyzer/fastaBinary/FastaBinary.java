@@ -12,20 +12,20 @@
 package DNAnalyzer.fastaBinary;
 
 public class FastaBinary {
-    private static final int FAC_VERSION = 1;
+    private static final int FAB_VERSION = 1;
 
 
     private final int version;
     private final String metadata;
-    private final Nucleotide[] nucleotides;
+    private final char[] nucleotides;
 
-    public FastaBinary(int version, String metadata, Nucleotide[] nucleotides) {
+    public FastaBinary(int version, String metadata, char[] nucleotides) {
         this.version = version;
         this.metadata = metadata;
         this.nucleotides = nucleotides;
     }
 
-    private static byte[] encodeNucleotides(String[] nucleotides) {
+    /* private static byte[] encodeNucleotides(String[] nucleotides) {
         byte[] data = new byte[nucleotides.length / 2];
 
         int nucleotideIndex = 0;
@@ -55,15 +55,10 @@ public class FastaBinary {
         }
 
         return data;
-    }
+    } */
 
     public static FastaBinary fromFasta(String header, String dna) {
-        String[] nucleotides = dna.split("");
-        Nucleotide[] nucleotideArray = new Nucleotide[nucleotides.length];
-        for (int i = 0; i < nucleotides.length; i++) {
-            nucleotideArray[i] = Nucleotide.fromFastaVal(nucleotides[i]);
-        }
-        return new FastaBinary(FAC_VERSION, header, nucleotideArray);
+        return new FastaBinary(FAB_VERSION, header, dna.toCharArray());
     }
 
     public String toFasta() {
@@ -71,42 +66,42 @@ public class FastaBinary {
         if (this.metadata.length() > 0) {
             sb.append(">").append(this.metadata).append("\n");
         }
-        for (Nucleotide n : this.nucleotides) {
-            sb.append(n.getFastaVal());
+        for (char nucleotide : nucleotides) {
+            sb.append(nucleotide);
         }
         return sb.toString();
     }
 
     /**
      * Creates a FastaBinary object from binary data encoded in FASTA Compressed.
-     * @param fac The binary data.
+     * @param fab The binary data.
      * @return The FastaBinary object.
      */
-    public static FastaBinary fromFAC(byte[] fac) {
-        // check for "fac" header
-        if (fac[0] != 'f' || fac[1] != 'a' || fac[2] != 'c') {
-            throw new IllegalArgumentException("Invalid FAC file");
+    public static FastaBinary fromFAB(byte[] fab) {
+        // check for "fab" header
+        if (fab[0] != 'f' || fab[1] != 'a' || fab[2] != 'b') {
+            throw new IllegalArgumentException("Invalid FAB file");
         }
 
-        int version = fac[4];
+        int version = fab[3];
 
-        if (version != FAC_VERSION) {
-            throw new IllegalArgumentException("Invalid FAC version");
+        if (version != FAB_VERSION) {
+            throw new IllegalArgumentException("Invalid FAB version");
         }
 
-        int metadataLength = fac[5] << 8 | fac[6];
-        String metadata = new String(fac, 7, metadataLength);
+        int metadataLength = fab[4] << 8 | (fab[5] & 0x00ff);
+        String metadata = new String(fab, 6, metadataLength);
 
-        // Header is 7 bytes + metadata length + 1 byte postfix
-        int nucleotideCount = (fac.length - 8 - metadataLength) * 2;
+        // Header is 6 bytes + metadata length + 1 byte postfix
+        int nucleotideCount = (fab.length - 7 - metadataLength) * 2;
 
-        if (fac[fac.length - 1] != 0x00) {
+        if (fab[fab.length - 1] != 0x00) {
             nucleotideCount--;
         }
 
-        Nucleotide[] nucleotides = new Nucleotide[nucleotideCount];
+        char[] nucleotides = new char[nucleotideCount];
 
-        int facIndex = 7 + metadataLength;
+        int fabIndex = 6 + metadataLength;
         int nucleotideIndex = 0;
         for (int i = 0; i < nucleotideCount; i += 2) {
             // Each nucleotide is represented by 4 bits
@@ -117,10 +112,10 @@ public class FastaBinary {
             // Bitwise AND with 0b00001111:  00001101 = right nucleotide
 
 
-            byte b = fac[facIndex++];
-            nucleotides[nucleotideIndex++] = Nucleotide.fromInteger(b >> 4);
+            byte b = fab[fabIndex++];
+            nucleotides[nucleotideIndex++] = Nucleotide.fromInteger(b >> 4).getFastaVal();
             if (i + 1 < nucleotideCount) {
-                nucleotides[nucleotideIndex++] = Nucleotide.fromInteger(b & 0x0f);
+                nucleotides[nucleotideIndex++] = Nucleotide.fromInteger(b & 0x0f).getFastaVal();
             }
         }
 
@@ -131,32 +126,32 @@ public class FastaBinary {
      * Creates binary data from a FastaBinary object.
      * @return The binary data.
      */
-    public byte[] toFAC() {
+    public byte[] toFAB() {
         byte[] metadata = this.metadata.getBytes();
         int metadataLength = metadata.length;
         int nucleotideCount = this.nucleotides.length;
 
-        // 7 bytes + metadata length + nucleotides + 1 byte postfix
-        int facLength = 8 + metadataLength + (nucleotideCount / 2);
-        byte[] facData = new byte[facLength];
+        // 6 bytes + metadata length + nucleotides + 1 byte postfix
+        int fabLength = 7 + metadataLength + (nucleotideCount / 2);
+        byte[] fabData = new byte[fabLength];
 
         // Write header
-        facData[0] = 'f';
-        facData[1] = 'a';
-        facData[2] = 'c';
-        facData[4] = (byte) this.version;
+        fabData[0] = 'f';
+        fabData[1] = 'a';
+        fabData[2] = 'b';
+        fabData[3] = (byte) this.version;
 
         // Two-byte metadata length
-        facData[5] = (byte) (metadataLength >> 8);
-        facData[6] = (byte) metadataLength;
+        fabData[4] = (byte) (metadataLength >>> 8);
+        fabData[5] = (byte) metadataLength;
 
         // Copy metadata string to binary data
-        System.arraycopy(metadata, 0, facData, 7, metadataLength);
+        System.arraycopy(metadata, 0, fabData, 6, metadataLength);
 
         boolean aligned = nucleotideCount % 2 == 0;
 
         // Write nucleotides
-        int facIndex = 7 + metadataLength;
+        int fabIndex = 6 + metadataLength;
         int nucleotideIndex = 0;
         for (int i = 0; i < nucleotideCount; i += 2) {
             // Each nucleotide is represented by 4 bits
@@ -166,16 +161,16 @@ public class FastaBinary {
             // 1st shifted to the left 4:           01010000
             // Bitwise OR with 2nd:                 01011101 = data
 
-            byte b = (byte) (this.nucleotides[nucleotideIndex++].getValue() << 4);
+            byte b = (byte) (Nucleotide.fromFastaVal(this.nucleotides[nucleotideIndex++]).getValue() << 4);
             if (i + 1 < nucleotideCount) {
-                b |= this.nucleotides[nucleotideIndex++].getValue();
+                b |= Nucleotide.fromFastaVal(this.nucleotides[nucleotideIndex++]).getValue();
             }
-            facData[facIndex++] = b;
+            fabData[fabIndex++] = b;
         }
 
-        facData[facLength - 1] = (byte) (aligned ? 0x00 : 0x01);
+        fabData[fabLength - 1] = (byte) (aligned ? 0x00 : 0x01);
 
 
-        return facData;
+        return fabData;
     }
 }

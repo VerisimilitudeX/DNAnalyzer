@@ -21,27 +21,27 @@ import java.util.Map;
  * @version 1.2.1
  */
 public enum Nucleotide {
-    A("a", 0),
-    C("c", 1),
-    G("g", 2),
-    T("t", 3),
-    R("r", 4),
-    Y("y", 5),
-    K("k", 6),
-    M("m", 7),
-    S("s", 8),
-    W("w", 9),
-    B("b", 10),
-    D("d", 11),
-    H("h", 12),
-    V("v", 13),
-    N("n", 14),
-    GAP("-", 15);
+    A('a', 0),
+    C('c', 1),
+    G('g', 2),
+    T('t', 3),
+    R('r', 4),
+    Y('y', 5),
+    K('k', 6),
+    M('m', 7),
+    S('s', 8),
+    W('w', 9),
+    B('b', 10),
+    D('d', 11),
+    H('h', 12),
+    V('v', 13),
+    N('n', 14),
+    GAP('-', 15);
 
-    private final String fastaVal;
+    private final char fastaVal;
     private final int value;
 
-    Nucleotide(String fastaVal, int value) {
+    Nucleotide(char fastaVal, int value) {
         this.fastaVal = fastaVal;
         this.value = value;
     }
@@ -60,7 +60,7 @@ public enum Nucleotide {
      *
      * @return The FASTA value of the nucleotide.
      */
-    public String getFastaVal() {
+    public char getFastaVal() {
         return fastaVal;
     }
 
@@ -70,9 +70,9 @@ public enum Nucleotide {
      * @param fastaVal The FASTA value of the nucleotide.
      * @return The nucleotide that corresponds to the given FASTA value.
      */
-    public static Nucleotide fromFastaVal(String fastaVal) {
+    public static Nucleotide fromFastaVal(char fastaVal) {
         for (Nucleotide nucleotide : Nucleotide.values()) {
-            if (nucleotide.getFastaVal().equalsIgnoreCase(fastaVal)) {
+            if (nucleotide.getFastaVal() == fastaVal) {
                 return nucleotide;
             }
         }
