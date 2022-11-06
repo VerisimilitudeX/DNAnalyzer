@@ -84,7 +84,14 @@
   </li>
   <li>GUI
     <ul>
-      <li>A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be supported. More information will be added to this description once more features are added.
+      <li>A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be supported. Currently, the following operations are supported:
+        <ul>
+          <li>set name of DNA file to analyze</li>
+          <li>set minimum number of reading frames</li>
+          <li>set maximum number of reading frames</li>
+          <li>run analysis</li>
+        </ul>
+        More options will be added in the future.
     </ul>
   </li>
 </ul>
@@ -99,7 +106,7 @@
 
   <p>Having a database of DNA is the best way to interpret the DNA, and when combined with machine learning, the ML model can make accurate predictions on DNA it has never seen before. This is how current DNA tests function.<p>
 
-<blockquote <p>Consider a videogame's anti-cheat; the anti-cheat detects all player movements and compares them to a list of confirmed cheats in that videogame. This database contains hundreds of known cheats that players can have, usually the most common ones. When a player cheats, you can assign a probability number to how likely this anti-cheat detection is correct; more common cheats are usually higher on this scale.<p>
+<blockquote><p>Consider a videogame's anti-cheat; the anti-cheat detects all player movements and compares them to a list of confirmed cheats in that videogame. This database contains hundreds of known cheats that players can have, usually the most common ones. When a player cheats, you can assign a probability number to how likely this anti-cheat detection is correct; more common cheats are usually higher on this scale.<p>
 </blockquote>
   
 <h2 id="getting-started">Getting Started
@@ -137,6 +144,19 @@ dependencies, testing, compiling, linking, and packaging the code.
 java -jar build/libs/DNAnalyzer.jar <arguments>
 ```
 
+If you prefer, you can also run it directly from Gradle:
+
+UNIX / Linux:
+```
+./gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
+```
+
+Windows:
+```
+.\gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
+```
+
+
 <h4>Arguments:</h4>
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
@@ -156,6 +176,26 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 ```
 java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
 ```
+
+<h4>GUI</h4>
+DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
+
+UNIX / Linux:
+```
+./gradlew run --args="--gui"
+```
+
+Windows:
+```
+.\gradlew run --args="--gui"
+```
+
+Then:
+- enter the file name of the DNA file in the text field
+- set min and max
+- click analyze
+
+The results of your analysis will be shown in the GUI on the right-hand side. 
 
 <h4>Help message:</h4>
 

@@ -13,6 +13,7 @@ package DNAnalyzer;
 import DNAnalyzer.aminoAcid.AminoAcid;
 import DNAnalyzer.aminoAcid.AminoAcidFactory;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 import DNAnalyzer.DNAAnalysis.BasePairIndex;
@@ -33,17 +34,17 @@ public class Properties {
      * @param aminoAcid   The amino acid to be searched for
      *                    {@code @category} Output
      */
-    public static void printProteinList(final List<String> proteinList, final String aminoAcid) {
+    public static void printProteinList(final List<String> proteinList, final String aminoAcid, PrintStream out) {
 
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
         final AminoAcid acid = AminoAcidFactory.getAminoAcid(aminoAcid);
 
-        System.out.println("Proteins coded for " + acid.getFullName() + ": ");
-        System.out.println("----------------------------------------------------");
+        out.println("Proteins coded for " + acid.getFullName() + ": ");
+        out.println("----------------------------------------------------");
         short count = 1;
         for (final String gene : proteinList) {
-            System.out.println(count + ". " + gene);
+            out.println(count + ". " + gene);
             count++;
         }
     }
@@ -74,16 +75,16 @@ public class Properties {
      * @param dna The DNA sequence that was analyzed
      *            {@code @category} Output
      */
-    public static void printNucleotideCount(final String dna) {
-        System.out.println("Nucleotide count:");
+    public static void printNucleotideCount(final String dna, PrintStream out) {
+        out.println("Nucleotide count:");
         long[] counts = countBasePairs(dna);
-        System.out.println("A" + ": " + counts[BasePairIndex.ADENINE] +
+        out.println("A" + ": " + counts[BasePairIndex.ADENINE] +
                 " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
-        System.out.println("T" + ": " + counts[BasePairIndex.THYMINE] +
+        out.println("T" + ": " + counts[BasePairIndex.THYMINE] +
                 " (" + (float) counts[BasePairIndex.THYMINE] / dna.length() * 100 + "%)");
-        System.out.println("G" + ": " + counts[BasePairIndex.GUANINE] +
+        out.println("G" + ": " + counts[BasePairIndex.GUANINE] +
                 " (" + (float) counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
-        System.out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] +
+        out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] +
                 " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
     }
 
@@ -116,7 +117,6 @@ public class Properties {
      * @param dna             DNA sequence
      * @return the percentage of nucleotides in that DNA sequence
      */
-
     private static int nucleotidePercentage(final long nucleotideCount, final String dna) {
         return (int) (((float) nucleotideCount) / dna.length() * 100);
     }

@@ -15,9 +15,8 @@ import DNAnalyzer.codon.CodonFrame;
 import DNAnalyzer.protein.ProteinAnalysis;
 import DNAnalyzer.protein.ProteinFinder;
 
+import java.io.PrintStream;
 import java.util.List;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,60 +46,60 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
     // Create protein list
     // Output the proteins, GC content, and nucleotide cnt found in the DNA
-    public DNAAnalysis printProteins() {
+    public DNAAnalysis printProteins(PrintStream out) {
         ofNullable(dna).map(DNATools::getDna).ifPresent(dna -> {
-            Properties.printProteinList(getProteins(aminoAcid), aminoAcid);
+            Properties.printProteinList(getProteins(aminoAcid), aminoAcid, out);
 
-            System.out.println("\nGC-content (genome): " + Properties.getGCContent(dna) + "\n");
-            Properties.printNucleotideCount(dna);
+            out.println("\nGC-content (genome): " + Properties.getGCContent(dna) + "\n");
+            Properties.printNucleotideCount(dna, out);
         });
         return this;
     }
 
-    //Outputs the high coverage regions of a DNA
-    public DNAAnalysis printHighCoverageRegions() {
+    // Outputs the high coverage regions of a DNA
+    public DNAAnalysis printHighCoverageRegions(PrintStream out) {
         ofNullable(dna).map(DNATools::dna).ifPresent(dna -> {
-            ProteinAnalysis.printHighCoverageRegions(getProteins(aminoAcid));
+            ProteinAnalysis.printHighCoverageRegions(getProteins(aminoAcid), out);
         });
         return this;
     }
 
-    //used as helper method for output-codons, used to generate reading frames
-    public void configureReadingFrames(final int minCount, final int maxCount){
+    // used as helper method for output-codons, used to generate reading frames
+    public void configureReadingFrames(final int minCount, final int maxCount, PrintStream out) {
         final short READING_FRAME = 1;
         final String dna = this.dna.getDna();
         final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
-        System.out.print("\n");
-        aap.printCodonCounts();
+        out.print("\n");
+        aap.printCodonCounts(out);
     }
 
     // used as helper method for output codons, handles protein decisions
-    public void proteinSequence() {
+    public void proteinSequence(PrintStream out) {
         final String dna = this.dna.getDna();
 
         if (protein != null) {
             final Pattern p = Pattern.compile(protein);
             final Matcher m = p.matcher(dna);
             if (m.find()) {
-                System.out.println(
+                out.println(
                         "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
             } else {
-                System.out.println("\nProtein sequence not found in the DNA sequence.");
+                out.println("\nProtein sequence not found in the DNA sequence.");
             }
         }
     }
 
     // Output the number of codons based on the reading frame the user wants to look
     // at, and minimum and maximum filters
-    public DNAAnalysis outPutCodons(final int minCount, final int maxCount) {
-        configureReadingFrames(minCount, maxCount);
-        proteinSequence();
+    public DNAAnalysis outPutCodons(final int minCount, final int maxCount, PrintStream out) {
+        configureReadingFrames(minCount, maxCount, out);
+        proteinSequence(out);
 
         return this;
     }
 
-    public void printLongestProtein() {
-        ProteinAnalysis.printLongestProtein(getProteins(aminoAcid));
+    public void printLongestProtein(PrintStream out) {
+        ProteinAnalysis.printLongestProtein(getProteins(aminoAcid), out);
     }
 
     private List<String> getProteins(final String aminoAcid) {
@@ -118,16 +117,16 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      *         GUANINE
      *         bases long[3] = count of CYTOSINE bases
      *
-     * Constants for the indices can be found in public static class
-     * {@link BasePairIndex} for convenience/consistency.
+     *         Constants for the indices can be found in public static class
+     *         {@link BasePairIndex} for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
         return new BasePairCounter(dnaString)
-            .countAdenine()
-            .countThymine()
-            .countGuanine()
-            .countCytosine()
-            .getCounts();
+                .countAdenine()
+                .countThymine()
+                .countGuanine()
+                .countCytosine()
+                .getCounts();
     }
 
     /**
