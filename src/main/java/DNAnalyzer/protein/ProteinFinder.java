@@ -71,7 +71,6 @@ public class ProteinFinder {
      * @param dna           DNA sequence
      * @param proteinList   List of proteins
      * @param startIndex    Start index for checking for proteins
-     * @param stopCodonList List of the 3 stop codons
      */
     private static void addProtein(final String dna, final List<String> proteinList, final int startIndex) {
 
