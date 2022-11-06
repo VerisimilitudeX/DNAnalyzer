@@ -13,9 +13,7 @@ package DNAnalyzer;
 import DNAnalyzer.aminoAcid.AminoAcid;
 import DNAnalyzer.aminoAcid.AminoAcidFactory;
 
-import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Map;
 import java.util.Arrays;
 import java.util.List;
 import DNAnalyzer.DNAAnalysis.BasePairIndex;

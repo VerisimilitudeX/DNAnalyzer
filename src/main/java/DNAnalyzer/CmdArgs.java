@@ -17,8 +17,6 @@ import picocli.CommandLine.Parameters;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-
 import static DNAnalyzer.Utils.readFile;
 
 /**
@@ -60,16 +58,15 @@ public class CmdArgs implements Runnable {
      */
     @Override
     public void run() {
-        if (startGUI) {
-            DNAnalyzerGUI gui = new DNAnalyzerGUI();
+        if (startGUI == true) {
             String[] args = new String[0];
-            gui.launchIt(args);
+            DNAnalyzerGUI.launchIt(args);
         } else {
             DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
                     .isValidDna()
                     .replaceDNA("u", "t");
 
-            if (reverse) {
+            if (reverse == true) {
                 dnaAnalyzer = dnaAnalyzer.reverseDna();
             }
 

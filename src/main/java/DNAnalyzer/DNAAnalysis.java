@@ -17,8 +17,6 @@ import DNAnalyzer.protein.ProteinFinder;
 
 import java.io.PrintStream;
 import java.util.List;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

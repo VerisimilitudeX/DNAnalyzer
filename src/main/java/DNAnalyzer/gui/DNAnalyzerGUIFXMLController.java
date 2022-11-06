@@ -2,19 +2,15 @@ package DNAnalyzer.gui;
 
 import DNAnalyzer.DNAAnalysis;
 import DNAnalyzer.DNATools;
-import DNAnalyzer.Main;
 import DNAnalyzer.Properties;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-
 import java.io.PrintStream;
 
 import static DNAnalyzer.Utils.readFile;
