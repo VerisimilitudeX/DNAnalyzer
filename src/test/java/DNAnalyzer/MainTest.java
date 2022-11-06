@@ -4,8 +4,8 @@
 package DNAnalyzer;
 
 public class MainTest {
-    // @Test
-    public void mainClassshouldExist() throws ClassNotFoundException {
-        Class.forName("DNAnalyzer.Main");
-    }
+	// @Test
+	public void mainClassshouldExist() throws ClassNotFoundException {
+		Class.forName("DNAnalyzer.Main");
+	}
 }

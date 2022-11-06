@@ -25,29 +25,29 @@ import picocli.CommandLine;
  */
 public class Main {
 
-    /**
-     * Clears the console screen based on the operating system.
-     *
-     * @throws InterruptedException Necessary for clearing the screen
-     * @throws IOException          Necessary for clearing the screen
-     *                              {@code @category} User Experience
-     */
-    public static void clearTerminal() throws InterruptedException, IOException {
-        if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } else {
-            System.out.print("\u001b[H\u001b[2J"); // unicode string to clear everything logged above this
-            System.out.flush();
-        }
-    }
+	/**
+	 * Clears the console screen based on the operating system.
+	 *
+	 * @throws InterruptedException Necessary for clearing the screen
+	 * @throws IOException          Necessary for clearing the screen
+	 *                              {@code @category} User Experience
+	 */
+	public static void clearTerminal() throws InterruptedException, IOException {
+		if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows
+			new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+		} else {
+			System.out.print("\u001b[H\u001b[2J"); // unicode string to clear everything logged above this
+			System.out.flush();
+		}
+	}
 
-    /**
-     * Main method for the DNAnalyzer program (run this).
-     *
-     * @param args Command line arguments
-     *             {@code @category} Main
-     */
-    public static void main(final String[] args) {
-        new CommandLine(new CmdArgs()).execute(args);
-    }
+	/**
+	 * Main method for the DNAnalyzer program (run this).
+	 *
+	 * @param args Command line arguments
+	 *             {@code @category} Main
+	 */
+	public static void main(final String[] args) {
+		new CommandLine(new CmdArgs()).execute(args);
+	}
 }

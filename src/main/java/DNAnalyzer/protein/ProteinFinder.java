@@ -27,73 +27,73 @@ import DNAnalyzer.codon.CodonDataUtils;
 
 public class ProteinFinder {
 
-    /**
-     * Utility classes should not have public constructors
-     */
-    private ProteinFinder() {
-    }
+	/**
+	 * Utility classes should not have public constructors
+	 */
+	private ProteinFinder() {
+	}
 
-    private static final int QT_NUCLEOTIDES = 3;
+	private static final int QT_NUCLEOTIDES = 3;
 
-    /**
-     * Gets proteins from dna and amino acid
-     *
-     * @param dna       dna
-     * @param aminoAcid amino acid
-     * @return list of proteins
-     */
-    public static List<String> getProtein(final String dna, final String aminoAcid) {
+	/**
+	 * Gets proteins from dna and amino acid
+	 *
+	 * @param dna       dna
+	 * @param aminoAcid amino acid
+	 * @return list of proteins
+	 */
+	public static List<String> getProtein(final String dna, final String aminoAcid) {
 
-        final List<String> proteinList = new ArrayList<>();
-        final List<String> aminoAcidList = new ArrayList<>(CodonDataUtils.getAminoAcid(aminoAcid));
-        final List<String> stopCodonList = CodonDataConstants.STOP;
+		final List<String> proteinList = new ArrayList<>();
+		final List<String> aminoAcidList = new ArrayList<>(CodonDataUtils.getAminoAcid(aminoAcid));
+		final List<String> stopCodonList = CodonDataConstants.STOP;
 
-        // Outer loop loops through the start codons for the amino acids that the user
-        // entered.
-        // store the start index
-        int startIndex;
-        for (final String startCodon : aminoAcidList) {
-            startIndex = dna.indexOf(startCodon.toLowerCase());
-            addProtein(dna, proteinList, startIndex, stopCodonList);
-        }
+		// Outer loop loops through the start codons for the amino acids that the user
+		// entered.
+		// store the start index
+		int startIndex;
+		for (final String startCodon : aminoAcidList) {
+			startIndex = dna.indexOf(startCodon.toLowerCase());
+			addProtein(dna, proteinList, startIndex, stopCodonList);
+		}
 
-        // if no proteins are found, return null
-        if (proteinList.isEmpty()) {
-            // Return null if no protein found in DNA sequence
-            System.out.println("No proteins found");
-            return Collections.emptyList();
-        }
+		// if no proteins are found, return null
+		if (proteinList.isEmpty()) {
+			// Return null if no protein found in DNA sequence
+			System.out.println("No proteins found");
+			return Collections.emptyList();
+		}
 
-        // Return list of proteins found in the DNA sequence
-        return proteinList;
-    }
+		// Return list of proteins found in the DNA sequence
+		return proteinList;
+	}
 
-    /**
-     * Add protein to protein list
-     *
-     * @param dna           DNA sequence
-     * @param proteinList   List of proteins
-     * @param startIndex    Start index for checking for proteins
-     * @param stopCodonList List of the 3 stop codons
-     */
-    private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
-            final List<String> stopCodonList) {
+	/**
+	 * Add protein to protein list
+	 *
+	 * @param dna           DNA sequence
+	 * @param proteinList   List of proteins
+	 * @param startIndex    Start index for checking for proteins
+	 * @param stopCodonList List of the 3 stop codons
+	 */
+	private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
+			final List<String> stopCodonList) {
 
-        // Inner loop loops through the stop that the user entered.
-        // store the stopIndex
-        // if index is not -1 then store the substring of dna with start and stop index
-        // in the protein list
-        int stopIndex;
-        for (final String stopCodon : stopCodonList) {
+		// Inner loop loops through the stop that the user entered.
+		// store the stopIndex
+		// if index is not -1 then store the substring of dna with start and stop index
+		// in the protein list
+		int stopIndex;
+		for (final String stopCodon : stopCodonList) {
 
-            stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + QT_NUCLEOTIDES);
+			stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + QT_NUCLEOTIDES);
 
-            if ((startIndex != -1) && (stopIndex != -1)) {
-                proteinList.add(dna.substring(startIndex, stopIndex + QT_NUCLEOTIDES).toUpperCase());
-                break;
-            }
+			if ((startIndex != -1) && (stopIndex != -1)) {
+				proteinList.add(dna.substring(startIndex, stopIndex + QT_NUCLEOTIDES).toUpperCase());
+				break;
+			}
 
-        }
-    }
+		}
+	}
 
 }
