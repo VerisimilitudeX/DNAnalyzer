@@ -117,7 +117,6 @@ public class Properties {
      * @param dna             DNA sequence
      * @return the percentage of nucleotides in that DNA sequence
      */
-
     private static int nucleotidePercentage(final long nucleotideCount, final String dna) {
         return (int) (((float) nucleotideCount) / dna.length() * 100);
     }
