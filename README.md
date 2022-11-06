@@ -98,17 +98,17 @@
 
 <h2 id="Quick Introduction to DNA">Quick Introduction to DNA
 
- <h3 id="DNA">DNA</h3>
+<h3 id="DNA">DNA</h3>
 
   <p>In a nutshell, DNA is found in every cell of your body and contains the instructions for building over 200 different types of cells. DNA is similar to a programming language, but only for living organisms. We can crack the code to reading and interpreting it by using Artificial Intelligence and Machine Learning, which can have life-saving benefits as well as key insights.<p>
-  
+
 <h3 id="Database">Databases</h3>
 
   <p>Having a database of DNA is the best way to interpret the DNA, and when combined with machine learning, the ML model can make accurate predictions on DNA it has never seen before. This is how current DNA tests function.<p>
 
 <blockquote><p>Consider a videogame's anti-cheat; the anti-cheat detects all player movements and compares them to a list of confirmed cheats in that videogame. This database contains hundreds of known cheats that players can have, usually the most common ones. When a player cheats, you can assign a probability number to how likely this anti-cheat detection is correct; more common cheats are usually higher on this scale.<p>
 </blockquote>
-  
+
 <h2 id="getting-started">Getting Started
 </h2>
 
@@ -147,15 +147,16 @@ java -jar build/libs/DNAnalyzer.jar <arguments>
 If you prefer, you can also run it directly from Gradle:
 
 UNIX / Linux:
+
 ```
 ./gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
 ```
 
 Windows:
+
 ```
 .\gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
 ```
-
 
 <h4>Arguments:</h4>
 
@@ -181,21 +182,24 @@ java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --m
 DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
 
 UNIX / Linux:
+
 ```
 ./gradlew run --args="--gui"
 ```
 
 Windows:
+
 ```
 .\gradlew run --args="--gui"
 ```
 
 Then:
+
 - enter the file name of the DNA file in the text field
 - set min and max
 - click analyze
 
-The results of your analysis will be shown in the GUI on the right-hand side. 
+The results of your analysis will be shown in the GUI on the right-hand side.
 
 <h4>Help message:</h4>
 
@@ -229,7 +233,8 @@ A program to analyze DNA sequences.
   </code>
 </p>
 
-<h3 id="Genotype Data for Analysis and Machine Learning Training">Genotype Data for Analysis and Machine Learning Training
+<h3 id="Genotype Data for Analysis and Machine Learning Training">Genotype Data for Analysis and Machine Learning
+Training
 </h3>
 
 <p>This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's algorithm. In the future, to use this program, all you need is a simple $150 DNA Test to be able to experience all the features of DNAnalyzer.
@@ -256,8 +261,10 @@ View our in-line citations in the <a href="docs/citations.md" target="_blank">Ci
 
 ## Contributing
 
-- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">Contributing Guidelines</a>
-- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use Git</a>
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md">
+  Contributing Guidelines</a>
+- <a href="https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md">How To Use
+  Git</a>
 
 <h2 id="terms-of-use">Terms of Use
 </h2>
