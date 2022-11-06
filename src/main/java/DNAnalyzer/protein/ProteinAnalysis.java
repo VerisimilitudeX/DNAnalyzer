@@ -11,6 +11,7 @@
 
 package DNAnalyzer.protein;
 
+import java.io.PrintStream;
 import java.util.List;
 
 import DNAnalyzer.Properties;
@@ -32,12 +33,12 @@ public class ProteinAnalysis {
      *
      * @param geneList list of genes
      */
-    public static void printHighCoverageRegions(final List<String> geneList) {
+    public static void printHighCoverageRegions(final List<String> geneList, PrintStream out) {
         short count = 1;
 
         // print the list of genes with the highest GC content
-        System.out.println("\nHigh coverage regions: ");
-        System.out.println("----------------------------------------------------");
+        out.println("\nHigh coverage regions: ");
+        out.println("----------------------------------------------------");
 
         for (final String gene : geneList) {
 
@@ -45,7 +46,7 @@ public class ProteinAnalysis {
             final float MIN_GC_CONTENT = 0.40f;
             final float MAX_GC_CONTENT = 0.60f;
             if ((Properties.getGCContent(gene) > MIN_GC_CONTENT) && (Properties.getGCContent(gene) < MAX_GC_CONTENT)) {
-                System.out.println(count + ". " + gene);
+                out.println(count + ". " + gene);
                 count++;
             }
         }
@@ -58,16 +59,16 @@ public class ProteinAnalysis {
      * (e.g., autism).
      *
      * @param proteinList The list of proteins in the DNA sequence
-     * {@code @category} Properties
+     *                    {@code @category} Properties
      * @see "https://www.spectrumnews.org/opinion/viewpoint/length-matters-disease-implications-for-long-genes/"
      */
-    public static void printLongestProtein(final List<String> proteinList) {
+    public static void printLongestProtein(final List<String> proteinList, PrintStream out) {
         String longestProtein = "";
         for (final String protein : proteinList) {
             if (protein.length() > longestProtein.length()) {
                 longestProtein = protein;
             }
         }
-        System.out.println("\nLongest gene (" + longestProtein.length() + " nucleotides): " + longestProtein);
+        out.println("\nLongest gene (" + longestProtein.length() + " nucleotides): " + longestProtein);
     }
 }

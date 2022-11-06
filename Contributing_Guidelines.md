@@ -272,7 +272,8 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/Verisi
 Contributing to open source for the first time can be scary and a little overwhelming. Perhaps you’re a Code Newbie, or
 maybe you’ve been coding for a while but haven’t found a project you felt comfortable contributing to.
 
-If you have never contributed to an open source project before, and you’re just getting started, consider exploring these
+If you have never contributed to an open source project before, and you’re just getting started, consider exploring
+these
 resources.
 
 [First contributions](https://github.com/firstcontributions/first-contributions) is a hands-on tutorial that walks you

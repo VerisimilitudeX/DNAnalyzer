@@ -1,4 +1,4 @@
-## Contribution Guideline :
+## Contribution Guidelines:
 
 - Drop a :star: on the GitHub repository (It's optional)<br/>
 

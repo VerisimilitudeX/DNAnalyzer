@@ -32,6 +32,6 @@ public class CodonDataUtils {
      */
     public static List<String> getAminoAcid(final String name) {
         final AminoAcid aminoAcid = AminoAcidFactory.getAminoAcid(name);
-        return CodonDataConstants.CodonDataAcidMap.getOrDefault(aminoAcid, List.of());
+        return CodonDataConstants.codonDataAcidMap.getOrDefault(aminoAcid, List.of());
     }
 }

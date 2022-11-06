@@ -13,17 +13,18 @@ package DNAnalyzer;
 import DNAnalyzer.aminoAcid.AminoAcid;
 import DNAnalyzer.aminoAcid.AminoAcidFactory;
 
-import java.util.Map;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+
 import DNAnalyzer.DNAAnalysis.BasePairIndex;
+
 import static DNAnalyzer.DNAAnalysis.countBasePairs;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
  *
  * @author Piyush Acharya (@Verisimilitude11)
- * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
 public class Properties {
@@ -33,19 +34,19 @@ public class Properties {
      *
      * @param proteinList The list of proteins to be printed
      * @param aminoAcid   The amino acid to be searched for
-     * {@code @category} Output
+     *                    {@code @category} Output
      */
-    public static void printProteinList(final List<String> proteinList, final String aminoAcid) {
+    public static void printProteinList(final List<String> proteinList, final String aminoAcid, PrintStream out) {
 
         // Changes the 1 letter or 3 letter abbreviation of the amino acids into the
         // full name
         final AminoAcid acid = AminoAcidFactory.getAminoAcid(aminoAcid);
 
-        System.out.println("Proteins coded for " + acid.getFullName() + ": ");
-        System.out.println("----------------------------------------------------");
+        out.println("Proteins coded for " + acid.getFullName() + ": ");
+        out.println("----------------------------------------------------");
         short count = 1;
         for (final String gene : proteinList) {
-            System.out.println(count + ". " + gene);
+            out.println(count + ". " + gene);
             count++;
         }
     }
@@ -100,18 +101,18 @@ public class Properties {
      * Prints the nucleotide count of the DNA sequence.
      *
      * @param dna The DNA sequence that was analyzed
-     * {@code @category} Output
+     *            {@code @category} Output
      */
-    public static void printNucleotideCount(final String dna) {
-        System.out.println("Nucleotide count:");
+    public static void printNucleotideCount(final String dna, PrintStream out) {
+        out.println("Nucleotide count:");
         long[] counts = countBasePairs(dna);
-        System.out.println("A" + ": " + counts[BasePairIndex.ADENINE] + 
+        out.println("A" + ": " + counts[BasePairIndex.ADENINE] +
                 " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
-        System.out.println("T" + ": " + counts[BasePairIndex.THYMINE] + 
+        out.println("T" + ": " + counts[BasePairIndex.THYMINE] +
                 " (" + (float) counts[BasePairIndex.THYMINE] / dna.length() * 100 + "%)");
-        System.out.println("G" + ": " + counts[BasePairIndex.GUANINE] + 
-                " (" + (float)counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
-        System.out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] + 
+        out.println("G" + ": " + counts[BasePairIndex.GUANINE] +
+                " (" + (float) counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
+        out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] +
                 " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
     }
 
@@ -124,17 +125,6 @@ public class Properties {
      */
     public static boolean isRandomDNA(final String dna) {
         long[] nucleotideCount = countBasePairs(dna);
-
-        // This sorts the array to get min and max value
-        Arrays.sort(nucleotideCount);
-
-        // Only calculate 2 Percentages, as only the highest difference (max - min) is relevant
-        final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
-        final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);
-        // If the percentage of each nucleotide is between 2% of one another, then it is
-        // random
-        return (maxPercent - minPercent) <= 2;
-    }
 
     // This sorts the array to get min and max value
     Arrays.sort(nucleotideCount);
@@ -160,6 +150,13 @@ public class Properties {
     return Math.abs(aNumber - anotherNumber) <= 2;
   }
 
+    /**
+     * Calculates the percentage of given amount of nucleotide in the dna sequence/
+     *
+     * @param nucleotideCount Number of nucleotides (int)
+     * @param dna             DNA sequence
+     * @return the percentage of nucleotides in that DNA sequence
+     */
     private static int nucleotidePercentage(final long nucleotideCount, final String dna) {
         return (int) (((float) nucleotideCount) / dna.length() * 100);
     }

@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * Declares the codon frame
  *
- * @author Shubham Jain (@shubhwip)
+ * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */
@@ -59,6 +59,9 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean equals(final Object o) {
         boolean result = false;
         if (this == o) {
@@ -72,6 +75,9 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
     }
 
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         return Objects.hash(getDna(), getReadingFrame(), getMin(), getMax());
     }

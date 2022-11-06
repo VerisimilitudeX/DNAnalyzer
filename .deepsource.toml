@@ -1,14 +1,6 @@
 version = 1
 
 [[analyzers]]
-name = "shell"
-enabled = true
-
-[[analyzers]]
-name = "javascript"
-enabled = true
-
-[[analyzers]]
 name = "java"
 enabled = true
 
@@ -16,20 +8,12 @@ enabled = true
   runtime_version = "17"
 
 [[analyzers]]
+name = "javascript"
+enabled = true
+
+[[analyzers]]
 name = "python"
 enabled = true
 
   [analyzers.meta]
   runtime_version = "3.x.x"
-
-[[transformers]]
-name = "google-java-format"
-enabled = true
-
-[[transformers]]
-name = "autopep8"
-enabled = true
-
-[[transformers]]
-name = "prettier"
-enabled = true

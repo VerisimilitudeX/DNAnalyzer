@@ -9,6 +9,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id("org.openjfx.javafxplugin") version "0.0.13"
+    id("maven-publish")
 }
 
 repositories {
@@ -17,6 +19,11 @@ repositories {
 }
 
 def junitVersion = "5.8.2"
+
+javafx {
+    version = "19"
+    modules = [ 'javafx.controls', 'javafx.graphics', 'javafx.fxml', 'javafx.base' ]
+}
 
 dependencies {
     // Use JUnit test framework.
@@ -35,6 +42,31 @@ application {
     mainClass = 'DNAnalyzer.Main'
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "Github"
+            url = uri("https://maven.pkg.github.com/Verisimilitude11/DNAnalyzer")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+
+    publications {
+        register("jar", MavenPublication) {
+            from(components["java"])
+            groupId = 'live.dnanalyzer'
+            artifactId = 'dnanalyzer'
+            version = '2.0.0'
+            pom {
+                url.set("https://github.com/Verisimilitude11/DNAnalyzer.git")
+            }
+        }
+    }
+}
+
 test {
     useJUnitPlatform()
     testLogging {
@@ -47,6 +79,8 @@ jar {
     manifest {
         attributes 'Main-Class': 'DNAnalyzer.Main'
     }
+
+    duplicatesStrategy = 'exclude'
 
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }

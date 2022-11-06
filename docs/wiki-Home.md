@@ -2,7 +2,11 @@ Welcome to the DNAnalyzer wiki!
 
 ![](https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png)
 
-> DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we are working on developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+> DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to
+> neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract
+> valuable information from such software to better understand human health and disease. Currently, we are working on
+> developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and
+> more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
 # [Documents](https://github.com/Verisimilitude11/DNAnalyzer/tree/main/docs)
 
@@ -183,6 +187,7 @@ A program to analyze DNA sequences.
   -r, --reverse              Reverse the DNA sequence before processing.
   -V, --version              Print version information and exit.
   ```
+
 ## Reports
 
 [Key Personnel and Knowledge Distribution](https://github.com/Verisimilitude11/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/reports/key-personnel-and-and-knowledge-distribution.pdf)

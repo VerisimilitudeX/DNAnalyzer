@@ -10,22 +10,28 @@
  */
 package DNAnalyzer;
 
+import DNAnalyzer.gui.DNAnalyzerGUI;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+
+import static DNAnalyzer.Utils.readFile;
 
 /**
  * Class for handling command-line arguments.
  *
+ * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
 @Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-    @Option(required = true, names = {"--amino"}, description = "The amino acid representing the start of a gene.")
+    @Option(names = {"--gui"}, description = "Start in GUI mode")
+    Boolean startGUI = false;
+
+    @Option(names = {"--amino"}, description = "The amino acid representing the start of a gene.")
     String aminoAcid;
 
     @Option(names = {"--min"}, description = "The minimum count of the reading frame.")
@@ -44,19 +50,6 @@ public class CmdArgs implements Runnable {
     boolean reverse;
 
     /**
-     * Reads the contents of a file, stripping out newlines and converting
-     * everything to lowercase.
-     *
-     * @param file the file to read
-     * @return String with the contents of the file (newlines removed and converted
-     * to lowercase)
-     * @throws IOException if there is an error reading the file
-     */
-    String readFile(final File file) throws IOException {
-        return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
-    }
-
-    /**
      * Output a list of proteins, GC content, Nucleotide content, and other
      * information found in a DNA
      * sequence.
@@ -66,21 +59,27 @@ public class CmdArgs implements Runnable {
      */
     @Override
     public void run() {
-        DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
-                .isValidDna()
-                .replaceDNA("u", "t");
+        if (startGUI == true) {
+            String[] args = new String[0];
+            DNAnalyzerGUI.launchIt(args);
+        } else {
+            DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
+                    .isValidDna()
+                    .replaceDNA("u", "t");
 
-        if (reverse) {
-            dnaAnalyzer = dnaAnalyzer.reverseDna();
-        }
+            if (reverse == true) {
+                dnaAnalyzer = dnaAnalyzer.reverseDna();
+            }
 
-        dnaAnalyzer
-                .printProteins()
-                .outPutCodons(minCount, maxCount)
-                .printLongestProtein();
+            dnaAnalyzer
+                    .printProteins(System.out)
+                    .printHighCoverageRegions(System.out)
+                    .outPutCodons(minCount, maxCount, System.out)
+                    .printLongestProtein(System.out);
 
-        if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
-            System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+            if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
+                System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+            }
         }
     }
 

@@ -12,4 +12,6 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-Join our Discord server (https://discord.gg/X3YCvGf2Ug), and mention @Mod with your vulnerability. We take your security with utmost care, and hope to resolve any issues that may arise. For vulnerabilities related to the JDK specifically, please contact your distributor.
+Join our Discord server (https://discord.gg/X3YCvGf2Ug), and mention @Mod with your vulnerability. We take your security
+with utmost care, and hope to resolve any issues that may arise. For vulnerabilities related to the JDK specifically,
+please contact your distributor.
