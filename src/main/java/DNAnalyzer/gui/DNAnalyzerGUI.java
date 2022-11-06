@@ -9,6 +9,12 @@ import javafx.stage.Stage;
 public class DNAnalyzerGUI extends Application {
 
     @Override
+    /**
+     * Starts and initializes the GUI
+     * 
+     * @param stage
+     * @throws Exception
+     */
     public void start(Stage stage) throws Exception {
         // Parent root = FXMLLoader.load(getClass().getResource("DNAnalyzerGUI.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("fxml/DNAnalyzerGUI.fxml"));

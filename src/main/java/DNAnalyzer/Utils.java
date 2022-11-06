@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * Utility class for DNAnalyzer
+ * 
+ * @author David
+ *
+ */
 public class Utils {
     /**
      * Reads the contents of a file, stripping out newlines and converting

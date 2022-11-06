@@ -16,6 +16,14 @@ import java.io.PrintStream;
 import static DNAnalyzer.Utils.readFile;
 
 public class DNAnalyzerGUIFXMLController {
+    /**
+     * Returns analysis results from DNAAnalysis class
+     * 
+     * @param dna
+     * @param protein
+     * @param aminoAcid
+     * @return
+     */
     private DNAAnalysis dnaAnalyzer(String dna, String protein, final String aminoAcid) {
         return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
     }
