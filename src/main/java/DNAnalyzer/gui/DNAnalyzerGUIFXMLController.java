@@ -25,22 +25,22 @@ public class DNAnalyzerGUIFXMLController {
     }
 
     @FXML
-    private Slider minSlider;
+    private Slider minSlider = null;
 
     @FXML
-    private Slider maxSlider;
+    private Slider maxSlider = null;
 
     @FXML
-    private TextField txtAmino;
+    private TextField txtAmino = null;
 
     @FXML
-    private TextField txtDNAFile;
+    private TextField txtDNAFile = null;
 
     @FXML
-    private TextField txtProteinFile;
+    private TextField txtProteinFile = null;
 
     @FXML
-    private TextArea txtOutput;
+    private TextArea txtOutput = null;
 
     @FXML
     private void menuQuitClicked(ActionEvent event) {
