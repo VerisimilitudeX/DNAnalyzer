@@ -93,6 +93,5 @@ public class DNAnalyzerGUIFXMLController {
 	}
 
 	public void initialize() {
-		// TODO
 	}
 }
