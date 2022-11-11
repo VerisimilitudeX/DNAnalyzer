@@ -1,17 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The DNAnalyzer site
+  provides an overview on DNAnalyzer, an open-source project dedicated to making DNA analysis free and accessible to all." />
+    <meta property="og:title" content="DNAnalyzer" />
+    <meta property="og:image"
+        content="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" />
+    <meta name="twitter:title" content="DNAnalyzer" />
     <title>DNAnalyzer</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css">
 
     <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f4f5f6;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: rgb(173, 173, 173);
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(143, 143, 143);
+        }
+
+        /* Handle on active */
+        ::-webkit-scrollbar-thumb:active {
+            background: rgb(113, 113, 113);
+        }
+
+        /* Hide the horizontal scroll bar */
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
         .alert {
             padding: 17px;
             background-color: #f44336;
@@ -38,102 +80,144 @@
 
 <body>
 
-<div class="alert">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-    This site is still under development. A lot of features have not been added, and some content is missing from
-    the website. Please be patient as we roll out changes over the next couple of weeks.
-</div>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        This site is still under development. A lot of features have not been added, and some content is missing from
+        the website. Please be patient as we roll out changes over the next couple of weeks.
+    </div>
 
-<div class="container">
-    <h1 class="text-center primary-dark">DNAnalyzer </h1>
-    <span class="secondary-dark">A highly efficient, powerful, and feature-rich algorithm for analyzing DNA
+    <div class="container">
+        <h1 class="text-center primary-dark">DNAnalyzer </h1>
+        <span class="secondary-dark">A highly efficient, powerful, and feature-rich algorithm for analyzing DNA
             sequences</span>
-    <label for="mode"></label><input type="checkbox" id="mode">
-    <div class="grid">
-        <div class="item bg-light">
-            <div class="flex">
-
-                <h2 class="primary-dark">Brief Introduction </h2>
-                <p class="secondary-dark text-center">DNAnalyzer identifies proteins, amino acids, start and stop
-                    codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription
-                    factors, and regulatory elements. Researchers are working to extract valuable information from
-                    such software to better understand human health and disease. Currently, we are working on
-                    developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable
-                    physicians to quickly and more easily interact with the software, enabling them to identify
-                    genetic mutations that may cause disease.</p>
-            </div>
-        </div>
-
+        <label for="mode"></label><input type="checkbox" id="mode">
         <div class="grid">
             <div class="item bg-light">
                 <div class="flex">
 
-                    <h2 class="primary-dark">Background </h2>
-                    <p class="secondary-dark text-center">The human genome is composed of over 3 billion base pairs,
-                        making human analysis nearly impossible. Consequently, using powerful computational and
-                        statistical methods to decode the functional information hidden in DNA sequences are
-                        necessary. The genome is also extremely intricate and contains a plethora of data, which
-                        need to be organized and converted into analyzable data appropriately. Current analytical
-                        tools and software make it arduous for both geneticists and physicians to do so, thus
-                        restricting them from acquiring crucial information to better understand humans.</p>
+                    <h2 class="primary-dark">Brief Introduction </h2>
+                    <p class="secondary-dark text-center">DNAnalyzer identifies proteins, amino acids, start and stop
+                        codons, high coverage regions, regions susceptible to neurodevelopmental disorders,
+                        transcription factors, and regulatory elements. Researchers are working to extract valuable
+                        information from such software to better understand human health and disease. Currently, we have
+                        a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will
+                        enable physicians to quickly and more easily interact with the software, enabling them to
+                        identify genetic mutations that may cause disease.</p>
                 </div>
             </div>
-            <div class="item bg-light">
-                <div class="flex">
+
+            <div class="grid">
+                <div class="item bg-light">
+                    <div class="flex">
+
+                        <h2 class="primary-dark">Background </h2>
+                        <p class="secondary-dark text-center">The human genome is composed of over 3 billion base pairs,
+                            making human analysis nearly impossible. Consequently, using powerful computational and
+                            statistical methods to decode the functional information hidden in DNA sequences are
+                            necessary. The genome is also extremely intricate and contains a plethora of data, which
+                            need to be organized and converted into analyzable data appropriately. Current analytical
+                            tools and software make it arduous for both geneticists and physicians to do so, thus
+                            restricting them from acquiring crucial information to better understand humans.</p>
+                    </div>
+                </div>
+                <div class="item bg-light">
+                    <div class="flex">
 
 
-                    <h2 class="primary-dark">Features</h2>
+                        <h2 class="primary-dark">Features</h2>
 
-                    <p class="secondary-dark text-left">
+                        <p class="secondary-dark text-left">
 
-                        &nbsp; 1.Start and stop codons <br> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Indicate the start and
-                        stop of an amino acid. There are 20 different amino acids. A protein consists of one or
-                        more<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chains of amino acids (called polypeptides) whose
-                        sequence is encoded in a gene.<br>
-                        &nbsp; 2.High coverage regions <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regions of a DNA genome
-                        that code for a protein and have a relatively high proportion of guanine and cytosine
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nucleotides to the 4 nucleotide bases (45-60%
-                        GC-content).<br>
-                        &nbsp; 3.Longest genes <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Most susceptible to disease
-                        implications and are especially linked to neurodevelopmental disorders (e.g., autism).<br>
-                        &nbsp; 4.Transcription factors <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proteins that help turn
-                        specific genes "on" or "off" by binding to nearby DNA. <br>
-                        &nbsp; 5.Regulatory elements <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Binding sites for
-                        transcription factors, which are involved in gene regulation. <br>
-                        &nbsp; 6.FASTA files (.fa) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supports multi-line and
-                        single-line FASTA database files. Files can either be uploaded or linked to from the web.
-                        <br>
-                        &nbsp; 7.Command-line interface (Met CLI) <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Methionine
-                        command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer
-                        services<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from the command-line. The CLI is a powerful tool
-                        for using DNAnalyzer services and scripting a sequence of<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        commands to execute. You can currently access all the core features present in DNAnalyzer
-                        without having to log &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in,although account support will
-                        be implemented soon. To get more information on Met CLI installation and <br>&emsp;&nbsp;
-                        currently supported commands,refer to Met CLI GitHub repository.
+                            &nbsp; 1. Start and stop codons <br> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Indicate the start and
+                            stop of an amino acid. There are 20 different amino acids. A protein consists of one or
+                            more<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chains of amino acids (called polypeptides) whose
+                            sequence is encoded in a gene.<br>
+                            &nbsp; 2. High coverage regions <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Regions of a DNA genome
+                            that code for a protein and have a relatively high proportion of guanine and cytosine
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nucleotides to the 4 nucleotide bases (45-60%
+                            GC-content).<br>
+                            &nbsp; 3. Longest genes <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Most susceptible to disease
+                            implications and are especially linked to neurodevelopmental disorders (e.g., autism).<br>
+                            &nbsp; 4. Transcription factors <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proteins that help turn
+                            specific genes "on" or "off" by binding to nearby DNA. <br>
+                            &nbsp; 5. Regulatory elements <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Binding sites for
+                            transcription factors, which are involved in gene regulation. <br>
+                            &nbsp; 6. FASTA files (.fa) <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supports multi-line and
+                            single-line FASTA database files. Files can either be uploaded or linked to from the web.
+                            <br>
+                            &nbsp; 7. Command-line interface (Met CLI) <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Methionine
+                            command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer
+                            services<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from the command-line. The CLI is a powerful tool
+                            for using DNAnalyzer services and scripting a sequence of<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            commands to execute. You can currently access all the core features present in DNAnalyzer
+                            without having to log &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in,although account support will
+                            be implemented soon. To get more information on Met CLI installation and <br>&emsp;&nbsp;
+                            currently supported commands,refer to Met CLI GitHub repository.
 
-                    </p>
+                        </p>
 
 
+                    </div>
                 </div>
             </div>
         </div>
+
+        <br>
+
+        <style>
+            .btn-primary {
+                color: #fff;
+                background-color: #007bff;
+                border-color: #007bff
+            }
+
+            .btn-primary:hover {
+                color: #fff;
+                background-color: #0069d9;
+                border-color: #0062cc
+            }
+
+            .btn-primary.focus,
+            .btn-primary:focus {
+                color: #fff;
+                background-color: #0069d9;
+                border-color: #0062cc;
+                box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
+            }
+
+            .btn-primary.disabled,
+            .btn-primary:disabled {
+                color: #fff;
+                background-color: #007bff;
+                border-color: #007bff
+            }
+
+            .btn-primary:not(:disabled):not(.disabled).active,
+            .btn-primary:not(:disabled):not(.disabled):active,
+            .show>.btn-primary.dropdown-toggle {
+                color: #fff;
+                background-color: #0062cc;
+                border-color: #005cbf
+            }
+
+            .btn-primary:not(:disabled):not(.disabled).active:focus,
+            .btn-primary:not(:disabled):not(.disabled):active:focus,
+            .show>.btn-primary.dropdown-toggle:focus {
+                box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
+            }
+        </style>
+
+        <!--Modern Button Linking to GitHub Repo-->
+        <button class="btn btn-primary btn-lg btn-block"
+            onclick=window.location.href="https://github.com/Verisimilitude11/DNAnalyzer" onclick=window.location.target="_blank">GitHub Repository</button>
+    </div>
     </div>
 
     <br>
-
-    <button class="btn">
-        <a href="https://github.com/Verisimilitude11/DNAnalyzer"> Github Repository </a>
-    </button>
-
-    <br>
     <br>
 
-    <footer>
-        <p>Copyright © DNAnalyzer 2022. This is an open-source project.<br>
-        </p>
-    </footer>
     <script src="./index.js"></script>
+
 </body>
 
 </html>

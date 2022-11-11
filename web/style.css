@@ -17,11 +17,11 @@ body {
 }
 
 body.dark {
-    --text-light: rgba(55, 65, 81, 1);
+    --text-light: rgba(14, 21, 37);
     --primary-dark: rgba(243, 244, 246, 1);
     --secondary-dark: rgba(255, 255, 255);
     --bg-btn: rgba(219, 233, 29, 0.897);
-    --bg-light: rgba(45, 49, 54, 0.5);
+    --bg-light: rgba(28, 35, 51);
 }
 
 .btn {
