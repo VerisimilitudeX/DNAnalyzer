@@ -47,7 +47,11 @@ A [video tutorial](https://1drv.ms/v/s!Ak23YJmC7V17iN9FpYLGHRGCLfzz3w?e=sKTHAK) 
 
 ### System Requirements
 
-To build and run the DNAnalyzer, you need - JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) - A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH - [Gradle](https://gradle.org/install/)
+To build and run the DNAnalyzer, you need the following:
+
+* JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
+* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+* [Gradle](https://gradle.org/install/)
 
 ### Build & Run
 
