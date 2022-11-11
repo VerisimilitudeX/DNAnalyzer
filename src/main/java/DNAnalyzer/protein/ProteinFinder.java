@@ -33,8 +33,6 @@ public class ProteinFinder {
     private ProteinFinder() {
     }
 
-    private static final int QT_NUCLEOTIDES = 3;
-
     /**
      * Gets proteins from dna and amino acid
      *
@@ -68,9 +66,9 @@ public class ProteinFinder {
     /**
      * Add protein to protein list
      *
-     * @param dna           DNA sequence
-     * @param proteinList   List of proteins
-     * @param startIndex    Start index for checking for proteins
+     * @param dna         DNA sequence
+     * @param proteinList List of proteins
+     * @param startIndex  Start index for checking for proteins
      */
     private static void addProtein(final String dna, final List<String> proteinList, final int startIndex) {
 
@@ -82,10 +80,10 @@ public class ProteinFinder {
         int stopIndex;
         for (final String stopCodon : stopCodonList) {
 
-            stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + QT_NUCLEOTIDES);
+            stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + 3);
 
             if ((startIndex != -1) && (stopIndex != -1)) {
-                proteinList.add(dna.substring(startIndex, stopIndex + QT_NUCLEOTIDES).toUpperCase());
+                proteinList.add(dna.substring(startIndex, stopIndex + 3).toUpperCase());
                 break;
             }
 
