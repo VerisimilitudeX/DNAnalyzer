@@ -8,17 +8,21 @@
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer;
+package DNAnalyzer.ui.cli;
 
-import DNAnalyzer.gui.DNAnalyzerGUI;
+import DNAnalyzer.Main;
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.core.Properties;
+import DNAnalyzer.ui.gui.DNAnalyzerGUI;
+import DNAnalyzer.utils.core.DNATools;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+import static DNAnalyzer.utils.core.Utils.readFile;
+
 import java.io.File;
 import java.io.IOException;
-
-import static DNAnalyzer.Utils.readFile;
 
 /**
  * Class for handling command-line arguments.

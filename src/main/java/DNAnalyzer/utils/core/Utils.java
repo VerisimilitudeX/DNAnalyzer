@@ -1,4 +1,4 @@
-package DNAnalyzer;
+package DNAnalyzer.utils.core;
 
 import java.io.File;
 import java.io.IOException;

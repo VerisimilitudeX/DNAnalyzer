@@ -9,11 +9,14 @@
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer;
+package DNAnalyzer.core;
 
-import DNAnalyzer.codon.CodonFrame;
-import DNAnalyzer.protein.ProteinAnalysis;
-import DNAnalyzer.protein.ProteinFinder;
+import DNAnalyzer.data.codon.CodonFrame;
+import DNAnalyzer.utils.core.BasePairCounter;
+import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.core.ReadingFrames;
+import DNAnalyzer.utils.protein.ProteinAnalysis;
+import DNAnalyzer.utils.protein.ProteinFinder;
 
 import java.io.PrintStream;
 import java.util.List;
