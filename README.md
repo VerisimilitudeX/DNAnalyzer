@@ -47,10 +47,8 @@ A [video tutorial](https://1drv.ms/v/s!Ak23YJmC7V17iN9FpYLGHRGCLfzz3w?e=sKTHAK) 
 
 ### System Requirements
 
-To build and run the DNAnalyzer, you need the following:
-
-* JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
-* A JAVA\_HOME environment variable pointing to your JDK, or the Java executable in your PATH
+* JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)+
+* A `JAVA_HOME` environment variable pointing to your JDK, or the Java executable in your PATH
 * [Gradle](https://gradle.org/install/)
 
 ### Build & Run
@@ -109,7 +107,7 @@ Then:
 * Set min and max
 * Click analyze
 
-The results of your analysis will be shown in the GUI on the right-hand side.
+The results of your analysis will be shown in the right pane.
 
 #### Help message
 
@@ -135,11 +133,15 @@ This algorithm is used primarily for gene sequencing looking for the optimal mat
 
 ### Genotype Data for Analysis and Machine Learning Training
 
-This will bring the ability to use genotype data from external DNA testing services with DNAnalyzer's algorithm. In the future, to use this program, all you need is a simple $150 DNA Test to be able to experience all the features of DNAnalyzer.
+This will bring the ability to use genotyped data from 3rd-party DNA testing services with our algorithm. In the future, to use this program, all you will need is a simple $99 DNA Test to be able to experience all the features of DNAnalyzer.
 
-### [DIAMOND](https://github.com/bbuchfink/diamond") Implementation, a [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) fork
+### DIAMOND Implementation, a BLAST fork
 
 This will combine [DIAMOND](https://github.com/bbuchfink/diamond)'s performance advantage along with [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi")'s algorithm.
+
+### .FAB File Format
+
+This will allow for the use of own custom .fab files, which are a binary version of FASTA files. It will enable faster processing of large files and massively reduced file sizes (up to 4x).
 
 ## Citations
 
