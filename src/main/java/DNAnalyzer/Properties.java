@@ -147,7 +147,7 @@ public class Properties {
    * @category Properties
    */
   public static boolean isDifferenceLessOrEqualTo2(int maxPercent, int minPercent) {
-    return Math.abs(aNumber - anotherNumber) <= 2;
+    return Math.abs(maxPercent - minPercent) <= 2;
   }
 
     /**
