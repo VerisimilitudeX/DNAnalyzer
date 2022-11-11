@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-* > * {
+*>* {
     font-family: "Poppins", cursive;
 }
 
@@ -68,7 +68,7 @@ p {
     padding: 4em 0;
 }
 
-.grid .icon > span {
+.grid .icon>span {
     font-size: 4em;
     color: var(--bg-btn);
 }
