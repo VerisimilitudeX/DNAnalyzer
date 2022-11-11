@@ -51,25 +51,51 @@ public class Properties {
         }
     }
 
-    /**
-     * Gets the GC content of a gene.
-     *
-     * @param dna The DNA sequence to be analyzed
-     * @return The GC content of the DNA sequence
-     * {@code @category} Properties
-     * @see "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
-     */
-    public static float getGCContent(String dna) {
-        dna = dna.toLowerCase();
-        float gcLen = 0;
-        // increment gcLen for each 'g' or 'c' encountered in a dna
-        for (final char letter : dna.toCharArray()) {
-            if ((letter == 'c') || (letter == 'g')) {
-                gcLen++;
-            }
-        }
-        return (gcLen / dna.length());
+  /**
+   * Gets the GC content of a gene.
+   *
+   * @param dna The DNA sequence to be analyzed
+   * @return The GC content of the DNA sequence
+   * @category Properties
+   * @see
+   *     "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
+   */
+  public static float getGCContent(String dna) {
+    dna = dna.toLowerCase();
+    float gcLen = (float) calculateLengthOfCG(dna);
+    float gcContent = gcLen / dna.length();
+    
+    return gcContent;
+  }
+
+  /**
+   * Calculate the total number of characters that are 'g' or 'c' of a given DNA String
+   *
+   * @param dna The DNA sequence that was analyzed
+   * @category Property
+   */
+  public static int calculateLengthOfCG(String dna) {
+    int gcLength = 0;
+    char[] dnaCharArray = dna.toCharArray();
+
+    for(char letter : dnaCharArray) {
+      if (letterIsCorG(letter)) {
+        gcLength++;
+      }
     }
+    
+    return gcLength;
+  }
+
+  /**
+   * Checks if a letter is either 'c' or 'g'
+   *
+   * @param aLetter The letter to check
+   * @category Property
+   */
+  public static boolean letterIsCorG(char aLetter) {
+    return (aLetter == 'c') || (aLetter == 'g');
+  }
 
     /**
      * Prints the nucleotide count of the DNA sequence.
@@ -100,17 +126,29 @@ public class Properties {
     public static boolean isRandomDNA(final String dna) {
         long[] nucleotideCount = countBasePairs(dna);
 
-        // This sorts the array to get min and max value
-        Arrays.sort(nucleotideCount);
+    // This sorts the array to get min and max value
+    Arrays.sort(nucleotideCount);
+    
+    // Only calculate 2 Percentages, as only the highest difference (max - min) is relevant
+    final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
+    final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);
+    // If the percentage of each nucleotide is between 2% of one another, then it is
+    // random
+    
+    return isDifferenceLessOrEqualTo2(maxPercent, minPercent);
+  }
 
-        // Only calculate 2 Percentages, as only the highest difference (max - min) is
-        // relevant
-        final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
-        final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);
-        // If the percentage of each nucleotide is between 2% of one another, then it is
-        // random
-        return (maxPercent - minPercent) <= 2;
-    }
+  /**
+   * Checks if the differnce between two numbers is less or equal to 2
+   *
+   * @param aNumber one number to calculate the difference
+   * @param anotherNumber the other number to calculate the difference
+   * @return Whether the difference is less or equal to 2
+   * @category Properties
+   */
+  public static boolean isDifferenceLessOrEqualTo2(int maxPercent, int minPercent) {
+    return Math.abs(maxPercent - minPercent) <= 2;
+  }
 
     /**
      * Calculates the percentage of given amount of nucleotide in the dna sequence/

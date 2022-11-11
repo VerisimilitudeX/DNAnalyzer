@@ -33,8 +33,6 @@ public class ProteinFinder {
     private ProteinFinder() {
     }
 
-    private static final int QT_NUCLEOTIDES = 3;
-
     /**
      * Gets proteins from dna and amino acid
      *
@@ -46,15 +44,12 @@ public class ProteinFinder {
 
         final List<String> proteinList = new ArrayList<>();
         final List<String> aminoAcidList = new ArrayList<>(CodonDataUtils.getAminoAcid(aminoAcid));
-        final List<String> stopCodonList = CodonDataConstants.STOP;
 
         // Outer loop loops through the start codons for the amino acids that the user
         // entered.
         // store the start index
-        int startIndex;
         for (final String startCodon : aminoAcidList) {
-            startIndex = dna.indexOf(startCodon.toLowerCase());
-            addProtein(dna, proteinList, startIndex, stopCodonList);
+            addProtein(dna, proteinList, dna.indexOf(startCodon.toLowerCase()));
         }
 
         // if no proteins are found, return null
@@ -71,25 +66,24 @@ public class ProteinFinder {
     /**
      * Add protein to protein list
      *
-     * @param dna           DNA sequence
-     * @param proteinList   List of proteins
-     * @param startIndex    Start index for checking for proteins
-     * @param stopCodonList List of the 3 stop codons
+     * @param dna         DNA sequence
+     * @param proteinList List of proteins
+     * @param startIndex  Start index for checking for proteins
      */
-    private static void addProtein(final String dna, final List<String> proteinList, final int startIndex,
-                                   final List<String> stopCodonList) {
+    private static void addProtein(final String dna, final List<String> proteinList, final int startIndex) {
 
         // Inner loop loops through the stop that the user entered.
         // store the stopIndex
         // if index is not -1 then store the substring of dna with start and stop index
         // in the protein list
+        final List<String> stopCodonList = CodonDataConstants.STOP;
         int stopIndex;
         for (final String stopCodon : stopCodonList) {
 
-            stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + QT_NUCLEOTIDES);
+            stopIndex = dna.indexOf(stopCodon.toLowerCase(), startIndex + 3);
 
             if ((startIndex != -1) && (stopIndex != -1)) {
-                proteinList.add(dna.substring(startIndex, stopIndex + QT_NUCLEOTIDES).toUpperCase());
+                proteinList.add(dna.substring(startIndex, stopIndex + 3).toUpperCase());
                 break;
             }
 
