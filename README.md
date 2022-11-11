@@ -58,11 +58,15 @@ We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care 
 
 #### Windows
 
-```.\gradlew build```
+```pwsh
+.\gradlew build
+```
 
 #### Linux/Unix/macOS
 
-```./gradlew build```
+```pwsh
+./gradlew build
+```
 
 ### Usage
 
