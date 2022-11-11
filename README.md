@@ -58,7 +58,7 @@
       </li>
     </ul>
   </li>
-  <li>Regulatory elements
+  <li>Transcription Factors Detection
     <ul>
       <li>Binding sites for transcription factors, which are involved in gene regulation.
         <code>[6]
