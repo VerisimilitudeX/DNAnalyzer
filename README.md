@@ -44,8 +44,7 @@ In a nutshell, DNA is found in every cell of your body and contains the instruct
 
 Having a database of DNA is the best way to interpret the DNA, and when combined with machine learning, the ML model can make accurate predictions on DNA it has never seen before. This is how current DNA tests function.
 
-Getting Started
----------------
+## Getting Started
 
 A [video tutorial](https://1drv.ms/v/s!Ak23YJmC7V17iN9FpYLGHRGCLfzz3w?e=sKTHAK) covering the instructions below is also available.
 
@@ -65,19 +64,19 @@ We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care 
 
 ```./gradlew build```
 
-#### Usage
+### Usage
 
 ```pwsh
 <executable> <arguments>
 ```
 
-##### Executable
+#### Executable
 
 ```pwsh
 java -jar build/libs/DNAnalyzer.jar
 ```
 
-##### Arguments
+#### Arguments
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
@@ -85,7 +84,7 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
 ```
 
-##### Example
+### Example
 
 ```pwsh
 java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
