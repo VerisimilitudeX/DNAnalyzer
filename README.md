@@ -56,14 +56,6 @@ To build and run the DNAnalyzer, you need - JDK [17](https://www.oracle.com/java
 
 We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
 
-#### Windows
-
-```pwsh
-.\gradlew build
-```
-
-#### Linux/Unix/macOS
-
 ```pwsh
 ./gradlew build
 ```
