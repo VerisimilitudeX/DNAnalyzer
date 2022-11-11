@@ -58,9 +58,9 @@
       </li>
     </ul>
   </li>
-  <li>Transcription Factors Detection
+  <li>Transcription Factors
     <ul>
-      <li>Binding sites for transcription factors, which are involved in gene regulation.
+      <li>Proteins that help turn specific genes "on" or "off" by binding to nearby DNA..
         <code>[6]
         </code>
       </li>
