@@ -24,7 +24,7 @@ public class ProteinFinderTest {
     public void testGetProtein() {
         try {
             List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-            List<String> expected = new ArrayList();
+            List<String> expected = new ArrayList<String>();
             expected.add("AATTCCCTACAACGGATGCGCCGCTGATAGACTCGGGTTCTGGCGTCCGAGTGAAGATGATAA");
             expected.add("AACCAATCTCATGATCACCAGTTCTGACGTTACAGTATTTTCGGTTGAGCAGGCCCCATGGGGCCCCCGCATGCCGAATTACGATATGATGCCCACTATCCTGTGTCTTCCAACCTTATGACTGACTTGTATGCGCTGCGAGGTCCCTCGATAGATTTGCTCCCACCCGTCCCGGAAACCATATCGACGACTTGTAGGTCTCTAA");
 
