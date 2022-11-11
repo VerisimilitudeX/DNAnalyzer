@@ -8,10 +8,12 @@
  *
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
-package DNAnalyzer;
+package DNAnalyzer.utils.core;
 
 import java.util.Optional;
 import java.util.function.IntPredicate;
+
+import DNAnalyzer.core.DNAAnalysis;
 
 /**
  * BasePairCounter is Fluent Interface implementation used to count the
@@ -42,7 +44,7 @@ public class BasePairCounter {
      *
      * @return self
      */
-    BasePairCounter countAdenine() {
+    public BasePairCounter countAdenine() {
         adenine = countBasePair(dnaString,
                 intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_A, DNAAnalysis.AsciiInt.UPPERCASE_A));
         return this;
@@ -53,7 +55,7 @@ public class BasePairCounter {
      *
      * @return self
      */
-    BasePairCounter countThymine() {
+    public BasePairCounter countThymine() {
         thymine = countBasePair(dnaString,
                 intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_T, DNAAnalysis.AsciiInt.UPPERCASE_T));
         return this;
@@ -64,7 +66,7 @@ public class BasePairCounter {
      *
      * @return self
      */
-    BasePairCounter countGuanine() {
+    public BasePairCounter countGuanine() {
         guanine = countBasePair(dnaString,
                 intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_G, DNAAnalysis.AsciiInt.UPPERCASE_G));
         return this;
@@ -75,7 +77,7 @@ public class BasePairCounter {
      *
      * @return self
      */
-    BasePairCounter countCytosine() {
+    public BasePairCounter countCytosine() {
         cytosine = countBasePair(dnaString,
                 intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_C, DNAAnalysis.AsciiInt.UPPERCASE_C));
         return this;

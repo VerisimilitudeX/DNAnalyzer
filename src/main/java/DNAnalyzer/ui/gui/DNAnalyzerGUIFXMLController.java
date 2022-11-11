@@ -1,8 +1,8 @@
-package DNAnalyzer.gui;
+package DNAnalyzer.ui.gui;
 
-import DNAnalyzer.DNAAnalysis;
-import DNAnalyzer.DNATools;
-import DNAnalyzer.Properties;
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.core.Properties;
+import DNAnalyzer.utils.core.DNATools;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +10,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import static DNAnalyzer.utils.core.Utils.readFile;
+
 import java.io.*;
 import java.io.PrintStream;
-
-import static DNAnalyzer.Utils.readFile;
 
 public class DNAnalyzerGUIFXMLController {
     /**

@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
 
+import DNAnalyzer.core.DNAAnalysis;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DNAAnalysisTest {

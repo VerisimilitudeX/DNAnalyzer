@@ -13,6 +13,7 @@ package DNAnalyzer;
 
 import java.io.IOException;
 
+import DNAnalyzer.ui.cli.CmdArgs;
 import picocli.CommandLine;
 
 /**

@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
 
-import DNAnalyzer.protein.ProteinFinder;
+import DNAnalyzer.utils.protein.ProteinFinder;
 
 public class ProteinFinderTest {
     Path testFile = Path.of("C:\\Users\\garyg\\Documents\\projects\\DNAnalyzer\\assets\\dna\\random\\dnalong.fa");

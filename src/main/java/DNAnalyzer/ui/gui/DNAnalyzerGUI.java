@@ -1,4 +1,4 @@
-package DNAnalyzer.gui;
+package DNAnalyzer.ui.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
