@@ -111,7 +111,7 @@ The results of your analysis will be shown in the right pane.
 
 #### Help message
 
-```pwsh
+```txt
 Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
                   [--max=<maxCount>] [--min=<minCount>] DNA
 A program to analyze DNA sequences.
