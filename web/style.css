@@ -9,18 +9,13 @@ body {
     --text-light: rgba(243, 244, 246, 0.9);
     --primary-dark: rgba(55, 65, 81, 1);
     --secondary-dark: rgba(55, 65, 81, 0.7);
-    --bg-light: rgba(243, 244, 246, 0.3);
     --bg-btn: rgba(67, 56, 202, 0.8);
-
-    background-color: var(--text-light);
-}
-
-body.dark {
+    --bg-light: rgba(28, 35, 51);
     --text-light: rgba(14, 21, 37);
     --primary-dark: rgba(243, 244, 246, 1);
     --secondary-dark: rgba(255, 255, 255);
-    --bg-btn: rgba(219, 233, 29, 0.897);
-    --bg-light: rgba(28, 35, 51);
+
+    background-color: var(--text-light);
 }
 
 .btn {
@@ -134,4 +129,106 @@ footer {
 
 button {
     border-radius: 50px
+}
+
+/* width */
+/* set the width of the scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Handle */
+/* set the color of the scrollbar and the radius of its corners */
+::-webkit-scrollbar-thumb {
+    background: rgb(150, 150, 150);
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* Handle on hover */
+/* set the color of the scrollbar when hovered over */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(131, 131, 131);
+}
+
+/* Handle on active */
+/* set the color of the scrollbar when clicked */
+::-webkit-scrollbar-thumb:active {
+    background: rgb(104, 104, 104);
+}
+
+/* Hide the horizontal scroll bar */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.alert {
+    padding: 17px;
+    background-color: #af0c00;
+    border-radius: 17px;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf
+}
+
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .5)
+}
+
+#redirect-button {
+    justify-content: center;
+    display: flex;
 }
