@@ -43,7 +43,7 @@ Having a database of DNA is the best way to interpret the DNA, and when combined
 
 ## Getting Started
 
-A [video tutorial](https://1drv.ms/v/s!Ak23YJmC7V17iN9FpYLGHRGCLfzz3w?e=sKTHAK) covering the instructions below is also available.
+A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below is also available.
 
 ### System Requirements
 
