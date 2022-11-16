@@ -22,7 +22,7 @@ The human genome is composed of over 3 billion base pairs, making human analysis
   * Proteins that help turn specific genes "on" or "off" by binding to nearby DNA.. `[6]`
 * FASTA files (.fa)
   * Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web. `[7]`
-* Command-line interface (Met CLI)
+* CLI
   * The Methionine command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for using DNAnalyzer services and scripting a sequence of commands to execute. You can currently access all the core features present in DNAnalyzer without having to log in, although account support will be implemented soon. To get more information on Met CLI installation and currently supported commands, refer to Met CLI GitHub repository.
 * GUI
   * A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be the best way to run the program. Currently, the following operations are supported:
