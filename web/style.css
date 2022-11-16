@@ -234,18 +234,22 @@ button {
 }
 
 /* Ordered List */
-#ol{
-	color: white;
-	background-color: #0069d9;
-	vertical-align: center;
+#ol {
+    color: white;
+    background-color: #f26207;
+    vertical-align: left;
+    border-radius: 20px;
+    list-style: none;
 }
 
-.li{
-	float: left;
-	margin: 0;
-	padding: 0;
-	padding: 20px 20px;
-	margin: 20px 20px;
-	background-color: #0069d9;
-	vertical-align: center;
+.li {
+    vertical-align: right;
+    float: left;
+    margin: 0;
+    padding: 0;
+    padding: 20px 20px;
+    margin: 20px 20px;
+    background-color: #f26207;
+    border-radius: 20px;
+    vertical-align: middle;
 }
