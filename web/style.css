@@ -232,3 +232,20 @@ button {
     justify-content: center;
     display: flex;
 }
+
+/* Ordered List */
+#ol{
+	color: white;
+	background-color: #0069d9;
+	vertical-align: center;
+}
+
+.li{
+	float: left;
+	margin: 0;
+	padding: 0;
+	padding: 20px 20px;
+	margin: 20px 20px;
+	background-color: #0069d9;
+	vertical-align: center;
+}
