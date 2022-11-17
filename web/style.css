@@ -21,7 +21,7 @@ body {
 .btn {
     background-color: #4CAF50;
     border: none;
-    color: white;
+    color: rgba(243, 244, 246, 0.9);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -70,6 +70,7 @@ p {
 
 .primary-dark {
     color: var(--primary-dark);
+    text-align: left;
 }
 
 .secondary-dark {
@@ -88,7 +89,7 @@ footer {
     padding: 30px;
     width: 1700px;
     background-color: #111111;
-    color: white;
+    color: rgba(243, 244, 246, 0.9);
 }
 
 footer {
@@ -138,14 +139,14 @@ button {
     padding: 17px;
     background-color: #af0c00;
     border-radius: 17px;
-    color: white;
+    color: rgba(243, 244, 246, 0.9);
 }
 
 .button {
     padding: 0.6em 2em;
     border: none;
     outline: none;
-    color: rgb(255, 255, 255);
+    color: rgba(243, 244, 246, 0.9);
     background: #1c2333;
     cursor: pointer;
     position: relative;
@@ -213,29 +214,32 @@ button {
     display: flex;
 }
 
-/* Ordered List */
-#ol {
-    color: white;
-    background-color: #f26207;
-    vertical-align: left;
-    border-radius: 20px;
-    list-style: none;
-}
-
-.li {
-    vertical-align: right;
-    float: left;
-    margin: 0;
-    padding: 0;
-    padding: 20px 20px;
-    margin: 20px 20px;
-    background-color: #f26207;
-    border-radius: 20px;
-    vertical-align: middle;
-    list-style: none;
-}
 
 #features {
     padding: 20px 20px;
     margin: 20px 20px;
+}
+
+
+#gui-features,
+#gui-li {
+    text-align: left;
+}
+
+.feature {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    margin: 0;
+    padding: 20px 20px;
+    margin: 20px 20px;
+    background-color: #0e1525;
+    color: rgba(243, 244, 246);
+    border-radius: 20px;
+    vertical-align: middle;
+    list-style: none;
+
+    /* put the header on top, then a line, then the text */
+    flex-flow: column;
 }

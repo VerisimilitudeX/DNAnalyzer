@@ -15,11 +15,17 @@ The human genome is composed of over 3 billion base pairs, making human analysis
 * Start and stop codons
   * Indicate the start and stop of an amino acid. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. `[2]`
 * High coverage regions
-  * Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). `[3]`
-* Longest genes
-  * Most susceptible to disease implications and are especially linked to neurodevelopmental disorders (e.g., autism). `[4]`
+  * Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). These regions are likely to contain important information about the genome.`[3]`
+* Neurodevelopmental Disorders
+  * A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous
+                        system. These disorders are caused by genetic mutations that affect the development of the
+                        brain and nervous system. These disorders include autism, attention deficit hyperactivity
+                        disorder (ADHD), and schizophrenia. `[4]`
 * Transcription Factors
-  * Proteins that help turn specific genes "on" or "off" by binding to nearby DNA.. `[6]`
+  * A protein that binds to DNA and regulates the transcription of genes. These
+                        proteins are responsible for the regulation of gene expression. They are involved in the
+                        regulation of gene expression by binding to specific DNA sequences and regulating the
+                        transcription of genes. `[6]`
 * FASTA files (.fa)
   * Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web. `[7]`
 * CLI
