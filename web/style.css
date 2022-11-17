@@ -91,38 +91,6 @@ footer {
     color: white;
 }
 
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: none;
-    position: relative;
-    width: 80px;
-    height: 40px;
-    border-radius: 50px;
-    outline: none;
-
-    background-image: url(https://i.postimg.cc/857jHw2q/Screenshot-2020-04-16-at-1-07-06-PM.png);
-    background-size: cover;
-}
-
-input[type="checkbox"]::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 40px;
-    width: 40px;
-    background-color: var(--primary-dark);
-    border-radius: 50px;
-}
-
-input[type="checkbox"]:checked:before {
-    transform: translate(100%);
-}
-
-input[type="checkbox"]:checked {
-    background-image: url(https://i.postimg.cc/Hn0nstVK/Screenshot-2020-04-16-at-1-07-19-PM.png);
-}
-
 footer {
     border-radius: 20px
 }
@@ -252,4 +220,10 @@ button {
     background-color: #f26207;
     border-radius: 20px;
     vertical-align: middle;
+}
+
+#features {
+    border-radius: 20px;
+    padding: 20px 20px;
+    margin: 20px 20px;
 }
