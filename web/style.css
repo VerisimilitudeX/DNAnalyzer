@@ -1,14 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*>* {
+* > * {
     font-family: "Poppins", cursive;
 }
 
 
 body {
-    --text-light: rgba(243, 244, 246, 0.9);
-    --primary-dark: rgba(55, 65, 81, 1);
-    --secondary-dark: rgba(55, 65, 81, 0.7);
     --bg-btn: rgba(67, 56, 202, 0.8);
     --bg-light: rgba(28, 35, 51);
     --text-light: rgba(14, 21, 37);
@@ -63,7 +60,7 @@ p {
     padding: 4em 0;
 }
 
-.grid .icon>span {
+.grid .icon > span {
     font-size: 4em;
     color: var(--bg-btn);
 }
@@ -147,15 +144,15 @@ button {
 .button:before {
     content: "";
     background: linear-gradient(45deg,
-            #ff0000,
-            #ff7300,
-            #fffb00,
-            #48ff00,
-            #00ffd5,
-            #002bff,
-            #7a00ff,
-            #ff00c8,
-            #ff0000);
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -218,9 +215,7 @@ button {
     flex-direction: row;
     justify-content: left;
     align-items: left;
-    margin: 0;
     padding: 20px 20px;
-    margin: 20px 20px;
     background-color: #0e1525;
     color: rgba(243, 244, 246);
     border-radius: 20px;
