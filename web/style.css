@@ -98,6 +98,7 @@ footer {
 button {
     border-radius: 50px
 }
+
 /*
 /* width */
 /* set the width of the scrollbar */
@@ -132,8 +133,8 @@ button {
     -webkit-appearance: none;
     appearance: none;
 }
-*/
-.alert {
+
+*/ .alert {
     padding: 17px;
     background-color: #af0c00;
     border-radius: 17px;
