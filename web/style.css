@@ -84,18 +84,6 @@ p {
     border-radius: 20px;
 }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    width: 1700px;
-    background-color: #111111;
-    color: rgba(243, 244, 246, 0.9);
-}
-
-footer {
-    border-radius: 20px
-}
-
 button {
     border-radius: 50px
 }
@@ -134,7 +122,7 @@ button {
     appearance: none;
 }
 
- .alert {
+.alert {
     padding: 17px;
     background-color: #af0c00;
     border-radius: 17px;
