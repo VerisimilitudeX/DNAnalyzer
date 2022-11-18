@@ -225,4 +225,5 @@ button {
 
     /* put the header on top, then a line, then the text */
     flex-flow: column;
+    margin: 20px;
 }
