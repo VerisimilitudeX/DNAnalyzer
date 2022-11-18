@@ -15,6 +15,11 @@ body {
     background-color: var(--text-light);
 }
 
+h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
 .btn {
     background-color: #4CAF50;
     border: none;
