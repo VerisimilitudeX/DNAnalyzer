@@ -90,15 +90,6 @@ assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
 ```pwsh
 java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
 ```
-
-#### Gradle Run
-
-If you prefer, you can also run it directly from Gradle:
-
-```pwsh
-./gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
-```
-
 #### GUI
 
 DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
