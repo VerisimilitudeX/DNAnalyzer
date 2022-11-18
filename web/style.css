@@ -11,7 +11,7 @@ body {
     --text-light: rgba(14, 21, 37);
     --primary-dark: rgba(243, 244, 246, 1);
     --secondary-dark: rgba(255, 255, 255);
-    margin: 10px;
+
     background-color: var(--text-light);
 }
 
@@ -85,6 +85,7 @@ button {
     border-radius: 50px
 }
 
+/*
 /* width */
 /* set the width of the scrollbar */
 ::-webkit-scrollbar {
