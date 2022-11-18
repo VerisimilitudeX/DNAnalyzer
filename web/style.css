@@ -232,3 +232,10 @@ button {
     flex-flow: column;
     margin: 20px;
 }
+
+#blockquote {
+    padding: 20px 20px;
+    margin: 20px 20px;
+    background-color: #1c2333;
+    border-radius: 20px;
+}
