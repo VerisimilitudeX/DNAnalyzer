@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*>* {
+* > * {
     font-family: "Poppins", cursive;
 }
 
@@ -22,10 +22,15 @@ body {
     background-color: var(--text-light);
 }
 
+h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
 .btn {
     background-color: #4CAF50;
     border: none;
-    color: white;
+    color: rgba(243, 244, 246, 0.9);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -67,13 +72,14 @@ p {
     text-align: center;
 }
 
-.grid .icon>span {
+.grid .icon > span {
     font-size: 4em;
     color: var(--bg-btn);
 }
 
 .primary-dark {
     color: var(--primary-dark);
+    text-align: left;
 }
 
 .secondary-dark {
@@ -87,23 +93,10 @@ p {
     border-radius: 20px;
 }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    width: 1700px;
-    background-color: #111111;
-    color: white;
-}
-
-footer {
-    border-radius: 20px
-}
-
 button {
     border-radius: 50px
 }
 
-/*
 /* width */
 /* set the width of the scrollbar */
 ::-webkit-scrollbar {
@@ -142,14 +135,14 @@ button {
     padding: 17px;
     background-color: #af0c00;
     border-radius: 17px;
-    color: white;
+    color: rgba(243, 244, 246, 0.9);
 }
 
 .button {
     padding: 0.6em 2em;
     border: none;
     outline: none;
-    color: rgb(255, 255, 255);
+    color: rgba(243, 244, 246, 0.9);
     background: #1c2333;
     cursor: pointer;
     position: relative;
@@ -163,15 +156,15 @@ button {
 .button:before {
     content: "";
     background: linear-gradient(45deg,
-            #ff0000,
-            #ff7300,
-            #fffb00,
-            #48ff00,
-            #00ffd5,
-            #002bff,
-            #7a00ff,
-            #ff00c8,
-            #ff0000);
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -226,17 +219,34 @@ button {
     padding-inline-start: 0px;
 }
 
-.li {
-    vertical-align: right;
-    float: left;
-    margin: 0;
-    padding: 0;
+#features {
     padding: 20px 20px;
     margin: 20px 0px;
     background-color: var(--li1-color);
+    margin: 20px 20px;
+}
+
+
+#gui-features,
+#gui-li {
+    text-align: left;
+}
+
+.feature {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+    padding: 20px 20px;
+    background-color: #0e1525;
+    color: rgba(243, 244, 246);
     border-radius: 20px;
     vertical-align: middle;
     list-style: none;
+
+    /* put the header on top, then a line, then the text */
+    flex-flow: column;
+    margin: 20px;
 }
 
 .li-left {
@@ -263,7 +273,9 @@ button {
     }
 }
 
-#features {
+#blockquote {
     padding: 20px 20px;
     margin: 20px 20px;
+    background-color: #1c2333;
+    border-radius: 20px;
 }
