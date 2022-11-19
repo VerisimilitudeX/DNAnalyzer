@@ -5,9 +5,9 @@ package DNAnalyzer;
 
 import org.junit.jupiter.api.Test;
 
-public class MainTest {
+class MainTest {
 	@Test
-	public void mainClassshouldExist() throws ClassNotFoundException {
+	void mainClassshouldExist() throws ClassNotFoundException {
 		Class.forName("DNAnalyzer.Main");
 	}
 }
