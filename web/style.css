@@ -4,8 +4,8 @@
     font-family: "Poppins", cursive;
 }
 
-
-body {
+/* Keep all the variables in here */
+:root {
     --text-light: rgba(243, 244, 246, 0.9);
     --primary-dark: rgba(55, 65, 81, 1);
     --secondary-dark: rgba(55, 65, 81, 0.7);
@@ -14,7 +14,11 @@ body {
     --text-light: rgba(14, 21, 37);
     --primary-dark: rgba(243, 244, 246, 1);
     --secondary-dark: rgba(255, 255, 255);
+    --li1-color: #f26207;
+}
 
+
+body {
     background-color: var(--text-light);
 }
 
@@ -52,8 +56,7 @@ p {
     grid-template-columns: repeat(1, minmax(auto, 1000px));
     row-gap: 2em;
     column-gap: 3em;
-    margin: 3em 0;
-
+    margin: 3em 1em;
 }
 
 .grid .flex {
@@ -61,6 +64,7 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 4em 0;
+    text-align: center;
 }
 
 .grid .icon>span {
@@ -134,7 +138,7 @@ button {
     appearance: none;
 }
 
-*/ .alert {
+.alert {
     padding: 17px;
     background-color: #af0c00;
     border-radius: 17px;
@@ -216,10 +220,10 @@ button {
 /* Ordered List */
 #ol {
     color: white;
-    background-color: #f26207;
     vertical-align: left;
     border-radius: 20px;
     list-style: none;
+    padding-inline-start: 0px;
 }
 
 .li {
@@ -228,11 +232,35 @@ button {
     margin: 0;
     padding: 0;
     padding: 20px 20px;
-    margin: 20px 20px;
-    background-color: #f26207;
+    margin: 20px 0px;
+    background-color: var(--li1-color);
     border-radius: 20px;
     vertical-align: middle;
     list-style: none;
+}
+
+.li-left {
+    float: left;
+    width: 30%;
+    font-weight: 900;
+}
+
+.li-right {
+    float: right;
+    width: 70%;
+    font-weight: 300;
+}
+
+@media screen and (max-width: 625px) {
+    .li-left {
+        float: none;
+        width: 100%;
+    }
+
+    .li-right {
+        float: none;
+        width: 100%;
+    }
 }
 
 #features {
