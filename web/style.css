@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-* > * {
+*>* {
     font-family: "Poppins", cursive;
 }
 
-/* Keep all the variables in here */
-:root {
+
+body {
     --text-light: rgba(243, 244, 246, 0.9);
     --primary-dark: rgba(55, 65, 81, 1);
     --secondary-dark: rgba(55, 65, 81, 0.7);
@@ -14,11 +14,7 @@
     --text-light: rgba(14, 21, 37);
     --primary-dark: rgba(243, 244, 246, 1);
     --secondary-dark: rgba(255, 255, 255);
-    --li1-color: #f26207;
-}
 
-
-body {
     background-color: var(--text-light);
 }
 
@@ -61,7 +57,8 @@ p {
     grid-template-columns: repeat(1, minmax(auto, 1000px));
     row-gap: 2em;
     column-gap: 3em;
-    margin: 3em 1em;
+    margin: 3em 0;
+
 }
 
 .grid .flex {
@@ -69,10 +66,9 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 4em 0;
-    text-align: center;
 }
 
-.grid .icon > span {
+.grid .icon>span {
     font-size: 4em;
     color: var(--bg-btn);
 }
@@ -131,7 +127,7 @@ button {
     appearance: none;
 }
 
-.alert {
+*/ .alert {
     padding: 17px;
     background-color: #af0c00;
     border-radius: 17px;
@@ -156,15 +152,15 @@ button {
 .button:before {
     content: "";
     background: linear-gradient(45deg,
-    #ff0000,
-    #ff7300,
-    #fffb00,
-    #48ff00,
-    #00ffd5,
-    #002bff,
-    #7a00ff,
-    #ff00c8,
-    #ff0000);
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -213,10 +209,10 @@ button {
 /* Ordered List */
 #ol {
     color: white;
+    background-color: #f26207;
     vertical-align: left;
     border-radius: 20px;
     list-style: none;
-    padding-inline-start: 0px;
 }
 
 #features {
@@ -240,6 +236,8 @@ button {
     padding: 20px 20px;
     background-color: #0e1525;
     color: rgba(243, 244, 246);
+    margin: 20px 20px;
+    background-color: #0e1525;
     border-radius: 20px;
     vertical-align: middle;
     list-style: none;
@@ -273,7 +271,7 @@ button {
     }
 }
 
-#blockquote {
+#features {
     padding: 20px 20px;
     margin: 20px 20px;
     background-color: #1c2333;
