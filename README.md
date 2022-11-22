@@ -4,7 +4,9 @@
 
 >A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences
 
-DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+DNAnalyzer identifies protein-encoding sequences via recognizing start and stop codons, predicts high coverage regions, and locates promoter sequences and their associated regulatory sequences. It also provides a variety of other useful tools, such as a built-in DNA sequence editor, viewer, generator, and converter.
+
+Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
 ## Background
 
@@ -15,17 +17,14 @@ The human genome is composed of over 3 billion base pairs, making human analysis
 * Start and stop codons
   * Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. `[2]`
 * High coverage regions
-  * Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). These regions are likely to contain important information about the genome.`[3]`
+  * Promoter sequences in the genome that code for proteins have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). Such CpG islands are likely to reveal important information about the genome. `[3]`
 * Neurodevelopmental Disorders
   * A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous
                         system. These disorders are caused by genetic mutations that affect the development of the
                         brain and nervous system. These disorders include autism, attention deficit hyperactivity
                         disorder (ADHD), and schizophrenia. `[4]`
-* Transcription Factors
-  * A protein that binds to DNA and regulates the transcription of genes. These
-                        proteins are responsible for the regulation of gene expression. They are involved in the
-                        regulation of gene expression by binding to specific DNA sequences and regulating the
-                        transcription of genes. `[6]`
+* Core promoter elements
+  * Promoter sequences are short DNA sequences that are located upstream of a gene and are responsible for initiating transcription (e.g. BRE, TATA, INR, and DPE). `[5]`
 * FASTA files (.fa)
   * Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web. `[7]`
 * CLI
