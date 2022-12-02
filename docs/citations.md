@@ -1,4 +1,6 @@
-### Contributors
+# Citations
+
+## Contributors
 
 <h4>DNAnalyzer was developed with the help of the following people:
 <h4>
@@ -47,3 +49,12 @@
     </a>
   </li>
 </ol>
+
+## Further Citations
+
+1. https://www.sciencedirect.com/topics/neuroscience/cpg-island
+2. Molecular biology of the cell
+3. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6205604/
+4. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5400678/
+5. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6507050/
+6. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8048495/
