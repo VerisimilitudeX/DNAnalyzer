@@ -35,6 +35,9 @@ dependencies {
 
     // Picocli
     implementation 'info.picocli:picocli:4.6.3'
+
+    // Sentry SDK
+    implementation 'io.sentry:sentry:6.10.0'
 }
 
 application {
