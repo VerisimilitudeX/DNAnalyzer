@@ -47,6 +47,9 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Configures sentry.io to handle error monitoring.
+	 */
 	private static void configureSentry() {
 		Sentry.init(options -> {
 			options.setDsn(
