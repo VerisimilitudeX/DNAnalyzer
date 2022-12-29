@@ -61,9 +61,13 @@ public class Properties {
 	 *      "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
 	 */
 	public static float getGCContent(String dna) {
+		float gcContent=0;
+		if(dna.length()==0)
+			return gcContent;
+
 		dna = dna.toLowerCase();
 		float gcLen = (float) calculateLengthOfCG(dna);
-		float gcContent = gcLen / dna.length();
+		gcContent = gcLen / dna.length();
 
 		return gcContent;
 	}
@@ -143,8 +147,8 @@ public class Properties {
 	/**
 	 * Checks if the differnce between two numbers is less or equal to 2
 	 *
-	 * @param aNumber       one number to calculate the difference
-	 * @param anotherNumber the other number to calculate the difference
+	 * @param maxPercent       one number to calculate the difference
+	 * @param minPercent the other number to calculate the difference
 	 * @return Whether the difference is less or equal to 2
 	 * @category Properties
 	 */
