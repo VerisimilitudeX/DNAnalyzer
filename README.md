@@ -4,7 +4,7 @@
 <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
 <a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
 
->A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences
+>Revolutionizing DNA analysis and making it accessible to all through innovative analysis and interpretive tools
 
 DNAnalyzer identifies protein-encoding sequences via recognizing start and stop codons, predicts high coverage regions, and locates promoter sequences and their associated regulatory sequences. It also provides a variety of other useful tools, such as a built-in DNA sequence editor, viewer, generator, and converter.
 
