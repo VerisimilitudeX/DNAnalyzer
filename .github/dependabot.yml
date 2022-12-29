@@ -13,5 +13,6 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "*" #All the dependency it gonna ignore for major update
+      - dependency-name: "*" # All the dependencies it's going to ignore for major updates
         update-types: [ "version-update:semver-major" ]
+        
