@@ -1,58 +1,78 @@
-$downloads_folder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path # specifys what downlaods folder is
+# Specify the downloads folder
+$downloads_folder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
 
-$dir_path = ("$downloads_folder" + '/DNAnalyzer')
+# Set the path for the DNAnalyzer directory in the downloads folder
+$dir_path = "$downloads_folder/DNAnalyzer"
 
 try {
+    # Check if the directory already exists
     if ([System.IO.Directory]::Exists($dir_path)) 
     {
         Write-Host "The directory already exists."
     }
     else {
-        # trys to create directory for DNAnalyzer in downloads folder
+        # Try to create the directory for DNAnalyzer in the downloads folder
         New-Item -Path "$downloads_folder/DNAnalyzer/" -ItemType Directory
     }
 }
 catch [System.Exception] {
+    # Catch any errors and print a message
     Write-Host "Something went wrong..." -ForegroundColor Red
     Write-Error $_.Exception.Message
 }
 
-$url = 'https://github.com/Verisimilitude11/DNAnalyzer/releases/latest' # actual release
-$alt_url = 'https://github.com/Verisimilitude11/DNAnalyzer/archive/refs/tags/' # source code
+# Set the URL for the latest release and the source code
+$url = 'https://github.com/Verisimilitude11/DNAnalyzer/releases/latest'
+$alt_url = 'https://github.com/Verisimilitude11/DNAnalyzer/archive/refs/tags/'
 
+# Make a request to the URL and get the response
 $request = [System.Net.WebRequest]::Create($url)
 $response = $request.GetResponse()
+
+# Get the original URL of the response
 $realTagUrl = $response.ResponseUri.OriginalString
-$version = $realTagUrl.split('/')[-1].Trim('v') # example is "2.1.1"
 
-$realDownloadUrl = $realTagUrl.Replace('tag', 'download') + '/' + "DNAnalyzer-" + $version + '.zip' # published asset
-$Alt_realDownloadUrl = ($alt_url + 'v' + $version + '.zip')
+# Split the URL by '/' and get the last element, then remove the 'v' prefix
+$version = $realTagUrl.split('/')[-1].Trim('v')
 
+# Set the published asset download URL and the source code download URL
+$realDownloadUrl = "$realTagUrl/download/DNAnalyzer-$version.zip"
+$Alt_realDownloadUrl = "$alt_url/v$version.zip"
+
+# Store the URLs in an array
 $Download_URLs = @("$realDownloadUrl", "$Alt_realDownloadUrl")
+
+# Print the URLs for debugging
 $realDownloadUrl # 0
 $Alt_realDownloadUrl # 1
 
 Function Installation {
     param($version, $fileName, $folder_fileName, $Download_URLs, $Live_URL)
+
     Write-Host "Attempting to fetch file, please wait..."
 
     try {
-        Invoke-WebRequest -Uri $Download_URLs[$Live_URL] -OutFile $dir_path/$fileName
+        # Download the file from the specified URL
+        Invoke-WebRequest -Uri $Download_URLs[$Live_URL] -OutFile "$dir_path/$fileName"
     }
     catch {
+        # Catch any errors and print a message
         Write-Host "Fetch Failed," "StatusCode:" $Error -ForegroundColor Red
         Pause
     }
 
+    # Check if the file was successfully downloaded
     if ([System.IO.File]::Exists("$dir_path/$fileName")) {
         Write-Host "Fetch Sucessful!" -ForegroundColor Green
         Write-Host "Version:" -ForegroundColor Green $version
-            
+
         try {
-            Expand-Archive -Path ("$dir_path$fileName") -DestinationPath ("$dir_path$fileName").Replace('.zip', '')
-            Expand-Archive -Path ("$dir_path$fileName") -DestinationPath ("$dir_path$fileName").Replace('.zip', '')
+            # Uncompress the archive
+            Expand-Archive -Path "$dir_path/$fileName" -DestinationPath "$dir_path/$fileName".Replace('.zip', '')
+            Expand-Archive -Path "$dir_path/$fileName" -DestinationPath "$dir_path/$fileName".Replace('.zip', '')
         }
         catch { 
+            # Catch any errors and print a message
             Write-Host "Failed to uncomperss archieve!"
         }        
     }
@@ -60,25 +80,29 @@ Function Installation {
 
 function Before_installation_checks {
     param($version, $dir_path, $Download_URLs, $Live_URL)
-    $fileName = ("DNAnalyzer-" + $version + '.zip') # published asset/
-    $alt_filename = ($version + '.zip') # source code asset
-    $folder_fileName = "DNAnalyzer-" + $version # not zipped
-    $folder_alt_filename = $version # not zipped
 
-    if ([System.IO.File]::Exists("$dir_path" + "$folder_fileName")) {
+    # Set the file names for the published asset and source code asset
+    $fileName = "DNAnalyzer-$version.zip"
+    $alt_filename = "$version.zip"
+
+    # Set the folder names for the unzipped published asset and source code asset
+    $folder_fileName = "DNAnalyzer-$version"
+    $folder_alt_filename = $version
+
+    # Check if the folder for the correct version already exists
+    if ([System.IO.File]::Exists("$dir_path/$folder_fileName")) {
         Write-Host ("boom1")
-        # if folder with version exists
         Write-Host ("Latest verison installed") -ForegroundColor Green
         Write-Host "Version:" -ForegroundColor Green $version 
     }
-    elseif ([System.IO.File]::Exists("$dir_path" + '/' + "$fileName") -or [System.IO.File]::Exists("$dir_path" + "$alt_fileName")) {
-        # if zipped file exists and folder does not
+    # Check if the zipped file for the correct version exists, but the folder does not
+    elseif ([System.IO.File]::Exists("$dir_path/$fileName") -or [System.IO.File]::Exists("$dir_path/$alt_fileName")) {
         Write-Host ("boom2")
         Write-Host 'Trying to uncompress archieve...' 
         try {
-            # attempts to expand zip file 
-            Expand-Archive -Path ("$dir_path" + "$alt_filename") -DestinationPath ("$dir_path" + "$folder_alt_filename")
-            Expand-Archive -Path ("$dir_path" + "$fileName") -DestinationPath ("$dir_path + $folder_filename")
+            # Attempt to expand the zip file
+            Expand-Archive -Path "$dir_path/$alt_filename" -DestinationPath "$dir_path/$folder_alt_filename"
+            Expand-Archive -Path "$dir_path/$fileName" -DestinationPath "$dir_path/$folder_filename"
         }
         catch {
             Write-Host "Failed to uncomperss archieve!" -ForegroundColor Red  
@@ -88,25 +112,27 @@ function Before_installation_checks {
         Write-Host ("boom3")
     }
     
-    if ([System.IO.File]::Exists("$dir_path" + "$folder_fileName") -or [System.IO.File]::Exists("$dir_path" + "$folder_alt_filename")) {
-        # if folder exists
+    # Check if the folder for the correct version now exists
+    if ([System.IO.File]::Exists("$dir_path/$folder_fileName") -or [System.IO.File]::Exists("$dir_path/$folder_alt_filename")) {
         Write-Host ('Sucessfully uncompressed zip file to, ' + "$dir_path" + ' attempting to remove zipped file.') -ForegroundColor Green
         try {
-            Remove-Item ("$dir_path/$fileName") # attempts to remove zip file
+            # Attempt to remove the zip file
+            Remove-Item "$dir_path/$fileName"
         }
         catch {
             Write-Host 'Failed to remove zipped folder.' -ForegroundColor Red
         } 
-            
-        else {
-            <# If neither zipped file or folder exists with the correct version, start installation #>
-            Write-Host 'File not already found on system.'
-            Installation ($version, $fileName, $folder_fileName, $Download_URLs, $Live_URL) # call instalation process function
-        }
+    }
+    else {
+        # If neither zipped file or folder exists with the correct version, start installation
+        Write-Host 'File not already found on system.'
+        Installation ($version, $fileName, $folder_fileName, $Download_URLs, $Live_URL) # call instalation process function
     }
 }
-## introduction
+
+## Introduction
 try {
+    # Check the content type of the source code asset and published asset
     $alt_response = Invoke-WebRequest -Method Head -Uri $Alt_realDownloadUrl -UseBasicParsing 
     $alt_content = $alt_response.Headers."Content-Type"
     $alt_content
@@ -116,49 +142,58 @@ try {
     $content
 }
 catch [System.Net.WebException] {
+    # If the content type is a zip file, proceed with installation
     if ($content -eq 'application/zip') {
-        # actual release
+        # Actual release
         $Live_URL = 0
-        $fileName = "DNAnalyzer-" + $version + ".zip" # published asset
-        $folder_fileName = "DNAnalyzer-" + $version # not zipped
+        $fileName = "DNAnalyzer-$version.zip" # Published asset
+        $folder_fileName = "DNAnalyzer-$version" # Not zipped
         Before_installation_checks ($version, $dir_path, $Download_URLs, $Live_URL)
 
     }
     elseif ($alt_content -eq 'application/zip') {
-        # source
-        if ($folder_fileName -ne ("DNAnalyzer-" + $version + ".zip")) {
-            # if folder_fileName is not already assigned by previous IF
+        # Source code
+        if ($folder_fileName -ne "DNAnalyzer-$version.zip") {
+            # If folder_fileName is not already assigned by previous IF
             $Live_URL = 1
-            $folder_fileName = $version # not zipped
+            $folder_fileName = $version # Not zipped
             Before_installation_checks ($version, $dir_path, $Download_URLs, $Live_URL)
         }
     } 
     else {
+        # If the content type is not a zip file, print an error message
         Write-Host 'Something went wrong...' -ForegroundColor Red
         $Error
         Pause
     }
 }
 catch {
+    # Catch any other errors and print a message
     Write-Host 'Something went wrong...' -ForegroundColor Red
     $Error
     Pause
 }
 
-
-## completion
+## Completion
 if ([System.IO.File]::Exists("$dir_path$fileName".Replace('.zip', ''))) {
-    Remove-Item ("$dir_path$fileName") # attempts to remove zip file
-    Set-Location -Path ("$dir_path$fileName" + '\' + "$filename").Replace('.zip', '')
+    # Remove the zip file
+    Remove-Item "$dir_path$fileName"
+
+    # Change the location to the unzipped folder
+    Set-Location -Path "$dir_path$fileName".Replace('.zip', '')
+
+    # Run the gradle build and run commands
     ./gradlew build
     try {
         ./gradlew run --args="--gui"
     }
     catch {
+        # Clear the error and print it
         $Error.Clear
         Write-Host ($Error) -ForegroundColor Red
     }
     
+    # Print a success message
     Write-Host ("Installation Complete!") -ForegroundColor Green
     Write-Host "Version:" -ForegroundColor Green $version 
 }
