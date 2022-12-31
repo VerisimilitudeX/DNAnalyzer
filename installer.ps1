@@ -12,12 +12,10 @@ try {
         New-Item -Path "$downloads_folder/DNAnalyzer/" -ItemType Directory
     }
 }
-
 catch [System.Exception] {
     Write-Host "Something went wrong..." -ForegroundColor Red
     Write-Error $_.Exception.Message
 }
-
 
 $url = 'https://github.com/Verisimilitude11/DNAnalyzer/releases/latest' # actual release
 $alt_url = 'https://github.com/Verisimilitude11/DNAnalyzer/archive/refs/tags/' # source code
@@ -66,9 +64,6 @@ function Before_installation_checks {
     $alt_filename = ($version + '.zip') # source code asset
     $folder_fileName = "DNAnalyzer-" + $version # not zipped
     $folder_alt_filename = $version # not zipped
-
-
- 
 
     if ([System.IO.File]::Exists("$dir_path" + "$folder_fileName")) {
         Write-Host ("boom1")
@@ -134,7 +129,6 @@ catch [System.Net.WebException] {
         if ($folder_fileName -ne ("DNAnalyzer-" + $version + ".zip")) {
             # if folder_fileName is not already assigned by previous IF
             $Live_URL = 1
-            $fileName = $alt_filename = $version + '.zip' # source code asset
             $folder_fileName = $version # not zipped
             Before_installation_checks ($version, $dir_path, $Download_URLs, $Live_URL)
         }
