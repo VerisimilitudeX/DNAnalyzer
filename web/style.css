@@ -27,7 +27,10 @@ body {
     --secondary-dark: rgba(255, 255, 255);
 
     background-color: var(--text-light);
+    overflow-x: hidden;
 }
+
+
 
 h1 {
     font-size: 3.2rem;
@@ -45,6 +48,16 @@ h1 {
     font-size: 16px;
 }
 
+#bg-video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: brightness(50%);
+}
+
 p {
     margin: 0;
 }
@@ -55,7 +68,8 @@ p {
     justify-content: center;
     align-items: center;
     margin: 0;
-
+    position: absolute;
+    width: 100%;
 }
 
 .text-center {
