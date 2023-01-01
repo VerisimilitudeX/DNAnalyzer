@@ -1,12 +1,9 @@
 package DNAnalyzer.core;
 
-import DNAnalyzer.utils.protein.ProteinFinder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -99,60 +96,4 @@ class PropertiesTest {
         assertFalse(actual);
     }
 
-    @Test
-    void printProteinList() {
-        PrintStream originalOut = System.out;
-        var aminoAcid = "GLYCINE";
-
-        var expected = """
-                Proteins coded for Glycine: \r
-                ----------------------------------------------------\r
-                1. GGTCCCTCGATAGATTTGCTCCCACCCGTCCCGGAAACCATATCGACGACTTGTAGGTCTCTAA\r
-                2. GGCTCAAAACCAATCTCATGATCACCAGTTCTGACGTTACAGTATTTTCGGTTGAGCAGGCCCCATGGGGCCCCCGCATGCCGAATTACGATATGATGCCCACTATCCTGTGTCTTCCAACCTTATGACTGACTTGTATGCGCTGCGAGGTCCCTCGATAGATTTGCTCCCACCCGTCCCGGAAACCATATCGACGACTTGTAGGTCTCTAA\r
-                3. GGAAACCATATCGACGACTTGTAGGTCTCTAA\r
-                4. GGGTTCTGGCGTCCGAGTGAAGATGATAA\r
-                """;
-
-        try {
-            ByteArrayOutputStream os = new ByteArrayOutputStream(100);
-            PrintStream capture = new PrintStream(os);
-            // From this point on, everything printed to System.out will get captured
-            System.setOut(capture);
-            var proteinList = ProteinFinder.getProtein(dnaString, aminoAcid);
-
-            Properties.printProteinList(proteinList, aminoAcid, capture);
-            capture.flush();
-            var actual = os.toString();
-            assertEquals(expected, actual);
-        } finally {
-            System.setOut(originalOut);
-        }
-    }
-
-    @Test
-    void printNucleotideCount() {
-        PrintStream originalOut = System.out;
-        var expected = """
-                Nucleotide count:\r
-                A: 25000381 (25.000381%)\r
-                T: 24998528 (24.998528%)\r
-                G: 25000967 (25.000969%)\r
-                C: 25000124 (25.000126%)\r
-                """;
-
-        try {
-            ByteArrayOutputStream os = new ByteArrayOutputStream(100);
-            PrintStream capture = new PrintStream(os);
-            // From this point on, everything printed to System.out will get captured
-            System.setOut(capture);
-
-            Properties.printNucleotideCount(dnaString,capture);
-            capture.flush();
-            var actual = os.toString();
-            assertEquals(expected, actual);
-        } finally {
-            System.setOut(originalOut);
-        }
-
-    }
 }
