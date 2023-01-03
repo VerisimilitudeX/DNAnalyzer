@@ -1,24 +1,21 @@
 # Specify the downloads folder
 $downloads_folder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
 $installer_location = Get-Location
-$ErrorActionPreference= 'SilentlyContinue'
-$ProgressPreference = 'SilentlyContinue' # adds increased downloading speed
+$ErrorActionPreference = 'SilentlyContinue'
+$ProgressPreference = 'SilentlyContinue'
 
 # Set the path for the DNAnalyzer directory in the downloads folder
 $dir_path = "$downloads_folder/DNAnalyzer"
 
 try {
     # Check if the directory already exists
-    if ([System.IO.Directory]::Exists($dir_path)) 
-    {
+    if ([System.IO.Directory]::Exists($dir_path)) {
         Write-Host "The directory already exists."
-    }
-    else {
+    } else {
         # Try to create the directory for DNAnalyzer in the downloads folder
         New-Item -Path "$downloads_folder/DNAnalyzer/" -ItemType Directory
     }
-}
-catch [System.Exception] {
+} catch [System.Exception] {
     # Catch any errors and print a message
     Write-Host "Something went wrong..." -ForegroundColor Red
     Write-Error $_.Exception.Message
@@ -50,8 +47,7 @@ Function Installation {
     try {
         # Download the file from the specified URL
         Invoke-WebRequest -Uri $Download_URL[$Live_URL] -OutFile "$($dir_path)/$($fileName[$Live_URL]).zip"
-    }
-    catch {
+    } catch {
         # Catch any errors and print a message
         Write-Host "Fetch Failed," "StatusCode:" $Error -ForegroundColor Red
         Pause
@@ -65,14 +61,12 @@ Function Installation {
         try {
             # Uncompress the archive
             Expand-Archive -Path "$($dir_path)/$($fileName[$Live_URL]).zip" -DestinationPath "$($dir_path)/$($fileName[$Live_URL])"
-        } 
-        catch { 
+        } catch { 
             # Catch any errors and print a message
             Write-Host "Failed to uncomperess archieve!"
         }        
     }
 }
-
 
 function Before_installation_checks {
     param($version, $dir_path, $Download_URL, $fileName, $Live_URL)
@@ -83,29 +77,23 @@ function Before_installation_checks {
         Write-Host "Version:" -ForegroundColor Green $version
         Pause
     }
-
     # Check if the zipped file for the correct version exists, but the folder does not
     elseif ([System.IO.File]::Exists("$($dir_path)/$($fileName[$Live_URL]).zip")) {
         Write-Host 'Trying to uncompress archieve...' 
         try {
             # Attempt to expand the zip file
             Expand-Archive -Path "$($dir_path)/$($fileName[$Live_URL]).zip" -DestinationPath "$($dir_path)/$($fileName[$Live_URL])"
-        }
-        catch {
+        } catch {
             Write-Host "Failed to uncomperss archieve!" -ForegroundColor Red
             Pause  
-        }
-        
-        else {
+        } else {
             try {
                 # Attempt to remove the zip file
                 Remove-Item "$($dir_path)/$($fileName[$Live_URL]).zip"
-                }
-            catch {
+                } catch {
                 Write-Host 'Failed to remove zipped folder.' -ForegroundColor Red
                 Write-Host 'Permisson Error?'
-            }
-            else {
+            } else {
                 # Check if the folder for the correct version already exists
                 if ([System.IO.File]::Exists("$($dir_path)/$($fileName[$Live_URL])")) {
                     Write-Host ("Latest verison sucessfully unzipped!") -ForegroundColor Green
@@ -117,9 +105,10 @@ function Before_installation_checks {
     if (-not (Test-Path -Path ("$($dir_path)/$($fileName[$Live_URL]).zip")) -and -not (Test-Path -Path "$($dir_path)/$($fileName[$Live_URL])")) {
         # If neither zipped file or folder exists with the correct version, start installation
         Write-Host 'File/Folder not already found on system.'
-        Installation $version $Download_URL $dir_path $fileName $Live_URL # call instalation process function
+        Installation $version $Download_URL $dir_path $fileName $Live_URL # Call installation process function
     }
 }
+
 ## Introduction
 
 # Store the URLs in an array
@@ -137,8 +126,8 @@ try {
 }
 catch [System.Net.WebException] {
     if ($null -eq $content -and $null -eq $alt_content) {
-    Write-Host 'Internet error maybe?' -ForegroundColor Red
-    Pause
+        Write-Host 'Internet error maybe?' -ForegroundColor Red
+        Pause
     }
 }
 catch {
@@ -149,20 +138,21 @@ catch {
 
 finally {
     # If the 'actual release' content type is a zip file, proceed with installation
-
+    
     $fileName = @("DNAnalyzer-$version", "DNAnalyzer-$version-BETA_SOURCE")
     
     if ($content -eq 'application/zip') {
         # Actual Release
         $Live_URL = 0 
         Before_installation_checks $version $dir_path $Download_URL $fileName $Live_URL
-
-    }    # If the 'source code' content type is a zip file, proceed with installation
+    }
+    
+    # If the 'source code' content type is a zip file, proceed with installation
     elseif ($alt_content -eq 'application/zip') {
         # Source code
         $Live_URL = 1
         Before_installation_checks $version $dir_path $Download_URL $fileName $Live_URL
-        }
+    }
      
     else {
         # If the content type is not a zip file, print an error message
@@ -170,9 +160,10 @@ finally {
         $Error
         Pause
     }
+    
 }
 
-## Clean up and compliation
+# Clean up and compilation
 if ([System.IO.File]::Exists("$($dir_path)/$($fileName[$Live_URL]).zip")) { # if zipped file exists
     # Remove the zip file
     try {
@@ -192,21 +183,22 @@ if ([System.IO.File]::Exists("$($dir_path)/$($fileName[$Live_URL]).zip")) { # if
     if (Test-Path "$($dir_path)/$($fileName[$Live_URL])/$($fileName[0])") {
         Remove-Item -Path "$($dir_path)/$($fileName[$Live_URL])/$($fileName[0])" -Recurse
     }
-
-
-    # Change the location to the unzipped folder
-    Set-Location -Path "$($dir_path)/$($fileName[$Live_URL])/$($subfolder_location)"
-    
-    # Runs the gradle build and run commands
-    try {
-        ./gradlew build
-        ./gradlew run --args="--gui"
-    }
-    catch { # prints the error
-        Write-Host ($Error) -ForegroundColor Red
-    }
-    
-    # Print a success message
-    Write-Host ("Installation Complete!") -ForegroundColor Green
-    Write-Host "Version:" -ForegroundColor Green $version 
 }
+
+# Change the location to the unzipped folder
+Set-Location -Path "$($dir_path)/$($fileName[$Live_URL])/$($subfolder_location)"
+
+explorer "$($dir_path)/$($fileName[$Live_URL])/$($subfolder_location)"
+
+# Runs the gradle build and run commands
+try {
+    ./gradlew build
+    ./gradlew run --args="--gui"
+}
+catch { # prints the error
+    Write-Host ($Error) -ForegroundColor Red
+}
+
+# Print a success message
+Write-Host ("Installation Complete!") -ForegroundColor Green
+Write-Host "Version:" -ForegroundColor Green $version 
