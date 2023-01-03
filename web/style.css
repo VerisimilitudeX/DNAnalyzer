@@ -1,3 +1,14 @@
+/*
+ * Copyright © 2023 DNAnalyzer. Some rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * You are entirely responsible for the use of this application, including any and all activities that occur.
+ * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
+ * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
+ *
+ * For further inquiries, please reach out to contact@dnanalyzer.live
+ */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 *>* {
@@ -16,7 +27,10 @@ body {
     --secondary-dark: rgba(255, 255, 255);
 
     background-color: var(--text-light);
+    overflow-x: hidden;
 }
+
+
 
 h1 {
     font-size: 3.2rem;
@@ -34,6 +48,16 @@ h1 {
     font-size: 16px;
 }
 
+#bg-video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    filter: brightness(50%);
+}
+
 p {
     margin: 0;
 }
@@ -44,7 +68,8 @@ p {
     justify-content: center;
     align-items: center;
     margin: 0;
-
+    position: absolute;
+    width: 100%;
 }
 
 .text-center {
