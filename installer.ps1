@@ -37,23 +37,16 @@ $version = $realTagUrl.split('/')[-1].Trim('v')
 
 # Set the published asset download URL and the source code download URL
 $realDownloadUrl = "$realTagUrl/download/DNAnalyzer-$version.zip"
-$Alt_realDownloadUrl = "$alt_url/v$version.zip"
-
-# Store the URLs in an array
-$Download_URLs = @("$realDownloadUrl", "$Alt_realDownloadUrl")
-
-# Print the URLs for debugging
-$realDownloadUrl # 0
-$Alt_realDownloadUrl # 1
+$Alt_realDownloadUrl = "$alt_url" + 'v' + "$version.zip"
 
 Function Installation {
-    param($version, $fileName, $folder_fileName, $Download_URLs, $Live_URL)
+    param($version, $fileName, $folder_fileName, $Download_URL)
 
     Write-Host "Attempting to fetch file, please wait..."
-
+    $Download_URL
     try {
         # Download the file from the specified URL
-        Invoke-WebRequest -Uri $Download_URLs[$Live_URL] -OutFile "$dir_path/$fileName"
+        Invoke-WebRequest -Uri $Download_URL -OutFile "$dir_path/$fileName"
     }
     catch {
         # Catch any errors and print a message
@@ -79,7 +72,7 @@ Function Installation {
 }
 
 function Before_installation_checks {
-    param($version, $dir_path, $Download_URLs, $Live_URL)
+    param($version, $dir_path, $Download_URL)
 
     # Set the file names for the published asset and source code asset
     $fileName = "DNAnalyzer-$version.zip"
@@ -109,7 +102,7 @@ function Before_installation_checks {
         }
     }
     else {
-        Write-Host ("boom3")
+        # zip files not on system
     }
     
     # Check if the folder for the correct version now exists
@@ -126,38 +119,45 @@ function Before_installation_checks {
     else {
         # If neither zipped file or folder exists with the correct version, start installation
         Write-Host 'File not already found on system.'
-        Installation ($version, $fileName, $folder_fileName, $Download_URLs, $Live_URL) # call instalation process function
+        Installation $version $fileName $folder_fileName $Download_URL # call instalation process function
     }
 }
 
 ## Introduction
+
+# Store the URLs in an array
+$Download_URL = @("$realDownloadUrl", "$Alt_realDownloadUrl")
+
 try {
     # Check the content type of the source code asset and published asset
-    $alt_response = Invoke-WebRequest -Method Head -Uri $Alt_realDownloadUrl -UseBasicParsing 
+    $alt_response = Invoke-WebRequest -Method Head -Uri $Download_URL[1] -UseBasicParsing 
     $alt_content = $alt_response.Headers."Content-Type"
     $alt_content
 
-    $response = Invoke-WebRequest -Method Head -Uri $realDownloadUrl -UseBasicParsing
+    $response = Invoke-WebRequest -Method Head -Uri $Download_URL[0] -UseBasicParsing
     $content = $response.Headers."Content-Type"
     $content
 }
 catch [System.Net.WebException] {
-    # If the content type is a zip file, proceed with installation
+    # If the 'actual release' content type is a zip file, proceed with installation
     if ($content -eq 'application/zip') {
         # Actual release
-        $Live_URL = 0
+        $Live_URL = 0 # 0 = actual release
         $fileName = "DNAnalyzer-$version.zip" # Published asset
         $folder_fileName = "DNAnalyzer-$version" # Not zipped
-        Before_installation_checks ($version, $dir_path, $Download_URLs, $Live_URL)
+        $Download_URL = $Download_URL[0]
+        Before_installation_checks $version $dir_path $Download_URL
 
-    }
+    }    # If the 'source code' content type is a zip file, proceed with installation
     elseif ($alt_content -eq 'application/zip') {
         # Source code
+        
         if ($folder_fileName -ne "DNAnalyzer-$version.zip") {
             # If folder_fileName is not already assigned by previous IF
-            $Live_URL = 1
             $folder_fileName = $version # Not zipped
-            Before_installation_checks ($version, $dir_path, $Download_URLs, $Live_URL)
+            $Download_URL = $Download_URL[1]
+            $Download_URL
+            Before_installation_checks $version $dir_path $Download_URL
         }
     } 
     else {
@@ -187,9 +187,7 @@ if ([System.IO.File]::Exists("$dir_path$fileName".Replace('.zip', ''))) {
     try {
         ./gradlew run --args="--gui"
     }
-    catch {
-        # Clear the error and print it
-        $Error.Clear
+    catch { # prints the error
         Write-Host ($Error) -ForegroundColor Red
     }
     
