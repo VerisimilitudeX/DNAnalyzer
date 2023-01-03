@@ -1,8 +1,8 @@
 # Specify the downloads folder
 $downloads_folder = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
-$installer_location = Get-Location
-$ErrorActionPreference = 'SilentlyContinue'
-$ProgressPreference = 'SilentlyContinue'
+
+$ErrorActionPreference = 'SilentlyContinue' 
+$ProgressPreference = 'SilentlyContinue'  # adds increased downloading speed
 
 # Set the path for the DNAnalyzer directory in the downloads folder
 $dir_path = "$downloads_folder/DNAnalyzer"
@@ -187,9 +187,8 @@ if ([System.IO.File]::Exists("$($dir_path)/$($fileName[$Live_URL]).zip")) { # if
 
 # Change the location to the unzipped folder
 Set-Location -Path "$($dir_path)/$($fileName[$Live_URL])/$($subfolder_location)"
-
-explorer "$($dir_path)/$($fileName[$Live_URL])/$($subfolder_location)"
-
+$installer_location = Get-Location
+explorer "$installer_location"
 # Runs the gradle build and run commands
 try {
     ./gradlew build
