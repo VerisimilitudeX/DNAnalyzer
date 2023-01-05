@@ -2,8 +2,6 @@ cff-version: "1.1.0"
 authors:
   - family-names: Acharya
     given-names: Piyush
-  - family-names: Wang
-    given-names: Evan
 
 date-released: 2022-10-10
 message: "If you use this software, please cite it using these metadata."
