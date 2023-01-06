@@ -64,7 +64,7 @@ public class CmdArgs implements Runnable {
 	 */
 	@Override
 	public void run() {
-		if (startGUI == true) {
+		if (startGUI) {
 			String[] args = new String[0];
 			DNAnalyzerGUI.launchIt(args);
 		} else {
@@ -72,7 +72,7 @@ public class CmdArgs implements Runnable {
 					.isValidDna()
 					.replaceDNA("u", "t");
 
-			if (reverse == true) {
+			if (reverse) {
 				dnaAnalyzer = dnaAnalyzer.reverseDna();
 			}
 
