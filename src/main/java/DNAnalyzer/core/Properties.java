@@ -11,8 +11,6 @@
  
 package DNAnalyzer.core;
 
-import static DNAnalyzer.core.DNAAnalysis.countBasePairs;
-
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
