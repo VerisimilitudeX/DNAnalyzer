@@ -64,7 +64,7 @@ public class CmdArgs implements Runnable {
 	 */
 	@Override
 	public void run() {
-		if (startGUI) {
+		if (startGUI == true) {
 			String[] args = new String[0];
 			DNAnalyzerGUI.launchIt(args);
 		} else {
