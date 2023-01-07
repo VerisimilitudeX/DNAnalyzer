@@ -11,6 +11,8 @@
 
 package DNAnalyzer.utils.traits;
 
+import java.util.HashMap;
+
 public class Traits {
     /**
      * Check if the DNA sequence has at least three distinct occurrences of the
