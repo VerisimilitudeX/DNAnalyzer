@@ -11,10 +11,13 @@
  
 package DNAnalyzer.core;
 
+import static DNAnalyzer.core.DNAAnalysis.countBasePairs;
+
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
+import DNAnalyzer.core.DNAAnalysis.BasePairIndex;
 import DNAnalyzer.data.aminoAcid.AminoAcid;
 import DNAnalyzer.data.aminoAcid.AminoAcidFactory;
 

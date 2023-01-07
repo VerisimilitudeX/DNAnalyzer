@@ -17,7 +17,9 @@ import DNAnalyzer.ui.cli.CmdArgs;
 import picocli.CommandLine;
 
 import io.sentry.Sentry;
+import io.sentry.ITransaction;
 import io.sentry.Sentry;
+import io.sentry.SpanStatus;
 
 /**
  * Main Class for the DNAnalyzer program.
