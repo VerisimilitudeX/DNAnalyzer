@@ -36,4 +36,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Launch GUI
-        run: .\gradlew run --args="--gui assets/dna/random/dnalong.fa"
+        run: ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
