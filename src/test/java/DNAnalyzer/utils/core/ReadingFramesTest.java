@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-
 class ReadingFramesTest {
 
     ReadingFrames readingFrames;
@@ -19,7 +18,7 @@ class ReadingFramesTest {
     void setUp() {
         try {
             List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-            readingFrames= new ReadingFrames(new CodonFrame(inputLines.get(0), (short) 1, 2, 100));
+            readingFrames = new ReadingFrames(new CodonFrame(inputLines.get(0), (short) 1, 2, 100));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

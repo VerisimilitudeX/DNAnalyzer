@@ -34,14 +34,14 @@ class DNAToolsTest {
     void shouldIsValidThrowException() {
         dnaTools = new DNATools("");
         var expected = "Invalid characters present in DNA sequence.";
-        Exception exception = assertThrows(IllegalArgumentException.class, ()->dnaTools.isValid() );
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> dnaTools.isValid());
         assertEquals(expected, exception.getMessage());
     }
 
     @Test
     void shouldIsValidNotThrowException() {
         dnaTools = new DNATools("atgc");
-        assertDoesNotThrow(()->dnaTools.isValid() );
+        assertDoesNotThrow(() -> dnaTools.isValid());
     }
 
     @Test
@@ -50,7 +50,7 @@ class DNAToolsTest {
         dnaTools = new DNATools("gagacggctcaaaacca");
         var newDnaTools = dnaTools.replace("gag", "AAA");
         var actual = newDnaTools.getDna();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -59,6 +59,6 @@ class DNAToolsTest {
         dnaTools = new DNATools("gagac");
         var newDnaTools = dnaTools.reverse();
         var actual = newDnaTools.getDna();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 }

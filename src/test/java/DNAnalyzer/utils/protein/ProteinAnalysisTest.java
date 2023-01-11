@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 class ProteinAnalysisTest {
 
     Path projectPath = Path.of("");
     Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
 
-    String dnaString="";
+    String dnaString = "";
 
     @BeforeEach
     void setUp() {

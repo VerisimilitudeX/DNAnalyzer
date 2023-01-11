@@ -17,7 +17,8 @@ class PropertiesTest {
     Path projectPath = Path.of("");
     Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
 
-    String dnaString="";
+    String dnaString = "";
+
     @BeforeEach
     void setUp() {
         try {
@@ -30,35 +31,36 @@ class PropertiesTest {
 
     @Test
     void shouldGetGCContent() {
-            double expected = 0.5000109;
-            float actual = Properties.getGCContent(dnaString);
-            assertEquals(expected, actual,0.01);
+        double expected = 0.5000109;
+        float actual = Properties.getGCContent(dnaString);
+        assertEquals(expected, actual, 0.01);
 
     }
 
     @Test
     void shouldGetGCContentAsZero() {
-           // List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-            String testEmptyString = "";
-            double expected = 0;
-            float actual = Properties.getGCContent(testEmptyString);
-            assertEquals(expected, actual);
+        // List<String> inputLines = Files.readAllLines(dnaLongTestInput);
+        String testEmptyString = "";
+        double expected = 0;
+        float actual = Properties.getGCContent(testEmptyString);
+        assertEquals(expected, actual);
     }
 
     @Test
     void sholudCalculateLengthOfCG() {
-            int expected = 50001033;
-            int actual = Properties.calculateLengthOfCG(dnaString);
-            assertEquals(expected, actual);
+        int expected = 50001033;
+        int actual = Properties.calculateLengthOfCG(dnaString);
+        assertEquals(expected, actual);
     }
 
     @Test
     void sholudCalculateLengthOfCGAsZero() {
-            String testEmptyString = "";
-            int expected = 0;
-            int actual = Properties.calculateLengthOfCG(testEmptyString);
-            assertEquals(expected, actual);
+        String testEmptyString = "";
+        int expected = 0;
+        int actual = Properties.calculateLengthOfCG(testEmptyString);
+        assertEquals(expected, actual);
     }
+
     @Test
     void shouldLetterIsCorGReturnTrue() {
         boolean actual = Properties.letterIsCorG('c');
@@ -73,26 +75,26 @@ class PropertiesTest {
 
     @Test
     void shouldIsRandomDNAReturnTrue() {
-            boolean actual = Properties.isRandomDNA(dnaString);
-            assertTrue(actual);
+        boolean actual = Properties.isRandomDNA(dnaString);
+        assertTrue(actual);
     }
 
-//    @Test
-//    void shouldIsRandomDNAReturnFalse() {
-//            String testEmptyString = "";
-//            boolean actual = Properties.isRandomDNA(testEmptyString);
-//            assertFalse(actual);
-//    }
+    // @Test
+    // void shouldIsRandomDNAReturnFalse() {
+    // String testEmptyString = "";
+    // boolean actual = Properties.isRandomDNA(testEmptyString);
+    // assertFalse(actual);
+    // }
 
     @Test
     void shouldIsDifferenceLessOrEqualTo2ReturnTrue() {
-        boolean actual = Properties.isDifferenceLessOrEqualTo2(10,9);
+        boolean actual = Properties.isDifferenceLessOrEqualTo2(10, 9);
         assertTrue(actual);
     }
 
     @Test
     void shouldIsDifferenceLessOrEqualTo2ReturnFalse() {
-        boolean actual = Properties.isDifferenceLessOrEqualTo2(10,1);
+        boolean actual = Properties.isDifferenceLessOrEqualTo2(10, 1);
         assertFalse(actual);
     }
 
