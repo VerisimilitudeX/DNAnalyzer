@@ -26,11 +26,11 @@ public class Traits {
      * public Integer getResultSet() {
      * return sequence.count("GGG");
      * }
-     * 
+     *
      * public Boolean getResult() {
      * return getResultSet() >= 3;
      * }
-     * 
+     *
      * public String getFormattedResult() {
      * return (getResult() ? "Yes" : "No") +
      * " (" + getResultSet() + " occurrences, 3 occurrences indicate high risk)";

@@ -17,19 +17,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="The DNAnalyzer site
-  provides an overview on DNAnalyzer, an open-source project dedicated to making DNA analysis free and accessible to all." />
-    <meta property="og:title" content="DNAnalyzer" />
+          content="The DNAnalyzer site
+  provides an overview on DNAnalyzer, an open-source project dedicated to making DNA analysis free and accessible to all."/>
+    <meta property="og:title" content="DNAnalyzer"/>
     <meta property="og:image"
-        content="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" />
-    <meta name="twitter:title" content="DNAnalyzer" />
+          content="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png"/>
+    <meta name="twitter:title" content="DNAnalyzer"/>
     <title>DNAnalyzer</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <link rel="icon" type="image/png" href="./assets/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="./assets/icons/favicon.ico"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="apple-touch-icon" sizes="57x57" href="./assets/icons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./assets/icons/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./assets/icons/apple-touch-icon-72x72.png">
@@ -45,162 +45,164 @@
     <link rel="icon" type="image/png" href="./assets/icons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="./assets/icons/android-chrome-192x192.png" sizes="192x192">
 
-    <meta name="msapplication-square70x70logo" content="./assets/icons/smalltile.png" />
-    <meta name="msapplication-square150x150logo" content="./assets/icons/mediumtile.png" />
-    <meta name="msapplication-wide310x150logo" content="./assets/icons/widetile.png" />
-    <meta name="msapplication-square310x310logo" content="./assets/icons/largetile.png" />
+    <meta name="msapplication-square70x70logo" content="./assets/icons/smalltile.png"/>
+    <meta name="msapplication-square150x150logo" content="./assets/icons/mediumtile.png"/>
+    <meta name="msapplication-wide310x150logo" content="./assets/icons/widetile.png"/>
+    <meta name="msapplication-square310x310logo" content="./assets/icons/largetile.png"/>
 </head>
 
 <body>
-    <video playsinline autoplay muted loop id="bg-video">
-        <source src="assets/videos/dna_spiral.mp4" type="video/mp4">
-    </video>
+<video playsinline autoplay muted loop id="bg-video">
+    <source src="assets/videos/dna_spiral.mp4" type="video/mp4">
+</video>
 
-    <div>
-        <div id="redirect-button">
-            <button class="button" style="position: absolute; left: 0; margin-left: 10px; margin-top: 10px"
+<div>
+    <div id="redirect-button">
+        <button class="button" style="position: absolute; left: 0; margin-left: 10px; margin-top: 10px"
                 onclick=window.location.href="https://github.com/Verisimilitude11/DNAnalyzer">GitHub
-                Repository</button>
-            <button class="button" style="position: absolute; right: 0; margin-right: 10px; margin-top: 10px"
-                onclick=window.location.href="https://discord.gg/xNpujz49gj">Discord Server</button>
-        </div>
+            Repository
+        </button>
+        <button class="button" style="position: absolute; right: 0; margin-right: 10px; margin-top: 10px"
+                onclick=window.location.href="https://discord.gg/xNpujz49gj">Discord Server
+        </button>
     </div>
+</div>
 
-    <br>
-    <br>
+<br>
+<br>
 
-    <div class="container">
-        <h1 class="text-center primary-dark">DNAnalyzer</h1>
-        <span class="secondary-dark" id="blockquote">A highly efficient, powerful, and feature-rich algorithm for
+<div class="container">
+    <h1 class="text-center primary-dark">DNAnalyzer</h1>
+    <span class="secondary-dark" id="blockquote">A highly efficient, powerful, and feature-rich algorithm for
             analyzing DNA
             sequences</span>
 
-        <div class="grid">
-            <div class="item bg-light">
-                <div class="flex">
-                    <h2 class="primary-dark">Introduction</h2>
-                    <p class="secondary-dark text-center">DNAnalyzer identifies proteins, amino acids, start and stop
-                        codons, high coverage regions, regions susceptible to neurodevelopmental disorders,
-                        transcription factors, and regulatory elements. Researchers are working to extract valuable
-                        information from such software to better understand human health and disease. Currently, we have
-                        a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will
-                        enable physicians to quickly and more easily interact with the software, enabling them to
-                        identify genetic mutations that may cause disease.</p>
-                </div>
+    <div class="grid">
+        <div class="item bg-light">
+            <div class="flex">
+                <h2 class="primary-dark">Introduction</h2>
+                <p class="secondary-dark text-center">DNAnalyzer identifies proteins, amino acids, start and stop
+                    codons, high coverage regions, regions susceptible to neurodevelopmental disorders,
+                    transcription factors, and regulatory elements. Researchers are working to extract valuable
+                    information from such software to better understand human health and disease. Currently, we have
+                    a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will
+                    enable physicians to quickly and more easily interact with the software, enabling them to
+                    identify genetic mutations that may cause disease.</p>
             </div>
+        </div>
 
-            <div class="item bg-light">
-                <div class="flex">
-                    <h2 class="primary-dark">Background</h2>
-                    <p class="secondary-dark text-center">The human genome is composed of over 3 billion base pairs,
-                        making human analysis nearly impossible. Consequently, using powerful computational and
-                        statistical methods to decode the functional information hidden in DNA sequences are
-                        necessary. The genome is also extremely intricate and contains a plethora of data, which
-                        need to be organized and converted into analyzable data appropriately. Current analytical
-                        tools and software make it arduous for both geneticists and physicians to do so, thus
-                        restricting them from acquiring crucial information to better understand humans.</p>
-                </div>
+        <div class="item bg-light">
+            <div class="flex">
+                <h2 class="primary-dark">Background</h2>
+                <p class="secondary-dark text-center">The human genome is composed of over 3 billion base pairs,
+                    making human analysis nearly impossible. Consequently, using powerful computational and
+                    statistical methods to decode the functional information hidden in DNA sequences are
+                    necessary. The genome is also extremely intricate and contains a plethora of data, which
+                    need to be organized and converted into analyzable data appropriately. Current analytical
+                    tools and software make it arduous for both geneticists and physicians to do so, thus
+                    restricting them from acquiring crucial information to better understand humans.</p>
             </div>
+        </div>
 
-            <div class="item bg-light">
-                <div class="flex" id="features">
-                    <h2 class="primary-dark" style="text-align: left; width: 100%">Features</h2>
-                    <div class="feature">
-                        <h2 class="term">Start and Stop Codons</h2>
-                        <p class="definition">Indicate the start and stop of a protein. There are 20 different amino
-                            acids.
-                            A protein consists of one or more chains of amino acids (called polypeptides) whose sequence
-                            is
-                            encoded in a gene. <code>2</code>
-                        </p>
-                    </div>
-                    <div class="feature">
-                        <h2 class="term">High Coverage Regions</h2>
-                        <p class="definition">Regions of a DNA genome that code for a protein and have a relatively high
-                            proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60%
-                            GC-content).
-                            These regions are likely to contain important information about the genome. <code>3</code>
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <h2 class="term">Neurodevelopmental Disorders</h2>
-                        <p class="definition">A group of disorders, usually characterized by longer genes, that affect
-                            the
-                            development of the brain and nervous
-                            system. These disorders are caused by genetic mutations that affect the development of the
-                            brain and nervous system. These disorders include autism, attention deficit hyperactivity
-                            disorder (ADHD), and schizophrenia. <code>4</code>
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <h2 class="term">Transcription Factors</h2>
-                        <p class="definition">A protein that binds to DNA and regulates the transcription of genes.
-                            These
-                            proteins are responsible for the regulation of gene expression. They are involved in the
-                            regulation of gene expression by binding to specific DNA sequences and regulating the
-                            transcription of genes. <code>6</code>
-                        </p>
-                    </div>
-
-                    <!--
+        <div class="item bg-light">
+            <div class="flex" id="features">
+                <h2 class="primary-dark" style="text-align: left; width: 100%">Features</h2>
                 <div class="feature">
-                    <h2 class="term">Regulatory Elements</h2>
-                    <p class="definition">A sequence of DNA that controls the transcription of a gene. These sequences
-                        are located upstream of the gene and are responsible for the regulation of gene expression.
-                        They are involved in the regulation of gene expression by binding to specific DNA sequences
-                        and regulating the transcription of genes. <code>7</code>
-                    </p>
-                    <p>
+                    <h2 class="term">Start and Stop Codons</h2>
+                    <p class="definition">Indicate the start and stop of a protein. There are 20 different amino
+                        acids.
+                        A protein consists of one or more chains of amino acids (called polypeptides) whose sequence
+                        is
+                        encoded in a gene. <code>2</code>
                     </p>
                 </div>
-                -->
+                <div class="feature">
+                    <h2 class="term">High Coverage Regions</h2>
+                    <p class="definition">Regions of a DNA genome that code for a protein and have a relatively high
+                        proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60%
+                        GC-content).
+                        These regions are likely to contain important information about the genome. <code>3</code>
+                    </p>
+                </div>
 
-                    <div class="feature">
-                        <h2 class="term">FASTA Files (.fa & .fab)</h2>
-                        <p class="definition">A text-based file format used to store DNA sequences format that
-                            stores the DNA sequence and its associated metadata. Supports multi-line and single-line
-                            FASTA
-                            database files. Files can either be uploaded or linked to from the web.<code>7</code>
-                        </p>
-                    </div>
+                <div class="feature">
+                    <h2 class="term">Neurodevelopmental Disorders</h2>
+                    <p class="definition">A group of disorders, usually characterized by longer genes, that affect
+                        the
+                        development of the brain and nervous
+                        system. These disorders are caused by genetic mutations that affect the development of the
+                        brain and nervous system. These disorders include autism, attention deficit hyperactivity
+                        disorder (ADHD), and schizophrenia. <code>4</code>
+                    </p>
+                </div>
 
-                    <div class="feature">
-                        <h2 class="term">Command-Line-Interface</h2>
-                        <p class="definition">The Methionine command-line interface (abbreviated as Met CLI) is a
-                            unified
-                            tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for
-                            using
-                            DNAnalyzer services and scripting a sequence of commands to execute. You can currently
-                            access
-                            all the core features present in DNAnalyzer without having to log in, although account
-                            support
-                            will be implemented soon.
-                        </p>
-                    </div>
+                <div class="feature">
+                    <h2 class="term">Transcription Factors</h2>
+                    <p class="definition">A protein that binds to DNA and regulates the transcription of genes.
+                        These
+                        proteins are responsible for the regulation of gene expression. They are involved in the
+                        regulation of gene expression by binding to specific DNA sequences and regulating the
+                        transcription of genes. <code>6</code>
+                    </p>
+                </div>
 
-                    <div class="feature">
-                        <h2 class="term">Graphical User Interface</h2>
-                        <p class="definition">A cross-platform JavaFX application that performs the same functions as
-                            the
-                            CLI, but with a graphical user interface. However, the GUI is still under development and
-                            the
-                            Met CLI continues to be the primary method of using DNAnalyzer. Currently, the following
-                            features are available in the GUI:
-                        <ul id="gui-features">
-                            <li id="gui-li">Set name of DNA file to analyze</li>
-                            <li id="gui-li">Set minimum and maximum number of reading frames</li>
-                            <li id="gui-li">Run analysis</li>
-                            <li id="gui-li">View results</li>
-                        </ul>
-                        </p>
-                    </div>
+                <!--
+            <div class="feature">
+                <h2 class="term">Regulatory Elements</h2>
+                <p class="definition">A sequence of DNA that controls the transcription of a gene. These sequences
+                    are located upstream of the gene and are responsible for the regulation of gene expression.
+                    They are involved in the regulation of gene expression by binding to specific DNA sequences
+                    and regulating the transcription of genes. <code>7</code>
+                </p>
+                <p>
+                </p>
+            </div>
+            -->
+
+                <div class="feature">
+                    <h2 class="term">FASTA Files (.fa & .fab)</h2>
+                    <p class="definition">A text-based file format used to store DNA sequences format that
+                        stores the DNA sequence and its associated metadata. Supports multi-line and single-line
+                        FASTA
+                        database files. Files can either be uploaded or linked to from the web.<code>7</code>
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h2 class="term">Command-Line-Interface</h2>
+                    <p class="definition">The Methionine command-line interface (abbreviated as Met CLI) is a
+                        unified
+                        tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for
+                        using
+                        DNAnalyzer services and scripting a sequence of commands to execute. You can currently
+                        access
+                        all the core features present in DNAnalyzer without having to log in, although account
+                        support
+                        will be implemented soon.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h2 class="term">Graphical User Interface</h2>
+                    <p class="definition">A cross-platform JavaFX application that performs the same functions as
+                        the
+                        CLI, but with a graphical user interface. However, the GUI is still under development and
+                        the
+                        Met CLI continues to be the primary method of using DNAnalyzer. Currently, the following
+                        features are available in the GUI:
+                    <ul id="gui-features">
+                        <li id="gui-li">Set name of DNA file to analyze</li>
+                        <li id="gui-li">Set minimum and maximum number of reading frames</li>
+                        <li id="gui-li">Run analysis</li>
+                        <li id="gui-li">View results</li>
+                    </ul>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-    <br>
+</div>
+<br>
 
 </body>
 
