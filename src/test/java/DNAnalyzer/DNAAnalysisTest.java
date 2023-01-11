@@ -26,34 +26,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DNAAnalysisTest {
 
-	Path projectPath = Path.of("");
-	Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
+    Path projectPath = Path.of("");
+    Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
 
-	@Test
-	void testCountBasePairs() {
-		try {
-			List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-			long[] expected = { 25000381, 24998528, 25000967, 25000124 };
-			long[] actual = DNAAnalysis.countBasePairs(inputLines.get(0));
-			assertArrayEquals(expected, actual);
-		} catch (IOException ex) {
-			Logger.getLogger(DNAAnalysisTest.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+    @Test
+    void testCountBasePairs() {
+        try {
+            List<String> inputLines = Files.readAllLines(dnaLongTestInput);
+            long[] expected = {25000381, 24998528, 25000967, 25000124};
+            long[] actual = DNAAnalysis.countBasePairs(inputLines.get(0));
+            assertArrayEquals(expected, actual);
+        } catch (IOException ex) {
+            Logger.getLogger(DNAAnalysisTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-	@Test
-	void testCountBasePairsWithEmptyString() {
-		String testEmptyString = "";
-		long[] expected = { 0, 0, 0, 0 };
-		long[] actual = DNAAnalysis.countBasePairs(testEmptyString);
-		assertArrayEquals(expected, actual);
+    @Test
+    void testCountBasePairsWithEmptyString() {
+        String testEmptyString = "";
+        long[] expected = {0, 0, 0, 0};
+        long[] actual = DNAAnalysis.countBasePairs(testEmptyString);
+        assertArrayEquals(expected, actual);
 
-	}
+    }
 
-	@Test
-	void testCountBasePairsWithNullString() {
-		long[] expected = { 0, 0, 0, 0 };
-		long[] actual = DNAAnalysis.countBasePairs(null);
-		assertArrayEquals(expected, actual);
-	}
+    @Test
+    void testCountBasePairsWithNullString() {
+        long[] expected = {0, 0, 0, 0};
+        long[] actual = DNAAnalysis.countBasePairs(null);
+        assertArrayEquals(expected, actual);
+    }
 }

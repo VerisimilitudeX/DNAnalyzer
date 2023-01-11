@@ -26,24 +26,23 @@ import org.junit.jupiter.api.Test;
 import DNAnalyzer.utils.protein.ProteinFinder;
 
 class ProteinFinderTest {
-	Path testFile = Path.of("C:\\Users\\garyg\\Documents\\projects\\DNAnalyzer\\assets\\dna\\random\\dnalong.fa");
-	Path projectPath = Path.of("");
-	Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
+    Path projectPath = Path.of("");
+    Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
 
-	@Test
-	void testGetProtein() {
-		try {
-			List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-			List<String> expected = new ArrayList<String>();
-			expected.add("AATTCCCTACAACGGATGCGCCGCTGATAGACTCGGGTTCTGGCGTCCGAGTGAAGATGATAA");
-			expected.add(
-					"AACCAATCTCATGATCACCAGTTCTGACGTTACAGTATTTTCGGTTGAGCAGGCCCCATGGGGCCCCCGCATGCCGAATTACGATATGATGCCCACTATCCTGTGTCTTCCAACCTTATGACTGACTTGTATGCGCTGCGAGGTCCCTCGATAGATTTGCTCCCACCCGTCCCGGAAACCATATCGACGACTTGTAGGTCTCTAA");
+    @Test
+    void testGetProtein() {
+        try {
+            List<String> inputLines = Files.readAllLines(dnaLongTestInput);
+            List<String> expected = new ArrayList<>();
+            expected.add("AATTCCCTACAACGGATGCGCCGCTGATAGACTCGGGTTCTGGCGTCCGAGTGAAGATGATAA");
+            expected.add(
+                "AACCAATCTCATGATCACCAGTTCTGACGTTACAGTATTTTCGGTTGAGCAGGCCCCATGGGGCCCCCGCATGCCGAATTACGATATGATGCCCACTATCCTGTGTCTTCCAACCTTATGACTGACTTGTATGCGCTGCGAGGTCCCTCGATAGATTTGCTCCCACCCGTCCCGGAAACCATATCGACGACTTGTAGGTCTCTAA");
 
-			List<String> actual = ProteinFinder.getProtein(inputLines.get(0), "n");
-			assertArrayEquals(expected.toArray(), actual.toArray());
-		} catch (IOException ex) {
-			Logger.getLogger(ProteinFinderTest.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+            List<String> actual = ProteinFinder.getProtein(inputLines.get(0), "n");
+            assertArrayEquals(expected.toArray(), actual.toArray());
+        } catch (IOException ex) {
+            Logger.getLogger(ProteinFinderTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

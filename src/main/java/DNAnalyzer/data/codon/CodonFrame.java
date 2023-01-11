@@ -22,63 +22,63 @@ import java.util.Objects;
  */
 public record CodonFrame(String dna, short readingFrame, int min, int max) {
 
-	/**
-	 * gets dna
-	 *
-	 * @return dna
-	 */
-	public String getDna() {
-		return dna;
-	}
+    /**
+     * gets dna
+     *
+     * @return dna
+     */
+    public String getDna() {
+        return dna;
+    }
 
-	/**
-	 * gets reading frame
-	 *
-	 * @return reading frame
-	 */
-	public short getReadingFrame() {
-		return readingFrame;
-	}
+    /**
+     * gets reading frame
+     *
+     * @return reading frame
+     */
+    public short getReadingFrame() {
+        return readingFrame;
+    }
 
-	/**
-	 * gets min
-	 *
-	 * @return min
-	 */
-	public int getMin() {
-		return min;
-	}
+    /**
+     * gets min
+     *
+     * @return min
+     */
+    public int getMin() {
+        return min;
+    }
 
-	/**
-	 * gets max
-	 *
-	 * @return max
-	 */
-	public int getMax() {
-		return max;
-	}
+    /**
+     * gets max
+     *
+     * @return max
+     */
+    public int getMax() {
+        return max;
+    }
 
-	@Override
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean equals(final Object o) {
-		boolean result = false;
-		if (this == o) {
-			result = true;
-		} else if (o instanceof final CodonFrame inputFrame) {
-			result = getReadingFrame() == inputFrame.getReadingFrame() && getMin() == inputFrame.getMin()
-					&& getMax() == inputFrame.getMax()
-					&& getDna().equals(inputFrame.getDna());
-		}
-		return result;
-	}
+    @Override
+    /**
+     * {@inheritDoc}
+     */
+    public boolean equals(final Object o) {
+        boolean result = false;
+        if (this == o) {
+            result = true;
+        } else if (o instanceof final CodonFrame inputFrame) {
+            result = getReadingFrame() == inputFrame.getReadingFrame() && getMin() == inputFrame.getMin()
+                && getMax() == inputFrame.getMax()
+                && getDna().equals(inputFrame.getDna());
+        }
+        return result;
+    }
 
-	@Override
-	/**
-	 * {@inheritDoc}
-	 */
-	public int hashCode() {
-		return Objects.hash(getDna(), getReadingFrame(), getMin(), getMax());
-	}
+    @Override
+    /**
+     * {@inheritDoc}
+     */
+    public int hashCode() {
+        return Objects.hash(getDna(), getReadingFrame(), getMin(), getMax());
+    }
 }
