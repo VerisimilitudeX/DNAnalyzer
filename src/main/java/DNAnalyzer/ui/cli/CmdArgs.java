@@ -8,7 +8,7 @@
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
- 
+
 package DNAnalyzer.ui.cli;
 
 import DNAnalyzer.Main;

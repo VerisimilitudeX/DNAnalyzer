@@ -21,21 +21,21 @@ public class Traits {
      * @return {@link Solution} to exercise 1.1.
      */
     /*
-    public HashMap<Integer, Boolean> hasRiskOfTiberiusSyndrome() {
-        return new HashMap<Integer, Boolean>() {
-            public Integer getResultSet() {
-                return sequence.count("GGG");
-            }
-
-            public Boolean getResult() {
-                return getResultSet() >= 3;
-            }
-
-            public String getFormattedResult() {
-                return (getResult() ? "Yes" : "No") +
-                        " (" + getResultSet() + " occurrences, 3 occurrences indicate high risk)";
-            }
-        };
-    }
-    */
+     * public HashMap<Integer, Boolean> hasRiskOfTiberiusSyndrome() {
+     * return new HashMap<Integer, Boolean>() {
+     * public Integer getResultSet() {
+     * return sequence.count("GGG");
+     * }
+     * 
+     * public Boolean getResult() {
+     * return getResultSet() >= 3;
+     * }
+     * 
+     * public String getFormattedResult() {
+     * return (getResult() ? "Yes" : "No") +
+     * " (" + getResultSet() + " occurrences, 3 occurrences indicate high risk)";
+     * }
+     * };
+     * }
+     */
 }

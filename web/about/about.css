@@ -10,11 +10,9 @@
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-* > * {
+*>* {
     font-family: "Poppins", cursive;
 }
-
 
 body {
     --text-light: rgba(243, 244, 246, 0.9);
@@ -22,8 +20,6 @@ body {
     --secondary-dark: rgba(55, 65, 81, 0.7);
     --bg-light: rgba(243, 244, 246, 0.3);
     --bg-btn: rgba(67, 56, 202, 0.8);
-
-
     background-color: var(--text-light);
 }
 
@@ -56,7 +52,6 @@ p {
     justify-content: center;
     align-items: center;
     margin: 0;
-
 }
 
 .text-center {
@@ -70,7 +65,6 @@ p {
     row-gap: 2em;
     column-gap: 3em;
     margin: 3em 0;
-
 }
 
 .grid .flex {
@@ -80,7 +74,7 @@ p {
     padding: 4em 0;
 }
 
-.grid .icon > span {
+.grid .icon>span {
     font-size: 4em;
     color: var(--bg-btn);
 }
