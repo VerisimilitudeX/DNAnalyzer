@@ -83,7 +83,7 @@ java -jar build/libs/DNAnalyzer.jar
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
 ```pwsh
-assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
+assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
 ```
 
 ### Example
@@ -105,7 +105,7 @@ If you prefer, you can also run it directly from Gradle:
 DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
 
 ```pwsh
-./gradlew run --args="--gui"
+./gradlew run --args="--gui assets/dna/random/dnalong.fa"
 ```
 
 Then:

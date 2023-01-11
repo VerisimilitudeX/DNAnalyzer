@@ -16,11 +16,6 @@ import java.io.IOException;
 import DNAnalyzer.ui.cli.CmdArgs;
 import picocli.CommandLine;
 
-import io.sentry.Sentry;
-import io.sentry.ITransaction;
-import io.sentry.Sentry;
-import io.sentry.SpanStatus;
-
 /**
  * Main Class for the DNAnalyzer program.
  *
@@ -48,29 +43,12 @@ public class Main {
 	}
 
 	/**
-	 * Configures sentry.io to handle error monitoring.
-	 */
-	private static void configureSentry() {
-		Sentry.init(options -> {
-			options.setDsn(
-					"https://82c129bee6214ef39638e4d06e16f157@o4504358029099008.ingest.sentry.io/4504358032965633");
-			// Set tracesSampleRate to 1.0 to capture 100% of transactions for performance
-			// monitoring.
-			// We recommend adjusting this value in production.
-			options.setTracesSampleRate(1.0);
-			// When first trying Sentry it's good to see what the SDK is doing:
-			options.setDebug(true);
-		});
-	}
-
-	/**
 	 * Main method for the DNAnalyzer program (run this).
 	 *
 	 * @param args Command line arguments
 	 *             {@code @category} Main
 	 */
 	public static void main(final String[] args) {
-		configureSentry();
 		new CommandLine(new CmdArgs()).execute(args);
 	}
 }
