@@ -38,7 +38,7 @@ public class DNAnalyzerGUI extends Application {
                 stage.setScene(scene);
                 stage.show();    
             }
-        })
+        });
     }
 
     public static void launchIt(String[] args) {
