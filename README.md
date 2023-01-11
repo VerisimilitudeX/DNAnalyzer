@@ -105,7 +105,7 @@ If you prefer, you can also run it directly from Gradle:
 DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
 
 ```pwsh
-./gradlew run --args="--gui"
+./gradlew run --args="--gui assets/dna/random/dnalong.fa"
 ```
 
 Then:
