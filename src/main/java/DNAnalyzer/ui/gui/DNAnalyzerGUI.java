@@ -31,10 +31,14 @@ public class DNAnalyzerGUI extends Application {
         Parent root = FXMLLoader.load(DNAnalyzerGUI.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerGUI.fxml"));
         Scene scene = new Scene(root);
         // scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-
-        stage.setTitle("DNAnalyzer GUI");
-        stage.setScene(scene);
-        stage.show();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                stage.setTitle("DNAnalyzer GUI");
+                stage.setScene(scene);
+                stage.show();    
+            }
+        }
     }
 
     public static void launchIt(String[] args) {
