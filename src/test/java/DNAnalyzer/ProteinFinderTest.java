@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import DNAnalyzer.utils.protein.ProteinFinder;
 
 class ProteinFinderTest {
-	Path testFile = Path.of("C:\\Users\\garyg\\Documents\\projects\\DNAnalyzer\\assets\\dna\\random\\dnalong.fa");
 	Path projectPath = Path.of("");
 	Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
 
@@ -34,7 +33,7 @@ class ProteinFinderTest {
 	void testGetProtein() {
 		try {
 			List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-			List<String> expected = new ArrayList<String>();
+			List<String> expected = new ArrayList<>();
 			expected.add("AATTCCCTACAACGGATGCGCCGCTGATAGACTCGGGTTCTGGCGTCCGAGTGAAGATGATAA");
 			expected.add(
 					"AACCAATCTCATGATCACCAGTTCTGACGTTACAGTATTTTCGGTTGAGCAGGCCCCATGGGGCCCCCGCATGCCGAATTACGATATGATGCCCACTATCCTGTGTCTTCCAACCTTATGACTGACTTGTATGCGCTGCGAGGTCCCTCGATAGATTTGCTCCCACCCGTCCCGGAAACCATATCGACGACTTGTAGGTCTCTAA");
