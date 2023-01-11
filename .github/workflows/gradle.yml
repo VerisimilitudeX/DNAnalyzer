@@ -32,3 +32,8 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
+  GUI-Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Launch GUI
+        run: .\gradlew run --args="--gui assets/dna/random/dnalong.fa"
