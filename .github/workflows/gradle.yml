@@ -11,7 +11,7 @@ on:
   push:
     branches: [ "test-gui" ]
   pull_request:
-    branches: [ "test-gui ]
+    branches: [ "test-gui" ]
 
 permissions:
   contents: read
