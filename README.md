@@ -60,11 +60,13 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 
 ### Build & Run
 
-The easiest way to use the program on Windows is by using executable file to install the program, build gradle and run the GUI.
+The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/Verisimilitude11/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+
 We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
 
 <details>
-      <summary>Linux and compilation</summary>
+      <summary>Linux and compilation from source</summary>
+ 
 ```pwsh
 ./gradlew build
 ```
