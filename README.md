@@ -55,12 +55,14 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 ### System Requirements
 
 * JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)+
-* A `JAVA_HOME` environment variable pointing to your JDK, or the Java executable in your PATH
-* [Gradle](https://gradle.org/install/)
+   * A `JAVA_HOME` environment variable pointing to your JDK, or the Java executable in your PATH
+* [Gradle](https://gradle.org/install/) (included)
 
 ### Build & Run
 
 The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/Verisimilitude11/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+
+* Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
 
 We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
 
