@@ -192,7 +192,7 @@ explorer "$installer_location"
 # Runs the gradle build and run commands
 try {
     ./gradlew build
-    ./gradlew run --args="--gui"
+    ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
 }
 catch { # prints the error
     Write-Host ($Error) -ForegroundColor Red
