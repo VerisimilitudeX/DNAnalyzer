@@ -60,8 +60,11 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 
 ### Build & Run
 
+The easiest way to use the program on Windows is by using executable file to install the program, build gradle and run the GUI.
 We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
 
+<details>
+      <summary>Linux and compilation</summary>
 ```pwsh
 ./gradlew build
 ```
@@ -108,13 +111,18 @@ DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI,
 ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
 ```
 
+
 Then:
 
 * Enter the file name of the DNA file in the text field
 * Set min and max
 * Click analyze
 
+
 The results of your analysis will be shown in the right pane.
+</details>
+
+#
 
 #### Help message
 
