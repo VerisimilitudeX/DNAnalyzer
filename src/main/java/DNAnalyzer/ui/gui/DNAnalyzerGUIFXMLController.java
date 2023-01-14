@@ -17,9 +17,13 @@ import DNAnalyzer.utils.core.DNATools;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import static DNAnalyzer.utils.core.Utils.readFile;
 
@@ -103,6 +107,20 @@ public class DNAnalyzerGUIFXMLController {
         txtOutput.setText(output);
     }
 
+    @FXML
+    private void rateUsClicked(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(DNAnalyzerGUI.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("DNAnalyzer Rating");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public void initialize() {
     }
 }
