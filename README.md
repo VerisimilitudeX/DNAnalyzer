@@ -164,4 +164,4 @@ View our in-line citations in the [Citations](docs/citations.md) document.
 
 You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: `contact@dnanalyzer.live`
 
-##### Copyright © Piyush Acharya 2023. This is an open-source project with code available to inspect and modify.
+##### Copyright © Piyush Acharya 2023. DNAnalyzer is a 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
