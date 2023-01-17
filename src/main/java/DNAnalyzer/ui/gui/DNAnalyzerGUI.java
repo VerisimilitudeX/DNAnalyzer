@@ -16,9 +16,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javax.swing.SwingUtilities;
+ 
 public class DNAnalyzerGUI extends Application {
-
+ 
     @Override
     /**
      * Starts and initializes the GUI
@@ -31,17 +32,19 @@ public class DNAnalyzerGUI extends Application {
         Parent root = FXMLLoader.load(DNAnalyzerGUI.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerGUI.fxml"));
         Scene scene = new Scene(root);
         // scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        SwingUtilities.invokeLater(new Runnable() {
+        
+         stage.setTitle("DNAnalyzer GUI");
+         stage.setScene(scene);
+         
+         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                stage.setTitle("DNAnalyzer GUI");
-                stage.setScene(scene);
-                stage.show();    
+                stage.show();
             }
         });
     }
-
-    public static void launchIt(String[] args) {
-        launch(args);
+ 
+     public static void launchIt(String[] args) {
+         launch(args);
     }
 }
