@@ -6,7 +6,9 @@
 
 >Revolutionizing DNA analysis and making it accessible to all through innovative analysis and interpretive tools
 
-DNAnalyzer identifies protein-encoding sequences via recognizing start and stop codons, predicts high coverage regions, and locates promoter sequences and their associated regulatory sequences. It also provides a variety of other useful tools, such as a built-in DNA sequence editor, viewer, generator, and converter.
+DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to DNA analysis tools for a deeper understanding of human health and disease and pushing the boundaries of what is possible in the field of genetics research to make a significant impact in the industry.
+
+Our flagship product identifies protein-encoding sequences via recognizing start and stop codons, predicts high coverage regions, and locates promoter sequences and their associated regulatory sequences. It also provides a variety of other useful tools, such as a built-in DNA sequence editor, viewer, generator, and converter.
 
 Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
