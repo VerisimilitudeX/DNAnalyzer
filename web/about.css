@@ -1,0 +1,159 @@
+/*
+ * Copyright © 2023 DNAnalyzer. Some rights reserved.
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+ *
+ * You are entirely responsible for the use of this application, including any and all activities that occur.
+ * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
+ * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
+ *
+ * For further inquiries, please reach out to contact@dnanalyzer.live
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* > * {
+    font-family: "Poppins", cursive;
+}
+
+body {
+    --text-light: rgba(243, 244, 246, 0.9);
+    --primary-dark: rgba(55, 65, 81, 1);
+    --secondary-dark: rgba(55, 65, 81, 0.7);
+    --bg-light: rgba(243, 244, 246, 0.3);
+    --bg-btn: rgba(67, 56, 202, 0.8);
+    background-color: var(--text-light);
+}
+
+body.dark {
+    --text-light: rgba(55, 65, 81, 1);
+    --primary-dark: rgba(243, 244, 246, 1);
+    --secondary-dark: rgba(255, 255, 255);
+    --bg-btn: rgba(219, 233, 29, 0.897);
+    --bg-light: rgba(45, 49, 54, 0.5);
+}
+
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+p {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.text-center {
+    text-align: center;
+    padding: 10px 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(auto, 1000px));
+    row-gap: 2em;
+    column-gap: 3em;
+    margin: 3em 0;
+}
+
+.grid .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em 0;
+}
+
+.grid .icon > span {
+    font-size: 4em;
+    color: var(--bg-btn);
+}
+
+.primary-dark {
+    color: var(--primary-dark);
+}
+
+.secondary-dark {
+    color: var(--secondary-dark);
+    padding: 20px 30px;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+    box-shadow: 1px 5px 20px rgba(55, 65, 81, 0.1);
+    border-radius: 20px;
+}
+
+.btn {
+    width: 250px;
+    height: 50px;
+    background-color: #f44336;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: auto
+}
+
+
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    width: 80px;
+    height: 40px;
+    border-radius: 50px;
+    outline: none;
+    /* background-color: yellow; */
+    background-image: url(https://i.postimg.cc/857jHw2q/Screenshot-2020-04-16-at-1-07-06-PM.png);
+    background-size: cover;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: var(--primary-dark);
+    border-radius: 50px;
+}
+
+input[type="checkbox"]:checked:before {
+    transform: translate(100%);
+}
+
+input[type="checkbox"]:checked {
+    background-image: url(https://i.postimg.cc/Hn0nstVK/Screenshot-2020-04-16-at-1-07-19-PM.png);
+}
+
+ img {
+    width: 130px;
+    padding: 0px;
+    border-radius: 50%;
+    background-color: #e33d3d;
+    margin-top: 100px;
+}  
+.logo img{
+    width: 120px;
+    height: 40px;
+    border-radius: 0%;
+    overflow: hidden;
+    margin-top: -6px;
+    background-color: #222;
+    }  

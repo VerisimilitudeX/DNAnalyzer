@@ -304,3 +304,12 @@ button {
     background-color: #1c2333;
     border-radius: 20px;
 }
+
+.logo img{
+    width: 120px;
+    height: 40px;
+    border-radius: 0%;
+    overflow: hidden;
+    margin-top: -6px;
+    background-color: #222;
+    }  
