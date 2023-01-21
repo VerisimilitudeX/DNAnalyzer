@@ -110,7 +110,7 @@ public class DNAnalyzerGUIFXMLController {
     @FXML
     private void rateUsClicked(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(DNAnalyzerGUI.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
+            Parent root = FXMLLoader.load(DNAnalyzerGUIFXMLController.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("DNAnalyzer Rating");
