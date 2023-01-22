@@ -47,6 +47,13 @@ class PropertiesTest {
     }
 
     @Test
+    void sholudCalculateLengthOfCG() {
+        int expected = 50001033;
+        int actual = Properties.calculateLengthOfCG(dnaString);
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void sholudCalculateLengthOfCGAsZero() {
         String testEmptyString = "";
         int expected = 0;

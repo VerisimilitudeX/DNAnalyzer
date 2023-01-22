@@ -11,12 +11,12 @@
 
 package DNAnalyzer;
 
-//import java.io.IOException;
-//import java.nio.file.Files;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
-// import java.util.List;
-// import java.util.logging.Level;
-// import java.util.logging.Logger;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ class DNAAnalysisTest {
 
     Path projectPath = Path.of("");
     Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
-    /*
+
     @Test
     void testCountBasePairs() {
         try {
@@ -40,7 +40,6 @@ class DNAAnalysisTest {
             Logger.getLogger(DNAAnalysisTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    */ // needs editing to accommodate new test file
 
     @Test
     void testCountBasePairsWithEmptyString() {
