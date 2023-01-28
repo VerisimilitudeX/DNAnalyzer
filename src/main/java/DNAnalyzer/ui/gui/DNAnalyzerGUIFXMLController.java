@@ -115,7 +115,7 @@ public class DNAnalyzerGUIFXMLController {
             Stage stage = new Stage();
             stage.setTitle("DNAnalyzer Rating");
             stage.setScene(scene);
-            stage.show();
+            Platform.runLater(() -> stage.show());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
