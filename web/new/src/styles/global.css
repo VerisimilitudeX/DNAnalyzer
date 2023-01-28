@@ -75,7 +75,6 @@ img.header--logo {
 .header--logo a {
     font-size: 1rem;
     color: #fff;
-    padding: 2rem 1rem;
 }
 
 div.page--content {
@@ -221,11 +220,19 @@ input:focus, button:focus, .button:focus, textarea:focus {
 }
 
 @media screen and (min-width: 600px) {
-    .header--signedin li {
-        display: inline-block;
-        margin-left: .5rem;
-        line-height: 1;
+
+    div.button--div {
+        flex-direction: row;
     }
+
+    ul.menuNav li{
+        display: flex;
+        flex-direction: column;
+    
+      }
+
+
+
     .main--grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
