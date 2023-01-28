@@ -1,0 +1,257 @@
+/* global.css */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&display=swap');
+* {
+    box-sizing: border-box;
+}
+html {
+    font-size: 1.25em;
+    height: 100%;
+    width: 100%;
+}
+body {
+    font-family: 'Quicksand' ,'Work Sans', sans-serif;
+    background-color: rgb(1, 22, 37);
+    height: 100%;
+    width: 100%;
+}
+
+div.main--text {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+}
+
+div.button--div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 10%;
+    margin: 1rem 1rem;
+}
+
+h1.main--text {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+p {
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    hyphens: auto;
+}
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+.wrap {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+header {
+    background: #011625;
+    color: #fff;
+    padding: 1rem 0;
+}
+.header--flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img.header--logo {
+    width: 30px;
+}
+.header--logo a {
+    font-size: 1rem;
+    color: #fff;
+    padding: 2rem 1rem;
+}
+
+div.page--content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    margin: auto;
+}
+
+div.logo--pattern {
+    background-image: url('./logobackground.svg');
+    background-repeat: repeat-y;
+    background-position: right top;
+    background-size: 75px;
+    width: 25%;
+
+}
+
+div {
+    height: 100%;
+    margin: auto;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    width: 80%;
+}
+
+img.logo--svg {
+    width: 150px;
+}
+
+header li {
+    font-size: .8rem;
+}
+header nav a {
+    color: rgb(255, 255, 255);
+}
+header nav a:hover {
+    color: #fff;
+}
+
+.actions--bar {
+    background: #e9e5f0;
+    padding: 1rem 0;
+    margin: -2rem 0 2rem;
+}
+
+.form--centered {
+    max-width: 510px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+form {
+    margin-bottom: 2.5rem;
+}
+label {
+    display: block;
+    font-weight: 300;
+    margin-bottom: .25rem;
+}
+input, textarea {
+    display: block;
+    width: 100%;
+    color: #332a40;
+    border-radius: .5rem;
+    border: 1px solid #8c789b;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    font-size: .8rem;
+}
+textarea {
+    min-height: 300px;
+}
+
+.navBar button {
+    background: transparent;;
+    border: none;
+  }
+
+  .navBar button:focus {
+    border: none;
+    border-radius:0px;
+    outline: none;
+
+  }
+
+nav.navBar{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+
+  ul.menuNav li {
+    display: none;
+  }
+
+  ul.menuNav.showMenu li{
+    display: block;
+
+  }
+
+
+.button {
+    background: rgba(28, 50, 65, 0.5);
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 300;
+    padding: .5rem .7rem;
+    border: 0;
+    margin: .5rem;
+    display: block;
+    width: 170px;
+    text-align: center;
+    border-radius: 2rem;
+    transition: background 0.2s;
+}
+.button:not(.button-secondary):hover {
+    background: #ffffff;
+    color: #0e0f19;
+    cursor: pointer;
+}
+.button-secondary {
+    color: #7c689b;
+    background: none;
+    box-shadow: 0 0 0 2px #7c689b inset;
+    transition: box-shadow 0.2s, color 0.2s;
+}
+.button-secondary:hover {
+    color: #63537d;
+    box-shadow: 0 0 0 2px #63537d inset;
+    cursor: pointer;
+}
+input:focus, button:focus, .button:focus, textarea:focus {
+    border: none;
+    border-radius: 200px;
+    outline: 2px solid #f9f9f9;
+}
+
+@media screen and (min-width: 600px) {
+    .header--signedin li {
+        display: inline-block;
+        margin-left: .5rem;
+        line-height: 1;
+    }
+    .main--grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1.5rem;
+        grid-auto-rows: 1fr;
+    }
+}
+@media screen and (min-width: 800px) {
+    .main--grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .main--flex {
+        display: flex;
+    }
+    .main--flex div:first-child {
+        flex-basis: 62%;
+    }
+    .main--flex div:last-child {
+        margin-left: 8%;
+        flex-basis: 30%;
+    }
+    .course--detail--title {
+        margin: 1.5rem 0 .5rem;
+    }
+    .button {
+        margin: .5rem;
+        display: inline-block;
+    }
+}
