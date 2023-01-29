@@ -15,7 +15,7 @@ export default class App extends Component {
   render() {
     return (
     <Router>
-      <div>
+      <div className="main--div">
         <Header />
         <div className="page--content">
           <div className="logo--pattern">

@@ -22,13 +22,15 @@ div.main--text {
     justify-content: center;
     align-content: center;
     margin: auto;
+    height: 100%;
 }
 
 div.button--div {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 10%;
+    justify-content: space-around;
+    align-content: center;
+    height: 15%;
     margin: 1rem 1rem;
 }
 
@@ -36,7 +38,6 @@ h1.main--text {
     color: #fff;
     font-size: 1.5rem;
     font-weight: 400;
-    padding-bottom: 1rem;
 }
 
 h2 {
@@ -63,6 +64,7 @@ header {
     background: #011625;
     color: #fff;
     padding: 1rem 0;
+    height: 10%;
 }
 .header--flex {
     display: flex;
@@ -81,7 +83,7 @@ div.page--content {
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 100%;
+    height: 90%;
     margin: auto;
 }
 
@@ -94,7 +96,7 @@ div.logo--pattern {
 
 }
 
-div {
+div.main--div {
     height: 100%;
     margin: auto;
 }
@@ -190,7 +192,7 @@ nav.navBar{
     font-weight: 300;
     padding: .5rem .7rem;
     border: 0;
-    margin: .5rem;
+    margin: auto;
     display: block;
     width: 170px;
     text-align: center;
@@ -228,16 +230,23 @@ input:focus, button:focus, .button:focus, textarea:focus {
     ul.menuNav li{
         display: flex;
         flex-direction: column;
-    
       }
 
-
-
+    div.logo--pattern {
+        background-size: 85px;
+        width: 20%;
+        height: 100%;
+        margin-top: 0;
+      }
     .main--grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 1.5rem;
         grid-auto-rows: 1fr;
+    }
+
+    div.main--text {
+        width: 85%;
     }
 }
 @media screen and (min-width: 800px) {
@@ -261,4 +270,7 @@ input:focus, button:focus, .button:focus, textarea:focus {
         margin: .5rem;
         display: inline-block;
     }
+}
+@media screen and (min-width: 1024px) {
+
 }
