@@ -301,7 +301,7 @@ p.copyright {
 }
 @media screen and (min-width: 1024px) {
     div.logo--pattern {
-        background-size: 150px;
+        background-size: 100px;
         width: 30%;
       }
 
