@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default class Main extends React.Component {
   render() {
     return (
@@ -10,16 +11,8 @@ export default class Main extends React.Component {
             analyzing DNA sequences
           </h1>
           <div className="button--div">
-            <a
-              href="https://github.com/Verisimilitude11/DNAnalyzer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="button">Github Repo</button>
-            </a>
-            <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener noreferrer">
-              <button className="button">Discord Server</button>
-            </a>
+              <button type="button" onClick={event =>  window.location.href="https://github.com/Verisimilitude11/DNAnalyzer"} className="button">Github Repo</button>
+              <button type="button" onClick={event =>  window.location.href="https://discord.gg/xNpujz49gj"} className="button">Discord Server</button>
           </div>
         </div>
       </main>

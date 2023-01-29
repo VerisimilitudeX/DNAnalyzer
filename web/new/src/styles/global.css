@@ -207,6 +207,12 @@ nav.navBar{
     transition: background 0.2s;
 }
 
+.button:hover {
+    background: #ffffff;
+    color: #0e0f19;
+    cursor: pointer;
+}
+
 input:focus, button:focus, .button:focus, textarea:focus {
     border: none;
     border-radius: 200px;
@@ -299,7 +305,6 @@ p.copyright {
         margin: 1.5rem 0 .5rem;
     }
     .button {
-        margin: .5rem;
         display: inline-block;
     }
 }
