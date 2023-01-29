@@ -1,4 +1,4 @@
-version = 1
+version = 2.1.2
 
 [[analyzers]]
 name = "java"
@@ -6,6 +6,7 @@ enabled = true
 
   [analyzers.meta]
   runtime_version = "17"
+  confidence_level = "high"
 
 [[analyzers]]
 name = "javascript"
@@ -17,3 +18,5 @@ enabled = true
 
   [analyzers.meta]
   runtime_version = "3.x.x"
+  
+labels = ["deepsource-detection"]
