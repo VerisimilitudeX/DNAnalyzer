@@ -24,7 +24,7 @@ export default function Header() {
           <h1>DNAnalyzer</h1>
         </Link>
         <nav className="header--flex navBar">
-          <button onClick={handleToggle}>
+          <button className="hamburger--nav" onClick={handleToggle}>
             {navbarOpen ? (
               <MdClose
                 style={{ color: "#fff", width: "40px", height: "40px" }}

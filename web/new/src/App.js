@@ -29,6 +29,7 @@ export default class App extends Component {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
+        <p className="copyright">Copyright © Piyush Acharya 2023. DNAnalyzer is a 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
       </div>
     </Router>
   
