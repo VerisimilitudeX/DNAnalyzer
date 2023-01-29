@@ -23,6 +23,7 @@ div.main--text {
     align-content: center;
     margin: auto;
     height: 100%;
+    max-width: 600px;
 }
 
 div.button--div {
@@ -192,7 +193,6 @@ nav.navBar{
     background: rgba(28, 50, 65, 0.5);
     color: #fff;
     font-size: .8rem;
-    font-weight: 300;
     padding: .5rem .7rem;
     border: 0;
     margin: auto;
@@ -202,22 +202,7 @@ nav.navBar{
     border-radius: 2rem;
     transition: background 0.2s;
 }
-.button:not(.button-secondary):hover {
-    background: #ffffff;
-    color: #0e0f19;
-    cursor: pointer;
-}
-.button-secondary {
-    color: #7c689b;
-    background: none;
-    box-shadow: 0 0 0 2px #7c689b inset;
-    transition: box-shadow 0.2s, color 0.2s;
-}
-.button-secondary:hover {
-    color: #63537d;
-    box-shadow: 0 0 0 2px #63537d inset;
-    cursor: pointer;
-}
+
 input:focus, button:focus, .button:focus, textarea:focus {
     border: none;
     border-radius: 200px;
@@ -283,6 +268,16 @@ p.copyright {
     }
 }
 @media screen and (min-width: 800px) {
+
+    a.header--logo {
+        padding-left: 1rem;
+        font-size: 1rem;
+    }
+
+    div.logo--pattern {
+        background-size: 100px;
+      }
+
     .main--grid {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -305,5 +300,9 @@ p.copyright {
     }
 }
 @media screen and (min-width: 1024px) {
+    div.logo--pattern {
+        background-size: 150px;
+        width: 30%;
+      }
 
 }
