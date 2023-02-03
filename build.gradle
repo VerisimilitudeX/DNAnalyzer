@@ -38,6 +38,8 @@ dependencies {
 
     // Sentry SDK
     implementation 'io.sentry:sentry:6.10.0'
+
+    implementation 'org.controlsfx:controlsfx:11.1.2'
 }
 
 application {
