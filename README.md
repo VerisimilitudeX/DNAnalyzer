@@ -45,11 +45,11 @@ The human genome is composed of over 3 billion base pairs, making human analysis
 
 ### DNA
 
-In a nutshell, DNA is found in every cell of your body and contains the instructions for building over 200 different types of cells. DNA is similar to a programming language, but only for living organisms. We can crack the code to reading and interpreting it by using Artificial Intelligence and Machine Learning, which can have life-saving benefits as well as key insights.
+DNA, present in every cell of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of Artificial Intelligence and Machine Learning, we can decode and comprehend DNA, leading to potentially life-saving discoveries and valuable insights.
 
 ### Databases
 
-Having a database of DNA is the best way to interpret the DNA, and when combined with machine learning, the ML model can make accurate predictions on DNA it has never seen before. This is how current DNA tests function.
+A DNA database is crucial for interpreting DNA sequences. By leveraging machine learning, predictions can be made on previously unseen DNA sequences. This is the foundation on which current DNA analysis programs operate.
 
 ## Getting Started
 
@@ -58,13 +58,20 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 ### System Requirements
 
 * JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)+
-* A `JAVA_HOME` environment variable pointing to your JDK, or the Java executable in your PATH
-* [Gradle](https://gradle.org/install/)
+   * A `JAVA_HOME` environment variable pointing to your JDK, or the Java executable in your PATH
+* [Gradle](https://gradle.org/install/) (included)
 
 ### Build & Run
 
+The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/Verisimilitude11/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+
+* Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
+
 We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
 
+<details>
+      <summary>Linux and compilation from source</summary>
+ 
 ```pwsh
 ./gradlew build
 ```
@@ -111,13 +118,18 @@ DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI,
 ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
 ```
 
+
 Then:
 
 * Enter the file name of the DNA file in the text field
 * Set min and max
 * Click analyze
 
+
 The results of your analysis will be shown in the right pane.
+</details>
+
+#
 
 #### Help message
 
