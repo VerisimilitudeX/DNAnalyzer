@@ -1,4 +1,4 @@
-![logo full dark png](https://user-images.githubusercontent.com/96280466/213999050-f5d5393c-6ec5-4a5a-bc80-fff093d5fcc6.png)
+![DNAnalyzer](https://user-images.githubusercontent.com/96280466/221687288-869370ad-9d39-48a8-9821-3bc88e38877b.png)
 
 
 <p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg" alt="WakaTime"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
