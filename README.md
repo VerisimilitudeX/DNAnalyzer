@@ -13,6 +13,8 @@ Our flagship product identifies protein-encoding sequences via recognizing start
 
 Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=basicLinux32gb&location=WestUs)
+
 ## Background
 
 The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of data, which need to be organized and converted into analyzable data appropriately. Current analytical tools and software make it arduous for both geneticists and physicians to do so, thus restricting them from acquiring crucial information to better understand humans. `[1]`
@@ -123,6 +125,8 @@ Then:
 * Enter the file name of the DNA file in the text field
 * Set min and max
 * Click analyze
+
+* Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#java17) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
 
 
 The results of your analysis will be shown in the right pane.
