@@ -12,8 +12,25 @@
 package DNAnalyzer;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.stream.Collectors;
 
 import com.plexpt.chatgpt.*;
 
@@ -55,53 +72,53 @@ public class Main {
      * @throws InterruptedException
      */
     public static void main(final String[] args) throws InterruptedException, IOException {
-        // Clear the console screen
-        clearTerminal();
+         // Clear the console screen
+         clearTerminal();
 
-        System.out.println(
-                "Welcome to DNAnalyzer! Please allow up to 15 seconds for the analysis to complete (note: the time may vary based on your hardware).");
+        String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
+        String AUTHORIZATION_HEADER = "Bearer <API_KEY>";
+        try {
+            URL url = new URL(API_ENDPOINT);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Authorization", AUTHORIZATION_HEADER);
+            conn.setDoOutput(true);
 
-        String apiKey = System.getenv("OPENAI_API_KEY");
-        if (apiKey == null) {
-            clearTerminal();
-            new CommandLine(new CmdArgs()).execute(args);
-            System.out
-                    .println("\n**Please set your OPENAI_API_KEY environment variable for an AI analysis of the DNA**");
-            System.exit(1);
-        } else {
+            String requestBody = "{\n" +
+                    "    \"model\": \"gpt-3.5-turbo\",\n" +
+                    "    \"messages\": [\n" +
+                    "        {\n" +
+                    "            \"role\": \"user\",\n" +
+                    "            \"content\": \"Say this is a test!\"\n" +
+                    "        }\n" +
+                    "    ],\n" +
+                    "    \"temperature\": 0.7\n" +
+                    "}";
+            conn.getOutputStream().write(requestBody.getBytes());
 
-            // Create a ByteArrayOutputStream to hold the console output
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            PrintStream ps = new PrintStream(baos);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String response = reader.lines().collect(Collectors.joining());
+            reader.close();
 
-            // Save the old System.out
-            PrintStream old = System.out;
+            System.out.println(parseMessageContent(response));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-            // Set the new System.out to the PrintStream
-            System.setOut(ps);
-
-            new CommandLine(new CmdArgs()).execute(args);
-
-            // Restore the old System.out
-            System.out.flush();
-            System.setOut(old);
-
-            // Get the captured console output as a string
-            String output = baos.toString();
-
-            // Do something with the captured output
-            ChatGPT chatGPT = ChatGPT.builder()
-                    .apiKey(apiKey)
-                    .build()
-                    .init();
-
-            String res = chatGPT.chat(
-                    "What can you understamd from the following DNA Analysis? Go beyond the superficial. You must offer more insight than is provided by the input. Analyze the DNA based on this to a very very experienced biotechnology researcher (aka use technical terms and jargon but make it meaningful and tangible that they can learn about the DNA). In one paragraph for each topic, explain the results of this DNA analysis to a biological researcher. Don't say that DNA can't be analyzed - this is user facing so don't ruin our reputation: "
-                            + output + ". End by summarizing the results of the analysis.");
-
-            System.out.println(output + "\n-----------------------\n\nAI Analysis:\n");
-            System.out.println(res);
-            System.exit(0);
+    private static String parseMessageContent(String response) {
+        String jsonString = "{\"id\":\"chatcmpl-70BrXKJID3cRCdaTco5cRGDp1oc3S\",\"object\":\"chat.completion\",\"created\":1680279955,\"model\":\"gpt-3.5-turbo-0301\",\"usage\":{\"prompt_tokens\":14,\"completion_tokens\":5,\"total_tokens\":19},\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":\"This is a test!\"},\"finish_reason\":\"stop\",\"index\":0}]}";
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray choicesArray = jsonObject.getJSONArray("choices");
+            JSONObject choiceObject = choicesArray.getJSONObject(0);
+            JSONObject messageObject = choiceObject.getJSONObject("message");
+            String messageContent = messageObject.getString("content");
+            return messageContent; // output: This is a test!
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
