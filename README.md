@@ -1,9 +1,9 @@
-![logo full dark png](https://user-images.githubusercontent.com/96280466/213999050-f5d5393c-6ec5-4a5a-bc80-fff093d5fcc6.png)
+![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 
-<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg" alt="WakaTime"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
+<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"><img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitudeX/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
 <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
-<a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
+<a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
 
 >Revolutionizing DNA analysis and making it accessible to all through innovative analysis and interpretive tools
 
@@ -12,6 +12,8 @@ DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-290
 Our flagship product identifies protein-encoding sequences via recognizing start and stop codons, predicts high coverage regions, and locates promoter sequences and their associated regulatory sequences. It also provides a variety of other useful tools, such as a built-in DNA sequence editor, viewer, generator, and converter.
 
 Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=basicLinux32gb&location=WestUs)
 
 ## Background
 
@@ -65,7 +67,7 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 
 The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/Verisimilitude11/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
 
-* Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
+* Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#java17) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
 
 We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
 
@@ -179,4 +181,4 @@ View our in-line citations in the [Citations](docs/citations.md) document.
 
 You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: `contact@dnanalyzer.live`
 
-##### Copyright © Piyush Acharya 2023. DNAnalyzer is a 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
+##### Copyright © Piyush Acharya 2023. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
