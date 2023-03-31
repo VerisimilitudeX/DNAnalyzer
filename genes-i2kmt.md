@@ -28,7 +28,7 @@
 
 #### Hemophilia B
 - F9 gene: Factor IX
-- F9 wild type sequence:[download dataset](https://www.ncbi.nlm.nih.gov/gene/2158)
+- F9 wild type sequence: [download dataset](https://www.ncbi.nlm.nih.gov/gene/2158)
 - F9 mutations[^3]: [view missense mutations](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.cdc.gov%2Fncbddd%2Fhemophilia%2Fdocuments%2Ff9-chbmp-v5-5-5-15.xlsx&wdOrigin=BROWSELINK)
 
 
