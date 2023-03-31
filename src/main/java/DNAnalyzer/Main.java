@@ -96,7 +96,7 @@ public class Main {
                     .init();
 
             String res = chatGPT.chat(
-                    "What can you understamd from the following DNA Analysis? Go beyond the superficial. You must offer more insight than is provided by the input. Analyze the DNA based on this to a very very experienced biotechnology researcher (aka use technical terms and jargon but make it meaningful and tangible that they can learn about the DNA). In one paragraph for each topic, explain the results of this DNA analysis to a biological researcher. Don't say that DNA can't be analyzed - this is user facing so don't ruin our reputation: "
+                    "From the perspective of a biological researcher, I would like you to provide a comprehensive understanding of the DNA analysis that goes beyond the surface-level information. I expect you to use technical terms but make it meaningful and tangible enough that I can learn about the DNA. In one paragraph for each topic, please explain the results of this DNA analysis to me, assuming I am an experienced biotechnology researcher. It is crucial that you avoid stating that DNA cannot be analyzed and offer more in-depth insights into the analysis: "
                             + output + ". End by summarizing the results of the analysis.");
 
             System.out.println(output + "\n-----------------------\n\nAI Analysis:\n");
