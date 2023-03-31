@@ -23,5 +23,14 @@
 #### Familial hypercholesterolemia
 - LDLR gene: low density lipoprotein receptor
 - LDLR wild type sequence: [download dataset](https://www.ncbi.nlm.nih.gov/gene/3949)
-- LDLR mutation:
-  -   
+- LDLR mutation: 
+  - most famous mutations [^1]
+    - C308Y
+    - H562Y
+    - A606T
+    - p. W556R [^2]
+    
+
+
+[^1]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4660303/
+[^2]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3374117/
