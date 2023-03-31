@@ -15,7 +15,7 @@
 ---
 
 #### Cystic Fibrosis
-- Mutation F508del, deletion of a single amino-acid
+- CFTR gene: deletion of a single amino-acid
 - CFTR wild type sequence: [download dataset](https://www.ncbi.nlm.nih.gov/gene/1080)
 - CFTR mutation:
   - most famous mutation[^2]: c.1521_1523delCTT, p.Phe508del
