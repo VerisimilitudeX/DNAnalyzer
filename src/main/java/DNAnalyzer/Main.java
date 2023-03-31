@@ -12,9 +12,7 @@
 package DNAnalyzer;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.json.JSONArray;
@@ -22,17 +20,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
-
-import com.plexpt.chatgpt.*;
 
 import DNAnalyzer.ui.cli.CmdArgs;
 import picocli.CommandLine;
@@ -72,11 +64,74 @@ public class Main {
      * @throws InterruptedException
      */
     public static void main(final String[] args) throws InterruptedException, IOException {
-         // Clear the console screen
-         clearTerminal();
+        // Clear the console screen
+        clearTerminal();
 
+        String apiKey = System.getenv("OPENAI_API_KEY");
+        if (apiKey == null) {
+            clearTerminal();
+            System.out.println(
+                    "Welcome to DNAnalyzer! Please allow up to 15 seconds for the analysis to complete (note: the time may vary based on your hardware).\n");
+            new CommandLine(new CmdArgs()).execute(args);
+            System.out
+                    .println("\n**Please set your OPENAI_API_KEY environment variable for an AI analysis of the DNA**");
+            System.exit(1);
+        } else {
+
+            // Create a ByteArrayOutputStream to hold the console output
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PrintStream ps = new PrintStream(baos);
+
+            // Save the old System.out
+            PrintStream old = System.out;
+
+            // Set the new System.out to the PrintStream
+            System.setOut(ps);
+
+            new CommandLine(new CmdArgs()).execute(args);
+
+            // Restore the old System.out
+            System.out.flush();
+            System.setOut(old);
+
+            // Get the captured console output as a string
+            String output = baos.toString();
+
+            System.out.println(output + "\n-----------------------\n\nAI Analysis:\n");
+            String res = askGPT(output);
+
+            // loading screen
+            System.out.print("Processing");
+            for (int j = 0; j < 3; j++) {
+                Thread.sleep(500);
+                System.out.print(".");
+            }
+            System.out.println("");
+
+            System.out.println(res);
+            System.exit(0);
+        }
+
+    }
+
+    private static String parseMessageContent(String response) {
+        String jsonString = response;
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray choicesArray = jsonObject.getJSONArray("choices");
+            JSONObject choiceObject = choicesArray.getJSONObject(0);
+            JSONObject messageObject = choiceObject.getJSONObject("message");
+            String messageContent = messageObject.getString("content");
+            return messageContent;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private static String askGPT(String output) {
         String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
-        String AUTHORIZATION_HEADER = "Bearer <API_KEY>";
+        String AUTHORIZATION_HEADER = "Bearer " + System.getenv("OPENAI_API_KEY");
         try {
             URL url = new URL(API_ENDPOINT);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -90,10 +145,12 @@ public class Main {
                     "    \"messages\": [\n" +
                     "        {\n" +
                     "            \"role\": \"user\",\n" +
-                    "            \"content\": \"Say this is a test!\"\n" +
+                    "            \"content\": \"From the perspective of a biological researcher, I would like you to provide a comprehensive understanding and description of the DNA analysis that goes beyond the surface-level information. I expect you to use technical terms but make it meaningful and tangible enough that I can learn about the DNA. In one paragraph for each topic, please explain the results of this DNA analysis to me, assuming I am an experienced biotechnology researcher. It is crucial that you avoid stating that DNA cannot be analyzed and offer more in-depth insights into the analysis: "
+                    + output + "\"\n"
+                    +
                     "        }\n" +
                     "    ],\n" +
-                    "    \"temperature\": 0.7\n" +
+                    "    \"temperature\": 0.9\n" +
                     "}";
             conn.getOutputStream().write(requestBody.getBytes());
 
@@ -101,24 +158,13 @@ public class Main {
             String response = reader.lines().collect(Collectors.joining());
             reader.close();
 
-            System.out.println(parseMessageContent(response));
+            return parseMessageContent(response);
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String parseMessageContent(String response) {
-        String jsonString = "{\"id\":\"chatcmpl-70BrXKJID3cRCdaTco5cRGDp1oc3S\",\"object\":\"chat.completion\",\"created\":1680279955,\"model\":\"gpt-3.5-turbo-0301\",\"usage\":{\"prompt_tokens\":14,\"completion_tokens\":5,\"total_tokens\":19},\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":\"This is a test!\"},\"finish_reason\":\"stop\",\"index\":0}]}";
-        try {
-            JSONObject jsonObject = new JSONObject(jsonString);
-            JSONArray choicesArray = jsonObject.getJSONArray("choices");
-            JSONObject choiceObject = choicesArray.getJSONObject(0);
-            JSONObject messageObject = choiceObject.getJSONObject("message");
-            String messageContent = messageObject.getString("content");
-            return messageContent; // output: This is a test!
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return null;
+            if (e.getMessage().contains("401")) {
+                return "Error: Invalid API key. Please check your API key and try again.";
+            } else {
+                return "Error: " + e.getMessage();
+            }
         }
     }
 }
