@@ -40,6 +40,9 @@ dependencies {
     implementation 'io.sentry:sentry:6.10.0'
 
     implementation 'org.controlsfx:controlsfx:11.1.2'
+
+    // OpenAI-GPT-3
+    implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.0.1'
 }
 
 application {

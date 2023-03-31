@@ -18,6 +18,6 @@ public class DNAnalyzerRatingFXMLController {
     private void btnSubmitClicked(ActionEvent event) {
         double rating = dnaRating.getRating();
         String ratingTxt = dnaRatingTxt.getText();
-        System.out.print("Rating:"+rating);
+        System.out.print("Rating:"+rating + " " + ratingTxt);
     }
 }
