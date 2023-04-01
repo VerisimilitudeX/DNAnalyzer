@@ -145,7 +145,7 @@ public class Main {
                     "    \"messages\": [\n" +
                     "        {\n" +
                     "            \"role\": \"user\",\n" +
-                    "            \"content\": \"From the perspective of a biological researcher, I would like you to provide a comprehensive understanding and description of the DNA analysis that goes beyond the surface-level information. I expect you to use technical terms but make it meaningful and tangible enough that I can learn about the DNA. In one paragraph for each topic, please explain the results of this DNA analysis to me, assuming I am an experienced biotechnology researcher. It is crucial that you avoid stating that DNA cannot be analyzed and offer more in-depth insights into the analysis: "
+                    "            \"content\": \"From the perspective of a genomics researcher, I would like you to provide a comprehensive understanding and description of the DNA analysis that goes beyond the surface-level information. I expect you to use technical terms but make it meaningful and tangible enough that I can learn about the DNA. In one paragraph for each topic, please explain the results of this DNA analysis to me, assuming I am an experienced biotechnology researcher. It is crucial that you avoid stating that DNA cannot be analyzed and offer more in-depth insights into the analysis: "
                     + output + "\"\n"
                     +
                     "        }\n" +
