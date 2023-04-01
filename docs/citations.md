@@ -4,9 +4,9 @@
 
 <h4>DNAnalyzer was developed with the help of the following people:
 <h4>
-<a href="https://github.com/Verisimilitude11/DNAnalyzer/graphs/contributors">
+<a href="https://github.com/VerisimilitudeX/DNAnalyzer/graphs/contributors">
 
-<img src="https://contrib.rocks/image?repo=Verisimilitude11/DNAnalyzer&&max=817"  alt=""/>
+<img src="https://contrib.rocks/image?repo=VerisimilitudeX/DNAnalyzer&&max=817"  alt=""/>
 
 <h2 align="left" id="citations">Citations
 </h2>

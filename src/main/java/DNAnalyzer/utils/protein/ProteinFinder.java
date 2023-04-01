@@ -21,7 +21,7 @@ import DNAnalyzer.data.codon.CodonDataUtils;
 /**
  * Find proteins in a DNA sequence (contains the main algorithm).
  *
- * @author Piyush Acharya (@Verisimilitude11)
+ * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
  */
 

@@ -65,7 +65,7 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 
 ### Build & Run
 
-The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/Verisimilitude11/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
 
 * Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
 
@@ -173,9 +173,9 @@ View our in-line citations in the [Citations](docs/citations.md) document.
 
 ## Contributing
 
-* [Contributing Guidelines](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
+* [Contributing Guidelines](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
 
-* [How To Use Git](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
+* [How To Use Git](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
 
 ## Terms of Use
 

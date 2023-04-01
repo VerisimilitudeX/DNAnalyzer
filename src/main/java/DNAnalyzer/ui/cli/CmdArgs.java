@@ -11,11 +11,11 @@
 
 package DNAnalyzer.ui.cli;
 
-import DNAnalyzer.Main;
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.Properties;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.core.Utils;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -96,7 +96,7 @@ public class CmdArgs implements Runnable {
     private DNAAnalysis dnaAnalyzer(final String aminoAcid) {
         try {
             String protein = null;
-            Main.clearTerminal();
+            Utils.clearTerminal();
             final String dna = readFile(dnaFile);
             if (proteinFile != null) {
                 protein = readFile(proteinFile);

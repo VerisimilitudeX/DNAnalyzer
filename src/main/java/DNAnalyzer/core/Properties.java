@@ -24,7 +24,7 @@ import DNAnalyzer.data.aminoAcid.AminoAcidFactory;
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
  *
- * @author Piyush Acharya (@Verisimilitude11)
+ * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
  */
 public class Properties {

@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * Declares the codon frame
  *
- * @author Piyush Acharya (@Verisimilitude11)
+ * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
  * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */

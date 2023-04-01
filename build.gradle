@@ -58,7 +58,7 @@ publishing {
     repositories {
         maven {
             name = "Github"
-            url = uri("https://maven.pkg.github.com/Verisimilitude11/DNAnalyzer")
+            url = uri("https://maven.pkg.github.com/VerisimilitudeX/DNAnalyzer")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
                 password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
@@ -73,7 +73,7 @@ publishing {
             artifactId = 'dnanalyzer'
             version = '2.0.0'
             pom {
-                url.set("https://github.com/Verisimilitude11/DNAnalyzer.git")
+                url.set("https://github.com/VerisimilitudeX/DNAnalyzer.git")
             }
         }
     }
