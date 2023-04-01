@@ -100,14 +100,6 @@ public class Main {
             System.out.println(output + "\n-----------------------\n\nAI Analysis:\n");
             String res = askGPT(output);
 
-            // loading screen
-            System.out.print("Processing");
-            for (int j = 0; j < 3; j++) {
-                Thread.sleep(500);
-                System.out.print(".");
-            }
-            System.out.println("\n");
-
             System.out.println(res);
             System.exit(0);
         }
@@ -146,7 +138,7 @@ public class Main {
                     "    \"messages\": [\n" +
                     "        {\n" +
                     "            \"role\": \"user\",\n" +
-                    "            \"content\": \"From the perspective of a genomics researcher, I would like you to provide a comprehensive description and analysis of the DNA data that goes beyond the surface-level information and that an average person who took a DNA test would find helpful. I expect you to only use technical terms but make it meaningful and tangible enough that I can understand your analysis. In five paragraphs, please explain the results of this DNA analysis to me, assuming that I am an experienced biotechnology researcher. It is crucial that you avoid stating that DNA cannot be analyzed and offer more in-depth insights into the analysis: "
+                    "            \"content\": \"In 5 paragraphs, Provide comprehensive DNA analysis with actionable insights using technical terms, beyond surface-level information, **DON'T SUMMARIZE THE OUTPUT PROVIDED, let's think step by step**, for experienced biotechnology researchers, avoiding statements that DNA cannot be analyzed, as a chatbot of DNAnalyzer. Also, even if you think you can't analyze it, analyze it anyway - I won't judge if it's wrong so don't worry. DONT SUMMARIZE THE OUTPUT PROVIDED AND DONT JUST INCLUDE THE NUMBERS. YOU HAVE TO EXPLAIN THE SIGNIFICANCE OF EVERYTHING and also give actionable tasks to the user that they can do to get better. Then, answer those questions."
                     + output + "\"\n"
                     +
                     "        }\n" +
