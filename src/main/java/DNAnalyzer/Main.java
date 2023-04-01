@@ -35,7 +35,8 @@ import picocli.CommandLine;
  * @author Piyush Acharya (@Verisimilitude11)
  * @version 1.2.1
  * @see <a href=
- *      "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">...</a>
+ *      "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">Genomic
+ *      Datasheet</a>
  */
 public class Main {
 
@@ -106,6 +107,10 @@ public class Main {
 
     }
 
+    /** Parses the message content from a given response string in JSON format.
+     * @param response the response string in JSON format from the OpenAI API
+     * @return the message content as a String
+*/
     private static String parseMessageContent(String response) {
         String jsonString = response;
         try {
