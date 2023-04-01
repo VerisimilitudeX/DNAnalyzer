@@ -9,7 +9,7 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer.data.codon;
+package dnanalyzer.data.codon;
 
 import java.util.Objects;
 

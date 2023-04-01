@@ -9,7 +9,7 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer.utils.traits;
+package dnanalyzer.utils.traits;
 
 public class Traits {
     /**

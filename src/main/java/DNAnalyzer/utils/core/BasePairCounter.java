@@ -9,12 +9,12 @@
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 
-package DNAnalyzer.utils.core;
+package dnanalyzer.utils.core;
 
 import java.util.Optional;
 import java.util.function.IntPredicate;
 
-import DNAnalyzer.core.DNAAnalysis;
+import dnanalyzer.core.DNAAnalysis;
 
 /**
  * BasePairCounter is Fluent Interface implementation used to count the

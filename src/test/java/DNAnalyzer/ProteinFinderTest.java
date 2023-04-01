@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
 
-import DNAnalyzer.utils.protein.ProteinFinder;
+import dnanalyzer.utils.protein.ProteinFinder;
 
 class ProteinFinderTest {
     Path projectPath = Path.of("");
