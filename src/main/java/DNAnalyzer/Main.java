@@ -106,7 +106,7 @@ public class Main {
                 Thread.sleep(500);
                 System.out.print(".");
             }
-            System.out.println("");
+            System.out.println("\n");
 
             System.out.println(res);
             System.exit(0);
@@ -130,6 +130,7 @@ public class Main {
     }
 
     private static String askGPT(String output) {
+        output = output.replaceAll("\\r?\\n", "");
         String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
         String AUTHORIZATION_HEADER = "Bearer " + System.getenv("OPENAI_API_KEY");
         try {
@@ -145,7 +146,7 @@ public class Main {
                     "    \"messages\": [\n" +
                     "        {\n" +
                     "            \"role\": \"user\",\n" +
-                    "            \"content\": \"From the perspective of a genomics researcher, I would like you to provide a comprehensive understanding and description of the DNA analysis that goes beyond the surface-level information. I expect you to use technical terms but make it meaningful and tangible enough that I can learn about the DNA. In one paragraph for each topic, please explain the results of this DNA analysis to me, assuming I am an experienced biotechnology researcher. It is crucial that you avoid stating that DNA cannot be analyzed and offer more in-depth insights into the analysis: "
+                    "            \"content\": \"From the perspective of a genomics researcher, I would like you to provide a comprehensive description and analysis of the DNA data that goes beyond the surface-level information and that an average person who took a DNA test would find helpful. I expect you to only use technical terms but make it meaningful and tangible enough that I can understand your analysis. In five paragraphs, please explain the results of this DNA analysis to me, assuming that I am an experienced biotechnology researcher. It is crucial that you avoid stating that DNA cannot be analyzed and offer more in-depth insights into the analysis: "
                     + output + "\"\n"
                     +
                     "        }\n" +
