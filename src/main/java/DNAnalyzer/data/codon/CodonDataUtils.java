@@ -9,11 +9,11 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.data.codon;
+package DNAnalyzer.data.codon;
 
 import java.util.List;
 
-import dnanalyzer.data.aminoAcid.*;
+import DNAnalyzer.data.aminoAcid.*;
 
 /**
  * provide function to access codon data from amino acid.

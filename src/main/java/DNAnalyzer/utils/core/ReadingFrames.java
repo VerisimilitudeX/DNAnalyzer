@@ -9,14 +9,14 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.utils.core;
+package DNAnalyzer.utils.core;
 
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import dnanalyzer.data.codon.*;
+import DNAnalyzer.data.codon.*;
 
 /**
  * Reading frame data for the highest occurring codons.

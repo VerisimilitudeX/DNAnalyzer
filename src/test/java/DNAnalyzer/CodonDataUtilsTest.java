@@ -19,7 +19,7 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import dnanalyzer.data.codon.CodonDataUtils;
+import DNAnalyzer.data.codon.CodonDataUtils;
 
 /**
  * CodonDataUtilsTest contains 20 unit tests, one for each acid.

@@ -9,11 +9,10 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer;
+package DNAnalyzer;
 
 import java.io.IOException;
-
-import dnanalyzer.utils.ai.PathRouter;
+import DNAnalyzer.utils.ai.PathRouter;
 
 /**
  * Main Class for the DNAnalyzer program.

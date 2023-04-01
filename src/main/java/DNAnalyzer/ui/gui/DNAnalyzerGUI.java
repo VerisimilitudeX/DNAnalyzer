@@ -9,7 +9,7 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.ui.gui;
+package DNAnalyzer.ui.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

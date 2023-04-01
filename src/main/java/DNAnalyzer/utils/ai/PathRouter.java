@@ -1,4 +1,4 @@
-package dnanalyzer.utils.ai;
+package DNAnalyzer.utils.ai;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -13,8 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import dnanalyzer.ui.cli.CmdArgs;
-import dnanalyzer.utils.core.Utils;
+import DNAnalyzer.ui.cli.CmdArgs;
+import DNAnalyzer.utils.core.Utils;
 import picocli.CommandLine;
 
 public class PathRouter {

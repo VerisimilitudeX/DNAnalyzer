@@ -9,8 +9,11 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.ui.gui;
+package DNAnalyzer.ui.gui;
 
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.core.Properties;
+import DNAnalyzer.utils.core.DNATools;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,14 +25,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import static dnanalyzer.utils.core.Utils.readFile;
+import static DNAnalyzer.utils.core.Utils.readFile;
 
 import java.io.*;
 import java.io.PrintStream;
-
-import dnanalyzer.core.DNAAnalysis;
-import dnanalyzer.core.Properties;
-import dnanalyzer.utils.core.DNATools;
 
 public class DNAnalyzerGUIFXMLController {
     /**

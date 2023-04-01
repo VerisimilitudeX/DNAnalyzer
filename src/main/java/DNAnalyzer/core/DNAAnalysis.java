@@ -9,19 +9,19 @@
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.core;
+package DNAnalyzer.core;
+
+import DNAnalyzer.data.codon.CodonFrame;
+import DNAnalyzer.utils.core.BasePairCounter;
+import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.core.ReadingFrames;
+import DNAnalyzer.utils.protein.ProteinAnalysis;
+import DNAnalyzer.utils.protein.ProteinFinder;
 
 import java.io.PrintStream;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import dnanalyzer.data.codon.CodonFrame;
-import dnanalyzer.utils.core.BasePairCounter;
-import dnanalyzer.utils.core.DNATools;
-import dnanalyzer.utils.core.ReadingFrames;
-import dnanalyzer.utils.protein.ProteinAnalysis;
-import dnanalyzer.utils.protein.ProteinFinder;
 
 import static java.util.Optional.ofNullable;
 

@@ -1,4 +1,4 @@
-package dnanalyzer.ui.gui;
+package DNAnalyzer.ui.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

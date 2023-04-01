@@ -9,7 +9,7 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.utils.core;
+package DNAnalyzer.utils.core;
 
 import java.io.File;
 import java.io.IOException;

@@ -3,8 +3,6 @@ package DNAnalyzer.utils.core;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import dnanalyzer.utils.core.DNATools;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

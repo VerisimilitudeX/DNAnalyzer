@@ -1,9 +1,7 @@
 package DNAnalyzer.utils.core;
 
+import DNAnalyzer.data.codon.CodonFrame;
 import org.junit.jupiter.api.BeforeEach;
-
-import dnanalyzer.data.codon.CodonFrame;
-import dnanalyzer.utils.core.ReadingFrames;
 
 import java.io.IOException;
 import java.nio.file.Files;

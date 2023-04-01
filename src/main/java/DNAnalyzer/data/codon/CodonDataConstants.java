@@ -9,11 +9,11 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-package dnanalyzer.data.codon;
+package DNAnalyzer.data.codon;
 
 import java.util.*;
 
-import dnanalyzer.data.aminoAcid.*;
+import DNAnalyzer.data.aminoAcid.*;
 
 /**
  * Declares the codon data for the 20 amino acids
