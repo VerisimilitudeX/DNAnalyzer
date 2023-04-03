@@ -22,8 +22,8 @@ try {
 }
 
 # Set the URL for the latest release and the source code
-$url = 'https://github.com/Verisimilitude11/DNAnalyzer/releases/latest'
-$alt_url = 'https://github.com/Verisimilitude11/DNAnalyzer/archive/refs/tags/'
+$url = 'https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest'
+$alt_url = 'https://github.com/VerisimilitudeX/DNAnalyzer/archive/refs/tags/'
 
 # Make a request to the URL and get the response
 $request = [System.Net.WebRequest]::Create($url)

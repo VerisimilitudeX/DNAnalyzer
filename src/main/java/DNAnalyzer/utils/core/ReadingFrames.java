@@ -21,7 +21,7 @@ import DNAnalyzer.data.codon.*;
 /**
  * Reading frame data for the highest occurring codons.
  *
- * @author Piyush Acharya (@Verisimilitude11)
+ * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
  */
 public class ReadingFrames {

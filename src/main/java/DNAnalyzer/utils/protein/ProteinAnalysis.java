@@ -19,7 +19,7 @@ import DNAnalyzer.core.Properties;
 /**
  * Prints properties of the proteins in the DNA.
  *
- * @author Piyush Acharya (@Verisimilitude11)
+ * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
  */
 public class ProteinAnalysis {
