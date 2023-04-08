@@ -16,6 +16,7 @@ import static DNAnalyzer.core.DNAAnalysis.countBasePairs;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import DNAnalyzer.core.DNAAnalysis.BasePairIndex;
 import DNAnalyzer.data.aminoAcid.AminoAcid;
@@ -129,30 +130,25 @@ public class Properties {
      */
     public static boolean isRandomDNA(final String dna) {
         long[] nucleotideCount = countBasePairs(dna);
+        int[] percentages = Arrays.stream(nucleotideCount)
+                                      .mapToInt(c -> nucleotidePercentage(c, dna))
+                                      .toArray();
 
-        // This sorts the array to get min and max value
-        Arrays.sort(nucleotideCount);
+        int a = percentages[BasePairIndex.ADENINE];
+        int t = percentages[BasePairIndex.THYMINE];
+        int g = percentages[BasePairIndex.GUANINE];
+        int c = percentages[BasePairIndex.CYTOSINE];
 
-        // Only calculate 2 Percentages, as only the highest difference (max - min) is
-        // relevant
-        final int maxPercent = nucleotidePercentage(nucleotideCount[3], dna);
-        final int minPercent = nucleotidePercentage(nucleotideCount[0], dna);
-        // If the percentage of each nucleotide is between 2% of one another, then it is
-        // random
+        IntStream diffs = IntStream.of(
+                Math.abs(a - t),
+                Math.abs(a - g),
+                Math.abs(a - c),
+                Math.abs(t - g),
+                Math.abs(t - c),
+                Math.abs(g - c)
+        );
 
-        return isDifferenceLessOrEqualTo2(maxPercent, minPercent);
-    }
-
-    /**
-     * Checks if the differnce between two numbers is less or equal to 2
-     *
-     * @param maxPercent one number to calculate the difference
-     * @param minPercent the other number to calculate the difference
-     * @return Whether the difference is less or equal to 2
-     * @category Properties
-     */
-    public static boolean isDifferenceLessOrEqualTo2(int maxPercent, int minPercent) {
-        return Math.abs(maxPercent - minPercent) <= 2;
+        return diffs.allMatch(diff -> diff <= 2);
     }
 
     /**
