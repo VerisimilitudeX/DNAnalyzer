@@ -129,6 +129,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
             .countThymine()
             .countGuanine()
             .countCytosine()
+            .countUnknown()
             .getCounts();
     }
 
@@ -142,6 +143,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
         public static final int THYMINE = 1;
         public static final int GUANINE = 2;
         public static final int CYTOSINE = 3;
+        public static final int UNKNOWN = 4;
     }
 
     /**
@@ -154,10 +156,12 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
         public static final int UPPERCASE_T = 84;
         public static final int UPPERCASE_G = 71;
         public static final int UPPERCASE_C = 67;
+        public static final int UPPERCASE_UNKNOWN = 0;
         public static final int LOWERCASE_A = 97;
         public static final int LOWERCASE_T = 116;
         public static final int LOWERCASE_G = 103;
         public static final int LOWERCASE_C = 99;
+        public static final int LOWERCASE_UNKNOWN = 0;
 
     }
 }

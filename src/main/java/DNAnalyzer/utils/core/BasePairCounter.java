@@ -28,6 +28,7 @@ public class BasePairCounter {
     private long thymine = 0;
     private long guanine = 0;
     private long cytosine = 0;
+    private long unknown = 0;
 
     private final String dnaString;
 
@@ -85,12 +86,23 @@ public class BasePairCounter {
     }
 
     /**
+     * Count unknown in given dna string;
+     *
+     * @return self
+     */
+    public BasePairCounter countUnknown() {
+        unknown = countBasePair(dnaString,
+            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_UNKNOWN, DNAAnalysis.AsciiInt.UPPERCASE_UNKNOWN));
+        return this;
+    }
+
+    /**
      * Count adenine in given dna string;
      *
      * @return long[] count of all four nucleotides for given dna string
      */
     public long[] getCounts() {
-        return new long[]{adenine, thymine, guanine, cytosine};
+        return new long[]{adenine, thymine, guanine, cytosine, unknown};
     }
 
     /**

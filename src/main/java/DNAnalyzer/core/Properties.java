@@ -119,6 +119,9 @@ public class Properties {
             " (" + (float) counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
         out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] +
             " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
+        out.println("N" + ": " + counts[BasePairIndex.UNKNOWN] +
+            " (" + (float) counts[BasePairIndex.UNKNOWN] / dna.length() * 100 + "%)");
+        out.println("Total: " + dna.length());
     }
 
     /**
