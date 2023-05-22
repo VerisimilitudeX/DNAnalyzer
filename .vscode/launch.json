@@ -2,6 +2,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "RunFastQ",
+      "request": "launch",
+      "mainClass": "DNAnalyzer.utils.core.RunFastQ",
+      "projectName": "DNAnalyzer"
+    },
+    {
+      "type": "java",
+      "name": "FastQ",
+      "request": "launch",
+      "mainClass": "DNAnalyzer.utils.core.FastQ",
+      "projectName": "DNAnalyzer"
+    },
+    {
+      "type": "java",
       "name": "test",
       "request": "launch",
       "mainClass": "DNAnalyzer.ui.gui.test",
