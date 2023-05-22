@@ -11,18 +11,7 @@
 
 package DNAnalyzer;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.junit.jupiter.api.Test;
-
-import DNAnalyzer.core.DNAAnalysis;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DNAAnalysisTest {
 
