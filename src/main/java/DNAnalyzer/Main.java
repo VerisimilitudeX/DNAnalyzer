@@ -13,6 +13,7 @@ package DNAnalyzer;
 
 import java.io.IOException;
 import DNAnalyzer.utils.ai.PathRouter;
+import DNAnalyzer.utils.core.Utils;
 
 /**
  * Main Class for the DNAnalyzer program.
@@ -34,7 +35,8 @@ public class Main {
      * @throws InterruptedException
      */
     public static void main(final String[] args) throws InterruptedException, IOException {
-        String apiKey = System.getenv("OPENAI_API_KEY");
+        String apiKey = "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"/*System.getenv("OPENAI_API_KEY")*/;
+        Utils.clearTerminal();
         if (apiKey == null) {
             PathRouter.regular(args);
         } else {
