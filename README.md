@@ -216,11 +216,11 @@ A program to analyze DNA sequences.
 
 ## Future Support and Improvements
 
-### Needleman-Wunsch Algorithm
+### Optimizing SQL Database for Genomic Data
+ 
+Our goal is to find the best SQL database fork that can handle high performance and vertical scaling. We will store and query genomic data from thousands of species, including their genes and mutations. This will help us train our machine learning model more effectively.
 
-This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing. `[8]`
-
-### Genotype Data for Analysis and Machine Learning Training
+### More Parameters in Machine Learning Model
 
 This will bring the ability to use genotyped data from 3rd-party DNA testing services with our algorithm. In the future, to use this program, all you will need is a simple $99 DNA Test to be able to experience all the features of DNAnalyzer.
 
