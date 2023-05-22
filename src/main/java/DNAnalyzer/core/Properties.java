@@ -30,6 +30,10 @@ import DNAnalyzer.data.aminoAcid.AminoAcidFactory;
  */
 public class Properties {
 
+    public static String getVersion() {
+        return "3.0.0-beta.0";
+    }
+
     /**
      * Prints the list of proteins found in the DNA.
      *
