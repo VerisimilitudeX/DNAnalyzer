@@ -18,7 +18,7 @@ package DNAnalyzer.utils.core;
  */
 public record DNATools(String dna) {
     public void isValid() {
-        if (!dna.matches("[atgc]+")) {
+        if (!dna.matches("[atgcn]+")) {
             throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
         }
     }
@@ -33,5 +33,9 @@ public record DNATools(String dna) {
 
     public String getDna() {
         return dna;
+    }
+
+    public String getReverseComplement() {
+        return new StringBuilder(dna).reverse().toString().replace("a", "T").replace("t", "A").replace("g", "C").replace("c", "G").toLowerCase();
     }
 }

@@ -1,7 +1,7 @@
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 
-<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"><img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitudeX/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
+<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitudeX/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
 <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
 <a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
 
@@ -13,7 +13,7 @@ Our flagship product identifies protein-encoding sequences via recognizing start
 
 Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=basicLinux32gb&location=WestUs)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
 
 ## Background
 
@@ -65,15 +65,81 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 
 ### Build & Run
 
-The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/Verisimilitude11/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+
+* We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
+<details>
+
+<summary>Windows</summary>
+
+The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+
+```pwsh
+.\gradlew build
+```
+
+### Usage
+
+```pwsh
+<executable> <arguments>
+```
+
+#### Executable
+
+```pwsh
+java -jar build/libs/DNAnalyzer.jar
+```
+
+#### Arguments
+
+DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
+
+```pwsh
+assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
+```
+
+### Example
+
+```pwsh
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
+```
+
+#### Gradle Run
+
+If you prefer, you can also run it directly from Gradle:
+
+```pwsh
+.\gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
+```
+
+#### GUI
+
+DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
+
+```pwsh
+.\gradlew run --args="--gui assets/dna/random/dnalong.fa"
+```
+
+Then:
+
+* Enter the file name of the DNA file in the text field
+* Set min and max
+* Click analyze
 
 * Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#java17) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
 
-We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
+
+The results of your analysis will be shown in the right pane.
+
+</details>
 
 <details>
-      <summary>Linux and compilation from source</summary>
- 
+      <summary>Linux & macOS</summary>
+      
+The easiest way to run the program on Linux or macOS is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest).
+
+First, download the zip or tar.gz file from releases and unzip it using the native utility. Then build gradle and run the GUI.
+
 ```pwsh
 ./gradlew build
 ```
@@ -120,7 +186,6 @@ DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI,
 ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
 ```
 
-
 Then:
 
 * Enter the file name of the DNA file in the text field
@@ -131,9 +196,9 @@ Then:
 The results of your analysis will be shown in the right pane.
 </details>
 
-#
 
-#### Help message
+
+#### Available Commands
 
 ```txt
 Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
@@ -173,9 +238,9 @@ View our in-line citations in the [Citations](docs/citations.md) document.
 
 ## Contributing
 
-* [Contributing Guidelines](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
+* [Contributing Guidelines](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
 
-* [How To Use Git](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
+* [How To Use Git](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
 
 ## Terms of Use
 

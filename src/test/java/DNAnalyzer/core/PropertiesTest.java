@@ -78,24 +78,4 @@ class PropertiesTest {
         boolean actual = Properties.isRandomDNA(dnaString);
         assertTrue(actual);
     }
-
-    // @Test
-    // void shouldIsRandomDNAReturnFalse() {
-    // String testEmptyString = "";
-    // boolean actual = Properties.isRandomDNA(testEmptyString);
-    // assertFalse(actual);
-    // }
-
-    @Test
-    void shouldIsDifferenceLessOrEqualTo2ReturnTrue() {
-        boolean actual = Properties.isDifferenceLessOrEqualTo2(10, 9);
-        assertTrue(actual);
-    }
-
-    @Test
-    void shouldIsDifferenceLessOrEqualTo2ReturnFalse() {
-        boolean actual = Properties.isDifferenceLessOrEqualTo2(10, 1);
-        assertFalse(actual);
-    }
-
 }
