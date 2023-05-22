@@ -54,13 +54,13 @@ public class CmdArgs implements Runnable {
     @Option(names = {"--reverse", "-r"}, description = "Reverse the DNA sequence before processing.")
     boolean reverse;
 
-    @Option(names = {"--help", "-h"}, description = "Prints this help message and exits.")
+    @Option(names = {"--help", "-h"}, description = "Prints this help message and exits.", help = true)
     boolean help;
 
     @Option(names = {"--version", "-v"}, description = "Prints version information and exits.")
     boolean version;
 
-    @Option(names = {"rcomplement"}, description = "Prints the complement of the DNA sequence.")
+    @Option(names = {"--rcomplement"}, description = "Prints the complement of the DNA sequence.")
     boolean rcomplement;
 
     /**
@@ -73,6 +73,11 @@ public class CmdArgs implements Runnable {
      */
     @Override
     public void run() {
+        if (version) {
+                System.out.println("===========================");
+                System.out.println("| DNAnalyzer " + Properties.getVersion() + " |");
+                System.out.println("===========================\n");
+            }
         if (Boolean.TRUE == startGUI) {
             String[] args = new String[0];
             DNAnalyzerGUI.launchIt(args);
@@ -97,10 +102,6 @@ public class CmdArgs implements Runnable {
 
             if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
                 System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
-            }
-
-            if (version) {
-                System.out.println("DNAnalyzer v" + Properties.getVersion());
             }
         }
     }
