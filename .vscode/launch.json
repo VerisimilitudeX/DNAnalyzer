@@ -2,39 +2,11 @@
   "configurations": [
     {
       "type": "java",
-      "name": "RunFastQ",
-      "request": "launch",
-      "mainClass": "DNAnalyzer.utils.core.RunFastQ",
-      "projectName": "DNAnalyzer"
-    },
-    {
-      "type": "java",
-      "name": "FastQ",
-      "request": "launch",
-      "mainClass": "DNAnalyzer.utils.core.FastQ",
-      "projectName": "DNAnalyzer"
-    },
-    {
-      "type": "java",
-      "name": "test",
-      "request": "launch",
-      "mainClass": "DNAnalyzer.ui.gui.test",
-      "projectName": "DNAnalyzer"
-    },
-    {
-      "type": "java",
-      "name": "GFG",
-      "request": "launch",
-      "mainClass": "DNAnalyzer.ui.gui.GFG",
-      "projectName": "DNAnalyzer"
-    },
-    {
-      "type": "java",
       "name": "Launch DNAnalyzer",
       "request": "launch",
       "mainClass": "DNAnalyzer.Main",
       "projectName": "DNAnalyzer",
-      "args": "assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r -rcomplement"
+      "args": "assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r --rcomplement --version"
     }
   ]
 }
