@@ -28,7 +28,7 @@ import static java.util.Optional.ofNullable;
 /**
  * Provides functionality to analyze the DNA
  *
- * @param dna       then DNA to be analyzed
+ * @param dna       the DNA to be analyzed
  * @param protein   the DNA sequence
  * @param aminoAcid name of amino acid
  */
@@ -45,6 +45,10 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
     public DNAAnalysis reverseDna() {
         return new DNAAnalysis(dna.reverse(), protein, aminoAcid);
+    }
+
+    public DNAAnalysis reverseComplement() {
+        return new DNAAnalysis(new DNATools(dna.getReverseComplement()), protein, aminoAcid);
     }
 
     // Create protein list

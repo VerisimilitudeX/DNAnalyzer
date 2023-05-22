@@ -54,6 +54,15 @@ public class CmdArgs implements Runnable {
     @Option(names = {"--reverse", "-r"}, description = "Reverse the DNA sequence before processing.")
     boolean reverse;
 
+    @Option(names = {"--help", "-h"}, description = "Prints this help message and exits.")
+    boolean help;
+
+    @Option(names = {"--version", "-v"}, description = "Prints version information and exits.")
+    boolean version;
+
+    @Option(names = {"rcomplement"}, description = "Prints the complement of the DNA sequence.")
+    boolean rcomplement;
+
     /**
      * Output a list of proteins, GC content, Nucleotide content, and other
      * information found in a DNA
@@ -76,6 +85,10 @@ public class CmdArgs implements Runnable {
                 dnaAnalyzer = dnaAnalyzer.reverseDna();
             }
 
+            if (rcomplement) {
+                dnaAnalyzer = dnaAnalyzer.reverseComplement();
+            }
+
             dnaAnalyzer
                 .printProteins(System.out)
                 .printHighCoverageRegions(System.out)
@@ -84,6 +97,10 @@ public class CmdArgs implements Runnable {
 
             if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
                 System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+            }
+
+            if (version) {
+                System.out.println("DNAnalyzer v" + Properties.getVersion());
             }
         }
     }
