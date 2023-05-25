@@ -90,9 +90,9 @@ public class ProteinFinder {
         }
     }
 
-    // Boyer-Moore algorithm
+    /* Boyer-Moore algorithm
     public static ArrayList<Integer> findProteins(String protein) {
         
     }
-
+ */
 }
