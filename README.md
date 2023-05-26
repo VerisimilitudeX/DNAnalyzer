@@ -1,7 +1,7 @@
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 
-<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitudeX/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
+<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://wakatime.com/badge/github/VerisimilitudeX/DNAnalyzer.svg" alt="WakaTime"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitudeX/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
 <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
 <a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
 
@@ -13,7 +13,7 @@ Our flagship product identifies protein-encoding sequences via recognizing start
 
 Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=basicLinux32gb&location=WestUs)
 
 ## Background
 
@@ -135,18 +135,48 @@ The results of your analysis will be shown in the right pane.
 
 <details>
       <summary>Linux & macOS</summary>
-      
-The easiest way to run the program on Linux or macOS is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest).
+<br>
 
-First, download the zip or tar.gz file from releases and unzip it using the native utility. Then build gradle and run the GUI.
+### DNAnalyzer & Java Download
+<br>
+To run DNAnaylzer on Linux, you'll need to download the DNAnalyzer [source code](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) and download and install Java 17.
 
-```pwsh
+First, download the zip or tar.gz file from releases and unzip it using the native utility. Then build gradle and run the GUI. Then, download [Java 17](https://www.oracle.com/ca-en/java/technologies/downloads/#java17).
+
+Find the download at https://www.oracle.com/ca-en/java/technologies/downloads/#java17, ensure you choose the Linux option and get the one for your correct processor architecture.
+
+### Java installation
+
+```bash
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+```
+Next, unzip it.
+
+```bash
+tar -xvzf jdk-17_linux-x64_bin.tar.gz
+```
+Then map the `JAVA_HOME` path. Fill it in with your JAVA directory where JAVA is unzipped.
+```bash
+export JAVA_HOME="{YOUR JAVA DIRECTORY HERE}/jdk-17.0.7" && export PATH=$JAVA_HOME/bin:$PATH
+```
+<details>
+<summary>Example of a full path command.</summary>
+
+```bash
+export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
+```
+<br>
+
+</details>
+
+```bash
 ./gradlew build
 ```
+If you see `Task :compileJava FAILED`, the program cannot find your Java installation. You may need to export your JAVA_HOME path again.
 
 ### Usage
 
-```pwsh
+```bash
 <executable> <arguments>
 ```
 
@@ -160,7 +190,7 @@ java -jar build/libs/DNAnalyzer.jar
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
-```pwsh
+```bash
 assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
 ```
 
@@ -216,11 +246,11 @@ A program to analyze DNA sequences.
 
 ## Future Support and Improvements
 
-### Optimizing SQL Database for Genomic Data
- 
-Our goal is to find the best SQL database fork that can handle high performance and vertical scaling. We will store and query genomic data from thousands of species, including their genes and mutations. This will help us train our machine learning model more effectively.
+### Needleman-Wunsch Algorithm
 
-### More Parameters in Machine Learning Model
+This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing. `[8]`
+
+### Genotype Data for Analysis and Machine Learning Training
 
 This will bring the ability to use genotyped data from 3rd-party DNA testing services with our algorithm. In the future, to use this program, all you will need is a simple $99 DNA Test to be able to experience all the features of DNAnalyzer.
 
