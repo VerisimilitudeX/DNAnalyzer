@@ -135,15 +135,15 @@ The results of your analysis will be shown in the right pane.
 
 <details>
       <summary>Linux & macOS</summary>
-<br>
+
 
 ### DNAnalyzer & Java Download
-<br>
-To run DNAnaylzer on Linux, you'll need to download the DNAnalyzer [source code](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) and download and install Java 17.
 
-First, download the zip or tar.gz file from releases and unzip it using the native utility. Then build gradle and run the GUI. Then, download [Java 17](https://www.oracle.com/ca-en/java/technologies/downloads/#java17).
+To run DNAnaylzer on Linux, you'll need to download the DNAnalyzer source code and download and install Java 17.
 
-Find the download at https://www.oracle.com/ca-en/java/technologies/downloads/#java17, ensure you choose the Linux option and get the one for your correct processor architecture.
+First, download the zip or tar.gz file from [DNAnalyzer releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) and unzip it using the native utility. 
+
+Then, download [Java 17](https://www.oracle.com/ca-en/java/technologies/downloads/#java17), find the download at https://www.oracle.com/ca-en/java/technologies/downloads/#java17, ensure you choose the Linux option and get the one for your correct processor architecture.
 
 ### Java installation
 
@@ -165,7 +165,6 @@ export JAVA_HOME="{YOUR JAVA DIRECTORY HERE}/jdk-17.0.7" && export PATH=$JAVA_HO
 ```bash
 export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
 ```
-<br>
 
 </details>
 
