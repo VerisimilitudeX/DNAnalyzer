@@ -135,18 +135,47 @@ The results of your analysis will be shown in the right pane.
 
 <details>
       <summary>Linux & macOS</summary>
-      
-The easiest way to run the program on Linux or macOS is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest).
 
-First, download the zip or tar.gz file from releases and unzip it using the native utility. Then build gradle and run the GUI.
 
-```pwsh
+### DNAnalyzer & Java Download
+
+To run DNAnaylzer on Linux, you'll need to download the DNAnalyzer source code and download and install Java 17.
+
+First, download the zip or tar.gz file from [DNAnalyzer releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) and unzip it using the native utility. 
+
+Then, download [Java 17](https://www.oracle.com/ca-en/java/technologies/downloads/#java17), find the download at https://www.oracle.com/ca-en/java/technologies/downloads/#java17, ensure you choose the Linux option and get the one for your correct processor architecture.
+
+### Java installation
+
+```bash
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+```
+Next, unzip it.
+
+```bash
+tar -xvzf jdk-17_linux-x64_bin.tar.gz
+```
+Then map the `JAVA_HOME` path. Fill it in with your JAVA directory where JAVA is unzipped.
+```bash
+export JAVA_HOME="{YOUR JAVA DIRECTORY HERE}/jdk-17.0.7" && export PATH=$JAVA_HOME/bin:$PATH
+```
+<details>
+<summary>Example of a full path command.</summary>
+
+```bash
+export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
+```
+
+</details>
+
+```bash
 ./gradlew build
 ```
+If you see `Task :compileJava FAILED`, the program cannot find your Java installation. You may need to export your JAVA_HOME path again.
 
 ### Usage
 
-```pwsh
+```bash
 <executable> <arguments>
 ```
 
@@ -160,7 +189,7 @@ java -jar build/libs/DNAnalyzer.jar
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
-```pwsh
+```bash
 assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
 ```
 
