@@ -28,8 +28,8 @@ public class AminoAcidFactory {
      */
     public static AminoAcid getAminoAcid(final String aminoAcid) {
         return Arrays.stream(AminoAcid.values())
-            .filter(acid -> acid.getNames().contains(aminoAcid.toLowerCase()))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("Unknown amino acid."));
+                .filter(acid -> acid.getNames().contains(aminoAcid.toLowerCase()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Unknown amino acid."));
     }
 }

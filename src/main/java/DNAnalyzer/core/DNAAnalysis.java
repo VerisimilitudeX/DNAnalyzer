@@ -89,7 +89,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
             final Matcher m = p.matcher(dna);
             if (m.find()) {
                 out.println(
-                    "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
+                        "\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
             } else {
                 out.println("\nProtein sequence not found in the DNA sequence.");
             }
@@ -120,21 +120,21 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
      * @param dnaString String of DNA bases. Accepts lowercase and uppercase
      *                  Strings.
      * @return returns an array of long(primitive type). long[0] = count of
-     * ADENINE bases long[1] = count of THYMINE bases long[2] = count of
-     * GUANINE
-     * bases long[3] = count of CYTOSINE bases
-     * <p>
-     * Constants for the indices can be found in public static class
-     * {@link BasePairIndex} for convenience/consistency.
+     *         ADENINE bases long[1] = count of THYMINE bases long[2] = count of
+     *         GUANINE
+     *         bases long[3] = count of CYTOSINE bases
+     *         <p>
+     *         Constants for the indices can be found in public static class
+     *         {@link BasePairIndex} for convenience/consistency.
      */
     public static long[] countBasePairs(String dnaString) {
         return new BasePairCounter(dnaString)
-            .countAdenine()
-            .countThymine()
-            .countGuanine()
-            .countCytosine()
-            .countUnknown()
-            .getCounts();
+                .countAdenine()
+                .countThymine()
+                .countGuanine()
+                .countCytosine()
+                .countUnknown()
+                .getCounts();
     }
 
     /**

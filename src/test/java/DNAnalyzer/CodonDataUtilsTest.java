@@ -29,7 +29,7 @@ import DNAnalyzer.data.codon.CodonDataUtils;
 public class CodonDataUtilsTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"i", "isoleucine", "ile"})
+    @ValueSource(strings = { "i", "isoleucine", "ile" })
     public void testIsoleucine_expectCorrect(final String acid) {
         final var expected = List.of("ATT", "ATC", "ATA");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -38,7 +38,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"l", "leucine", "leu"})
+    @ValueSource(strings = { "l", "leucine", "leu" })
     public void testLeucine_expectCorrect(final String acid) {
         final var expected = List.of("CTT", "CTC", "CTA", "CTG", "TTA", "TTG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -47,7 +47,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"v", "valine", "val"})
+    @ValueSource(strings = { "v", "valine", "val" })
     public void testValine_expectCorrect(final String acid) {
         final var expected = List.of("GTT", "GTC", "GTA", "GTG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -56,7 +56,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"f", "phenylalanine", "phe"})
+    @ValueSource(strings = { "f", "phenylalanine", "phe" })
     public void testPhenylalanine_expectCorrect(final String acid) {
         final var expected = List.of("TTT", "TTC");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -65,14 +65,14 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"m", "methionine", "met"})
+    @ValueSource(strings = { "m", "methionine", "met" })
     public void getMethionineTest(final String acid) {
         final var actual = CodonDataUtils.getAminoAcid(acid);
         assertTrue(actual.contains("ATG"));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"c", "cysteine", "cys"})
+    @ValueSource(strings = { "c", "cysteine", "cys" })
     public void getCysteineTest(final String acid) {
         final var expected = List.of("TGT", "TGC");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -81,7 +81,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"a", "alanine", "ala"})
+    @ValueSource(strings = { "a", "alanine", "ala" })
     public void getAlanineTest(final String acid) {
         final var expected = List.of("GCT", "GCC", "GCA", "GCG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -90,7 +90,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"g", "glycine", "gly"})
+    @ValueSource(strings = { "g", "glycine", "gly" })
     public void getGlycineTest(final String acid) {
         final var expected = List.of("GGT", "GGC", "GGA", "GGG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -99,7 +99,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"p", "proline", "pro"})
+    @ValueSource(strings = { "p", "proline", "pro" })
     public void getProlineTest(final String acid) {
         final var expected = List.of("CCT", "CCC", "CCA", "CCG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -108,7 +108,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"t", "threonine", "thr"})
+    @ValueSource(strings = { "t", "threonine", "thr" })
     public void getThreonineTest(final String acid) {
         final var expected = List.of("ACT", "ACC", "ACA", "ACG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -117,7 +117,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"s", "serine", "ser"})
+    @ValueSource(strings = { "s", "serine", "ser" })
     public void getSerineTest(final String acid) {
         final var expected = List.of("TCT", "TCC", "TCA", "TCG", "AGT", "AGC");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -126,7 +126,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"tyrosine", "y", "tyr"})
+    @ValueSource(strings = { "tyrosine", "y", "tyr" })
     public void getTyrosineTest(final String acid) {
         final var expected = List.of("TAT", "TAC");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -135,7 +135,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"w", "tryptophan", "trp"})
+    @ValueSource(strings = { "w", "tryptophan", "trp" })
     public void getTryptophanTest(final String acid) {
         final var expected = List.of("TGG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -144,7 +144,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"q", "glutamine", "gln"})
+    @ValueSource(strings = { "q", "glutamine", "gln" })
     public void getGlutamineTest(final String acid) {
         final var expected = List.of("CAA", "CAG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -153,16 +153,17 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"n", "asparagine", "asn"})
+    @ValueSource(strings = { "n", "asparagine", "asn" })
     public void getAsparagineTest(final String acid) {
         final var expected = List.of("AAT", "AAC");
         final var actual = CodonDataUtils.getAminoAcid(acid);
-        assertEquals(actual.size(), expected.size());;
+        assertEquals(actual.size(), expected.size());
+        ;
         assertTrue(actual.containsAll(expected));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"h", "histidine", "his"})
+    @ValueSource(strings = { "h", "histidine", "his" })
     public void getHistidineTest(final String acid) {
         final var expected = List.of("CAT", "CAC");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -171,7 +172,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"e", "glutamic acid", "glu"})
+    @ValueSource(strings = { "e", "glutamic acid", "glu" })
     public void getGlutamicAcidTest(final String acid) {
         final var expected = List.of("GAA", "GAG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -180,7 +181,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"d", "aspartic acid", "asp"})
+    @ValueSource(strings = { "d", "aspartic acid", "asp" })
     public void getAsparicAcidTest(final String acid) {
         final var expected = List.of("GAT", "GAC");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -189,7 +190,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"k", "lysine", "lys"})
+    @ValueSource(strings = { "k", "lysine", "lys" })
     public void getLysineAcidTest(final String acid) {
         final var expected = List.of("AAA", "AAG");
         final var actual = CodonDataUtils.getAminoAcid(acid);
@@ -198,7 +199,7 @@ public class CodonDataUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"r", "arginine", "arg"})
+    @ValueSource(strings = { "r", "arginine", "arg" })
     public void getArginineAcidTest(final String acid) {
         final var expected = List.of("CGT", "CGC", "CGA", "CGG", "AGA", "AGG");
         final var actual = CodonDataUtils.getAminoAcid(acid);

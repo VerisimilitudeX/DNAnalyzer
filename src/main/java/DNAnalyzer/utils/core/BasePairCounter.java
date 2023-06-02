@@ -48,7 +48,7 @@ public class BasePairCounter {
      */
     public BasePairCounter countAdenine() {
         adenine = countBasePair(dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_A, DNAAnalysis.AsciiInt.UPPERCASE_A));
+                intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_A, DNAAnalysis.AsciiInt.UPPERCASE_A));
         return this;
     }
 
@@ -59,7 +59,7 @@ public class BasePairCounter {
      */
     public BasePairCounter countThymine() {
         thymine = countBasePair(dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_T, DNAAnalysis.AsciiInt.UPPERCASE_T));
+                intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_T, DNAAnalysis.AsciiInt.UPPERCASE_T));
         return this;
     }
 
@@ -70,7 +70,7 @@ public class BasePairCounter {
      */
     public BasePairCounter countGuanine() {
         guanine = countBasePair(dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_G, DNAAnalysis.AsciiInt.UPPERCASE_G));
+                intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_G, DNAAnalysis.AsciiInt.UPPERCASE_G));
         return this;
     }
 
@@ -81,7 +81,7 @@ public class BasePairCounter {
      */
     public BasePairCounter countCytosine() {
         cytosine = countBasePair(dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_C, DNAAnalysis.AsciiInt.UPPERCASE_C));
+                intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_C, DNAAnalysis.AsciiInt.UPPERCASE_C));
         return this;
     }
 
@@ -92,7 +92,7 @@ public class BasePairCounter {
      */
     public BasePairCounter countUnknown() {
         unknown = countBasePair(dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_UNKNOWN, DNAAnalysis.AsciiInt.UPPERCASE_UNKNOWN));
+                intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_UNKNOWN, DNAAnalysis.AsciiInt.UPPERCASE_UNKNOWN));
         return this;
     }
 
@@ -102,7 +102,7 @@ public class BasePairCounter {
      * @return long[] count of all four nucleotides for given dna string
      */
     public long[] getCounts() {
-        return new long[]{adenine, thymine, guanine, cytosine, unknown};
+        return new long[] { adenine, thymine, guanine, cytosine, unknown };
     }
 
     /**

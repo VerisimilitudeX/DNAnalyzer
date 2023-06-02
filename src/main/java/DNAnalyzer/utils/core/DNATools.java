@@ -36,6 +36,7 @@ public record DNATools(String dna) {
     }
 
     public String getReverseComplement() {
-        return new StringBuilder(dna).reverse().toString().replace("a", "T").replace("t", "A").replace("g", "C").replace("c", "G").toLowerCase();
+        return new StringBuilder(dna).reverse().toString().replace("a", "T").replace("t", "A").replace("g", "C")
+                .replace("c", "G").toLowerCase();
     }
 }

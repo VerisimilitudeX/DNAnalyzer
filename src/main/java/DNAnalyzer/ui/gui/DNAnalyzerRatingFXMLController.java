@@ -12,10 +12,10 @@ import javafx.scene.control.TextArea;
 public class DNAnalyzerRatingFXMLController {
 
     @FXML
-    private Rating dnaRating=null;
+    private Rating dnaRating = null;
 
     @FXML
-    private TextArea dnaRatingTxt= null;
+    private TextArea dnaRatingTxt = null;
 
     /**
      * Handles the btnSubmitClicked event
@@ -26,6 +26,6 @@ public class DNAnalyzerRatingFXMLController {
     private void btnSubmitClicked(ActionEvent event) {
         double rating = dnaRating.getRating();
         String ratingTxt = dnaRatingTxt.getText();
-        System.out.print("Rating:"+rating + " " + ratingTxt);
+        System.out.print("Rating:" + rating + " " + ratingTxt);
     }
 }

@@ -33,34 +33,34 @@ import java.io.IOException;
  */
 @Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-    @Option(names = {"--gui"}, description = "Start in GUI mode")
+    @Option(names = { "--gui" }, description = "Start in GUI mode")
     Boolean startGUI = false;
 
-    @Option(names = {"--amino"}, description = "The amino acid representing the start of a gene.")
+    @Option(names = { "--amino" }, description = "The amino acid representing the start of a gene.")
     String aminoAcid;
 
-    @Option(names = {"--min"}, description = "The minimum count of the reading frame.")
+    @Option(names = { "--min" }, description = "The minimum count of the reading frame.")
     int minCount = 0;
 
-    @Option(names = {"--max"}, description = "The maximum count of the reading frame.")
+    @Option(names = { "--max" }, description = "The maximum count of the reading frame.")
     int maxCount = 0;
 
     @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
     File dnaFile;
 
-    @Option(names = {"--find"}, description = "The DNA sequence to be found within the FASTA file.")
+    @Option(names = { "--find" }, description = "The DNA sequence to be found within the FASTA file.")
     File proteinFile;
 
-    @Option(names = {"--reverse", "-r"}, description = "Reverse the DNA sequence before processing.")
+    @Option(names = { "--reverse", "-r" }, description = "Reverse the DNA sequence before processing.")
     boolean reverse;
 
-    @Option(names = {"--help", "-h"}, description = "Prints this help message and exits.", help = true)
+    @Option(names = { "--help", "-h" }, description = "Prints this help message and exits.", help = true)
     boolean help;
 
-    @Option(names = {"--version", "-v"}, description = "Prints version information and exits.")
+    @Option(names = { "--version", "-v" }, description = "Prints version information and exits.")
     boolean version;
 
-    @Option(names = {"--rcomplement"}, description = "Prints the complement of the DNA sequence.")
+    @Option(names = { "--rcomplement" }, description = "Prints the complement of the DNA sequence.")
     boolean rcomplement;
 
     /**
@@ -74,17 +74,17 @@ public class CmdArgs implements Runnable {
     @Override
     public void run() {
         if (version) {
-                System.out.println("===========================");
-                System.out.println("| DNAnalyzer " + Properties.getVersion() + " |");
-                System.out.println("===========================\n");
-            }
+            System.out.println("===========================");
+            System.out.println("| DNAnalyzer " + Properties.getVersion() + " |");
+            System.out.println("===========================\n");
+        }
         if (Boolean.TRUE == startGUI) {
             String[] args = new String[0];
             DNAnalyzerGUI.launchIt(args);
         } else {
             DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid)
-                .isValidDna()
-                .replaceDNA("u", "t");
+                    .isValidDna()
+                    .replaceDNA("u", "t");
 
             if (reverse) {
                 dnaAnalyzer = dnaAnalyzer.reverseDna();
@@ -95,10 +95,10 @@ public class CmdArgs implements Runnable {
             }
 
             dnaAnalyzer
-                .printProteins(System.out)
-                .printHighCoverageRegions(System.out)
-                .outPutCodons(minCount, maxCount, System.out)
-                .printLongestProtein(System.out);
+                    .printProteins(System.out)
+                    .printHighCoverageRegions(System.out)
+                    .outPutCodons(minCount, maxCount, System.out)
+                    .printLongestProtein(System.out);
 
             if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
                 System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
@@ -109,7 +109,7 @@ public class CmdArgs implements Runnable {
     /**
      * @param aminoAcid representing the start of the gene
      * @return DnaAnalyzer which provides functions to analyze the dnaFile, protein
-     * file and supplied aminoAcid
+     *         file and supplied aminoAcid
      */
     private DNAAnalysis dnaAnalyzer(final String aminoAcid) {
         try {

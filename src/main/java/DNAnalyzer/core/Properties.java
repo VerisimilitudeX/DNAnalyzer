@@ -122,15 +122,15 @@ public class Properties {
         out.println("Nucleotide count:");
         long[] counts = countBasePairs(dna);
         out.println("A" + ": " + counts[BasePairIndex.ADENINE] +
-            " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
+                " (" + (float) counts[BasePairIndex.ADENINE] / dna.length() * 100 + "%)");
         out.println("T" + ": " + counts[BasePairIndex.THYMINE] +
-            " (" + (float) counts[BasePairIndex.THYMINE] / dna.length() * 100 + "%)");
+                " (" + (float) counts[BasePairIndex.THYMINE] / dna.length() * 100 + "%)");
         out.println("G" + ": " + counts[BasePairIndex.GUANINE] +
-            " (" + (float) counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
+                " (" + (float) counts[BasePairIndex.GUANINE] / dna.length() * 100 + "%)");
         out.println("C" + ": " + counts[BasePairIndex.CYTOSINE] +
-            " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
+                " (" + (float) counts[BasePairIndex.CYTOSINE] / dna.length() * 100 + "%)");
         out.println("N" + ": " + counts[BasePairIndex.UNKNOWN] +
-            " (" + (float) counts[BasePairIndex.UNKNOWN] / dna.length() * 100 + "%)");
+                " (" + (float) counts[BasePairIndex.UNKNOWN] / dna.length() * 100 + "%)");
         out.println("Total: " + dna.length());
     }
 
@@ -139,13 +139,13 @@ public class Properties {
      *
      * @param dna The DNA sequence that was analyzed
      * @return Whether the DNA sequence is random or not
-     * {@code @category} Properties
+     *         {@code @category} Properties
      */
     public static boolean isRandomDNA(final String dna) {
         long[] nucleotideCount = countBasePairs(dna);
         int[] percentages = Arrays.stream(nucleotideCount)
-                                      .mapToInt(c -> nucleotidePercentage(c, dna))
-                                      .toArray();
+                .mapToInt(c -> nucleotidePercentage(c, dna))
+                .toArray();
 
         int a = percentages[BasePairIndex.ADENINE];
         int t = percentages[BasePairIndex.THYMINE];
@@ -158,8 +158,7 @@ public class Properties {
                 Math.abs(a - c),
                 Math.abs(t - g),
                 Math.abs(t - c),
-                Math.abs(g - c)
-        );
+                Math.abs(g - c));
 
         return diffs.allMatch(diff -> diff <= 2);
     }

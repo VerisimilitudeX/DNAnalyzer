@@ -21,12 +21,14 @@ public class Parser {
      * @throws IOException
      */
     public static String parseFile(File file) throws IOException {
-        if (file.getName().endsWith(".fa")) { // Regular FASTA file, this implementation only reads the first DNA sequence
+        if (file.getName().endsWith(".fa")) { // Regular FASTA file, this implementation only reads the first DNA
+                                              // sequence
             BufferedReader rd = new BufferedReader(new FileReader(file));
             StringBuilder dna = new StringBuilder();
             while (true) {
                 String line = rd.readLine();
-                if (line == null) break;
+                if (line == null)
+                    break;
 
                 // Extra info
                 if (line.startsWith(">")) { // File descriptor
@@ -45,7 +47,8 @@ public class Parser {
                 }
                 line = line.toLowerCase();
                 dna.append(line);
-                if (stop) break;
+                if (stop)
+                    break;
             }
 
             rd.close();

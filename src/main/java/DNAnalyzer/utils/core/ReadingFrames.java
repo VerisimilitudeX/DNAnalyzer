@@ -77,12 +77,12 @@ public class ReadingFrames {
 
         // pretty print all the codon counts
         out.println(
-            "Codons in reading frame " + codonFrame.getReadingFrame() + " (" + codonFrame.getMin() + "-"
-                + codonFrame.getMax() + " occurrences)" + ":");
+                "Codons in reading frame " + codonFrame.getReadingFrame() + " (" + codonFrame.getMin() + "-"
+                        + codonFrame.getMax() + " occurrences)" + ":");
         out.println("----------------------------------------------------");
         for (final Entry<String, Integer> entry : codonCounts.entrySet()) {
             if (codonCounts.get(entry.getKey()) >= codonFrame.getMin()
-                && codonCounts.get(entry.getKey()) <= codonFrame.getMax()) {
+                    && codonCounts.get(entry.getKey()) <= codonFrame.getMax()) {
                 out.println(entry.getKey().toUpperCase() + ": " + codonCounts.get(entry.getKey()));
             }
         }
