@@ -229,7 +229,9 @@ The results of your analysis will be shown in the right pane.
 
 #### Available Commands
 
-```txt
+```py
+
+
 Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
                   [--max=<maxCount>] [--min=<minCount>] DNA
 A program to analyze DNA sequences.
@@ -245,21 +247,17 @@ A program to analyze DNA sequences.
 
 ## Future Support and Improvements
 
-### Optimizing SQL Database for Genomic Data
+### Optimized SQL Database for Genomic Data
  
 Our goal is to find the best SQL database fork that can handle high performance and vertical scaling. We will store and query genomic data from thousands of species, including their genes and mutations. This will help us train our machine learning model more effectively.
 
-### More Parameters in Machine Learning Model
+### Improved Neural Network for Genotyped Data
 
 This will bring the ability to use genotyped data from 3rd-party DNA testing services with our algorithm. In the future, to use this program, all you will need is a simple $99 DNA Test to be able to experience all the features of DNAnalyzer.
 
 ### DIAMOND Implementation, a BLAST fork
 
 This will combine [DIAMOND](https://github.com/bbuchfink/diamond)'s performance advantage along with [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi")'s algorithm.
-
-### .FAB File Format
-
-This will allow for the use of own custom .fab files, which are a binary version of FASTA files. It will enable faster processing of large files and massively reduced file sizes (up to 4x).
 
 ## Citations
 
