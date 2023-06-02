@@ -37,6 +37,11 @@ public class DNAnalyzerGUI extends Application {
         stage.show();
     }
 
+    /**
+     * Launches the GUI
+     *
+     * @param args
+     */
     public static void launchIt(String[] args) {
         launch(args);
     }
