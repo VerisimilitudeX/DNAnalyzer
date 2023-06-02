@@ -20,7 +20,7 @@ public class DNAnalyzerRatingFXMLController {
     /**
      * Handles the btnSubmitClicked event
      *
-     * @param event
+     * @param event the event
      */
     @FXML
     private void btnSubmitClicked(ActionEvent event) {
