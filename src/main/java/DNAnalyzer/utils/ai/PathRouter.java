@@ -17,6 +17,24 @@ import DNAnalyzer.ui.cli.CmdArgs;
 import DNAnalyzer.utils.core.Utils;
 import picocli.CommandLine;
 
+/**
+ * PathRouter class for the DNAnalyzer program.
+ * 
+ * This class handles the routing of the program's execution based on the
+ * command line arguments passed to it.
+ * 
+ * @see DNAnalyzer
+ * @see CmdArgs
+ * @see CommandLine
+ * @see Utils
+ * @see PathRouter
+ * @see Parser
+ * @see DNAAnalysis
+ * @see DNATools
+ * @see Properties
+ * @see DNAnalyzerGUIFXMLController
+ * @see DNAnalyzerGUI
+*/
 public class PathRouter {
     /**
      * Parses the message content from a given response string in JSON format.

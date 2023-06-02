@@ -17,6 +17,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The GUI for DNAnalyzer
+ */
 public class DNAnalyzerGUI extends Application {
 
     @Override
