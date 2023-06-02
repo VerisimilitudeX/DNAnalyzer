@@ -146,7 +146,6 @@ public class DNAnalyzerGUIFXMLController {
     /**
      * Handles the menuAboutClicked event
      *
-     * @param event the event
      */
     public void initialize() {
     }
