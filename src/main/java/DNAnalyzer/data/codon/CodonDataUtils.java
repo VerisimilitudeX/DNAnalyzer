@@ -11,27 +11,26 @@
 
 package DNAnalyzer.data.codon;
 
-import java.util.List;
-
 import DNAnalyzer.data.aminoAcid.*;
+import java.util.List;
 
 /**
  * provide function to access codon data from amino acid.
  *
- * @author Piyush Acharya (@Verisimilitude11)
+ * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
  * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */
 public class CodonDataUtils {
 
-    /**
-     * Returns the codon data for the amino acid.
-     *
-     * @param name The name of the amino acid.
-     * @return A List of codon data for the user-selected amino acid or stop codon.
-     */
-    public static List<String> getAminoAcid(final String name) {
-        final AminoAcid aminoAcid = AminoAcidFactory.getAminoAcid(name);
-        return CodonDataConstants.codonDataAcidMap.getOrDefault(aminoAcid, List.of());
-    }
+  /**
+   * Returns the codon data for the amino acid.
+   *
+   * @param name The name of the amino acid.
+   * @return A List of codon data for the user-selected amino acid or stop codon.
+   */
+  public static List<String> getAminoAcid(final String name) {
+    final AminoAcid aminoAcid = AminoAcidFactory.getAminoAcid(name);
+    return CodonDataConstants.codonDataAcidMap.getOrDefault(aminoAcid, List.of());
+  }
 }

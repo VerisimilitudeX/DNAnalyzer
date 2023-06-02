@@ -1,9 +1,9 @@
-![logo full dark png](https://user-images.githubusercontent.com/96280466/213999050-f5d5393c-6ec5-4a5a-bc80-fff093d5fcc6.png)
+![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 
-<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg" alt="WakaTime"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
+<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
 <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
-<a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
+<a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
 
 >Revolutionizing DNA analysis and making it accessible to all through innovative analysis and interpretive tools
 
@@ -12,6 +12,8 @@ DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-290
 Our flagship product identifies protein-encoding sequences via recognizing start and stop codons, predicts high coverage regions, and locates promoter sequences and their associated regulatory sequences. It also provides a variety of other useful tools, such as a built-in DNA sequence editor, viewer, generator, and converter.
 
 Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
 
 ## Background
 
@@ -63,17 +65,17 @@ A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below
 
 ### Build & Run
 
-The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/Verisimilitude11/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
 
-* Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
-
-We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
-
+* We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
 <details>
-      <summary>Linux and compilation from source</summary>
- 
+
+<summary>Windows</summary>
+
+The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
+
 ```pwsh
-./gradlew build
+.\gradlew build
 ```
 
 ### Usage
@@ -107,6 +109,101 @@ java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --m
 If you prefer, you can also run it directly from Gradle:
 
 ```pwsh
+.\gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
+```
+
+#### GUI
+
+DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
+
+```pwsh
+.\gradlew run --args="--gui assets/dna/random/dnalong.fa"
+```
+
+Then:
+
+* Enter the file name of the DNA file in the text field
+* Set min and max
+* Click analyze
+
+* Note: Ensure you have Java [17](https://www.oracle.com/java/technologies/downloads/#java17) or higher installed and a `JAVA_HOME` path variable set for the program to function correctly!
+
+
+The results of your analysis will be shown in the right pane.
+
+</details>
+
+<details>
+      <summary>Linux & macOS</summary>
+
+
+### DNAnalyzer & Java Download
+
+To run DNAnaylzer on Linux, you'll need to download the DNAnalyzer source code and download and install Java 17.
+
+First, download the zip or tar.gz file from [DNAnalyzer releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) and unzip it using the native utility. 
+
+Then, download [Java 17](https://www.oracle.com/ca-en/java/technologies/downloads/#java17), find the download at https://www.oracle.com/ca-en/java/technologies/downloads/#java17, ensure you choose the Linux option and get the one for your correct processor architecture.
+
+### Java installation
+
+```bash
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+```
+Next, unzip it.
+
+```bash
+tar -xvzf jdk-17_linux-x64_bin.tar.gz
+```
+Then map the `JAVA_HOME` path. Fill it in with your JAVA directory where JAVA is unzipped.
+```bash
+export JAVA_HOME="{YOUR JAVA DIRECTORY HERE}/jdk-17.0.7" && export PATH=$JAVA_HOME/bin:$PATH
+```
+<details>
+<summary>Example of a full path command.</summary>
+
+```bash
+export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
+```
+
+</details>
+
+```bash
+./gradlew build
+```
+If you see `Task :compileJava FAILED`, the program cannot find your Java installation. You may need to export your JAVA_HOME path again.
+
+### Usage
+
+```bash
+<executable> <arguments>
+```
+
+#### Executable
+
+```pwsh
+java -jar build/libs/DNAnalyzer.jar
+```
+
+#### Arguments
+
+DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
+
+```bash
+assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
+```
+
+### Example
+
+```pwsh
+java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
+```
+
+#### Gradle Run
+
+If you prefer, you can also run it directly from Gradle:
+
+```pwsh
 ./gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
 ```
 
@@ -118,7 +215,6 @@ DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI,
 ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
 ```
 
-
 Then:
 
 * Enter the file name of the DNA file in the text field
@@ -129,9 +225,9 @@ Then:
 The results of your analysis will be shown in the right pane.
 </details>
 
-#
 
-#### Help message
+
+#### Available Commands
 
 ```txt
 Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
@@ -149,11 +245,11 @@ A program to analyze DNA sequences.
 
 ## Future Support and Improvements
 
-### Needleman-Wunsch Algorithm
+### Optimizing SQL Database for Genomic Data
+ 
+Our goal is to find the best SQL database fork that can handle high performance and vertical scaling. We will store and query genomic data from thousands of species, including their genes and mutations. This will help us train our machine learning model more effectively.
 
-This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing. `[8]`
-
-### Genotype Data for Analysis and Machine Learning Training
+### More Parameters in Machine Learning Model
 
 This will bring the ability to use genotyped data from 3rd-party DNA testing services with our algorithm. In the future, to use this program, all you will need is a simple $99 DNA Test to be able to experience all the features of DNAnalyzer.
 
@@ -171,12 +267,12 @@ View our in-line citations in the [Citations](docs/citations.md) document.
 
 ## Contributing
 
-* [Contributing Guidelines](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
+* [Contributing Guidelines](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
 
-* [How To Use Git](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
+* [How To Use Git](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
 
 ## Terms of Use
 
 You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: `contact@dnanalyzer.live`
 
-##### Copyright © Piyush Acharya 2023. DNAnalyzer is a 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
+##### Copyright © Piyush Acharya 2023. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.

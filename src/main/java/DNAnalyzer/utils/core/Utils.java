@@ -21,19 +21,32 @@ import java.nio.file.Files;
  * @author David
  */
 public class Utils {
-    /**
-     * Reads the contents of a file, stripping out newlines and converting
-     * everything to lowercase.
-     *
-     * @param file the file to read
-     * @return String with the contents of the file (newlines removed and converted
-     * to lowercase)
-     */
-    public static String readFile(final File file) {
-        try {
-            return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
-        } catch (IOException e) {
-            return null;
-        }
+  /**
+   * Reads the contents of a file, stripping out newlines and converting everything to lowercase.
+   *
+   * @param file the file to read
+   * @return String with the contents of the file (newlines removed and converted to lowercase)
+   */
+  public static String readFile(final File file) {
+    try {
+      return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
+    } catch (IOException e) {
+      return null;
     }
+  }
+
+  /**
+   * Clears the console screen based on the operating system.
+   *
+   * @throws InterruptedException Necessary for clearing the screen
+   * @throws IOException Necessary for clearing the screen {@code @category} User Experience
+   */
+  public static void clearTerminal() throws InterruptedException, IOException {
+    if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows
+      new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+    } else {
+      System.out.print("\u001b[H\u001b[2J"); // unicode string to clear everything logged above this
+      System.out.flush();
+    }
+  }
 }

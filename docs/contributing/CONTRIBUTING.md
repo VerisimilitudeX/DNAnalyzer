@@ -2,7 +2,7 @@
 
 ## 1. Fork it 🍴
 
-You can get your own fork (copy) of [DNAnalyzer](https://github.com/Verisimilitude11/DNAnalyzer) by using the `Fork`
+You can get your own fork (copy) of [DNAnalyzer](https://github.com/VerisimilitudeX/DNAnalyzer) by using the `Fork`
 button at the top right of this page.
 
 ![Fork Button](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)

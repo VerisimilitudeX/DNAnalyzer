@@ -2,11 +2,18 @@
   "configurations": [
     {
       "type": "java",
+      "name": "RunFastQ",
+      "request": "launch",
+      "mainClass": "DNAnalyzer.utils.core.RunFastQ",
+      "projectName": "DNAnalyzer"
+    },
+    {
+      "type": "java",
       "name": "Launch DNAnalyzer",
       "request": "launch",
       "mainClass": "DNAnalyzer.Main",
       "projectName": "DNAnalyzer",
-      "args": "assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r"
+      "args": "assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r --rcomplement --version"
     }
   ]
 }
