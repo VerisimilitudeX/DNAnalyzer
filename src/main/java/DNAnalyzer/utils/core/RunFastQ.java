@@ -30,8 +30,7 @@ public class RunFastQ {
         int[] hist = fq.createHistogram();
         for (int i = 0; i < hist.length; i++) {
             System.out.print(hist[i]);
-            if (i == hist.length - 1) {
-            } else {
+            if (i != hist.length - 1) {
                 System.out.print(", ");
             }
         }
