@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 
@@ -21,24 +22,13 @@ public class FastQ {
     private HashMap<String, String> sequences;
     private ArrayList<Character> qualities;
 
-    /**
-     * Constructor for the FastQ class.
-     * 
-     * @param fname
-     */
     public FastQ(String fname) {
         filename = fname;
         sequences = new HashMap<String, String>();
         qualities = new ArrayList<Character>();
     }
 
-    /**
-     * Reads the FastQ file and stores the sequences and qualities in a HashMap.
-     * 
-     * @return HashMap<String, String> sequences
-     * @throws IOException
-     */
-    public HashMap<String, String> readFastQ() throws IOException {
+    public Map<String, String> readFastQ() throws IOException {
         // read in all the lines from the file and store in one string, and then iterate
         // over each line
         BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -57,11 +47,6 @@ public class FastQ {
         return sequences;
     }
 
-    /**
-     * Returns the filename of the FastQ file.
-     * 
-     * @return String filename
-     */
     public char averageQuality() {
         // calculate the average quality of the sequences
         int total = 0;
@@ -73,31 +58,16 @@ public class FastQ {
         return (char) (sum / total);
     }
 
-    /**
-     * Returns the filename of the FastQ file.
-     * 
-     * @return String filename
-     */
     public int phred33ToQ(char c) {
         // convert a character to a quality score
         return (int) c - 33;
     }
 
-    /**
-     * Returns the filename of the FastQ file.
-     * 
-     * @return String filename
-     */
     public char qToPhred33(int q) {
         // convert a quality score to a character
         return (char) (q + 33);
     }
 
-    /**
-     * Returns the filename of the FastQ file.
-     * 
-     * @return String filename
-     */
     public int[] createHistogram() {
         int[] hist = new int[50];
         for (char phred : qualities) {
