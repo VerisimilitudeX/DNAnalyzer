@@ -30,6 +30,9 @@ import static DNAnalyzer.utils.core.Utils.readFile;
 import java.io.*;
 import java.io.PrintStream;
 
+/**
+ * The GUI for DNAnalyzer
+ */
 public class DNAnalyzerGUIFXMLController {
     /**
      * Returns analysis results from DNAAnalysis class
