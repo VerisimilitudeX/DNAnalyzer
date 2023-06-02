@@ -61,16 +61,31 @@ public class DNAnalyzerGUIFXMLController {
     @FXML
     private TextArea txtOutput = null;
 
+    /**
+     * Handles the menuQuitClicked event
+     *
+     * @param event
+     */
     @FXML
     private void menuQuitClicked(ActionEvent event) {
         Platform.exit();
     }
 
+    /**
+     * Handles the menuOpenClicked event
+     *
+     * @param event
+     */
     @FXML
     private void menuOpenClicked(ActionEvent event) {
         System.out.println("open clicked");
     }
 
+    /**
+     * Handles the menuSaveClicked event
+     *
+     * @param event
+     */
     @FXML
     private void btnAnalyzeClicked(ActionEvent event) {
         int minCount = (int) minSlider.getValue();
@@ -107,6 +122,11 @@ public class DNAnalyzerGUIFXMLController {
         txtOutput.setText(output);
     }
 
+    /**
+     * Handles the menuAboutClicked event
+     *
+     * @param event
+     */
     @FXML
     private void rateUsClicked(ActionEvent event) {
         try {
@@ -121,6 +141,12 @@ public class DNAnalyzerGUIFXMLController {
         }
 
     }
+
+    /**
+     * Handles the menuAboutClicked event
+     *
+     * @param event
+     */
     public void initialize() {
     }
 }
