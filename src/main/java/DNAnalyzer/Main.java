@@ -40,7 +40,7 @@ public class Main {
         if (apiKey == null) {
             PathRouter.regular(args);
         } else {
-            PathRouter.runGptAnalysis(args);
+            PathRouter.runGptAnalysis(args, apiKey);
         }
 
     }
