@@ -48,10 +48,10 @@ public class PathRouter {
      *         model
      */
 
-    public static String askGPT(String output) {
+    public static String askGPT(String output, String apiKey) {
         output = output.replaceAll("\\r?\\n", "");
         String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
-        String AUTHORIZATION_HEADER = "Bearer " + System.getenv("OPENAI_API_KEY");
+        String AUTHORIZATION_HEADER = "Bearer " + apiKey;
         try {
             URL url = new URL(API_ENDPOINT);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -65,7 +65,7 @@ public class PathRouter {
                     "    \"messages\": [\n" +
                     "        {\n" +
                     "            \"role\": \"user\",\n" +
-                    "            \"content\": \"In 5 paragraphs, Provide comprehensive DNA analysis with actionable insights using technical terms, beyond surface-level information, **DON'T SUMMARIZE THE OUTPUT PROVIDED, let's think step by step**, for experienced biotechnology researchers, avoiding statements that DNA cannot be analyzed, as a chatbot of DNAnalyzer. Also, even if you think you can't analyze it, analyze it anyway - I won't judge if it's wrong so don't worry. DONT SUMMARIZE THE OUTPUT PROVIDED AND DONT JUST INCLUDE THE NUMBERS. YOU HAVE TO EXPLAIN THE SIGNIFICANCE OF EVERYTHING and also give actionable tasks to the user that they can do to get better. Then, answer those questions."
+                    "            \"content\": \"In 5 paragraphs, provide comprehensive DNA analysis with actionable insights using technical terms, beyond surface-level information, **DON'T SUMMARIZE THE OUTPUT PROVIDED, let's think step by step**, for experienced biotechnology researchers, avoiding statements that DNA cannot be analyzed, as a chatbot of DNAnalyzer. Also, even if you think you can't analyze it, analyze it anyway - I won't judge if it's wrong so don't worry. DONT SUMMARIZE THE OUTPUT PROVIDED AND DONT JUST INCLUDE THE NUMBERS. YOU HAVE TO EXPLAIN THE SIGNIFICANCE OF EVERYTHING and also give actionable tasks to the user that they can do to get better. Then, answer those questions."
                     + output + "\"\n"
                     +
                     "        }\n" +
@@ -98,7 +98,7 @@ public class PathRouter {
         System.exit(1);
     }
 
-    public static void runGptAnalysis(String[] args) throws InterruptedException, IOException {
+    public static void runGptAnalysis(String[] args, String apiKey) throws InterruptedException, IOException {
         Utils.clearTerminal();
         System.out.println(
                 "Welcome to DNAnalyzer! Please allow up to 15 seconds for the analysis to complete (note: the time may vary based on your hardware).\n");
@@ -122,7 +122,7 @@ public class PathRouter {
         String output = baos.toString();
 
         System.out.println(output + "\n-----------------------\n\nAI Analysis:\n");
-        String res = PathRouter.askGPT(output);
+        String res = PathRouter.askGPT(output, apiKey);
 
         System.out.println(res);
         System.exit(0);
