@@ -24,7 +24,7 @@ public class FastQ {
     /**
      * Constructor for the FastQ class.
      * 
-     * @param fname The filename of the FastQ file.
+     * @param fname
      */
     public FastQ(String fname) {
         filename = fname;
@@ -35,7 +35,7 @@ public class FastQ {
     /**
      * Reads the FastQ file and stores the sequences and qualities in a HashMap.
      * 
-     * @return The HashMap of sequences and qualities.
+     * @return HashMap<String, String> sequences
      * @throws IOException
      */
     public HashMap<String, String> readFastQ() throws IOException {
@@ -58,9 +58,9 @@ public class FastQ {
     }
 
     /**
-     * Calculates the average quality of the sequences.
+     * Returns the filename of the FastQ file.
      * 
-     * @return The average quality of the sequences.
+     * @return String filename
      */
     public char averageQuality() {
         // calculate the average quality of the sequences
@@ -74,10 +74,9 @@ public class FastQ {
     }
 
     /**
-     * Converts a character to a quality score.
+     * Returns the filename of the FastQ file.
      * 
-     * @param c The character to convert.
-     * @return The quality score.
+     * @return String filename
      */
     public int phred33ToQ(char c) {
         // convert a character to a quality score
@@ -85,10 +84,9 @@ public class FastQ {
     }
 
     /**
-     * Converts a quality score to a character.
+     * Returns the filename of the FastQ file.
      * 
-     * @param q The quality score to convert.
-     * @return The character.
+     * @return String filename
      */
     public char qToPhred33(int q) {
         // convert a quality score to a character
@@ -96,9 +94,9 @@ public class FastQ {
     }
 
     /**
-     * Creates a histogram of the quality scores.
+     * Returns the filename of the FastQ file.
      * 
-     * @return The histogram of the quality scores.
+     * @return String filename
      */
     public int[] createHistogram() {
         int[] hist = new int[50];
