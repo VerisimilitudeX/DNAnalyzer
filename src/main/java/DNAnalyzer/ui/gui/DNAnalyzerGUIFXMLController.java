@@ -34,9 +34,9 @@ public class DNAnalyzerGUIFXMLController {
     /**
      * Returns analysis results from DNAAnalysis class
      *
-     * @param dna
-     * @param protein
-     * @param aminoAcid
+     * @param dna       the DNA string
+     * @param protein   the protein string
+     * @param aminoAcid the amino acid string
      * @return
      */
     private DNAAnalysis dnaAnalyzer(String dna, String protein, final String aminoAcid) {
@@ -64,7 +64,7 @@ public class DNAnalyzerGUIFXMLController {
     /**
      * Handles the menuQuitClicked event
      *
-     * @param event
+     * @param event the event
      */
     @FXML
     private void menuQuitClicked(ActionEvent event) {
@@ -74,7 +74,7 @@ public class DNAnalyzerGUIFXMLController {
     /**
      * Handles the menuOpenClicked event
      *
-     * @param event
+     * @param event the event
      */
     @FXML
     private void menuOpenClicked(ActionEvent event) {
@@ -84,7 +84,7 @@ public class DNAnalyzerGUIFXMLController {
     /**
      * Handles the menuSaveClicked event
      *
-     * @param event
+     * @param event the event
      */
     @FXML
     private void btnAnalyzeClicked(ActionEvent event) {
@@ -103,17 +103,17 @@ public class DNAnalyzerGUIFXMLController {
         out.println("min: " + minCount + ", max: " + maxCount + ", amino: " + aminoAcid);
 
         DNAAnalysis dnaAnalyzer = dnaAnalyzer(dna, protein, aminoAcid)
-            .isValidDna()
-            .replaceDNA("u", "t");
+                .isValidDna()
+                .replaceDNA("u", "t");
 
         if (reverse) {
             dnaAnalyzer = dnaAnalyzer.reverseDna();
         }
 
         dnaAnalyzer
-            .printProteins(out)
-            .outPutCodons(minCount, maxCount, out)
-            .printLongestProtein(out);
+                .printProteins(out)
+                .outPutCodons(minCount, maxCount, out)
+                .printLongestProtein(out);
 
         if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
             out.println("\n" + dnaFilename + " has been detected to be random.");
@@ -125,12 +125,13 @@ public class DNAnalyzerGUIFXMLController {
     /**
      * Handles the menuAboutClicked event
      *
-     * @param event
+     * @param event the event
      */
     @FXML
     private void rateUsClicked(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(DNAnalyzerGUIFXMLController.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
+            Parent root = FXMLLoader
+                    .load(DNAnalyzerGUIFXMLController.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("DNAnalyzer Rating");
@@ -145,7 +146,7 @@ public class DNAnalyzerGUIFXMLController {
     /**
      * Handles the menuAboutClicked event
      *
-     * @param event
+     * @param event the event
      */
     public void initialize() {
     }

@@ -23,7 +23,7 @@ public class DNAnalyzerGUI extends Application {
     /**
      * Starts and initializes the GUI
      *
-     * @param stage
+     * @param stage the stage to be used
      * @throws Exception
      */
     public void start(Stage stage) throws Exception {
@@ -40,7 +40,7 @@ public class DNAnalyzerGUI extends Application {
     /**
      * Launches the GUI
      *
-     * @param args
+     * @param args the arguments to be passed
      */
     public static void launchIt(String[] args) {
         launch(args);
