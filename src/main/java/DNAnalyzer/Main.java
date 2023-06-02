@@ -35,12 +35,12 @@ public class Main {
      * @throws InterruptedException
      */
     public static void main(final String[] args) throws InterruptedException, IOException {
-        String apiKey = "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"/*System.getenv("OPENAI_API_KEY")*/;
+        String apiKey = System.getenv("OPENAI_API_KEY");
         Utils.clearTerminal();
         if (apiKey == null) {
             PathRouter.regular(args);
         } else {
-            PathRouter.runGptAnalysis(args);
+            PathRouter.runGptAnalysis(args, apiKey);
         }
 
     }
