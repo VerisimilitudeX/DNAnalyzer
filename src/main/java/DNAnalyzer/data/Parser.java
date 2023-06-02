@@ -4,7 +4,22 @@ import DNAnalyzer.utils.core.Utils;
 
 import java.io.*;
 
+/**
+ * Parser class for the DNAnalyzer program.
+ * 
+ * @author Nishant Vikramaditya (@Nv7-GitHub)
+ * @version 3.0.0-beta.0
+ * 
+ */
 public class Parser {
+
+    /**
+     * Parses a file and returns the DNA sequence.
+     * 
+     * @param file File to parse
+     * @return DNA sequence
+     * @throws IOException
+     */
     public static String parseFile(File file) throws IOException {
         if (file.getName().endsWith(".fa")) { // Regular FASTA file, this implementation only reads the first DNA sequence
             BufferedReader rd = new BufferedReader(new FileReader(file));
