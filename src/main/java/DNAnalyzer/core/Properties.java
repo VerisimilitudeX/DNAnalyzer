@@ -30,6 +30,12 @@ import DNAnalyzer.data.aminoAcid.AminoAcidFactory;
  */
 public class Properties {
 
+    /**
+     * Gets the version of the application.
+     *
+     * @return The version of the application
+     * @category Properties
+     */
     public static String getVersion() {
         return "3.0.0-beta.0";
     }
