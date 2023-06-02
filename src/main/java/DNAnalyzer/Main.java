@@ -11,37 +11,34 @@
 
 package DNAnalyzer;
 
-import java.io.IOException;
 import DNAnalyzer.utils.ai.PathRouter;
 import DNAnalyzer.utils.core.Utils;
+import java.io.IOException;
 
 /**
  * Main Class for the DNAnalyzer program.
  *
  * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
- * @see <a href=
- *      "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">Genomic
- *      Datasheet</a>
+ * @see <a href= "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">Genomic
+ *     Datasheet</a>
  */
 public class Main {
 
-    /**
-     * Main method for the DNAnalyzer program (run this).
-     *
-     * @param args Command line arguments
-     *             {@code @category} Main
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    public static void main(final String[] args) throws InterruptedException, IOException {
-        String apiKey = System.getenv("OPENAI_API_KEY");
-        Utils.clearTerminal();
-        if (apiKey == null) {
-            PathRouter.regular(args);
-        } else {
-            PathRouter.runGptAnalysis(args, apiKey);
-        }
-
+  /**
+   * Main method for the DNAnalyzer program (run this).
+   *
+   * @param args Command line arguments {@code @category} Main
+   * @throws IOException
+   * @throws InterruptedException
+   */
+  public static void main(final String[] args) throws InterruptedException, IOException {
+    String apiKey = System.getenv("OPENAI_API_KEY");
+    Utils.clearTerminal();
+    if (apiKey == null) {
+      PathRouter.regular(args);
+    } else {
+      PathRouter.runGptAnalysis(args, apiKey);
     }
+  }
 }

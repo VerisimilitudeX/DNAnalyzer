@@ -11,9 +11,13 @@
 
 package DNAnalyzer.ui.gui;
 
+import static DNAnalyzer.utils.core.Utils.readFile;
+
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.Properties;
 import DNAnalyzer.utils.core.DNATools;
+import java.io.*;
+import java.io.PrintStream;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,131 +29,111 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import static DNAnalyzer.utils.core.Utils.readFile;
-
-import java.io.*;
-import java.io.PrintStream;
-
-/**
- * The GUI for DNAnalyzer
- */
+/** The GUI for DNAnalyzer */
 public class DNAnalyzerGUIFXMLController {
-    /**
-     * Returns analysis results from DNAAnalysis class
-     *
-     * @param dna       the DNA string
-     * @param protein   the protein string
-     * @param aminoAcid the amino acid string
-     * @return
-     */
-    private DNAAnalysis dnaAnalyzer(String dna, String protein, final String aminoAcid) {
-        return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
+  /**
+   * Returns analysis results from DNAAnalysis class
+   *
+   * @param dna the DNA string
+   * @param protein the protein string
+   * @param aminoAcid the amino acid string
+   * @return
+   */
+  private DNAAnalysis dnaAnalyzer(String dna, String protein, final String aminoAcid) {
+    return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
+  }
+
+  @FXML private Slider minSlider = null;
+
+  @FXML private Slider maxSlider = null;
+
+  @FXML private TextField txtAmino = null;
+
+  @FXML private TextField txtDNAFile = null;
+
+  @FXML private TextField txtProteinFile = null;
+
+  @FXML private TextArea txtOutput = null;
+
+  /**
+   * Handles the menuQuitClicked event
+   *
+   * @param event the event
+   */
+  @FXML
+  private void menuQuitClicked(ActionEvent event) {
+    Platform.exit();
+  }
+
+  /**
+   * Handles the menuOpenClicked event
+   *
+   * @param event the event
+   */
+  @FXML
+  private void menuOpenClicked(ActionEvent event) {
+    System.out.println("open clicked");
+  }
+
+  /**
+   * Handles the menuSaveClicked event
+   *
+   * @param event the event
+   */
+  @FXML
+  private void btnAnalyzeClicked(ActionEvent event) {
+    int minCount = (int) minSlider.getValue();
+    int maxCount = (int) maxSlider.getValue();
+    String aminoAcid = txtAmino.getText();
+    boolean reverse = false;
+    String dnaFilename = txtDNAFile.getText();
+    String dna = readFile(new File(dnaFilename));
+    String proteinFilename = txtProteinFile.getText();
+    String protein = readFile(new File(proteinFilename));
+
+    final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    PrintStream out = new PrintStream(baos, true);
+
+    out.println("min: " + minCount + ", max: " + maxCount + ", amino: " + aminoAcid);
+
+    DNAAnalysis dnaAnalyzer =
+        dnaAnalyzer(dna, protein, aminoAcid).isValidDna().replaceDNA("u", "t");
+
+    if (reverse) {
+      dnaAnalyzer = dnaAnalyzer.reverseDna();
     }
 
-    @FXML
-    private Slider minSlider = null;
+    dnaAnalyzer.printProteins(out).outPutCodons(minCount, maxCount, out).printLongestProtein(out);
 
-    @FXML
-    private Slider maxSlider = null;
-
-    @FXML
-    private TextField txtAmino = null;
-
-    @FXML
-    private TextField txtDNAFile = null;
-
-    @FXML
-    private TextField txtProteinFile = null;
-
-    @FXML
-    private TextArea txtOutput = null;
-
-    /**
-     * Handles the menuQuitClicked event
-     *
-     * @param event the event
-     */
-    @FXML
-    private void menuQuitClicked(ActionEvent event) {
-        Platform.exit();
+    if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
+      out.println("\n" + dnaFilename + " has been detected to be random.");
     }
+    String output = baos.toString();
+    txtOutput.setText(output);
+  }
 
-    /**
-     * Handles the menuOpenClicked event
-     *
-     * @param event the event
-     */
-    @FXML
-    private void menuOpenClicked(ActionEvent event) {
-        System.out.println("open clicked");
+  /**
+   * Handles the menuAboutClicked event
+   *
+   * @param event the event
+   */
+  @FXML
+  private void rateUsClicked(ActionEvent event) {
+    try {
+      Parent root =
+          FXMLLoader.load(
+              DNAnalyzerGUIFXMLController.class.getResource(
+                  "/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
+      Scene scene = new Scene(root);
+      Stage stage = new Stage();
+      stage.setTitle("DNAnalyzer Rating");
+      stage.setScene(scene);
+      Platform.runLater(() -> stage.show());
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
+  }
 
-    /**
-     * Handles the menuSaveClicked event
-     *
-     * @param event the event
-     */
-    @FXML
-    private void btnAnalyzeClicked(ActionEvent event) {
-        int minCount = (int) minSlider.getValue();
-        int maxCount = (int) maxSlider.getValue();
-        String aminoAcid = txtAmino.getText();
-        boolean reverse = false;
-        String dnaFilename = txtDNAFile.getText();
-        String dna = readFile(new File(dnaFilename));
-        String proteinFilename = txtProteinFile.getText();
-        String protein = readFile(new File(proteinFilename));
-
-        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(baos, true);
-
-        out.println("min: " + minCount + ", max: " + maxCount + ", amino: " + aminoAcid);
-
-        DNAAnalysis dnaAnalyzer = dnaAnalyzer(dna, protein, aminoAcid)
-                .isValidDna()
-                .replaceDNA("u", "t");
-
-        if (reverse) {
-            dnaAnalyzer = dnaAnalyzer.reverseDna();
-        }
-
-        dnaAnalyzer
-                .printProteins(out)
-                .outPutCodons(minCount, maxCount, out)
-                .printLongestProtein(out);
-
-        if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
-            out.println("\n" + dnaFilename + " has been detected to be random.");
-        }
-        String output = baos.toString();
-        txtOutput.setText(output);
-    }
-
-    /**
-     * Handles the menuAboutClicked event
-     *
-     * @param event the event
-     */
-    @FXML
-    private void rateUsClicked(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader
-                    .load(DNAnalyzerGUIFXMLController.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("DNAnalyzer Rating");
-            stage.setScene(scene);
-            Platform.runLater(() -> stage.show());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    /**
-     * Handles the menuAboutClicked event
-     *
-     */
-    public void initialize() {
-    }
+  /** Handles the menuAboutClicked event */
+  public void initialize() {}
 }
