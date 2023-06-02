@@ -20,7 +20,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import static DNAnalyzer.utils.core.Utils.readFile;
+import static DNAnalyzer.data.Parser.parseFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -115,9 +115,9 @@ public class CmdArgs implements Runnable {
         try {
             String protein = null;
             Utils.clearTerminal();
-            final String dna = readFile(dnaFile);
+            final String dna = parseFile(dnaFile);
             if (proteinFile != null) {
-                protein = readFile(proteinFile);
+                protein = parseFile(proteinFile);
             }
             return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
         } catch (IOException | InterruptedException e) {
