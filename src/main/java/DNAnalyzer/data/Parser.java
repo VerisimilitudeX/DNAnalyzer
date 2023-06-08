@@ -65,6 +65,10 @@ public class Parser {
         String dna = br.readLine();
         br.close();
 
+        if (dna == null) {
+            return "No DNA found";
+        }
+
         // TODO: Read field 3 (just a "+"), and then parse the quality data in Field 4
         return dna.toLowerCase();
     }
