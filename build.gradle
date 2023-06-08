@@ -1,41 +1,53 @@
 plugins {
-    id 'java-library'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
-    id 'maven-publish'
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+    id("org.openjfx.javafxplugin") version "0.0.13"
+    id("maven-publish")
 }
 
 repositories {
+    // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
 
-dependencies {
-    implementation 'com.google.guava:guava:31.0.1-jre'
-    implementation 'info.picocli:picocli:4.6.3'
-    implementation 'io.sentry:sentry:6.10.0'
-    implementation 'org.controlsfx:controlsfx:11.1.2'
-    implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.0.1'
-    implementation 'com.theokanning.openai-gpt3-java:service:0.11.1'
-    implementation 'org.json:json:20210307'
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
-    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.8.2"
-}
+def junitVersion = "5.8.2"
 
 javafx {
     version = "19"
-    modules = [
-        'javafx.controls',
-        'javafx.graphics',
-        'javafx.fxml',
-        'javafx.base'
-    ]
+    modules = ['javafx.controls', 'javafx.graphics', 'javafx.fxml', 'javafx.base']
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:31.0.1-jre'
+
+    // Picocli
+    implementation 'info.picocli:picocli:4.6.3'
+
+    // Sentry SDK
+    implementation 'io.sentry:sentry:6.10.0'
+
+    implementation 'org.controlsfx:controlsfx:11.1.2'
+
+    // OpenAI-GPT-3
+    implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.0.1'
+    implementation 'com.theokanning.openai-gpt3-java:service:0.11.1'
+
+    // JSON Parser
+    implementation 'org.json:json:20210307'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'DNAnalyzer.Main'
 }
 
 publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
     repositories {
         maven {
             name = "Github"
@@ -46,19 +58,38 @@ publishing {
             }
         }
     }
+
+    publications {
+        register("jar", MavenPublication) {
+            from(components["java"])
+            groupId = 'live.dnanalyzer'
+            artifactId = 'dnanalyzer'
+            version = '2.0.0'
+            pom {
+                url.set("https://github.com/VerisimilitudeX/DNAnalyzer.git")
+            }
+        }
+    }
 }
 
-tasks.withType(Test) {
+test {
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
     }
+
     maxHeapSize = "2g"
 }
+
 
 jar {
     manifest {
         attributes 'Main-Class': 'DNAnalyzer.Main'
     }
+
     duplicatesStrategy = 'exclude'
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
