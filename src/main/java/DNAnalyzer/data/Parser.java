@@ -9,13 +9,13 @@ import java.io.*;
  * @version 3.0.0-beta.0
  */
 public class Parser {
-    /**
-     * Parses a FASTA file and returns the DNA sequence.
-     *
-     * @param file File to parse
-     * @return DNA sequence
-     * @throws IOException
-     */
+  /**
+   * Parses a FASTA file and returns the DNA sequence.
+   *
+   * @param file File to parse
+   * @return DNA sequence
+   * @throws IOException
+   */
   private static String parseFasta(File file) throws IOException {
     BufferedReader rd = new BufferedReader(new FileReader(file));
     StringBuilder dna = new StringBuilder();
