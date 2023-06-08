@@ -42,13 +42,14 @@ public class Parser {
     }
 
     private static String parseFastq(File file) throws IOException {
-        BufferedReader rd = new BufferedReader(new FileReader(file));
+        BufferedReader br = new BufferedReader(new FileReader(file));
 
         // Read SEQ id
-        System.out.println("Reading DNA: " + rd.readLine().substring(1).trim());
+        System.out.println("Reading DNA: " + br.readLine().substring(1).trim());
 
         // Read DNA
-        String dna = rd.readLine();
+        String dna = br.readLine();
+        br.close();
 
         // TODO: Read field 3 (just a "+"), and then parse the quality data in Field 4
         return dna.toLowerCase();
