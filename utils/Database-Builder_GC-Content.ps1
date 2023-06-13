@@ -25,7 +25,7 @@ function DownloadFile($remotePath, $localPath) {
     }
 }
 function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
-    Write-Host "Processing GC Content..."
+    Write-Host "Processing GC Content..." -ForegroundColor Green
     $files = Get-ChildItem -Path $assets_compressed -Filter *.gz
     Function Gunzip-File([ValidateScript({Test-Path $_})][string]$File){
         $srcFile = Get-Item -Path $File
@@ -74,14 +74,13 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         # Print the program's output to the console
         Write-Host "`nProgram Output for file $($asset_uncompressed):"
         Write-Host $programOutput
-        Write-Host "Asset_Compressed2: $asset_compressed"
 
         # Save the program's output to the output file
-        if ($programOutput -Contains("Average")) {
+        if ($programOutput -like "Average") {
             $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt -ForegroundColor Green
         }
         else {Write-Host "Something went wrong with the program output." -ForegroundColor Red}
-        
+
         # Delete the unzipped file
         try {
             if (Test-Path -Path $asset_compressed -PathType Leaf) {
