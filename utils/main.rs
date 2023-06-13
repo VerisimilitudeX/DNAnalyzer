@@ -1,3 +1,4 @@
+#[allow(non_snake_case)]
 extern crate bio;
 use bio::io::fasta;
 use bio::seq_analysis::gc;
@@ -12,16 +13,20 @@ fn main() {
     let path = Path::new(&file_name);
     let reader = fasta::Reader::from_file(path).unwrap();
     let mut gc_contents = Vec::new();
-
+    let mut count = 0;
     for result in reader.records() {
         let record = result.unwrap();
         let gc_content = gc::gc_content(record.seq());
-        println!("GC content: {}", gc_content);
+        count += 1;
+        if count == 10 {
+            println!("\nGC content: {}", gc_content);
+            count = 0;
+        }
         gc_contents.push(gc_content);
     }
 
     let average_gc_content = calculate_average(&gc_contents);
-    println!("Average GC content: {}%", average_gc_content);
+    println!("\nAverage GC content: {}%", average_gc_content);
 }
 
 fn calculate_average(values: &[f32]) -> f64 {
