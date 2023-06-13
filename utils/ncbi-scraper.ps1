@@ -2,6 +2,7 @@
 $ftpServer = "ftp.ncbi.nlm.nih.gov"
 $ftpBaseDirectory = "/genomes/genbank/plant/"
 $downloadDirectory = "Z:\Learning\Rust\DNAnalyzer\DNAnalyzer-NCBI\assets"
+$7zipProgram = "C:\Program Files\7-Zip\7zG"
 
 # Function to download file
 function DownloadFile($remotePath, $localPath) {
