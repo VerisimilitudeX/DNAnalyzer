@@ -71,13 +71,11 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         # Run the program with the unzipped file as an argument
         $programOutput = & $GC_Content $asset_uncompressed
 
-        # Print the program's output to the console
-        Write-Host "`nProgram Output for file $($asset_uncompressed):"
-        Write-Host $programOutput
-
         # Save the program's output to the output file
-        if ($programOutput -like "Average") {
-            $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt -ForegroundColor Green
+        if ($programOutput -like "*Average*") {
+            $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt
+            Write-Host "Program Output: $programOutput `n"
+            Write-Host "Saved program output to file located at $report_out\$($file.BaseName).txt"
         }
         else {Write-Host "Something went wrong with the program output." -ForegroundColor Red}
 
