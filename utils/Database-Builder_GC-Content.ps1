@@ -64,8 +64,6 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         Write-Host "Unzipping file $($file.Name)..."
         Gunzip-File -File $file.FullName
         $asset_compressed = Join-Path -Path $assets_compressed -ChildPath $file
-        Write-Host "Asset_Compressed2: $asset_compressed"
-        Write-Host "File: $file"
         $asset_uncompressed = Join-Path -Path $assets_compressed -ChildPath $file.BaseName
 
         Write-Host "`nUncompress Complete! Output file path: $asset_uncompressed`n" -ForegroundColor Green
@@ -79,8 +77,11 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         Write-Host "Asset_Compressed2: $asset_compressed"
 
         # Save the program's output to the output file
-        $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt -ForegroundColor Green
-            
+        if ($programOutput -Contains("Average")) {
+            $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt -ForegroundColor Green
+        }
+        else {Write-Host "Something went wrong with the program output." -ForegroundColor Red}
+        
         # Delete the unzipped file
         try {
             if (Test-Path -Path $asset_compressed -PathType Leaf) {
@@ -140,6 +141,7 @@ foreach ($plant_directory in $directories[1..$directories.Length]) {
 
     $plant_directory = $plant_directory.replace("/","-")
     $FullDownloadDirectory = "$downloadDirectory\$plant_directory$filename"
+
     $count = ResumeCount $FullDownloadDirectory $count
     Write-Host "Files in queue to be processed: $count, waiting until $FileLimit files..."
     if ($count -eq $FileLimit) {
