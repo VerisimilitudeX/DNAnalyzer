@@ -6,9 +6,11 @@ $downloadDirectory = "Z:\Learning\Rust\DNAnalyzer\DNAnalyzer-NCBI\assets"
 # Function to download file
 function DownloadFile($remotePath, $localPath) {
     try {
+        if (!(Test-Path $localPath -PathType Leaf)) {
         $remotePath = "http://" + $remotePath 
         Start-BitsTransfer -Source $remotePath -Destination $localPath
         Write-Host "Downloaded file: $localPath"
+        }
     }
     catch {
         Write-Host "Failed to download file: $remotePath"
