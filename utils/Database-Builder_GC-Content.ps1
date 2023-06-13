@@ -65,8 +65,8 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         Gunzip-File -File $file.FullName
         $asset_compressed = Join-Path -Path $assets_compressed -ChildPath $file
         $asset_uncompressed = Join-Path -Path $assets_compressed -ChildPath $file.BaseName
-
-        Write-Host "`nUncompress Complete! Output file path: $asset_uncompressed`n" -ForegroundColor Green
+        $file_size = (Get-Item $asset_uncompressed).length/1MB
+        Write-Host "`nUncompress Complete! File Size: $file_size MB `nOutput file path: $asset_uncompressed`n" -ForegroundColor Green
 
         # Run the program with the unzipped file as an argument
         $programOutput = & $GC_Content $asset_uncompressed
@@ -75,7 +75,7 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         if ($programOutput -like "*Average*") {
             $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt
             Write-Host "Program Output: $programOutput `n"
-            Write-Host "Saved program output to file located at $report_out\$($file.BaseName).txt"
+            Write-Host "Saved program output to file located at $report_out\$($file.BaseName).txt" -ForegroundColor Green
         }
         else {Write-Host "Something went wrong with the program output." -ForegroundColor Red}
 
