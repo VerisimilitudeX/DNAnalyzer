@@ -9,6 +9,7 @@ $global:FileLimit = 10; # how many files to download before invoking Process_GC_
 # Configuration for processor
 $GC_Content = "Z:\Learning\Rust\DNAnalyzer\DNAnalyzer-Rust-GC_Content-x64_compiled.exe" # change this to the path of the rust program 
 $report_out = "Z:\Learning\Rust\DNAnalyzer\assets\output" # change this to where to output the GC content data.
+Start-Transcript -Path $report_out\log.txt
 
 # Function to download file
 function DownloadFile($remotePath, $localPath) {
@@ -63,18 +64,20 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         # Unzip the file
         Write-Host "Unzipping file $($file.Name)..."
         Gunzip-File -File $file.FullName
-        $asset_compressed = Join-Path -Path $assets_compressed -ChildPath $file
+        $asset_compressed = $file
         $asset_uncompressed = Join-Path -Path $assets_compressed -ChildPath $file.BaseName
-        $file_size = (Get-Item $asset_uncompressed).length/1MB
-        Write-Host "`nUncompress Complete! File Size: $file_size MB `nOutput file path: $asset_uncompressed`n" -ForegroundColor Green
+        $file_size = [math]::Round(((Get-Item $asset_uncompressed).length/1MB ),2)
+        Write-Host "`nUncompress Complete! File Size: $file_size MB" -ForegroundColor Green
+        Write-Host "`nOutput file path: $asset_uncompressed`n"
 
         # Run the program with the unzipped file as an argument
+        Write-Host "Running GC-Content program..."
         $programOutput = & $GC_Content $asset_uncompressed
 
         # Save the program's output to the output file
         if ($programOutput -like "*Average*") {
             $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt
-            Write-Host "Program Output: $programOutput `n"
+            Write-Host "Program Output: $programOutput `n" -ForegroundColor Cyan
             Write-Host "Saved program output to file located at $report_out\$($file.BaseName).txt" -ForegroundColor Green
         }
         else {Write-Host "Something went wrong with the program output." -ForegroundColor Red}
@@ -83,7 +86,9 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         try {
             if (Test-Path -Path $asset_compressed -PathType Leaf) {
                 Remove-Item -Path $asset_compressed -Force
+                Write-Host "Deleted file: $asset_compressed"
             }
+            else {Write-Host "File does not exist: $asset_compressed, no file to delete"}
         }
         catch {
             Write-Host "$_.Exception.Message" -ForegroundColor Red
@@ -93,6 +98,10 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         try {
             if (Test-Path -Path $asset_uncompressed -PathType Leaf) {
                 Remove-Item -Path $asset_uncompressed -Force
+                Write-Host "Deleted file: $asset_uncompressed"
+            }
+            else { 
+                Write-Host "File does not exist: $asset_uncompressed, no file to delete"
             }
         }
         catch {
@@ -146,3 +155,4 @@ foreach ($plant_directory in $directories[1..$directories.Length]) {
         $count = 0
     }
 }
+Stop-Transcript
