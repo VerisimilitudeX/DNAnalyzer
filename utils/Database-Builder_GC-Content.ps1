@@ -62,23 +62,34 @@ function Process_GC_Content($assets_compressed, $GC_Content, $report_out) {
         }
         if ($Writable) {
         # Unzip the file
-        Write-Host "Unzipping file $($file.Name)..."
-        Gunzip-File -File $file.FullName
         $asset_compressed = $file
         $asset_uncompressed = Join-Path -Path $assets_compressed -ChildPath $file.BaseName
-        $file_size = [math]::Round(((Get-Item $asset_uncompressed).length/1MB ),2)
-        Write-Host "`nUncompress Complete! File Size: $file_size MB" -ForegroundColor Green
+
+        if (!(Test-Path -Path $asset_uncompressed -PathType Leaf)) {
+            Write-Host "Unzipping file $($file.Name)..."
+            Gunzip-File -File $file.FullName
+            $file_size = [math]::Round(((Get-Item $asset_uncompressed).length/1MB ),2)
+            Write-Host "`nUncompress Complete! File Size: $file_size MB" -ForegroundColor Green
+        }
+
         Write-Host "`nOutput file path: $asset_uncompressed`n"
+
+        $StopWatch = new-object system.diagnostics.stopwatch
+        $StopWatch.Start()
 
         # Run the program with the unzipped file as an argument
         Write-Host "Running GC-Content program..."
         $programOutput = & $GC_Content $asset_uncompressed
 
+        $StopWatch.Stop()
+        
         # Save the program's output to the output file
         if ($programOutput -like "*Average*") {
             $programOutput | Out-File -FilePath $report_out\$($file.BaseName).txt
             Write-Host "Program Output: $programOutput `n" -ForegroundColor Cyan
+            $Elapsed_Seconds = $StopWatch.Elapsed.TotalSeconds
             Write-Host "Saved program output to file located at $report_out\$($file.BaseName).txt" -ForegroundColor Green
+            Write-Host "Elapsed Time: $Elapsed_Seconds seconds" -ForegroundColor Cyan
         }
         else {Write-Host "Something went wrong with the program output." -ForegroundColor Red}
 
