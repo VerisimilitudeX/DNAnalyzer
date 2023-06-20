@@ -4,7 +4,6 @@ use bio::io::fasta;
 use bio::seq_analysis::gc;
 use std::path::Path;
 use std::env;
-use round::round;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -12,25 +11,16 @@ fn main() {
     file_name.clone().insert_str(0, "./");
     let path = Path::new(&file_name);
     let reader = fasta::Reader::from_file(path).unwrap();
-    let mut gc_contents = Vec::new();
-    let mut count = 0;
+
+    let mut sum_gc_content = 0.0;
+    let mut count: u16 = 0;
+
     for result in reader.records() {
         let record = result.unwrap();
-        let gc_content = gc::gc_content(record.seq());
-        count += 1;
-        if count == 10 {
-            println!("\nGC content: {}", gc_content);
-            count = 0;
-        }
-        gc_contents.push(gc_content);
+        sum_gc_content += (gc::gc_content(record.seq())) as f64;
+        count+=1;
     }
 
-    let average_gc_content = calculate_average(&gc_contents);
+    let average_gc_content: f64 = (sum_gc_content as f64 / count as f64) * 100.0;
     println!("\nAverage GC content: {}%", average_gc_content);
-}
-
-fn calculate_average(values: &[f32]) -> f64 {
-    let sum: f32 = values.iter().sum();
-    let count = values.len() as f32;
-    (round((sum / count).into(), 5)) * 100.0
 }
