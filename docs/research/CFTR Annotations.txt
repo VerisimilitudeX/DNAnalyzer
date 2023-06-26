@@ -1,0 +1,113 @@
+All annotations courtesy of the National Library of Medicine
+Author's note: DNAse hypersensitive loci and most enhancer sequences are not included because, at the current state of DNAnalyzer, will not be of importance.
+
+
+Coding Sequence (mutations along these sequences are very likely to affect the protein structure in a negative manner): atgcagaggt cgcctctgga aaaggccagc gttgtctcca aacttttttt cagctggacc
+        agaccaattt tgaggaaagg atacagacag cgcctggaat tgtcagacat ataccaaatc
+       ccttctgttg attctgctga caatctatct gaaaaattgg aaagagaatg ggatagagag
+       ctggcttcaa agaaaaatcc taaactcatt aatgcccttc ggcgatgttt tttctggaga
+       tttatgttct atggaatctt tttatattta ggggaagtca ccaaagcagt acagcctctc
+       ttactgggaa gaatcatagc ttcctatgac ccggataaca aggaggaacg ctctatcgcg
+       atttatctag gcataggctt atgccttctc tttattgtga ggacactgct cctacaccca
+       gccatttttg gccttcatca cattggaatg cagatgagaa tagctatgtt tagtttgatt
+       tataagaaga ctttaaagct gtcaagccgt gttctagata aaataagtat tggacaactt
+       gttagtctcc tttccaacaa cctgaacaaa tttgatgaag gacttgcatt ggcacatttc
+       gtgtggatcg ctcctttgca agtggcactc ctcatggggc taatctggga gttgttacag
+       gcgtctgcct tctgtggact tggtttcctg atagtccttg ccctttttca ggctgggcta
+       gggagaatga tgatgaagta cagagatcag agagctggga agatcagtga aagacttgtg
+       attacctcag aaatgattga aaatatccaa tctgttaagg catactgctg ggaagaagca
+       atggaaaaaa tgattgaaaa cttaagacaa acagaactga aactgactcg gaaggcagcc
+       tatgtgagat acttcaatag ctcagccttc ttcttctcag ggttctttgt ggtgttttta
+       tctgtgcttc cctatgcact aatcaaagga atcatcctcc ggaaaatatt caccaccatc
+      tcattctgca ttgttctgcg catggcggtc actcggcaat ttccctgggc tgtacaaaca
+      tggtatgact ctcttggagc aataaacaaa atacaggatt tcttacaaaa gcaagaatat
+      aagacattgg aatataactt aacgactaca gaagtagtga tggagaatgt aacagccttc
+      tgggaggagg gatttgggga attatttgag aaagcaaaac aaaacaataa caatagaaaa
+      acttctaatg gtgatgacag cctcttcttc agtaatttct cacttcttgg tactcctgtc
+      ctgaaagata ttaatttcaa gatagaaaga ggacagttgt tggcggttgc tggatccact
+      ggagcaggca agacttcact tctaatggtg attatgggag aactggagcc ttcagagggt
+      aaaattaagc acagtggaag aatttcattc tgttctcagt tttcctggat tatgcctggc
+      accattaaag aaaatatcat ctttggtgtt tcctatgatg aatatagata cagaagcgtc
+      atcaaagcat gccaactaga agaggacatc tccaagtttg cagagaaaga caatatagtt
+      cttggagaag gtggaatcac actgagtgga ggtcaacgag caagaatttc tttagcaaga
+      gcagtataca aagatgctga tttgtattta ttagactctc cttttggata cctagatgtt
+      ttaacagaaa aagaaatatt tgaaagctgt gtctgtaaac tgatggctaa caaaactagg
+      attttggtca cttctaaaat ggaacattta aagaaagctg acaaaatatt aattttgcat
+      gaaggtagca gctattttta tgggacattt tcagaactcc aaaatctaca gccagacttt
+      agctcaaaac tcatgggatg tgattctttc gaccaattta gtgcagaaag aagaaattca
+      atcctaactg agaccttaca ccgtttctca ttagaaggag atgctcctgt ctcctggaca
+      gaaacaaaaa aacaatcttt taaacagact ggagagtttg gggaaaaaag gaagaattct
+      attctcaatc caatcaactc tatacgaaaa ttttccattg tgcaaaagac tcccttacaa
+      atgaatggca tcgaagagga ttctgatgag cctttagaga gaaggctgtc cttagtacca
+      gattctgagc agggagaggc gatactgcct cgcatcagcg tgatcagcac tggccccacg
+      cttcaggcac gaaggaggca gtctgtcctg aacctgatga cacactcagt taaccaaggt
+      cagaacattc accgaaagac aacagcatcc acacgaaaag tgtcactggc ccctcaggca
+      aacttgactg aactggatat atattcaaga aggttatctc aagaaactgg cttggaaata
+      agtgaagaaa ttaacgaaga agacttaaag gagtgctttt ttgatgatat ggagagcata
+      ccagcagtga ctacatggaa cacatacctt cgatatatta ctgtccacaa gagcttaatt
+      tttgtgctaa tttggtgctt agtaattttt ctggcagagg tggctgcttc tttggttgtg
+      ctgtggctcc ttggaaacac tcctcttcaa gacaaaggga atagtactca tagtagaaat
+      aacagctatg cagtgattat caccagcacc agttcgtatt atgtgtttta catttacgtg
+      ggagtagccg acactttgct tgctatggga ttcttcagag gtctaccact ggtgcatact
+      ctaatcacag tgtcgaaaat tttacaccac aaaatgttac attctgttct tcaagcacct
+      atgtcaaccc tcaacacgtt gaaagcaggt gggattctta atagattctc caaagatata
+      gcaattttgg atgaccttct gcctcttacc atatttgact tcatccagtt gttattaatt
+      gtgattggag ctatagcagt tgtcgcagtt ttacaaccct acatctttgt tgcaacagtg
+      ccagtgatag tggcttttat tatgttgaga gcatatttcc tccaaacctc acagcaactc
+      aaacaactgg aatctgaagg caggagtcca attttcactc atcttgttac aagcttaaaa
+      ggactatgga cacttcgtgc cttcggacgg cagccttact ttgaaactct gttccacaaa
+      gctctgaatt tacatactgc caactggttc ttgtacctgt caacactgcg ctggttccaa
+      atgagaatag aaatgatttt tgtcatcttc ttcattgctg ttaccttcat ttccatttta
+      acaacaggag aaggagaagg aagagttggt attatcctga ctttagccat gaatatcatg
+      agtacattgc agtgggctgt aaactccagc atagatgtgg atagcttgat gcgatctgtg
+      agccgagtct ttaagttcat tgacatgcca acagaaggta aacctaccaa gtcaaccaaa
+      ccatacaaga atggccaact ctcgaaagtt atgattattg agaattcaca cgtgaagaaa
+      gatgacatct ggccctcagg gggccaaatg actgtcaaag atctcacagc aaaatacaca
+      gaaggtggaa atgccatatt agagaacatt tccttctcaa taagtcctgg ccagagggtg
+      ggcctcttgg gaagaactgg atcagggaag agtactttgt tatcagcttt tttgagacta
+      ctgaacactg aaggagaaat ccagatcgat ggtgtgtctt gggattcaat aactttgcaa
+      cagtggagga aagcctttgg agtgatacca cagaaagtat ttattttttc tggaacattt
+      agaaaaaact tggatcccta tgaacagtgg agtgatcaag aaatatggaa agttgcagat
+      gaggttgggc tcagatctgt gatagaacag tttcctggga agcttgactt tgtccttgtg
+      gatgggggct gtgtcctaag ccatggccac aagcagttga tgtgcttggc tagatctgtt
+      ctcagtaagg cgaagatctt gctgcttgat gaacccagtg ctcatttgga tccagtaaca
+      taccaaataa ttagaagaac tctaaaacaa gcatttgctg attgcacagt aattctctgt
+      gaacacagga tagaagcaat gctggaatgc caacaatttt tggtcataga agagaacaaa
+      gtgcggcagt acgattccat ccagaaactg ctgaacgaga ggagcctctt ccggcaagcc
+      atcagcccct ccgacagggt gaagctcttt ccccaccgga actcaagcaa gtgcaagtct
+      aagccccaga ttgctgctct gaaagaggag acagaagaag aggtgcaaga tacaaggctt
+      tag
+
+This should translate to: 
+		     MQRSPLEKASVVSKLFFSWTRPILRKGYRQRLELSDIYQIPSVD
+                     SADNLSEKLEREWDRELASKKNPKLINALRRCFFWRFMFYGIFLYLGEVTKAVQPLLL
+                     GRIIASYDPDNKEERSIAIYLGIGLCLLFIVRTLLLHPAIFGLHHIGMQMRIAMFSLI
+                     YKKTLKLSSRVLDKISIGQLVSLLSNNLNKFDEGLALAHFVWIAPLQVALLMGLIWEL
+                     LQASAFCGLGFLIVLALFQAGLGRMMMKYRDQRAGKISERLVITSEMIENIQSVKAYC
+                     WEEAMEKMIENLRQTELKLTRKAAYVRYFNSSAFFFSGFFVVFLSVLPYALIKGIILR
+                     KIFTTISFCIVLRMAVTRQFPWAVQTWYDSLGAINKIQDFLQKQEYKTLEYNLTTTEV
+                     VMENVTAFWEEGFGELFEKAKQNNNNRKTSNGDDSLFFSNFSLLGTPVLKDINFKIER
+                     GQLLAVAGSTGAGKTSLLMVIMGELEPSEGKIKHSGRISFCSQFSWIMPGTIKENIIF
+                     GVSYDEYRYRSVIKACQLEEDISKFAEKDNIVLGEGGITLSGGQRARISLARAVYKDA
+                     DLYLLDSPFGYLDVLTEKEIFESCVCKLMANKTRILVTSKMEHLKKADKILILHEGSS
+                     YFYGTFSELQNLQPDFSSKLMGCDSFDQFSAERRNSILTETLHRFSLEGDAPVSWTET
+                     KKQSFKQTGEFGEKRKNSILNPINSIRKFSIVQKTPLQMNGIEEDSDEPLERRLSLVP
+                     DSEQGEAILPRISVISTGPTLQARRRQSVLNLMTHSVNQGQNIHRKTTASTRKVSLAP
+                     QANLTELDIYSRRLSQETGLEISEEINEEDLKECFFDDMESIPAVTTWNTYLRYITVH
+                     KSLIFVLIWCLVIFLAEVAASLVVLWLLGNTPLQDKGNSTHSRNNSYAVIITSTSSYY
+                     VFYIYVGVADTLLAMGFFRGLPLVHTLITVSKILHHKMLHSVLQAPMSTLNTLKAGGI
+                     LNRFSKDIAILDDLLPLTIFDFIQLLLIVIGAIAVVAVLQPYIFVATVPVIVAFIMLR
+                     AYFLQTSQQLKQLESEGRSPIFTHLVTSLKGLWTLRAFGRQPYFETLFHKALNLHTAN
+                     WFLYLSTLRWFQMRIEMIFVIFFIAVTFISILTTGEGEGRVGIILTLAMNIMSTLQWA
+                     VNSSIDVDSLMRSVSRVFKFIDMPTEGKPTKSTKPYKNGQLSKVMIIENSHVKKDDIW
+                     PSGGQMTVKDLTAKYTEGGNAILENISFSISPGQRVGLLGRTGSGKSTLLSAFLRLLN
+                     TEGEIQIDGVSWDSITLQQWRKAFGVIPQKVFIFSGTFRKNLDPYEQWSDQEIWKVAD
+                     EVGLRSVIEQFPGKLDFVLVDGGCVLSHGHKQLMCLARSVLSKAKILLLDEPSAHLDP
+                     VTYQIIRRTLKQAFADCTVILCEHRIEAMLECQQFLVIEENKVRQYDSIQKLLNERSL
+                     FRQAISPSDRVKLFPHRNSSKCKSKPQIAALKEETEEEVQDTRL
+
+The most common cystic fibrosis mutation is ENIIFGVSYDE -> ENIIGVSYDE
+CFTR Promoters: 
+	Basal Promoter (attracts the formation of a transcription complex, located within the entire promoter region): gtagtaggtc tttggcatta ggagcttgag cccaga
+	
+	Promoter (whole sequence): gtagtaggtc tttggcatta ggagcttgag cccagacggc cctagcaggg accccagcgc ccgagagacc
