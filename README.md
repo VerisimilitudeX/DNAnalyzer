@@ -5,7 +5,7 @@
 <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
 <a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
 
->Revolutionizing DNA analysis and making it accessible to all through innovative AI-powered analysis and interpretive tools
+>Revolutionizing DNA analysis and making it accessible to all through innovative AI-powered analysis and interpretive tools.
 
 <a href="https://www.producthunt.com/posts/dnanalyzer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dnanalyzer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=401710&theme=dark" alt="DNAnalyzer - Revolutionizing&#0032;AI&#0045;powered&#0032;accessible&#0032;DNA&#0032;analysis | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
@@ -49,7 +49,7 @@ The human genome is composed of over 3 billion base pairs, making human analysis
 
 ### DNA
 
-DNA, present in every cell of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of Artificial Intelligence and Machine Learning, we can decode and comprehend DNA, leading to potentially life-saving discoveries and valuable insights.
+DNA, present in every cell of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of Artificial Intelligence and Machine Learning, we can decode and comprehend DNA, leading to potentially life-saving discoveries and valuable insights. :D
 
 ### Databases
 
