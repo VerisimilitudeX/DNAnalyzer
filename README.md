@@ -49,7 +49,7 @@ The human genome is composed of over 3 billion base pairs, making human analysis
 
 ### DNA
 
-DNA, present in every cell of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of Artificial Intelligence and Machine Learning, we can decode and comprehend DNA, leading to potentially life-saving discoveries and valuable insights. :D
+DNA, present in every cell of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of Artificial Intelligence and Machine Learning, we can decode and comprehend DNA, leading to potentially life-saving discoveries and valuable insights.
 
 ### Databases
 
