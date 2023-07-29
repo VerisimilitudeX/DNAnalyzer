@@ -29,7 +29,7 @@ public class Utils {
    */
   public static String readFile(final File file) {
     try {
-      return Files.readString(file.toPath()).replace("\n", "").toLowerCase();
+      return Files.readString(file.toPath()).replace("\n", "").replace("\r", "").toLowerCase();
     } catch (IOException e) {
       return null;
     }

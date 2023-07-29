@@ -50,7 +50,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     return new DNAAnalysis(new DNATools(dna.getReverseComplement()), protein, aminoAcid);
   }
 
-  // Create protein list
+  // Creates protein list
   // Output the proteins, GC content, and nucleotide cnt found in the DNA
   public DNAAnalysis printProteins(PrintStream out) {
     ofNullable(dna)
