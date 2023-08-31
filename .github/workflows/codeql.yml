@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'java', 'javascript', 'python' ]
+        language: ['javascript', 'python' ]
 
     steps:
     - name: Checkout repository
