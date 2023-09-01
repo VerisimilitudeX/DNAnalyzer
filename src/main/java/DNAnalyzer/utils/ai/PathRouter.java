@@ -1,6 +1,10 @@
 package DNAnalyzer.utils.ai;
 
+import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.ui.cli.CmdArgs;
+import DNAnalyzer.ui.gui.DNAnalyzerGUI;
+import DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController;
+import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -64,6 +68,7 @@ public class PathRouter {
    */
   public static String askGPT(String output, String apiKey) {
     output = output.replaceAll("\\r?\\n", "");
+    output = output.replaceAll("\\u001b\\[H\\u001b\\[2J", "");
     String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
     String AUTHORIZATION_HEADER = "Bearer " + apiKey;
     try {
