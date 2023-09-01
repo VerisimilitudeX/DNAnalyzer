@@ -44,16 +44,23 @@ The human genome is composed of over 3 billion base pairs, making human analysis
 
 ## <a name="features"></a>Features
 
-* **Start and Stop Codons**: Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. `[2]`
-* **High Coverage Regions**: Promoter sequences in the genome that code for proteins have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). Such CpG islands are likely to reveal important information about the genome. `[3]`
-* **Neurodevelopmental Disorders**: A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous
+* **Start and Stop Codons**
+  * Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. `[2]`
+* **High Coverage Regions**
+  * Promoter sequences in the genome that code for proteins have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). Such CpG islands are likely to reveal important information about the genome. `[3]`
+* **Neurodevelopmental Disorders**
+  * A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous
                         system. These disorders are caused by genetic mutations that affect the development of the
                         brain and nervous system. These disorders include autism, attention deficit hyperactivity
                         disorder (ADHD), and schizophrenia. `[4]`
-* **Core Promoter Elements**: Promoter sequences are short DNA sequences that are located upstream of a gene and are responsible for initiating transcription (e.g. BRE, TATA, INR, and DPE). `[5]`
-* **FASTA File Support**: Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web. `[7]`
-* **Command-Line Interface (CLI)**: The Methionine command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for using DNAnalyzer services and scripting a sequence of commands to execute. You can currently access all the core features present in DNAnalyzer without having to log in, although account support will be implemented soon. To get more information on Met CLI installation and currently supported commands, refer to Met CLI GitHub repository.
-* **Graphical User Interface (GUI)**: A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be the best way to run the program. Currently, the following operations are supported:
+* **Core Promoter Elements**
+  * Promoter sequences are short DNA sequences that are located upstream of a gene and are responsible for initiating transcription (e.g. BRE, TATA, INR, and DPE). `[5]`
+* **FASTA File Support**
+  * Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web. `[7]`
+* **Command-Line Interface (CLI)**
+  * The Methionine command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for using DNAnalyzer services and scripting a sequence of commands to execute. You can currently access all the core features present in DNAnalyzer without having to log in, although account support will be implemented soon. To get more information on Met CLI installation and currently supported commands, refer to Met CLI GitHub repository.
+* **Graphical User Interface (GUI)**
+  * A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be the best way to run the program. Currently, the following operations are supported:
     * Set name of DNA file to analyze
     * Set minimum and maximum number of reading frames
     * Run analysis
