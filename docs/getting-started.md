@@ -118,6 +118,14 @@ export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
 ```
 If you see `Task :compileJava FAILED`, the program cannot find your Java installation. You may need to export your JAVA_HOME path again.
 
+## OpenAI API Key
+We use GPT-4 API to display the results of the analysis. To use the API, you'll need to get an API key from OpenAI. You can get one [here](https://platform.openai.com/). **Note, this is an optional step.** If you don't want to use the API, you can still use the program, but you won't be able to see the results of the analysis.
+
+To set the API key on Linux or macOS, run `export OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx` where `sk-xxxxxxxxxxxxxxxxxxxxxxxx` is your API key.
+
+For Windows, use `setx OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx` instead.
+
+
 ### Usage
 
 ```bash
