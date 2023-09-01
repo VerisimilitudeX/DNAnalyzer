@@ -17,11 +17,47 @@ Researchers are working to extract valuable information from such software to be
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
 
-## Background
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Background](#background)
+- [Features](#features)
+- [Quick Introduction to DNA](#quick-introduction-to-dna)
+  - [DNA](#dna)
+  - [Databases](#databases)
+- [Getting Started](#getting-started)
+  - [System Requirements](#system-requirements)
+  - [Build \& Run](#build--run)
+  - [Usage](#usage)
+    - [Executable](#executable)
+    - [Arguments](#arguments)
+  - [Example](#example)
+    - [Gradle Run](#gradle-run)
+    - [GUI](#gui)
+  - [DNAnalyzer \& Java Download](#dnanalyzer--java-download)
+  - [Java installation](#java-installation)
+  - [Usage](#usage-1)
+    - [Executable](#executable-1)
+    - [Arguments](#arguments-1)
+  - [Example](#example-1)
+    - [Gradle Run](#gradle-run-1)
+    - [GUI](#gui-1)
+    - [Available Commands](#available-commands)
+- [Future Support and Improvements](#future-support-and-improvements)
+  - [Optimized SQL Database for Genomic Data](#optimized-sql-database-for-genomic-data)
+  - [Improved Neural Network for Genotyped Data](#improved-neural-network-for-genotyped-data)
+  - [DIAMOND Implementation, a BLAST fork](#diamond-implementation-a-blast-fork)
+- [Citations](#citations)
+- [Contributing](#contributing)
+- [Terms of Use](#terms-of-use)
+      - [Copyright © Piyush Acharya 2023. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.](#copyright--piyush-acharya-2023-dnanalyzer-is-a-fiscally-sponsored-501c3-nonprofit-ein-81-2908499-licensed-under-the-mit-license)
+
+
+## <a name="background"></a>Background
 
 The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of data, which need to be organized and converted into analyzable data appropriately. Current analytical tools and software make it arduous for both geneticists and physicians to do so, thus restricting them from acquiring crucial information to better understand humans. `[1]`
 
-## Features
+## <a name="features"></a>Features
 
 * Start and stop codons
   * Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. `[2]`
@@ -45,27 +81,27 @@ The human genome is composed of over 3 billion base pairs, making human analysis
     * Run analysis
   * More features will be added in the future.
 
-## Quick Introduction to DNA
+## <a name="quick-introduction-to-dna"></a>Quick Introduction to DNA
 
-### DNA
+### <a name="dna"></a>DNA
 
 DNA, present in most cells of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of Artificial Intelligence and Machine Learning, we can decode and comprehend DNA, leading to potentially life-saving discoveries and valuable insights.
 
-### Databases
+### <a name="databases"></a>Databases
 
 A DNA database is crucial for interpreting DNA sequences. By leveraging machine learning, predictions can be made on previously unseen DNA sequences. This is the foundation on which current DNA analysis programs operate.
 
-## Getting Started
+## <a name="getting-started"></a>Getting Started
 
 A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below is also available.
 
-### System Requirements
+### <a name="system-requirements"></a>System Requirements
 
 * JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)+
    * A `JAVA_HOME` environment variable pointing to your JDK, or the Java executable in your PATH
 * [Gradle](https://gradle.org/install/) (included)
 
-### Build & Run
+### <a name="build-run"></a>Build & Run
 
 The easiest way to run the program on Windows is by using the executable file located in the [releases](https://github.com/VerisimilitudeX/DNAnalyzer/releases/latest) section to install the program, build gradle and run the GUI.
 
@@ -80,19 +116,19 @@ The easiest way to run the program on Windows is by using the executable file lo
 .\gradlew build
 ```
 
-### Usage
+### <a name="usage"></a>Usage
 
 ```pwsh
 <executable> <arguments>
 ```
 
-#### Executable
+#### <a name="executable"></a>Executable
 
 ```pwsh
 java -jar build/libs/DNAnalyzer.jar
 ```
 
-#### Arguments
+#### <a name="arguments"></a>Arguments
 
 DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 
@@ -100,13 +136,13 @@ DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
 assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
 ```
 
-### Example
+### <a name="example"></a>Example
 
 ```pwsh
 java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
 ```
 
-#### Gradle Run
+#### <a name="gradle-run"></a>Gradle Run
 
 If you prefer, you can also run it directly from Gradle:
 
@@ -114,7 +150,7 @@ If you prefer, you can also run it directly from Gradle:
 .\gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
 ```
 
-#### GUI
+#### <a name="gui"></a>GUI
 
 DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
 
@@ -139,7 +175,7 @@ The results of your analysis will be shown in the right pane.
       <summary>Linux & macOS</summary>
 
 
-### DNAnalyzer & Java Download
+### <a name="features"></a>DNAnalyzer & Java Download
 
 To run DNAnaylzer on Linux, you'll need to download the DNAnalyzer source code and download and install Java 17.
 
