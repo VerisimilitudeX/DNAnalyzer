@@ -100,9 +100,9 @@ View our in-line citations in the [Citations](docs/citations.md) document.
 
 ## Contributing
 
-* [Contributing Guidelines](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
+* [Contributing Guidelines](./docs/contributing/Contribution_Guidelines.md)
 
-* [How To Use Git](https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
+* [How To Use Git](./docs/contributing/CONTRIBUTING.md)
 
 ## Terms of Use
 
