@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApiKeyServiceTest {
 
-    @DisplayName("Get api key, given it was set before.")
+    @DisplayName("Get the api key, given it was set before.")
     @Test
     void testGetApiKey_key_is_set() {
         ApiKeyService apiKeyService = new ApiKeyService();
@@ -19,7 +19,7 @@ class ApiKeyServiceTest {
         Assertions.assertThat(result).isEqualTo("2134432-mock-key");
     }
 
-    @DisplayName("Get api key, verify that exception is thrown when not set.")
+    @DisplayName("Get api key, verify that an exception is thrown when not set.")
     @Test
     void testGetApiKey_no_key_is_set() {
         ApiKeyService apiKeyService = new ApiKeyService();
@@ -29,7 +29,7 @@ class ApiKeyServiceTest {
         assertEquals("No API-Key defined.", exception.getMessage());
     }
 
-    @DisplayName("Set new API key.")
+    @DisplayName("Set a new API key.")
     @Test
     void setApiKey() {
         String newKey = "9999999-new-key";
@@ -38,7 +38,5 @@ class ApiKeyServiceTest {
         String result = apiKeyService.setApiKey(newKey);
 
         Assertions.assertThat(result).isEqualTo("9999999-new-key");
-
-
     }
 }

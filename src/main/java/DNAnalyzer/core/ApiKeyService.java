@@ -5,7 +5,6 @@ import DNAnalyzer.core.port.in.GetApiKeyUseCase;
 import DNAnalyzer.core.port.in.SetApiKeyUseCase;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The purpose of this service is to handle all operations concerning the OpenAI API key.
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Service
 public class ApiKeyService implements GetApiKeyUseCase, SetApiKeyUseCase {
 
-    @Value("${openai.api.key:nokey}")
+    @Value("${openai.api.key}")
     private String apiKey;
 
     @Override
