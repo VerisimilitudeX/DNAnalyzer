@@ -29,11 +29,8 @@ javafx {
 }
 
 dependencies {
-    // Use JUnit test framework.
-    //testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
-    //testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // This dependency is used by the application.
