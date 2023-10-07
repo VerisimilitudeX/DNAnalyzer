@@ -14,6 +14,8 @@ package DNAnalyzer;
 import java.io.IOException;
 
 import DNAnalyzer.ui.cli.CmdArgs;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import picocli.CommandLine;
 
 import io.sentry.Sentry;
@@ -29,6 +31,7 @@ import io.sentry.SpanStatus;
  * @see <a href=
  *      "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">...</a>
  */
+@SpringBootApplication
 public class Main {
 
 	/**
@@ -67,7 +70,8 @@ public class Main {
 	 *             {@code @category} Main
 	 */
 	public static void main(final String[] args) {
-		configureSentry();
-		new CommandLine(new CmdArgs()).execute(args);
+		SpringApplication.run(Main.class, args);
+		//configureSentry();
+		//new CommandLine(new CmdArgs()).execute(args);
 	}
 }
