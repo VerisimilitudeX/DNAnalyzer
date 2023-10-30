@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Controller to get and set the API key.
  */
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api-key")
 @Controller
 public class ApiKeyController {
 
+    /**
+     * Contructor of the controller.
+     * @param getApiKeyUseCase the use case to get the API key
+     * @param setApiKeyUseCase the use case to set the API key
+     */
     public ApiKeyController(GetApiKeyUseCase getApiKeyUseCase, SetApiKeyUseCase setApiKeyUseCase) {
         this.getApiKeyUseCase = getApiKeyUseCase;
         this.setApiKeyUseCase = setApiKeyUseCase;
@@ -37,7 +41,7 @@ public class ApiKeyController {
 
     /**
      * Set the API key.
-     * @param request
+     * @param request the request containing the new API key
      * @return the new API key
      */
     @PutMapping
