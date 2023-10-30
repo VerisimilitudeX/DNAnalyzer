@@ -8,7 +8,7 @@ public interface AnalyzeDnaUseCase {
     /**
      * Analyze the DNA.
      * @param request
-     * @return
+     * @return the result of the analysis
      */
     AnalyzeResult analyzeDna(AnalyzeDnaRequest request);
 }

@@ -25,12 +25,21 @@ public class ApiKeyController {
     private final GetApiKeyUseCase getApiKeyUseCase;
     private final SetApiKeyUseCase setApiKeyUseCase;
 
+    /**
+     * Get the API key.
+     * @return the API key
+     */
     @GetMapping
     public ApiKeyResponse getApiKey() {
         String apiKey = getApiKeyUseCase.getApiKey();
         return new ApiKeyResponse(apiKey);
     }
 
+    /**
+     * Set the API key.
+     * @param request
+     * @return the new API key
+     */
     @PutMapping
     public ApiKeyResponse setApiKey(@RequestBody SetApiKeyRequest request) {
         String apiKey = setApiKeyUseCase.setApiKey(request.apiKey());
