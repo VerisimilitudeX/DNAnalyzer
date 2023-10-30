@@ -2,11 +2,13 @@ package DNAnalyzer.adapter;
 
 import DNAnalyzer.core.port.in.GetApiKeyUseCase;
 import DNAnalyzer.core.port.in.SetApiKeyUseCase;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller to get and set the API key.
  */
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api-key")
 public class ApiKeyController {
