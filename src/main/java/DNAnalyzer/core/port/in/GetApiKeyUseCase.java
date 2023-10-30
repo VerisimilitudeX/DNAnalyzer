@@ -1,5 +1,8 @@
 package DNAnalyzer.core.port.in;
 
+/**
+ * Use case interface to get the API key.
+ */
 public interface GetApiKeyUseCase {
 
     /**

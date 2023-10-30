@@ -3,6 +3,9 @@ package DNAnalyzer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Main class to run the DNAnalyzer program with a webserver.
+ */
 @SpringBootApplication
 public class DNAnalyzerApplication {
 

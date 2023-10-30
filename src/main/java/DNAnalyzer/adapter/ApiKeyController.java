@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller to get and set the API key.
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api-key")
