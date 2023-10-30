@@ -29,6 +29,27 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+      uses: gradle/gradle-build-action@v2.3.3
       with:
         arguments: build
+  GUI-Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Launch GUI
+        uses: puredevops/sample-action@v1.3
+        with:
+          arguments: ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
+        # Whether caching wrapper installation is enabled or not, default to 'true'
+        # wrapper-cache-enabled: # optional
+        # Whether caching dependencies is enabled or not, default to 'false'
+        # dependencies-cache-enabled: # optional
+        # Globs of files to hash in the build root directory, separated by new lines, use best-effort if unset
+        # dependencies-cache-key: # optional
+        # Whether to restore only if exact match, default to 'false'
+        # dependencies-cache-exact: # optional
+        # Whether caching build configuration is enabled or not, default to 'false'
+        # configuration-cache-enabled: # optional
+        # Globs of files to hash in the build root directory, separated by new lines, use best-effort if unset
+        # configuration-cache-key: # optional
+        # Whether to restore only if exact match, default to 'false'
+        # configuration-cache-exact: # optional

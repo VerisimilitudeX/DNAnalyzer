@@ -1,144 +1,92 @@
-![DNAnalyzer Logo](https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png)
+![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
-<p align=center><img src="https://img.shields.io/badge/copyright-2022-blue" alt="Copyright"> <img src="https://wakatime.com/badge/github/Verisimilitude11/DNAnalyzer.svg" alt="WakaTime"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDE11/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/Verisimilitude11/DNAnalyzer" alt="Repository Size"> <img src="https://img.shields.io/tokei/lines/github/verisimilitude11/DNAnalyzer" alt="Lines of Code"> <img src="https://hits.dwyl.com/verisimilitude11/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/Verisimilitude11/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
+
+<p align=center><img src="https://img.shields.io/badge/copyright-2023-blue" alt="Copyright"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
 <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
-<a href="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/Verisimilitude11/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
+<a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a></p>
 
->A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences
+# DNAnalyzer
 
-DNAnalyzer identifies protein-encoding sequences via recognizing start and stop codons, predicts high coverage regions, and locates promoter sequences and their associated regulatory sequences. It also provides a variety of other useful tools, such as a built-in DNA sequence editor, viewer, generator, and converter.
+>Revolutionizing DNA analysis and making it accessible to all through innovative AI-powered analysis and interpretive tools.
 
-Researchers are working to extract valuable information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
+<!--<a href="https://www.producthunt.com/posts/dnanalyzer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dnanalyzer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=401710&theme=dark" alt="DNAnalyzer - Revolutionizing&#0032;AI&#0045;powered&#0032;accessible&#0032;DNA&#0032;analysis | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>-->
 
-## Background
+**DNAnalyzer** is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to DNA analysis tools for a deeper understanding of human health and disease and pushing the boundaries of what is possible in the field of genetics research to make a significant impact in the industry.
+
+## Summary
+DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-powered analysis and interpretive tools empower geneticists, physicians, and researchers to gain deep insights into DNA sequences, revolutionizing how we understand human health and disease.
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
+
+## Table of Contents
+
+- [DNAnalyzer](#dnanalyzer)
+  - [Summary](#summary)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+  - [Features](#features)
+  - [Quick Introduction to DNA](#quick-introduction-to-dna)
+    - [DNA](#dna)
+    - [Databases](#databases)
+  - [Getting Started](#getting-started)
+  - [Future Support and Improvements](#future-support-and-improvements)
+    - [Optimized SQL Database for Genomic Data](#optimized-sql-database-for-genomic-data)
+    - [Improved Neural Network for Genotyped Data](#improved-neural-network-for-genotyped-data)
+    - [DIAMOND Implementation, a BLAST fork](#diamond-implementation-a-blast-fork)
+  - [Citations](#citations)
+  - [Contributing](#contributing)
+  - [Terms of Use](#terms-of-use)
+
+
+## <a name="background"></a>Background
 
 The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of data, which need to be organized and converted into analyzable data appropriately. Current analytical tools and software make it arduous for both geneticists and physicians to do so, thus restricting them from acquiring crucial information to better understand humans. `[1]`
 
-## Features
+## <a name="features"></a>Features
 
-* Start and stop codons
+* **Start and Stop Codons**
   * Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. `[2]`
-* High coverage regions
+* **High Coverage Regions**
   * Promoter sequences in the genome that code for proteins have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). Such CpG islands are likely to reveal important information about the genome. `[3]`
-* Neurodevelopmental Disorders
+* **Neurodevelopmental Disorders**
   * A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous
                         system. These disorders are caused by genetic mutations that affect the development of the
                         brain and nervous system. These disorders include autism, attention deficit hyperactivity
                         disorder (ADHD), and schizophrenia. `[4]`
-* Core promoter elements
+* **Core Promoter Elements**
   * Promoter sequences are short DNA sequences that are located upstream of a gene and are responsible for initiating transcription (e.g. BRE, TATA, INR, and DPE). `[5]`
-* FASTA files (.fa)
+* **FASTA File Support**
   * Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web. `[7]`
-* CLI
+* **Command-Line Interface (CLI)**
   * The Methionine command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for using DNAnalyzer services and scripting a sequence of commands to execute. You can currently access all the core features present in DNAnalyzer without having to log in, although account support will be implemented soon. To get more information on Met CLI installation and currently supported commands, refer to Met CLI GitHub repository.
-* GUI
+* **Graphical User Interface (GUI)**
   * A cross-platform GUI-based application that performs the algorithms implemented in the software. The Met CLI continues to be the best way to run the program. Currently, the following operations are supported:
     * Set name of DNA file to analyze
     * Set minimum and maximum number of reading frames
     * Run analysis
   * More features will be added in the future.
 
-## Quick Introduction to DNA
+## <a name="quick-introduction-to-dna"></a>Quick Introduction to DNA
 
-### DNA
+### <a name="dna"></a>DNA
 
-In a nutshell, DNA is found in every cell of your body and contains the instructions for building over 200 different types of cells. DNA is similar to a programming language, but only for living organisms. We can crack the code to reading and interpreting it by using Artificial Intelligence and Machine Learning, which can have life-saving benefits as well as key insights.
+DNA, present in most cells of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of ML, we can decode and comprehend DNA, leading to life-saving discoveries and valuable insights.
 
-### Databases
+### <a name="databases"></a>Databases
 
-Having a database of DNA is the best way to interpret the DNA, and when combined with machine learning, the ML model can make accurate predictions on DNA it has never seen before. This is how current DNA tests function.
+A DNA database is crucial for interpreting DNA sequences. By leveraging machine learning, predictions can be made on previously unseen DNA sequences. This is the foundation on which modern DNA analysis programs operate.
 
-## Getting Started
+## <a name="getting-started"></a>Getting Started
 
-A [video tutorial](https://youtu.be/dOwkInn6eDw) covering the instructions below is also available.
-
-### System Requirements
-
-* JDK [17](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)+
-* A `JAVA_HOME` environment variable pointing to your JDK, or the Java executable in your PATH
-* [Gradle](https://gradle.org/install/)
-
-### Build & Run
-
-We use [Gradle](https://gradle.org) for building. The Gradle wrapper takes care of downloading dependencies, testing, compiling, linking, and packaging the code.
-
-```pwsh
-./gradlew build
-```
-
-### Usage
-
-```pwsh
-<executable> <arguments>
-```
-
-#### Executable
-
-```pwsh
-java -jar build/libs/DNAnalyzer.jar
-```
-
-#### Arguments
-
-DNAnalyzer uses CLI arguments instead of `stdin`. For example, you can do:
-
-```pwsh
-assets/dna/random/dnalong.fa --amino=ser --min=0 --max=100 -r
-```
-
-### Example
-
-```pwsh
-java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
-```
-
-#### Gradle Run
-
-If you prefer, you can also run it directly from Gradle:
-
-```pwsh
-./gradlew run --args="assets/dna/random/dnalong.fa --amino=ser --min=10 --max=100"
-```
-
-#### GUI
-
-DNAnalyzer also comes with a (very basic) GUI; to start DNAnalyzer with the GUI, run:
-
-```pwsh
-./gradlew run --args="--gui"
-```
-
-Then:
-
-* Enter the file name of the DNA file in the text field
-* Set min and max
-* Click analyze
-
-The results of your analysis will be shown in the right pane.
-
-#### Help message
-
-```txt
-Usage: DNAnalyzer [-hrV] --amino=<aminoAcid> [--find=<proteinFile>]
-                  [--max=<maxCount>] [--min=<minCount>] DNA
-A program to analyze DNA sequences.
-      DNA                    The FASTA file to be analyzed.
-      --amino=<aminoAcid>    The amino acid representing the start of a gene.
-      --find=<proteinFile>   The DNA sequence to be found within the FASTA file.
-  -h, --help                 Show this help message and exit.
-      --max=<maxCount>       The maximum count of the reading frame.
-      --min=<minCount>       The minimum count of the reading frame.
-  -r, --reverse              Reverse the DNA sequence before processing.
-  -V, --version              Print version information and exit.
-```
+Please refer to the [Getting Started](docs/getting-started.md) document for more information on how to use DNAnalyzer.
 
 ## Future Support and Improvements
 
-### Needleman-Wunsch Algorithm
+### Optimized SQL Database for Genomic Data
+ 
+Our goal is to find the best SQL database fork that can handle high performance and vertical scaling. We will store and query genomic data from thousands of species, including their genes and mutations. This will help us train our machine learning model more effectively.
 
-This algorithm is used primarily for gene sequencing looking for the optimal match between multiple gene sequences. While the Boyer-Moore algorithm is undoubtedly more efficient, the Needleman-Wunsch algorithm continues to be one of the most accurate algorithms for genomic sequencing. `[8]`
-
-### Genotype Data for Analysis and Machine Learning Training
+### Improved Neural Network for Genotyped Data
 
 This will bring the ability to use genotyped data from 3rd-party DNA testing services with our algorithm. In the future, to use this program, all you will need is a simple $99 DNA Test to be able to experience all the features of DNAnalyzer.
 
@@ -146,22 +94,20 @@ This will bring the ability to use genotyped data from 3rd-party DNA testing ser
 
 This will combine [DIAMOND](https://github.com/bbuchfink/diamond)'s performance advantage along with [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi")'s algorithm.
 
-### .FAB File Format
-
-This will allow for the use of own custom .fab files, which are a binary version of FASTA files. It will enable faster processing of large files and massively reduced file sizes (up to 4x).
-
 ## Citations
 
 View our in-line citations in the [Citations](docs/citations.md) document.
 
 ## Contributing
 
-* [Contributing Guidelines](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/Contribution%20Guideline/Contribution_Guideline.md)
+* [Contributing Guidelines](./docs/contributing/Contribution_Guidelines.md)
 
-* [How To Use Git](https://github.com/Verisimilitude11/DNAnalyzer/blob/main/docs/contributing/CONTRIBUTING.md)
+* [How To Use Git](./docs/contributing/CONTRIBUTING.md)
 
 ## Terms of Use
 
-You are entirely responsible for the use of this application, including any and all activities that occur. While the DNAnalyzer Team strives to fix all major bugs that may be either reported by a user or discovered while debugging, they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances. For further inquiries, please contact the following email address: `contact@dnanalyzer.live`
+Your complete responsibility lies in the utilization of this application, encompassing all actions and consequences that arise. While the DNAnalyzer Team is dedicated to addressing significant issues that may arise, whether reported by users or as new research unfolds, they cannot be held accountable for any losses users may experience due to the application's use, irrespective of circumstances. For further inquiries, please reach out to the following email address: help@dnanalyzer.live.
 
-##### Copyright © 2022 Piyush Acharya and DNAnalyzer. This is an open source project. Some rights reserved.
+If you use this software in your research, we request that you provide the appropriate citation.
+
+Copyright © Piyush Acharya 2023. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.

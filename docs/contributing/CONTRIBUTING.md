@@ -2,7 +2,7 @@
 
 ## 1. Fork it 🍴
 
-You can get your own fork (copy) of [DNAnalyzer](https://github.com/Verisimilitude11/DNAnalyzer) by using the `Fork`
+You can get your own fork (copy) of [DNAnalyzer](https://github.com/VerisimilitudeX/DNAnalyzer) by using the `Fork`
 button at the top right of this page.
 
 ![Fork Button](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
@@ -28,7 +28,7 @@ Move to this folder for all other commands.
 
 Let us now add a reference to the original 'DNAnalyzer' repository using:
 
-`$ git remote add upstream https://github.com/theabhishek07/DNAnalyzer.git`
+`$ git remote add upstream https://github.com/VerisimilitudeX/DNAnalyzer.git`
 
 This adds a new remote named **_upstream_**.
 
@@ -38,8 +38,8 @@ Examine the modifications using:
  $ git remote -v
  origin https://github.com/Your_Username/DNAnalyzer.git (fetch)                                                      
  origin https://github.com/Your_Username/DNAnalyzer.git (push)                                                        
- upstream https://github.com/theabhishek07/DNAnalyzer.git (fetch)                                                     
- upstream https://github.com/theabhishek07/DNAnalyzer.git (push)
+ upstream https://github.com/VerisimilitudeX/DNAnalyzer.git (fetch)                                                     
+ upstream https://github.com/VerisimilitudeX/DNAnalyzer.git (push)
  ```
 
 ## 3. Sync with the Remote 🔄
@@ -110,5 +110,5 @@ push - u
 origin < branchname >
 ```
 
-Finally, in your browser, navigate to your repository and click `Contribute` amd then `Open Pull Request`. There, please
+Finally, in your browser, navigate to your repository and click `Contribute` and then `Open Pull Request`. There, please
 provide a title and description, with brevity, that describe your much-appreciated effort.

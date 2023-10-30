@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 DNAnalyzer. Some rights reserved.
+ * Copyright © 2023 DNAnalyzer. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -8,27 +8,25 @@
  *
  * For further inquiries, please contact reach out to contact@dnanalyzer.live
  */
+
 package DNAnalyzer.data.aminoAcid;
 
 import java.util.Arrays;
 
-/**
- * ProteinFactory to get the instance of a Protein enum.
- */
+/** ProteinFactory to get the instance of a Protein enum. */
 public class AminoAcidFactory {
 
-	/**
-	 * Searches for an amino acid by its name or abbreviation passed as the
-	 * argument.
-	 *
-	 * @param aminoAcid amino acid name to search by.
-	 * @return a {@link AminoAcid} value.
-	 * @throws IllegalArgumentException if no acid is found by given name.
-	 */
-	public static AminoAcid getAminoAcid(final String aminoAcid) {
-		return Arrays.stream(AminoAcid.values())
-				.filter(acid -> acid.getNames().contains(aminoAcid.toLowerCase()))
-				.findFirst()
-				.orElseThrow(() -> new IllegalArgumentException("Unknown amino acid."));
-	}
+  /**
+   * Searches for an amino acid by its name or abbreviation passed as the argument.
+   *
+   * @param aminoAcid amino acid name to search by.
+   * @return a {@link AminoAcid} value.
+   * @throws IllegalArgumentException if no acid is found by given name.
+   */
+  public static AminoAcid getAminoAcid(final String aminoAcid) {
+    return Arrays.stream(AminoAcid.values())
+        .filter(acid -> acid.getNames().contains(aminoAcid.toLowerCase()))
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Unknown amino acid."));
+  }
 }

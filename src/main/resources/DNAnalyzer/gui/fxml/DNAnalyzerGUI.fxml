@@ -34,6 +34,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -52,7 +53,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="DNAnalyzer.gui.DNAnalyzerGUIFXMLController">
+      fx:controller="DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -139,6 +140,7 @@
                                 <Color red="0.624" green="0.624" blue="0.624" fx:id="x2121"/>
                             </textFill>
                         </Label>
+                  <Hyperlink layoutX="15.0" layoutY="514.0" text="Rate us" onAction="#rateUsClicked" />
                     </children>
                 </AnchorPane>
                 <ScrollPane prefHeight="-1.0" prefWidth="-1.0">

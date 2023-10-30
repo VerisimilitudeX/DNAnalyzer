@@ -8,7 +8,7 @@ Welcome to the DNAnalyzer wiki!
 > developing a Command-Line-Interface (CLI) and Graphical User Interface (GUI) that will enable physicians to quickly and
 > more easily interact with the software, enabling them to identify genetic mutations that may cause disease.
 
-# [Documents](https://github.com/Verisimilitude11/DNAnalyzer/tree/main/docs)
+# [Documents](https://github.com/VerisimilitudeX/DNAnalyzer/tree/main/docs)
 
 ## Contributing
 
@@ -16,7 +16,7 @@ Welcome to the DNAnalyzer wiki!
 
 #### 1. Fork it 🍴
 
-You can get your own fork (copy) of [DNAnalyzer](https://github.com/Verisimilitude11/DNAnalyzer) by using the `Fork`
+You can get your own fork (copy) of [DNAnalyzer](https://github.com/VerisimilitudeX/DNAnalyzer) by using the `Fork`
 button at the top right of this page.
 
 ![Fork Button](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
@@ -142,7 +142,7 @@ provide a title and description, with brevity, that describe your much-appreciat
 
 - Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this
   command with your forked repository link in place of below given link: <br/>
-  `git clone https://github.com/Verisimilitude11/DNAnalyzer`
+  `git clone https://github.com/VerisimilitudeX/DNAnalyzer`
 - Create a branch using below command.
   `git branch <your branch name>`
 - Checkout to your branch.
@@ -190,12 +190,12 @@ A program to analyze DNA sequences.
 
 ## Reports
 
-[Key Personnel and Knowledge Distribution](https://github.com/Verisimilitude11/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/reports/key-personnel-and-and-knowledge-distribution.pdf)
+[Key Personnel and Knowledge Distribution](https://github.com/VerisimilitudeX/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/reports/key-personnel-and-and-knowledge-distribution.pdf)
 
-[Technical Health Overview](https://github.com/Verisimilitude11/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/reports/technical-health-overview.pdf)
+[Technical Health Overview](https://github.com/VerisimilitudeX/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/reports/technical-health-overview.pdf)
 
-[Trend Report](https://github.com/Verisimilitude11/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/reports/trend-report.pdf)
+[Trend Report](https://github.com/VerisimilitudeX/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/reports/trend-report.pdf)
 
 ## Samples
 
-[Serine DNAlong](https://github.com/Verisimilitude11/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/samples/serine-dnalong.md)
+[Serine DNAlong](https://github.com/VerisimilitudeX/DNAnalyzer/blob/936181dd714855276ea34f55b94e5b53afc8ef0e/docs/samples/serine-dnalong.md)

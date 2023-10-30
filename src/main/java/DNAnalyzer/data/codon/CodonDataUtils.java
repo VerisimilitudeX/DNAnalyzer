@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 DNAnalyzer. Some rights reserved.
+ * Copyright © 2023 DNAnalyzer. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -11,27 +11,39 @@
 
 package DNAnalyzer.data.codon;
 
+import DNAnalyzer.data.aminoAcid.AminoAcid;
+import DNAnalyzer.data.aminoAcid.AminoAcidFactory;
 import java.util.List;
-
-import DNAnalyzer.data.aminoAcid.*;
 
 /**
  * provide function to access codon data from amino acid.
  *
- * @author Piyush Acharya (@Verisimilitude11)
+ * @author Piyush Acharya (@VerisimilitudeX)
  * @version 1.2.1
  * @see "https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables"
  */
 public class CodonDataUtils {
+  /**
+   * Returns the codon data for the amino acid.
+   *
+   * @param name The name of the amino acid.
+   * @return A List of codon data for the user-selected amino acid or stop codon.
+   */
+  public static List<String> getAminoAcid(final String name) {
+    final AminoAcid aminoAcid = AminoAcidFactory.getAminoAcid(name);
+    return CodonDataConstants.codonDataAcidMap.getOrDefault(aminoAcid, List.of());
+  }
 
-	/**
-	 * Returns the codon data for the amino acid.
-	 *
-	 * @param name The name of the amino acid.
-	 * @return A List of codon data for the user-selected amino acid or stop codon.
-	 */
-	public static List<String> getAminoAcid(final String name) {
-		final AminoAcid aminoAcid = AminoAcidFactory.getAminoAcid(name);
-		return CodonDataConstants.codonDataAcidMap.getOrDefault(aminoAcid, List.of());
-	}
+  /**
+   * Given a dna string and the index that corresponds to first character of a codon of interest
+   * within that string, this returns the corresponding string. For example, given dnaString
+   * "gggggaggtggcgaggaagatgac" and index 3, the string "gga" is returned.
+   *
+   * @param dnaString
+   * @param index
+   * @return
+   */
+  public static String returnSubstring(String dnaString, int index) {
+    return dnaString.substring(index, index + 3).toUpperCase();
+  }
 }
