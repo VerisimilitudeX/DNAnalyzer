@@ -17,24 +17,40 @@ package DNAnalyzer.utils.core;
  * @param dna the dna sequence
  */
 public record DNATools(String dna) {
+
   public void isValid() {
     if (!dna.matches("[atgcn]+")) {
       throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
     }
   }
 
+  /**
+   * Replaces the input string with the provided replacement string.
+   *
+   * @param input       is the original string to be replaced
+   * @param replacement is the string that will replace the input string
+   */
   public DNATools replace(final String input, final String replacement) {
     return new DNATools(this.dna.replace(input, replacement));
   }
 
+  /**
+   * Reverse the DNA sequence.
+   */
   public DNATools reverse() {
     return new DNATools(new StringBuilder(dna).reverse().toString());
   }
 
+  /**
+   * Get the DNA sequence.
+   */
   public String getDna() {
     return dna;
   }
 
+  /**
+   * Get the reverse compliment of a DNA sequence.
+   */
   public String getReverseComplement() {
     return new StringBuilder(dna)
         .reverse()
@@ -46,3 +62,4 @@ public record DNATools(String dna) {
         .toLowerCase();
   }
 }
+
