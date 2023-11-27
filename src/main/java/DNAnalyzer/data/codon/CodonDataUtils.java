@@ -1,4 +1,4 @@
-/*
+  /*
  * Copyright © 2023 DNAnalyzer. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -39,9 +39,9 @@ public class CodonDataUtils {
    * within that string, this returns the corresponding string. For example, given dnaString
    * "gggggaggtggcgaggaagatgac" and index 3, the string "gga" is returned.
    *
-   * @param dnaString
-   * @param index
-   * @return
+   * @param dnaString DNA data
+   * @param index Index of the first character of the codon
+   * @return Codon data with first character at index in the dnaString
    */
   public static String returnSubstring(String dnaString, int index) {
     return dnaString.substring(index, index + 3).toUpperCase();
