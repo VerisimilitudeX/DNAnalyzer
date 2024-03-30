@@ -17,8 +17,7 @@ import java.util.Arrays;
 public class AminoAcidFactory {
 
   /**
-   * Searches for an amino acid by its name or abbreviation passed as the
-   * argument.
+   * Searches for an amino acid by its name or abbreviation passed as the argument.
    *
    * @param aminoAcid amino acid name to search by.
    * @return a {@link AminoAcid} value.

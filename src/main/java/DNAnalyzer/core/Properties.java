@@ -43,7 +43,7 @@ public class Properties {
    * Prints the list of proteins found in the DNA.
    *
    * @param proteinList The list of proteins to be printed
-   * @param aminoAcid   The amino acid to be searched for {@code @category} Output
+   * @param aminoAcid The amino acid to be searched for {@code @category} Output
    */
   public static void printProteinList(
       final List<String> proteinList, final String aminoAcid, PrintStream out) {
@@ -68,12 +68,11 @@ public class Properties {
    * @return The GC content of the DNA sequence
    * @category Properties
    * @see
-   *      "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
+   *     "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/gc-content"
    */
   public static float getGCContent(String dna) {
     float gcContent = 0;
-    if (dna.length() == 0)
-      return gcContent;
+    if (dna.length() == 0) return gcContent;
 
     dna = dna.toLowerCase();
     float gcLen = (float) calculateLengthOfCG(dna);
@@ -83,8 +82,7 @@ public class Properties {
   }
 
   /**
-   * Calculate the total number of characters that are 'g' or 'c' of a given DNA
-   * String
+   * Calculate the total number of characters that are 'g' or 'c' of a given DNA String
    *
    * @param dna The DNA sequence that was analyzed
    * @category Property
@@ -162,25 +160,26 @@ public class Properties {
    * Checks if the DNA sequence is random or not.
    *
    * @param dna The DNA sequence that was analyzed
-   * @return Whether the DNA sequence is random or not {@code @category}
-   *         Properties
+   * @return Whether the DNA sequence is random or not {@code @category} Properties
    */
   public static boolean isRandomDNA(final String dna) {
     long[] nucleotideCount = countBasePairs(dna);
-    int[] percentages = Arrays.stream(nucleotideCount).mapToInt(c -> nucleotidePercentage(c, dna)).toArray();
+    int[] percentages =
+        Arrays.stream(nucleotideCount).mapToInt(c -> nucleotidePercentage(c, dna)).toArray();
 
     int a = percentages[BasePairIndex.ADENINE];
     int t = percentages[BasePairIndex.THYMINE];
     int g = percentages[BasePairIndex.GUANINE];
     int c = percentages[BasePairIndex.CYTOSINE];
 
-    IntStream diffs = IntStream.of(
-        Math.abs(a - t),
-        Math.abs(a - g),
-        Math.abs(a - c),
-        Math.abs(t - g),
-        Math.abs(t - c),
-        Math.abs(g - c));
+    IntStream diffs =
+        IntStream.of(
+            Math.abs(a - t),
+            Math.abs(a - g),
+            Math.abs(a - c),
+            Math.abs(t - g),
+            Math.abs(t - c),
+            Math.abs(g - c));
 
     return diffs.allMatch(diff -> diff <= 2);
   }
@@ -189,7 +188,7 @@ public class Properties {
    * Calculates the percentage of given amount of nucleotide in the dna sequence/
    *
    * @param nucleotideCount Number of nucleotides (int)
-   * @param dna             DNA sequence
+   * @param dna DNA sequence
    * @return the percentage of nucleotides in that DNA sequence
    */
   private static int nucleotidePercentage(final long nucleotideCount, final String dna) {

@@ -65,10 +65,11 @@ public record CodonFrame(String dna, short readingFrame, int min, int max) {
     if (this == o) {
       result = true;
     } else if (o instanceof final CodonFrame inputFrame) {
-      result = getReadingFrame() == inputFrame.getReadingFrame()
-          && getMin() == inputFrame.getMin()
-          && getMax() == inputFrame.getMax()
-          && getDna().equals(inputFrame.getDna());
+      result =
+          getReadingFrame() == inputFrame.getReadingFrame()
+              && getMin() == inputFrame.getMin()
+              && getMax() == inputFrame.getMax()
+              && getDna().equals(inputFrame.getDna());
     }
     return result;
   }

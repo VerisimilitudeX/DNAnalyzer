@@ -35,14 +35,12 @@ public class CodonDataUtils {
   }
 
   /**
-   * Given a dna string and the index that corresponds to first character of a
-   * codon of interest
-   * within that string, this returns the corresponding string. For example, given
-   * dnaString
+   * Given a dna string and the index that corresponds to first character of a codon of interest
+   * within that string, this returns the corresponding string. For example, given dnaString
    * "gggggaggtggcgaggaagatgac" and index 3, the string "gga" is returned.
    *
    * @param dnaString DNA data
-   * @param index     Index of the first character of the codon
+   * @param index Index of the first character of the codon
    * @return Codon data with first character at index in the dnaString
    */
   public static String returnSubstring(String dnaString, int index) {
