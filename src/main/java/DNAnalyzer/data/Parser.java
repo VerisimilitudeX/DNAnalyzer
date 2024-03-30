@@ -21,7 +21,8 @@ public class Parser {
     StringBuilder dna = new StringBuilder();
     while (true) {
       String line = rd.readLine();
-      if (line == null) break;
+      if (line == null)
+        break;
 
       // Extra info
       if (line.startsWith(">")) { // File descriptor
@@ -40,7 +41,8 @@ public class Parser {
       }
       line = line.toLowerCase();
       dna.append(line);
-      if (stop) break;
+      if (stop)
+        break;
     }
 
     rd.close();

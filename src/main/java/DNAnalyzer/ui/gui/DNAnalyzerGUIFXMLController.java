@@ -34,8 +34,8 @@ public class DNAnalyzerGUIFXMLController {
   /**
    * Returns analysis results from DNAAnalysis class
    *
-   * @param dna the DNA string
-   * @param protein the protein string
+   * @param dna       the DNA string
+   * @param protein   the protein string
    * @param aminoAcid the amino acid string
    * @return
    */
@@ -43,17 +43,23 @@ public class DNAnalyzerGUIFXMLController {
     return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
   }
 
-  @FXML private Slider minSlider = null;
+  @FXML
+  private Slider minSlider = null;
 
-  @FXML private Slider maxSlider = null;
+  @FXML
+  private Slider maxSlider = null;
 
-  @FXML private TextField txtAmino = null;
+  @FXML
+  private TextField txtAmino = null;
 
-  @FXML private TextField txtDNAFile = null;
+  @FXML
+  private TextField txtDNAFile = null;
 
-  @FXML private TextField txtProteinFile = null;
+  @FXML
+  private TextField txtProteinFile = null;
 
-  @FXML private TextArea txtOutput = null;
+  @FXML
+  private TextArea txtOutput = null;
 
   /**
    * Handles the menuQuitClicked event
@@ -96,8 +102,7 @@ public class DNAnalyzerGUIFXMLController {
 
     out.println("min: " + minCount + ", max: " + maxCount + ", amino: " + aminoAcid);
 
-    DNAAnalysis dnaAnalyzer =
-        dnaAnalyzer(dna, protein, aminoAcid).isValidDna().replaceDNA("u", "t");
+    DNAAnalysis dnaAnalyzer = dnaAnalyzer(dna, protein, aminoAcid).isValidDna().replaceDNA("u", "t");
 
     if (reverse) {
       dnaAnalyzer = dnaAnalyzer.reverseDna();
@@ -120,10 +125,9 @@ public class DNAnalyzerGUIFXMLController {
   @FXML
   private void rateUsClicked(ActionEvent event) {
     try {
-      Parent root =
-          FXMLLoader.load(
-              DNAnalyzerGUIFXMLController.class.getResource(
-                  "/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
+      Parent root = FXMLLoader.load(
+          DNAnalyzerGUIFXMLController.class.getResource(
+              "/DNAnalyzer/gui/fxml/DNAnalyzerRating.fxml"));
       Scene scene = new Scene(root);
       Stage stage = new Stage();
       stage.setTitle("DNAnalyzer Rating");
@@ -135,5 +139,6 @@ public class DNAnalyzerGUIFXMLController {
   }
 
   /** Handles the menuAboutClicked event */
-  public void initialize() {}
+  public void initialize() {
+  }
 }

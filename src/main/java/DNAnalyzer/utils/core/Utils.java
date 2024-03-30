@@ -22,10 +22,12 @@ import java.nio.file.Files;
  */
 public class Utils {
   /**
-   * Reads the contents of a file, stripping out newlines and converting everything to lowercase.
+   * Reads the contents of a file, stripping out newlines and converting
+   * everything to lowercase.
    *
    * @param file the file to read
-   * @return String with the contents of the file (newlines removed and converted to lowercase)
+   * @return String with the contents of the file (newlines removed and converted
+   *         to lowercase)
    */
   public static String readFile(final File file) {
     try {
@@ -39,7 +41,8 @@ public class Utils {
    * Clears the console screen based on the operating system.
    *
    * @throws InterruptedException Necessary for clearing the screen
-   * @throws IOException Necessary for clearing the screen {@code @category} User Experience
+   * @throws IOException          Necessary for clearing the screen
+   *                              {@code @category} User Experience
    */
   public static void clearTerminal() throws InterruptedException, IOException {
     if (System.getProperty("os.name").contains("Windows")) { // if the os is Windows

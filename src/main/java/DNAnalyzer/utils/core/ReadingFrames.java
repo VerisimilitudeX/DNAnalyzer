@@ -62,8 +62,9 @@ public class ReadingFrames {
    * Calculate indices for the start position of each codon within a dna string.
    *
    * @param dna dna string
-   * @return int array with the start index of all codons with the specified reading frame of the
-   *     dna string.
+   * @return int array with the start index of all codons with the specified
+   *         reading frame of the
+   *         dna string.
    */
   public int[] calculateCodonStartIndices(final String dna) {
     int[] codonStartIndices;
@@ -71,8 +72,7 @@ public class ReadingFrames {
     final int maxTotalCodons = dna.length() / 3;
     // reading frame is 1-index based. Calculate offset for 0-index array.
     final int offset = this.codonFrame.getReadingFrame() - 1;
-    int[] indexArray =
-        IntStream.range(0, maxTotalCodons).map(index -> (index * 3 + offset)).toArray();
+    int[] indexArray = IntStream.range(0, maxTotalCodons).map(index -> (index * 3 + offset)).toArray();
 
     // if the last codon index is not 3 positions away from end, remove last index.
     if (dna.length() - indexArray[indexArray.length - 1] < 3) {
@@ -85,17 +85,23 @@ public class ReadingFrames {
   }
 
   /**
-   * This method determines whether the codon counting should be performed via the non-parallel
+   * This method determines whether the codon counting should be performed via the
+   * non-parallel
    * stream method or the parallel stream method.
    *
-   * <p>Note: Performance gains only seen on larger strings. Exact threshold for String length to
-   * see performance gains from parallelization unknown; however, it is known at 10,000 length,
-   * non-parallel still performs slightly better. 20,000 was chosen somewhat arbitrarily but should
+   * <p>
+   * Note: Performance gains only seen on larger strings. Exact threshold for
+   * String length to
+   * see performance gains from parallelization unknown; however, it is known at
+   * 10,000 length,
+   * non-parallel still performs slightly better. 20,000 was chosen somewhat
+   * arbitrarily but should
    * serve well until further benchmarking is deemed necessary.
    *
    * @param dna DNA String to perform codon counts
-   * @return a Map with keys for each codon string present in dna, mapped to the count of
-   *     occurrences of that codon string within the DNA String.
+   * @return a Map with keys for each codon string present in dna, mapped to the
+   *         count of
+   *         occurrences of that codon string within the DNA String.
    */
   private Map<String, Integer> calculateCodonCounts(final String dna) {
     Map<String, Long> codonCounts;
@@ -106,21 +112,22 @@ public class ReadingFrames {
       codonCounts = calculateCodonCountsParallel(dna);
     }
 
-    Map<String, Integer> codonCountsMappedToInt =
-        codonCounts.entrySet().stream()
-            .collect(
-                Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue().intValue()));
+    Map<String, Integer> codonCountsMappedToInt = codonCounts.entrySet().stream()
+        .collect(
+            Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue().intValue()));
 
     return codonCountsMappedToInt;
   }
 
   /**
-   * Counts number of occurrences of codon strings within provided dna. This is called by
+   * Counts number of occurrences of codon strings within provided dna. This is
+   * called by
    * calculateCodonCounts for shorter length DNA Strings.
    *
    * @param dna DNA String to perform codon counts
-   * @return a Map with keys for each codon string present in dna, mapped to the count of
-   *     occurrences of that codon string within the DNA String.
+   * @return a Map with keys for each codon string present in dna, mapped to the
+   *         count of
+   *         occurrences of that codon string within the DNA String.
    */
   private Map<String, Long> calculateCodonCountsNonParallel(final String dna) {
     int[] codonStartIndices = calculateCodonStartIndices(dna);
@@ -131,12 +138,14 @@ public class ReadingFrames {
   }
 
   /**
-   * Counts number of occurrences of codon strings within provided dna. This is called by
+   * Counts number of occurrences of codon strings within provided dna. This is
+   * called by
    * calculateCodonCounts for lengthier DNA Strings.
    *
    * @param dna DNA String to perform codon counts
-   * @return a Map with keys for each codon string present in dna, mapped to the count of
-   *     occurrences of that codon string within the DNA String.
+   * @return a Map with keys for each codon string present in dna, mapped to the
+   *         count of
+   *         occurrences of that codon string within the DNA String.
    */
   private Map<String, Long> calculateCodonCountsParallel(final String dna) {
     int[] codonStartIndices = calculateCodonStartIndices(dna);
@@ -159,11 +168,13 @@ public class ReadingFrames {
   }
 
   /**
-   * Method to filter through the codon counts found in the specified reading frame based on the min
+   * Method to filter through the codon counts found in the specified reading
+   * frame based on the min
    * and max values
    *
-   * @throws StringIndexOutOfBoundsException when string index is out of bounds of the map
-   *     {@code @category} Codon
+   * @throws StringIndexOutOfBoundsException when string index is out of bounds of
+   *                                         the map
+   *                                         {@code @category} Codon
    */
   public void printCodonCounts(PrintStream out) throws StringIndexOutOfBoundsException {
 

@@ -5,7 +5,10 @@ import DNAnalyzer.core.port.in.SetApiKeyUseCase;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-/** The purpose of this service is to handle all operations concerning the OpenAI API key. */
+/**
+ * The purpose of this service is to handle all operations concerning the OpenAI
+ * API key.
+ */
 @Service
 public class ApiKeyService implements GetApiKeyUseCase, SetApiKeyUseCase {
 

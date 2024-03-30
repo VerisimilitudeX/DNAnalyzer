@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
 /**
  * Provides functionality to analyze the DNA
  *
- * @param dna the DNA to be analyzed
- * @param protein the DNA sequence
+ * @param dna       the DNA to be analyzed
+ * @param protein   the DNA sequence
  * @param aminoAcid name of amino acid
  */
 public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
@@ -80,8 +80,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
   public void configureReadingFrames(final int minCount, final int maxCount, PrintStream out) {
     final short READING_FRAME = 1;
     final String dna = this.dna.getDna();
-    final ReadingFrames aap =
-        new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
+    final ReadingFrames aap = new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
     out.print("\n");
     aap.printCodonCounts(out);
   }
@@ -119,13 +118,19 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
   }
 
   /**
-   * countBasePairsStream returns total counts of each DNA base pair found in the provided String.
+   * countBasePairsStream returns total counts of each DNA base pair found in the
+   * provided String.
    *
-   * @param dnaString String of DNA bases. Accepts lowercase and uppercase Strings.
-   * @return returns an array of long(primitive type). long[0] = count of ADENINE bases long[1] =
-   *     count of THYMINE bases long[2] = count of GUANINE bases long[3] = count of CYTOSINE bases
-   *     <p>Constants for the indices can be found in public static class {@link BasePairIndex} for
-   *     convenience/consistency.
+   * @param dnaString String of DNA bases. Accepts lowercase and uppercase
+   *                  Strings.
+   * @return returns an array of long(primitive type). long[0] = count of ADENINE
+   *         bases long[1] =
+   *         count of THYMINE bases long[2] = count of GUANINE bases long[3] =
+   *         count of CYTOSINE bases
+   *         <p>
+   *         Constants for the indices can be found in public static class
+   *         {@link BasePairIndex} for
+   *         convenience/consistency.
    */
   public static long[] countBasePairs(String dnaString) {
     return new BasePairCounter(dnaString)
@@ -151,7 +156,8 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
   }
 
   /**
-   * Constants to obtain the corresponding ASCII int values for letters used to represent DNA bases.
+   * Constants to obtain the corresponding ASCII int values for letters used to
+   * represent DNA bases.
    */
   public static class AsciiInt {
 

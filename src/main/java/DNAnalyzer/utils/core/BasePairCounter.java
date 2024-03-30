@@ -16,7 +16,8 @@ import java.util.Optional;
 import java.util.function.IntPredicate;
 
 /**
- * BasePairCounter is Fluent Interface implementation used to count the nucleotides in given dna
+ * BasePairCounter is Fluent Interface implementation used to count the
+ * nucleotides in given dna
  * sequence.
  */
 public class BasePairCounter {
@@ -46,10 +47,9 @@ public class BasePairCounter {
    * @return self
    */
   public BasePairCounter countAdenine() {
-    adenine =
-        countBasePair(
-            dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_A, DNAAnalysis.AsciiInt.UPPERCASE_A));
+    adenine = countBasePair(
+        dnaString,
+        intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_A, DNAAnalysis.AsciiInt.UPPERCASE_A));
     return this;
   }
 
@@ -59,10 +59,9 @@ public class BasePairCounter {
    * @return self
    */
   public BasePairCounter countThymine() {
-    thymine =
-        countBasePair(
-            dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_T, DNAAnalysis.AsciiInt.UPPERCASE_T));
+    thymine = countBasePair(
+        dnaString,
+        intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_T, DNAAnalysis.AsciiInt.UPPERCASE_T));
     return this;
   }
 
@@ -72,10 +71,9 @@ public class BasePairCounter {
    * @return self
    */
   public BasePairCounter countGuanine() {
-    guanine =
-        countBasePair(
-            dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_G, DNAAnalysis.AsciiInt.UPPERCASE_G));
+    guanine = countBasePair(
+        dnaString,
+        intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_G, DNAAnalysis.AsciiInt.UPPERCASE_G));
     return this;
   }
 
@@ -85,10 +83,9 @@ public class BasePairCounter {
    * @return self
    */
   public BasePairCounter countCytosine() {
-    cytosine =
-        countBasePair(
-            dnaString,
-            intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_C, DNAAnalysis.AsciiInt.UPPERCASE_C));
+    cytosine = countBasePair(
+        dnaString,
+        intPredicate(DNAAnalysis.AsciiInt.LOWERCASE_C, DNAAnalysis.AsciiInt.UPPERCASE_C));
     return this;
   }
 
@@ -98,11 +95,10 @@ public class BasePairCounter {
    * @return self
    */
   public BasePairCounter countUnknown() {
-    unknown =
-        countBasePair(
-            dnaString,
-            intPredicate(
-                DNAAnalysis.AsciiInt.LOWERCASE_UNKNOWN, DNAAnalysis.AsciiInt.UPPERCASE_UNKNOWN));
+    unknown = countBasePair(
+        dnaString,
+        intPredicate(
+            DNAAnalysis.AsciiInt.LOWERCASE_UNKNOWN, DNAAnalysis.AsciiInt.UPPERCASE_UNKNOWN));
     return this;
   }
 
@@ -112,11 +108,12 @@ public class BasePairCounter {
    * @return long[] count of all four nucleotides for given dna string
    */
   public long[] getCounts() {
-    return new long[] {adenine, thymine, guanine, cytosine, unknown};
+    return new long[] { adenine, thymine, guanine, cytosine, unknown };
   }
 
   /**
-   * Filters out characters that do not meet the predicate condition and returns the count.
+   * Filters out characters that do not meet the predicate condition and returns
+   * the count.
    *
    * @param dnaString the dna sequence
    * @param predicate a condition to filter desired characters from dna string
