@@ -23,8 +23,7 @@ import java.util.*;
  */
 public class CodonDataConstants {
   /** Private CodonDataConstants class constructor to avoid initialization */
-  private CodonDataConstants() {
-  }
+  private CodonDataConstants() {}
 
   // Declares the stop codon data for the 20 amino acids. Note that the stop
   // codons are the same for all amino acids.
@@ -33,7 +32,8 @@ public class CodonDataConstants {
   // Block to put all AminoAcidNames and their respective codon data into an enum
   // map for faster
   // retrieval
-  protected static EnumMap<AminoAcid, List<String>> codonDataAcidMap = new EnumMap<>(AminoAcid.class);
+  protected static EnumMap<AminoAcid, List<String>> codonDataAcidMap =
+      new EnumMap<>(AminoAcid.class);
 
   static {
     for (AminoAcid aminoAcid : AminoAcid.values()) {

@@ -12,9 +12,8 @@ import java.util.stream.Collectors;
  * FastQ class for the DNAnalyzer program.
  *
  * @version 1.2.1
- * @see <a href=
- *      "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">Genomic
- *      Datasheet</a>
+ * @see <a href= "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">Genomic
+ *     Datasheet</a>
  */
 public class FastQ {
   private String filename;

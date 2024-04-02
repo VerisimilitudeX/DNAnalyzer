@@ -30,45 +30,65 @@ import picocli.CommandLine.Parameters;
  * @author Nishant Vikramaditya (@Nv7-GitHub)
  * @version 1.2.1
  */
-@Command(name = "DNAnalyzer", mixinStandardHelpOptions = true, description = "A program to analyze DNA sequences.")
+@Command(
+    name = "DNAnalyzer",
+    mixinStandardHelpOptions = true,
+    description = "A program to analyze DNA sequences.")
 public class CmdArgs implements Runnable {
-  @Option(names = { "--gui" }, description = "Start in GUI mode")
+  @Option(
+      names = {"--gui"},
+      description = "Start in GUI mode")
   Boolean startGUI = false;
 
-  @Option(names = { "--amino" }, description = "The amino acid representing the start of a gene.")
+  @Option(
+      names = {"--amino"},
+      description = "The amino acid representing the start of a gene.")
   String aminoAcid;
 
-  @Option(names = { "--min" }, description = "The minimum count of the reading frame.")
+  @Option(
+      names = {"--min"},
+      description = "The minimum count of the reading frame.")
   int minCount = 0;
 
-  @Option(names = { "--max" }, description = "The maximum count of the reading frame.")
+  @Option(
+      names = {"--max"},
+      description = "The maximum count of the reading frame.")
   int maxCount = 0;
 
   @Parameters(paramLabel = "DNA", description = "The FASTA file to be analyzed.")
   File dnaFile;
 
-  @Option(names = { "--find" }, description = "The DNA sequence to be found within the FASTA file.")
+  @Option(
+      names = {"--find"},
+      description = "The DNA sequence to be found within the FASTA file.")
   File proteinFile;
 
-  @Option(names = { "--reverse", "-r" }, description = "Reverse the DNA sequence before processing.")
+  @Option(
+      names = {"--reverse", "-r"},
+      description = "Reverse the DNA sequence before processing.")
   boolean reverse;
 
-  @Option(names = { "--help", "-h" }, description = "Prints this help message and exits.", help = true)
+  @Option(
+      names = {"--help", "-h"},
+      description = "Prints this help message and exits.",
+      help = true)
   boolean help;
 
-  @Option(names = { "--version", "-v" }, description = "Prints version information and exits.")
+  @Option(
+      names = {"--version", "-v"},
+      description = "Prints version information and exits.")
   boolean version;
 
-  @Option(names = { "--rcomplement" }, description = "Prints the complement of the DNA sequence.")
+  @Option(
+      names = {"--rcomplement"},
+      description = "Prints the complement of the DNA sequence.")
   boolean rcomplement;
 
   /**
-   * Output a list of proteins, GC content, Nucleotide content, and other
-   * information found in a DNA
+   * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
    *
-   * @throws IllegalArgumentException when the DNA FASTA file contains an invalid
-   *                                  DNA sequence
+   * @throws IllegalArgumentException when the DNA FASTA file contains an invalid DNA sequence
    */
   @Override
   public void run() {
@@ -105,9 +125,8 @@ public class CmdArgs implements Runnable {
 
   /**
    * @param aminoAcid representing the start of the gene
-   * @return DnaAnalyzer which provides functions to analyze the dnaFile, protein
-   *         file and supplied
-   *         aminoAcid
+   * @return DnaAnalyzer which provides functions to analyze the dnaFile, protein file and supplied
+   *     aminoAcid
    */
   private DNAAnalysis dnaAnalyzer(final String aminoAcid) {
     try {

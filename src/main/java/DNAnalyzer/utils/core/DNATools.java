@@ -27,7 +27,7 @@ public record DNATools(String dna) {
   /**
    * Replaces the input string with the provided replacement string.
    *
-   * @param input       is the original string to be replaced
+   * @param input is the original string to be replaced
    * @param replacement is the string that will replace the input string
    */
   public DNATools replace(final String input, final String replacement) {
