@@ -116,7 +116,7 @@ View our in-line citations in the [Citations](docs/citations.md) document.
 
 ## Terms of Use
 
-Your complete responsibility lies in the utilization of this application, encompassing all actions and consequences that arise. While the DNAnalyzer Team is dedicated to addressing significant issues that may arise, whether reported by users or as new research unfolds, they cannot be held accountable for any losses users may experience due to the application's use, irrespective of circumstances. For further inquiries, please reach out to the following email address: help@dnanalyzer.live.
+Your complete responsibility lies in the utilization of this application, encompassing all actions and consequences that arise. While the DNAnalyzer Team is dedicated to addressing significant issues that may arise, whether reported by users or as new research unfolds, they cannot be held accountable for any losses users may experience due to the application's use, irrespective of circumstances. For further inquiries, please reach out to the following email address: help@dnanalyzer.org.
 
 If you use this software in your research, we request that you provide the appropriate citation.
 
