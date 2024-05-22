@@ -120,4 +120,4 @@ Your complete responsibility lies in the utilization of this application, encomp
 
 If you use this software in your research, we request that you provide the appropriate citation.
 
-Copyright © Piyush Acharya 2023. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
+Copyright © Piyush Acharya 2024. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
