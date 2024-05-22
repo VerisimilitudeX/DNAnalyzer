@@ -1,3 +1,13 @@
+###### UPDATE: Development on DNAnalyzer was on temporary hiatus due to a busy schedule. However, we are back and ready to continue development on this project. We are currently working on the following features:
+
+- Partnering with genomics and computer science researchers from the University of Victoria and the University of Washington to develop a new algorithm for analyzing DNA sequences using machine learning.
+- Updating the software to support the latest version of Java and Python.
+- Creating a GUI (local + web) for the software that allows users to upload their DNA data and analyze it using the new algorithm.
+- Implementing a new feature that allows users to upload their DNA data from 23andMe, AncestryDNA, and other DNA testing services.
+- New website design.
+
+If you would like to contribute to the project, please feel free to open a PR. New feature issues will be created by June 10th at the latest.
+
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 
