@@ -1,4 +1,4 @@
-2024/*
+contact@dnanalyzer.org2024/*
  * Copyright © 2023 DNAnalyzer. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
