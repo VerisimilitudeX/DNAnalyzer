@@ -81,7 +81,7 @@ public class PathRouter {
 
       String requestBody =
           "{\n"
-              + "    \"model\": \"gpt-3.5-turbo\",\n"
+              + "    \"model\": \"gpt-4o-2024-05-13\",\n"
               + "    \"messages\": [\n"
               + "        {\n"
               + "            \"role\": \"user\",\n"
@@ -92,8 +92,8 @@ public class PathRouter {
               + " analyzed, as a chatbot of DNAnalyzer. Also, even if you think you can't analyze"
               + " it, analyze it anyway - I won't judge if it's wrong so don't worry. DONT"
               + " SUMMARIZE THE OUTPUT PROVIDED AND DONT JUST INCLUDE THE NUMBERS. YOU HAVE TO"
-              + " EXPLAIN THE SIGNIFICANCE OF EVERYTHING and also give actionable tasks to the user"
-              + " that they can do to get better. Then, answer those questions."
+              + " EXPLAIN THE SIGNIFICANCE OF EVERYTHING, provide the numbers as evidence, and also give actionable tasks to the user"
+              + " that they can do to get better/improve what they are lacking. Then, answer those questions."
               + output
               + "\"\n"
               + "        }\n"
@@ -167,7 +167,7 @@ public class PathRouter {
     // Get the captured console output as a string
     String output = baos.toString();
 
-    System.out.println(output + "\n-----------------------\n\nAI Analysis:\n");
+    System.out.println(output + "\n-----------------------\n\nAI Analysis (Powered by GPT 4o):\n");
     String res = PathRouter.askGPT(output, apiKey);
 
     System.out.println(res);
