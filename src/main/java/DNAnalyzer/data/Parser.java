@@ -1,6 +1,9 @@
 package DNAnalyzer.data;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Parser class for the DNAnalyzer program.
@@ -17,33 +20,32 @@ public class Parser {
    * @throws IOException
    */
   private static String parseFasta(File file) throws IOException {
-    BufferedReader rd = new BufferedReader(new FileReader(file));
-    StringBuilder dna = new StringBuilder();
-    while (true) {
-      String line = rd.readLine();
-      if (line == null) break;
-
-      // Extra info
-      if (line.startsWith(">")) { // File descriptor
-        System.out.println("Reading DNA: " + line.substring(1).trim());
-        continue;
-      }
-      if (line.startsWith(";")) { // Comment
-        continue;
-      }
-
-      // Read file
-      boolean stop = false;
-      if (line.endsWith("*")) {
-        line = line.replace("*", "");
-        stop = true;
-      }
-      line = line.toLowerCase();
-      dna.append(line);
-      if (stop) break;
-    }
-
-    rd.close();
+      StringBuilder dna;
+      try (BufferedReader rd = new BufferedReader(new FileReader(file))) {
+          dna = new StringBuilder();
+          while (true) {
+              String line = rd.readLine();
+              if (line == null) break;
+              
+              // Extra info
+              if (line.startsWith(">")) { // File descriptor
+                  System.out.println("Reading DNA: " + line.substring(1).trim());
+                  continue;
+              }
+              if (line.startsWith(";")) { // Comment
+                  continue;
+              }
+              
+              // Read file
+              boolean stop = false;
+              if (line.endsWith("*")) {
+                  line = line.replace("*", "");
+                  stop = true;
+              }
+              line = line.toLowerCase();
+              dna.append(line);
+              if (stop) break;
+          } }
 
     return dna.toString();
   }
@@ -56,20 +58,19 @@ public class Parser {
    * @throws IOException
    */
   private static String parseFastq(File file) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader(file));
-
-    // Read SEQ id
-    System.out.println("Reading DNA: " + br.readLine().substring(1).trim());
-
-    // Read DNA
-    String dna = br.readLine();
-    br.close();
+      String dna;
+      // Read SEQ id
+      try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+          // Read SEQ id
+          System.out.println("Reading DNA: " + br.readLine().substring(1).trim());
+          // Read DNA
+          dna = br.readLine();
+      }
 
     if (dna == null) {
       return "No DNA found";
     }
 
-    // TODO: Read field 3 (just a "+"), and then parse the quality data in Field 4
     return dna.toLowerCase();
   }
 
@@ -92,6 +93,6 @@ public class Parser {
       return parseFastq(file);
     }
 
-    return null; // TODO: Error handling, handle more types of files
+    return null; // Error handling, handle more types of files
   }
 }

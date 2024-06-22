@@ -1,14 +1,9 @@
 package DNAnalyzer.adapter;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.is;
+import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static org.springframework.http.HttpHeaders.*;
-
-import DNAnalyzer.core.port.in.GetApiKeyUseCase;
-import DNAnalyzer.core.port.in.SetApiKeyUseCase;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,6 +14,9 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import DNAnalyzer.core.port.in.GetApiKeyUseCase;
+import DNAnalyzer.core.port.in.SetApiKeyUseCase;
 
 @WebMvcTest(ApiKeyController.class)
 class ApiKeyControllerTest {

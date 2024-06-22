@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * @version 1.2.1
  * @see <a href= "https://www.genome.gov/about-genomics/fact-sheets/Genomic-Data-Science">Genomic
- *     Datasheet</a> TODO: Delete this test class
+ *     Datasheet</a> Delete this test class
  */
 public class RunFastQ {
 
