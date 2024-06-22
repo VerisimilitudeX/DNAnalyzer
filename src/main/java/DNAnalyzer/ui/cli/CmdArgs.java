@@ -33,7 +33,11 @@ import picocli.CommandLine.Parameters;
 @Command(
     name = "DNAnalyzer",
     mixinStandardHelpOptions = true,
-    description = "DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-powered analysis and interpretive tools empower geneticists, physicians, and researchers to gain deep insights into DNA sequences, revolutionizing how we understand human health and disease.")
+    description =
+        "DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-powered"
+            + " analysis and interpretive tools empower geneticists, physicians, and researchers to"
+            + " gain deep insights into DNA sequences, revolutionizing how we understand human"
+            + " health and disease.")
 public class CmdArgs implements Runnable {
   @Option(
       names = {"--gui"},
