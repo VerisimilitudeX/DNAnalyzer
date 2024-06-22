@@ -101,9 +101,9 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
   // used as helper method for output-codons, used to generate reading frames
   public void configureReadingFrames(final int minCount, final int maxCount, PrintStream out) {
     final short READING_FRAME = 1;
-    final String dna = this.dna.getDna();
+    final String dnaSequence = this.dna.getDna();
     final ReadingFrames aap =
-        new ReadingFrames(new CodonFrame(dna, READING_FRAME, minCount, maxCount));
+        new ReadingFrames(new CodonFrame(dnaSequence, READING_FRAME, minCount, maxCount));
     out.print("\n");
     aap.printCodonCounts(out);
   }

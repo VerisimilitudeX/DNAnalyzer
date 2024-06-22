@@ -97,6 +97,10 @@ public class CmdArgs implements Runnable {
    */
   @Override
   public void run() {
+    if (help) {
+      return;
+    }
+
     if (version) {
       System.out.println("===========================");
       System.out.println("| DNAnalyzer " + Properties.getVersion() + " |");
