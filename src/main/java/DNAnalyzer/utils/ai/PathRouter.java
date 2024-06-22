@@ -1,5 +1,11 @@
 package DNAnalyzer.utils.ai;
 
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.ui.cli.CmdArgs;
+import DNAnalyzer.ui.gui.DNAnalyzerGUI;
+import DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController;
+import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.core.Utils;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,17 +14,9 @@ import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.ui.cli.CmdArgs;
-import DNAnalyzer.ui.gui.DNAnalyzerGUI;
-import DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController;
-import DNAnalyzer.utils.core.DNATools;
-import DNAnalyzer.utils.core.Utils;
 import picocli.CommandLine;
 
 /**
