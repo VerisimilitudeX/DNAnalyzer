@@ -11,11 +11,7 @@
 
 package DNAnalyzer.core;
 
-import java.io.PrintStream;
-import java.util.List;
 import static java.util.Optional.ofNullable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import DNAnalyzer.data.codon.CodonFrame;
 import DNAnalyzer.utils.core.BasePairCounter;
@@ -23,6 +19,10 @@ import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
+import java.io.PrintStream;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provides functionality to analyze the DNA
@@ -112,7 +112,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
   /**
    * printLongestProtein prints the longest protein found in the DNA sequence.
-   * 
+   *
    * @param out PrintStream to print the longest protein to the console.
    */
   public void printLongestProtein(PrintStream out) {
@@ -121,7 +121,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
   /**
    * getProteins returns a list of proteins found in the DNA sequence.
-   * 
+   *
    * @param aminoAcid the amino acid to search for in the DNA sequence.
    * @return a list of proteins found in the DNA sequence.
    */
