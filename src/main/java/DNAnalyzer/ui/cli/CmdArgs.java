@@ -11,16 +11,16 @@
 
 package DNAnalyzer.ui.cli;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
+import static DNAnalyzer.data.Parser.parseFile;
 
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.Properties;
-import static DNAnalyzer.data.Parser.parseFile;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
