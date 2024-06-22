@@ -11,7 +11,11 @@
 
 package DNAnalyzer.core;
 
+import java.io.PrintStream;
+import java.util.List;
 import static java.util.Optional.ofNullable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import DNAnalyzer.data.codon.CodonFrame;
 import DNAnalyzer.utils.core.BasePairCounter;
@@ -19,10 +23,6 @@ import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Provides functionality to analyze the DNA
@@ -33,19 +33,41 @@ import java.util.regex.Pattern;
  */
 public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
+  /**
+   * Checks if the DNA is valid.
+   *
+   * @return The current instance of DNAAnalysis.
+   */
   public DNAAnalysis isValidDna() {
     dna.isValid();
     return this;
   }
 
+  /**
+   * Replaces occurrences of a specific DNA sequence with a replacement sequence.
+   *
+   * @param input The DNA sequence to be replaced.
+   * @param replacement The replacement DNA sequence.
+   * @return A new DNAAnalysis object with the replaced DNA sequence.
+   */
   public DNAAnalysis replaceDNA(final String input, final String replacement) {
     return new DNAAnalysis(dna.replace(input, replacement), protein, aminoAcid);
   }
 
+  /**
+   * Reverses the DNA sequence and creates a new DNAAnalysis object with the reversed sequence.
+   *
+   * @return A new DNAAnalysis object with the reversed DNA sequence.
+   */
   public DNAAnalysis reverseDna() {
     return new DNAAnalysis(dna.reverse(), protein, aminoAcid);
   }
 
+  /**
+   * Returns a new DNAAnalysis object that represents the reverse complement of the DNA sequence.
+   *
+   * @return a new DNAAnalysis object representing the reverse complement of the DNA sequence
+   */
   public DNAAnalysis reverseComplement() {
     return new DNAAnalysis(new DNATools(dna.getReverseComplement()), protein, aminoAcid);
   }
