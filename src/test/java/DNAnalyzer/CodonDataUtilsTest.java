@@ -11,13 +11,14 @@
 
 package DNAnalyzer;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import DNAnalyzer.data.codon.CodonDataUtils;
-import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import DNAnalyzer.data.codon.CodonDataUtils;
 
 /**
  * CodonDataUtilsTest contains 20 unit tests, one for each acid.
@@ -156,7 +157,6 @@ public class CodonDataUtilsTest {
     final var expected = List.of("AAT", "AAC");
     final var actual = CodonDataUtils.getAminoAcid(acid);
     assertEquals(actual.size(), expected.size());
-    ;
     assertTrue(actual.containsAll(expected));
   }
 
