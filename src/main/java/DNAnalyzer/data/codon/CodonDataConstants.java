@@ -32,8 +32,8 @@ public class CodonDataConstants {
   // Block to put all AminoAcidNames and their respective codon data into an enum
   // map for faster
   // retrieval
-  protected static EnumMap<AminoAcid, List<String>> codonDataAcidMap =
-      new EnumMap<>(AminoAcid.class);
+  protected static final EnumMap<AminoAcid, List<String>> codonDataAcidMap =
+        new EnumMap<>(AminoAcid.class);
 
   static {
     for (AminoAcid aminoAcid : AminoAcid.values()) {
