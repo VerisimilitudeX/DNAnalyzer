@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "DNAnalyzer.Main",
+      "projectName": ""
+    },
+    {
+      "type": "java",
       "name": "Launch DNAnalyzer",
       "request": "launch",
       "mainClass": "DNAnalyzer.Main",
