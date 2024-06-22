@@ -33,7 +33,7 @@ public class CodonDataConstants {
   // map for faster
   // retrieval
   protected static final EnumMap<AminoAcid, List<String>> codonDataAcidMap =
-        new EnumMap<>(AminoAcid.class);
+      new EnumMap<>(AminoAcid.class);
 
   static {
     for (AminoAcid aminoAcid : AminoAcid.values()) {
