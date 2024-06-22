@@ -78,11 +78,11 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     ofNullable(dna)
         .map(DNATools::getDna)
         .ifPresent(
-            dna -> {
+            genomeData -> {
               Properties.printProteinList(getProteins(aminoAcid), aminoAcid, out);
 
-              out.println("\nGC-content (genome): " + Properties.getGCContent(dna) + "\n");
-              Properties.printNucleotideCount(dna, out);
+              out.println("\nGC-content (genome): " + Properties.getGCContent(genomeData) + "\n");
+              Properties.printNucleotideCount(genomeData, out);
             });
     return this;
   }
