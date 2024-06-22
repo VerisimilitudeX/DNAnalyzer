@@ -1,11 +1,5 @@
 package DNAnalyzer.utils.ai;
 
-import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.ui.cli.CmdArgs;
-import DNAnalyzer.ui.gui.DNAnalyzerGUI;
-import DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController;
-import DNAnalyzer.utils.core.DNATools;
-import DNAnalyzer.utils.core.Utils;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,9 +8,17 @@ import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.ui.cli.CmdArgs;
+import DNAnalyzer.ui.gui.DNAnalyzerGUI;
+import DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController;
+import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.core.Utils;
 import picocli.CommandLine;
 
 /**
@@ -85,12 +87,12 @@ public class PathRouter {
               "messages": [
                   {
                       "role": "user",
-                      "content": "In 5 paragraphs, provide comprehensive DNA analysis with actionable insights using technical terms, beyond surface-level information, **DON'T SUMMARIZE THE OUTPUT PROVIDED, let's think step by step**, for experienced biotechnology researchers, avoiding statements that DNA cannot be analyzed, as a chatbot of DNAnalyzer. Also, even if you think you can't analyze it, analyze it anyway - I won't judge if it's wrong so don't worry. DONT SUMMARIZE THE OUTPUT PROVIDED AND DONT JUST INCLUDE THE NUMBERS. YOU HAVE TO EXPLAIN THE SIGNIFICANCE OF EVERYTHING, provide the numbers as evidence, and also give actionable tasks to the user that they can do to get better/improve what they are lacking. Then, answer those questions. Please format it to be outputted to the terminal (so no markdown). Do not include or repeat the text that is provided to you WITHOUT PROVIDING ADDITIONAL CONTEXT. Dont include the version number as the title. Do not use markdown or * symbols in the response as this will be outputted to the Terminal/command line."""
+                      "content": "In 5 paragraphs, provide comprehensive DNA analysis with actionable insights using technical terms, beyond surface-level information, **DON'T SUMMARIZE THE OUTPUT PROVIDED, let's think step by step**, for experienced biotechnology researchers, avoiding statements that DNA cannot be analyzed, as a chatbot of DNAnalyzer. Also, even if you think you can't analyze it, analyze it anyway - I won't judge if it's wrong so don't worry. DONT SUMMARIZE THE OUTPUT PROVIDED AND DONT JUST INCLUDE THE NUMBERS. YOU HAVE TO EXPLAIN THE SIGNIFICANCE OF EVERYTHING, provide the numbers as evidence, and also give actionable tasks to the user that they can do to get better/improve what they are lacking. Write like a genomics researcher, not like AI. Then, answer those questions. Please format it to be outputted to the terminal (so no markdown). Do not include or repeat the text that is provided to you WITHOUT PROVIDING ADDITIONAL CONTEXT. Dont include the version number as the title. Do not use markdown or * symbols in the response as this will be outputted to the Terminal/command line."""
               + output
               + "\"\n"
               + "        }\n"
               + "    ],\n"
-              + "    \"temperature\": 0.9\n"
+              + "    \"temperature\": 0.1\n"
               + "}";
       conn.getOutputStream().write(requestBody.getBytes());
 

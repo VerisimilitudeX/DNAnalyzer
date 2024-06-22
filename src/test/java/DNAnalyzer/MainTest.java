@@ -11,12 +11,22 @@
 
 package DNAnalyzer;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests the main class.
+ * 
+ * @version 1.0.0
+ */
 class MainTest {
   @Test
+
+  /**
+   * Tests if the main class exists.
+   * 
+   * @throws ClassNotFoundException if the class does not exist
+   */
   void mainClassshouldExist() throws ClassNotFoundException {
     Class.forName("DNAnalyzer.Main");
     assertTrue(true);

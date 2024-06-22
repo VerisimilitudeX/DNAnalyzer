@@ -18,6 +18,11 @@ package DNAnalyzer.utils.core;
  */
 public record DNATools(String dna) {
 
+  /**
+   * Checks if the DNA sequence is valid.
+   *
+   * @throws IllegalArgumentException if the DNA sequence contains invalid characters.
+   */
   public void isValid() {
     if (!dna.matches("[atgcn]+")) {
       throw new IllegalArgumentException("Invalid characters present in DNA sequence.");

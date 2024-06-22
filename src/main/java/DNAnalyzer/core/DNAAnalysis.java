@@ -11,7 +11,11 @@
 
 package DNAnalyzer.core;
 
+import java.io.PrintStream;
+import java.util.List;
 import static java.util.Optional.ofNullable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import DNAnalyzer.data.codon.CodonFrame;
 import DNAnalyzer.utils.core.BasePairCounter;
@@ -19,10 +23,6 @@ import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Provides functionality to analyze the DNA
@@ -92,7 +92,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     ofNullable(dna)
         .map(DNATools::dna)
         .ifPresent(
-            dna -> {
+            dnaValue -> {
               ProteinAnalysis.printHighCoverageRegions(getProteins(aminoAcid), out);
             });
     return this;
@@ -110,11 +110,11 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
 
   // used as helper method for output codons, handles protein decisions
   public void proteinSequence(PrintStream out) {
-    final String dna = this.dna.getDna();
-
+    final String dnaValue = this.dna.getDna();
+  
     if (protein != null) {
       final Pattern p = Pattern.compile(protein);
-      final Matcher m = p.matcher(dna);
+      final Matcher m = p.matcher(dnaValue);
       if (m.find()) {
         out.println("\nProtein sequence found at index " + m.start() + " in the DNA sequence.");
       } else {

@@ -11,15 +11,16 @@
 
 package DNAnalyzer.ui.cli;
 
-import static DNAnalyzer.data.Parser.parseFile;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.Properties;
+import static DNAnalyzer.data.Parser.parseFile;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
-import java.io.File;
-import java.io.IOException;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -101,7 +102,7 @@ public class CmdArgs implements Runnable {
       System.out.println("| DNAnalyzer " + Properties.getVersion() + " |");
       System.out.println("===========================\n");
     }
-    if (Boolean.TRUE == startGUI) {
+    if (Objects.equals(Boolean.TRUE, startGUI)) {
       String[] args = new String[0];
       DNAnalyzerGUI.launchIt(args);
     } else {
@@ -142,7 +143,7 @@ public class CmdArgs implements Runnable {
       }
       return new DNAAnalysis(new DNATools(dna), protein, aminoAcid);
     } catch (IOException | InterruptedException e) {
-      e.printStackTrace();
+      System.err.println(e);
       return new DNAAnalysis(null, null, aminoAcid);
     }
   }
