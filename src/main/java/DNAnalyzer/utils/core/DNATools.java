@@ -12,7 +12,7 @@
 package DNAnalyzer.utils.core;
 
 /**
- * Functionality for dna
+ * Functionality for dna sequence manipulation.
  *
  * @param dna the dna sequence
  */
