@@ -6,7 +6,7 @@
 - Implementing a new feature that allows users to upload their DNA data from 23andMe, AncestryDNA, and other DNA testing services.
 - New website design.
 
-If you would like to contribute to the project, please feel free to open a PR. New feature issues will be created by June 10th at the latest.
+If you would like to contribute to the project, please feel free to open a PR. New feature issues will be created by June 30th at the latest.
 
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
@@ -21,7 +21,7 @@ If you would like to contribute to the project, please feel free to open a PR. N
 
 <!--<a href="https://www.producthunt.com/posts/dnanalyzer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dnanalyzer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=401710&theme=dark" alt="DNAnalyzer - Revolutionizing&#0032;AI&#0045;powered&#0032;accessible&#0032;DNA&#0032;analysis | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>-->
 
-**DNAnalyzer** is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to DNA analysis tools for a deeper understanding of human health and disease and pushing the boundaries of what is possible in the field of genetics research to make a significant impact in the industry. It was created by [Piyush Acharya](github.com/VerisimilitudeX) and is maintained by him and [@LimesKey](github.com/LimesKey).
+**DNAnalyzer** is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to DNA analysis tools for a deeper understanding of human health and disease and pushing the boundaries of what is possible in the field of genetics research to make a significant impact in the industry. It was created by [Piyush Acharya](github.com/VerisimilitudeX) and is currently led by him and [@LimesKey](github.com/LimesKey).
 
 ## Summary
 DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-powered analysis and interpretive tools empower geneticists, physicians, and researchers to gain deep insights into DNA sequences, revolutionizing how we understand human health and disease.
