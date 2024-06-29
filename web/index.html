@@ -1,4 +1,4 @@
-/*
+<!--
  * Copyright © 2024 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -7,7 +7,7 @@
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
- */
+-->
 
 <!DOCTYPE html>
 <html lang="en-us">
@@ -16,87 +16,140 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The DNAnalyzer site provides an overview on DNAnalyzer, an open-source project dedicated to making DNA analysis free and accessible to all." />
+    <meta name="description"
+        content="The DNAnalyzer site provides an overview on DNAnalyzer, an open-source project dedicated to making DNA analysis free and accessible to all." />
     <meta property="og:title" content="DNAnalyzer" />
-    <meta property="og:image" content="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" />
+    <meta property="og:image"
+        content="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" />
     <meta name="twitter:title" content="DNAnalyzer" />
     <title>DNAnalyzer</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Favicon links remain unchanged -->
 </head>
 
 <body>
     <div class="background-blur"></div>
 
-    <header class="visionos-header">
+    <header class="floating-header">
         <nav class="floating-nav">
             <a href="#home" class="nav-link">Home</a>
             <a href="#about" class="nav-link">About</a>
+            <a href="#features" class="nav-link">Features</a>
             <a href="#server" class="nav-link">Server</a>
         </nav>
         <div class="header-buttons">
-            <button class="visionos-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub Repository</button>
-            <button class="visionos-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord Server</button>
+            <button class="glass-button"
+                onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub
+                Repository</button>
+            <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord
+                Server</button>
         </div>
     </header>
 
     <main class="container">
-        <section id="home" class="visionos-section">
-            <h1 class="visionos-title">DNAnalyzer</h1>
-            <p class="visionos-subtitle">A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences</p>
+        <section id="home" class="hero-section">
+            <h1 class="hero-title" style="color: white">DNAnalyzer</h1>
+            <p class="hero-subtitle">A highly efficient, powerful, and feature-rich algorithm for analyzing DNA
+                sequences</p>
         </section>
 
-        <section id="about" class="visionos-section">
-            <div class="visionos-grid">
-                <div class="visionos-card">
+        <section id="about" class="content-section">
+            <div class="grid">
+                <div class="glass-card">
                     <h2>Introduction</h2>
-                    <p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease.</p>
+                    <p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions,
+                        regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory
+                        elements. Researchers are working to extract valuable information from such software to better
+                        understand human health and disease.</p>
                 </div>
 
-                <div class="visionos-card">
+                <div class="glass-card">
                     <h2>Background</h2>
-                    <p>The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary.</p>
+                    <p>The human genome is composed of over 3 billion base pairs, making human analysis nearly
+                        impossible. Consequently, using powerful computational and statistical methods to decode the
+                        functional information hidden in DNA sequences are necessary.</p>
                 </div>
             </div>
         </section>
 
-        <section id="features" class="visionos-section">
+        <section id="features" class="content-section">
             <h2 class="section-title">Features</h2>
-            <div class="visionos-grid">
-                <div class="visionos-card feature-card">
+            <div class="grid">
+                <div class="glass-card feature-card">
                     <h3>Start and Stop Codons</h3>
-                    <p>Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.</p>
+                    <p>Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists
+                        of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.
+                    </p>
                 </div>
-                <div class="visionos-card feature-card">
+                <div class="glass-card feature-card">
                     <h3>High Coverage Regions</h3>
-                    <p>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content).</p>
+                    <p>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine
+                        and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content).</p>
                 </div>
-                <div class="visionos-card feature-card">
+                <div class="glass-card feature-card">
                     <h3>Neurodevelopmental Disorders</h3>
-                    <p>A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous system.</p>
+                    <p>A group of disorders, usually characterized by longer genes, that affect the development of the
+                        brain and nervous system.</p>
                 </div>
-                <div class="visionos-card feature-card">
+                <div class="glass-card feature-card">
                     <h3>Transcription Factors</h3>
-                    <p>A protein that binds to DNA and regulates the transcription of genes. These proteins are responsible for the regulation of gene expression.</p>
+                    <p>A protein that binds to DNA and regulates the transcription of genes. These proteins are
+                        responsible for the regulation of gene expression.</p>
                 </div>
             </div>
         </section>
 
-        <section id="server" class="visionos-section">
+        <section id="server" class="content-section">
             <h2 class="section-title">Server Information</h2>
-            <div class="visionos-card">
-                <p>Join our Discord server to connect with other DNAnalyzer users, get support, and stay updated on the latest developments.</p>
-                <button class="visionos-button large" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Join Discord Server</button>
+            <div class="glass-card">
+                <p>Join our Discord server to connect with other DNAnalyzer users, get support, and stay updated on the
+                    latest developments.</p>
+                <button class="glass-button large" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Join
+                    Discord Server</button>
             </div>
         </section>
     </main>
 
-    <footer class="visionos-footer">
-        <p>Copyright © Piyush Acharya 2024. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    <footer class="glass-footer">
+        <p>Copyright © Piyush Acharya 2024. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499).
+            MIT License.</p>
     </footer>
+
+    <script>
+        const cursor = document.createElement('div');
+        cursor.classList.add('custom-cursor');
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+        });
+
+        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .glass-button');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                el.style.cursor = 'none';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                el.style.cursor = 'auto';
+            });
+        });
+
+        // Prevent default cursor on the entire body
+        document.body.style.cursor = 'none';
+    </script>
 </body>
 
 </html>
