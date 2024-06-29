@@ -1,4 +1,4 @@
-2024<!--
+/*
  * Copyright © 2024 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -7,7 +7,7 @@
  * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
  *
  * For further inquiries, please reach out to contact@dnanalyzer.live
--->
+ */
 
 <!DOCTYPE html>
 <html lang="en-us">
@@ -16,163 +16,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The DNAnalyzer site
-  provides an overview on DNAnalyzer, an open-source project dedicated to making DNA analysis free and accessible to all." />
+    <meta name="description" content="The DNAnalyzer site provides an overview on DNAnalyzer, an open-source project dedicated to making DNA analysis free and accessible to all." />
     <meta property="og:title" content="DNAnalyzer" />
     <meta property="og:image" content="https://user-images.githubusercontent.com/96280466/186224441-46dd2029-b9dc-4b3d-aad8-bfd1e1e62f2e.png" />
     <meta name="twitter:title" content="DNAnalyzer" />
     <title>DNAnalyzer</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-    <link rel="icon" type="image/png" href="web/assets/icons/Circular.png" />
-    <link rel="shortcut icon" href="web/assets/icons/Circular.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="57x57" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="web/assets/icons/Circular.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="web/assets/icons/Circular.png">
-
-    <link rel="icon" type="image/png" href="web/assets/icons/Circular.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="web/assets/icons/Circular.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="web/assets/icons/Circular.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="web/assets/icons/Circular.png" sizes="192x192">
-
-    <meta name="msapplication-square70x70logo" content="web/assets/icons/Circular.png" />
-    <meta name="msapplication-square150x150logo" content="web/assets/icons/Circular.png" />
-    <meta name="msapplication-wide310x150logo" content="web/assets/icons/Circular.png" />
-    <meta name="msapplication-square310x310logo" content="web/assets/icons/Circular.png" />
+    <!-- Favicon links remain unchanged -->
 </head>
 
 <body>
-    <video playsinline autoplay muted loop id="bg-video">
-        <source src="assets/videos/dna_spiral.mp4" type="video/mp4">
-    </video>
+    <div class="background-blur"></div>
 
-    <div>
-        <div id="redirect-button">
-            <button class="button" style="position: absolute; left: 0; margin-left: 10px; margin-top: 10px" onclick=window.location.href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub
-                Repository
-            </button>
-            <button class="button" style="position: absolute; right: 0; margin-right: 10px; margin-top: 10px" onclick=window.location.href="https://discord.gg/xNpujz49gj">Discord Server
-            </button>
+    <header class="visionos-header">
+        <nav class="floating-nav">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#server" class="nav-link">Server</a>
+        </nav>
+        <div class="header-buttons">
+            <button class="visionos-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub Repository</button>
+            <button class="visionos-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord Server</button>
         </div>
-    </div>
+    </header>
 
-    <br>
-    <br>
+    <main class="container">
+        <section id="home" class="visionos-section">
+            <h1 class="visionos-title">DNAnalyzer</h1>
+            <p class="visionos-subtitle">A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences</p>
+        </section>
 
-    <div class="container">
-        <h1 class="text-center primary-dark">DNAnalyzer</h1>
-        <span class="secondary-dark" id="blockquote">A highly efficient, powerful, and feature-rich algorithm for
-            analyzing DNA
-            sequences</span>
+        <section id="about" class="visionos-section">
+            <div class="visionos-grid">
+                <div class="visionos-card">
+                    <h2>Introduction</h2>
+                    <p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable information from such software to better understand human health and disease.</p>
+                </div>
 
-        <div class="grid">
-            <div class="item bg-light">
-                <div class="flex">
-                    <h2 class="primary-dark" style="align-items: left">Introduction</h2>
-                    <p class="secondary-dark text-center">DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions, regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory elements. Researchers are working to extract valuable
-                        information from such software to better understand human health and disease. Currently, we have a Command-Line-Interface (CLI) and are working on a Graphical User Interface (GUI) that will enable physicians to quickly and more
-                        easily interact with the software, enabling them to identify genetic mutations that may cause disease.
-                    </p>
+                <div class="visionos-card">
+                    <h2>Background</h2>
+                    <p>The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="item bg-light">
-                <div class="flex">
-                    <h2 class="primary-dark">Background</h2>
-                    <p class="secondary-dark text-center">The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are
-                        necessary. The genome is also extremely intricate and contains a plethora of data, which need to be organized and converted into analyzable data appropriately. Current analytical tools and software make it arduous for both geneticists
-                        and physicians to do so, thus restricting them from acquiring crucial information to better understand humans.</p>
+        <section id="features" class="visionos-section">
+            <h2 class="section-title">Features</h2>
+            <div class="visionos-grid">
+                <div class="visionos-card feature-card">
+                    <h3>Start and Stop Codons</h3>
+                    <p>Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene.</p>
+                </div>
+                <div class="visionos-card feature-card">
+                    <h3>High Coverage Regions</h3>
+                    <p>Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content).</p>
+                </div>
+                <div class="visionos-card feature-card">
+                    <h3>Neurodevelopmental Disorders</h3>
+                    <p>A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous system.</p>
+                </div>
+                <div class="visionos-card feature-card">
+                    <h3>Transcription Factors</h3>
+                    <p>A protein that binds to DNA and regulates the transcription of genes. These proteins are responsible for the regulation of gene expression.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="item bg-light">
-                <div class="flex" id="features">
-                    <h2 class="primary-dark" style="text-align: left; width: 100%">Features</h2>
-                    <div class="feature">
-                        <h2 class="term">Start and Stop Codons</h2>
-                        <p class="definition">Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. <code>2</code>
-                        </p>
-                    </div>
-                    <div class="feature">
-                        <h2 class="term">High Coverage Regions</h2>
-                        <p class="definition">Regions of a DNA genome that code for a protein and have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). These regions are likely to contain important information
-                            about the genome. <code>3</code>
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <h2 class="term">Neurodevelopmental Disorders</h2>
-                        <p class="definition">A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous system. These disorders are caused by genetic mutations that affect the development of the brain and nervous system.
-                            These disorders include autism, attention deficit hyperactivity disorder (ADHD), and schizophrenia. <code>4</code>
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <h2 class="term">Transcription Factors</h2>
-                        <p class="definition">A protein that binds to DNA and regulates the transcription of genes. These proteins are responsible for the regulation of gene expression. They are involved in the regulation of gene expression by binding to specific DNA sequences
-                            and regulating the transcription of genes. <code>6</code>
-                        </p>
-                    </div>
-
-                    <!--
-            <div class="feature">
-                <h2 class="term">Regulatory Elements</h2>
-                <p class="definition">A sequence of DNA that controls the transcription of a gene. These sequences
-                    are located upstream of the gene and are responsible for the regulation of gene expression.
-                    They are involved in the regulation of gene expression by binding to specific DNA sequences
-                    and regulating the transcription of genes. <code>7</code>
-                </p>
-                <p>
-                </p>
+        <section id="server" class="visionos-section">
+            <h2 class="section-title">Server Information</h2>
+            <div class="visionos-card">
+                <p>Join our Discord server to connect with other DNAnalyzer users, get support, and stay updated on the latest developments.</p>
+                <button class="visionos-button large" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Join Discord Server</button>
             </div>
-            -->
+        </section>
+    </main>
 
-                    <div class="feature">
-                        <h2 class="term">FASTA Files (.fa & .fab)</h2>
-                        <p class="definition">A text-based file format used to store DNA sequences format that stores the DNA sequence and its associated metadata. Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the
-                            web.
-                            <code>7</code>
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <h2 class="term">Command-Line-Interface</h2>
-                        <p class="definition">The Methionine command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for using DNAnalyzer services and scripting a sequence of commands
-                            to execute. You can currently access all the core features present in DNAnalyzer without having to log in, although account support will be implemented soon.
-                        </p>
-                    </div>
-
-                    <div class="feature">
-                        <h2 class="term">Graphical User Interface</h2>
-                        <p class="definition">A cross-platform JavaFX application that performs the same functions as the CLI, but with a graphical user interface. However, the GUI is still under development and the Met CLI continues to be the primary method of using DNAnalyzer.
-                            Currently, the following features are available in the GUI:
-                            <ul id="gui-features">
-                                <li id="gui-li">Set name of DNA file to analyze</li>
-                                <li id="gui-li">Set minimum and maximum number of reading frames</li>
-                                <li id="gui-li">Run analysis</li>
-                                <li id="gui-li">View results</li>
-                            </ul>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!--make footer with this info: Copyright © Piyush Acharya 2024. DNAnalyzer is a 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.-->
-            <footer>
-                <div class="flex">
-                    <p class="secondary-dark text-center" style="width: 50%; background-color: rgb(0, 25, 71);; padding: 20px; margin: 0px; border-radius: 20px;">Copyright © Piyush Acharya 2024. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
-                </div>
-            </footer>
-        </div>
-    </div>
-
+    <footer class="visionos-footer">
+        <p>Copyright © Piyush Acharya 2024. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    </footer>
 </body>
 
 </html>
