@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "DNADataUploader",
+      "request": "launch",
+      "mainClass": "DNAnalyzer.core.DNADataUploader",
+      "projectName": "DNAnalyzer"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "DNAnalyzer.Main",
