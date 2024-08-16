@@ -19,8 +19,11 @@ import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
+
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,6 +74,27 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
   public DNAAnalysis reverseComplement() {
     return new DNAAnalysis(new DNATools(dna.getReverseComplement()), protein, aminoAcid);
   }
+
+  public void analyze23andMeData(String filePath) {
+        try {
+            Map<String, String> data23andMe = DNADataUploader.uploadFrom23andMe(filePath);
+            System.out.println("23andMe data loaded. Total SNPs: " + data23andMe.size());
+            // Perform further analysis with data23andMe
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void analyzeAncestryDNAData(String filePath) {
+        try {
+            Map<String, String> dataAncestryDNA = DNADataUploader.uploadFromAncestryDNA(filePath);
+            System.out.println("AncestryDNA data loaded. Total SNPs: " + dataAncestryDNA.size());
+            // Perform further analysis with dataAncestryDNA
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
   // Creates protein list
   // Output the proteins, GC content, and nucleotide cnt found in the DNA
