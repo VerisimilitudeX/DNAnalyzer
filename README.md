@@ -6,7 +6,7 @@
 - Implementing a new feature that allows users to upload their DNA data from 23andMe, AncestryDNA, and other DNA testing services.
 - New website design.
 
-If you would like to contribute to the project, please feel free to open a PR. New feature issues will be created by June 30th at the latest.
+If you would like to contribute to the project, please feel free to open a PR. New feature issues will be created by September 30th at the latest.
 
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
