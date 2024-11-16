@@ -17,6 +17,7 @@
 DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-powered analysis and interpretive tools empower geneticists, physicians, and researchers to gain deep insights into DNA sequences, revolutionizing how we understand human health and disease.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
+[![Model in Hugging Face](https://huggingface.co/datasets/huggingface/badges/resolve/main/sign-in-with-huggingface-xl-dark.svg)](https://huggingface.co/DNAnalyzer)
 
 ## Table of Contents
 
