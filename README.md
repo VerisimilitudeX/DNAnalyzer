@@ -7,7 +7,7 @@
 
 # DNAnalyzer
 
->Revolutionizing DNA analysis and making it accessible to all through innovative AI-powered analysis and interpretive tools.
+>Democratizing ML-powered DNA analysis through efficient on-device analysis and interpretive tools.
 
 <!--<a href="https://www.producthunt.com/posts/dnanalyzer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dnanalyzer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=401710&theme=dark" alt="DNAnalyzer - Revolutionizing&#0032;AI&#0045;powered&#0032;accessible&#0032;DNA&#0032;analysis | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>-->
 
