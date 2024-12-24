@@ -5,6 +5,6 @@ authors:
 
 date-released: 2022-10-10
 message: "If you use this software, please cite it using these metadata."
-title: "Revolutionizing DNA analysis and making it accessible to all through innovative analysis and interpretive tools"
-version: "3.0.0-beta.0"
+title: "Democratizing ML-powered DNA analysis through efficient on-device analysis and interpretive tools."
+version: "3.5.0-beta.0"
 url: "https://github.com/VerisimilitudeX/DNAnalyzer"
