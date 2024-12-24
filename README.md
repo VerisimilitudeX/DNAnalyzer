@@ -107,3 +107,15 @@ Your complete responsibility lies in the utilization of this application, encomp
 If you use this software in your research, we request that you provide the appropriate citation.
 
 Copyright © Piyush Acharya 2024. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
+
+## Stars
+
+Please star the repository to show your support!
+
+<a href="https://star-history.com/#VerisimilitudeX/DNAnalyzer&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date" />
+ </picture>
+</a>
