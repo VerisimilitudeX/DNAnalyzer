@@ -83,7 +83,7 @@ public class PathRouter {
       String requestBody =
           """
           {
-              "model": "gpt-4o-2024-05-13",
+              "model": "gpt-4o-2025-05-13",
               "messages": [
                   {
                       "role": "user",

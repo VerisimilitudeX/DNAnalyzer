@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Piyush Acharya. Some rights reserved.
+ * Copyright © 2025 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.

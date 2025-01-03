@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Piyush Acharya. Some rights reserved.
+ * Copyright © 2025 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -11,7 +11,13 @@
 
 package DNAnalyzer.core;
 
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.List;
+import java.util.Map;
 import static java.util.Optional.ofNullable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import DNAnalyzer.data.codon.CodonFrame;
 import DNAnalyzer.utils.core.BasePairCounter;
@@ -19,12 +25,6 @@ import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Provides functionality to analyze the DNA

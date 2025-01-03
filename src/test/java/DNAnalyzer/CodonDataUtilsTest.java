@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Piyush Acharya. Some rights reserved.
+ * Copyright © 2025 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -11,13 +11,14 @@
 
 package DNAnalyzer;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import DNAnalyzer.data.codon.CodonDataUtils;
-import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import DNAnalyzer.data.codon.CodonDataUtils;
 
 /**
  * CodonDataUtilsTest contains 20 unit tests, one for each acid.

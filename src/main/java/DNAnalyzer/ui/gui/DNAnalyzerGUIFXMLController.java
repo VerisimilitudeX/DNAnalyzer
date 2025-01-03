@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Piyush Acharya. Some rights reserved.
+ * Copyright © 2025 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -11,13 +11,15 @@
 
 package DNAnalyzer.ui.gui;
 
-import static DNAnalyzer.utils.core.Utils.readFile;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.Properties;
 import DNAnalyzer.utils.core.DNATools;
-import java.io.*;
-import java.io.PrintStream;
+import static DNAnalyzer.utils.core.Utils.readFile;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

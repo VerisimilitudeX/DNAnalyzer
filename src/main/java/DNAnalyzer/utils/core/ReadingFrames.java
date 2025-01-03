@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Piyush Acharya. Some rights reserved.
+ * Copyright © 2025 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -11,8 +11,6 @@
 
 package DNAnalyzer.utils.core;
 
-import DNAnalyzer.data.codon.CodonDataUtils;
-import DNAnalyzer.data.codon.CodonFrame;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,6 +19,9 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import DNAnalyzer.data.codon.CodonDataUtils;
+import DNAnalyzer.data.codon.CodonFrame;
 
 /**
  * Reading frame data for the highest occurring codons.

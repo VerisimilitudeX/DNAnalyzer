@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Piyush Acharya. Some rights reserved.
+ * Copyright © 2025 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -11,16 +11,16 @@
 
 package DNAnalyzer.ui.cli;
 
-import static DNAnalyzer.data.Parser.parseFile;
-
-import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.core.Properties;
-import DNAnalyzer.ui.gui.DNAnalyzerGUI;
-import DNAnalyzer.utils.core.DNATools;
-import DNAnalyzer.utils.core.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.core.Properties;
+import static DNAnalyzer.data.Parser.parseFile;
+import DNAnalyzer.ui.gui.DNAnalyzerGUI;
+import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.core.Utils;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 Piyush Acharya. Some rights reserved.
+ * Copyright © 2025 Piyush Acharya. Some rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * You are entirely responsible for the use of this application, including any and all activities that occur.
@@ -10,15 +10,15 @@
  */
 package DNAnalyzer.core;
 
-import static DNAnalyzer.core.DNAAnalysis.countBasePairs;
-
-import DNAnalyzer.core.DNAAnalysis.BasePairIndex;
-import DNAnalyzer.data.aminoAcid.AminoAcid;
-import DNAnalyzer.data.aminoAcid.AminoAcidFactory;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+
+import DNAnalyzer.core.DNAAnalysis.BasePairIndex;
+import static DNAnalyzer.core.DNAAnalysis.countBasePairs;
+import DNAnalyzer.data.aminoAcid.AminoAcid;
+import DNAnalyzer.data.aminoAcid.AminoAcidFactory;
 
 /**
  * Prints the list of proteins and their respective properties found in the DNA.
