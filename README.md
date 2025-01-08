@@ -1,5 +1,3 @@
-**Champion cutting-edge genomics with DNAnalyzer’s extensive, research-grade feature set.**
-
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 <p align="center">
@@ -87,7 +85,7 @@ The DNAnalyzer platform incorporates a rich, multi-layered feature set designed 
    - Discerns potential regulatory “hotspots” by quantifying local GC density and systematically integrating epigenetic data.  
    - Evaluates comparative GC rates in orthologous regions of model organisms to strengthen cross-species genomic interpretations. `[3]`
 
-4. **Elucidation of CpG Islands**  
+4. **Detection of CpG Islands**  
    - Applies sequence scanning algorithms to locate CpG-dense clusters, which often correspond to promoter zones.  
    - Integrates methylation data (if provided) to link CpG island variation with epigenetic modifications.  
    - Provides cross-linking to published data linking certain CpG islands to disease risk or tissue-specific gene silencing. `[3]`
