@@ -115,7 +115,7 @@ The DNAnalyzer platform incorporates a rich, multi-layered feature set designed 
    - Tracks run-time metrics (CPU/GPU utilization, memory usage) for each step, supporting high-performance computing clusters.  
    - Provides versioned workflows that allow labs to replicate or validate experimental conditions over time.
 
-10. **Planned Web-Based Interface**  
+10. **TODO: Web-Based Interface**  
    - A future interface for visualization and interactive exploration of codon usage, promoter features, and potential disease links.  
    - Targets smaller research groups, hospital labs, and educational programs looking to incorporate bioinformatics without extensive local infrastructure.  
    - Integrates seamlessly with the CLI for a unified experience.
