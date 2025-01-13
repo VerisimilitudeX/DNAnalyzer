@@ -1,117 +1,124 @@
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/copyright-2025-blue"
-       alt="Copyright">
-  <img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer"
-       alt="Releases">
-  <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer"
-       alt="Repository Size">
-  <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat"
-       alt="Hits Counter">
-  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg"
-       alt="">
-  <a href="https://discord.gg/X3YCvGf2Ug">
-    <img src="https://img.shields.io/discord/1033196198816915516" alt="">
-  </a>
-  <a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}">
-    <img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa"
-         alt="DeepSource" title="DeepSource">
-  </a>
-  <a href="https://zenodo.org/records/14556578">
-    <img src="https://zenodo.org/badge/DOI/10.5281/zenodo.14556578.svg"
-         alt="DOI">
-  </a>
-  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues">
-    <img src="https://img.shields.io/github/issues/VerisimilitudeX/DNAnalyzer"
-         alt="Issues">
-  </a>
-  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/pulls">
-    <img src="https://img.shields.io/github/issues-pr/VerisimilitudeX/DNAnalyzer"
-         alt="Pull Requests">
-  </a>
-</p>
+
+<p align=center><img src="https://img.shields.io/badge/copyright-2025-blue" alt="Copyright"> <img src="https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer" alt="Releases"> <img src="https://img.shields.io/github/repo-size/VerisimilitudeX/DNAnalyzer" alt="Repository Size"> <img src="https://hits.dwyl.com/verisimilitudeX/DNAnalyzer.svg?style=flat" alt="Hits Counter">  <img src="https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml/badge.svg" alt=""> 
+<a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516" alt=""></a>
+<a href="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer/?ref=repository-badge}"><img src="https://deepsource.io/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&amp;show_trend=true&amp;token=9NBX3zsf0IZ3Nii3AApiX1Wa" alt="DeepSource" title="DeepSource"></a>
+<a href="https://zenodo.org/records/14556578"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.14556578.svg" alt="DOI" title="DeepSource"></a>
+<a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues"><img src="https://img.shields.io/github/issues/VerisimilitudeX/DNAnalyzer" alt="Issues" title="DeepSource"></a>
+<a href="https://github.com/VerisimilitudeX/DNAnalyzer/pulls"><img src="https://img.shields.io/github/issues-pr/VerisimilitudeX/DNAnalyzer" alt="Issues" title="DeepSource"></a></p>
 
 # DNAnalyzer
 
-> Democratizing ML-powered DNA analysis through efficient on-device computation and interpretive tools.
+>Democratizing ML-powered DNA analysis through efficient on-device analysis and interpretive tools.
 
-## 1. Introduction
-DNAnalyzer is developed under a 501(c)(3) nonprofit organization (EIN: 81-2908499) to address complexities inherent in large-scale genomic studies. It provides intuitive mechanisms—both scriptable and interactive—for investigating DNA structure, identifying variants, and annotating regulatory elements. Founded by [Piyush Acharya](github.com/VerisimilitudeX) and led in collaboration with [@LimesKey](github.com/LimesKey), DNAnalyzer synthesizes bioinformatics expertise with open-access principles to advance genomic research globally.
+<!--<a href="https://www.producthunt.com/posts/dnanalyzer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dnanalyzer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=401710&theme=dark" alt="DNAnalyzer - Revolutionizing&#0032;AI&#0045;powered&#0032;accessible&#0032;DNA&#0032;analysis | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>-->
 
-## 2. Abstract
-DNAnalyzer is an open-source computational system engineered to facilitate rigorous DNA analysis by integrating machine-learning models with advanced genomic interpretation tools. Its goals are to lower technical barriers, improve research reproducibility, and expedite discoveries related to the structure and function of the human genome. The platform comprises command-line and planned web-based solutions, encouraging both specialized laboratories and broader biomedical communities to engage in large-scale genomic investigation.
+**DNAnalyzer** is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to DNA analysis tools for a deeper understanding of human health and disease and pushing the boundaries of what is possible in the field of genetics research to make a significant impact in the industry. It was created by [Piyush Acharya](github.com/VerisimilitudeX) and is currently led by him and [@LimesKey](github.com/LimesKey).
 
-## 3. Background
-The human genome exceeds three billion base pairs, rendering data interpretation non-trivial and requiring comprehensive computational frameworks [1]. DNAnalyzer applies machine learning and statistical modeling to highlight, parse, and annotate critical genomic features. Embedded compatibility with community-driven repositories enhances interoperability and accelerates hypothesis-driven research.
+## Summary
+DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-powered analysis and interpretive tools empower geneticists, physicians, and researchers to gain deep insights into DNA sequences, revolutionizing how we understand human health and disease.
 
-## 4. Features
-- **Start Codon Identification**: Locates canonical/alternative initiation codons (AUG variants), evaluating translational control and differential expression [2].  
-- **Stop Codon Annotation**: Discerns UAA, UAG, UGA termini with downstream UTR linkage, elucidating isoform specificity and evolutionary constraints [2].  
-- **GC-Content Profiling**: Quantifies guanine-cytosine proportions, pinpointing regulatory clusters and integrating epigenetic signals for comprehensive context [3].  
-- **CpG Island Detection**: Resolves regions of dense CpG dinucleotides, associating promoter function with methylation dynamics and transcriptional regulation [3].  
-- **Long-Gene Characterization**: Flags extended genes implicated in neurodevelopmental conditions, correlating intronic complexity with clinical phenotypes [4].  
-- **Neurodevelopmental Pathway Analysis**: Aggregates copy-number variants and literature data to map gene networks underlying brain development [4].  
-- **Core Promoter Element Analysis**: Identifies BRE, TATA, INR, DPE motifs, assessing cross-species conservation of transcriptional start sites [5].  
-- **FASTA File Management**: Accommodates large, multi-line FASTA inputs with metadata handling, streamlining integration with next-generation sequencing pipelines [7].  
-- **Advanced CLI**: Orchestrates data processing tasks with HPC cluster support, versioning, and resource utilization monitoring.  
-- **Variant Annotation & Filtering**: Annotates genetic variants with functional predictors/population frequencies, expediting pathogenicity assessment [6].  
-- **Functional Enrichment**: Performs pathway enrichment on variant-based gene sets, clarifying molecular mechanisms of phenotypic associations [7].  
-- **Data Visualization**: Generates genomic feature maps, variant plots, and regulatory element diagrams to facilitate interpretability [8].  
-- **Cloud Integration**: Interfaces with AWS/Google Cloud for scalable analyses of extensive datasets, optimizing processing throughput [9].  
-- **API Access**: Exposes programmatic endpoints to unify DNAnalyzer’s functions with existing bioinformatics workflows [10].  
-- **Population Genetics**: Implements allele frequency estimation, Hardy-Weinberg equilibrium tests, and linkage disequilibrium mapping for evolutionary studies [11].
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
+[![Model in Hugging Face](https://huggingface.co/datasets/huggingface/badges/resolve/main/sign-in-with-huggingface-xl-dark.svg)](https://huggingface.co/DNAnalyzer)
 
-## 5. Quick Introduction to DNA
-DNA encodes the genetic blueprint underpinning organismal development and phenotype. Machine-learning techniques within DNAnalyzer refine the classification of structural variants, pinpoint novel mutations, and reveal subtle regulatory interactions.
+## Table of Contents
 
-## 6. Databases
-Public genomic compendia—including reference assemblies, gene models, and population-wide variant datasets—serve as pivotal resources in DNAnalyzer’s comparative analyses. Algorithmic approaches detect anomalies and highlight patterns indicative of functional relevance.
+- [DNAnalyzer](#dnanalyzer)
+  - [Summary](#summary)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+  - [Features](#features)
+  - [Quick Introduction to DNA](#quick-introduction-to-dna)
+    - [DNA](#dna)
+    - [Databases](#databases)
+  - [Getting Started](#getting-started)
+  - [Future Support and Improvements](#future-support-and-improvements)
+    - [Optimized SQL Database for Genomic Data](#optimized-sql-database-for-genomic-data)
+    - [Improved Neural Network for Genotyped Data](#improved-neural-network-for-genotyped-data)
+    - [DIAMOND Implementation, a BLAST fork](#diamond-implementation-a-blast-fork)
+  - [Citations](#citations)
+  - [Contributing](#contributing)
+  - [Terms of Use](#terms-of-use)
 
-## 7. Getting Started
-Comprehensive instructions for installing DNAnalyzer, preparing input files, and executing analytical workflows are provided in the [Getting Started](docs/getting-started.md) guide. This resource details command parameters, output interpretations, and recommended best practices.
 
-## 8. Future Directions
-### 8.1 Optimized SQL Database for Genomic Data
-Adopting specialized SQL forks can streamline queries over expansive cross-species archives, fueling high-fidelity machine-learning models and evolutionary investigations.
+## <a name="background"></a>Background
 
-### 8.2 Enhanced Neural Network for Genotyped Data
-DNAnalyzer aims to incorporate consumer genotyping datasets, bridging clinical usage with advanced annotation frameworks and fostering personalized genomic explorations.
+The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of data, which need to be organized and converted into analyzable data appropriately. Current analytical tools and software make it arduous for both geneticists and physicians to do so, thus restricting them from acquiring crucial information to better understand humans. `[1]`
 
-### 8.3 DIAMOND Integration (BLAST Fork)
-Deployment of [DIAMOND](https://github.com/bbuchfink/diamond) in tandem with [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi") will expedite large-scale sequence alignments, strengthening comparative genomics workflows.
+## <a name="features"></a>Features
 
-## 9. Citations
-1. International Human Genome Sequencing Consortium. Initial sequencing and analysis of the human genome. *Nature*, **409**, 860–921 (2001).  
-2. Kozak, M. Regulation of translation via mRNA structure in eukaryotes. *Gene*, **234**, 187–208 (1999).  
-3. Gardiner-Garden, M. & Frommer, M. CpG islands in vertebrate genomes. *J. Mol. Biol.*, **196**, 261–282 (1987).  
-4. Pinto, D. et al. Functional impact of global rare copy number variation in autism spectrum disorders. *Nature*, **466**, 368–372 (2010).  
-5. Smale, S. T. & Kadonaga, J. T. The RNA polymerase II core promoter. *Annu. Rev. Biochem.*, **72**, 449–479 (2003).  
-6. Wang, K., Li, M., Hakonarson, H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. *Nucleic Acids Res.*, **38**, e164 (2010).  
-7. Huang, D. W., Sherman, B. T. & Lempicki, R. A. Systematic and integrative analysis of large gene lists using DAVID bioinformatics resources. *Nat. Protoc.*, **4**, 44–57 (2009).  
-8. Wickham, H. ggplot2: Elegant Graphics for Data Analysis. *Springer-Verlag New York*, (2016).  
-9. Armbrust, M., et al. A view of cloud computing. *Communications of the ACM*, **53**, 50–58 (2010).  
-10. Field, M., Miles, C., & Field, M. Discovering Statistics Using R. *SAGE Publications Ltd*, (2012).  
-11. Nei, M. Molecular Evolution and Phylogenetics. *Oxford University Press*, (1987).
+* **Start and Stop Codons**
+  * Indicate the start and stop of a protein. There are 20 different amino acids. A protein consists of one or more chains of amino acids (called polypeptides) whose sequence is encoded in a gene. `[2]`
+* **High Coverage Regions**
+  * Promoter sequences in the genome that code for proteins have a relatively high proportion of guanine and cytosine nucleotides to the 4 nucleotide bases (45-60% GC-content). Such CpG islands are likely to reveal important information about the genome. `[3]`
+* **Neurodevelopmental Disorders**
+  * A group of disorders, usually characterized by longer genes, that affect the development of the brain and nervous
+                        system. These disorders are caused by genetic mutations that affect the development of the
+                        brain and nervous system. These disorders include autism, attention deficit hyperactivity
+                        disorder (ADHD), and schizophrenia. `[4]`
+* **Core Promoter Elements**
+  * Promoter sequences are short DNA sequences that are located upstream of a gene and are responsible for initiating transcription (e.g. BRE, TATA, INR, and DPE). `[5]`
+* **FASTA File Support**
+  * Supports multi-line and single-line FASTA database files. Files can either be uploaded or linked to from the web. `[7]`
+* **Command-Line Interface (CLI)**
+  * The Methionine command-line interface (abbreviated as Met CLI) is a unified tool for running DNAnalyzer services from the command-line. The CLI is a powerful tool for using DNAnalyzer services and scripting a sequence of commands to execute. You can currently access all the core features present in DNAnalyzer without having to log in, although account support will be implemented soon. To get more information on Met CLI installation and currently supported commands, refer to Met CLI GitHub repository.
+* **Web UI Coming Soon**
 
-## 10. Contributing
-Prospective contributors should review the [Contributing Guidelines](./docs/contributing/Contribution_Guidelines.md) for submission protocols and best practices. For additional repository guidance, [How To Use Git](./docs/contributing/CONTRIBUTING.md) covers branching, merging, and conflict resolution steps.
+## <a name="quick-introduction-to-dna"></a>Quick Introduction to DNA
 
-## 11. Terms of Use
-DNAnalyzer is disseminated under the MIT License and is intended exclusively for research and academic applications, without explicit clinical or diagnostic guarantees. The development team endeavors to rapidly incorporate novel insights and remedy software defects but bears no liability for incidental or consequential damages. Direct inquiries to help@dnanalyzer.org.
+### <a name="dna"></a>DNA
 
-© 2024, Piyush Acharya (EIN: 81-2908499). All rights reserved under the MIT License.
+DNA, present in most cells of the body, holds the blueprint for creating over 200 distinct cell types. Like a programming language, it is exclusive to living organisms. With the aid of ML, we can decode and comprehend DNA, leading to life-saving discoveries and valuable insights.
 
-## 12. Stars
-Researchers employing DNAnalyzer in their investigations are encouraged to star this repository. Such engagement strengthens community collaboration and perpetuates open-source innovation.
+### <a name="databases"></a>Databases
+
+A DNA database is crucial for interpreting DNA sequences. By leveraging machine learning, predictions can be made on previously unseen DNA sequences. This is the foundation on which modern DNA analysis programs operate.
+
+## <a name="getting-started"></a>Getting Started
+
+Please refer to the [Getting Started](docs/getting-started.md) document for more information on how to use DNAnalyzer.
+
+## Future Support and Improvements
+
+### Optimized SQL Database for Genomic Data
+ 
+Our goal is to find the best SQL database fork that can handle high performance and vertical scaling. We will store and query genomic data from thousands of species, including their genes and mutations. This will help us train our machine learning model more effectively.
+
+### Improved Neural Network for Genotyped Data
+
+This will bring the ability to use genotyped data from 3rd-party DNA testing services with our algorithm. In the future, to use this program, all you will need is a simple $99 DNA Test to be able to experience all the features of DNAnalyzer.
+
+### DIAMOND Implementation, a BLAST fork
+
+This will combine [DIAMOND](https://github.com/bbuchfink/diamond)'s performance advantage along with [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi")'s algorithm.
+
+## Citations
+
+View our in-line citations in the [Citations](docs/citations.md) document.
+
+## Contributing
+
+* [Contributing Guidelines](./docs/contributing/Contribution_Guidelines.md)
+
+* [How To Use Git](./docs/contributing/CONTRIBUTING.md)
+
+## Terms of Use
+
+Your complete responsibility lies in the utilization of this application, encompassing all actions and consequences that arise. While the DNAnalyzer Team is dedicated to addressing significant issues that may arise, whether reported by users or as new research unfolds, they cannot be held accountable for any losses users may experience due to the application's use, irrespective of circumstances. For further inquiries, please reach out to the following email address: help@dnanalyzer.org.
+
+If you use this software in your research, we request that you provide the appropriate citation.
+
+Copyright © Piyush Acharya 2024. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). Licensed under the MIT License.
+
+## Stars
+
+Please star the repository to show your support!
 
 <a href="https://star-history.com/#VerisimilitudeX/DNAnalyzer&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date&theme=dark" />
-    <source media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date" />
-    <img alt="Star History Chart"
-         src="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date" />
-  </picture>
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date" />
+ </picture>
 </a>
