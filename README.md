@@ -10,9 +10,7 @@
 
 # DNAnalyzer
 
->Democratizing ML-powered DNA analysis through efficient on-device analysis and interpretive tools.
-
-<!--<a href="https://www.producthunt.com/posts/dnanalyzer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dnanalyzer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=401710&theme=dark" alt="DNAnalyzer - Revolutionizing&#0032;AI&#0045;powered&#0032;accessible&#0032;DNA&#0032;analysis | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>-->
+>Democratizing ML-powered DNA analysis through efficient on-device computation and interpretive tools.
 
 **DNAnalyzer** is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to DNA analysis tools for a deeper understanding of human health and disease and pushing the boundaries of what is possible in the field of genetics research to make a significant impact in the industry. It was created by [Piyush Acharya](github.com/VerisimilitudeX) and is currently led by him and [@LimesKey](github.com/LimesKey).
 
@@ -21,6 +19,7 @@ DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest)
 [![Model in Hugging Face](https://huggingface.co/datasets/huggingface/badges/resolve/main/sign-in-with-huggingface-xl-dark.svg)](https://huggingface.co/DNAnalyzer)
+<a href="https://www.producthunt.com/posts/dnanalyzer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-dnanalyzer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=401710&theme=dark" alt="DNAnalyzer - Revolutionizing&#0032;AI&#0045;powered&#0032;accessible&#0032;DNA&#0032;analysis | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
 ## Table of Contents
 
@@ -44,7 +43,13 @@ DNAnalyzer is your gateway to deciphering the secrets of DNA. Our innovative AI-
 
 ## <a name="background"></a>Background
 
-The human genome is composed of over 3 billion base pairs, making human analysis nearly impossible. Consequently, using powerful computational and statistical methods to decode the functional information hidden in DNA sequences are necessary. The genome is also extremely intricate and contains a plethora of data, which need to be organized and converted into analyzable data appropriately. Current analytical tools and software make it arduous for both geneticists and physicians to do so, thus restricting them from acquiring crucial information to better understand humans. `[1]`
+Currently, the average cost of getting access to an individual's DNA sequence is $100. On top of that, most personal genomics providers charge up to $600 to gain access to (largely) machine-generated insights such as carrier status, health predisposition, wellness reports, and traits analyses [[1](https://customercare.23andme.com/hc/en-us/articles/115013843028-What-Health-Related-Information-Can-I-Learn-From-23andMe)]. This ends up restricting these valuable health insights from communities that need it the most.
+
+At the same time, there are numerous privacy risks associated with direct-to-consumer genetic testing companies. Unlike your credit card number or your bank account password, if your genetic information is stolen or simply given away without your consent by a company that possesses it, it can’t be changed. Few federal and state laws regulate what companies must do to keep genetic data private and secure. The Genetic Information Nondiscrimination Act (GINA) prevents employers from discriminating against you on the basis of your genetic information. But it doesn’t say anything about what a third-party DTC genetic testing company can do with the information it collects about you. Also, importantly, GINA’s protections apply only if a person is displaying no symptoms of their genetic condition, says Ellen Clayton, J.D., M.D., a professor of health policy at Vanderbilt University Medical Center in Nashville, Tenn. If a person becomes symptomatic, GINA’s protections against discrimination no longer apply. Under the Affordable Care Act (ACA), health insurance companies cannot refuse coverage or charge more for coverage based on a preexisting condition—a prohibition that also applies to any condition discovered as the result of genetic testing. That means the companies that provide these services have the freedom to control what happens to a consumer’s genetic information once they receive it, Brookman says. Some companies also encourage consumers to provide additional sensitive family or health information in order to maximize the possible insights from the genetic tests being offered.
+
+In one 2018 study of DTC genetic testing companies’ privacy policies, Vanderbilt University researchers found that 71 percent of companies used consumer information internally for purposes other than providing the results to consumers. Sixty-two percent said they use data for internal research and development, while 78 percent said they provided genetic information to third parties in de-identified or aggregate forms without additional consumer consent. There are also few laws regulating how consumers’ genetic data should be stored and protected by the companies that collect it, and genetic testing companies have experienced data breaches. For example, the DTC genetic testing company MyHeritage was hacked in 2018, and users’ emails and scrambled passwords were stolen. Their DNA information wasn’t stolen, but such a breach is certainly possible, CR experts say.
+
+At DNAnalyzer, we believe that access to personalized
 
 ## <a name="features"></a>Features
 
