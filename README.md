@@ -51,6 +51,8 @@ In one 2018 study of DTC genetic testing companies’ privacy policies, Vanderbi
 
 At DNAnalyzer, we believe that access to personalized
 
+[UNFINISHED 1/15 12:36 PM)
+
 ## <a name="features"></a>Features
 
 * **Start and Stop Codons**
