@@ -10,9 +10,7 @@
 
 # DNAnalyzer
 
->Democratizing ML-powered DNA analysis through efficient on-device computation and interpretive tools.
-
-**DNAnalyzer** is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to DNA analysis tools for a deeper understanding of human health and disease and pushing the boundaries of what is possible in the field of genetics research to make a significant impact in the industry. It was created by [Piyush Acharya](github.com/VerisimilitudeX) and is currently led by him and [@LimesKey](github.com/LimesKey).
+DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) dedicated to revolutionizing the field of DNA analysis. We aim to democratize access to machine learning-powered DNA analysis through efficient on-device computation and interpretive tools. It was created by [Piyush Acharya](github.com/VerisimilitudeX) and is currently led by him and [@LimesKey](github.com/LimesKey). As a testament to its significant impact on the computational biology research industry, it currently has 45 computational biologist and computer scientist contributors from accredited international institutions and corporations such as Microsoft Research, University of Macedonia, and Northeastern University. Additionally, it has earned the star of the Organizer of the [AI Engineer World's Fair](https://www.ai.engineer/worldsfair) (OpenAI, Microsoft, Google DeepMind, Anthropic, etc) 
 
 <a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest" target="_blank">
     <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces" style="height: 35px; width: auto; vertical-align: middle;" />
