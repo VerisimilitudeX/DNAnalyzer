@@ -4,6 +4,10 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class provides provides functionality for generating mutated DNA
+ * sequences.
+ */
 public class DNAMutation {
 
     private static final char[] BASES = { 'A', 'T', 'C', 'G' };
