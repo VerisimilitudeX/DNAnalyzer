@@ -10,71 +10,70 @@ import java.util.List;
  */
 public class DNAMutation {
 
-    private static final char[] BASES = { 'A', 'T', 'C', 'G' };
-    private static Random random = new Random();
+  private static final char[] BASES = { 'A', 'T', 'C', 'G' };
+  private static Random random = new Random();
 
-    /**
-     * Generates a list of 10 mutated DNA sequences based on the specified number of
-     * base mutations
-     * and prints them to the console.
-     * 
-     * @param dnaString    Original DNA sequence to mutate
-     * @param numMutations The number of base mutations to apply to each mutated
-     *                     sequence
-     */
-    public static void generateMutatedSequences(String dnaString, int numMutations) {
-        int numSequences = 10;
+  /**
+   * Generates a list of 10 mutated DNA sequences based on the specified number of
+   * base mutations and prints them to the console.
+   * 
+   * @param dnaString    Original DNA sequence to mutate
+   * @param numMutations The number of base mutations to apply to each mutated
+   *                     sequence
+   */
+  public static void generateMutatedSequences(String dnaString, int numMutations) {
+    int numSequences = 10;
 
-        for (int i = 0; i < numSequences; i++) {
-            System.out.println(mutate(dnaString, numMutations));
-        }
+    for (int i = 0; i < numSequences; i++) {
+      System.out.println(mutate(dnaString, numMutations));
+    }
+  }
+
+  /**
+   * Mutates a DNA sequence with a specified number of random base mutations.
+   *
+   * @param dnaString    Original DNA sequence to mutate
+   * @param numMutations The number of mutations (substitutions) to apply to the
+   *                     sequence
+   * @return A new mutated DNA sequence
+   */
+  private static String mutate(String dnaString, int numMutations) {
+    StringBuilder mutatedDna = new StringBuilder(dnaString);
+
+    // Create a list of all possible positions
+    List<Integer> availablePositions = new ArrayList<>();
+    for (int i = 0; i < dnaString.length(); i++) {
+      availablePositions.add(i);
     }
 
-    /**
-     * Mutates a DNA sequence with a specified number of random base mutations.
-     *
-     * @param dnaString    Original DNA sequence to mutate
-     * @param numMutations The number of mutations (substitutions) to apply to the
-     *                     sequence
-     * @return A new mutated DNA sequence
-     */
-    private static String mutate(String dnaString, int numMutations) {
-        StringBuilder mutatedDna = new StringBuilder(dnaString);
+    // Perform mutations
+    for (int i = 0; i < numMutations; i++) {
+      // Select a random position from the available positions
+      int randomPosition = random.nextInt(availablePositions.size());
+      int position = availablePositions.remove(randomPosition);
 
-        // Create a list of all possible positions
-        List<Integer> availablePositions = new ArrayList<>();
-        for (int i = 0; i < dnaString.length(); i++) {
-            availablePositions.add(i);
-        }
+      char originalBase = dnaString.charAt(position);
+      char mutatedBase = getRandomBase(originalBase);
 
-        // Perform mutations
-        for (int i = 0; i < numMutations; i++) {
-            // Select a random position from the available positions
-            int randomPosition = random.nextInt(availablePositions.size());
-            int position = availablePositions.remove(randomPosition);
-
-            char originalBase = dnaString.charAt(position);
-            char mutatedBase = getRandomBase(originalBase);
-
-            mutatedDna.setCharAt(position, mutatedBase);
-        }
-
-        return mutatedDna.toString();
+      mutatedDna.setCharAt(position, mutatedBase);
     }
 
-    /**
-     * Returns a random base different from the original base.
-     *
-     * @param originalBase Original base to mutate from
-     * @return A mutated base (different from the original)
-     */
-    private static char getRandomBase(char originalBase) {
-        char newBase;
+    return mutatedDna.toString();
+  }
 
-        do {
-            newBase = BASES[random.nextInt(BASES.length)];
-        } while (newBase == originalBase);
+  /**
+   * Returns a random base different from the original base.
+   *
+   * @param originalBase Original base to mutate from
+   * @return A mutated base (different from the original)
+   */
+  private static char getRandomBase(char originalBase) {
+    char newBase;
 
-        return newBase;
-    }
+    do {
+      newBase = BASES[random.nextInt(BASES.length)];
+    } while (newBase == originalBase);
+
+    return newBase;
+  }
 }
