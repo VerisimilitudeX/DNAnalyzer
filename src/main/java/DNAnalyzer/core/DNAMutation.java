@@ -68,12 +68,11 @@ public class DNAMutation {
    * @return A mutated base (different from the original)
    */
   private static char getDifferentBase(char originalBase) {
-    char newBase;
+    int index = new String(BASES).indexOf(originalBase);
 
-    do {
-      newBase = BASES[random.nextInt(BASES.length)];
-    } while (newBase == originalBase);
+    // Pick a random index that isn’t the same as the original
+    int newIndex = (index + 1 + random.nextInt(BASES.length - 1)) % BASES.length; 
 
-    return newBase;
+    return BASES[newIndex];
   }
 }
