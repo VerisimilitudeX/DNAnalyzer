@@ -53,7 +53,7 @@ public class DNAMutation {
       int position = availablePositions.remove(randomPosition);
 
       char originalBase = dnaString.charAt(position);
-      char mutatedBase = getRandomBase(originalBase);
+      char mutatedBase = getDifferentBase(originalBase);
 
       mutatedDna.setCharAt(position, mutatedBase);
     }
@@ -67,7 +67,7 @@ public class DNAMutation {
    * @param originalBase Original base to mutate from
    * @return A mutated base (different from the original)
    */
-  private static char getRandomBase(char originalBase) {
+  private static char getDifferentBase(char originalBase) {
     char newBase;
 
     do {
