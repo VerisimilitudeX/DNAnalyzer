@@ -30,7 +30,7 @@ Currently, the average cost of accessing an individual's DNA sequence is approxi
 
 At the same time, there are significant privacy risks associated with direct-to-consumer genetic testing companies. Unlike a credit card number or password, stolen or misused genetic information cannot be changed. A 2018 study by Vanderbilt University found that 78% of DTC genetic testing companies shared genetic information with third parties in de-identified or aggregate forms without additional consumer consent [[4](https://link.springer.com/chapter/10.1007/978-3-030-71352-2_14)]. Few laws regulate how genetic data should be stored and protected, and companies have experienced data breaches. For example, in 2023, 23andMe suffered a data breach where hackers accessed the genetic information of 6.9 million users, demonstrating an urgent need for tools such as DNAnalyzer [[5](https://arstechnica.com/tech-policy/2023/12/hackers-stole-ancestry-data-of-6-9-million-users-23andme-finally-confirmed)].
 
-By enabling secure, on-device genomic data analysis with no costs for consumers, DNAnalyzer aims to mitigate these risks while making insights more accessible to underserved communities.
+By enabling secure, on-device genomic data analysis for free, DNAnalyzer aims to mitigate these risks while making insights more accessible to underserved communities.
 
 ## <a name="features"></a>Features
 
