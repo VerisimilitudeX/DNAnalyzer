@@ -89,6 +89,11 @@ public class CmdArgs implements Runnable {
       description = "Prints the complement of the DNA sequence.")
   boolean rcomplement;
 
+  @Option(
+      names = {"--mutate"},
+      description = "Prints 10 mutations of the DNA sequence, each with the specified number of mutations."),
+  int mutationCount = 0;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -125,6 +130,10 @@ public class CmdArgs implements Runnable {
           .printHighCoverageRegions(System.out)
           .outPutCodons(minCount, maxCount, System.out)
           .printLongestProtein(System.out);
+
+      if (mutationCount > 0) {
+          DNAMutation.generateMutatedSequences(dnaAnalyzer, mutationCount);
+      }
 
       if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
         System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
