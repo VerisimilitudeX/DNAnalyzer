@@ -128,3 +128,31 @@ Please star the repository to show your support!
    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=VerisimilitudeX/DNAnalyzer&type=Date" />
  </picture>
 </a>
+
+<section id="referral-offers" style="margin: 2rem 0; padding: 1rem; border-top: 2px solid #ddd;">
+  <h2 style="text-align: center; margin-bottom: 1.5rem;">Referral Offers</h2>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    <div style="flex: 1 1 300px; background-color: #f0f4f8; border: 1px solid #d0d7de; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <h3 style="color: #007AFF;">23andMe</h3>
+      <p style="font-size: 1rem; line-height: 1.5;">
+        Get <strong>10% off</strong> your order, while DNAnalyzer earns <strong>$20</strong> per referral.
+      </p>
+      <p style="text-align: center;">
+        <a href="https://refer.23andme.com/s/ruxd4" target="_blank" style="display: inline-block; padding: 10px 15px; background-color: #007AFF; color: #fff; border-radius: 5px; text-decoration: none;">
+          Refer via 23andMe
+        </a>
+      </p>
+    </div>
+    <div style="flex: 1 1 300px; background-color: #f0f4f8; border: 1px solid #d0d7de; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <h3 style="color: #007AFF;">Ancestry® Membership</h3>
+      <p style="font-size: 1rem; line-height: 1.5;">
+        Get up to <strong>24% off</strong> Ancestry's membership, while DNAnalyzer earns <strong>$10</strong> per referral.
+      </p>
+      <p style="text-align: center;">
+        <a href="https://refer.ancestry.com/verisimilitude11!6699046cdf!a" target="_blank" style="display: inline-block; padding: 10px 15px; background-color: #007AFF; color: #fff; border-radius: 5px; text-decoration: none;">
+          Refer via Ancestry
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
