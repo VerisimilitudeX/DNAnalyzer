@@ -8,6 +8,7 @@
     --hover-color: #0056b3;
     --error-color: #dc3545;
     --success-color: #28a745;
+    --placeholder-color: #6c757d;
 }
 
 * {
@@ -80,6 +81,12 @@ section {
     align-items: center;
     text-align: center;
     background: radial-gradient(circle at center, var(--surface-color), var(--background-color));
+}
+
+#hero img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
 }
 
 h1 {
@@ -193,6 +200,10 @@ select, input[type="number"] {
     width: 100%;
     margin-top: 0.5rem;
     font-family: inherit;
+}
+
+select::placeholder, input[type="number"]::placeholder {
+    color: var(--placeholder-color);
 }
 
 .parameters-grid {
