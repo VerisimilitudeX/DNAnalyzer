@@ -34,11 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Update active states
             tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none';  // Explicitly hide content
+            });
             button.classList.add('active');
             
             // Show selected tab content
-            document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
+            const selectedContent = document.querySelector(`.tab-content[data-tab="${tabName}"]`);
+            selectedContent.classList.add('active');
+            selectedContent.style.display = 'block';  // Explicitly show content
         });
     });
 
@@ -151,11 +156,44 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('geneticFile', geneticFile);
-        formData.append('snpAnalysis', document.getElementById('snpAnalysis').checked);
+        const analyzeBtn = document.querySelector('#geneticForm .analyze-btn');
+        const originalText = analyzeBtn.textContent;
+        const results = document.getElementById('results');
+        const analysisOutput = document.getElementById('analysisOutput');
 
-        await submitAnalysis(formData, '/api/analyze-genetic');
+        try {
+            // Show loading state
+            analyzeBtn.textContent = 'Analyzing...';
+            analyzeBtn.disabled = true;
+            results.style.display = 'block';
+            analysisOutput.textContent = 'Processing genetic data... This may take a few moments.';
+
+            const formData = new FormData();
+            formData.append('geneticFile', geneticFile);
+            formData.append('snpAnalysis', document.getElementById('snpAnalysis').checked);
+
+            const response = await fetch('http://localhost:8080/api/analyze-genetic', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.text();
+            results.style.display = 'block';
+            analysisOutput.textContent = data;
+            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        } catch (error) {
+            console.error('Error:', error);
+            results.style.display = 'block';
+            analysisOutput.textContent = 'Error: Could not process genetic testing data. Please ensure the file format is correct and the server is running.';
+        } finally {
+            analyzeBtn.textContent = originalText;
+            analyzeBtn.disabled = false;
+        }
     });
 
     // Common analysis submission function

@@ -145,6 +145,36 @@ input[type="file"]::file-selector-button {
     margin-right: 1rem;
     border: none;
     border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+input[type="url"]:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.file-upload-group {
+    margin-bottom: 1rem;
+}
+
+.analyze-btn {
+    background: linear-gradient(135deg, #007AFF, #00BFFF);
+    color: white;
     padding: 1rem 2rem;
     border: none;
     border-radius: 12px;

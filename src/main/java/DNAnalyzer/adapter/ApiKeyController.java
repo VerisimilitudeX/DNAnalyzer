@@ -61,33 +61,3 @@ public class ApiKeyController {
         }
     }
 }
-
-/**
- * Response object for API key status.
- */
-class ApiKeyResponse {
-    private final boolean configured;
-
-    public ApiKeyResponse(boolean configured) {
-        this.configured = configured;
-    }
-
-    public boolean isConfigured() {
-        return configured;
-    }
-}
-
-/**
- * Request object for setting API key.
- */
-class SetApiKeyRequest {
-    private String apiKey;
-
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public void setApiKey(String apiKey) {
-        this.apiKey = apiKey;
-    }
-}
