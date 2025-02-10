@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class DNAMutation {
 
-  private static final char[] BASES = { 'A', 'T', 'C', 'G' };
+  private static final char[] BASES = { 'A', 'T', 'C', 'G', 'N' };
   private static Random random = new Random();
 
   /**
@@ -21,7 +21,7 @@ public class DNAMutation {
    * @param numMutations The number of base mutations to apply to each mutated
    *                     sequence
    */
-  public static void generateMutatedSequences(String dnaString, int numMutations) {
+  public static void generateAndPrintMutatedSequences(String dnaString, int numMutations) {
     int numSequences = 10;
 
     for (int i = 0; i < numSequences; i++) {
@@ -39,6 +39,11 @@ public class DNAMutation {
    */
   private static String mutate(String dnaString, int numMutations) {
     StringBuilder mutatedDna = new StringBuilder(dnaString);
+
+    if (numMutations > mutatedDna.length()) {
+      System.out.println("Warning: Number of requested mutations exceeds DNA length. Limiting to " + mutatedDna.length());
+      numMutations = mutatedDna.length();
+    }
 
     // Create a list of all possible positions
     List<Integer> availablePositions = new ArrayList<>();

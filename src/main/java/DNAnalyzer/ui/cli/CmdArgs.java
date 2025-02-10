@@ -17,6 +17,7 @@ import java.util.Objects;
 
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.Properties;
+import DNAnalyzer.core.DNAMutation;
 import static DNAnalyzer.data.Parser.parseFile;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
@@ -91,7 +92,7 @@ public class CmdArgs implements Runnable {
 
   @Option(
       names = {"--mutate"},
-      description = "Prints 10 mutations of the DNA sequence, each with the specified number of mutations."),
+      description = "Prints 10 mutations of the DNA sequence, each with the specified number of mutations.")
   int mutationCount = 0;
 
   /**
@@ -131,9 +132,9 @@ public class CmdArgs implements Runnable {
           .outPutCodons(minCount, maxCount, System.out)
           .printLongestProtein(System.out);
 
-      if (mutationCount > 0) {
-          DNAMutation.generateMutatedSequences(dnaAnalyzer, mutationCount);
-      }
+        if (mutationCount > 0) {
+          DNAMutation.generateAndPrintMutatedSequences(dnaAnalyzer.dna().getDna(), mutationCount);
+        }
 
       if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
         System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
