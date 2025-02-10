@@ -1,107 +1,148 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const analyzerForm = document.getElementById('analyzerForm');
-    const resultsDiv = document.getElementById('analysis-results');
-    const API_URL = 'http://localhost:8080/api/analyze';
+// Constants
+const API_BASE_URL = 'http://localhost:8080/api';
 
-    analyzerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const submitButton = analyzerForm.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Analyzing...';
-        
-        try {
-            // Get form data
-            const filePath = document.getElementById('filePath').value;
-            const selectedFeatures = Array.from(
-                document.querySelectorAll('input[name="feature"]:checked')
-            ).map(checkbox => checkbox.value);
+// DOM Elements
+const fileInput = document.getElementById('dna-file');
+const startCodonSelect = document.getElementById('start-codon');
+const analysisForm = document.getElementById('analysis-form');
+const resultsDiv = document.getElementById('results');
+const loadingIndicator = document.createElement('div');
+loadingIndicator.className = 'loading-indicator';
+loadingIndicator.innerHTML = 'Analyzing DNA sequence...';
 
-            // Prepare request payload
-            const payload = {
-                filePath: filePath,
-                features: selectedFeatures
-            };
+// Event Listeners
+analysisForm.addEventListener('submit', handleAnalysis);
+fileInput.addEventListener('change', handleFileSelect);
 
-            // Send request to local API
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+async function handleAnalysis(event) {
+    event.preventDefault();
+    
+    if (!fileInput.files[0]) {
+        displayError('Please select a DNA sequence file');
+        return;
+    }
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+    // Show loading indicator
+    resultsDiv.innerHTML = '';
+    resultsDiv.appendChild(loadingIndicator);
 
-            const result = await response.json();
-            
-            // Display results
-            resultsDiv.innerHTML = `
-                <h3>Analysis Results</h3>
-                <pre>${JSON.stringify(result, null, 2)}</pre>
-            `;
-            
-            // Scroll to results
-            resultsDiv.scrollIntoView({ behavior: 'smooth' });
-
-        } catch (error) {
-            console.error('Error:', error);
-            resultsDiv.innerHTML = `
-                <h3>Error</h3>
-                <pre class="error">
-                    ${error.message}
-                    
-                    Please ensure:
-                    1. The local DNAnalyzer service is running
-                    2. The file path is correct and accessible
-                    3. You have necessary permissions to read the file
-                </pre>
-            `;
-        } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Run Analysis';
-        }
+    const formData = new FormData();
+    formData.append('dnaFile', fileInput.files[0]);
+    
+    // Add all parameters
+    const parameters = getAnalysisParameters();
+    Object.entries(parameters).forEach(([key, value]) => {
+        formData.append(key, value);
     });
 
-    const cursor = document.querySelector('.custom-cursor');
-    
-    if (!cursor) return; // Skip if cursor element doesn't exist
-    
-    // Hide default cursor
-    document.body.style.cursor = 'none';
-    
-    // Cursor movement
-    document.addEventListener('mousemove', (e) => {
-        requestAnimationFrame(() => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            // Scale effect near clickable elements
-            const hoveredElement = document.elementFromPoint(e.clientX, e.clientY);
-            if (hoveredElement && (
-                hoveredElement.closest('a') || 
-                hoveredElement.closest('button') || 
-                hoveredElement.closest('input[type="checkbox"]') ||
-                hoveredElement.closest('.drop-zone') ||
-                hoveredElement.closest('textarea') ||
-                hoveredElement.closest('input[type="text"]')
-            )) {
-                cursor.style.transform = 'scale(1.5)';
-            } else {
-                cursor.style.transform = 'scale(1)';
-            }
+    try {
+        const response = await fetch(`${API_BASE_URL}/analyze`, {
+            method: 'POST',
+            body: formData
         });
-    });
 
-    // Hide cursor when it leaves the window
-    document.addEventListener('mouseleave', () => {
-        cursor.style.display = 'none';
-    });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    document.addEventListener('mouseenter', () => {
-        cursor.style.display = 'block';
-    });
-});
+        const result = await response.text();
+        displayResults(result);
+    } catch (error) {
+        console.error('Error:', error);
+        displayError(`Error analyzing DNA: ${error.message}`);
+    }
+}
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (file) {
+        // Validate file type
+        if (!file.name.match(/\.(fa|fasta|fastq)$/i)) {
+            displayError('Please select a valid FASTA or FASTQ file');
+            fileInput.value = '';
+            return;
+        }
+
+        // Update file name display
+        document.getElementById('file-name').textContent = file.name;
+    }
+}
+
+function getAnalysisParameters() {
+    return {
+        amino: startCodonSelect.value,
+        minCount: document.getElementById('min-count').value,
+        maxCount: document.getElementById('max-count').value,
+        reverse: document.getElementById('reverse').checked,
+        rcomplement: document.getElementById('rcomplement').checked,
+        codons: document.getElementById('codons').checked,
+        coverage: document.getElementById('coverage').checked,
+        longest: document.getElementById('longest').checked,
+        format: document.getElementById('format').value
+    };
+}
+
+function displayResults(result) {
+    // Remove loading indicator
+    loadingIndicator.remove();
+
+    // Format the result based on the selected output format
+    const format = document.getElementById('format').value;
+    let formattedResult = result;
+
+    if (format === 'json') {
+        try {
+            const jsonObj = JSON.parse(result);
+            formattedResult = JSON.stringify(jsonObj, null, 2);
+        } catch (e) {
+            console.warn('Failed to parse JSON result:', e);
+        }
+    }
+
+    resultsDiv.innerHTML = `
+        <div class="results-container">
+            <h3>Analysis Results</h3>
+            <pre>${formattedResult}</pre>
+            <div class="results-actions">
+                <button onclick="downloadResults('analysis_results.${format}', '${format}')">
+                    Download Results
+                </button>
+            </div>
+        </div>
+    `;
+    resultsDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+function displayError(message) {
+    resultsDiv.innerHTML = `
+        <div class="error-container">
+            <h3>Error</h3>
+            <p>${message}</p>
+        </div>
+    `;
+    resultsDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+function downloadResults(filename, format) {
+    const resultText = document.querySelector('.results-container pre').textContent;
+    const blob = new Blob([resultText], { type: getContentType(format) });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}
+
+function getContentType(format) {
+    switch (format) {
+        case 'json':
+            return 'application/json';
+        case 'csv':
+            return 'text/csv';
+        default:
+            return 'text/plain';
+    }
+}

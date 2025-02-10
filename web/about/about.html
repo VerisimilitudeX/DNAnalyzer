@@ -1,107 +1,55 @@
-2025<!--
- * Copyright © 2025 Piyush Acharya. Some rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
- *
- * You are entirely responsible for the use of this application, including any and all activities that occur.
- * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
- * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
- *
- * For further inquiries, please reach out to contact@dnanalyzer.live
--->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>About - DNAnalyzer</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="about.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-<div class="container">
-    <h1 class="text-center primary-dark">About Us Page </h1>
-
-
-    <label for="mode"></label><input type="checkbox" id="mode">
-    <div class="grid">
-        <div class="item bg-light">
-            <div class="flex">
-
-                <img src="Piyush.jpg" alt="">
-                <h2 class="primary-dark">Piyush Acharya ( Lead Developer & Maintainer )</h2>
-
-                <p class="secondary-dark text-center">Hi there! 👋 I'm Piyush, a freshman at Interlake High School
-                    interested in SWE and ML. I'm highly passionate about exploring different ways in which I can
-                    advance my skills in the branches of science while also tying it with my passion
-                    for computer science. Growing up in the Pacific Northwest, I’ve witnessed the forefront of STEM and
-                    innovation on my doorstep. This inspired my love for problem-solving and creating early on, from
-                    doing competitive math/science
-                    to coding my first Python game. I've competed in a variety of science tournaments, and I recently
-                    traveled to Washington, D.C. to compete in the National Science Bowl hosted by the U.S. Department
-                    of Energy, where my team and I
-                    won first place. I am also committed to developing large-scale open source projects - I have created
-                    and contributed to numerous projects on GitHub. When I'm not studying for upcoming competitions and
-                    tests, you can usually find
-                    me at my computer, tinkering away at a bioinformatics algorithm I invented for analyzing proteins in
-                    DNA. In addition to my passion for science and technology, I'm deeply committed to giving back to my
-                    community. This is why I
-                    joined Mighty Crayon 2 years ago, with the mission of encouraging enjoyable and empowering
-                    experiences for children around the world through the use of recycled creative mediums. Today, as
-                    the Co-Executive Director, I have set
-                    a goal to deliver 100,000+ crayons and educational coloring books to children in need around the
-                    world by the end of 2025. Additionally, I am a Curriculum Developer Intern at the Nuevo Foundation,
-                    where I develop curricula for
-                    underprivileged students, including interactive courses for Python, Linux, EV3, cybersecurity, and
-                    other topics pertaining to technology. In my spare time, I enjoy playing the piano, tennis,
-                    swimming, and exploring the extensive
-                    Redmond trail system near my home either with my family or my DJI Mavic 3.</p>
-                <a href="https://wwww.piyushacharya.com"
-                <button class="btn">piyushacharya.com</button>
-                />
-
-                <br><a href='https://github.com/VerisimilitudeX'
-                <button><i class="fa fa-github"
-                           style="font-size:48px;color:red"></i></button>
-                <p><br><a href='https://www.linkedin.com/in/piyush-acharya/'
-                    <button><i
-                        class="fa fa-linkedin"
-                        style="font-size:48px;color:rgb(67, 75, 235)"></i></button>
-                </p>
-            </div>
+    <div class="background-blur"></div>
+    
+    <header class="floating-header">
+        <nav class="floating-nav">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="../features/features.html" class="nav-link">Features</a>
+            <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
+            <a href="../server/server.html" class="nav-link">Server</a>
+        </nav>
+        <div class="header-buttons">
+            <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
+            <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
         </div>
+    </header>
 
-
-        <div class="item bg-light">
-            <div class="flex">
-
-                <h2 class="primary-dark">Krishna Biradar ( Web Developer ) </h2>
-                <p class="secondary-dark text-center">Hello Everybody, Myself Krishna, who has developed few
-                    webpages for the Piyush project. If you want to connect with me, below are my LinkedIn and
-                    GitHub profiles.</p>
-
-
-                <p><br><a href='https://github.com/krishnabiradar310802'
-                    <button><i class="fa fa-github"
-                               style="font-size:48px;color:red"></i></button>
-                </p>
-                <p><br><a href='https://www.linkedin.com/in/krishna-biradar-350ab5140/'
-                    <button><i
-                        class="fa fa-linkedin" style="font-size:48px;color:rgb(67, 75, 235)"></i></button>
-                </p>
+    <main class="container">
+        <section class="content-section">
+            <h1>About DNAnalyzer</h1>
+            <div class="grid">
+                <div class="glass-card">
+                    <h2>Introduction</h2>
+                    <p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions,
+                        regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory
+                        elements. Researchers are working to extract valuable information from such software to better
+                        understand human health and disease.</p>
+                </div>
+                <div class="glass-card">
+                    <h2>Background</h2>
+                    <p>The human genome is composed of over 3 billion base pairs, making human analysis nearly
+                        impossible. Consequently, using powerful computational and statistical methods to decode the
+                        functional information hidden in DNA sequences are necessary.</p>
+                </div>
             </div>
+        </section>
+    </main>
 
-        </div>
-    </div>
+    <footer class="glass-footer">
+        <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    </footer>
 
-
-    <script src="./about.js"></script>
+    <script src="about.js"></script>
 </body>
-
 </html>

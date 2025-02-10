@@ -4,27 +4,20 @@ server:
     context-path: /api
 
 spring:
-  application:
-    name: DNAnalyzer
-  jackson:
-    serialization:
-      INDENT_OUTPUT: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  web:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
 
 logging:
   level:
     root: INFO
     DNAnalyzer: DEBUG
-    org.springframework.web: INFO
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
-
-cors:
-  allowed-origins: "*"
-  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
-  allowed-headers: "*"
-  allow-credentials: true
-  max-age: 3600
-
-openai:
-  api:
-    key: ${OPENAI_API_KEY:}  # Make OpenAI API key optional with empty default

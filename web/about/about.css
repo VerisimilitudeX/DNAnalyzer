@@ -62,10 +62,9 @@ p {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(1, minmax(auto, 1000px));
-    row-gap: 2em;
-    column-gap: 3em;
-    margin: 3em 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
 }
 
 .grid .flex {
@@ -154,4 +153,15 @@ img {
     border-radius: 50%;
     background-color: #f44336;
     margin-top: 100px;
+}
+
+/* About page specific styles */
+.glass-card {
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.glass-card h2 {
+    margin-bottom: 1rem;
+    color: #ffffff;
 }
