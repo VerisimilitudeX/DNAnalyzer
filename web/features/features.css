@@ -1,0 +1,26 @@
+/* Features page specific styles */
+.feature-card {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.feature-card h3 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.feature-card .glass-button {
+    margin-top: 1rem;
+}

@@ -1,0 +1,101 @@
+/* Server page specific styles */
+.glass-card {
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+#server-status {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.glass-button.large {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+}
+
+.command-box {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 1rem;
+}
+
+.command-box code {
+    flex-grow: 1;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #10B981;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.copy-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.setup-steps {
+    list-style-position: inside;
+    padding: 0;
+    margin: 1rem 0;
+    counter-reset: step;
+}
+
+.setup-steps li {
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.setup-steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.setup-steps li p {
+    margin-bottom: 0.5rem;
+    color: #E0E0E0;
+}
+
+.setup-steps .command-box {
+    margin: 0.5rem 0;
+}
+
+.troubleshooting {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.troubleshooting p {
+    color: #FFA726;
+    margin-bottom: 0.5rem;
+}
