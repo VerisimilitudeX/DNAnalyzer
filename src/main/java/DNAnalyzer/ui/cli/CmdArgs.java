@@ -132,9 +132,9 @@ public class CmdArgs implements Runnable {
           .outPutCodons(minCount, maxCount, System.out)
           .printLongestProtein(System.out);
 
-        if (mutationCount > 0) {
-          DNAMutation.generateAndPrintMutatedSequences(dnaAnalyzer.dna().getDna(), mutationCount);
-        }
+      if (mutationCount > 0) {
+        DNAMutation.generateAndPrintMutatedSequences(dnaAnalyzer.dna().getDna(), mutationCount);
+      }
 
       if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
         System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
