@@ -49,7 +49,7 @@ public class CmdArgs implements Runnable {
   @Option(
       names = {"--amino"},
       description = "The amino acid representing the start of a gene.")
-  String aminoAcid;
+  String aminoAcid = "met"; // Default to methionine, the most common start amino acid
 
   @Option(
       names = {"--min"},
@@ -95,6 +95,21 @@ public class CmdArgs implements Runnable {
       description = "Prints 10 mutations of the DNA sequence, each with the specified number of mutations.")
   int mutationCount = 0;
 
+  @Option(
+      names = {"--verbose", "-V"},
+      description = "Enable verbose mode (detailed output)")
+  boolean verbose;
+
+  @Option(
+      names = {"--detailed", "-D"},
+      description = "Generate detailed report with statistical analysis")
+  boolean detailed;
+
+  @Option(
+      names = {"--quick", "-Q"},
+      description = "Quick analysis with basic features only")
+  boolean quick;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -126,11 +141,20 @@ public class CmdArgs implements Runnable {
         dnaAnalyzer = dnaAnalyzer.reverseComplement();
       }
 
-      dnaAnalyzer
-          .printProteins(System.out)
-          .printHighCoverageRegions(System.out)
-          .outPutCodons(minCount, maxCount, System.out)
-          .printLongestProtein(System.out);
+      if (quick) {
+        dnaAnalyzer.printProteins(System.out);
+      } else if (detailed) {
+        dnaAnalyzer
+            .printProteins(System.out)
+            .printHighCoverageRegions(System.out)
+            .outPutCodons(minCount, maxCount, System.out)
+            .printLongestProtein(System.out);
+      } else {
+        dnaAnalyzer
+            .printProteins(System.out)
+            .printHighCoverageRegions(System.out)
+            .printLongestProtein(System.out);
+      }
 
       if (mutationCount > 0) {
         DNAMutation.generateAndPrintMutatedSequences(dnaAnalyzer.dna().getDna(), mutationCount);

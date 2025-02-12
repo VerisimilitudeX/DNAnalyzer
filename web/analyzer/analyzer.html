@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Analysis - DNAnalyzer</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="analyzer.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blur"></div>
+    
+    <header class="floating-header">
+        <nav class="floating-nav">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../about/about.html" class="nav-link">About</a>
+            <a href="../features/features.html" class="nav-link">Features</a>
+            <a href="analyzer.html" class="nav-link active">Analyzer</a>
+            <a href="../server/server.html" class="nav-link">Server</a>
+        </nav>
+        <div class="header-buttons">
+            <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
+            <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>DNA Sequence Analysis</h1>
+        
+        <div class="tab-container">
+            <button class="tab-button active" data-tab="dna">DNA Analysis</button>
+            <button class="tab-button" data-tab="genetic">Genetic Testing Data</button>
+        </div>
+
+        <form id="analyzerForm" class="tab-content active" data-tab="dna">
+            <div class="input-group">
+                <div class="section-title">DNA Input</div>
+                <div class="input-tabs">
+                    <button type="button" class="input-tab active" data-input="file">Upload File</button>
+                    <button type="button" class="input-tab" data-input="url">URL Input</button>
+                </div>
+                <div class="input-content active" data-input="file">
+                    <label for="dnaFile">DNA File (FASTA/FASTQ):</label>
+                    <input type="file" id="dnaFile" accept=".fa,.fastq">
+                    <small>Upload a DNA sequence file in FASTA or FASTQ format</small>
+                </div>
+                <div class="input-content" data-input="url">
+                    <label for="dnaUrl">DNA File URL:</label>
+                    <input type="url" id="dnaUrl" placeholder="https://example.com/sequence.fa">
+                    <small>Enter the URL of a FASTA or FASTQ file</small>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="aminoAcid">Start Amino Acid:</label>
+                <select id="aminoAcid" required>
+                    <option value="met">Methionine (Met) - Most common start codon</option>
+                    <option value="ser">Serine (Ser)</option>
+                    <option value="thr">Threonine (Thr)</option>
+                    <option value="val">Valine (Val)</option>
+                    <option value="custom">Custom</option>
+                </select>
+                <input type="text" id="customAmino" placeholder="Enter custom amino acid" style="display: none;">
+            </div>
+
+            <div class="input-group">
+                <div class="section-title">Analysis Parameters</div>
+                <div class="flex-grid">
+                    <div>
+                        <label for="minCount">Minimum Count:</label>
+                        <input type="number" id="minCount" value="0" min="0">
+                    </div>
+                    <div>
+                        <label for="maxCount">Maximum Count:</label>
+                        <input type="number" id="maxCount" value="100" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="section-title">Sequence Operations</div>
+                <div class="options-grid">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="reverse" name="reverse">
+                        <label for="reverse">Reverse Sequence</label>
+                        <small>Analyze DNA sequence in reverse direction</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rcomplement" name="rcomplement">
+                        <label for="rcomplement">Show Complement</label>
+                        <small>Show complementary DNA sequence</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="section-title">Analysis Features</div>
+                <div class="options-grid">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="gc" name="gc">
+                        <label for="gc">GC Content</label>
+                        <small>Analyze GC content distribution</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="codons" name="codons">
+                        <label for="codons">Codon Distribution</label>
+                        <small>Analyze codon frequency</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="coverage" name="coverage">
+                        <label for="coverage">High Coverage</label>
+                        <small>Identify high coverage regions</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="longest" name="longest">
+                        <label for="longest">Longest Protein</label>
+                        <small>Find longest protein sequence</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="transcription" name="transcription">
+                        <label for="transcription">Transcription Factors</label>
+                        <small>Identify transcription factor binding sites</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="promoter" name="promoter">
+                        <label for="promoter">Promoter Analysis</label>
+                        <small>Identify promoter sequences</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="section-title">Output Options</div>
+                <div class="options-grid">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="verbose" name="verbose">
+                        <label for="verbose">Verbose Output</label>
+                        <small>Show detailed analysis information</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="detailed" name="detailed">
+                        <label for="detailed">Detailed Statistics</label>
+                        <small>Include statistical analysis</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="quick" name="quick">
+                        <label for="quick">Quick Analysis</label>
+                        <small>Basic analysis with essential features</small>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="format" name="format">
+                        <label for="format">Format Output</label>
+                        <small>Pretty-print the analysis results</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="proteinFile">Protein Search File (Optional):</label>
+                <input type="file" id="proteinFile">
+                <small>Upload a protein file to find specific sequences within the DNA</small>
+            </div>
+
+            <button type="submit" class="analyze-btn">Analyze DNA Sequence</button>
+            <img src="https://via.placeholder.com/150" alt="Software Visual Placeholder">
+        </form>
+
+        <form id="geneticForm" class="tab-content" data-tab="genetic" style="display: none;">
+            <div class="input-group">
+                <div class="section-title">Genetic Testing Data Analysis</div>
+                <div class="file-upload-group">
+                    <label for="geneticFile">Genetic Testing File:</label>
+                    <input type="file" id="geneticFile" accept=".txt">
+                    <small>Upload data from 23andMe or AncestryDNA</small>
+                </div>
+                <div class="options-grid">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="snpAnalysis" name="snpAnalysis">
+                        <label for="snpAnalysis">SNP Analysis</label>
+                        <small>Analyze Single Nucleotide Polymorphisms</small>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="analyze-btn">Analyze Genetic Data</button>
+        </form>
+
+        <div id="results" class="results" style="display: none;">
+            <h2>Analysis Results</h2>
+            <pre id="analysisOutput"></pre>
+        </div>
+    </div>
+
+    <script src="analyzer.js"></script>
+</body>
+</html>

@@ -1,360 +1,384 @@
-/*
- * Copyright © 2025 Piyush Acharya. Some rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
- *
- * You are entirely responsible for the use of this application, including any and all activities that occur.
- * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
- * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
- *
- * For further inquiries, please reach out to contact@dnanalyzer.live
- */
-
-@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap');
-
 :root {
-    --background-color: rgba(255, 255, 255, 0.05);
-    --text-color: rgba(255, 255, 255, 0.9);
-    --card-background: rgba(255, 255, 255, 0.1);
-    --button-background: rgba(255, 255, 255, 0.2);
-    --button-hover: rgba(255, 255, 255, 0.3);
-    --accent-color: #007AFF;
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #0a0c1b;
+    --surface-color: #1a1c2a;
+    --text-color: #ffffff;
+    --border-color: #2a2c3a;
+    --hover-color: #0056b3;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --placeholder-color: #6c757d;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'SF Pro Display', sans-serif;
 }
 
 body {
-    background-color: #000;
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
-    cursor: none;
 }
 
-.custom-cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-}
-
-.background-blur {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(100, 100, 255, 0.2), rgba(50, 50, 150, 0.1));
-    filter: blur(100px);
-    z-index: -1;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.floating-header {
-    backdrop-filter: blur(20px);
-    background-color: rgba(0, 0, 0, 0.3);
+nav {
+    background-color: var(--surface-color);
     padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* This ensures vertical centering */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.floating-nav {
-    display: flex;
-    gap: 1rem;
-}
-
-.nav-link {
+nav a {
     color: var(--text-color);
     text-decoration: none;
-    font-weight: 500;
+    margin-right: 2rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+.right-links {
+    margin-left: auto;
+}
+
+.button {
+    background-color: var(--primary-color);
     padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.nav-link:hover {
-    background-color: var(--button-background);
-    transform: scale(1.05);
-}
-
-.header-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-.glass-button {
-    background-color: var(--button-background);
-    color: var(--text-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    cursor: none;
+    border-radius: 4px;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
 }
 
-.glass-button:hover {
-    background-color: var(--button-hover);
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.button:hover {
+    background-color: var(--hover-color);
+    color: var(--text-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.glass-button.large {
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
+main {
+    padding-top: 4rem;
 }
 
-.hero-section {
+section {
+    padding: 4rem 2rem;
+}
+
+#hero {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    background: radial-gradient(circle at center, var(--surface-color), var(--background-color));
 }
 
-.hero-title {
-    font-size: 5rem;
-    font-weight: 700;
+#hero img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 4rem;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, #007AFF, #00BFFF);
+    background: linear-gradient(45deg, var(--primary-color), #00ffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: fadeInUp 1s ease-out;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.hero-subtitle {
-    font-size: 1.5rem;
-    opacity: 0.8;
-    max-width: 600px;
-    animation: fadeInUp 1s ease-out 0.3s both;
-}
-
-.content-section {
-    margin-top: 5rem;
-    padding: 2rem 0;
-}
-
-.section-title {
+h2 {
     font-size: 2.5rem;
-    text-align: center;
     margin-bottom: 2rem;
-    color: var(--accent-color);
-    animation: fadeInUp 1s ease-out;
+    text-align: center;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.glass-card {
-    background-color: var(--card-background);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: fadeInUp 1s ease-out;
-}
-
-.glass-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.glass-card h2 {
-    font-size: 1.8rem;
+h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--accent-color);
 }
 
-.glass-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--accent-color);
-}
-
-.feature-card {
-    text-align: center;
-}
-
-.nav-link, .glass-button {
-    /* Ensure consistent padding and possibly line-height */
-    padding: 1rem -50px;
-    line-height: 1.5; /* Adjust based on your design */
-    /* Other styles remain unchanged */
-}
-
-.glass-footer {
-    text-align: center;
-    padding: 2rem;
-    background-color: var(--background-color);
-    backdrop-filter: blur(10px);
+.cta-buttons {
     margin-top: 2rem;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .floating-header {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 1rem;
-        top: 10px;
-        width: 90%;
-    }
-
-    .floating-nav,
-    .header-buttons {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .nav-link,
-    .glass-button {
-        text-align: center;
-    }
-
-    .hero-title {
-        font-size: 3rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-}
-
-/* ... (previous CSS remains the same) ... */
-
-.floating-header {
-    backdrop-filter: blur(20px);
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 1rem;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 50px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 1200px;
-}
-
-.floating-nav {
-    display: flex;
-    gap: 1rem;
-}
-
-.nav-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-}
-
-.header-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-.glass-button {
-    background-color: rgba(255, 255, 255, 0.2);
+button {
+    background-color: var(--primary-color);
     color: var(--text-color);
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    cursor: none;
+    padding: 0.8rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
+    font-family: inherit;
 }
 
-.glass-button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px) scale(1.05);
+button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.analysis-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* ... (rest of the CSS remains the same) ... */
+.input-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
 
-@media screen and (max-width: 768px) {
-    .floating-header {
+.file-input-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.help-text {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.example-files {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.example-files h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.example-files ul {
+    list-style: none;
+}
+
+.example-files a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.example-files a:hover {
+    color: var(--primary-color);
+}
+
+select, input[type="number"] {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 0.5rem;
+    font-family: inherit;
+}
+
+select::placeholder, input[type="number"]::placeholder {
+    color: var(--placeholder-color);
+}
+
+.parameters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.parameter {
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.parameter:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.parameter label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.param-help {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    margin-top: 0.5rem;
+}
+
+.analyze-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.analyze-button:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#results {
+    margin-top: 2rem;
+}
+
+.results-container, .error-container {
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.results-container pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    border: 1px solid var(--border-color);
+}
+
+.error-container {
+    border: 1px solid var(--error-color);
+    animation: shake 0.5s ease-in-out;
+}
+
+.error-container h3 {
+    color: var(--error-color);
+}
+
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.loading-indicator::after {
+    content: '';
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    margin-left: 1rem;
+    animation: spin 1s linear infinite;
+}
+
+.results-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.feature {
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.feature h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@media (max-width: 768px) {
+    nav {
         flex-direction: column;
-        align-items: center;
         padding: 1rem;
-        top: 10px;
-        width: 95%;
     }
 
-    .floating-nav,
-    .header-buttons {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+    nav a {
+        margin: 0.5rem 0;
     }
 
-    .nav-link,
-    .glass-button {
-        text-align: center;
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
+    .right-links {
+        margin: 1rem 0 0 0;
+    }
+
+    .parameters-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
     }
 }

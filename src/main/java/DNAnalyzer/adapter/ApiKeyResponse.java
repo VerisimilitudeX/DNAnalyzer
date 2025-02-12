@@ -1,8 +1,14 @@
 package DNAnalyzer.adapter;
 
-/**
- * Response to return the API key.
- *
- * @param apiKey the API key.
- */
-public record ApiKeyResponse(String apiKey) {}
+/** Response object for API key status. */
+public class ApiKeyResponse {
+  private final boolean configured;
+
+  public ApiKeyResponse(boolean configured) {
+    this.configured = configured;
+  }
+
+  public boolean isConfigured() {
+    return configured;
+  }
+}

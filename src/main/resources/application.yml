@@ -1,3 +1,23 @@
-openai:
-  api:
-    key: default
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  web:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+      allowed-headers: "*"
+      allow-credentials: true
+      max-age: 3600
+
+logging:
+  level:
+    root: INFO
+    DNAnalyzer: DEBUG

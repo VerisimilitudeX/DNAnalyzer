@@ -1,28 +1,50 @@
 package DNAnalyzer.core;
 
-import DNAnalyzer.core.port.in.GetApiKeyUseCase;
-import DNAnalyzer.core.port.in.SetApiKeyUseCase;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-/** The purpose of this service is to handle all operations concerning the OpenAI API key. */
+/**
+ * Service for managing OpenAI API key.
+ * Supports both environment variable and runtime configuration.
+ */
 @Service
-public class ApiKeyService implements GetApiKeyUseCase, SetApiKeyUseCase {
+public class ApiKeyService {
+    
+    @Value("${openai.api.key:}")
+    private String apiKey;
 
-  @Value("${openai.api.key}")
-  private String apiKey;
-
-  @Override
-  public String getApiKey() {
-    if (apiKey == null) {
-      throw new ApiKeyMissingException("No API-Key defined.");
+    /**
+     * Gets the current API key.
+     *
+     * @return The API key if set, or null if not configured
+     */
+    public String getApiKey() {
+        if (apiKey == null || apiKey.trim().isEmpty()) {
+            // Try getting from environment variable as fallback
+            apiKey = System.getenv("OPENAI_API_KEY");
+        }
+        return apiKey;
     }
-    return apiKey;
-  }
 
-  @Override
-  public String setApiKey(String apiKey) {
-    this.apiKey = apiKey;
-    return this.apiKey;
-  }
+    /**
+     * Sets a new API key.
+     *
+     * @param newApiKey The new API key to set
+     */
+    public void setApiKey(String newApiKey) {
+        if (newApiKey == null || newApiKey.trim().isEmpty()) {
+            throw new IllegalArgumentException("API key cannot be null or empty");
+        }
+        this.apiKey = newApiKey.trim();
+    }
+
+    /**
+     * Checks if an API key is configured.
+     *
+     * @return true if an API key is set, false otherwise
+     */
+    public boolean hasApiKey() {
+        String key = getApiKey();
+        return key != null && !key.trim().isEmpty();
+    }
 }

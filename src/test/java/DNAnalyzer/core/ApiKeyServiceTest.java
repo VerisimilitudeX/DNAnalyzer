@@ -1,42 +1,28 @@
 package DNAnalyzer.core;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.util.ReflectionTestUtils;
 
 class ApiKeyServiceTest {
 
-  @DisplayName("Get the api key, given it was set before.")
+  private ApiKeyService apiKeyService = new ApiKeyService();
+
   @Test
-  void testGetApiKey_key_is_set() {
-    ApiKeyService apiKeyService = new ApiKeyService();
-    ReflectionTestUtils.setField(apiKeyService, "apiKey", "2134432-mock-key");
-    String result = apiKeyService.getApiKey();
-    Assertions.assertThat(result).isEqualTo("2134432-mock-key");
+  void shouldSetAndGetApiKey() {
+    String newKey = "test-api-key";
+    apiKeyService.setApiKey(newKey);
+    assertEquals(newKey, apiKeyService.getApiKey());
   }
 
-  @DisplayName("Get api key, verify that an exception is thrown when not set.")
   @Test
-  void testGetApiKey_no_key_is_set() {
-    ApiKeyService apiKeyService = new ApiKeyService();
-
-    Exception exception = assertThrows(ApiKeyMissingException.class, apiKeyService::getApiKey);
-
-    assertEquals("No API-Key defined.", exception.getMessage());
+  void shouldReturnFalseWhenNoKeySet() {
+    assertFalse(apiKeyService.hasApiKey());
   }
 
-  @DisplayName("Set a new API key.")
   @Test
-  void setApiKey() {
-    String newKey = "9999999-new-key";
-
-    ApiKeyService apiKeyService = new ApiKeyService();
-    String result = apiKeyService.setApiKey(newKey);
-
-    Assertions.assertThat(result).isEqualTo("9999999-new-key");
+  void shouldReturnTrueWhenKeySet() {
+    apiKeyService.setApiKey("test-key");
+    assertTrue(apiKeyService.hasApiKey());
   }
 }

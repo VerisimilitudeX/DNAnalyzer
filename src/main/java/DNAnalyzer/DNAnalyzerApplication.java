@@ -1,14 +1,32 @@
 package DNAnalyzer;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/** Main class to run the DNAnalyzer program with a webserver. */
+/**
+ * Spring Boot Application configuration for DNAnalyzer web server.
+ * Handles web-specific configuration like CORS settings.
+ */
 @SpringBootApplication
 public class DNAnalyzerApplication {
 
-  /** Main method to run the DNAnalyzer program with a webserver. */
-  public static void main(final String[] args) {
-    SpringApplication.run(DNAnalyzerApplication.class);
-  }
+    /**
+     * Configure CORS for the web server.
+     * Allows web interface to communicate with the local analyzer.
+     */
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/api/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .maxAge(3600);
+            }
+        };
+    }
 }

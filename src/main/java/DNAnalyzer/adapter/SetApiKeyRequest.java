@@ -1,8 +1,14 @@
 package DNAnalyzer.adapter;
 
-/**
- * Request to set the API key.
- *
- * @param apiKey the API key to set.
- */
-public record SetApiKeyRequest(String apiKey) {}
+/** Request object for setting API key. */
+public class SetApiKeyRequest {
+  private String apiKey;
+
+  public String getApiKey() {
+    return apiKey;
+  }
+
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
+  }
+}
