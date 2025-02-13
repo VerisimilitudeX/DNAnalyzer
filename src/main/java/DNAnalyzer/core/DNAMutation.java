@@ -1,8 +1,16 @@
 package DNAnalyzer.core;
 
 import java.util.Random;
+
+import DNAnalyzer.utils.core.DNATools;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.FileWriter;
+import java.util.Date;
 
 /**
  * This class provides provides functionality for generating mutated DNA
@@ -21,11 +29,35 @@ public class DNAMutation {
    * @param numMutations The number of base mutations to apply to each mutated
    *                     sequence
    */
-  public static void generateAndPrintMutatedSequences(String dnaString, int numMutations) {
-    int numSequences = 10;
+  public static void generateAndWriteMutatedSequences(String dnaString, int numMutations, PrintStream out) {
+    List<String> mutatedSequences = new ArrayList<>();
 
-    for (int i = 0; i < numSequences; i++) {
-      System.out.println(mutate(dnaString, numMutations));
+    out.println("\nMutating DNA sequence...");
+
+    // Generate 10 mutated sequences
+    for (int i = 0; i < 10; i++) {
+      DNATools mutatedDna = new DNATools(mutate(dnaString, numMutations));
+      mutatedSequences.add(mutatedDna.dna()); // Store the mutated DNA sequence to the list
+    }
+
+    // Dynamically generate the file name based on the current timestamp
+    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    String fileName = "mutated_dna_" + timestamp + ".fa";
+
+    // Write the mutated sequences to a file
+    try (FileWriter writer = new FileWriter(fileName)) {
+      for (int i = 0; i < mutatedSequences.size(); i++) {
+        writer.write(">mutation_" + (i + 1) + "\n");  // Write a header for each mutated sequence
+        String mutatedSequence = mutatedSequences.get(i);
+  
+        // Write the sequence over multiple lines (e.g., 80 characters per line)
+        for (int j = 0; j < mutatedSequence.length(); j += 80) {
+          writer.write(mutatedSequence.substring(j, Math.min(j + 80, mutatedSequence.length())) + "\n");
+        }
+      }
+      out.println("Mutated DNA sequences have been written to: " + fileName + "\n");
+    } catch (IOException e) {
+      out.println("Error writing to file: " + e.getMessage() + "\n");
     }
   }
 

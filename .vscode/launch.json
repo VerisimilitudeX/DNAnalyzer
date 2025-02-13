@@ -21,7 +21,7 @@
       "request": "launch",
       "mainClass": "DNAnalyzer.Main",
       "projectName": "DNAnalyzer",
-      "args": "assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r --rcomplement --version --mutate 1"
+      "args": "assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r --rcomplement --version --mutate 10"
     }
   ]
 }

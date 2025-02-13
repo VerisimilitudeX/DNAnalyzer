@@ -92,7 +92,7 @@ public class CmdArgs implements Runnable {
 
   @Option(
       names = {"--mutate"},
-      description = "Prints 10 mutations of the DNA sequence, each with the specified number of mutations.")
+      description = "Generates 10 mutations of the DNA sequence, each with the specified number of mutations, and saves them to a file.")
   int mutationCount = 0;
 
   @Option(
@@ -133,6 +133,10 @@ public class CmdArgs implements Runnable {
     } else {
       DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid).isValidDna().replaceDNA("u", "t");
 
+      if (mutationCount > 0) {
+        DNAMutation.generateAndWriteMutatedSequences(dnaAnalyzer.dna().getDna(), mutationCount, System.out);
+      }
+
       if (reverse) {
         dnaAnalyzer = dnaAnalyzer.reverseDna();
       }
@@ -154,10 +158,6 @@ public class CmdArgs implements Runnable {
             .printProteins(System.out)
             .printHighCoverageRegions(System.out)
             .printLongestProtein(System.out);
-      }
-
-      if (mutationCount > 0) {
-        DNAMutation.generateAndPrintMutatedSequences(dnaAnalyzer.dna().getDna(), mutationCount);
       }
 
       if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
