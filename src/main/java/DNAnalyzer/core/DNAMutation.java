@@ -1,35 +1,30 @@
 package DNAnalyzer.core;
 
-import java.util.Random;
-
 import DNAnalyzer.utils.core.DNATools;
-
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.io.FileWriter;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
-/**
- * This class provides provides functionality for generating mutated DNA
- * sequences.
- */
+/** This class provides provides functionality for generating mutated DNA sequences. */
 public class DNAMutation {
 
-  private static final char[] BASES = { 'A', 'T', 'C', 'G', 'N' };
+  private static final char[] BASES = {'A', 'T', 'C', 'G', 'N'};
   private static Random random = new Random();
 
   /**
-   * Generates a list of 10 mutated DNA sequences based on the specified number of
-   * base mutations and prints them to the console.
-   * 
-   * @param dnaString    Original DNA sequence to mutate
-   * @param numMutations The number of base mutations to apply to each mutated
-   *                     sequence
+   * Generates a list of 10 mutated DNA sequences based on the specified number of base mutations
+   * and prints them to the console.
+   *
+   * @param dnaString Original DNA sequence to mutate
+   * @param numMutations The number of base mutations to apply to each mutated sequence
    */
-  public static void generateAndWriteMutatedSequences(String dnaString, int numMutations, PrintStream out) {
+  public static void generateAndWriteMutatedSequences(
+      String dnaString, int numMutations, PrintStream out) {
     List<String> mutatedSequences = new ArrayList<>();
 
     out.println("\nMutating DNA sequence...");
@@ -47,12 +42,13 @@ public class DNAMutation {
     // Write the mutated sequences to a file
     try (FileWriter writer = new FileWriter(fileName)) {
       for (int i = 0; i < mutatedSequences.size(); i++) {
-        writer.write(">mutation_" + (i + 1) + "\n");  // Write a header for each mutated sequence
+        writer.write(">mutation_" + (i + 1) + "\n"); // Write a header for each mutated sequence
         String mutatedSequence = mutatedSequences.get(i);
-  
+
         // Write the sequence over multiple lines (e.g., 80 characters per line)
         for (int j = 0; j < mutatedSequence.length(); j += 80) {
-          writer.write(mutatedSequence.substring(j, Math.min(j + 80, mutatedSequence.length())) + "\n");
+          writer.write(
+              mutatedSequence.substring(j, Math.min(j + 80, mutatedSequence.length())) + "\n");
         }
       }
       out.println("Mutated DNA sequences have been written to: " + fileName + "\n");
@@ -64,16 +60,17 @@ public class DNAMutation {
   /**
    * Mutates a DNA sequence with a specified number of random base mutations.
    *
-   * @param dnaString    Original DNA sequence to mutate
-   * @param numMutations The number of mutations (substitutions) to apply to the
-   *                     sequence
+   * @param dnaString Original DNA sequence to mutate
+   * @param numMutations The number of mutations (substitutions) to apply to the sequence
    * @return A new mutated DNA sequence
    */
   private static String mutate(String dnaString, int numMutations) {
     StringBuilder mutatedDna = new StringBuilder(dnaString);
 
     if (numMutations > mutatedDna.length()) {
-      System.out.println("Warning: Number of requested mutations exceeds DNA length. Limiting to " + mutatedDna.length());
+      System.out.println(
+          "Warning: Number of requested mutations exceeds DNA length. Limiting to "
+              + mutatedDna.length());
       numMutations = mutatedDna.length();
     }
 
@@ -108,7 +105,7 @@ public class DNAMutation {
     int index = new String(BASES).indexOf(originalBase);
 
     // Pick a random index that isn’t the same as the original
-    int newIndex = (index + 1 + random.nextInt(BASES.length - 1)) % BASES.length; 
+    int newIndex = (index + 1 + random.nextInt(BASES.length - 1)) % BASES.length;
 
     return BASES[newIndex];
   }

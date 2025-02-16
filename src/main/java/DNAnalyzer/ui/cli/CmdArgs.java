@@ -11,17 +11,17 @@
 
 package DNAnalyzer.ui.cli;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
+import static DNAnalyzer.data.Parser.parseFile;
 
 import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.core.Properties;
 import DNAnalyzer.core.DNAMutation;
-import static DNAnalyzer.data.Parser.parseFile;
+import DNAnalyzer.core.Properties;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
@@ -92,7 +92,9 @@ public class CmdArgs implements Runnable {
 
   @Option(
       names = {"--mutate"},
-      description = "Generates 10 mutations of the DNA sequence, each with the specified number of mutations, and saves them to a file.")
+      description =
+          "Generates 10 mutations of the DNA sequence, each with the specified number of mutations,"
+              + " and saves them to a file.")
   int mutationCount = 0;
 
   @Option(
@@ -134,7 +136,8 @@ public class CmdArgs implements Runnable {
       DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid).isValidDna().replaceDNA("u", "t");
 
       if (mutationCount > 0) {
-        DNAMutation.generateAndWriteMutatedSequences(dnaAnalyzer.dna().getDna(), mutationCount, System.out);
+        DNAMutation.generateAndWriteMutatedSequences(
+            dnaAnalyzer.dna().getDna(), mutationCount, System.out);
       }
 
       if (reverse) {
