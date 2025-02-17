@@ -26,6 +26,18 @@ public class DNAMutation {
   public static void generateAndWriteMutatedSequences(
       String dnaString, int numMutations, PrintStream out) {
     List<String> mutatedSequences = new ArrayList<>();
+    
+    String dnaStringUnknownBasesRemoved = removeUnknownBases(dnaString);
+
+    if (dnaStringUnknownBasesRemoved.length() == 0) {
+      out.println("No valid bases to mutate.");
+      return;
+    }
+
+    if (numMutations > dnaStringUnknownBasesRemoved.length()) {
+      out.println("Warning: Number of mutations exceeds valid mutable bases. Limiting to: " + dnaStringUnknownBasesRemoved.length());
+      numMutations = dnaStringUnknownBasesRemoved.length();
+    }
 
     out.println("\nMutating DNA sequence...");
 
@@ -67,18 +79,14 @@ public class DNAMutation {
   private static String mutate(String dnaString, int numMutations) {
     StringBuilder mutatedDna = new StringBuilder(dnaString);
 
-    if (numMutations > mutatedDna.length()) {
-      System.out.println(
-          "Warning: Number of requested mutations exceeds DNA length. Limiting to "
-              + mutatedDna.length());
-      numMutations = mutatedDna.length();
-    }
-
     // Create a list of all possible positions
     List<Integer> availablePositions = new ArrayList<>();
     for (int i = 0; i < dnaString.length(); i++) {
-      availablePositions.add(i);
-    }
+      char base = dnaString.charAt(i);
+      if (base != 'n' && base != 'N') { // ignore unknown bases
+          availablePositions.add(i);
+      }
+  }
 
     // Perform mutations
     for (int i = 0; i < numMutations; i++) {
@@ -93,6 +101,19 @@ public class DNAMutation {
     }
 
     return mutatedDna.toString();
+  }
+
+  private static String removeUnknownBases(String dnaString) {
+    StringBuilder cleanedDna = new StringBuilder();
+
+    for (int i = 0; i < dnaString.length(); i++) {
+        char base = dnaString.charAt(i);
+        if (base != 'n' && base != 'N') {
+            cleanedDna.append(base); // Add only valid bases
+        }
+    }
+
+    return cleanedDna.toString();
   }
 
   /**
