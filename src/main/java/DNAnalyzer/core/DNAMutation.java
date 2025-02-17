@@ -103,6 +103,13 @@ public class DNAMutation {
     return mutatedDna.toString();
   }
 
+  /**
+   * Removes any unknown bases ('n' or 'N') from a given DNA sequence.
+   * 
+   * @param dnaString The original DNA sequence as a {@link String}.
+   * @return A new {@link String} with all occurrences of 'n' or 'N' removed.
+   *         If the input contains only unknown bases, an empty string is returned.
+   */
   private static String removeUnknownBases(String dnaString) {
     StringBuilder cleanedDna = new StringBuilder();
 
