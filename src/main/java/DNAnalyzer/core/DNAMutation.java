@@ -27,23 +27,30 @@ public class DNAMutation {
       String dnaString, int numMutations, PrintStream out) {
     List<String> mutatedSequences = new ArrayList<>();
     
-    String dnaStringUnknownBasesRemoved = removeUnknownBases(dnaString);
-
-    if (dnaStringUnknownBasesRemoved.length() == 0) {
-      out.println("No valid bases to mutate.");
-      return;
+    // Create an index of available positions to mutate (remove indexes of unknown bases)
+    List<Integer> availablePositions = new ArrayList<>();
+    for (int i = 0; i < dnaString.length(); i++) {
+      char base = dnaString.charAt(i);
+      if (base != 'n' && base != 'N') { // Ignore unknown bases
+        availablePositions.add(i);
+      }
     }
 
-    if (numMutations > dnaStringUnknownBasesRemoved.length()) {
-      out.println("Warning: Number of mutations exceeds valid mutable bases. Limiting to: " + dnaStringUnknownBasesRemoved.length());
-      numMutations = dnaStringUnknownBasesRemoved.length();
+    if (availablePositions.size() == 0) {
+      out.println("No valid bases to mutate, skipping mutation.");
+      return;
+  }
+
+    if (numMutations > availablePositions.size()) {
+      out.println("Warning: Number of mutations exceeds valid mutable bases. Limiting to: " + availablePositions.size());
+      numMutations = availablePositions.size();
     }
 
     out.println("\nMutating DNA sequence...");
 
     // Generate 10 mutated sequences
     for (int i = 0; i < 10; i++) {
-      DNATools mutatedDna = new DNATools(mutate(dnaString, numMutations));
+      DNATools mutatedDna = new DNATools(mutate(dnaString, numMutations, availablePositions));
       mutatedSequences.add(mutatedDna.dna()); // Store the mutated DNA sequence to the list
     }
 
@@ -74,19 +81,11 @@ public class DNAMutation {
    *
    * @param dnaString Original DNA sequence to mutate
    * @param numMutations The number of mutations (substitutions) to apply to the sequence
+   * @param availablePositions A list of indices representing available positions for mutation 
    * @return A new mutated DNA sequence
    */
-  private static String mutate(String dnaString, int numMutations) {
+  private static String mutate(String dnaString, int numMutations, List<Integer> availablePositions) {
     StringBuilder mutatedDna = new StringBuilder(dnaString);
-
-    // Create a list of all possible positions
-    List<Integer> availablePositions = new ArrayList<>();
-    for (int i = 0; i < dnaString.length(); i++) {
-      char base = dnaString.charAt(i);
-      if (base != 'n' && base != 'N') { // ignore unknown bases
-          availablePositions.add(i);
-      }
-  }
 
     // Perform mutations
     for (int i = 0; i < numMutations; i++) {
@@ -101,26 +100,6 @@ public class DNAMutation {
     }
 
     return mutatedDna.toString();
-  }
-
-  /**
-   * Removes any unknown bases ('n' or 'N') from a given DNA sequence.
-   * 
-   * @param dnaString The original DNA sequence as a {@link String}.
-   * @return A new {@link String} with all occurrences of 'n' or 'N' removed.
-   *         If the input contains only unknown bases, an empty string is returned.
-   */
-  private static String removeUnknownBases(String dnaString) {
-    StringBuilder cleanedDna = new StringBuilder();
-
-    for (int i = 0; i < dnaString.length(); i++) {
-        char base = dnaString.charAt(i);
-        if (base != 'n' && base != 'N') {
-            cleanedDna.append(base); // Add only valid bases
-        }
-    }
-
-    return cleanedDna.toString();
   }
 
   /**
