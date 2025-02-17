@@ -11,8 +11,7 @@
         <a href="#" class="active">Home</a>
         <a href="about/about.html">About</a>
         <a href="#features">Features</a>
-        <a href="#analyzer">Analyzer</a>
-        <a href="#server">Server</a>
+        <a href="docs/docs.html">Docs</a>
         <div class="right-links">
             <a href="https://github.com/yourusername/DNAnalyzer" target="_blank" class="button">GitHub Repository</a>
             <a href="https://discord.gg/yourdiscord" target="_blank" class="button">Discord Server</a>
@@ -23,110 +22,10 @@
         <section id="hero">
             <h1>DNAnalyzer</h1>
             <p>A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences</p>
-            <img src="https://via.placeholder.com/300" alt="Software Visual Placeholder">
             <div class="cta-buttons">
-                <button id="try-dna" onclick="location.href='#analyzer'">Try DNA Analysis</button>
-                <button id="view-github" onclick="window.open('https://github.com/yourusername/DNAnalyzer', '_blank')">View on GitHub</button>
+                <button id="try-dna">Get Started</button>
+                <button id="view-github">View on GitHub</button>
             </div>
-        </section>
-
-        <section id="analyzer">
-            <h2>DNA Sequence Analysis</h2>
-            <div class="analysis-container">
-                <form id="analysis-form">
-                    <div class="input-section">
-                        <h3>DNA Input</h3>
-                        <div class="file-input-container">
-                            <input type="file" id="dna-file" accept=".fa,.fasta,.fastq" hidden>
-                            <button type="button" onclick="document.getElementById('dna-file').click()">Choose File</button>
-                            <span id="file-name">No file chosen</span>
-                        </div>
-                        <p class="help-text">Upload a DNA sequence file in FASTA or FASTQ format</p>
-                        <div class="example-files">
-                            <h4>Example Files:</h4>
-                            <ul>
-                                <li><a href="assets/dna/example/test.fa" download>Sample DNA Sequence (test.fa)</a></li>
-                                <li><a href="assets/dna/real/brca1.fa" download>BRCA1 Gene (brca1.fa)</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="input-section">
-                        <h3>Start Amino Acid</h3>
-                        <select id="start-codon">
-                            <option value="M">Methionine (Met) - Most common start codon</option>
-                            <option value="V">Valine (Val)</option>
-                            <option value="L">Leucine (Leu)</option>
-                            <option value="I">Isoleucine (Ile)</option>
-                        </select>
-                        <p class="help-text">Select the amino acid to start the analysis from</p>
-                    </div>
-
-                    <div class="input-section">
-                        <h3>Analysis Parameters</h3>
-                        <div class="parameters-grid">
-                            <div class="parameter">
-                                <label for="min-count">Minimum Count:</label>
-                                <input type="number" id="min-count" value="1" min="1">
-                                <p class="param-help">Minimum count threshold for codon analysis</p>
-                            </div>
-                            <div class="parameter">
-                                <label for="max-count">Maximum Count:</label>
-                                <input type="number" id="max-count" value="100" min="1">
-                                <p class="param-help">Maximum count threshold for codon analysis</p>
-                            </div>
-                            <div class="parameter">
-                                <label>
-                                    <input type="checkbox" id="reverse">
-                                    Reverse DNA
-                                </label>
-                                <p class="param-help">Analyze the DNA sequence in reverse order</p>
-                            </div>
-                            <div class="parameter">
-                                <label>
-                                    <input type="checkbox" id="rcomplement">
-                                    Reverse Complement
-                                </label>
-                                <p class="param-help">Analyze the reverse complement of the DNA sequence</p>
-                            </div>
-                            <div class="parameter">
-                                <label>
-                                    <input type="checkbox" id="codons">
-                                    Codon Analysis
-                                </label>
-                                <p class="param-help">Analyze codon frequencies and patterns</p>
-                            </div>
-                            <div class="parameter">
-                                <label>
-                                    <input type="checkbox" id="coverage">
-                                    Coverage Analysis
-                                </label>
-                                <p class="param-help">Analyze sequence coverage and depth</p>
-                            </div>
-                            <div class="parameter">
-                                <label>
-                                    <input type="checkbox" id="longest">
-                                    Find Longest
-                                </label>
-                                <p class="param-help">Find the longest potential gene sequence</p>
-                            </div>
-                            <div class="parameter">
-                                <label for="format">Output Format:</label>
-                                <select id="format">
-                                    <option value="text">Text</option>
-                                    <option value="json">JSON</option>
-                                    <option value="csv">CSV</option>
-                                </select>
-                                <p class="param-help">Choose the format for analysis results</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="analyze-button">Analyze DNA</button>
-                    <img src="https://via.placeholder.com/300" alt="Software Visual Placeholder">
-                </form>
-            </div>
-            <div id="results"></div>
         </section>
 
         <section id="features">
