@@ -9,6 +9,8 @@
     --error-color: #dc3545;
     --success-color: #28a745;
     --placeholder-color: #6c757d;
+    --gradient-start: #007AFF;
+    --gradient-end: #00BFFF;
 }
 
 * {
@@ -25,7 +27,8 @@ body {
 }
 
 nav {
-    background-color: var(--surface-color);
+    background-color: rgba(26, 28, 42, 0.95);
+    backdrop-filter: blur(10px);
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
@@ -33,36 +36,46 @@ nav {
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.nav-logo {
+    height: 24px;
+    margin-right: 0.5rem;
 }
 
 nav a {
     color: var(--text-color);
     text-decoration: none;
     margin-right: 2rem;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
 nav a:hover {
-    color: var(--primary-color);
+    color: var(--gradient-end);
+    transform: translateY(-1px);
 }
 
 .right-links {
     margin-left: auto;
+    display: flex;
+    gap: 1rem;
 }
 
 .button {
-    background-color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .button:hover {
-    background-color: var(--hover-color);
-    color: var(--text-color);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    filter: brightness(1.1);
 }
 
 main {
@@ -74,25 +87,34 @@ section {
 }
 
 #hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     background: radial-gradient(circle at center, var(--surface-color), var(--background-color));
+    padding: 2rem;
 }
 
-#hero img {
-    max-width: 100%;
+.hero-image {
+    max-width: 800px;
+    width: 90%;
     height: auto;
-    margin-bottom: 2rem;
+    margin: 3rem 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: translateY(-5px);
 }
 
 h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--primary-color), #00ffff);
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -111,6 +133,34 @@ h3 {
 
 .cta-buttons {
     margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 button {
@@ -318,7 +368,7 @@ select::placeholder, input[type="number"]::placeholder {
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -343,6 +393,40 @@ select::placeholder, input[type="number"]::placeholder {
     margin-bottom: 1rem;
 }
 
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border-color: var(--gradient-end);
+}
+
+.feature-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.5rem;
+}
+
+.feature-card h3 {
+    color: var(--gradient-end);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.feature-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
@@ -357,28 +441,31 @@ select::placeholder, input[type="number"]::placeholder {
 
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
         padding: 1rem;
     }
 
     nav a {
-        margin: 0.5rem 0;
+        margin-right: 1rem;
     }
 
     .right-links {
-        margin: 1rem 0 0 0;
-    }
-
-    .parameters-grid {
-        grid-template-columns: 1fr;
+        display: none;
     }
 
     h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .hero-image {
+        width: 100%;
     }
 
     .features-grid {
         grid-template-columns: 1fr;
         padding: 1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
     }
 }

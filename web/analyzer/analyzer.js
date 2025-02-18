@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Input type tabs
     const inputTabs = document.querySelectorAll('.input-tab');
     const inputContents = document.querySelectorAll('.input-content');
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator';
 
     inputTabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -156,49 +158,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const analyzeBtn = document.querySelector('#geneticForm .analyze-btn');
-        const originalText = analyzeBtn.textContent;
-        const results = document.getElementById('results');
-        const analysisOutput = document.getElementById('analysisOutput');
+        const formData = new FormData();
+        formData.append('geneticFile', geneticFile);
+        formData.append('snpAnalysis', document.getElementById('snpAnalysis').checked);
 
-        try {
-            // Show loading state
-            analyzeBtn.textContent = 'Analyzing...';
-            analyzeBtn.disabled = true;
-            results.style.display = 'block';
-            analysisOutput.textContent = 'Processing genetic data... This may take a few moments.';
-
-            const formData = new FormData();
-            formData.append('geneticFile', geneticFile);
-            formData.append('snpAnalysis', document.getElementById('snpAnalysis').checked);
-
-            const response = await fetch('http://localhost:8080/api/analyze-genetic', {
-                method: 'POST',
-                body: formData
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.text();
-            results.style.display = 'block';
-            analysisOutput.textContent = data;
-            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-        } catch (error) {
-            console.error('Error:', error);
-            results.style.display = 'block';
-            analysisOutput.textContent = 'Error: Could not process genetic testing data. Please ensure the file format is correct and the server is running.';
-        } finally {
-            analyzeBtn.textContent = originalText;
-            analyzeBtn.disabled = false;
-        }
+        await submitAnalysis(formData, '/api/analyze-genetic');
     });
 
     // Common analysis submission function
     async function submitAnalysis(formData, endpoint = '/api/analyze') {
-        const analyzeBtn = document.querySelector(`form.tab-content.active .analyze-btn`);
+        const analyzeBtn = document.querySelector('form.tab-content.active .analyze-btn');
         const originalText = analyzeBtn.textContent;
         
         try {
@@ -206,7 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
             analyzeBtn.textContent = 'Analyzing...';
             analyzeBtn.disabled = true;
             results.style.display = 'block';
-            analysisOutput.textContent = 'Processing... This may take a few moments.';
+            
+            // Show loading indicator
+            analysisOutput.innerHTML = '';
+            analysisOutput.appendChild(loadingIndicator);
+            loadingIndicator.textContent = 'Processing... This may take a few moments.';
 
             const response = await fetch(`http://localhost:8080${endpoint}`, {
                 method: 'POST',
@@ -214,19 +187,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorData = await response.text();
+                throw new Error(errorData || `HTTP error! status: ${response.status}`);
             }
 
             const data = await response.text();
             results.style.display = 'block';
-            analysisOutput.textContent = data;
+            analysisOutput.innerHTML = `<pre>${data}</pre>`;
             
             // Scroll to results
             results.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } catch (error) {
             console.error('Error:', error);
             results.style.display = 'block';
-            analysisOutput.textContent = 'Error: Could not connect to DNAnalyzer server. Please ensure the local server is running.';
+            analysisOutput.innerHTML = `
+                <div class="error-container">
+                    <h3>Analysis Error</h3>
+                    <p>${error.message}</p>
+                    <p>Please ensure the local server is running and try again.</p>
+                </div>
+            `;
         } finally {
             // Restore button state
             analyzeBtn.textContent = originalText;

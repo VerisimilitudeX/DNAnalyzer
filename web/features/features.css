@@ -1,5 +1,9 @@
 /* Features page specific styles */
 .feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     padding: 2rem;
     margin-bottom: 2rem;
     transition: transform 0.3s ease;
@@ -16,11 +20,62 @@
     padding: 2rem 0;
 }
 
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.5rem;
+}
+
+.feature-preview {
+    width: 100%;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    transition: transform 0.3s ease;
+}
+
+.feature-preview:hover {
+    transform: scale(1.02);
+}
+
 .feature-card h3 {
     color: #ffffff;
     margin-bottom: 1rem;
+    font-size: 1.5rem;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.feature-card p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
 .feature-card .glass-button {
-    margin-top: 1rem;
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feature-card .glass-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-preview {
+        margin: 1rem 0;
+    }
 }

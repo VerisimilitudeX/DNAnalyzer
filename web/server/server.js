@@ -39,15 +39,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Server status check functionality
     async function checkServerStatus() {
         try {
-            const response = await fetch('http://localhost:8081/api/status');
+            const response = await fetch('http://localhost:8080/api/status');
             const data = await response.json();
             
             if (data.status === 'online') {
                 serverStatusElement.innerHTML = `
-                    <div style="color: #4CAF50">
+                    <div style="color: var(--success-color)">
                         ● Server Online
                         <br>
                         <small>Last checked: ${new Date().toLocaleTimeString()}</small>
+                        <br>
+                        <small>Version: ${data.version}</small>
                     </div>
                 `;
             } else {
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             serverStatusElement.innerHTML = `
-                <div style="color: #f44336">
+                <div style="color: var(--error-color)">
                     ● Server Offline
                     <br>
                     <small>Last checked: ${new Date().toLocaleTimeString()}</small>
