@@ -55,6 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const customAmino = document.getElementById('customAmino');
     const results = document.getElementById('results');
     const analysisOutput = document.getElementById('analysisOutput');
+    const outputControls = document.createElement('div');
+    outputControls.className = 'output-controls';
+    
+    // Create format toggle buttons
+    const formats = [
+        { id: 'text', label: 'Plain Text' },
+        { id: 'json', label: 'JSON' },
+        { id: 'csv', label: 'CSV' }
+    ];
+
+    formats.forEach(format => {
+        const btn = document.createElement('button');
+        btn.className = 'output-format-btn' + (format.id === 'text' ? ' active' : '');
+        btn.dataset.format = format.id;
+        btn.textContent = format.label;
+        outputControls.appendChild(btn);
+    });
 
     // Analysis option dependencies
     const quickCheckbox = document.getElementById('quick');
@@ -99,37 +116,81 @@ document.addEventListener('DOMContentLoaded', () => {
     analyzerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        if (aminoSelect.value === 'custom' && !customAmino.value.trim()) {
-            alert('Please enter a custom amino acid or select a predefined one.');
-            return;
-        }
+        if (!validateForm()) return;
 
-        const formData = new FormData();
+        const formData = buildFormData();
+        await submitAnalysis(formData);
+    });
 
-        // Handle DNA input (file or URL)
+    function validateForm() {
         const activeInput = document.querySelector('.input-content.active').dataset.input;
+        const aminoSelect = document.getElementById('aminoAcid');
+        const customAmino = document.getElementById('customAmino');
+
         if (activeInput === 'file') {
             const dnaFile = document.getElementById('dnaFile').files[0];
             if (!dnaFile) {
-                alert('Please select a DNA file to analyze.');
-                return;
+                showError('Input Error', 'Please select a DNA file to analyze.');
+                return false;
             }
-            formData.append('dnaFile', dnaFile);
+            if (!validateFileType(dnaFile)) {
+                showError('File Type Error', 'Please upload a valid FASTA or FASTQ file.');
+                return false;
+            }
         } else {
             const dnaUrl = document.getElementById('dnaUrl').value.trim();
             if (!dnaUrl) {
-                alert('Please enter a valid DNA file URL.');
-                return;
+                showError('Input Error', 'Please enter a valid DNA file URL.');
+                return false;
             }
-            formData.append('dnaUrl', dnaUrl);
+            if (!validateUrl(dnaUrl)) {
+                showError('URL Error', 'Please enter a valid FASTA or FASTQ file URL.');
+                return false;
+            }
         }
 
-        // Add all other form data
+        if (aminoSelect.value === 'custom' && !customAmino.value.trim()) {
+            showError('Input Error', 'Please enter a custom amino acid or select a predefined one.');
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateFileType(file) {
+        const validTypes = ['.fa', '.fasta', '.fastq'];
+        return validTypes.some(type => file.name.toLowerCase().endsWith(type));
+    }
+
+    function validateUrl(url) {
+        try {
+            const urlObj = new URL(url);
+            const validExtensions = ['.fa', '.fasta', '.fastq'];
+            return validExtensions.some(ext => urlObj.pathname.toLowerCase().endsWith(ext));
+        } catch {
+            return false;
+        }
+    }
+
+    function buildFormData() {
+        const formData = new FormData();
+        const activeInput = document.querySelector('.input-content.active').dataset.input;
+        const aminoSelect = document.getElementById('aminoAcid');
+        const customAmino = document.getElementById('customAmino');
+
+        // Add file or URL
+        if (activeInput === 'file') {
+            formData.append('dnaFile', document.getElementById('dnaFile').files[0]);
+        } else {
+            formData.append('dnaUrl', document.getElementById('dnaUrl').value.trim());
+        }
+
+        // Add amino acid selection
         formData.append('amino', aminoSelect.value === 'custom' ? customAmino.value : aminoSelect.value);
         formData.append('minCount', document.getElementById('minCount').value);
         formData.append('maxCount', document.getElementById('maxCount').value);
-        
-        // Add all analysis options
+
+        // Add analysis options
         const options = [
             'reverse', 'rcomplement', 'gc', 'codons', 'coverage', 'longest',
             'verbose', 'detailed', 'quick', 'format', 'transcription', 'promoter'
@@ -138,14 +199,97 @@ document.addEventListener('DOMContentLoaded', () => {
         options.forEach(option => {
             formData.append(option, document.getElementById(option).checked);
         });
-        
+
+        // Add protein file if provided
         const proteinFile = document.getElementById('proteinFile').files[0];
         if (proteinFile) {
             formData.append('proteinFile', proteinFile);
         }
 
-        await submitAnalysis(formData);
-    });
+        return formData;
+    }
+
+    function showError(title, message, details = '') {
+        results.style.display = 'block';
+        results.classList.add('error');
+        analysisOutput.innerHTML = `
+            <div class="analysis-error">
+                <h3>${title}</h3>
+                <p>${message}</p>
+                ${details ? `<pre class="error-details">${details}</pre>` : ''}
+            </div>
+        `;
+        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function submitAnalysis(formData, endpoint = '/api/analyze') {
+        const analyzeBtn = document.querySelector('form.tab-content.active .analyze-btn');
+        const originalText = analyzeBtn.textContent;
+        
+        try {
+            analyzeBtn.textContent = 'Analyzing...';
+            analyzeBtn.disabled = true;
+            results.style.display = 'block';
+            results.classList.remove('error');
+            
+            analysisOutput.innerHTML = '<div class="processing-indicator">Processing data...</div>';
+
+            const response = await fetch(`http://localhost:8080${endpoint}`, {
+                method: 'POST',
+                body: formData
+            });
+
+            const contentType = response.headers.get('content-type');
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Analysis failed');
+            }
+
+            const data = contentType?.includes('application/json') ? 
+                await response.json() : 
+                await response.text();
+
+            results.style.display = 'block';
+            
+            if (endpoint === '/api/analyze-genetic') {
+                analysisOutput.innerHTML = '';
+                analysisOutput.appendChild(renderGeneticResults(data));
+            } else {
+                // Handle DNA analysis results as before
+                analysisOutput.innerHTML = `
+                    <div class="success-indicator">Analysis completed successfully</div>
+                    ${outputControls.outerHTML}
+                    <pre>${typeof data === 'string' ? data : JSON.stringify(data, null, 2)}</pre>
+                `;
+
+                // Add format switching functionality
+                const formatBtns = analysisOutput.querySelectorAll('.output-format-btn');
+                formatBtns.forEach(btn => {
+                    btn.addEventListener('click', () => switchFormat(btn.dataset.format));
+                });
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            showError('Analysis Error', error.message);
+        } finally {
+            analyzeBtn.textContent = originalText;
+            analyzeBtn.disabled = false;
+        }
+    }
+
+    function switchFormat(format) {
+        // Reset active states
+        outputControls.querySelectorAll('.output-format-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.format === format);
+        });
+
+        // Re-submit with new format
+        const formData = buildFormData();
+        formData.append('format', format);
+        submitAnalysis(formData);
+    }
 
     // Genetic Testing form submission
     const geneticForm = document.getElementById('geneticForm');
@@ -165,52 +309,83 @@ document.addEventListener('DOMContentLoaded', () => {
         await submitAnalysis(formData, '/api/analyze-genetic');
     });
 
-    // Common analysis submission function
-    async function submitAnalysis(formData, endpoint = '/api/analyze') {
-        const analyzeBtn = document.querySelector('form.tab-content.active .analyze-btn');
-        const originalText = analyzeBtn.textContent;
-        
-        try {
-            // Show loading state
-            analyzeBtn.textContent = 'Analyzing...';
-            analyzeBtn.disabled = true;
-            results.style.display = 'block';
-            
-            // Show loading indicator
-            analysisOutput.innerHTML = '';
-            analysisOutput.appendChild(loadingIndicator);
-            loadingIndicator.textContent = 'Processing... This may take a few moments.';
+    function renderGeneticResults(data) {
+        const container = document.createElement('div');
+        container.className = 'genetic-results';
 
-            const response = await fetch(`http://localhost:8080${endpoint}`, {
-                method: 'POST',
-                body: formData
-            });
+        // Overview section
+        const overview = document.createElement('div');
+        overview.className = 'results-section';
+        overview.innerHTML = `
+            <h3>Analysis Overview</h3>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <span class="stat-label">Total SNPs</span>
+                    <span class="stat-value">${data.totalSnps.toLocaleString()}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Chromosomes</span>
+                    <span class="stat-value">${Object.keys(data.chromosomeDistribution).length}</span>
+                </div>
+            </div>
+        `;
+        container.appendChild(overview);
 
-            if (!response.ok) {
-                const errorData = await response.text();
-                throw new Error(errorData || `HTTP error! status: ${response.status}`);
-            }
+        // Chromosome distribution chart
+        const chartSection = document.createElement('div');
+        chartSection.className = 'results-section';
+        chartSection.innerHTML = `
+            <h3>Chromosome Distribution</h3>
+            <div class="chromosome-chart">
+                ${Object.entries(data.chromosomeDistribution).map(([chr, count]) => `
+                    <div class="chart-bar">
+                        <div class="bar-fill" style="height: ${(count / data.totalSnps * 100)}%">
+                            <span class="bar-value">${count}</span>
+                        </div>
+                        <span class="bar-label">${chr}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+        container.appendChild(chartSection);
 
-            const data = await response.text();
-            results.style.display = 'block';
-            analysisOutput.innerHTML = `<pre>${data}</pre>`;
-            
-            // Scroll to results
-            results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } catch (error) {
-            console.error('Error:', error);
-            results.style.display = 'block';
-            analysisOutput.innerHTML = `
-                <div class="error-container">
-                    <h3>Analysis Error</h3>
-                    <p>${error.message}</p>
-                    <p>Please ensure the local server is running and try again.</p>
+        // SNP details if available
+        if (data.snps && data.snps.length > 0) {
+            const snpSection = document.createElement('div');
+            snpSection.className = 'results-section';
+            snpSection.innerHTML = `
+                <h3>SNP Analysis</h3>
+                <div class="snp-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>RSID</th>
+                                <th>Chromosome</th>
+                                <th>Position</th>
+                                <th>Genotype</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${data.snps.slice(0, 100).map(snp => `
+                                <tr>
+                                    <td>${snp.rsid}</td>
+                                    <td>${snp.chromosome}</td>
+                                    <td>${snp.position}</td>
+                                    <td>${snp.genotype}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    ${data.snps.length > 100 ? `
+                        <div class="table-note">
+                            Showing first 100 SNPs of ${data.snps.length} total
+                        </div>
+                    ` : ''}
                 </div>
             `;
-        } finally {
-            // Restore button state
-            analyzeBtn.textContent = originalText;
-            analyzeBtn.disabled = false;
+            container.appendChild(snpSection);
         }
+
+        return container;
     }
 });

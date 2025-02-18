@@ -7,8 +7,8 @@ spring:
   servlet:
     multipart:
       enabled: true
-      max-file-size: 10MB
-      max-request-size: 10MB
+      max-file-size: 50MB
+      max-request-size: 50MB
   web:
     cors:
       allowed-origins: "*"
@@ -21,3 +21,8 @@ logging:
   level:
     root: INFO
     DNAnalyzer: DEBUG
+    org.springframework.web: DEBUG
+
+analysis:
+  temp-dir: ${java.io.tmpdir}/dnanalyzer
+  max-sequence-length: 10000000

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="analyzer.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="background-blur"></div>
@@ -41,14 +42,14 @@
                     <button type="button" class="input-tab" data-input="url">URL Input</button>
                 </div>
                 <div class="input-content active" data-input="file">
-                    <label for="dnaFile">DNA File (FASTA/FASTQ):</label>
-                    <input type="file" id="dnaFile" accept=".fa,.fastq">
-                    <small>Upload a DNA sequence file in FASTA or FASTQ format</small>
+                    <label for="dnaFile">DNA Sequence File:</label>
+                    <input type="file" id="dnaFile" accept=".fa,.fasta,.fastq">
+                    <small>Upload a FASTA or FASTQ file containing DNA sequence</small>
                 </div>
-                <div class="input-content" data-input="url">
+                <div class="input-content" data-input="url" style="display: none;">
                     <label for="dnaUrl">DNA File URL:</label>
-                    <input type="url" id="dnaUrl" placeholder="https://example.com/sequence.fa">
-                    <small>Enter the URL of a FASTA or FASTQ file</small>
+                    <input type="url" id="dnaUrl" placeholder="Enter URL to FASTA/FASTQ file">
+                    <small>Enter a URL to a publicly accessible FASTA or FASTQ file</small>
                 </div>
             </div>
 
@@ -157,9 +158,12 @@
             </div>
 
             <div class="input-group">
-                <label for="proteinFile">Protein Search File (Optional):</label>
-                <input type="file" id="proteinFile">
-                <small>Upload a protein file to find specific sequences within the DNA</small>
+                <div class="section-title">Optional Files</div>
+                <div class="file-upload-group">
+                    <label for="proteinFile">Protein Search File:</label>
+                    <input type="file" id="proteinFile" accept=".fa,.fasta">
+                    <small>Optional: Upload a protein file to search within the DNA sequence</small>
+                </div>
             </div>
 
             <button type="submit" class="analyze-btn">Analyze DNA Sequence</button>
@@ -171,8 +175,8 @@
                 <div class="section-title">Genetic Testing Data Analysis</div>
                 <div class="file-upload-group">
                     <label for="geneticFile">Genetic Testing File:</label>
-                    <input type="file" id="geneticFile" accept=".txt">
-                    <small>Upload data from 23andMe or AncestryDNA</small>
+                    <input type="file" id="geneticFile" accept=".txt,.csv">
+                    <small>Upload data from genetic testing services (supported: 23andMe, AncestryDNA)</small>
                 </div>
                 <div class="options-grid">
                     <div class="checkbox-group">
@@ -187,7 +191,7 @@
 
         <div id="results" class="results" style="display: none;">
             <h2>Analysis Results</h2>
-            <pre id="analysisOutput"></pre>
+            <div id="analysisOutput"></div>
         </div>
     </div>
 

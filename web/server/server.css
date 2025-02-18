@@ -1,27 +1,52 @@
 /* Server page specific styles */
+.server-setup-section {
+    margin-top: 2rem;
+}
+
 .glass-card {
+    background: rgba(255, 255, 255, 0.05);
     padding: 2rem;
     margin-bottom: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border-color: var(--gradient-end);
 }
 
 #server-status {
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+#server-status small {
+    display: block;
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .glass-button.large {
     margin-top: 1.5rem;
     font-size: 1.1rem;
     padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border: none;
+    color: white;
 }
 
 .command-box {
     display: flex;
     align-items: center;
     background: rgba(0, 0, 0, 0.3);
-    padding: 0.8rem 1rem;
+    padding: 1rem 1.2rem;
     border-radius: 8px;
     margin: 0.5rem 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -32,6 +57,7 @@
     flex-grow: 1;
     font-family: 'IBM Plex Mono', monospace;
     color: #10B981;
+    font-size: 0.9rem;
     overflow-x: auto;
     white-space: nowrap;
 }
@@ -41,19 +67,25 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .copy-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.copy-button:active {
+    transform: translateY(0);
 }
 
 .setup-steps {
     list-style-position: inside;
     padding: 0;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     counter-reset: step;
 }
 
@@ -90,7 +122,7 @@
 }
 
 .troubleshooting {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -98,4 +130,73 @@
 .troubleshooting p {
     color: #FFA726;
     margin-bottom: 0.5rem;
+}
+
+.issue-item {
+    margin-bottom: 2rem;
+}
+
+.issue-item h4 {
+    color: var(--gradient-end);
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.issue-item ul {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0.8rem 0;
+}
+
+.issue-item ul li {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0.4rem 0;
+}
+
+.requirements-note {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.requirements-note ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.8rem 0;
+}
+
+.requirements-note ul li {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0.4rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.requirements-note ul li::before {
+    content: '✓';
+    color: var(--success-color);
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .command-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    .command-box code {
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+    }
+
+    .copy-button {
+        width: 100%;
+    }
+
+    .setup-steps li {
+        padding-left: 2rem;
+    }
 }

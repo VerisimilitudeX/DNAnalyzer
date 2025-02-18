@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server - DNAnalyzer</title>
+    <title>Server Setup - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="server.css">
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="background-blur"></div>
     
     <header class="floating-header">
         <nav class="floating-nav">
-            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../index.html" class="nav-link">
+                <img src="../assets/icons/emblem-light-bg.svg" alt="DNAnalyzer Logo" class="nav-logo">
+                Home
+            </a>
             <a href="../about/about.html" class="nav-link">About</a>
             <a href="../features/features.html" class="nav-link">Features</a>
             <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
@@ -27,46 +31,78 @@
 
     <main class="container">
         <section class="content-section">
-            <h1>Server Information</h1>
-            <div class="glass-card">
-                <h2>Join Our Community</h2>
-                <p>Join our Discord server to connect with other DNAnalyzer users, get support, and stay updated on the latest developments.</p>
-                <button class="glass-button large" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Join Discord Server</button>
-            </div>
+            <h1>Server Setup</h1>
             
-            <div class="glass-card">
-                <h2>Connection Instructions</h2>
-                <p>To start the DNAnalyzer server, follow these steps:</p>
+            <div class="glass-card server-setup-section">
+                <h2>Quick Start Guide</h2>
                 <ol class="setup-steps">
                     <li>
-                        <p>Make gradlew executable:</p>
+                        <p>Make the Gradle wrapper executable:</p>
                         <div class="command-box">
                             <code>chmod +x ./gradlew</code>
                             <button class="copy-button" onclick="copyChmodCommand()">Copy</button>
                         </div>
                     </li>
                     <li>
-                        <p>Clean build (this may take a minute):</p>
+                        <p>Build the project (this may take a few minutes):</p>
                         <div class="command-box">
                             <code>./gradlew clean bootJar</code>
                             <button class="copy-button" onclick="copyBuildCommand()">Copy</button>
                         </div>
                     </li>
                     <li>
-                        <p>Start the server:</p>
+                        <p>Start the local server:</p>
                         <div class="command-box">
                             <code>java -jar build/libs/DNAnalyzer.jar</code>
                             <button class="copy-button" onclick="copyRunCommand()">Copy</button>
                         </div>
                     </li>
                 </ol>
-                <small>The server will start on localhost:8080. Make sure you have Java 17 or higher installed.</small>
+                <div class="requirements-note">
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Java 17 or higher</li>
+                        <li>Port 8080 must be available</li>
+                        <li>At least 2GB of free RAM</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="glass-card">
                 <h2>Server Status</h2>
                 <div id="server-status">
-                    Loading server status...
+                    Checking server status...
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h2>Troubleshooting</h2>
+                <div class="troubleshooting">
+                    <h3>Common Issues</h3>
+                    <div class="issue-item">
+                        <h4>Port Already in Use</h4>
+                        <p>If port 8080 is already in use, you may see an error like "Address already in use". To fix this:</p>
+                        <ul>
+                            <li>Close any other applications using port 8080</li>
+                            <li>Or modify the port in application.yml</li>
+                        </ul>
+                    </div>
+                    <div class="issue-item">
+                        <h4>Java Version</h4>
+                        <p>If you see "UnsupportedClassVersionError", make sure you have Java 17+ installed:</p>
+                        <div class="command-box">
+                            <code>java -version</code>
+                        </div>
+                    </div>
+                    <div class="issue-item">
+                        <h4>Build Failures</h4>
+                        <p>For build errors, try:</p>
+                        <ul>
+                            <li>Running './gradlew clean' first</li>
+                            <li>Checking your Java installation</li>
+                            <li>Ensuring you have write permissions in the directory</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
