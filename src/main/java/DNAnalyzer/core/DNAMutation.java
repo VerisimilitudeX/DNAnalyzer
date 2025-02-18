@@ -28,7 +28,7 @@ public class DNAMutation {
     List<String> mutatedSequences = new ArrayList<>();
     
     // Create an index of available positions to mutate (remove indexes of unknown bases)
-    List<Integer> availablePositions = getIndexesOfKnownBases(dnaString);
+    List<Integer> availablePositions = getKnownBaseIndexes(dnaString);
 
     if (availablePositions.size() == 0) {
       out.println("No valid bases to mutate, skipping mutation.");
@@ -103,7 +103,7 @@ public class DNAMutation {
    * @param dnaString The DNA sequence to check for valid base positions.
    * @return A list of integers representing the indexes of known bases in the provided DNA sequence.
    */
-  private static List<Integer> getIndexesOfKnownBases(String dnaString) {
+  private static List<Integer> getKnownBaseIndexes(String dnaString) {
     List<Integer> availablePositions = new ArrayList<>();
     for (int i = 0; i < dnaString.length(); i++) {
         if (isValidBase(dnaString.charAt(i))) {
