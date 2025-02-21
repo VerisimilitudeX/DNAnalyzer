@@ -6,7 +6,7 @@
     <title>DNA Analysis - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="analyzer.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
@@ -21,6 +21,7 @@
             <a href="../features/features.html" class="nav-link">Features</a>
             <a href="analyzer.html" class="nav-link active">Analyzer</a>
             <a href="../server/server.html" class="nav-link">Server</a>
+            <a href="../docs/docs.html" class="nav-link">Docs</a>
             <div class="right-links">
                 <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
                 <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
@@ -38,7 +39,7 @@
 
         <form id="analyzerForm" class="tab-content active" data-tab="dna">
             <div class="input-group">
-                <div class="section-title">DNA Input</div>
+                <h2 class="section-title">DNA Input</h2>
                 <div class="input-tabs">
                     <button type="button" class="input-tab active" data-input="file">Upload File</button>
                     <button type="button" class="input-tab" data-input="url">URL Input</button>
@@ -56,25 +57,25 @@
             </div>
 
             <div class="input-group">
-                <label for="aminoAcid">Start Amino Acid:</label>
-                <select id="aminoAcid" required>
-                    <option value="met">Methionine (Met) - Most common start codon</option>
-                    <option value="ser">Serine (Ser)</option>
-                    <option value="thr">Threonine (Thr)</option>
-                    <option value="val">Valine (Val)</option>
-                    <option value="custom">Custom</option>
-                </select>
-                <input type="text" id="customAmino" placeholder="Enter custom amino acid" style="display: none;">
-            </div>
+                <h2 class="section-title">Analysis Parameters</h2>
+                <div class="parameter-section">
+                    <label for="aminoAcid">Start Amino Acid:</label>
+                    <select id="aminoAcid" required>
+                        <option value="met">Methionine (Met) - Most common start codon</option>
+                        <option value="ser">Serine (Ser)</option>
+                        <option value="thr">Threonine (Thr)</option>
+                        <option value="val">Valine (Val)</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                    <input type="text" id="customAmino" placeholder="Enter custom amino acid" style="display: none;">
+                </div>
 
-            <div class="input-group">
-                <div class="section-title">Analysis Parameters</div>
-                <div class="flex-grid">
-                    <div>
+                <div class="parameter-grid">
+                    <div class="parameter-item">
                         <label for="minCount">Minimum Count:</label>
                         <input type="number" id="minCount" value="0" min="0">
                     </div>
-                    <div>
+                    <div class="parameter-item">
                         <label for="maxCount">Maximum Count:</label>
                         <input type="number" id="maxCount" value="100" min="1">
                     </div>
@@ -82,7 +83,7 @@
             </div>
 
             <div class="input-group">
-                <div class="section-title">Sequence Operations</div>
+                <h2 class="section-title">Sequence Operations</h2>
                 <div class="options-grid">
                     <div class="checkbox-group">
                         <input type="checkbox" id="reverse" name="reverse">
@@ -98,7 +99,7 @@
             </div>
 
             <div class="input-group">
-                <div class="section-title">Analysis Features</div>
+                <h2 class="section-title">Analysis Features</h2>
                 <div class="options-grid">
                     <div class="checkbox-group">
                         <input type="checkbox" id="gc" name="gc">
@@ -134,7 +135,7 @@
             </div>
 
             <div class="input-group">
-                <div class="section-title">Output Options</div>
+                <h2 class="section-title">Output Options</h2>
                 <div class="options-grid">
                     <div class="checkbox-group">
                         <input type="checkbox" id="verbose" name="verbose">
@@ -160,7 +161,7 @@
             </div>
 
             <div class="input-group">
-                <div class="section-title">Optional Files</div>
+                <h2 class="section-title">Optional Files</h2>
                 <div class="file-upload-group">
                     <label for="proteinFile">Protein Search File:</label>
                     <input type="file" id="proteinFile" accept=".fa,.fasta">
@@ -173,7 +174,7 @@
 
         <form id="geneticForm" class="tab-content" data-tab="genetic" style="display: none;">
             <div class="input-group">
-                <div class="section-title">Genetic Testing Data Analysis</div>
+                <h2 class="section-title">Genetic Testing Data Analysis</h2>
                 <div class="file-upload-group">
                     <label for="geneticFile">Genetic Testing File:</label>
                     <input type="file" id="geneticFile" accept=".txt,.csv">

@@ -6,7 +6,7 @@
     <title>Features - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="features.css">
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
@@ -21,6 +21,7 @@
             <a href="features.html" class="nav-link active">Features</a>
             <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
             <a href="../server/server.html" class="nav-link">Server</a>
+            <a href="../docs/docs.html" class="nav-link">Docs</a>
             <div class="right-links">
                 <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
                 <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
@@ -31,33 +32,41 @@
     <main class="container">
         <section class="content-section">
             <h1>Features</h1>
-            <div class="grid">
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/Icon_Dark_BG.svg" alt="Web Analysis Icon" class="feature-icon">
-                    <h3>Web DNA Analyzer</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <img src="../assets/icons/Icon_Dark_BG.svg" alt="Web Analysis Icon" class="feature-icon">
+                        <h3>Web DNA Analyzer</h3>
+                    </div>
                     <p>Analyze DNA sequences directly through your web browser with our powerful web interface. Upload FASTA/FASTQ files and get instant analysis with customizable parameters.</p>
                     <img src="../assets/mockup/Slide_01.png" alt="DNA Analysis Interface" class="feature-preview">
-                    <button class="glass-button" onclick="window.location.href='../analyzer/analyzer.html'">Try Analyzer</button>
+                    <button class="primary-btn" onclick="window.location.href='../analyzer/analyzer.html'">Try Analyzer</button>
                 </div>
 
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/Icon_Dark_BG_Base.svg" alt="Codons Icon" class="feature-icon">
-                    <h3>Start and Stop Codons</h3>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <img src="../assets/icons/Icon_Dark_BG_Base.svg" alt="Codons Icon" class="feature-icon">
+                        <h3>Start and Stop Codons</h3>
+                    </div>
                     <p>Identify start and stop codons across all 20 amino acids. Our advanced algorithms detect protein sequences with high accuracy and provide detailed codon analysis.</p>
                     <img src="../assets/full.png" alt="Codon Analysis" class="feature-preview">
                 </div>
 
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/emblem-dark-bg.svg" alt="Coverage Icon" class="feature-icon">
-                    <h3>Coverage Analysis</h3>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <img src="../assets/icons/emblem-dark-bg.svg" alt="Coverage Icon" class="feature-icon">
+                        <h3>Coverage Analysis</h3>
+                    </div>
                     <p>Identify high-coverage regions and analyze sequence depth. Perfect for detecting important genetic elements and potential variations.</p>
                 </div>
 
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/Icon_Base.svg" alt="Server Icon" class="feature-icon">
-                    <h3>Local Server Support</h3>
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <img src="../assets/icons/Icon_Base.svg" alt="Server Icon" class="feature-icon">
+                        <h3>Local Server Support</h3>
+                    </div>
                     <p>Run analyses locally with our high-performance server. Ensures data privacy and faster processing for large sequences.</p>
-                    <button class="glass-button" onclick="window.location.href='../server/server.html'">Server Setup</button>
+                    <button class="primary-btn" onclick="window.location.href='../server/server.html'">Server Setup</button>
                 </div>
             </div>
         </section>

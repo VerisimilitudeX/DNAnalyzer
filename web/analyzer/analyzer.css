@@ -1,32 +1,39 @@
 .container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 6rem auto 2rem;
     padding: 2rem;
     background: rgba(26, 28, 42, 0.95);
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    color: rgba(255, 255, 255, 0.9);
-    position: relative;
-    z-index: 1;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 2rem;
+    text-align: center;
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--gradient-end);
+    border-bottom: 2px solid rgba(0, 122, 255, 0.3);
+    padding-bottom: 0.5rem;
 }
 
 .tab-container {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
+    justify-content: center;
 }
 
 .tab-button {
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 2rem;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
@@ -34,10 +41,12 @@ h1 {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 1.1rem;
 }
 
 .tab-button:hover {
     background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
 }
 
 .tab-button.active {
@@ -46,74 +55,66 @@ h1 {
     color: white;
 }
 
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-    animation: fadeIn 0.3s ease-out;
-}
-
 .input-group {
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.flex-grid {
+.input-tabs {
     display: flex;
     gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
-.flex-grid > div {
-    flex: 1;
+.input-tab {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
-.options-grid {
+.input-tab:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.input-tab.active {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-color: transparent;
+    color: white;
+}
+
+.parameter-section {
+    margin-bottom: 2rem;
+}
+
+.parameter-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
+    gap: 1.5rem;
 }
 
-.checkbox-group {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+.parameter-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.checkbox-group:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.checkbox-group label {
-    margin: 0;
-    font-weight: 500;
-}
-
-.checkbox-group small {
-    margin-top: 0.25rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.85rem;
-}
-
-.checkbox-group input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin-bottom: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
 }
 
 input[type="file"],
@@ -122,118 +123,150 @@ input[type="text"],
 input[type="url"],
 select {
     width: 100%;
-    padding: 0.75rem;
+    padding: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     font-size: 1rem;
     background: rgba(0, 0, 0, 0.3);
     color: white;
     transition: all 0.3s ease;
+    font-family: inherit;
 }
 
 input[type="file"] {
     cursor: pointer;
+    padding: 0.75rem;
 }
 
-input[type="file"]:hover {
-    background: rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-input[type="file"]:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
-}
-
-input[type="file"]::file-selector-button {
-    padding: 0.5rem 1rem;
-    margin-right: 1rem;
-    border: none;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-input[type="file"]::file-selector-button:hover {
-    background: rgba(255, 255, 255, 0.2);
+input[type="file"]:hover,
+input[type="number"]:hover,
+input[type="text"]:hover,
+input[type="url"]:hover,
+select:hover {
+    border-color: var(--gradient-end);
 }
 
 input:focus,
 select:focus {
     outline: none;
-    border-color: var(--accent-color);
+    border-color: var(--gradient-start);
     box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
 }
 
-.file-upload-group {
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.checkbox-group {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.checkbox-group:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    border-color: var(--gradient-end);
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
     margin-bottom: 1rem;
 }
 
-.analyze-btn {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 12px;
+.checkbox-group label {
     font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+
+small {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.analyze-btn {
     width: 100%;
-    transition: all 0.3s ease;
+    padding: 1.25rem;
+    font-size: 1.2rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 1rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
 }
 
 .analyze-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
     filter: brightness(1.1);
-    box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
 }
 
 .analyze-btn:active {
     transform: translateY(0);
 }
 
-.analyze-btn:disabled {
-    background: linear-gradient(135deg, #666, #999);
-    cursor: not-allowed;
-    transform: none;
+.results {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.section-title {
+.results h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--gradient-end);
-    margin: 0.5rem 0 1rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid rgba(0, 122, 255, 0.3);
 }
 
-small {
-    display: block;
-    color: rgba(255, 255, 255, 0.6);
-    margin-top: 0.25rem;
-    font-size: 0.85rem;
+#analysisOutput {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: pre-wrap;
+    overflow-x: auto;
 }
 
 @media screen and (max-width: 768px) {
     .container {
         margin: 4rem 1rem 2rem;
-        padding: 1rem;
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
     }
 
     .input-group {
-        padding: 1rem;
-    }
-
-    .flex-grid {
-        flex-direction: column;
+        padding: 1.5rem;
     }
 
     .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .parameter-grid {
         grid-template-columns: 1fr;
     }
 
@@ -241,15 +274,24 @@ small {
         flex-direction: column;
     }
 
-    .analyze-btn {
-        padding: 0.75rem 1.5rem;
+    .tab-button {
+        width: 100%;
     }
 
     .input-tabs {
         flex-direction: column;
     }
 
-    h1 {
-        font-size: 2rem;
+    .input-tab {
+        width: 100%;
+        text-align: center;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    .checkbox-group {
+        padding: 1rem;
     }
 }

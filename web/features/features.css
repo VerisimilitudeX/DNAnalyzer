@@ -1,16 +1,30 @@
-/* Features page specific styles */
+.container {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
+    padding: 2rem;
+}
+
+.content-section {
+    margin-bottom: 4rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
 .feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
+    gap: 1.5rem;
 }
 
 .feature-card:hover {
@@ -19,35 +33,24 @@
     border-color: var(--gradient-end);
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+.feature-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .feature-icon {
     width: 48px;
     height: 48px;
-    margin-bottom: 1.5rem;
-}
-
-.feature-preview {
-    width: 100%;
-    border-radius: 8px;
-    margin: 1.5rem 0;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.feature-preview:hover {
-    transform: scale(1.02);
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    margin: 0;
 }
 
 .feature-card h3 {
-    color: var(--gradient-end);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    margin: 0;
+    font-size: 1.8rem;
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -56,38 +59,56 @@
 .feature-card p {
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.8;
-    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    margin: 0;
 }
 
-.feature-card .glass-button {
-    margin-top: auto;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.75rem 1.5rem;
+.feature-preview {
+    width: 100%;
     border-radius: 8px;
-    color: white;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 0;
+    background: none;
 }
 
-.feature-card .glass-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.feature-preview:hover {
+    transform: scale(1.02);
 }
 
-@media (max-width: 768px) {
-    .grid {
+.feature-card .primary-btn {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+    .features-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+    }
+
+    .container {
+        padding: 1rem;
     }
 
     .feature-card {
         padding: 1.5rem;
     }
 
-    .feature-preview {
-        margin: 1rem 0;
+    .feature-header {
+        gap: 1rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .feature-card p {
+        font-size: 1rem;
+    }
+
+    .feature-icon {
+        width: 36px;
+        height: 36px;
     }
 }
