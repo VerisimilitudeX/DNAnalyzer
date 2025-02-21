@@ -210,6 +210,7 @@ img {
     border-radius: 8px;
     margin-top: 1.5rem;
     transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-image:hover {
@@ -258,9 +259,21 @@ img {
     .glass-card {
         padding: 1.5rem;
     }
+
+    .feature-image {
+        margin: 1rem 0;
+    }
 }
 
 .glass-card h2 {
     margin-bottom: 1rem;
     color: #ffffff;
+}
+
+/* Remove unused styles */
+body.dark,
+.btn,
+input[type="checkbox"],
+img.icon {
+    display: none;
 }

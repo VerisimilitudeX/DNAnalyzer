@@ -6,11 +6,17 @@
     text-align: center;
     padding: 2rem;
     margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
     transition: transform 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border-color: var(--gradient-end);
 }
 
 .grid {
@@ -31,6 +37,7 @@
     border-radius: 8px;
     margin: 1.5rem 0;
     transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .feature-preview:hover {
@@ -38,7 +45,7 @@
 }
 
 .feature-card h3 {
-    color: #ffffff;
+    color: var(--gradient-end);
     margin-bottom: 1rem;
     font-size: 1.5rem;
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
@@ -48,7 +55,7 @@
 
 .feature-card p {
     color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
+    line-height: 1.8;
     margin-bottom: 1.5rem;
 }
 
@@ -71,6 +78,11 @@
 }
 
 @media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
     .feature-card {
         padding: 1.5rem;
     }

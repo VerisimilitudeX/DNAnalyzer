@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5440024641032801"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DNAnalyzer Documentation</title>
@@ -10,16 +8,23 @@
     <link rel="stylesheet" href="docs.css">
 </head>
 <body>
-    <nav>
-        <a href="../">Home</a>
-        <a href="../about/about.html">About</a>
-        <a href="../#features">Features</a>
-        <a href="#" class="active">Docs</a>
-        <div class="right-links">
-            <a href="https://github.com/yourusername/DNAnalyzer" target="_blank" class="button">GitHub Repository</a>
-            <a href="https://discord.gg/yourdiscord" target="_blank" class="button">Discord Server</a>
-        </div>
-    </nav>
+    <div class="background-blur"></div>
+    
+    <header class="floating-header">
+        <nav class="floating-nav">
+            <a href="../index.html" class="nav-link">
+                <img src="../assets/icons/Icon_Light_BG.svg" alt="DNAnalyzer Logo" class="nav-logo">
+            </a>
+            <a href="../about/about.html" class="nav-link">About</a>
+            <a href="../features/features.html" class="nav-link">Features</a>
+            <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
+            <a href="../server/server.html" class="nav-link">Server</a>
+            <div class="right-links">
+                <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
+                <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
+            </div>
+        </nav>
+    </header>
 
     <main>
         <section id="documentation">
@@ -53,6 +58,10 @@
             </div>
         </section>
     </main>
+
+    <footer class="glass-footer">
+        <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    </footer>
 
     <script src="docs.js"></script>
 </body>

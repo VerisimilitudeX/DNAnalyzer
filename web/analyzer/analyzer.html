@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5440024641032801"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DNA Analysis - DNAnalyzer</title>
@@ -16,16 +14,18 @@
     
     <header class="floating-header">
         <nav class="floating-nav">
-            <a href="../" class="nav-link">Home</a>
+            <a href="../index.html" class="nav-link">
+                <img src="../assets/icons/Icon_Light_BG.svg" alt="DNAnalyzer Logo" class="nav-logo">
+            </a>
             <a href="../about/about.html" class="nav-link">About</a>
             <a href="../features/features.html" class="nav-link">Features</a>
             <a href="analyzer.html" class="nav-link active">Analyzer</a>
             <a href="../server/server.html" class="nav-link">Server</a>
+            <div class="right-links">
+                <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
+                <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
+            </div>
         </nav>
-        <div class="header-buttons">
-            <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
-            <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
-        </div>
     </header>
 
     <div class="container">
@@ -169,7 +169,6 @@
             </div>
 
             <button type="submit" class="analyze-btn">Analyze DNA Sequence</button>
-            <img src="../assets/mockup/Slide_01.png" alt="DNA Analysis Visualization" class="analysis-visual">
         </form>
 
         <form id="geneticForm" class="tab-content" data-tab="genetic" style="display: none;">
@@ -196,6 +195,10 @@
             <div id="analysisOutput"></div>
         </div>
     </div>
+
+    <footer class="glass-footer">
+        <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    </footer>
 
     <script src="analyzer.js"></script>
 </body>

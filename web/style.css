@@ -24,6 +24,9 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
@@ -80,6 +83,8 @@ nav a:hover {
 
 main {
     padding-top: 4rem;
+    flex: 1;
+    margin-bottom: 2rem;
 }
 
 section {
@@ -427,6 +432,177 @@ select::placeholder, input[type="number"]::placeholder {
     line-height: 1.6;
 }
 
+.error-boundary {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 1rem 0;
+    animation: shake 0.5s ease-in-out;
+}
+
+.error-boundary h3 {
+    color: var(--error-color);
+    margin-bottom: 1rem;
+}
+
+.error-boundary p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+}
+
+.error-stack {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.retry-button {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.global-error {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    max-width: 400px;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--gradient-end);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-overlay p {
+    color: white;
+    font-size: 0.95rem;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+input.error {
+    border-color: var(--error-color) !important;
+}
+
+.dark-mode {
+    --background-color: #000;
+    --surface-color: #1a1c2a;
+    --text-color: #ffffff;
+    --border-color: #2a2c3a;
+}
+
+.floating-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(26, 28, 42, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.floating-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--gradient-end);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-logo {
+    height: 24px;
+}
+
+.right-links {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .floating-nav {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    .nav-link {
+        width: 100%;
+        justify-content: center;
+        margin: 0.25rem 0;
+    }
+
+    .right-links {
+        width: 100%;
+        flex-direction: column;
+        margin: 0.5rem 0 0;
+    }
+
+    .right-links .glass-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
@@ -437,6 +613,17 @@ select::placeholder, input[type="number"]::placeholder {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
     75% { transform: translateX(5px); }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @media (max-width: 768px) {
@@ -468,4 +655,22 @@ select::placeholder, input[type="number"]::placeholder {
     .cta-buttons {
         flex-direction: column;
     }
+}
+
+.glass-footer {
+    position: relative;
+    margin-top: auto;
+    width: 100%;
+    background: rgba(26, 28, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    text-align: center;
+}
+
+.glass-footer p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
 }

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5440024641032801"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server Setup - DNAnalyzer</title>
@@ -16,19 +14,18 @@
     
     <header class="floating-header">
         <nav class="floating-nav">
-            <a href="../" class="nav-link">
-                <img src="../assets/icons/emblem-light-bg.svg" alt="DNAnalyzer Logo" class="nav-logo">
-                Home
+            <a href="../index.html" class="nav-link">
+                <img src="../assets/icons/Icon_Light_BG.svg" alt="DNAnalyzer Logo" class="nav-logo">
             </a>
             <a href="../about/about.html" class="nav-link">About</a>
             <a href="../features/features.html" class="nav-link">Features</a>
             <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
             <a href="server.html" class="nav-link active">Server</a>
+            <div class="right-links">
+                <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
+                <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
+            </div>
         </nav>
-        <div class="header-buttons">
-            <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
-            <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
-        </div>
     </header>
 
     <main class="container">
@@ -38,6 +35,13 @@
             <div class="glass-card server-setup-section">
                 <h2>Quick Start Guide</h2>
                 <ol class="setup-steps">
+                    <li>
+                        <p>Clone and navigate to the repository:</p>
+                        <div class="command-box">
+                            <code>git clone https://github.com/VerisimilitudeX/DNAnalyzer.git && cd DNAnalyzer</code>
+                            <button class="copy-button" onclick="copyCloneCommand()">Copy</button>
+                        </div>
+                    </li>
                     <li>
                         <p>Make the Gradle wrapper executable:</p>
                         <div class="command-box">
@@ -65,6 +69,7 @@
                     <ul>
                         <li>Java 17 or higher</li>
                         <li>Port 8080 must be available</li>
+                        <li>Git installed</li>
                         <li>At least 2GB of free RAM</li>
                     </ul>
                 </div>
