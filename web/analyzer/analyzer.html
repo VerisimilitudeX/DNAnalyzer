@@ -39,67 +39,80 @@
         </section>
 
         <div class="analysis-container">
-            <div class="analysis-tabs">
-                <button class="tab-button active" data-tab="dna-analysis">
-                    <i class="fas fa-dna"></i>
-                    DNA Analysis
-                </button>
-                <button class="tab-button" data-tab="genetic-testing">
-                    <i class="fas fa-vial"></i>
-                    Genetic Testing
-                </button>
-                <button class="tab-button" data-tab="batch-analysis">
-                    <i class="fas fa-layer-group"></i>
-                    Batch Analysis
-                </button>
-            </div>
-
-            <div class="tab-content active" id="dna-analysis">
-                <div class="input-section">
-                    <h2>DNA Input</h2>
-                    <div class="input-methods">
-                        <button class="method-button active" data-method="file">
-                            <i class="fas fa-file-upload"></i>
-                            Upload File
-                        </button>
-                        <button class="method-button" data-method="url">
-                            <i class="fas fa-link"></i>
-                            URL Input
-                        </button>
-                        <button class="method-button" data-method="text">
-                            <i class="fas fa-keyboard"></i>
-                            Text Input
-                        </button>
-                    </div>
-
-                    <div class="input-area active" id="file-input">
-                        <div class="file-drop-zone">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Drag and drop your DNA sequence file here</p>
-                            <p class="sub-text">or</p>
-                            <label class="upload-button">
-                                Choose File
-                                <input type="file" accept=".fa,.fasta,.fastq" hidden>
-                            </label>
-                            <p class="file-info">Supported formats: .fa, .fasta, .fastq</p>
+            <aside class="analysis-sidebar">
+                <div class="sidebar-section">
+                    <h3>Analysis History</h3>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <i class="fas fa-history"></i>
+                            <span>No recent analyses</span>
                         </div>
-                    </div>
-
-                    <div class="input-area" id="url-input">
-                        <div class="url-input-container">
-                            <input type="url" placeholder="Enter URL to DNA sequence file" class="url-field">
-                            <button class="fetch-button">Fetch</button>
-                        </div>
-                    </div>
-
-                    <div class="input-area" id="text-input">
-                        <textarea placeholder="Paste your DNA sequence here..." class="sequence-input"></textarea>
                     </div>
                 </div>
 
-                <div class="analysis-options">
-                    <h2>Analysis Options</h2>
-                    <div class="options-grid">
+                <div class="sidebar-section">
+                    <h3>Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-file-import"></i>
+                            Import Sample
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-save"></i>
+                            Save Settings
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-cog"></i>
+                            Preferences
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Resources</h3>
+                    <div class="resource-links">
+                        <a href="../docs/docs.html" class="resource-link">
+                            <i class="fas fa-book"></i>
+                            Documentation
+                        </a>
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues" class="resource-link">
+                            <i class="fas fa-bug"></i>
+                            Report Issue
+                        </a>
+                        <a href="https://discord.gg/xNpujz49gj" class="resource-link">
+                            <i class="fab fa-discord"></i>
+                            Community
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="analysis-main">
+                <div class="analysis-tabs">
+                    <button class="tab-button active" data-tab="dna-analysis">
+                        <i class="fas fa-dna"></i>
+                        DNA Analysis
+                    </button>
+                    <button class="tab-button" data-tab="genetic-testing">
+                        <i class="fas fa-vial"></i>
+                        Genetic Testing
+                    </button>
+                    <button class="tab-button" data-tab="batch-analysis">
+                        <i class="fas fa-layer-group"></i>
+                        Batch Analysis
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="dna-analysis">
+                    <div class="file-drop-zone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload DNA Sequence</h3>
+                        <p>Drag and drop your sequence file here or click to browse</p>
+                        <input type="file" hidden accept=".fa,.fasta,.fastq">
+                        <p class="file-info">Supported formats: .fa, .fasta, .fastq</p>
+                    </div>
+
+                    <div class="analysis-options">
                         <div class="option-card">
                             <div class="option-header">
                                 <i class="fas fa-microscope"></i>
@@ -173,67 +186,62 @@
                         </div>
                     </div>
 
-                    <div class="advanced-settings">
-                        <div class="settings-header">
-                            <h3>Advanced Settings</h3>
-                            <button class="toggle-settings">
-                                <i class="fas fa-cog"></i>
-                            </button>
+                    <button class="analyze-btn">
+                        <i class="fas fa-play"></i>
+                        Start Analysis
+                    </button>
+
+                    <div class="results-section" style="display: none;">
+                        <div class="results-header">
+                            <h2>Analysis Results</h2>
+                            <div class="result-actions">
+                                <button class="action-btn">
+                                    <i class="fas fa-download"></i>
+                                    Export
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-share"></i>
+                                    Share
+                                </button>
+                            </div>
                         </div>
-                        <div class="settings-content">
-                            <div class="setting-group">
-                                <label>Minimum Sequence Length</label>
-                                <input type="number" value="100" min="1">
-                            </div>
-                            <div class="setting-group">
-                                <label>Maximum Sequence Length</label>
-                                <input type="number" value="1000" min="1">
-                            </div>
-                            <div class="setting-group">
-                                <label>Start Amino Acid</label>
-                                <select>
-                                    <option value="met">Methionine (MET)</option>
-                                    <option value="ser">Serine (SER)</option>
-                                    <option value="val">Valine (VAL)</option>
-                                </select>
+                        <div class="results-content">
+                            <div class="result-grid">
+                                <div class="result-card">
+                                    <div class="result-value">1,234</div>
+                                    <div class="result-label">Sequence Length</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="result-value">45.6%</div>
+                                    <div class="result-label">GC Content</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="result-value">8</div>
+                                    <div class="result-label">Start Codons</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="result-value">12</div>
+                                    <div class="result-label">Stop Codons</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button class="analyze-btn">
-                    <i class="fas fa-play"></i>
-                    Start Analysis
-                </button>
-            </div>
-
-            <div class="tab-content" id="genetic-testing">
-                <div class="coming-soon">
-                    <i class="fas fa-flask"></i>
-                    <h2>Genetic Testing</h2>
-                    <p>Advanced genetic testing features coming soon!</p>
+                <div class="tab-content" id="genetic-testing">
+                    <div class="coming-soon">
+                        <i class="fas fa-flask"></i>
+                        <h2>Genetic Testing</h2>
+                        <p>Advanced genetic testing features coming soon!</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tab-content" id="batch-analysis">
-                <div class="coming-soon">
-                    <i class="fas fa-layer-group"></i>
-                    <h2>Batch Analysis</h2>
-                    <p>Batch processing capabilities coming soon!</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="results-section" style="display: none;">
-            <h2>Analysis Results</h2>
-            <div class="results-container">
-                <div class="result-tabs">
-                    <button class="result-tab active" data-result="summary">Summary</button>
-                    <button class="result-tab" data-result="details">Detailed Analysis</button>
-                    <button class="result-tab" data-result="visualization">Visualization</button>
-                </div>
-                <div class="result-content">
-                    <!-- Results will be dynamically populated here -->
+                <div class="tab-content" id="batch-analysis">
+                    <div class="coming-soon">
+                        <i class="fas fa-layer-group"></i>
+                        <h2>Batch Analysis</h2>
+                        <p>Batch processing capabilities coming soon!</p>
+                    </div>
                 </div>
             </div>
         </div>
