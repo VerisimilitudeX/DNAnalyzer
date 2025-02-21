@@ -11,6 +11,14 @@
     z-index: 1;
 }
 
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .tab-container {
     display: flex;
     gap: 1rem;
@@ -30,11 +38,10 @@
 
 .tab-button:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
 }
 
 .tab-button.active {
-    background: linear-gradient(135deg, #007AFF, #00BFFF);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     border-color: transparent;
     color: white;
 }
@@ -83,7 +90,6 @@
 
 .checkbox-group:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
 }
 
 .checkbox-group label {
@@ -162,18 +168,12 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
 }
 
-input[type="url"]:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
-}
-
 .file-upload-group {
     margin-bottom: 1rem;
 }
 
 .analyze-btn {
-    background: linear-gradient(135deg, #007AFF, #00BFFF);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -189,9 +189,8 @@ input[type="url"]:focus {
 }
 
 .analyze-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
     filter: brightness(1.1);
+    box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
 }
 
 .analyze-btn:active {
@@ -204,143 +203,8 @@ input[type="url"]:focus {
     transform: none;
 }
 
-.results {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeIn 0.3s ease-out;
-}
-
-.results h2 {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.results h2::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--success-color);
-}
-
-.results.error h2::before {
-    background: var(--error-color);
-}
-
-.analysis-error {
-    background: rgba(220, 53, 69, 0.1);
-    border: 1px solid rgba(220, 53, 69, 0.3);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1rem 0;
-    animation: shake 0.5s ease-in-out;
-}
-
-.analysis-error h3 {
-    color: var(--error-color);
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-
-.analysis-error p {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-}
-
-.analysis-error .error-details {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.processing-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 2rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    margin: 1rem 0;
-}
-
-.processing-indicator::after {
-    content: '';
-    width: 1.2rem;
-    height: 1.2rem;
-    border: 2px solid var(--gradient-start);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-.success-indicator {
-    padding: 1rem;
-    background: rgba(40, 167, 69, 0.1);
-    border: 1px solid rgba(40, 167, 69, 0.3);
-    border-radius: 8px;
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--success-color);
-    font-size: 0.95rem;
-}
-
-.output-controls {
-    display: flex;
-    gap: 1rem;
-    margin: 1rem 0;
-}
-
-.output-format-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.output-format-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
-}
-
-.output-format-btn.active {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    border-color: transparent;
-}
-
-#analysisOutput {
-    white-space: pre-wrap;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    max-height: 500px;
-    overflow-y: auto;
-    color: rgba(255, 255, 255, 0.9);
-}
-
 .section-title {
-    color: var(--accent-color);
+    color: var(--gradient-end);
     margin: 0.5rem 0 1rem;
     font-size: 1.2rem;
     font-weight: 600;
@@ -353,119 +217,6 @@ small {
     color: rgba(255, 255, 255, 0.6);
     margin-top: 0.25rem;
     font-size: 0.85rem;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-body {
-    background-color: #000;
-    min-height: 100vh;
-}
-
-.background-blur {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(0, 191, 255, 0.05));
-    z-index: -1;
-    opacity: 0.8;
-    pointer-events: none;
-}
-
-.input-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.input-tab {
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.input-tab:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-}
-
-.input-tab.active {
-    background: linear-gradient(135deg, #007AFF, #00BFFF);
-    border-color: transparent;
-    color: white;
-}
-
-.input-content {
-    display: none;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.input-content.active {
-    display: block;
-}
-
-.loading-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 2rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-}
-
-.loading-indicator::after {
-    content: '';
-    width: 1.2rem;
-    height: 1.2rem;
-    border: 2px solid var(--gradient-start);
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-.error-container {
-    background: rgba(220, 53, 69, 0.1);
-    border: 1px solid rgba(220, 53, 69, 0.3);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 1rem;
-}
-
-.error-container h3 {
-    color: var(--error-color);
-    margin-bottom: 1rem;
-}
-
-.error-container p {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 0.5rem;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
 }
 
 @media screen and (max-width: 768px) {
@@ -498,170 +249,7 @@ body {
         flex-direction: column;
     }
 
-    .floating-nav {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0.5rem;
-    }
-
-    .nav-link {
-        padding: 0.75rem;
-        text-align: center;
-    }
-
-    .right-links {
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-    }
-
-    .glass-button {
-        width: 100%;
-    }
-}
-
-.genetic-results {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.results-section {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
-}
-
-.results-section h3 {
-    color: var(--gradient-end);
-    margin-bottom: 1.5rem;
-    font-size: 1.2rem;
-}
-
-.stat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.stat-item {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.stat-label {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-}
-
-.stat-value {
-    font-size: 1.5rem;
-    font-weight: 600;
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.chromosome-chart {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
-    gap: 0.5rem;
-    height: 200px;
-    align-items: end;
-    padding: 1rem 0;
-}
-
-.chart-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-}
-
-.bar-fill {
-    width: 100%;
-    background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
-    border-radius: 4px 4px 0 0;
-    min-height: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 0.25rem;
-    transition: height 0.3s ease;
-}
-
-.bar-value {
-    font-size: 0.8rem;
-    color: white;
-    transform: translateY(-1.2rem);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.chart-bar:hover .bar-value {
-    opacity: 1;
-}
-
-.bar-label {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.snp-table {
-    overflow-x: auto;
-    margin: 0 -1.5rem;
-    padding: 0 1.5rem;
-}
-
-.snp-table table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-}
-
-.snp-table th {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 0.75rem 1rem;
-    text-align: left;
-    color: var(--gradient-end);
-    font-weight: 500;
-}
-
-.snp-table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.snp-table tr:hover td {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.table-note {
-    text-align: center;
-    padding: 1rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-    .stat-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .chromosome-chart {
-        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-        height: 150px;
-    }
-
-    .snp-table {
-        margin: 0 -1rem;
-        padding: 0 1rem;
+    h1 {
+        font-size: 2rem;
     }
 }
