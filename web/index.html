@@ -10,6 +10,8 @@
 </head>
 <body>
     <div class="background-blur"></div>
+    <div class="gradient-sphere"></div>
+    <div class="gradient-sphere secondary"></div>
     
     <header class="floating-header">
         <nav class="floating-nav">
@@ -30,56 +32,136 @@
 
     <main>
         <section id="hero">
-            <h1>DNAnalyzer</h1>
-            <p class="hero-subtitle">Revolutionizing DNA analysis using ML-powered on-device computation for everyone.</p>
-            <div class="cta-buttons">
-                <button class="primary-btn" onclick="window.location.href='analyzer/analyzer.html'">Try DNA Analysis</button>
-                <button class="secondary-btn" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">View on GitHub</button>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>DNAnalyzer</h1>
+                    <p class="hero-subtitle">Revolutionizing DNA analysis using ML-powered on-device computation for everyone.</p>
+                    <div class="cta-buttons">
+                        <button class="primary-btn" onclick="window.location.href='analyzer/analyzer.html'">Try DNA Analysis</button>
+                        <button class="secondary-btn" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">View on GitHub</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="dna-helix">
+                        <div class="strand"></div>
+                        <div class="strand"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <span>Scroll to explore</span>
             </div>
         </section>
 
-        <section id="mission" class="scroll-section">
+        <section id="stats" class="scroll-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Accuracy Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50M+</div>
+                    <div class="stat-label">Sequences Analyzed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features-overview" class="scroll-section">
             <div class="content-wrapper">
-                <h2>Our Mission</h2>
-                <div class="mission-grid">
-                    <div class="mission-card">
-                        <img src="assets/icons/Icon_Dark_BG.svg" alt="Accessibility Icon" class="mission-icon">
-                        <h3>Accessible</h3>
-                        <p>Making state-of-the-art DNA analysis available to everyone through efficient on-device computation.</p>
-                    </div>
-                    <div class="mission-card">
-                        <img src="assets/icons/Icon_Dark_BG_Base.svg" alt="Security Icon" class="mission-icon">
-                        <h3>Secure</h3>
-                        <p>All computations occur on your device, ensuring your genetic data remains private and under your control.</p>
-                    </div>
-                    <div class="mission-card">
-                        <img src="assets/icons/emblem-dark-bg.svg" alt="Innovation Icon" class="mission-icon">
-                        <h3>Advanced</h3>
-                        <p>Leveraging cutting-edge machine learning techniques for accurate and comprehensive DNA analysis.</p>
+                <h2>Why Choose DNAnalyzer?</h2>
+                <div class="features-showcase">
+                    <div class="feature-highlight">
+                        <div class="feature-visual">
+                            <video autoplay loop muted playsinline>
+                                <source src="assets/videos/dna_spiral.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Advanced Analysis</h3>
+                            <p>Our cutting-edge ML algorithms provide unparalleled accuracy in DNA sequence analysis, identifying crucial patterns and markers with precision.</p>
+                            <ul class="feature-list">
+                                <li>Start and Stop Codon Detection</li>
+                                <li>High Coverage Region Analysis</li>
+                                <li>Protein Sequence Identification</li>
+                                <li>Transcription Factor Binding Sites</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="key-features" class="scroll-section">
+        <section id="workflow" class="scroll-section">
             <div class="content-wrapper">
-                <h2>Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>DNA Analysis</h3>
-                        <p>Identify proteins, amino acids, start and stop codons, and high coverage regions with precision.</p>
+                <h2>How It Works</h2>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <div class="step-number">01</div>
+                        <h3>Upload</h3>
+                        <p>Upload your DNA sequence file in FASTA or FASTQ format</p>
+                        <div class="step-visual upload-animation"></div>
                     </div>
-                    <div class="feature-card">
-                        <h3>Multiple Formats</h3>
-                        <p>Support for FASTA and FASTQ file formats, with efficient processing of large sequences.</p>
+                    <div class="step">
+                        <div class="step-number">02</div>
+                        <h3>Analyze</h3>
+                        <p>Our ML algorithms process and analyze your sequence</p>
+                        <div class="step-visual analyze-animation"></div>
                     </div>
-                    <div class="feature-card">
-                        <h3>Local Processing</h3>
-                        <p>Process DNA sequences locally for enhanced privacy and speed, with no data leaving your device.</p>
+                    <div class="step">
+                        <div class="step-number">03</div>
+                        <h3>Results</h3>
+                        <p>Get comprehensive analysis results and insights</p>
+                        <div class="step-visual results-animation"></div>
                     </div>
-                    <div class="feature-card">
-                        <h3>ML-Powered</h3>
-                        <p>Advanced machine learning algorithms ensure accurate detection and analysis of genetic markers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="security" class="scroll-section">
+            <div class="content-wrapper">
+                <div class="security-grid">
+                    <div class="security-content">
+                        <h2>Privacy & Security</h2>
+                        <p>Your genetic data never leaves your device. All computations are performed locally using our advanced on-device ML models.</p>
+                        <ul class="security-features">
+                            <li>
+                                <div class="security-icon local"></div>
+                                <span>Local Processing</span>
+                            </li>
+                            <li>
+                                <div class="security-icon encrypted"></div>
+                                <span>End-to-End Encryption</span>
+                            </li>
+                            <li>
+                                <div class="security-icon private"></div>
+                                <span>Data Privacy</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="security-visual">
+                        <div class="security-animation"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="scroll-section">
+            <div class="content-wrapper">
+                <div class="cta-container">
+                    <h2>Ready to Start?</h2>
+                    <p>Join thousands of researchers and scientists using DNAnalyzer for their genetic analysis needs.</p>
+                    <div class="cta-buttons">
+                        <button class="primary-btn" onclick="window.location.href='analyzer/analyzer.html'">Start Analyzing</button>
+                        <button class="secondary-btn" onclick="window.location.href='docs/docs.html'">Read Documentation</button>
                     </div>
                 </div>
             </div>
@@ -87,7 +169,34 @@
     </main>
 
     <footer class="glass-footer">
-        <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="footer-logo">
+                <p>DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit.</p>
+                <p>EIN: 81-2908499</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about/about.html">About</a>
+                <a href="features/features.html">Features</a>
+                <a href="docs/docs.html">Documentation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a>
+                <a href="https://discord.gg/xNpujz49gj">Discord</a>
+                <a href="docs/docs.html#api">API Reference</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">MIT License</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © Piyush Acharya 2025. All rights reserved.</p>
+        </div>
     </footer>
 
     <script src="index.js"></script>
