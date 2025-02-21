@@ -1,164 +1,108 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Intersection Observer for scroll animations
+    // DNA Helix Animation
+    const dnaHelix = document.querySelector('.dna-helix');
+    const numBases = 20;
+    const baseTypes = ['A', 'T', 'C', 'G'];
+    
+    // Create base pairs
+    for (let i = 0; i < numBases; i++) {
+        const baseIndex = Math.floor(Math.random() * baseTypes.length);
+        const complementaryIndex = baseIndex % 2 === 0 ? baseIndex + 1 : baseIndex - 1;
+        
+        const leftBase = document.createElement('div');
+        leftBase.className = 'base left-base';
+        leftBase.textContent = baseTypes[baseIndex];
+        leftBase.style.animationDelay = `${i * 0.2}s`;
+        
+        const rightBase = document.createElement('div');
+        rightBase.className = 'base right-base';
+        rightBase.textContent = baseTypes[complementaryIndex];
+        rightBase.style.animationDelay = `${i * 0.2}s`;
+        
+        const connector = document.createElement('div');
+        connector.className = 'base-connector';
+        connector.style.animationDelay = `${i * 0.2}s`;
+        
+        const basePair = document.createElement('div');
+        basePair.className = 'base-pair';
+        basePair.style.top = `${i * 30}px`;
+        
+        basePair.appendChild(leftBase);
+        basePair.appendChild(connector);
+        basePair.appendChild(rightBase);
+        dnaHelix.appendChild(basePair);
+    }
+
+    // Scroll Indicator
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (st > lastScrollTop) {
+            // Scrolling down
+            scrollIndicator.style.opacity = '0';
+        } else if (st === 0) {
+            // At top
+            scrollIndicator.style.opacity = '1';
+        }
+        
+        lastScrollTop = st <= 0 ? 0 : st;
+    });
+
+    // Stats Animation
+    const stats = document.querySelectorAll('.stat-number');
+    const statsSection = document.querySelector('#stats');
+    let animated = false;
+
+    function animateStats() {
+        if (animated) return;
+        
+        stats.forEach(stat => {
+            const value = stat.textContent;
+            const isPercentage = value.includes('%');
+            const number = parseFloat(value);
+            let start = 0;
+            
+            const increment = number / 50; // Animate over 50 steps
+            const interval = setInterval(() => {
+                start += increment;
+                if (start >= number) {
+                    start = number;
+                    clearInterval(interval);
+                }
+                stat.textContent = isPercentage ? 
+                    start.toFixed(1) + '%' : 
+                    Math.round(start).toLocaleString();
+            }, 30);
+        });
+        
+        animated = true;
+    }
+
+    // Intersection Observer for stats animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Animate stats when they come into view
-                if (entry.target.id === 'stats') {
-                    animateStats();
-                }
+                animateStats();
             }
         });
-    }, {
-        threshold: 0.1
-    });
+    }, { threshold: 0.5 });
 
-    // Observe all scroll sections
-    document.querySelectorAll('.scroll-section').forEach(section => {
-        observer.observe(section);
-    });
-
-    // Stats animation
-    function animateStats() {
-        document.querySelectorAll('.stat-number').forEach(stat => {
-            const target = parseInt(stat.textContent);
-            let current = 0;
-            const increment = target / 100;
-            const duration = 2000; // 2 seconds
-            const steps = 100;
-            const stepTime = duration / steps;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    stat.textContent = target + (stat.textContent.includes('%') ? '%' : '+');
-                    clearInterval(timer);
-                } else {
-                    stat.textContent = Math.floor(current) + (stat.textContent.includes('%') ? '%' : '+');
-                }
-            }, stepTime);
-        });
-    }
-
-    // Parallax effect for gradient spheres
-    document.addEventListener('mousemove', (e) => {
-        const spheres = document.querySelectorAll('.gradient-sphere');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-
-        spheres.forEach((sphere, index) => {
-            const depth = index === 0 ? 20 : 10;
-            const translateX = (mouseX - 0.5) * depth;
-            const translateY = (mouseY - 0.5) * depth;
-            sphere.style.transform = `translate(${translateX}px, ${translateY}px)`;
-        });
-    });
+    observer.observe(statsSection);
 
     // Smooth scroll for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         });
-    });
-
-    // DNA Helix Animation
-    const dnaHelix = document.querySelector('.dna-helix');
-    if (dnaHelix) {
-        const numBases = 20;
-        for (let i = 0; i < numBases; i++) {
-            const base = document.createElement('div');
-            base.className = 'dna-base';
-            base.style.top = `${(i / numBases) * 100}%`;
-            base.style.animationDelay = `${i * 0.1}s`;
-            dnaHelix.appendChild(base);
-        }
-    }
-
-    // Feature list animation
-    document.querySelectorAll('.feature-list li').forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-20px)';
-        setTimeout(() => {
-            item.style.transition = 'all 0.5s ease';
-            item.style.opacity = '1';
-            item.style.transform = 'translateX(0)';
-        }, index * 200);
-    });
-
-    // Security features animation
-    document.querySelectorAll('.security-features li').forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(20px)';
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        item.style.transition = 'all 0.5s ease';
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, index * 200);
-                    observer.unobserve(item);
-                }
-            });
-        });
-        observer.observe(item);
-    });
-
-    // Workflow steps animation
-    document.querySelectorAll('.step').forEach((step, index) => {
-        step.style.opacity = '0';
-        step.style.transform = 'translateY(20px)';
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        step.style.transition = 'all 0.5s ease';
-                        step.style.opacity = '1';
-                        step.style.transform = 'translateY(0)';
-                    }, index * 200);
-                    observer.unobserve(step);
-                }
-            });
-        });
-        observer.observe(step);
-    });
-
-    // Scroll indicator fade out
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition > 100) {
-                scrollIndicator.style.opacity = '0';
-            } else {
-                scrollIndicator.style.opacity = '1';
-            }
-        });
-    }
-
-    // Initial check for visible sections
-    document.querySelectorAll('.scroll-section').forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-            section.classList.add('visible');
-            if (section.id === 'stats') {
-                animateStats();
-            }
-        }
     });
 });

@@ -6,11 +6,14 @@
     <title>About - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="about.css">
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="background-blur"></div>
+    <div class="gradient-sphere"></div>
+    <div class="gradient-sphere secondary"></div>
     
     <header class="floating-header">
         <nav class="floating-nav">
@@ -21,52 +24,99 @@
             <a href="../features/features.html" class="nav-link">Features</a>
             <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
             <a href="../server/server.html" class="nav-link">Server</a>
+            <a href="../docs/docs.html" class="nav-link">Docs</a>
             <div class="right-links">
-                <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
-                <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">GitHub</a>
+                <a href="https://discord.gg/xNpujz49gj" class="glass-button">Discord</a>
             </div>
         </nav>
     </header>
 
     <main class="container">
-        <section class="content-section">
+        <section class="hero">
             <h1>About DNAnalyzer</h1>
-            <div class="grid">
-                <div class="glass-card">
-                    <div class="card-header">
-                        <img src="../assets/icons/Icon_Dark_BG.svg" alt="Analysis Icon" class="card-icon">
-                        <h2>Introduction</h2>
-                    </div>
-                    <p>DNAnalyzer identifies proteins, amino acids, start and stop codons, high coverage regions,
-                        regions susceptible to neurodevelopmental disorders, transcription factors, and regulatory
-                        elements. Researchers are working to extract valuable information from such software to better
-                        understand human health and disease.</p>
-                    <img src="../assets/mockup/Slide_01.png" alt="DNAnalyzer Interface" class="feature-image">
+            <p>Revolutionizing DNA analysis through advanced machine learning and efficient computation</p>
+        </section>
+
+        <section class="mission-section">
+            <h2>Our Mission</h2>
+            <p>DNAnalyzer aims to democratize DNA analysis by providing powerful, accessible tools for researchers, clinicians, and scientists worldwide. We're committed to advancing genomic research through innovative technology and open collaboration.</p>
+        </section>
+
+        <section class="values-section">
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-dna value-icon"></i>
+                    <h3>Innovation</h3>
+                    <p>Leveraging cutting-edge technology and machine learning to provide accurate, comprehensive DNA analysis capabilities.</p>
                 </div>
-                <div class="glass-card">
-                    <div class="card-header">
-                        <img src="../assets/icons/Icon_Base.svg" alt="Science Icon" class="card-icon">
-                        <h2>Background</h2>
-                    </div>
-                    <p>With DNA sequencing becoming more accessible and affordable, the need for efficient analysis tools 
-                    has grown exponentially. DNAnalyzer was developed to meet this need, providing researchers and 
-                    clinicians with a powerful yet user-friendly platform for DNA sequence analysis.</p>
+                <div class="value-card">
+                    <i class="fas fa-users value-icon"></i>
+                    <h3>Accessibility</h3>
+                    <p>Making advanced DNA analysis tools available to researchers and clinicians worldwide through an intuitive interface.</p>
                 </div>
-                <div class="glass-card">
-                    <div class="card-header">
-                        <img src="../assets/icons/emblem-dark-bg.svg" alt="Technology Icon" class="card-icon">
-                        <h2>Technology</h2>
-                    </div>
-                    <p>Built with cutting-edge technology, DNAnalyzer leverages advanced algorithms and machine learning 
-                    to provide accurate and comprehensive DNA analysis. Our platform supports various file formats and 
-                    can process large sequences efficiently.</p>
+                <div class="value-card">
+                    <i class="fas fa-shield-alt value-icon"></i>
+                    <h3>Reliability</h3>
+                    <p>Ensuring accurate results and robust performance through rigorous testing and validation processes.</p>
                 </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <h2>Technology</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="../assets/icons/Icon_Dark_BG.svg" alt="Analysis Features">
+                    </div>
+                    <div class="member-info">
+                        <h3>Advanced Analysis</h3>
+                        <p class="role">Core Features</p>
+                        <p class="bio">Identifies proteins, amino acids, start and stop codons, high coverage regions, and regulatory elements with high accuracy.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="../assets/icons/Icon_Base.svg" alt="ML Capabilities">
+                    </div>
+                    <div class="member-info">
+                        <h3>Machine Learning</h3>
+                        <p class="role">Smart Processing</p>
+                        <p class="bio">Utilizes advanced algorithms and ML models to process and analyze DNA sequences efficiently.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="../assets/icons/emblem-dark-bg.svg" alt="Platform Features">
+                    </div>
+                    <div class="member-info">
+                        <h3>Scalable Platform</h3>
+                        <p class="role">Infrastructure</p>
+                        <p class="bio">Built on modern technology stack ensuring fast processing of large sequences and reliable performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Get Involved</h2>
+            <p>Join our community and contribute to the future of DNA analysis</p>
+            <div class="social-links">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://discord.gg/xNpujz49gj" class="social-link">
+                    <i class="fab fa-discord"></i>
+                </a>
             </div>
         </section>
     </main>
 
-    <footer class="glass-footer">
-        <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    <footer class="footer-content">
+        <div class="footer-bottom">
+            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+        </div>
     </footer>
 
     <script src="about.js"></script>

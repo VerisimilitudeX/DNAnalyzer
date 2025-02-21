@@ -4,184 +4,281 @@
     padding: 2rem;
 }
 
-.docs-nav {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-bottom: 4rem;
 }
 
-.docs-nav-item {
-    padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: white;
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Documentation Navigation */
+.docs-nav {
+    position: fixed;
+    top: 6rem;
+    left: 0;
+    width: 280px;
+    height: calc(100vh - 6rem);
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+}
+
+.nav-section {
+    margin-bottom: 2rem;
+}
+
+.nav-section h3 {
+    color: var(--gradient-end);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
+    font-size: 1rem;
     transition: all 0.3s ease;
 }
 
-.docs-nav-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.nav-link:hover {
+    color: var(--gradient-end);
+    transform: translateX(5px);
 }
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
+.nav-link.active {
+    color: var(--gradient-end);
+    font-weight: 500;
+}
+
+/* Main Content */
+.docs-content {
+    margin-left: 280px;
     padding: 2rem;
+}
+
+.content-section {
+    margin-bottom: 4rem;
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
     margin-bottom: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.section-content {
-    margin-top: 1.5rem;
-}
-
-.section-content h3 {
-    margin: 2rem 0 1rem;
     color: var(--gradient-end);
 }
 
-.section-content h3:first-child {
-    margin-top: 0;
-}
-
-.section-content ul, .section-content ol {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-}
-
-.section-content li {
-    margin: 0.5rem 0;
+.content-section h3 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
     color: rgba(255, 255, 255, 0.9);
 }
 
+.content-section p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Code Blocks */
 .code-block {
     background: rgba(0, 0, 0, 0.3);
-    padding: 1rem 1.2rem;
     border-radius: 8px;
-    margin: 1rem 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
     overflow-x: auto;
 }
 
-.code-block code {
-    font-family: 'IBM Plex Mono', monospace;
-    color: #10B981;
-    font-size: 0.9rem;
-}
-
-.feature-item {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.feature-item:last-child {
-    margin-bottom: 0;
-}
-
-.feature-item p {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.8;
-    margin-top: 0.5rem;
-}
-
-.options-list {
-    list-style: none !important;
-    padding-left: 0 !important;
-}
-
-.options-list li {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    margin: 0.5rem 0;
-}
-
-.options-list code {
-    font-family: 'IBM Plex Mono', monospace;
-    color: #10B981;
-    font-size: 0.9rem;
-    padding: 0.25rem 0.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-}
-
-.api-list {
-    list-style: none !important;
-    padding-left: 0 !important;
-}
-
-.api-list li {
-    margin: 1rem 0;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.api-list code {
-    display: block;
-    font-family: 'IBM Plex Mono', monospace;
-    color: #10B981;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-}
-
-.api-list p {
-    color: rgba(255, 255, 255, 0.9);
+.code-block pre {
     margin: 0;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.95rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-a {
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-language {
     color: var(--gradient-end);
-    text-decoration: none;
-    transition: color 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
-a:hover {
-    color: var(--gradient-start);
+.copy-button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 1rem;
-        margin-top: 5rem;
-    }
+.copy-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--gradient-end);
+}
 
+/* Tables */
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.docs-table th,
+.docs-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.docs-table th {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--gradient-end);
+    font-weight: 600;
+}
+
+.docs-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Lists */
+.content-section ul,
+.content-section ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.content-section li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+/* Notes and Warnings */
+.note-block {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.note-info {
+    background: rgba(0, 122, 255, 0.1);
+    border-left-color: var(--gradient-end);
+}
+
+.note-warning {
+    background: rgba(255, 149, 0, 0.1);
+    border-left-color: #ff9500;
+}
+
+.note-block h4 {
+    color: var(--gradient-end);
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+}
+
+/* Search Bar */
+.search-container {
+    margin-bottom: 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--gradient-start);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
     .docs-nav {
-        flex-direction: column;
+        width: 240px;
     }
 
-    .docs-nav-item {
-        width: 100%;
-        text-align: center;
+    .docs-content {
+        margin-left: 240px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .docs-nav {
+        display: none;
     }
 
-    .glass-card {
-        padding: 1.5rem;
-    }
-
-    .feature-item {
+    .docs-content {
+        margin-left: 0;
         padding: 1rem;
     }
 
-    .code-block {
-        padding: 0.75rem;
+    .container {
+        margin: 4rem 1rem 2rem;
+        padding: 1rem;
     }
 
-    .options-list li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .content-section h2 {
+        font-size: 2rem;
+    }
+
+    .content-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .docs-table {
+        display: block;
+        overflow-x: auto;
     }
 }

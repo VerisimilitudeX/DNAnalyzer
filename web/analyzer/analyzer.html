@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNA Analysis - DNAnalyzer</title>
+    <title>DNA Analyzer - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="analyzer.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="background-blur"></div>
+    <div class="gradient-sphere"></div>
+    <div class="gradient-sphere secondary"></div>
     
     <header class="floating-header">
         <nav class="floating-nav">
@@ -23,182 +26,223 @@
             <a href="../server/server.html" class="nav-link">Server</a>
             <a href="../docs/docs.html" class="nav-link">Docs</a>
             <div class="right-links">
-                <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
-                <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">GitHub</a>
+                <a href="https://discord.gg/xNpujz49gj" class="glass-button">Discord</a>
             </div>
         </nav>
     </header>
 
-    <div class="container">
-        <h1>DNA Sequence Analysis</h1>
-        
-        <div class="tab-container">
-            <button class="tab-button active" data-tab="dna">DNA Analysis</button>
-            <button class="tab-button" data-tab="genetic">Genetic Testing Data</button>
+    <main class="container">
+        <section class="hero">
+            <h1>DNA Sequence Analysis</h1>
+            <p>Analyze DNA sequences with advanced ML-powered tools</p>
+        </section>
+
+        <div class="analysis-container">
+            <div class="analysis-tabs">
+                <button class="tab-button active" data-tab="dna-analysis">
+                    <i class="fas fa-dna"></i>
+                    DNA Analysis
+                </button>
+                <button class="tab-button" data-tab="genetic-testing">
+                    <i class="fas fa-vial"></i>
+                    Genetic Testing
+                </button>
+                <button class="tab-button" data-tab="batch-analysis">
+                    <i class="fas fa-layer-group"></i>
+                    Batch Analysis
+                </button>
+            </div>
+
+            <div class="tab-content active" id="dna-analysis">
+                <div class="input-section">
+                    <h2>DNA Input</h2>
+                    <div class="input-methods">
+                        <button class="method-button active" data-method="file">
+                            <i class="fas fa-file-upload"></i>
+                            Upload File
+                        </button>
+                        <button class="method-button" data-method="url">
+                            <i class="fas fa-link"></i>
+                            URL Input
+                        </button>
+                        <button class="method-button" data-method="text">
+                            <i class="fas fa-keyboard"></i>
+                            Text Input
+                        </button>
+                    </div>
+
+                    <div class="input-area active" id="file-input">
+                        <div class="file-drop-zone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Drag and drop your DNA sequence file here</p>
+                            <p class="sub-text">or</p>
+                            <label class="upload-button">
+                                Choose File
+                                <input type="file" accept=".fa,.fasta,.fastq" hidden>
+                            </label>
+                            <p class="file-info">Supported formats: .fa, .fasta, .fastq</p>
+                        </div>
+                    </div>
+
+                    <div class="input-area" id="url-input">
+                        <div class="url-input-container">
+                            <input type="url" placeholder="Enter URL to DNA sequence file" class="url-field">
+                            <button class="fetch-button">Fetch</button>
+                        </div>
+                    </div>
+
+                    <div class="input-area" id="text-input">
+                        <textarea placeholder="Paste your DNA sequence here..." class="sequence-input"></textarea>
+                    </div>
+                </div>
+
+                <div class="analysis-options">
+                    <h2>Analysis Options</h2>
+                    <div class="options-grid">
+                        <div class="option-card">
+                            <div class="option-header">
+                                <i class="fas fa-microscope"></i>
+                                <h3>Basic Analysis</h3>
+                            </div>
+                            <div class="option-content">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Sequence Length
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    GC Content
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Base Composition
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="option-card">
+                            <div class="option-header">
+                                <i class="fas fa-dna"></i>
+                                <h3>Codon Analysis</h3>
+                            </div>
+                            <div class="option-content">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Start Codons
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Stop Codons
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Reading Frames
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="option-card">
+                            <div class="option-header">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Advanced Features</h3>
+                            </div>
+                            <div class="option-content">
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Coverage Analysis
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Mutation Detection
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                    Protein Prediction
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advanced-settings">
+                        <div class="settings-header">
+                            <h3>Advanced Settings</h3>
+                            <button class="toggle-settings">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                        </div>
+                        <div class="settings-content">
+                            <div class="setting-group">
+                                <label>Minimum Sequence Length</label>
+                                <input type="number" value="100" min="1">
+                            </div>
+                            <div class="setting-group">
+                                <label>Maximum Sequence Length</label>
+                                <input type="number" value="1000" min="1">
+                            </div>
+                            <div class="setting-group">
+                                <label>Start Amino Acid</label>
+                                <select>
+                                    <option value="met">Methionine (MET)</option>
+                                    <option value="ser">Serine (SER)</option>
+                                    <option value="val">Valine (VAL)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="analyze-btn">
+                    <i class="fas fa-play"></i>
+                    Start Analysis
+                </button>
+            </div>
+
+            <div class="tab-content" id="genetic-testing">
+                <div class="coming-soon">
+                    <i class="fas fa-flask"></i>
+                    <h2>Genetic Testing</h2>
+                    <p>Advanced genetic testing features coming soon!</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="batch-analysis">
+                <div class="coming-soon">
+                    <i class="fas fa-layer-group"></i>
+                    <h2>Batch Analysis</h2>
+                    <p>Batch processing capabilities coming soon!</p>
+                </div>
+            </div>
         </div>
 
-        <form id="analyzerForm" class="tab-content active" data-tab="dna">
-            <div class="input-group">
-                <h2 class="section-title">DNA Input</h2>
-                <div class="input-tabs">
-                    <button type="button" class="input-tab active" data-input="file">Upload File</button>
-                    <button type="button" class="input-tab" data-input="url">URL Input</button>
-                </div>
-                <div class="input-content active" data-input="file">
-                    <label for="dnaFile">DNA Sequence File:</label>
-                    <input type="file" id="dnaFile" accept=".fa,.fasta,.fastq">
-                    <small>Upload a FASTA or FASTQ file containing DNA sequence</small>
-                </div>
-                <div class="input-content" data-input="url" style="display: none;">
-                    <label for="dnaUrl">DNA File URL:</label>
-                    <input type="url" id="dnaUrl" placeholder="Enter URL to FASTA/FASTQ file">
-                    <small>Enter a URL to a publicly accessible FASTA or FASTQ file</small>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <h2 class="section-title">Analysis Parameters</h2>
-                <div class="parameter-section">
-                    <label for="aminoAcid">Start Amino Acid:</label>
-                    <select id="aminoAcid" required>
-                        <option value="met">Methionine (Met) - Most common start codon</option>
-                        <option value="ser">Serine (Ser)</option>
-                        <option value="thr">Threonine (Thr)</option>
-                        <option value="val">Valine (Val)</option>
-                        <option value="custom">Custom</option>
-                    </select>
-                    <input type="text" id="customAmino" placeholder="Enter custom amino acid" style="display: none;">
-                </div>
-
-                <div class="parameter-grid">
-                    <div class="parameter-item">
-                        <label for="minCount">Minimum Count:</label>
-                        <input type="number" id="minCount" value="0" min="0">
-                    </div>
-                    <div class="parameter-item">
-                        <label for="maxCount">Maximum Count:</label>
-                        <input type="number" id="maxCount" value="100" min="1">
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <h2 class="section-title">Sequence Operations</h2>
-                <div class="options-grid">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="reverse" name="reverse">
-                        <label for="reverse">Reverse Sequence</label>
-                        <small>Analyze DNA sequence in reverse direction</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="rcomplement" name="rcomplement">
-                        <label for="rcomplement">Show Complement</label>
-                        <small>Show complementary DNA sequence</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <h2 class="section-title">Analysis Features</h2>
-                <div class="options-grid">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="gc" name="gc">
-                        <label for="gc">GC Content</label>
-                        <small>Analyze GC content distribution</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="codons" name="codons">
-                        <label for="codons">Codon Distribution</label>
-                        <small>Analyze codon frequency</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="coverage" name="coverage">
-                        <label for="coverage">High Coverage</label>
-                        <small>Identify high coverage regions</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="longest" name="longest">
-                        <label for="longest">Longest Protein</label>
-                        <small>Find longest protein sequence</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="transcription" name="transcription">
-                        <label for="transcription">Transcription Factors</label>
-                        <small>Identify transcription factor binding sites</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="promoter" name="promoter">
-                        <label for="promoter">Promoter Analysis</label>
-                        <small>Identify promoter sequences</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <h2 class="section-title">Output Options</h2>
-                <div class="options-grid">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="verbose" name="verbose">
-                        <label for="verbose">Verbose Output</label>
-                        <small>Show detailed analysis information</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="detailed" name="detailed">
-                        <label for="detailed">Detailed Statistics</label>
-                        <small>Include statistical analysis</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="quick" name="quick">
-                        <label for="quick">Quick Analysis</label>
-                        <small>Basic analysis with essential features</small>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="format" name="format">
-                        <label for="format">Format Output</label>
-                        <small>Pretty-print the analysis results</small>
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <h2 class="section-title">Optional Files</h2>
-                <div class="file-upload-group">
-                    <label for="proteinFile">Protein Search File:</label>
-                    <input type="file" id="proteinFile" accept=".fa,.fasta">
-                    <small>Optional: Upload a protein file to search within the DNA sequence</small>
-                </div>
-            </div>
-
-            <button type="submit" class="analyze-btn">Analyze DNA Sequence</button>
-        </form>
-
-        <form id="geneticForm" class="tab-content" data-tab="genetic" style="display: none;">
-            <div class="input-group">
-                <h2 class="section-title">Genetic Testing Data Analysis</h2>
-                <div class="file-upload-group">
-                    <label for="geneticFile">Genetic Testing File:</label>
-                    <input type="file" id="geneticFile" accept=".txt,.csv">
-                    <small>Upload data from genetic testing services (supported: 23andMe, AncestryDNA)</small>
-                </div>
-                <div class="options-grid">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="snpAnalysis" name="snpAnalysis">
-                        <label for="snpAnalysis">SNP Analysis</label>
-                        <small>Analyze Single Nucleotide Polymorphisms</small>
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="analyze-btn">Analyze Genetic Data</button>
-        </form>
-
-        <div id="results" class="results" style="display: none;">
+        <div class="results-section" style="display: none;">
             <h2>Analysis Results</h2>
-            <div id="analysisOutput"></div>
+            <div class="results-container">
+                <div class="result-tabs">
+                    <button class="result-tab active" data-result="summary">Summary</button>
+                    <button class="result-tab" data-result="details">Detailed Analysis</button>
+                    <button class="result-tab" data-result="visualization">Visualization</button>
+                </div>
+                <div class="result-content">
+                    <!-- Results will be dynamically populated here -->
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 
-    <footer class="glass-footer">
-        <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    <footer class="footer-content">
+        <div class="footer-bottom">
+            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+        </div>
     </footer>
 
     <script src="analyzer.js"></script>

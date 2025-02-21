@@ -2,51 +2,64 @@
     max-width: 1200px;
     margin: 6rem auto 2rem;
     padding: 2rem;
-    background: rgba(26, 28, 42, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
 }
 
-h1 {
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
+.hero {
     text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.section-title {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-    color: var(--gradient-end);
-    border-bottom: 2px solid rgba(0, 122, 255, 0.3);
-    padding-bottom: 0.5rem;
+.hero p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-.tab-container {
+/* Analysis Container */
+.analysis-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Tabs */
+.analysis-tabs {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
-    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
 }
 
 .tab-button {
-    padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
+    padding: 1rem 2rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.1rem;
 }
 
+.tab-button i {
+    font-size: 1.2rem;
+}
+
 .tab-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .tab-button.active {
@@ -55,243 +68,369 @@ h1 {
     color: white;
 }
 
-.input-group {
-    margin-bottom: 2rem;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.tab-content {
+    display: none;
 }
 
-.input-tabs {
+.tab-content.active {
+    display: block;
+}
+
+/* Input Methods */
+.input-methods {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.input-tab {
-    padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+.method-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.8);
-    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.input-tab:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+.method-button i {
+    font-size: 1.1rem;
 }
 
-.input-tab.active {
+.method-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.method-button.active {
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     border-color: transparent;
     color: white;
 }
 
-.parameter-section {
+/* Input Areas */
+.input-area {
+    display: none;
     margin-bottom: 2rem;
 }
 
-.parameter-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.parameter-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-label {
+.input-area.active {
     display: block;
-    margin-bottom: 0.75rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
 }
 
-input[type="file"],
-input[type="number"],
-input[type="text"],
-input[type="url"],
-select {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    font-size: 1rem;
-    background: rgba(0, 0, 0, 0.3);
-    color: white;
+/* File Drop Zone */
+.file-drop-zone {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
     transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.file-drop-zone:hover,
+.file-drop-zone.drag-active {
+    border-color: var(--gradient-end);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.file-drop-zone i {
+    font-size: 3rem;
+    color: var(--gradient-end);
+    margin-bottom: 1rem;
+}
+
+.file-drop-zone p {
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.file-drop-zone .sub-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.upload-button {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 1rem 0;
+}
+
+.file-info {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* URL Input */
+.url-input-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.url-field {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
     font-family: inherit;
 }
 
-input[type="file"] {
+.fetch-button {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border: none;
+    padding: 0 2rem;
+    border-radius: 8px;
     cursor: pointer;
-    padding: 0.75rem;
 }
 
-input[type="file"]:hover,
-input[type="number"]:hover,
-input[type="text"]:hover,
-input[type="url"]:hover,
-select:hover {
-    border-color: var(--gradient-end);
+/* Text Input */
+.sequence-input {
+    width: 100%;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    resize: vertical;
 }
 
-input:focus,
-select:focus {
-    outline: none;
-    border-color: var(--gradient-start);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
-}
-
+/* Analysis Options */
 .options-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
-.checkbox-group {
+.option-card {
     background: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
+    padding: 1.5rem;
 }
 
-.checkbox-group:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-2px);
-    border-color: var(--gradient-end);
-}
-
-.checkbox-group input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-bottom: 1rem;
-}
-
-.checkbox-group label {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-small {
-    display: block;
-    color: rgba(255, 255, 255, 0.6);
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.analyze-btn {
-    width: 100%;
-    padding: 1.25rem;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 2rem;
-}
-
-.analyze-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
-    filter: brightness(1.1);
-}
-
-.analyze-btn:active {
-    transform: translateY(0);
-}
-
-.results {
-    margin-top: 3rem;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.results h2 {
-    font-size: 2rem;
+.option-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     margin-bottom: 1.5rem;
+}
+
+.option-header i {
+    font-size: 1.5rem;
     color: var(--gradient-end);
 }
 
-#analysisOutput {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1rem;
-    line-height: 1.6;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    white-space: pre-wrap;
-    overflow-x: auto;
+.option-header h3 {
+    margin: 0;
+    color: var(--gradient-end);
 }
 
+/* Checkboxes */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.checkbox-container input {
+    width: 18px;
+    height: 18px;
+}
+
+/* Advanced Settings */
+.advanced-settings {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.settings-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.settings-header h3 {
+    margin: 0;
+    color: var(--gradient-end);
+}
+
+.toggle-settings {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.settings-content {
+    display: none;
+    padding: 1.5rem;
+}
+
+.settings-content.show {
+    display: block;
+}
+
+.setting-group {
+    margin-bottom: 1.5rem;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.setting-group input,
+.setting-group select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+/* Analyze Button */
+.analyze-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border: none;
+    padding: 1.25rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.analyze-btn i {
+    font-size: 1.2rem;
+}
+
+.analyze-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Results Section */
+.results-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.results-section h2 {
+    color: var(--gradient-end);
+    margin-bottom: 2rem;
+}
+
+.result-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.result-tab {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.result-tab.active {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border-color: transparent;
+    color: white;
+}
+
+/* Coming Soon */
+.coming-soon {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.coming-soon i {
+    font-size: 3rem;
+    color: var(--gradient-end);
+    margin-bottom: 1.5rem;
+}
+
+.coming-soon h2 {
+    color: var(--gradient-end);
+    margin-bottom: 1rem;
+}
+
+.coming-soon p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive Design */
 @media screen and (max-width: 768px) {
     .container {
-        margin: 4rem 1rem 2rem;
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
-    h1 {
+    .hero h1 {
         font-size: 2.5rem;
     }
 
-    .section-title {
-        font-size: 1.5rem;
-    }
-
-    .input-group {
-        padding: 1.5rem;
-    }
-
-    .options-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .parameter-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tab-container {
+    .analysis-tabs {
         flex-direction: column;
     }
 
     .tab-button {
         width: 100%;
+        justify-content: center;
     }
 
-    .input-tabs {
+    .input-methods {
         flex-direction: column;
     }
 
-    .input-tab {
+    .method-button {
         width: 100%;
-        text-align: center;
+        justify-content: center;
     }
 
-    label {
-        font-size: 1rem;
+    .url-input-container {
+        flex-direction: column;
     }
 
-    .checkbox-group {
+    .fetch-button {
+        width: 100%;
         padding: 1rem;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
     }
 }

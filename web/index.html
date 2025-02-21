@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DNAnalyzer - DNA Sequence Analysis Tool</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="shortcut icon" href="assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
@@ -24,8 +25,8 @@
             <a href="server/server.html" class="nav-link">Server</a>
             <a href="docs/docs.html" class="nav-link">Docs</a>
             <div class="right-links">
-                <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
-                <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">GitHub</a>
+                <a href="https://discord.gg/xNpujz49gj" class="glass-button">Discord</a>
             </div>
         </nav>
     </header>
@@ -37,15 +38,12 @@
                     <h1>DNAnalyzer</h1>
                     <p class="hero-subtitle">Revolutionizing DNA analysis using ML-powered on-device computation for everyone.</p>
                     <div class="cta-buttons">
-                        <button class="primary-btn" onclick="window.location.href='analyzer/analyzer.html'">Try DNA Analysis</button>
-                        <button class="secondary-btn" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">View on GitHub</button>
+                        <a href="analyzer/analyzer.html" class="primary-btn">Try DNA Analysis</a>
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="secondary-btn">View on GitHub</a>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="dna-helix">
-                        <div class="strand"></div>
-                        <div class="strand"></div>
-                    </div>
+                    <div class="dna-helix"></div>
                 </div>
             </div>
             <div class="scroll-indicator">
@@ -54,7 +52,7 @@
             </div>
         </section>
 
-        <section id="stats" class="scroll-section">
+        <section id="stats">
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-number">99.9%</div>
@@ -75,15 +73,13 @@
             </div>
         </section>
 
-        <section id="features-overview" class="scroll-section">
+        <section id="features-overview">
             <div class="content-wrapper">
                 <h2>Why Choose DNAnalyzer?</h2>
                 <div class="features-showcase">
                     <div class="feature-highlight">
                         <div class="feature-visual">
-                            <video autoplay loop muted playsinline>
-                                <source src="assets/videos/dna_spiral.mp4" type="video/mp4">
-                            </video>
+                            <i class="fas fa-dna"></i>
                         </div>
                         <div class="feature-content">
                             <h3>Advanced Analysis</h3>
@@ -100,7 +96,7 @@
             </div>
         </section>
 
-        <section id="workflow" class="scroll-section">
+        <section id="workflow">
             <div class="content-wrapper">
                 <h2>How It Works</h2>
                 <div class="workflow-steps">
@@ -108,25 +104,25 @@
                         <div class="step-number">01</div>
                         <h3>Upload</h3>
                         <p>Upload your DNA sequence file in FASTA or FASTQ format</p>
-                        <div class="step-visual upload-animation"></div>
+                        <i class="fas fa-upload"></i>
                     </div>
                     <div class="step">
                         <div class="step-number">02</div>
                         <h3>Analyze</h3>
                         <p>Our ML algorithms process and analyze your sequence</p>
-                        <div class="step-visual analyze-animation"></div>
+                        <i class="fas fa-microscope"></i>
                     </div>
                     <div class="step">
                         <div class="step-number">03</div>
                         <h3>Results</h3>
                         <p>Get comprehensive analysis results and insights</p>
-                        <div class="step-visual results-animation"></div>
+                        <i class="fas fa-chart-bar"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="security" class="scroll-section">
+        <section id="security">
             <div class="content-wrapper">
                 <div class="security-grid">
                     <div class="security-content">
@@ -134,68 +130,43 @@
                         <p>Your genetic data never leaves your device. All computations are performed locally using our advanced on-device ML models.</p>
                         <ul class="security-features">
                             <li>
-                                <div class="security-icon local"></div>
+                                <i class="fas fa-laptop-house"></i>
                                 <span>Local Processing</span>
                             </li>
                             <li>
-                                <div class="security-icon encrypted"></div>
+                                <i class="fas fa-shield-alt"></i>
                                 <span>End-to-End Encryption</span>
                             </li>
                             <li>
-                                <div class="security-icon private"></div>
+                                <i class="fas fa-user-shield"></i>
                                 <span>Data Privacy</span>
                             </li>
                         </ul>
                     </div>
                     <div class="security-visual">
-                        <div class="security-animation"></div>
+                        <i class="fas fa-lock"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="cta" class="scroll-section">
+        <section id="cta">
             <div class="content-wrapper">
                 <div class="cta-container">
                     <h2>Ready to Start?</h2>
                     <p>Join thousands of researchers and scientists using DNAnalyzer for their genetic analysis needs.</p>
                     <div class="cta-buttons">
-                        <button class="primary-btn" onclick="window.location.href='analyzer/analyzer.html'">Start Analyzing</button>
-                        <button class="secondary-btn" onclick="window.location.href='docs/docs.html'">Read Documentation</button>
+                        <a href="analyzer/analyzer.html" class="primary-btn">Start Analyzing</a>
+                        <a href="docs/docs.html" class="secondary-btn">Read Documentation</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="glass-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <img src="assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="footer-logo">
-                <p>DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit.</p>
-                <p>EIN: 81-2908499</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="about/about.html">About</a>
-                <a href="features/features.html">Features</a>
-                <a href="docs/docs.html">Documentation</a>
-            </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a>
-                <a href="https://discord.gg/xNpujz49gj">Discord</a>
-                <a href="docs/docs.html#api">API Reference</a>
-            </div>
-            <div class="footer-section">
-                <h4>Legal</h4>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">MIT License</a>
-            </div>
-        </div>
+    <footer class="footer-content">
         <div class="footer-bottom">
-            <p>Copyright © Piyush Acharya 2025. All rights reserved.</p>
+            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
         </div>
     </footer>
 

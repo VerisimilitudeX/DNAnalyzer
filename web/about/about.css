@@ -1,120 +1,269 @@
-/* About page specific styles */
 .container {
     max-width: 1200px;
     margin: 6rem auto 2rem;
     padding: 2rem;
 }
 
-.content-section {
+/* Hero Section */
+.hero {
+    text-align: center;
     margin-bottom: 4rem;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
-}
-
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.glass-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border-color: var(--gradient-end);
-}
-
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.hero h1 {
+    font-size: 3.5rem;
     margin-bottom: 1.5rem;
-}
-
-.card-icon {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    background: none;
-    border-radius: 0;
-    margin: 0;
-}
-
-.glass-card h2 {
-    margin: 0;
-    font-size: 1.8rem;
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.glass-card p {
+.hero p {
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
     line-height: 1.8;
-    margin-bottom: 1.5rem;
 }
 
-.feature-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 1.5rem;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    padding: 0;
-    background: none;
+/* Team Section */
+.team-section {
+    margin: 4rem 0;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.feature-image:hover {
-    transform: scale(1.02);
+.team-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--gradient-end);
 }
 
-.glass-button {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    cursor: pointer;
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
-.glass-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.team-member:hover {
+    transform: translateY(-5px);
+    border-color: var(--gradient-end);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
 }
 
-@media (max-width: 768px) {
+.member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+    border: 3px solid var(--gradient-end);
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--gradient-end);
+}
+
+.member-info p.role {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.member-info p.bio {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Mission Section */
+.mission-section {
+    margin: 4rem 0;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.mission-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--gradient-end);
+}
+
+.mission-section p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Values Section */
+.values-section {
+    margin: 4rem 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.value-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gradient-end);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+}
+
+.value-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gradient-end);
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--gradient-end);
+}
+
+.value-card p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Contact Section */
+.contact-section {
+    margin: 4rem 0;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--gradient-end);
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: var(--gradient-end);
+    margin-bottom: 1rem;
+}
+
+.contact-item p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.social-link:hover {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
     .container {
+        margin: 4rem 1rem 2rem;
         padding: 1rem;
-        margin-top: 5rem;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .hero h1 {
+        font-size: 2.5rem;
     }
 
-    .glass-card {
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .team-section,
+    .mission-section,
+    .contact-section {
         padding: 1.5rem;
     }
 
-    .feature-image {
-        margin: 1rem 0;
+    .team-grid {
+        grid-template-columns: 1fr;
     }
 
-    h1 {
-        font-size: 2rem;
-        text-align: center;
+    .contact-info {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-card {
+        padding: 1.5rem;
     }
 }
