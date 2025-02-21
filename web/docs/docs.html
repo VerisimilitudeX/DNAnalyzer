@@ -185,3 +185,88 @@ java -jar build/libs/DNAnalyzer.jar input.fa --amino=ser --min=100 --max=1000 -r
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td><code>--amino=X</code></td>
+                                <td>Specify start amino acid</td>
+                                <td><code>--amino=ser</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>--min=X</code></td>
+                                <td>Minimum sequence length</td>
+                                <td><code>--min=100</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>--max=X</code></td>
+                                <td>Maximum sequence length</td>
+                                <td><code>--max=1000</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>-r</code></td>
+                                <td>Reverse sequence analysis</td>
+                                <td><code>-r</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="api-reference" class="content-section">
+                    <h2>API Reference</h2>
+                    <p>Core classes and their functionalities:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">java</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code>// Initialize analyzer
+DNAAnalysis analyzer = new DNAAnalysis();
+
+// Analyze sequence
+AnalysisResult result = analyzer.analyze(sequence);
+
+// Get specific metrics
+double gcContent = result.getGCContent();
+List<String> codons = result.getCodons();</code></pre>
+                    </div>
+
+                    <h3>Core Classes</h3>
+                    <ul>
+                        <li><code>DNAAnalysis</code> - Main analysis class</li>
+                        <li><code>DNAMutation</code> - Handles sequence mutations</li>
+                        <li><code>DNADataUploader</code> - Manages file uploads</li>
+                    </ul>
+                </section>
+
+                <section id="contributing" class="content-section">
+                    <h2>Contributing</h2>
+                    <p>We welcome contributions! Here's how to get started:</p>
+
+                    <ol>
+                        <li>Fork the repository</li>
+                        <li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+                        <li>Commit your changes (<code>git commit -m 'Add amazing feature'</code>)</li>
+                        <li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+                        <li>Open a Pull Request</li>
+                    </ol>
+
+                    <div class="note-block note-info">
+                        <h4>Development Setup</h4>
+                        <div class="code-block">
+                            <pre><code>./gradlew clean build
+./gradlew test</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-content">
+        <div class="footer-bottom">
+            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+        </div>
+    </footer>
+
+    <script src="docs.js"></script>
+</body>
+</html>

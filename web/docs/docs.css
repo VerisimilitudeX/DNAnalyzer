@@ -1,87 +1,124 @@
+/* Documentation Layout */
 .container {
-    max-width: 1200px;
-    margin: 6rem auto 2rem;
-    padding: 2rem;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
 }
 
-/* Hero Section */
-.hero {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.8;
-}
-
-/* Documentation Navigation */
-.docs-nav {
-    position: fixed;
-    top: 6rem;
-    left: 0;
-    width: 280px;
-    height: calc(100vh - 6rem);
-    padding: 2rem;
+/* Sidebar */
+.docs-sidebar {
     background: rgba(0, 0, 0, 0.2);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    position: sticky;
+    top: 6rem;
+    height: calc(100vh - 8rem);
     overflow-y: auto;
 }
 
+.docs-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.docs-sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Navigation */
 .nav-section {
     margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .nav-section h3 {
     color: var(--gradient-end);
-    font-size: 1.2rem;
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.2rem;
 }
 
 .nav-links {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-link {
-    display: block;
-    padding: 0.5rem 0;
+.nav-links li {
+    margin-bottom: 0.5rem;
+}
+
+.nav-links .nav-link {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: block;
     transition: all 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-links .nav-link:hover,
+.nav-links .nav-link.active {
+    background: rgba(255, 255, 255, 0.05);
     color: var(--gradient-end);
     transform: translateX(5px);
 }
 
-.nav-link.active {
-    color: var(--gradient-end);
-    font-weight: 500;
+/* Search */
+.search-container {
+    margin-bottom: 2rem;
 }
 
-/* Main Content */
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--gradient-start);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+/* Content */
 .docs-content {
-    margin-left: 280px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2rem;
+    min-height: calc(100vh - 8rem);
 }
 
 .content-section {
     margin-bottom: 4rem;
+    scroll-margin-top: 6rem;
+}
+
+.content-section:last-child {
+    margin-bottom: 0;
 }
 
 .content-section h2 {
@@ -97,60 +134,59 @@
 }
 
 .content-section p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
-    line-height: 1.8;
     margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Code Blocks */
 .code-block {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
-    padding: 1.5rem;
     margin: 1.5rem 0;
-    overflow-x: auto;
-}
-
-.code-block pre {
-    margin: 0;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    overflow: hidden;
 }
 
 .code-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .code-language {
     color: var(--gradient-end);
     font-size: 0.9rem;
-    font-weight: 500;
 }
 
 .copy-button {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
     color: rgba(255, 255, 255, 0.8);
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 4px;
-    font-size: 0.9rem;
     cursor: pointer;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .copy-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--gradient-end);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+pre {
+    margin: 0;
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Tables */
@@ -171,102 +207,81 @@
 }
 
 .docs-table th {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
     color: var(--gradient-end);
     font-weight: 600;
 }
 
-.docs-table tr:hover {
-    background: rgba(255, 255, 255, 0.05);
+.docs-table tr:last-child td {
+    border-bottom: none;
 }
 
-/* Lists */
-.content-section ul,
-.content-section ol {
-    margin: 1.5rem 0;
-    padding-left: 2rem;
-    color: rgba(255, 255, 255, 0.9);
+.docs-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
 }
 
-.content-section li {
-    margin-bottom: 0.75rem;
-    line-height: 1.6;
-}
-
-/* Notes and Warnings */
+/* Note Blocks */
 .note-block {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     padding: 1.5rem;
     margin: 1.5rem 0;
-    border-radius: 8px;
-    border-left: 4px solid;
-}
-
-.note-info {
-    background: rgba(0, 122, 255, 0.1);
-    border-left-color: var(--gradient-end);
-}
-
-.note-warning {
-    background: rgba(255, 149, 0, 0.1);
-    border-left-color: #ff9500;
+    border-left: 4px solid var(--gradient-end);
 }
 
 .note-block h4 {
     color: var(--gradient-end);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     font-size: 1.2rem;
 }
 
-/* Search Bar */
-.search-container {
-    margin-bottom: 2rem;
+.note-block.note-warning {
+    border-left-color: #ffc107;
 }
 
-.search-input {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+.note-block.note-warning h4 {
+    color: #ffc107;
+}
+
+.note-block ul,
+.note-block ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.note-block li {
+    margin-bottom: 0.5rem;
+}
+
+/* Search Highlighting */
+mark {
+    background: rgba(0, 122, 255, 0.3);
     color: white;
-    font-size: 1rem;
-    font-family: inherit;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--gradient-start);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
-    .docs-nav {
-        width: 240px;
+    .container {
+        grid-template-columns: 1fr;
     }
 
-    .docs-content {
-        margin-left: 240px;
+    .docs-sidebar {
+        position: static;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+
+    .content-section {
+        scroll-margin-top: 2rem;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .docs-nav {
-        display: none;
-    }
-
     .docs-content {
-        margin-left: 0;
-        padding: 1rem;
-    }
-
-    .container {
-        margin: 4rem 1rem 2rem;
-        padding: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
+        padding: 1.5rem;
     }
 
     .content-section h2 {

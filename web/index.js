@@ -2,34 +2,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // DNA Helix Animation
     const dnaHelix = document.querySelector('.dna-helix');
     const numBases = 20;
-    const baseTypes = ['A', 'T', 'C', 'G'];
+    const basePairs = [
+        ['A', 'T'],
+        ['T', 'A'],
+        ['G', 'C'],
+        ['C', 'G']
+    ];
     
     // Create base pairs
     for (let i = 0; i < numBases; i++) {
-        const baseIndex = Math.floor(Math.random() * baseTypes.length);
-        const complementaryIndex = baseIndex % 2 === 0 ? baseIndex + 1 : baseIndex - 1;
+        const pairIndex = Math.floor(Math.random() * basePairs.length);
+        const [leftBase, rightBase] = basePairs[pairIndex];
         
-        const leftBase = document.createElement('div');
-        leftBase.className = 'base left-base';
-        leftBase.textContent = baseTypes[baseIndex];
-        leftBase.style.animationDelay = `${i * 0.2}s`;
+        const basePair = document.createElement('div');
+        basePair.className = 'base-pair';
+        basePair.style.top = `${i * 30}px`;
+        basePair.style.animationDelay = `${i * 0.2}s`;
         
-        const rightBase = document.createElement('div');
-        rightBase.className = 'base right-base';
-        rightBase.textContent = baseTypes[complementaryIndex];
-        rightBase.style.animationDelay = `${i * 0.2}s`;
+        const leftBaseElem = document.createElement('div');
+        leftBaseElem.className = 'base left-base';
+        leftBaseElem.textContent = leftBase;
+        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
+        
+        const rightBaseElem = document.createElement('div');
+        rightBaseElem.className = 'base right-base';
+        rightBaseElem.textContent = rightBase;
+        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
         
         const connector = document.createElement('div');
         connector.className = 'base-connector';
         connector.style.animationDelay = `${i * 0.2}s`;
         
-        const basePair = document.createElement('div');
-        basePair.className = 'base-pair';
-        basePair.style.top = `${i * 30}px`;
-        
-        basePair.appendChild(leftBase);
+        basePair.appendChild(leftBaseElem);
         basePair.appendChild(connector);
-        basePair.appendChild(rightBase);
+        basePair.appendChild(rightBaseElem);
         dnaHelix.appendChild(basePair);
     }
 
@@ -90,7 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { threshold: 0.5 });
 
-    observer.observe(statsSection);
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
 
     // Smooth scroll for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
