@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // DNA Helix Animation
     const dnaHelix = document.querySelector('.dna-helix');
-    const numBases = 20;
+    const numBases = 15;
     const basePairs = [
         ['A', 'T'],
         ['T', 'A'],
@@ -16,22 +16,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const basePair = document.createElement('div');
         basePair.className = 'base-pair';
-        basePair.style.top = `${i * 30}px`;
-        basePair.style.animationDelay = `${i * 0.2}s`;
+        basePair.style.top = `${i * 40}px`;
+        basePair.style.animationDelay = `${i * 0.3}s`;
         
         const leftBaseElem = document.createElement('div');
         leftBaseElem.className = 'base left-base';
         leftBaseElem.textContent = leftBase;
-        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
+        leftBaseElem.style.animationDelay = `${i * 0.3}s`;
         
         const rightBaseElem = document.createElement('div');
         rightBaseElem.className = 'base right-base';
         rightBaseElem.textContent = rightBase;
-        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
+        rightBaseElem.style.animationDelay = `${i * 0.3}s`;
         
         const connector = document.createElement('div');
         connector.className = 'base-connector';
-        connector.style.animationDelay = `${i * 0.2}s`;
+        connector.style.animationDelay = `${i * 0.3}s`;
         
         basePair.appendChild(leftBaseElem);
         basePair.appendChild(connector);

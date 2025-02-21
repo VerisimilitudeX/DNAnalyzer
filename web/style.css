@@ -298,12 +298,12 @@ body {
 .base-pair {
     position: absolute;
     width: 100%;
-    height: 25px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     transform-style: preserve-3d;
-    animation: rotate3D 8s linear infinite;
+    animation: rotate3D 12s linear infinite;
 }
 
 .base {
@@ -318,18 +318,22 @@ body {
     color: white;
     position: absolute;
     transform-style: preserve-3d;
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.4);
+    backdrop-filter: blur(4px);
 }
 
 .left-base {
     background: var(--gradient-start);
     left: calc(50% - 120px);
-    animation: moveLeft3D 4s ease-in-out infinite;
+    animation: moveLeft3D 6s ease-in-out infinite;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .right-base {
     background: var(--gradient-end);
     right: calc(50% - 120px);
-    animation: moveRight3D 4s ease-in-out infinite;
+    animation: moveRight3D 6s ease-in-out infinite;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .base-connector {
@@ -338,28 +342,30 @@ body {
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     position: absolute;
     transform-origin: center;
-    animation: stretch3D 4s ease-in-out infinite;
+    animation: stretch3D 6s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(0, 122, 255, 0.3);
+    filter: blur(0.5px);
 }
 
 @keyframes rotate3D {
     0% { transform: rotateY(0deg) rotateX(0deg); }
-    50% { transform: rotateY(180deg) rotateX(5deg); }
+    50% { transform: rotateY(180deg) rotateX(3deg); }
     100% { transform: rotateY(360deg) rotateX(0deg); }
 }
 
 @keyframes moveLeft3D {
-    0%, 100% { transform: translateX(-15px) translateZ(10px); }
-    50% { transform: translateX(15px) translateZ(-10px); }
+    0%, 100% { transform: translateX(-12px) translateZ(8px); }
+    50% { transform: translateX(12px) translateZ(-8px); }
 }
 
 @keyframes moveRight3D {
-    0%, 100% { transform: translateX(15px) translateZ(-10px); }
-    50% { transform: translateX(-15px) translateZ(10px); }
+    0%, 100% { transform: translateX(12px) translateZ(-8px); }
+    50% { transform: translateX(-12px) translateZ(8px); }
 }
 
 @keyframes stretch3D {
     0%, 100% { width: 200px; transform: rotateY(0deg); }
-    50% { width: 220px; transform: rotateY(180deg); }
+    50% { width: 210px; transform: rotateY(180deg); }
 }
 
 /* Stats Section */
