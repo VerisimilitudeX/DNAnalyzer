@@ -1,4 +1,10 @@
 /* Server page specific styles */
+.container {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
+    padding: 2rem;
+}
+
 .server-setup-section {
     margin-top: 2rem;
 }
@@ -19,6 +25,15 @@
     border-color: var(--gradient-end);
 }
 
+.glass-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left;
+}
+
 #server-status {
     margin-top: 1rem;
     padding: 1.5rem;
@@ -31,15 +46,6 @@
     display: block;
     margin-top: 0.5rem;
     color: rgba(255, 255, 255, 0.6);
-}
-
-.glass-button.large {
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    border: none;
-    color: white;
 }
 
 .command-box {
@@ -76,6 +82,7 @@
 .copy-button:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .copy-button:active {
@@ -103,7 +110,7 @@
     top: 0;
     width: 1.8rem;
     height: 1.8rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -114,22 +121,13 @@
 
 .setup-steps li p {
     margin-bottom: 0.5rem;
-    color: #E0E0E0;
-}
-
-.setup-steps .command-box {
-    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .troubleshooting {
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.troubleshooting p {
-    color: #FFA726;
-    margin-bottom: 0.5rem;
 }
 
 .issue-item {
@@ -155,9 +153,10 @@
 
 .requirements-note {
     margin-top: 1.5rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .requirements-note ul {
@@ -167,7 +166,7 @@
 }
 
 .requirements-note ul li {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
     margin: 0.4rem 0;
     display: flex;
     align-items: center;
@@ -180,6 +179,15 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        margin: 4rem 1rem 2rem;
+        padding: 1rem;
+    }
+
+    .glass-card {
+        padding: 1.5rem;
+    }
+
     .command-box {
         flex-direction: column;
         align-items: stretch;
@@ -198,5 +206,9 @@
 
     .setup-steps li {
         padding-left: 2rem;
+    }
+
+    .glass-card h2 {
+        font-size: 1.5rem;
     }
 }

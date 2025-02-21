@@ -1,58 +1,5 @@
-/*
- * Copyright © 2025 Piyush Acharya. Some rights reserved.
- * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
- *
- * You are entirely responsible for the use of this application, including any and all activities that occur.
- * While DNAnalyzer strives to fix all major bugs that may be either reported by a user or discovered while debugging,
- * they will not be held liable for any loss that the user may incur as a result of using this application, under any circumstances.
- *
- * For further inquiries, please reach out to contact@dnanalyzer.live
- */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-* > * {
-    font-family: "Poppins", cursive;
-}
-
-body {
-    --text-light: rgba(243, 244, 246, 0.9);
-    --primary-dark: rgba(55, 65, 81, 1);
-    --secondary-dark: rgba(55, 65, 81, 0.7);
-    --bg-light: rgba(243, 244, 246, 0.3);
-    --bg-btn: rgba(67, 56, 202, 0.8);
-    background-color: var(--text-light);
-}
-
-body.dark {
-    --text-light: rgba(55, 65, 81, 1);
-    --primary-dark: rgba(243, 244, 246, 1);
-    --secondary-dark: rgba(255, 255, 255);
-    --bg-btn: rgba(219, 233, 29, 0.897);
-    --bg-light: rgba(45, 49, 54, 0.5);
-}
-
-.btn {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-
-p {
-    margin: 0;
-}
-
+/* About page specific styles */
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
     max-width: 1200px;
     margin: 6rem auto 2rem;
     padding: 2rem;
@@ -62,11 +9,6 @@ p {
     margin-bottom: 4rem;
 }
 
-.text-center {
-    text-align: center;
-    padding: 10px 15px;
-}
-
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -74,95 +16,6 @@ p {
     padding: 2rem 0;
 }
 
-.grid .flex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 4em 0;
-}
-
-.grid .icon > span {
-    font-size: 4em;
-    color: var(--bg-btn);
-}
-
-.primary-dark {
-    color: var(--primary-dark);
-}
-
-.secondary-dark {
-    color: var(--secondary-dark);
-    padding: 20px 30px;
-}
-
-.bg-light {
-    background-color: var(--bg-light);
-    box-shadow: 1px 5px 20px rgba(55, 65, 81, 0.1);
-    border-radius: 20px;
-}
-
-.btn {
-    width: 250px;
-    height: 30px;
-    background-color: #f44336;
-    border: none;
-    font-size: 18px;
-    color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    margin: auto
-}
-
-img {
-    width: 120px;
-    padding: 10px;
-    border-radius: 50%;
-    background-color: #f44336;
-    margin-top: 250px;
-}
-
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: none;
-    position: relative;
-    width: 80px;
-    height: 40px;
-    border-radius: 50px;
-    outline: none;
-    /* background-color: yellow; */
-    background-image: url(https://i.postimg.cc/857jHw2q/Screenshot-2020-04-16-at-1-07-06-PM.png);
-    background-size: cover;
-}
-
-input[type="checkbox"]::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 40px;
-    width: 40px;
-    background-color: var(--primary-dark);
-    border-radius: 50px;
-}
-
-input[type="checkbox"]:checked:before {
-    transform: translate(100%);
-}
-
-input[type="checkbox"]:checked {
-    background-image: url(https://i.postimg.cc/Hn0nstVK/Screenshot-2020-04-16-at-1-07-19-PM.png);
-}
-
-img {
-    width: 130px;
-    padding: 10px;
-    border-radius: 50%;
-    background-color: #f44336;
-    margin-top: 100px;
-}
-
-/* About page specific styles */
 .glass-card {
     background: rgba(255, 255, 255, 0.05);
     padding: 2rem;
@@ -189,6 +42,10 @@ img {
 .card-icon {
     width: 32px;
     height: 32px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    margin: 0;
 }
 
 .glass-card h2 {
@@ -207,27 +64,17 @@ img {
 
 .feature-image {
     width: 100%;
+    height: auto;
     border-radius: 8px;
     margin-top: 1.5rem;
     transition: transform 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    background: none;
 }
 
 .feature-image:hover {
     transform: scale(1.02);
-}
-
-.glass-footer {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    padding: 1.5rem;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.glass-footer p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
 }
 
 .glass-button {
@@ -250,10 +97,12 @@ img {
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
+        margin-top: 5rem;
     }
 
     .grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .glass-card {
@@ -263,17 +112,9 @@ img {
     .feature-image {
         margin: 1rem 0;
     }
-}
 
-.glass-card h2 {
-    margin-bottom: 1rem;
-    color: #ffffff;
-}
-
-/* Remove unused styles */
-body.dark,
-.btn,
-input[type="checkbox"],
-img.icon {
-    display: none;
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
 }
