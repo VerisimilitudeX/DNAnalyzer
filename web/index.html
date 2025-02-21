@@ -19,6 +19,7 @@
             <a href="features/features.html" class="nav-link">Features</a>
             <a href="analyzer/analyzer.html" class="nav-link">Analyzer</a>
             <a href="server/server.html" class="nav-link">Server</a>
+            <a href="docs/docs.html" class="nav-link">Docs</a>
             <div class="right-links">
                 <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
                 <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
@@ -29,35 +30,56 @@
     <main>
         <section id="hero">
             <h1>DNAnalyzer</h1>
-            <p>A highly efficient, powerful, and feature-rich algorithm for analyzing DNA sequences</p>
+            <p class="hero-subtitle">Revolutionizing DNA analysis using ML-powered on-device computation for everyone.</p>
             <div class="cta-buttons">
-                <button id="try-dna" class="primary-btn">Try DNA Analysis</button>
-                <button id="view-github" class="secondary-btn">View on GitHub</button>
+                <button id="try-dna" class="primary-btn" onclick="window.location.href='analyzer/analyzer.html'">Try DNA Analysis</button>
+                <button id="view-github" class="secondary-btn" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">View on GitHub</button>
             </div>
         </section>
 
-        <section id="features">
-            <h2>Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <img src="assets/icons/Icon_Dark_BG.svg" alt="Analysis Icon" class="feature-icon">
-                    <h3>Comprehensive Analysis</h3>
-                    <p>Analyze DNA sequences for potential genes, reading frames, and more</p>
+        <section id="mission">
+            <div class="content-wrapper">
+                <h2>Our Mission</h2>
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <img src="assets/icons/Icon_Dark_BG.svg" alt="Accessibility Icon" class="mission-icon">
+                        <h3>Accessible</h3>
+                        <p>Making state-of-the-art DNA analysis available to everyone through efficient on-device computation.</p>
+                    </div>
+                    <div class="mission-card">
+                        <img src="assets/icons/Icon_Dark_BG_Base.svg" alt="Security Icon" class="mission-icon">
+                        <h3>Secure</h3>
+                        <p>All computations occur on your device, ensuring your genetic data remains private and under your control.</p>
+                    </div>
+                    <div class="mission-card">
+                        <img src="assets/icons/emblem-dark-bg.svg" alt="Innovation Icon" class="mission-icon">
+                        <h3>Advanced</h3>
+                        <p>Leveraging cutting-edge machine learning techniques for accurate and comprehensive DNA analysis.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <img src="assets/icons/Icon_Dark_BG_Base.svg" alt="Format Icon" class="feature-icon">
-                    <h3>Multiple Formats</h3>
-                    <p>Support for FASTA and FASTQ file formats</p>
-                </div>
-                <div class="feature-card">
-                    <img src="assets/icons/emblem-dark-bg.svg" alt="Options Icon" class="feature-icon">
-                    <h3>Advanced Options</h3>
-                    <p>Customize analysis with various parameters and options</p>
-                </div>
-                <div class="feature-card">
-                    <img src="assets/icons/Icon_Base.svg" alt="Processing Icon" class="feature-icon">
-                    <h3>Local Processing</h3>
-                    <p>Process DNA sequences locally for enhanced privacy and speed</p>
+            </div>
+        </section>
+
+        <section id="key-features">
+            <div class="content-wrapper">
+                <h2>Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>DNA Analysis</h3>
+                        <p>Identify proteins, amino acids, start and stop codons, and high coverage regions with precision.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Multiple Formats</h3>
+                        <p>Support for FASTA and FASTQ file formats, with efficient processing of large sequences.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Local Processing</h3>
+                        <p>Process DNA sequences locally for enhanced privacy and speed, with no data leaving your device.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>ML-Powered</h3>
+                        <p>Advanced machine learning algorithms ensure accurate detection and analysis of genetic markers.</p>
+                    </div>
                 </div>
             </div>
         </section>

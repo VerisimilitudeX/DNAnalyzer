@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNAnalyzer Documentation</title>
+    <title>Documentation - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="docs.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="background-blur"></div>
@@ -13,12 +15,13 @@
     <header class="floating-header">
         <nav class="floating-nav">
             <a href="../index.html" class="nav-link">
-                <img src="../assets/icons/Icon_Light_BG.svg" alt="DNAnalyzer Logo" class="nav-logo">
+                <img src="../assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="nav-logo">
             </a>
             <a href="../about/about.html" class="nav-link">About</a>
             <a href="../features/features.html" class="nav-link">Features</a>
             <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
             <a href="../server/server.html" class="nav-link">Server</a>
+            <a href="docs.html" class="nav-link active">Docs</a>
             <div class="right-links">
                 <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
                 <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
@@ -26,35 +29,139 @@
         </nav>
     </header>
 
-    <main>
-        <section id="documentation">
+    <main class="container">
+        <section class="content-section">
             <h1>Documentation</h1>
-            <div class="docs-grid">
-                <div class="doc-section">
-                    <h2>Getting Started</h2>
+            
+            <div class="docs-nav">
+                <a href="#getting-started" class="docs-nav-item">Getting Started</a>
+                <a href="#features" class="docs-nav-item">Features</a>
+                <a href="#cli" class="docs-nav-item">CLI Usage</a>
+                <a href="#api" class="docs-nav-item">API Reference</a>
+                <a href="#contribute" class="docs-nav-item">Contributing</a>
+            </div>
+
+            <div class="glass-card" id="getting-started">
+                <h2>Getting Started</h2>
+                <div class="section-content">
+                    <h3>System Requirements</h3>
                     <ul>
-                        <li><a href="#getting-started">Quick Start Guide</a></li>
-                        <li><a href="#local-setup">Local Analyzer Setup</a></li>
+                        <li>Java Development Kit (JDK) 17 or higher</li>
+                        <li>Gradle (bundled with our distribution)</li>
+                        <li>Basic familiarity with command-line interfaces</li>
                     </ul>
+
+                    <h3>Quick Start</h3>
+                    <ol>
+                        <li>
+                            <strong>Download and Install:</strong>
+                            <div class="code-block">
+                                <code>git clone https://github.com/VerisimilitudeX/DNAnalyzer.git</code>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Navigate to Directory:</strong>
+                            <div class="code-block">
+                                <code>cd DNAnalyzer</code>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Build the Project:</strong>
+                            <div class="code-block">
+                                <code>./gradlew clean bootJar</code>
+                            </div>
+                        </li>
+                    </ol>
                 </div>
-                <div class="doc-section">
-                    <h2>Usage Guides</h2>
-                    <ul>
-                        <li><a href="#cli">Command Line Interface</a></li>
-                        <li><a href="#samples">Sample Usage</a></li>
+            </div>
+
+            <div class="glass-card" id="features">
+                <h2>Features in Detail</h2>
+                <div class="section-content">
+                    <div class="feature-item">
+                        <h3>Start and Stop Codon Detection</h3>
+                        <p>Understanding where a protein begins and ends is crucial for interpreting genetic data. DNAnalyzer pinpoints these codons, providing insights into the protein synthesis process and potential areas of interest for further study.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h3>High Coverage Region Identification</h3>
+                        <p>Regions rich in guanine and cytosine (GC-content) often indicate important promoter sequences. Our tool analyzes these areas, helping to predict gene activity and regulatory potential.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h3>Neurodevelopmental Disorders Analysis</h3>
+                        <p>Longer genes are sometimes linked to disorders affecting brain development. By detecting genetic markers associated with conditions like autism and ADHD, DNAnalyzer supports research into complex neurodevelopmental issues.</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <h3>Core Promoter Element Analysis</h3>
+                        <p>Essential sequences such as BRE, TATA, INR, and DPE are critical for initiating transcription. DNAnalyzer not only identifies these elements but also interprets their roles in gene regulation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card" id="cli">
+                <h2>CLI Usage</h2>
+                <div class="section-content">
+                    <h3>Basic Commands</h3>
+                    <div class="code-block">
+                        <code>java -jar build/libs/DNAnalyzer.jar [file] [options]</code>
+                    </div>
+
+                    <h3>Common Options</h3>
+                    <ul class="options-list">
+                        <li><code>--amino=X</code> - Specify start amino acid (e.g., ser, met)</li>
+                        <li><code>--min=X</code> - Minimum sequence length</li>
+                        <li><code>--max=X</code> - Maximum sequence length</li>
+                        <li><code>-r</code> - Reverse sequence analysis</li>
                     </ul>
+
+                    <h3>Example Usage</h3>
+                    <div class="code-block">
+                        <code>java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r</code>
+                    </div>
                 </div>
-                <div class="doc-section">
-                    <h2>Research & Analysis</h2>
-                    <ul>
-                        <li><a href="#parameters">Analysis Parameters</a></li>
-                        <li><a href="#genes">Gene Analysis</a></li>
+            </div>
+
+            <div class="glass-card" id="api">
+                <h2>API Reference</h2>
+                <div class="section-content">
+                    <h3>Core Classes</h3>
+                    <ul class="api-list">
+                        <li>
+                            <code>DNAAnalysis</code>
+                            <p>Main analysis class containing core functionality</p>
+                        </li>
+                        <li>
+                            <code>DNAMutation</code>
+                            <p>Handles sequence mutations and variations</p>
+                        </li>
+                        <li>
+                            <code>DNADataUploader</code>
+                            <p>Manages file uploads and data preprocessing</p>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="doc-content">
-                <!-- Content will be loaded dynamically via JavaScript -->
+            <div class="glass-card" id="contribute">
+                <h2>Contributing</h2>
+                <div class="section-content">
+                    <h3>How to Contribute</h3>
+                    <ol>
+                        <li>Fork the repository</li>
+                        <li>Create a feature branch</li>
+                        <li>Make your changes</li>
+                        <li>Submit a pull request</li>
+                    </ol>
+
+                    <h3>Development Setup</h3>
+                    <div class="code-block">
+                        <code>./gradlew clean build</code>
+                    </div>
+
+                    <p>For detailed contribution guidelines, please refer to our <a href="https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/CONTRIBUTING.md">Contributing Guide</a>.</p>
+                </div>
             </div>
         </section>
     </main>
