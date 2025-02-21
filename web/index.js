@@ -58,30 +58,96 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Stats Animation
-    const stats = document.querySelectorAll('.stat-number');
     const statsSection = document.querySelector('#stats');
     let animated = false;
 
+    function parseStatValue(text) {
+        text = text.trim();
+        if (text.endsWith('%')) {
+            return {
+                value: parseFloat(text.replace('%', '')),
+                suffix: '%',
+                decimals: 1
+            };
+        } else if (text.endsWith('M+')) {
+            return {
+                value: parseInt(text.replace('M+', '')),
+                suffix: 'M+',
+                decimals: 0
+            };
+        } else if (text.endsWith('K+')) {
+            return {
+                value: parseInt(text.replace('K+', '')),
+                suffix: 'K+',
+                decimals: 0
+            };
+        } else if (text.endsWith('/7')) {
+            return {
+                value: parseInt(text.replace('/7', '')),
+                suffix: '/7',
+                decimals: 0
+            };
+        }
+        return null;
+    }
+
+    function formatValue(value, data) {
+        if (data.decimals > 0) {
+            return value.toFixed(data.decimals) + data.suffix;
+        }
+        return Math.round(value) + data.suffix;
+    }
+
+    function easeOutExpo(x) {
+        return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+    }
+
+    function animateValue(element, targetData, duration = 2000) {
+        const startTime = performance.now();
+        const startValue = 0;
+        const endValue = targetData.value;
+
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Use easeOutExpo for smooth animation
+            const easedProgress = easeOutExpo(progress);
+            let currentValue = startValue + (endValue - startValue) * easedProgress;
+            
+            // Ensure we hit the exact target value at the end
+            if (progress === 1) {
+                currentValue = endValue;
+            }
+
+            element.textContent = formatValue(currentValue, targetData);
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
     function animateStats() {
         if (animated) return;
-        
-        stats.forEach(stat => {
-            const value = stat.textContent;
-            const isPercentage = value.includes('%');
-            const number = parseFloat(value);
-            let start = 0;
+
+        const statElements = document.querySelectorAll('.stat-number');
+        statElements.forEach((element, index) => {
+            // Parse the original value from the HTML
+            const originalText = element.textContent;
+            const targetData = parseStatValue(originalText);
             
-            const increment = number / 50; // Animate over 50 steps
-            const interval = setInterval(() => {
-                start += increment;
-                if (start >= number) {
-                    start = number;
-                    clearInterval(interval);
-                }
-                stat.textContent = isPercentage ? 
-                    start.toFixed(1) + '%' : 
-                    Math.round(start).toLocaleString();
-            }, 30);
+            if (targetData) {
+                // Start from 0
+                element.textContent = formatValue(0, targetData);
+                
+                // Animate to target value with staggered delay
+                setTimeout(() => {
+                    animateValue(element, targetData, 2000);
+                }, index * 200); // Increased delay between stats
+            }
         });
         
         animated = true;
@@ -91,7 +157,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                animateStats();
+                requestAnimationFrame(() => {
+                    animateStats();
+                });
             }
         });
     }, { threshold: 0.5 });
