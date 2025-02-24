@@ -1,9 +1,27 @@
+html {
+    scroll-behavior: smooth;
+}
+
 /* Documentation Layout */
 .container {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 2rem;
+    width: 100%;
+}
+
+/* Docs Container Layout */
+.docs-container {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 250px minmax(0, 1fr);
     gap: 2rem;
-    padding-top: 2rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Adjust main container margin to offset the fixed header */
+main.container {
+    margin-top: 80px;
 }
 
 /* Sidebar */
@@ -13,9 +31,11 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2rem;
     position: sticky;
-    top: 6rem;
-    height: calc(100vh - 8rem);
+    top: 80px; /* Match the header height */
+    align-self: start;
+    height: calc(100vh - 100px);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .docs-sidebar::-webkit-scrollbar {
@@ -83,7 +103,14 @@
 
 /* Search */
 .search-container {
-    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    margin: -2rem -2rem 1rem -2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 10;
 }
 
 .search-input {
@@ -108,13 +135,17 @@
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
+    padding: 3rem;
     min-height: calc(100vh - 8rem);
+    width: 100%;
+    margin: 0;
 }
 
 .content-section {
     margin-bottom: 4rem;
-    scroll-margin-top: 6rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content-section:last-child {
@@ -123,8 +154,9 @@
 
 .content-section h2 {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     color: var(--gradient-end);
+    text-align: left;
 }
 
 .content-section h3 {
@@ -265,7 +297,12 @@ mark {
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
     .container {
+        padding: 2rem;
+    }
+
+    .docs-container {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .docs-sidebar {
@@ -277,9 +314,31 @@ mark {
     .content-section {
         scroll-margin-top: 2rem;
     }
+
+    .docs-content {
+        max-width: 100%;
+    }
 }
 
 @media screen and (max-width: 768px) {
+    .container {
+        margin-top: 120px;
+        padding: 1rem;
+    }
+
+    .search-container {
+        margin: -1rem -1rem 1rem -1rem;
+        padding: 0.75rem;
+    }
+    
+    .docs-content {
+        padding: 1.5rem;
+    }
+    
+    .content-section {
+        margin-bottom: 2rem;
+    }
+
     .docs-content {
         padding: 1.5rem;
     }
@@ -295,5 +354,19 @@ mark {
     .docs-table {
         display: block;
         overflow-x: auto;
+    }
+
+    .docs-container {
+        display: block;
+    }
+    .docs-sidebar {
+        position: relative;
+        height: auto;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .docs-content {
+        width: 100%;
+        padding: 1rem;
     }
 }

@@ -181,4 +181,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Menu toggle functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.floating-nav');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            nav.classList.toggle('responsive');
+        });
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && nav.classList.contains('responsive')) {
+            nav.classList.remove('responsive');
+        }
+    });
 });

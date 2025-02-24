@@ -20,6 +20,9 @@
             <a href="../index.html" class="nav-link">
                 <img src="../assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="nav-logo">
             </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <a href="../about/about.html" class="nav-link">About</a>
             <a href="../features/features.html" class="nav-link">Features</a>
             <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
@@ -267,6 +270,11 @@ List<String> codons = result.getCodons();</code></pre>
         </div>
     </footer>
 
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.floating-nav').classList.toggle('responsive');
+        });
+    </script>
     <script src="docs.js"></script>
 </body>
 </html>
