@@ -14,6 +14,26 @@
     --accent-color: var(--gradient-start);
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #0a0c1b;
+        --surface-color: #1a1c2a;
+        --text-color: #ffffff;
+        --border-color: #2a2c3a;
+        --hover-color: #0056b3;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: #ffffff;
+        --surface-color: #f0f0f0;
+        --text-color: #000000;
+        --border-color: #cccccc;
+        --hover-color: #0056b3;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
