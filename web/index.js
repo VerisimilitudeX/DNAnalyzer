@@ -229,4 +229,42 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('theme', newTheme);
         });
     }
+
+    // Smooth scrolling and hover effects in the hero section
+    document.querySelectorAll('.hero a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Hover effects and animations for feature highlights
+    document.querySelectorAll('.feature-highlight').forEach(feature => {
+        feature.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 8px 32px rgba(0, 122, 255, 0.2)';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        });
+
+        feature.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        });
+    });
+
+    // Interactive elements and animations for call-to-action buttons
+    document.querySelectorAll('.cta-buttons a').forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 8px 32px rgba(0, 122, 255, 0.2)';
+        });
+
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
 });

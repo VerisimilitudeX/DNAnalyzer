@@ -954,3 +954,42 @@ body {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
+
+/* Pb230 */
+.hero-text h1 {
+    animation: slideInFromLeft 1s ease-in-out;
+}
+
+.hero-subtitle {
+    animation: slideInFromRight 1s ease-in-out;
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+/* P15d1 */
+.feature-highlight {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* P4c19 */
+.primary-btn, .secondary-btn {
+    animation: bounceIn 1s ease-in-out;
+}
+
+@keyframes bounceIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

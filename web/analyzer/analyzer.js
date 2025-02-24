@@ -128,4 +128,44 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => ripple.remove(), 1000);
         });
     });
+
+    // Smooth scrolling for hero section
+    document.querySelectorAll('.hero a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Add hover effects for analysis options
+    document.querySelectorAll('.option-card').forEach(option => {
+        option.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 20px rgba(0, 122, 255, 0.2)';
+            this.style.borderColor = 'var(--gradient-end)';
+        });
+
+        option.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        });
+    });
+
+    // Add hover effects for results section
+    document.querySelectorAll('.result-card').forEach(result => {
+        result.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 20px rgba(0, 122, 255, 0.2)';
+            this.style.borderColor = 'var(--gradient-end)';
+        });
+
+        result.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        });
+    });
 });

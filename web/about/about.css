@@ -8,6 +8,7 @@
 .hero {
     text-align: center;
     margin-bottom: 4rem;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .hero h1 {
@@ -16,6 +17,7 @@
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: slideInFromLeft 1s ease-in-out;
 }
 
 .hero p {
@@ -24,6 +26,22 @@
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.8;
+    animation: slideInFromRight 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }
 
 /* Team Section */
@@ -56,6 +74,7 @@
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-in-out;
 }
 
 .team-member:hover {
@@ -95,6 +114,11 @@
     color: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
     line-height: 1.6;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Mission Section */
@@ -222,11 +246,17 @@
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
+    animation: bounce 2s infinite;
 }
 
 .social-link:hover {
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     transform: translateY(-3px);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 /* Responsive Design */

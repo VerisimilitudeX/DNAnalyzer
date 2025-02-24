@@ -2,6 +2,7 @@
 .hero {
     text-align: center;
     margin-bottom: 3rem;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .hero h1 {
@@ -10,11 +11,28 @@
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: slideInFromLeft 1s ease-in-out;
 }
 
 .hero p {
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
+    animation: slideInFromRight 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
 }
 
 /* Analysis Container */
@@ -24,6 +42,12 @@
     gap: 2rem;
     margin: 2rem 0;
     min-height: calc(100vh - 400px);
+}
+
+.analysis-container:hover {
+    transform: translateY(-5px);
+    border-color: var(--gradient-end);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
 }
 
 /* Sidebar */
@@ -232,6 +256,7 @@
     border-radius: 12px;
     padding: 1.5rem;
     transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-in-out;
 }
 
 .option-card:hover {
@@ -331,6 +356,7 @@
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 2rem;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .results-header {
@@ -360,6 +386,7 @@
     padding: 1.5rem;
     text-align: center;
     transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-in-out;
 }
 
 .result-card:hover {
@@ -434,4 +461,9 @@
         gap: 1rem;
         text-align: center;
     }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }

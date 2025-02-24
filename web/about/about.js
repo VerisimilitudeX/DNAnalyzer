@@ -35,4 +35,42 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
         });
     });
+
+    // Add smooth scrolling for hero section
+    document.querySelectorAll('.hero a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Add hover effects for team member cards
+    document.querySelectorAll('.team-member').forEach(member => {
+        member.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
+            this.style.borderColor = 'var(--gradient-end)';
+        });
+
+        member.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        });
+    });
+
+    // Add hover effects for social media links
+    document.querySelectorAll('.social-link').forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.background = 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))';
+        });
+
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.background = 'rgba(255, 255, 255, 0.1)';
+        });
+    });
 });
