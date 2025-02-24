@@ -1,81 +1,264 @@
-/* Features page specific styles */
-.feature-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+.container {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
     padding: 2rem;
-    margin-bottom: 2rem;
-    transition: transform 0.3s ease;
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-bottom: 4rem;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
-}
-
-.feature-icon {
-    width: 48px;
-    height: 48px;
+.hero h1 {
+    font-size: 3.5rem;
     margin-bottom: 1.5rem;
-}
-
-.feature-preview {
-    width: 100%;
-    border-radius: 8px;
-    margin: 1.5rem 0;
-    transition: transform 0.3s ease;
-}
-
-.feature-preview:hover {
-    transform: scale(1.02);
-}
-
-.feature-card h3 {
-    color: #ffffff;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
     background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.feature-card p {
+.hero p {
+    font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
 }
 
-.feature-card .glass-button {
-    margin-top: auto;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.75rem 1.5rem;
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gradient-end);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.8rem;
+    color: var(--gradient-end);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+/* Demo Section */
+.demo-section {
+    margin: 6rem 0;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.demo-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--gradient-end);
+}
+
+.demo-video {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     border-radius: 8px;
-    color: white;
-    font-size: 0.95rem;
-    cursor: pointer;
+    overflow: hidden;
+}
+
+.demo-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Comparison Table */
+.comparison-section {
+    margin: 6rem 0;
+}
+
+.comparison-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--gradient-end);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-table th {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--gradient-end);
+    font-weight: 600;
+}
+
+.comparison-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.check-icon {
+    color: #00c853;
+    font-size: 1.2rem;
+}
+
+.x-icon {
+    color: #ff3d00;
+    font-size: 1.2rem;
+}
+
+/* Technical Features */
+.technical-section {
+    margin: 6rem 0;
+}
+
+.technical-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.technical-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
-.feature-card .glass-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.technical-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gradient-end);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
 }
 
-@media (max-width: 768px) {
-    .feature-card {
-        padding: 1.5rem;
+.technical-card h3 {
+    font-size: 1.5rem;
+    color: var(--gradient-end);
+    margin-bottom: 1rem;
+}
+
+.technical-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.technical-card li {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.technical-card li::before {
+    content: '•';
+    color: var(--gradient-end);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* CTA Section */
+.cta-section {
+    margin: 6rem 0;
+    text-align: center;
+    padding: 4rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--gradient-end);
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 4rem 1rem 2rem;
+        padding: 1rem;
     }
 
-    .feature-preview {
-        margin: 1rem 0;
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-section,
+    .cta-section {
+        padding: 2rem 1rem;
+    }
+
+    .comparison-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .technical-grid {
+        grid-template-columns: 1fr;
     }
 }

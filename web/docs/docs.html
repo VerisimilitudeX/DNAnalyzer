@@ -3,55 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNAnalyzer Documentation</title>
+    <title>Documentation - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="docs.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
-    <nav>
-        <a href="../index.html">Home</a>
-        <a href="../about/about.html">About</a>
-        <a href="../index.html#features">Features</a>
-        <a href="#" class="active">Docs</a>
-        <div class="right-links">
-            <a href="https://github.com/yourusername/DNAnalyzer" target="_blank" class="button">GitHub Repository</a>
-            <a href="https://discord.gg/yourdiscord" target="_blank" class="button">Discord Server</a>
+    <div class="background-blur"></div>
+    <div class="gradient-sphere"></div>
+    <div class="gradient-sphere secondary"></div>
+    
+    <header class="floating-header">
+        <nav class="floating-nav">
+            <a href="../index.html" class="nav-link">
+                <img src="../assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="nav-logo">
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="../about/about.html" class="nav-link">About</a>
+            <a href="../features/features.html" class="nav-link">Features</a>
+            <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
+            <a href="../server/server.html" class="nav-link">Server</a>
+            <a href="docs.html" class="nav-link active">Docs</a>
+            <div class="right-links">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">GitHub</a>
+                <a href="https://discord.gg/xNpujz49gj" class="glass-button">Discord</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="docs-container">
+            <aside class="docs-sidebar">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search documentation...">
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Getting Started</h3>
+                    <ul class="nav-links">
+                        <li><a href="#installation" class="nav-link">Installation</a></li>
+                        <li><a href="#quickstart" class="nav-link">Quick Start</a></li>
+                        <li><a href="#configuration" class="nav-link">Configuration</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Core Features</h3>
+                    <ul class="nav-links">
+                        <li><a href="#sequence-analysis" class="nav-link">Sequence Analysis</a></li>
+                        <li><a href="#codon-detection" class="nav-link">Codon Detection</a></li>
+                        <li><a href="#coverage-analysis" class="nav-link">Coverage Analysis</a></li>
+                        <li><a href="#disorder-analysis" class="nav-link">Disorder Analysis</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Advanced Usage</h3>
+                    <ul class="nav-links">
+                        <li><a href="#cli-usage" class="nav-link">CLI Usage</a></li>
+                        <li><a href="#api-reference" class="nav-link">API Reference</a></li>
+                        <li><a href="#configuration-options" class="nav-link">Configuration Options</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-section">
+                    <h3>Development</h3>
+                    <ul class="nav-links">
+                        <li><a href="#building" class="nav-link">Building from Source</a></li>
+                        <li><a href="#contributing" class="nav-link">Contributing</a></li>
+                        <li><a href="#testing" class="nav-link">Testing</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <div class="docs-content">
+                <section id="installation" class="content-section">
+                    <h2>Installation</h2>
+                    <p>Get started with DNAnalyzer by following these installation steps:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">bash</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code># Clone the repository
+git clone https://github.com/VerisimilitudeX/DNAnalyzer.git
+
+# Navigate to project directory
+cd DNAnalyzer
+
+# Build the project
+./gradlew clean bootJar</code></pre>
+                    </div>
+
+                    <div class="note-block note-info">
+                        <h4>System Requirements</h4>
+                        <ul>
+                            <li>Java Development Kit (JDK) 17 or higher</li>
+                            <li>Gradle (bundled with distribution)</li>
+                            <li>2GB+ RAM recommended</li>
+                            <li>Basic command-line knowledge</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="quickstart" class="content-section">
+                    <h2>Quick Start</h2>
+                    <p>Start analyzing DNA sequences in minutes:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">bash</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code># Run the analyzer with a sample file
+java -jar build/libs/DNAnalyzer.jar assets/dna/example/test.fa</code></pre>
+                    </div>
+
+                    <div class="note-block note-warning">
+                        <h4>Important</h4>
+                        <p>Make sure your DNA sequence file is in FASTA format (.fa, .fasta)</p>
+                    </div>
+                </section>
+
+                <section id="sequence-analysis" class="content-section">
+                    <h2>Sequence Analysis</h2>
+                    <p>DNAnalyzer provides comprehensive DNA sequence analysis capabilities:</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Description</th>
+                                <th>Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basic Analysis</td>
+                                <td>Sequence length, GC content, base composition</td>
+                                <td><code>--basic</code></td>
+                            </tr>
+                            <tr>
+                                <td>Advanced Analysis</td>
+                                <td>Motif finding, pattern matching</td>
+                                <td><code>--advanced</code></td>
+                            </tr>
+                            <tr>
+                                <td>Full Analysis</td>
+                                <td>Complete sequence analysis with all features</td>
+                                <td><code>--full</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="cli-usage" class="content-section">
+                    <h2>CLI Usage</h2>
+                    <p>DNAnalyzer provides a comprehensive command-line interface:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">bash</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code># Basic usage
+java -jar build/libs/DNAnalyzer.jar [file] [options]
+
+# Example with options
+java -jar build/libs/DNAnalyzer.jar input.fa --amino=ser --min=100 --max=1000 -r</code></pre>
+                    </div>
+
+                    <h3>Available Options</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Option</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>--amino=X</code></td>
+                                <td>Specify start amino acid</td>
+                                <td><code>--amino=ser</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>--min=X</code></td>
+                                <td>Minimum sequence length</td>
+                                <td><code>--min=100</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>--max=X</code></td>
+                                <td>Maximum sequence length</td>
+                                <td><code>--max=1000</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>-r</code></td>
+                                <td>Reverse sequence analysis</td>
+                                <td><code>-r</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="api-reference" class="content-section">
+                    <h2>API Reference</h2>
+                    <p>Core classes and their functionalities:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">java</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code>// Initialize analyzer
+DNAAnalysis analyzer = new DNAAnalysis();
+
+// Analyze sequence
+AnalysisResult result = analyzer.analyze(sequence);
+
+// Get specific metrics
+double gcContent = result.getGCContent();
+List<String> codons = result.getCodons();</code></pre>
+                    </div>
+
+                    <h3>Core Classes</h3>
+                    <ul>
+                        <li><code>DNAAnalysis</code> - Main analysis class</li>
+                        <li><code>DNAMutation</code> - Handles sequence mutations</li>
+                        <li><code>DNADataUploader</code> - Manages file uploads</li>
+                    </ul>
+                </section>
+
+                <section id="contributing" class="content-section">
+                    <h2>Contributing</h2>
+                    <p>We welcome contributions! Here's how to get started:</p>
+
+                    <ol>
+                        <li>Fork the repository</li>
+                        <li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+                        <li>Commit your changes (<code>git commit -m 'Add amazing feature'</code>)</li>
+                        <li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+                        <li>Open a Pull Request</li>
+                    </ol>
+
+                    <div class="note-block note-info">
+                        <h4>Development Setup</h4>
+                        <div class="code-block">
+                            <pre><code>./gradlew clean build
+./gradlew test</code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
-    </nav>
-
-    <main>
-        <section id="documentation">
-            <h1>Documentation</h1>
-            <div class="docs-grid">
-                <div class="doc-section">
-                    <h2>Getting Started</h2>
-                    <ul>
-                        <li><a href="#getting-started">Quick Start Guide</a></li>
-                        <li><a href="#local-setup">Local Analyzer Setup</a></li>
-                    </ul>
-                </div>
-                <div class="doc-section">
-                    <h2>Usage Guides</h2>
-                    <ul>
-                        <li><a href="#cli">Command Line Interface</a></li>
-                        <li><a href="#samples">Sample Usage</a></li>
-                    </ul>
-                </div>
-                <div class="doc-section">
-                    <h2>Research & Analysis</h2>
-                    <ul>
-                        <li><a href="#parameters">Analysis Parameters</a></li>
-                        <li><a href="#genes">Gene Analysis</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="doc-content">
-                <!-- Content will be loaded dynamically via JavaScript -->
-            </div>
-        </section>
     </main>
 
+    <footer class="footer-content">
+        <div class="footer-bottom">
+            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.floating-nav').classList.toggle('responsive');
+        });
+    </script>
     <script src="docs.js"></script>
 </body>
 </html>

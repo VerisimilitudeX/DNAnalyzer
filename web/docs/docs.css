@@ -1,96 +1,372 @@
-.docs-grid {
+html {
+    scroll-behavior: smooth;
+}
+
+/* Documentation Layout */
+.container {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 2rem;
+    width: 100%;
+}
+
+/* Docs Container Layout */
+.docs-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 250px minmax(0, 1fr);
     gap: 2rem;
-    margin: 2rem 0;
+    width: 100%;
+    max-width: 100%;
 }
 
-.doc-section {
-    background: #f5f5f5;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Adjust main container margin to offset the fixed header */
+main.container {
+    margin-top: 80px;
 }
 
-.doc-section h2 {
-    margin-top: 0;
-    color: #333;
-    font-size: 1.5rem;
+/* Sidebar */
+.docs-sidebar {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    position: sticky;
+    top: 80px; /* Match the header height */
+    align-self: start;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.docs-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.docs-sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.docs-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Navigation */
+.nav-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.nav-section h3 {
+    color: var(--gradient-end);
     margin-bottom: 1rem;
+    font-size: 1.2rem;
 }
 
-.doc-section ul {
+.nav-links {
     list-style: none;
+    margin: 0;
     padding: 0;
+}
+
+.nav-links li {
+    margin-bottom: 0.5rem;
+}
+
+.nav-links .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.nav-links .nav-link:hover,
+.nav-links .nav-link.active {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gradient-end);
+    transform: translateX(5px);
+}
+
+/* Search */
+.search-container {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    margin: -2rem -2rem 1rem -2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--gradient-start);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+/* Content */
+.docs-content {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3rem;
+    min-height: calc(100vh - 8rem);
+    width: 100%;
     margin: 0;
 }
 
-.doc-section li {
-    margin: 0.5rem 0;
+.content-section {
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.doc-section a {
-    color: #007bff;
-    text-decoration: none;
-    display: block;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+.content-section:last-child {
+    margin-bottom: 0;
 }
 
-.doc-section a:hover {
-    background-color: #e9ecef;
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--gradient-end);
+    text-align: left;
 }
 
-.doc-content {
-    margin: 2rem 0;
-    padding: 2rem;
-    background: white;
+.content-section h3 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.content-section p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Code Blocks */
+.code-block {
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 1.5rem 0;
+    overflow: hidden;
 }
 
-.doc-content h1 {
-    margin-top: 0;
-    color: #333;
+.code-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.doc-content h2 {
-    margin-top: 2rem;
-    color: #444;
+.code-language {
+    color: var(--gradient-end);
+    font-size: 0.9rem;
 }
 
-.doc-content p {
-    line-height: 1.6;
-    color: #666;
-}
-
-.doc-content code {
-    background: #f8f9fa;
-    padding: 0.2rem 0.4rem;
+.copy-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.25rem 0.75rem;
     border-radius: 4px;
-    font-family: 'IBM Plex Mono', monospace;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
-.doc-content pre {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 4px;
+.copy-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+pre {
+    margin: 0;
+    padding: 1.5rem;
     overflow-x: auto;
 }
 
-#documentation {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-@media (max-width: 768px) {
-    .docs-grid {
+/* Tables */
+.docs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.docs-table th,
+.docs-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.docs-table th {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--gradient-end);
+    font-weight: 600;
+}
+
+.docs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.docs-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Note Blocks */
+.note-block {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--gradient-end);
+}
+
+.note-block h4 {
+    color: var(--gradient-end);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.note-block.note-warning {
+    border-left-color: #ffc107;
+}
+
+.note-block.note-warning h4 {
+    color: #ffc107;
+}
+
+.note-block ul,
+.note-block ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.note-block li {
+    margin-bottom: 0.5rem;
+}
+
+/* Search Highlighting */
+mark {
+    background: rgba(0, 122, 255, 0.3);
+    color: white;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 2rem;
+    }
+
+    .docs-container {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .docs-sidebar {
+        position: static;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+
+    .content-section {
+        scroll-margin-top: 2rem;
+    }
+
+    .docs-content {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin-top: 120px;
+        padding: 1rem;
+    }
+
+    .search-container {
+        margin: -1rem -1rem 1rem -1rem;
+        padding: 0.75rem;
     }
     
-    #documentation {
+    .docs-content {
+        padding: 1.5rem;
+    }
+    
+    .content-section {
+        margin-bottom: 2rem;
+    }
+
+    .docs-content {
+        padding: 1.5rem;
+    }
+
+    .content-section h2 {
+        font-size: 2rem;
+    }
+
+    .content-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .docs-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .docs-container {
+        display: block;
+    }
+    .docs-sidebar {
+        position: relative;
+        height: auto;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .docs-content {
+        width: 100%;
         padding: 1rem;
     }
 }

@@ -1,202 +1,276 @@
-/* Server page specific styles */
-.server-setup-section {
-    margin-top: 2rem;
+.container {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
+    padding: 2rem;
 }
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Server Status Section */
+.status-section {
+    margin: 4rem 0;
     padding: 2rem;
-    margin-bottom: 2rem;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.status-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
-.glass-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+.status-card:hover {
+    transform: translateY(-5px);
     border-color: var(--gradient-end);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
 }
 
-#server-status {
-    margin-top: 1rem;
-    padding: 1.5rem;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.2);
-    font-family: 'IBM Plex Mono', monospace;
+.status-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gradient-end);
 }
 
-#server-status small {
-    display: block;
-    margin-top: 0.5rem;
-    color: rgba(255, 255, 255, 0.6);
+.status-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--gradient-end);
 }
 
-.glass-button.large {
-    margin-top: 1.5rem;
+.status-value {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.status-label {
+    color: rgba(255, 255, 255, 0.7);
     font-size: 1.1rem;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    border: none;
-    color: white;
 }
 
-.command-box {
-    display: flex;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 1rem 1.2rem;
-    border-radius: 8px;
-    margin: 0.5rem 0;
+/* API Key Section */
+.api-section {
+    margin: 4rem 0;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    gap: 1rem;
 }
 
-.command-box code {
-    flex-grow: 1;
-    font-family: 'IBM Plex Mono', monospace;
-    color: #10B981;
-    font-size: 0.9rem;
-    overflow-x: auto;
-    white-space: nowrap;
+.api-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--gradient-end);
 }
 
-.copy-button {
-    background: rgba(255, 255, 255, 0.1);
+.api-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
     color: white;
+    font-size: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--gradient-start);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+/* Documentation Section */
+.docs-section {
+    margin: 4rem 0;
+}
+
+.endpoint-list {
+    display: grid;
+    gap: 2rem;
+}
+
+.endpoint-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.endpoint-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gradient-end);
+    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+}
+
+.endpoint-method {
+    display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.method-get {
+    background: rgba(0, 200, 83, 0.2);
+    color: #00c853;
+}
+
+.method-post {
+    background: rgba(0, 122, 255, 0.2);
+    color: #007bff;
+}
+
+.endpoint-url {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.endpoint-description {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.endpoint-params {
+    margin-top: 1.5rem;
+}
+
+.param-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.param-table th,
+.param-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.param-table th {
+    color: var(--gradient-end);
+    font-weight: 600;
+}
+
+.param-required {
+    color: #dc3545;
+    font-weight: 600;
+}
+
+/* Response Section */
+.response-example {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    overflow-x: auto;
+}
+
+.response-example pre {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Buttons */
+.submit-btn {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    width: 100%;
 }
 
-.copy-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
 }
 
-.copy-button:active {
-    transform: translateY(0);
-}
-
-.setup-steps {
-    list-style-position: inside;
-    padding: 0;
-    margin: 1.5rem 0;
-    counter-reset: step;
-}
-
-.setup-steps li {
-    margin-bottom: 2rem;
-    position: relative;
-    padding-left: 2.5rem;
-}
-
-.setup-steps li::before {
-    counter-increment: step;
-    content: counter(step);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 1.8rem;
-    height: 1.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    color: white;
-}
-
-.setup-steps li p {
-    margin-bottom: 0.5rem;
-    color: #E0E0E0;
-}
-
-.setup-steps .command-box {
-    margin: 0.5rem 0;
-}
-
-.troubleshooting {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.troubleshooting p {
-    color: #FFA726;
-    margin-bottom: 0.5rem;
-}
-
-.issue-item {
-    margin-bottom: 2rem;
-}
-
-.issue-item h4 {
-    color: var(--gradient-end);
-    margin-bottom: 0.8rem;
-    font-size: 1.1rem;
-}
-
-.issue-item ul {
-    list-style: disc;
-    padding-left: 1.2rem;
-    margin: 0.8rem 0;
-}
-
-.issue-item ul li {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0.4rem 0;
-}
-
-.requirements-note {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-}
-
-.requirements-note ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.8rem 0;
-}
-
-.requirements-note ul li {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0.4rem 0;
-    display: flex;
-    align-items: center;
-}
-
-.requirements-note ul li::before {
-    content: '✓';
-    color: var(--success-color);
-    margin-right: 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .command-box {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.5rem;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 4rem 1rem 2rem;
+        padding: 1rem;
     }
 
-    .command-box code {
-        padding: 0.5rem;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
+    .hero h1 {
+        font-size: 2.5rem;
     }
 
-    .copy-button {
-        width: 100%;
+    .status-grid {
+        grid-template-columns: 1fr;
     }
 
-    .setup-steps li {
-        padding-left: 2rem;
+    .endpoint-url {
+        font-size: 0.9rem;
+    }
+
+    .param-table {
+        display: block;
+        overflow-x: auto;
     }
 }

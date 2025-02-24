@@ -6,66 +6,189 @@
     <title>Features - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="features.css">
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
     <div class="background-blur"></div>
+    <div class="gradient-sphere"></div>
+    <div class="gradient-sphere secondary"></div>
     
     <header class="floating-header">
         <nav class="floating-nav">
             <a href="../index.html" class="nav-link">
-                <img src="../assets/icons/emblem-light-bg.svg" alt="DNAnalyzer Logo" class="nav-logo">
-                Home
+                <img src="../assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="nav-logo">
             </a>
             <a href="../about/about.html" class="nav-link">About</a>
             <a href="features.html" class="nav-link active">Features</a>
             <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
             <a href="../server/server.html" class="nav-link">Server</a>
+            <a href="../docs/docs.html" class="nav-link">Docs</a>
+            <div class="right-links">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">GitHub</a>
+                <a href="https://discord.gg/xNpujz49gj" class="glass-button">Discord</a>
+            </div>
         </nav>
-        <div class="header-buttons">
-            <button class="glass-button" onclick="window.location.href='https://github.com/VerisimilitudeX/DNAnalyzer'">GitHub</button>
-            <button class="glass-button" onclick="window.location.href='https://discord.gg/xNpujz49gj'">Discord</button>
-        </div>
     </header>
 
     <main class="container">
-        <section class="content-section">
+        <section class="hero">
             <h1>Features</h1>
-            <div class="grid">
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/Icon_Dark_BG.svg" alt="Web Analysis Icon" class="feature-icon">
-                    <h3>Web DNA Analyzer</h3>
-                    <p>Analyze DNA sequences directly through your web browser with our powerful web interface. Upload FASTA/FASTQ files and get instant analysis with customizable parameters.</p>
-                    <img src="../assets/mockup/Slide_01.png" alt="DNA Analysis Interface" class="feature-preview">
-                    <button class="glass-button" onclick="window.location.href='../analyzer/analyzer.html'">Try Analyzer</button>
+            <p>Discover the power of DNAnalyzer's advanced capabilities</p>
+        </section>
+
+        <section class="features-grid">
+            <div class="feature-card">
+                <img src="../assets/icons/Icon_Base.svg" alt="Web Analysis" class="feature-icon">
+                <h3>Web DNA Analyzer</h3>
+                <p>Analyze DNA sequences directly through your web browser. Upload FASTA/FASTQ files and get instant analysis with customizable parameters.</p>
+                <a href="../analyzer/analyzer.html" class="primary-btn">Try Analyzer</a>
+            </div>
+
+            <div class="feature-card">
+                <img src="../assets/icons/Icon_Dark_BG.svg" alt="Codon Analysis" class="feature-icon">
+                <h3>Codon Detection</h3>
+                <p>Identify start and stop codons across all 20 amino acids with high accuracy. Get detailed codon analysis and protein sequence predictions.</p>
+            </div>
+
+            <div class="feature-card">
+                <img src="../assets/icons/emblem-dark-bg.svg" alt="Coverage Analysis" class="feature-icon">
+                <h3>Coverage Analysis</h3>
+                <p>Identify high-coverage regions and analyze sequence depth. Perfect for detecting important genetic elements and variations.</p>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>See It In Action</h2>
+            <div class="demo-video">
+                <video autoplay loop muted playsinline>
+                    <source src="../assets/videos/dna_spiral.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <section class="comparison-section">
+            <h2>Feature Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>DNAnalyzer</th>
+                        <th>Traditional Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Web Interface</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-times x-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Real-time Analysis</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-times x-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Multiple File Formats</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                    </tr>
+                    <tr>
+                        <td>Local Server Support</td>
+                        <td><i class="fas fa-check check-icon"></i></td>
+                        <td><i class="fas fa-times x-icon"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="technical-section">
+            <div class="technical-grid">
+                <div class="technical-card">
+                    <h3>Analysis Features</h3>
+                    <ul>
+                        <li>Start/Stop Codon Detection</li>
+                        <li>High Coverage Region Analysis</li>
+                        <li>Neurodevelopmental Markers</li>
+                        <li>Promoter Element Detection</li>
+                    </ul>
                 </div>
 
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/Icon_Dark_BG_Base.svg" alt="Codons Icon" class="feature-icon">
-                    <h3>Start and Stop Codons</h3>
-                    <p>Identify start and stop codons across all 20 amino acids. Our advanced algorithms detect protein sequences with high accuracy and provide detailed codon analysis.</p>
-                    <img src="../assets/full.png" alt="Codon Analysis" class="feature-preview">
+                <div class="technical-card">
+                    <h3>File Support</h3>
+                    <ul>
+                        <li>FASTA Format (.fa, .fasta)</li>
+                        <li>FASTQ Format (.fastq)</li>
+                        <li>Plain Text (.txt)</li>
+                        <li>Large File Processing</li>
+                    </ul>
                 </div>
 
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/emblem-dark-bg.svg" alt="Coverage Icon" class="feature-icon">
-                    <h3>Coverage Analysis</h3>
-                    <p>Identify high-coverage regions and analyze sequence depth. Perfect for detecting important genetic elements and potential variations.</p>
+                <div class="technical-card">
+                    <h3>Advanced Features</h3>
+                    <ul>
+                        <li>Machine Learning Analysis</li>
+                        <li>Real-time Processing</li>
+                        <li>Custom Parameter Support</li>
+                        <li>Detailed Result Reports</li>
+                    </ul>
                 </div>
+            </div>
+        </section>
 
-                <div class="glass-card feature-card">
-                    <img src="../assets/icons/Icon_Base.svg" alt="Server Icon" class="feature-icon">
-                    <h3>Local Server Support</h3>
-                    <p>Run analyses locally with our high-performance server. Ensures data privacy and faster processing for large sequences.</p>
-                    <button class="glass-button" onclick="window.location.href='../server/server.html'">Server Setup</button>
-                </div>
+        <section class="cta-section">
+            <h2>Ready to Start Analyzing?</h2>
+            <p>Experience the power of DNAnalyzer's features firsthand</p>
+            <div class="cta-buttons">
+                <a href="../analyzer/analyzer.html" class="primary-btn">Try DNA Analysis</a>
+                <a href="../docs/docs.html" class="secondary-btn">Read Documentation</a>
             </div>
         </section>
     </main>
 
-    <footer class="glass-footer">
-        <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+    <footer class="footer-content">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="../features/features.html">Features</a></li>
+                    <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
+                    <li><a href="../server/server.html">Server</a></li>
+                    <li><a href="../docs/docs.html">Documentation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="../docs/getting-started.md">Getting Started</a></li>
+                    <li><a href="../docs/citations.md">Citations</a></li>
+                    <li><a href="../docs/research/genes.md">Gene Research</a></li>
+                    <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
+                    <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
+                    <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="../LICENSE.md">License</a></li>
+                    <li><a href="../SECURITY.md">Security</a></li>
+                    <li><a href="../CITATION.cff">Citation</a></li>
+                    <li><a href="../humans.txt">Credits</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
+        </div>
     </footer>
 
     <script src="features.js"></script>

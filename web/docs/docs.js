@@ -1,109 +1,123 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Map of documentation sections to their markdown file paths
-    const docPaths = {
-        'getting-started': '../docs/getting-started.md',
-        'local-setup': '../docs/Local_Analyzer_Setup.md',
-        'cli': '../docs/usage/MetCLI.md',
-        'samples': '../docs/samples/cli-arguments-examples.md',
-        'parameters': '../docs/research/analysis-parameters.md',
-        'genes': '../docs/research/genes.md'
-    };
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle navigation links
+    const navLinks = document.querySelectorAll('.nav-links .nav-link');
+    const sections = document.querySelectorAll('.content-section');
 
-    // Function to fetch and render markdown content
-    async function loadDocContent(docId) {
-        const docContent = document.querySelector('.doc-content');
-        if (!docContent) {
-            console.error('Documentation content container not found');
-            return;
-        }
+    function updateActiveLink() {
+        const scrollPosition = window.scrollY;
 
-        try {
-            const response = await fetch(docPaths[docId]);
-            if (!response.ok) {
-                throw new Error(`Failed to load documentation: ${response.statusText}`);
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
-            
-            const markdown = await response.text();
-            
-            // Basic markdown to HTML conversion
-            const html = markdown
-                .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-                .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                .replace(/`(.*?)`/g, '<code>$1</code>')
-                .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')
-                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
-                .replace(/^- (.*$)/gm, '<li>$1</li>')
-                .split('\n\n')
-                .map(block => {
-                    if (block.startsWith('<li>')) {
-                        return `<ul>${block}</ul>`;
-                    }
-                    if (!block.startsWith('<')) {
-                        return `<p>${block}</p>`;
-                    }
-                    return block;
-                })
-                .join('\n');
-
-            docContent.innerHTML = html;
-
-            // Update URL hash without scrolling
-            const currentURL = new URL(window.location);
-            currentURL.hash = docId;
-            window.history.pushState({}, '', currentURL);
-
-        } catch (error) {
-            console.error('Error loading documentation:', error);
-            docContent.innerHTML = `
-                <div class="error">
-                    <h2>Error Loading Documentation</h2>
-                    <p>Sorry, we couldn't load the requested documentation. Please try again later.</p>
-                    <p class="error-details">${error.message}</p>
-                </div>
-            `;
-        }
+        });
     }
 
-    // Add click handlers to documentation links
-    const links = document.querySelectorAll('.doc-section a');
-    if (links.length > 0) {
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const docId = link.getAttribute('href').substring(1);
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+
+    // Smooth scroll for navigation
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Handle search functionality
+    const searchInput = document.querySelector('.search-input');
+    const contentSections = document.querySelectorAll('.content-section');
+    let searchTimeout;
+
+    searchInput.addEventListener('input', function(e) {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (searchTerm.length > 2) {
+                contentSections.forEach(section => {
+                    const text = section.textContent.toLowerCase();
+                    const match = text.includes(searchTerm);
+                    
+                    if (match) {
+                        section.style.display = 'block';
+                        // Highlight matches
+                        const regex = new RegExp(searchTerm, 'gi');
+                        section.innerHTML = section.innerHTML.replace(regex, match => `<mark>${match}</mark>`);
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            } else {
+                // Show all sections if search term is too short
+                contentSections.forEach(section => {
+                    section.style.display = 'block';
+                    // Remove highlights
+                    section.innerHTML = section.innerHTML.replace(/<mark>(.*?)<\/mark>/g, '$1');
+                });
+            }
+        }, 300);
+    });
+
+    // Handle code copy buttons
+    const copyButtons = document.querySelectorAll('.copy-button');
+    
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const codeBlock = this.closest('.code-block').querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = this.textContent;
+                this.textContent = 'Copied!';
+                this.style.background = 'var(--gradient-end)';
                 
-                // Update active state
-                links.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                
-                loadDocContent(docId);
-                
-                // Smooth scroll to content on mobile
-                if (window.innerWidth < 768) {
-                    document.querySelector('.doc-content')?.scrollIntoView({ behavior: 'smooth' });
-                }
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                }, 2000);
             });
         });
+    });
 
-        // Load initial documentation based on URL hash or default to getting-started
-        const initialDoc = window.location.hash.substring(1) || 'getting-started';
-        loadDocContent(initialDoc);
-        
-        // Highlight the active link
-        const activeLink = document.querySelector(`.doc-section a[href="#${initialDoc}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        }
-    } else {
-        console.error('No documentation links found');
-        document.querySelector('.doc-content').innerHTML = `
-            <div class="error">
-                <h2>Documentation Navigation Error</h2>
-                <p>The documentation navigation links could not be found. Please try refreshing the page.</p>
-            </div>
-        `;
-    }
+    // Handle table of contents highlighting
+    const tocLinks = document.querySelectorAll('.nav-links .nav-link');
+    const observerOptions = {
+        rootMargin: '-100px 0px -50%',
+        threshold: 0
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach(section => observer.observe(section));
 });

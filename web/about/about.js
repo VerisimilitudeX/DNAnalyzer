@@ -9,12 +9,6 @@
  * For further inquiries, please reach out to contact@dnanalyzer.live
  */
 
-const toggle = document.getElementById("mode");
-
-toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-});
-
 // About page specific functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Add smooth scrolling for any anchor links
@@ -24,6 +18,21 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
+        });
+    });
+
+    // Add hover effects for glass cards
+    document.querySelectorAll('.glass-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
+            this.style.borderColor = 'var(--gradient-end)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
         });
     });
 });
