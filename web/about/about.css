@@ -229,6 +229,40 @@
     transform: translateY(-3px);
 }
 
+/* Hiring Section */
+.hiring-section {
+    margin: 4rem 0;
+    padding: 3rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.hiring-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--gradient-end);
+}
+
+.hiring-section p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+.hiring-section a {
+    color: var(--gradient-end);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.hiring-section a:hover {
+    color: var(--gradient-start);
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .container {
@@ -246,7 +280,8 @@
 
     .team-section,
     .mission-section,
-    .contact-section {
+    .contact-section,
+    .hiring-section {
         padding: 1.5rem;
     }
 
