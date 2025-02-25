@@ -181,6 +181,70 @@
                 </div>
             </div>
         </section>
+
+        <section id="detailed-features">
+            <div class="content-wrapper">
+                <h2>Detailed Features</h2>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <h3>Open Reading Frame Identification</h3>
+                        <p>Scans DNA for start and stop codons to identify protein-coding sequences (open reading frames). Recognizes canonical start codons (e.g., ATG) and stop codons to pinpoint the locations of putative proteins within a genome.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>GC-Rich Region Detection</h3>
+                        <p>Locates high coverage (GC-rich) regions in the DNA, often associated with gene-dense areas and promoter regions. Flags GC-rich stretches to help identify potential regulatory regions.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Neurodevelopmental Disorder Gene Highlighting</h3>
+                        <p>Includes analysis related to neurodevelopmental disorders (NDDs), noting genes that are unusually long, as certain NDDs are associated with longer genes. Flags lengthy genes in the input DNA, which might be of interest if scanning for candidate genes related to brain development disorders.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Core Promoter Element Identification</h3>
+                        <p>Scans for known core promoter motifs in the DNA sequence, such as the TATA box, BRE, INR, and DPE motifs. Detecting these elements can indicate the presence of gene promoters, helping users locate potential gene start sites and understand regulatory architecture in the sequence.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>FASTA File Support</h3>
+                        <p>Accepts input in standard FASTA format, supporting both single-line and multi-line FASTA files, whether provided by upload or via URL. This flexibility allows users to analyze sequences from databases or their own sequencing results with ease.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Command-Line Interface (CLI)</h3>
+                        <p>Includes a powerful CLI, code-named "Methionine" (Met CLI), allowing users to run analyses and script workflows programmatically. All core features are accessible via command-line commands, enabling batch processing and integration into other pipelines.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Graphical User Interface (GUI)</h3>
+                        <p>A basic GUI is already included for ease of use, with a more robust web-based UI noted as "coming soon". The current desktop GUI provides a simple window where users can input the DNA file name, adjust parameters, and click "Analyze" to see results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases">
+            <div class="content-wrapper">
+                <h2>Use Cases</h2>
+                <div class="use-cases-list">
+                    <div class="use-case-item">
+                        <h3>Personal Genomics and Ancestry</h3>
+                        <p>Analyze your own DNA data locally with DNAnalyzer, identifying potential genes, regions of high GC content, and known promoter motifs without uploading to any third-party service.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Academic Research in Genomics</h3>
+                        <p>Researchers can use DNAnalyzer for initial exploratory analysis of sequenced genomes, quickly identifying putative coding sequences, promoters, and other genomic features.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Bioinformatics Education and Training</h3>
+                        <p>Instructors can incorporate DNAnalyzer into genetics or bioinformatics courses, allowing students to analyze sample DNA sequences and identify genes and regulatory elements.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Clinical Genomics and Genetic Counseling</h3>
+                        <p>Genetic counselors can use DNAnalyzer to get an initial sense of a patient's genome, flagging long genes or identifying mutations in promoter regions, all while maintaining data privacy.</p>
+                    </div>
+                    <div class="use-case-item">
+                        <h3>Genome Engineering and Synthetic Biology</h3>
+                        <p>Scientists can use DNAnalyzer to verify synthetic DNA constructs, ensuring they have the intended features and do not contain unintended ORFs or problematic regions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer-content">

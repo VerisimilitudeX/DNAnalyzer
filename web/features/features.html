@@ -146,6 +146,133 @@
                 <a href="../docs/docs.html" class="secondary-btn">Read Documentation</a>
             </div>
         </section>
+
+        <section class="detailed-features">
+            <h2>Detailed Features</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h3>Open Reading Frame Identification</h3>
+                    <p>Scans DNA for start and stop codons to identify protein-coding sequences (open reading frames). Recognizes canonical start codons (e.g., ATG) and stop codons to pinpoint the locations of putative proteins within a genome.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>GC-Rich Region Detection</h3>
+                    <p>Locates high coverage (GC-rich) regions in the DNA, often associated with gene-dense areas and promoter regions. Flags GC-rich stretches to help identify potential regulatory regions.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Neurodevelopmental Disorder Gene Highlighting</h3>
+                    <p>Includes analysis related to neurodevelopmental disorders (NDDs), noting genes that are unusually long, as certain NDDs are associated with longer genes. Flags lengthy genes in the input DNA, which might be of interest if scanning for candidate genes related to brain development disorders.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Core Promoter Element Identification</h3>
+                    <p>Scans for known core promoter motifs in the DNA sequence, such as the TATA box, BRE, INR, and DPE motifs. Detecting these elements can indicate the presence of gene promoters, helping users locate potential gene start sites and understand regulatory architecture in the sequence.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>FASTA File Support</h3>
+                    <p>Accepts input in standard FASTA format, supporting both single-line and multi-line FASTA files, whether provided by upload or via URL. This flexibility allows users to analyze sequences from databases or their own sequencing results with ease.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Command-Line Interface (CLI)</h3>
+                    <p>Includes a powerful CLI, code-named "Methionine" (Met CLI), allowing users to run analyses and script workflows programmatically. All core features are accessible via command-line commands, enabling batch processing and integration into other pipelines.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Graphical User Interface (GUI)</h3>
+                    <p>A basic GUI is already included for ease of use, with a more robust web-based UI noted as "coming soon". The current desktop GUI provides a simple window where users can input the DNA file name, adjust parameters, and click "Analyze" to see results.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="use-cases">
+            <h2>Use Cases</h2>
+            <div class="use-cases-list">
+                <div class="use-case-item">
+                    <h3>Personal Genomics and Ancestry</h3>
+                    <p>Analyze your own DNA data locally with DNAnalyzer, identifying potential genes, regions of high GC content, and known promoter motifs without uploading to any third-party service.</p>
+                </div>
+                <div class="use-case-item">
+                    <h3>Academic Research in Genomics</h3>
+                    <p>Researchers can use DNAnalyzer for initial exploratory analysis of sequenced genomes, quickly identifying putative coding sequences, promoters, and other genomic features.</p>
+                </div>
+                <div class="use-case-item">
+                    <h3>Bioinformatics Education and Training</h3>
+                    <p>Instructors can incorporate DNAnalyzer into genetics or bioinformatics courses, allowing students to analyze sample DNA sequences and identify genes and regulatory elements.</p>
+                </div>
+                <div class="use-case-item">
+                    <h3>Clinical Genomics and Genetic Counseling</h3>
+                    <p>Genetic counselors can use DNAnalyzer to get an initial sense of a patient's genome, flagging long genes or identifying mutations in promoter regions, all while maintaining data privacy.</p>
+                </div>
+                <div class="use-case-item">
+                    <h3>Genome Engineering and Synthetic Biology</h3>
+                    <p>Scientists can use DNAnalyzer to verify synthetic DNA constructs, ensuring they have the intended features and do not contain unintended ORFs or problematic regions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="comparative-analysis">
+            <h2>Comparative Analysis</h2>
+            <p>DNA analysis is a broad field with many specialized tools. DNAnalyzer enters this landscape with a holistic approach, combining several analysis types (ORF finding, motif detection, etc.) into one package. To understand DNAnalyzer’s strengths and weaknesses, it’s useful to compare it to other popular DNA analysis software and toolkits. Below, we contrast DNAnalyzer with a few categories of tools: gene finding tools, sequence alignment/search tools, variant analysis pipelines, and promoter/motif analysis tools. Each of these have established solutions, and DNAnalyzer overlaps partially with them while also differentiating itself.</p>
+
+            <h3>Gene Finding and Sequence Annotation</h3>
+            <p>Traditional gene finding in sequence data is often done with either simple ORF finders or complex gene prediction algorithms. For example, NCBI ORFfinder is a straightforward utility that, given a DNA sequence, will identify all open reading frames and output their locations and translated amino acid sequences. There are also advanced tools like AUGUSTUS or GeneMark that predict genes in eukaryotic genomes by modeling exon-intron structures. Compared to these, DNAnalyzer’s approach to gene finding is simpler but user-friendly. It finds ORFs based on codons like ORFfinder does, which is quite fast and effective for prokaryotic genomes or rough analysis. However, DNAnalyzer does not (at least currently) incorporate statistical models or training for gene structure – it won’t predict splicing or differentiate between coding potential of ORFs. Its advantage is the integration with other analyses: while ORFfinder would only list ORFs, DNAnalyzer lists ORFs and immediately shows associated genomic context (like nearby high-GC regions or promoter motifs). For a user doing exploratory analysis, DNAnalyzer provides more context in one run, whereas using ORFfinder alone might require additional steps to analyze those ORFs further. On the flip side, tools like AUGUSTUS are more powerful for, say, finding genes in a mammalian genome (considering introns), something DNAnalyzer is not tailored for – DNAnalyzer would find all ORFs including many that are not true genes in such a case, because it lacks the sophisticated modeling those tools have.</p>
+
+            <h3>Sequence Similarity Search (BLAST and DIAMOND)</h3>
+            <p>One important aspect of DNA analysis is finding out if a sequence is known or similar to known sequences. The go-to tool here is BLAST (Basic Local Alignment Search Tool), which can compare a query DNA or protein sequence against a database of sequences to find regions of similarity. BLAST is very powerful for identifying homologous genes, evolutionary relatives, or known functional elements. A faster alternative is DIAMOND, which is optimized for protein sequence searches and can be orders of magnitude faster than BLAST for large database queries. DNAnalyzer itself is not primarily a similarity search tool – it doesn’t, in its current form, replace BLAST for doing database searches. However, the developers plan to incorporate DIAMOND into DNAnalyzer to give users an integrated homology search capability. This means in the future one could run DNAnalyzer on a sequence and not only get intrinsic features (ORFs, motifs) but also a quick report of “this sequence’s closest match in a database is gene X from organism Y,” leveraging DIAMOND’s speed. Until that is implemented, users likely still use BLAST separately if needed. The benefit DNAnalyzer could bring with integration is workflow simplification – a user wouldn’t have to jump between tools; after finding an ORF with DNAnalyzer, they could immediately see if that ORF matches something known. In terms of strengths/weaknesses: BLAST is extremely well-validated and thorough in finding similarities (strength), but it requires internet access or large local databases and can be slow for very large queries (weakness in speed). DNAnalyzer’s upcoming DIAMOND feature aims to address the speed by using DIAMOND (which has a huge performance advantage for searching protein databases), but it will still rely on the presence of relevant databases and will likely focus on known gene identification rather than general alignment. A limitation of DNAnalyzer here is that, as an on-device tool, the user must have any reference data they want to search against – whereas NCBI BLAST servers have comprehensive databases online. The philosophy differs: DNAnalyzer emphasizes privacy and offline use, so one might download a reference database to use with it, whereas BLAST on the web lets you query against vast up-to-date databases easily (at the cost of sending your sequence to a server).</p>
+
+            <h3>Variant Analysis Pipelines (GATK)</h3>
+            <p>When it comes to analyzing DNA for mutations or variants (like SNPs, indels, etc.), the field standard is the Genome Analysis Toolkit (GATK) from the Broad Institute. GATK is “pretty much the industry standard tool for variant analysis” – it’s a comprehensive suite for taking DNA sequencing data (reads) through preprocessing, alignment, variant calling, and filtering. DNAnalyzer does not perform this kind of analysis. It doesn’t operate on raw sequencing reads or call variants; instead, it assumes you already have a assembled or reference sequence. This is a major point of differentiation: DNAnalyzer is for sequence interpretation, not variant discovery from NGS data. So, if one’s task is to find mutations in a human genome, DNAnalyzer alone is not sufficient – GATK or similar pipelines would be needed to identify those variants. However, DNAnalyzer could complement variant analysis in a couple of ways. After variants are called (say you have a VCF file or you’ve applied them to a reference genome to create a personalized sequence), you could use DNAnalyzer to see the effects: e.g., did any variant introduce a premature stop codon in an ORF? Did a variant fall in a TATA box of a promoter? These are questions DNAnalyzer can help answer by analyzing the sequence with the variant. Strength-wise, GATK is extremely powerful and specialized (handling high-throughput data, statistical models for variant quality, etc.), whereas DNAnalyzer is lightweight and easier to run (no complex configuration, no need for large computational resources). GATK is also focused on human or model organism data and has a steep learning curve; DNAnalyzer’s ease of use is a big plus for non-specialists who just want to analyze a given sequence without delving into the intricacies of sequencing data processing.</p>
+
+            <h3>Promoter and Motif Analysis (ElemeNT, MEME, etc.)</h3>
+            <p>For analyzing regulatory sequences like promoters or transcription factor binding sites, there are specialized tools. ElemeNT 2023 is a recent tool focused on core promoter element detection. It provides advanced capabilities such as assessing evolutionary conservation of promoter motifs and scanning for motifs across multiple species’ data. Tools like MEME Suite allow discovery of novel motifs in sequences, and TFBS prediction tools can scan for occurrences of transcription factor binding sites given position weight matrices. Compared to these, DNAnalyzer has a relatively simple approach: it checks for the presence of a handful of well-known core promoter motifs (TATA box, BRE, INR, DPE) using a straightforward search. It does not currently analyze the positioning of these motifs relative to transcription start sites (since it doesn’t know TSS positions explicitly) and doesn’t incorporate databases of known sites or comparative genomics. The strength of DNAnalyzer in this regard is again convenience – a user gets a quick heads-up if any common promoter signals are present in the sequence. For many practical purposes, noticing a “TATAAA” sequence about 30 bases upstream of an ORF found can immediately suggest a promoter is there, which is often enough insight. The weakness is that it could miss more subtle regulatory elements or provide false security (just because it found a “TATA” doesn’t guarantee a functional promoter, and if it didn’t find one, a promoter could still be present with different motifs). Specialized tools like ElemeNT are more sensitive and detailed: ElemeNT can evaluate motif quality and provide a comprehensive list of potential promoter elements, even for non-model organisms, and it’s accessible via a web interface or command line. But using ElemeNT or similar tools usually means an extra step and some expertise. DNAnalyzer’s approach is to give a basic but immediate readout as part of the general analysis – a trade-off between depth and simplicity.</p>
+
+            <h3>Comparison Table</h3>
+            <table class="docs-table">
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Open Source?</th>
+                        <th>Primary Focus</th>
+                        <th>Key Features</th>
+                        <th>Limitations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DNAnalyzer</td>
+                        <td>Yes (MIT License)</td>
+                        <td>Multi-purpose DNA sequence analysis (on-device)</td>
+                        <td>ORF detection, GC-content/cpG island finding, promoter motif scanning, basic GUI & CLI, ML integration planned</td>
+                        <td>New project (less field-tested); currently no variant calling or advanced gene modeling; breadth-over-depth (not as specialized in any single analysis as dedicated tools)</td>
+                    </tr>
+                    <tr>
+                        <td>NCBI ORFfinder</td>
+                        <td>Yes (Web tool)</td>
+                        <td>Open reading frame identification</td>
+                        <td>Finds all ORFs in a sequence, returns coordinates and protein translation</td>
+                        <td>Limited to ORF listing (no context or further analysis); web-based interface requires manual use</td>
+                    </tr>
+                    <tr>
+                        <td>GATK (Broad Institute)</td>
+                        <td>Yes (open-source)</td>
+                        <td>Variant discovery from sequencing data</td>
+                        <td>Comprehensive pipeline for SNP/Indel calling, genotype refinement, and analysis of NGS data; gold-standard methods for human genomics</td>
+                        <td>Not designed for analyzing a single sequence’s features (requires raw reads and produces variants, not a tool for motif/ORF discovery); steep learning curve and heavy computational needs</td>
+                    </tr>
+                    <tr>
+                        <td>BLAST/DIAMOND</td>
+                        <td>Yes</td>
+                        <td>Sequence similarity search</td>
+                        <td>Aligns query sequences to large databases to find homologous or known sequences; DIAMOND offers high-performance alignments (100x+ faster than BLAST)</td>
+                        <td>Focused purely on sequence alignment; does not analyze sequence features (needs separate interpretation of results); BLAST can be slow without DIAMOND; requires database availability</td>
+                    </tr>
+                    <tr>
+                        <td>ElemeNT 2023</td>
+                        <td>Yes</td>
+                        <td>Core promoter element analysis</td>
+                        <td>Detects and annotates core promoter motifs (TATA, INR, DPE, etc.) with consideration of motif positioning and conservation; offers databases of predicted promoters across species</td>
+                        <td>Narrow scope – only analyzes promoter regions; won’t find ORFs or other features; requires separate input and is more complex to use for general sequence analysis</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </main>
 
     <footer class="footer-content">
