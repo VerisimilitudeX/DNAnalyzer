@@ -211,18 +211,82 @@
                     </div>
                     
                     <div class="tab-content" id="genetic-testing">
-                        <div class="coming-soon">
-                            <i class="fas fa-flask"></i>
-                            <h3>Genetic Testing Coming Soon</h3>
-                            <p>Our genetic testing module is currently under development. This feature will allow you to analyze data from consumer genetic testing services.</p>
+                        <div class="genetic-testing-upload">
+                            <i class="fas fa-dna"></i>
+                            <h3>Upload Genetic Testing Data</h3>
+                            <p>Upload your genetic testing data file (e.g., from 23andMe, AncestryDNA)</p>
+                            <input type="file" id="geneticFileInput" accept=".txt, .csv" hidden>
+                            <span class="upload-formats">Supported formats: .txt, .csv</span>
+                            <div class="sample-data-options">
+                                <button id="import23andme" class="sample-btn">Import 23andMe Sample</button>
+                                <button id="importAncestryDNA" class="sample-btn">Import AncestryDNA Sample</button>
+                            </div>
+                        </div>
+                        <div class="genetic-testing-options">
+                            <h3>Analysis Options</h3>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="genetic-option" value="snp-analysis" checked>
+                                <span class="checkmark"></span>
+                                SNP Analysis
+                            </label>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="genetic-option" value="disease-predisposition">
+                                <span class="checkmark"></span>
+                                Disease Predisposition
+                            </label>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="genetic-option" value="ancestry-composition">
+                                <span class="checkmark"></span>
+                                Ancestry Composition
+                            </label>
+                            <button class="btn btn-primary genetic-analyze-btn" id="geneticAnalyzeBtn" disabled>
+                                <i class="fas fa-play"></i>
+                                Start Genetic Analysis
+                            </button>
+                        </div>
+                        <div class="genetic-testing-results" id="geneticResultsSection" style="display: none;">
+                            <h3>Genetic Testing Results</h3>
+                            <div id="geneticResultsContent">
+                                <!-- Results will be inserted here by JavaScript -->
+                            </div>
                         </div>
                     </div>
                     
                     <div class="tab-content" id="batch-processing">
-                        <div class="coming-soon">
-                            <i class="fas fa-layer-group"></i>
-                            <h3>Batch Processing Coming Soon</h3>
-                            <p>Process multiple DNA sequence files simultaneously for high-throughput analysis. Sign up for our newsletter to be notified when this feature launches.</p>
+                        <div class="batch-upload">
+                            <i class="fas fa-file-upload"></i>
+                            <h3>Upload Multiple DNA Sequence Files</h3>
+                            <p>Drag and drop multiple sequence files here or click to browse</p>
+                            <input type="file" id="batchFileInput" accept=".fa,.fasta,.fastq,.txt" multiple hidden>
+                            <span class="upload-formats">Supported formats: .fa, .fasta, .fastq, .txt</span>
+                        </div>
+                        <div class="batch-options">
+                            <h3>Batch Processing Options</h3>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="batch-option" value="sequence-length" checked>
+                                <span class="checkmark"></span>
+                                Sequence Length
+                            </label>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="batch-option" value="gc-content" checked>
+                                <span class="checkmark"></span>
+                                GC Content
+                            </label>
+                            <label class="option-checkbox">
+                                <input type="checkbox" name="batch-option" value="base-composition" checked>
+                                <span class="checkmark"></span>
+                                Base Composition
+                            </label>
+                            <button class="btn btn-primary batch-process-btn" id="batchProcessBtn" disabled>
+                                <i class="fas fa-tasks"></i>
+                                Start Batch Processing
+                            </button>
+                        </div>
+                        <div class="batch-processing-results" id="batchResultsSection" style="display: none;">
+                            <h3>Batch Processing Results</h3>
+                            <div id="batchResultsContent">
+                                <!-- Results will be inserted here by JavaScript -->
+                            </div>
                         </div>
                     </div>
                 </div>
