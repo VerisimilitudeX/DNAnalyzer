@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-            const response = await fetch('http://localhost:8080/health', {
+            // Try the API status endpoint first
+            const response = await fetch('http://localhost:8080/api/status', {
                 method: 'GET',
                 signal: controller.signal,
                 headers: {
@@ -46,12 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             clearTimeout(timeoutId);
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
             retryCount = 0; // Reset retry count on success
             
             serverStatusElement.innerHTML = `
@@ -68,36 +63,68 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             return true;
-
         } catch (error) {
-            retryCount++;
-            const isMaxRetries = retryCount >= MAX_RETRIES;
-            
-            serverStatusElement.innerHTML = `
-                <div class="status-indicator offline">
-                    <div class="status-dot"></div>
-                    <div class="status-details">
-                        <div class="status-main">Server Offline</div>
-                        <div class="status-info">
-                            <span>Last checked: ${new Date().toLocaleTimeString()}</span>
-                            ${isInitialCheck ? '<span>Follow the setup steps above to start the server</span>' : ''}
-                            ${!isInitialCheck && !isMaxRetries ? `<span>Retrying... (${retryCount}/${MAX_RETRIES})</span>` : ''}
-                            ${isMaxRetries ? '<span>Max retries reached. Check server setup instructions above.</span>' : ''}
+            // Try root URL as fallback
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+                const response = await fetch('http://localhost:8080/', {
+                    method: 'GET',
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                if (response.ok || response.status === 404) {
+                    // Even a 404 means the server is running
+                    retryCount = 0;
+                    
+                    serverStatusElement.innerHTML = `
+                        <div class="status-indicator online">
+                            <div class="status-dot"></div>
+                            <div class="status-details">
+                                <div class="status-main">Server Online</div>
+                                <div class="status-info">
+                                    <span>Status: Running</span>
+                                    <span>Last checked: ${new Date().toLocaleTimeString()}</span>
+                                    <span>Ready to process DNA sequences</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    return true;
+                }
+                throw new Error('Server not responding correctly');
+            } catch (fallbackError) {
+                retryCount++;
+                const isMaxRetries = retryCount >= MAX_RETRIES;
+                
+                serverStatusElement.innerHTML = `
+                    <div class="status-indicator offline">
+                        <div class="status-dot"></div>
+                        <div class="status-details">
+                            <div class="status-main">Server Offline</div>
+                            <div class="status-info">
+                                <span>Last checked: ${new Date().toLocaleTimeString()}</span>
+                                ${isInitialCheck ? '<span>Follow the setup steps above to start the server</span>' : ''}
+                                ${!isInitialCheck && !isMaxRetries ? `<span>Retrying... (${retryCount}/${MAX_RETRIES})</span>` : ''}
+                                ${isMaxRetries ? '<span>Max retries reached. Check server setup instructions above.</span>' : ''}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-
-            if (isMaxRetries) {
-                clearInterval(statusCheckInterval);
-                showTroubleshooting();
+                `;
+                if (isMaxRetries) {
+                    clearInterval(statusCheckInterval);
+                    showTroubleshooting();
+                }
+                return false;
             }
-            return false;
         }
     }
 
     function showTroubleshooting() {
-        const troubleshootingSection = document.querySelector('.troubleshooting');
+        const troubleshootingSection = document.querySelector('.docs-section');
         if (troubleshootingSection) {
             troubleshootingSection.classList.add('active');
             troubleshootingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });

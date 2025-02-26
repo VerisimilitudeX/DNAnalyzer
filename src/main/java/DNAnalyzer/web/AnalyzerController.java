@@ -1,29 +1,52 @@
 package DNAnalyzer.web;
 
-import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.utils.core.DNATools;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import java.util.Map;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONObject;
-import org.json.JSONArray;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.utils.core.DNATools;
 
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
 public class AnalyzerController {
+
+    /**
+     * API status endpoint that returns version and status information
+     * Used by the web interface to check if the server is running
+     */
+    @GetMapping("/status")
+    public ResponseEntity<?> getApiStatus() {
+        Map<String, Object> status = new HashMap<>();
+        status.put("status", "ok");
+        status.put("version", "1.0.0");
+        status.put("timestamp", System.currentTimeMillis());
+        status.put("message", "DNAnalyzer API is running");
+        
+        return ResponseEntity.ok()
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(status);
+    }
 
     @PostMapping(value = "/analyze", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> analyzeDNA(
