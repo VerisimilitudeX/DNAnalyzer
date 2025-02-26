@@ -169,7 +169,7 @@ function initStatsAnimation() {
     if (!statsSection) return;
     
     const statElements = {
-        accuracy: { elem: document.getElementById('statAccuracy'), target: '99.9', suffix: '%' },
+        accuracy: { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
         sequences: { elem: document.getElementById('statSequences'), target: '50', suffix: 'M+' },
         users: { elem: document.getElementById('statUsers'), target: '10', suffix: 'K+' }
     };
