@@ -656,6 +656,56 @@ body {
     margin-bottom: 2rem;
 }
 
+/* Timeline Section */
+#timeline {
+    padding: 6rem 2rem;
+    background: rgba(10, 12, 27, 0.5);
+}
+
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 2rem;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 122, 255, 0.1);
+}
+
+.timeline-date {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gradient-start);
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.timeline-content p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
 /* Footer */
 .footer-content {
     background: rgba(10, 12, 27, 0.95);

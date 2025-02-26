@@ -198,4 +198,41 @@ document.addEventListener('DOMContentLoaded', function() {
             nav.classList.remove('responsive');
         }
     });
+
+    // Timeline Data
+    const timelineData = [
+        { date: '2022-01-01', title: 'Project Initiation', description: 'DNAnalyzer project was initiated by Piyush Acharya.' },
+        { date: '2022-06-15', title: 'First Release', description: 'First version of DNAnalyzer was released.' },
+        { date: '2023-03-10', title: 'ML Integration', description: 'Integrated machine learning models for advanced DNA analysis.' },
+        { date: '2024-08-25', title: 'Web Interface', description: 'Launched the web-based user interface for DNAnalyzer.' },
+        { date: '2025-05-30', title: 'Community Growth', description: 'DNAnalyzer community reached 10,000+ users.' }
+    ];
+
+    // Populate Timeline
+    const timelineContainer = document.querySelector('.timeline-container');
+    if (timelineContainer) {
+        timelineData.forEach(item => {
+            const timelineItem = document.createElement('div');
+            timelineItem.className = 'timeline-item';
+
+            const timelineDate = document.createElement('div');
+            timelineDate.className = 'timeline-date';
+            timelineDate.textContent = item.date;
+
+            const timelineContent = document.createElement('div');
+            timelineContent.className = 'timeline-content';
+
+            const timelineTitle = document.createElement('h3');
+            timelineTitle.textContent = item.title;
+
+            const timelineDescription = document.createElement('p');
+            timelineDescription.textContent = item.description;
+
+            timelineContent.appendChild(timelineTitle);
+            timelineContent.appendChild(timelineDescription);
+            timelineItem.appendChild(timelineDate);
+            timelineItem.appendChild(timelineContent);
+            timelineContainer.appendChild(timelineItem);
+        });
+    }
 });
