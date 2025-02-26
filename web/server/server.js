@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let statusCheckInterval;
     let retryCount = 0;
     const MAX_RETRIES = 3;
+    const SERVER_PORT = 8081; // Updated to match Spring Boot config
     
     // Copy commands functionality
     function copyToClipboardWithFeedback(command, buttonIndex) {
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
             // Try the API status endpoint first
-            const response = await fetch('http://localhost:8080/api/status', {
+            const response = await fetch(`http://localhost:${SERVER_PORT}/api/v1/status`, { // Updated endpoint path
                 method: 'GET',
                 signal: controller.signal,
                 headers: {
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-                const response = await fetch('http://localhost:8080/', {
+                const response = await fetch(`http://localhost:${SERVER_PORT}/`, {
                     method: 'GET',
                     signal: controller.signal
                 });

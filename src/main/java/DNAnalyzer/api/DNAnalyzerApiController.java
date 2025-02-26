@@ -1,36 +1,37 @@
 package DNAnalyzer.api;
 
-import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.utils.core.DNATools;
-import DNAnalyzer.utils.core.BasePairCounter;
-import DNAnalyzer.data.Parser;
-import DNAnalyzer.core.readingframe.ReadingFrameAnalyzer;
-import DNAnalyzer.core.readingframe.ReadingFrame;
-import DNAnalyzer.utils.protein.ProteinFinder;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
-import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import org.json.JSONObject;
-import org.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.core.readingframe.ReadingFrame;
+import DNAnalyzer.core.readingframe.ReadingFrameAnalyzer;
+import DNAnalyzer.data.Parser;
+import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.protein.ProteinFinder;
 
 /**
  * REST API Controller for accessing all core DNAnalyzer features.
