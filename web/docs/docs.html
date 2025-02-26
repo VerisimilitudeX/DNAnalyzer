@@ -260,6 +260,103 @@ List<String> codons = result.getCodons();</code></pre>
                         </div>
                     </div>
                 </section>
+
+                <section id="future-developments" class="content-section">
+                    <h2>Future Developments</h2>
+                    <p>DNAnalyzer is actively evolving, and the roadmap for its future features and improvements has been outlined by its development team. This section discusses the planned and potential developments for DNAnalyzer, giving insight into what users and contributors can expect moving forward. These future changes aim to expand the software’s capabilities, improve its performance, and broaden its usability.</p>
+
+                    <h3>Machine Learning Enhancements and Genotype Data Integration</h3>
+                    <p>One of the most exciting future directions for DNAnalyzer is the enhanced incorporation of machine learning (ML), specifically to work with genotyped data from consumer DNA tests. The developers plan to implement an “Improved Neural Network for genotyped data”. In practical terms, this means DNAnalyzer would not be limited to analyzing raw sequence data; it could also take as input the kind of data you get from services like 23andMe or AncestryDNA (which provide a list of genetic variants, typically SNPs, rather than a full sequence). The goal is that “all you will need is a simple $99 DNA test to be able to experience all the features of DNAnalyzer.” This hints that DNAnalyzer’s ML model could predict or infer information from a genotype array – such as traits, health risks, or ancestral markers – presumably replicating some of the insights those companies normally provide for a fee.</p>
+
+                    <h3>Optimized Genomic Database and Knowledge Integration</h3>
+                    <p>Another major development is the creation of an optimized SQL database for genomic data within DNAnalyzer. The team is exploring the best database engine that can handle high-performance queries and scale vertically (i.e., handle large amounts of data on a single machine effectively). The idea is to store genomic data from thousands of species, including gene and mutation information, inside this database.</p>
+
+                    <h3>DIAMOND Integration for Sequence Alignment</h3>
+                    <p>The plan to integrate DIAMOND (a BLAST fork) is concrete and listed in the improvements. The combination of DIAMOND’s performance with BLAST’s algorithm means DNAnalyzer will gain a sequence search/alignment feature that is both fast and familiar in terms of results. This could manifest as an option like --align or as part of the analysis that automatically tries to identify ORFs by aligning them to known proteins in the database.</p>
+
+                    <h3>User Interface and Experience</h3>
+                    <p>On the UI front, the Web UI is explicitly mentioned as coming soon. A web interface could drastically increase adoption because it removes the need to handle Java installation for some users – one could envision DNAnalyzer running on a server or locally through a browser interface that’s more intuitive. Perhaps the project might create a web app where users can upload a sequence (securely, maybe even a local web app that doesn’t upload to a server) and get the analysis in their browser with nice visualizations.</p>
+
+                    <h3>Scalability and Performance Improvements</h3>
+                    <p>As DNAnalyzer incorporates more features (ML models, databases, DIAMOND), maintaining performance will be a challenge. The roadmap explicitly addresses performance via the database and DIAMOND choices. We might also see multi-threading in the future to utilize multi-core processors, especially for scanning very large sequences or running many alignment queries in parallel.</p>
+
+                    <h3>New Analysis Features</h3>
+                    <p>Beyond what’s listed, the community or the core team might consider other analysis modules to add:</p>
+                    <ul>
+                        <li>Repeat element detection (like transposable elements or simple sequence repeats). Many genomic analyses need to find repeats; an open-source tool like TRF (Tandem Repeats Finder) exists, so integration or reimplementation could be possible.</li>
+                        <li>CRISPR site finding – Given the popularity of CRISPR, a module to find all NGG protospacer-adjacent motifs or design guides in a sequence might be a feature some users would love.</li>
+                        <li>Translation and protein analysis – Currently it finds ORFs but doesn’t output the amino acid sequences. A future feature could be translating each ORF and maybe doing a basic protein domain search (for example, scanning the translated ORF against a small library of Pfam motifs or using something like HMMER in a limited way).</li>
+                        <li>Quality of life improvements – e.g., allowing input in different formats (maybe directly accepting a GenBank file and extracting the sequence, or reading gzipped files).</li>
+                        <li>Reporting and Visualization – Possibly generating an HTML report with graphics, so that the results are easier to share or interpret. This could accompany the web UI or even as an output of CLI (generate a self-contained report page).</li>
+                    </ul>
+                </section>
+
+                <section id="comparative-analysis" class="content-section">
+                    <h2>Comparative Analysis</h2>
+                    <p>DNA analysis is a broad field with many specialized tools. DNAnalyzer enters this landscape with a holistic approach, combining several analysis types (ORF finding, motif detection, etc.) into one package. To understand DNAnalyzer’s strengths and weaknesses, it’s useful to compare it to other popular DNA analysis software and toolkits. Below, we contrast DNAnalyzer with a few categories of tools: gene finding tools, sequence alignment/search tools, variant analysis pipelines, and promoter/motif analysis tools. Each of these have established solutions, and DNAnalyzer overlaps partially with them while also differentiating itself.</p>
+
+                    <h3>Gene Finding and Sequence Annotation</h3>
+                    <p>Traditional gene finding in sequence data is often done with either simple ORF finders or complex gene prediction algorithms. For example, NCBI ORFfinder is a straightforward utility that, given a DNA sequence, will identify all open reading frames and output their locations and translated amino acid sequences. There are also advanced tools like AUGUSTUS or GeneMark that predict genes in eukaryotic genomes by modeling exon-intron structures. Compared to these, DNAnalyzer’s approach to gene finding is simpler but user-friendly. It finds ORFs based on codons like ORFfinder does, which is quite fast and effective for prokaryotic genomes or rough analysis. However, DNAnalyzer does not (at least currently) incorporate statistical models or training for gene structure – it won’t predict splicing or differentiate between coding potential of ORFs. Its advantage is the integration with other analyses: while ORFfinder would only list ORFs, DNAnalyzer lists ORFs and immediately shows associated genomic context (like nearby high-GC regions or promoter motifs). For a user doing exploratory analysis, DNAnalyzer provides more context in one run, whereas using ORFfinder alone might require additional steps to analyze those ORFs further. On the flip side, tools like AUGUSTUS are more powerful for, say, finding genes in a mammalian genome (considering introns), something DNAnalyzer is not tailored for – DNAnalyzer would find all ORFs including many that are not true genes in such a case, because it lacks the sophisticated modeling those tools have.</p>
+
+                    <h3>Sequence Similarity Search (BLAST and DIAMOND)</h3>
+                    <p>One important aspect of DNA analysis is finding out if a sequence is known or similar to known sequences. The go-to tool here is BLAST (Basic Local Alignment Search Tool), which can compare a query DNA or protein sequence against a database of sequences to find regions of similarity. BLAST is very powerful for identifying homologous genes, evolutionary relatives, or known functional elements. A faster alternative is DIAMOND, which is optimized for protein sequence searches and can be orders of magnitude faster than BLAST for large database queries. DNAnalyzer itself is not primarily a similarity search tool – it doesn’t, in its current form, replace BLAST for doing database searches. However, the developers plan to incorporate DIAMOND into DNAnalyzer to give users an integrated homology search capability. This means in the future one could run DNAnalyzer on a sequence and not only get intrinsic features (ORFs, motifs) but also a quick report of “this sequence’s closest match in a database is gene X from organism Y,” leveraging DIAMOND’s speed. Until that is implemented, users likely still use BLAST separately if needed. The benefit DNAnalyzer could bring with integration is workflow simplification – a user wouldn’t have to jump between tools; after finding an ORF with DNAnalyzer, they could immediately see if that ORF matches something known. In terms of strengths/weaknesses: BLAST is extremely well-validated and thorough in finding similarities (strength), but it requires internet access or large local databases and can be slow for very large queries (weakness in speed). DNAnalyzer’s upcoming DIAMOND feature aims to address the speed by using DIAMOND (which has a huge performance advantage for searching protein databases), but it will still rely on the presence of relevant databases and will likely focus on known gene identification rather than general alignment. A limitation of DNAnalyzer here is that, as an on-device tool, the user must have any reference data they want to search against – whereas NCBI BLAST servers have comprehensive databases online. The philosophy differs: DNAnalyzer emphasizes privacy and offline use, so one might download a reference database to use with it, whereas BLAST on the web lets you query against vast up-to-date databases easily (at the cost of sending your sequence to a server).</p>
+
+                    <h3>Variant Analysis Pipelines (GATK)</h3>
+                    <p>When it comes to analyzing DNA for mutations or variants (like SNPs, indels, etc.), the field standard is the Genome Analysis Toolkit (GATK) from the Broad Institute. GATK is “pretty much the industry standard tool for variant analysis” – it’s a comprehensive suite for taking DNA sequencing data (reads) through preprocessing, alignment, variant calling, and filtering. DNAnalyzer does not perform this kind of analysis. It doesn’t operate on raw sequencing reads or call variants; instead, it assumes you already have a assembled or reference sequence. This is a major point of differentiation: DNAnalyzer is for sequence interpretation, not variant discovery from NGS data. So, if one’s task is to find mutations in a human genome, DNAnalyzer alone is not sufficient – GATK or similar pipelines would be needed to identify those variants. However, DNAnalyzer could complement variant analysis in a couple of ways. After variants are called (say you have a VCF file or you’ve applied them to a reference genome to create a personalized sequence), you could use DNAnalyzer to see the effects: e.g., did any variant introduce a premature stop codon in an ORF? Did a variant fall in a TATA box of a promoter? These are questions DNAnalyzer can help answer by analyzing the sequence with the variant. Strength-wise, GATK is extremely powerful and specialized (handling high-throughput data, statistical models for variant quality, etc.), whereas DNAnalyzer is lightweight and easier to run (no complex configuration, no need for large computational resources). GATK is also focused on human or model organism data and has a steep learning curve; DNAnalyzer’s ease of use is a big plus for non-specialists who just want to analyze a given sequence without delving into the intricacies of sequencing data processing.</p>
+
+                    <h3>Promoter and Motif Analysis (ElemeNT, MEME, etc.)</h3>
+                    <p>For analyzing regulatory sequences like promoters or transcription factor binding sites, there are specialized tools. ElemeNT 2023 is a recent tool focused on core promoter element detection. It provides advanced capabilities such as assessing evolutionary conservation of promoter motifs and scanning for motifs across multiple species’ data. Tools like MEME Suite allow discovery of novel motifs in sequences, and TFBS prediction tools can scan for occurrences of transcription factor binding sites given position weight matrices. Compared to these, DNAnalyzer has a relatively simple approach: it checks for the presence of a handful of well-known core promoter motifs (TATA box, BRE, INR, DPE) using a straightforward search. It does not currently analyze the positioning of these motifs relative to transcription start sites (since it doesn’t know TSS positions explicitly) and doesn’t incorporate databases of known sites or comparative genomics. The strength of DNAnalyzer in this regard is again convenience – a user gets a quick heads-up if any common promoter signals are present in the sequence. For many practical purposes, noticing a “TATAAA” sequence about 30 bases upstream of an ORF found can immediately suggest a promoter is there, which is often enough insight. The weakness is that it could miss more subtle regulatory elements or provide false security (just because it found a “TATA” doesn’t guarantee a functional promoter, and if it didn’t find one, a promoter could still be present with different motifs). Specialized tools like ElemeNT are more sensitive and detailed: ElemeNT can evaluate motif quality and provide a comprehensive list of potential promoter elements, even for non-model organisms, and it’s accessible via a web interface or command line. But using ElemeNT or similar tools usually means an extra step and some expertise. DNAnalyzer’s approach is to give a basic but immediate readout as part of the general analysis – a trade-off between depth and simplicity.</p>
+
+                    <h3>Comparison Table</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Open Source?</th>
+                                <th>Primary Focus</th>
+                                <th>Key Features</th>
+                                <th>Limitations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DNAnalyzer</td>
+                                <td>Yes (MIT License)</td>
+                                <td>Multi-purpose DNA sequence analysis (on-device)</td>
+                                <td>ORF detection, GC-content/cpG island finding, promoter motif scanning, basic GUI & CLI, ML integration planned</td>
+                                <td>New project (less field-tested); currently no variant calling or advanced gene modeling; breadth-over-depth (not as specialized in any single analysis as dedicated tools)</td>
+                            </tr>
+                            <tr>
+                                <td>NCBI ORFfinder</td>
+                                <td>Yes (Web tool)</td>
+                                <td>Open reading frame identification</td>
+                                <td>Finds all ORFs in a sequence, returns coordinates and protein translation</td>
+                                <td>Limited to ORF listing (no context or further analysis); web-based interface requires manual use</td>
+                            </tr>
+                            <tr>
+                                <td>GATK (Broad Institute)</td>
+                                <td>Yes (open-source)</td>
+                                <td>Variant discovery from sequencing data</td>
+                                <td>Comprehensive pipeline for SNP/Indel calling, genotype refinement, and analysis of NGS data; gold-standard methods for human genomics</td>
+                                <td>Not designed for analyzing a single sequence’s features (requires raw reads and produces variants, not a tool for motif/ORF discovery); steep learning curve and heavy computational needs</td>
+                            </tr>
+                            <tr>
+                                <td>BLAST/DIAMOND</td>
+                                <td>Yes</td>
+                                <td>Sequence similarity search</td>
+                                <td>Aligns query sequences to large databases to find homologous or known sequences; DIAMOND offers high-performance alignments (100x+ faster than BLAST)</td>
+                                <td>Focused purely on sequence alignment; does not analyze sequence features (needs separate interpretation of results); BLAST can be slow without DIAMOND; requires database availability</td>
+                            </tr>
+                            <tr>
+                                <td>ElemeNT 2023</td>
+                                <td>Yes</td>
+                                <td>Core promoter element analysis</td>
+                                <td>Detects and annotates core promoter motifs (TATA, INR, DPE, etc.) with consideration of motif positioning and conservation; offers databases of predicted promoters across species</td>
+                                <td>Narrow scope – only analyzes promoter regions; won’t find ORFs or other features; requires separate input and is more complex to use for general sequence analysis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
             </div>
         </div>
     </main>
