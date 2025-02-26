@@ -1,6 +1,29 @@
+/**
+ * DNAnalyzer Main JavaScript
+ * Handles animations, interactivity and UI functionality
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
-    // DNA Helix Animation
-    const dnaHelix = document.querySelector('.dna-helix');
+    // Initialize DNA Helix animation
+    initDNAHelix();
+    
+    // Initialize mobile menu toggle
+    initMobileMenu();
+    
+    // Initialize navbar scroll effect
+    initNavbarScroll();
+    
+    // Initialize stats counter animation
+    initStatsAnimation();
+});
+
+/**
+ * Initialize the DNA Helix animation on the homepage
+ */
+function initDNAHelix() {
+    const dnaHelix = document.getElementById('dnaHelix');
+    if (!dnaHelix) return;
+    
     const numBases = 15;
     const basePairs = [
         ['A', 'T'],
@@ -17,222 +40,205 @@ document.addEventListener('DOMContentLoaded', function() {
         const basePair = document.createElement('div');
         basePair.className = 'base-pair';
         basePair.style.top = `${i * 40}px`;
-        basePair.style.animationDelay = `${i * 0.3}s`;
+        basePair.style.animationDelay = `${i * 0.2}s`;
         
         const leftBaseElem = document.createElement('div');
         leftBaseElem.className = 'base left-base';
         leftBaseElem.textContent = leftBase;
-        leftBaseElem.style.animationDelay = `${i * 0.3}s`;
+        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
         
         const rightBaseElem = document.createElement('div');
         rightBaseElem.className = 'base right-base';
         rightBaseElem.textContent = rightBase;
-        rightBaseElem.style.animationDelay = `${i * 0.3}s`;
+        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
         
         const connector = document.createElement('div');
         connector.className = 'base-connector';
-        connector.style.animationDelay = `${i * 0.3}s`;
+        connector.style.animationDelay = `${i * 0.2}s`;
         
         basePair.appendChild(leftBaseElem);
         basePair.appendChild(connector);
         basePair.appendChild(rightBaseElem);
+        
         dnaHelix.appendChild(basePair);
     }
+}
 
-    // Scroll Indicator
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    let lastScrollTop = 0;
-
-    window.addEventListener('scroll', () => {
-        const st = window.pageYOffset || document.documentElement.scrollTop;
+/**
+ * Initialize the mobile menu toggle functionality
+ */
+function initMobileMenu() {
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (!mobileToggle || !navLinks) return;
+    
+    mobileToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
         
-        if (st > lastScrollTop) {
-            // Scrolling down
-            scrollIndicator.style.opacity = '0';
-        } else if (st === 0) {
-            // At top
-            scrollIndicator.style.opacity = '1';
+        // Change the icon based on the state
+        const icon = mobileToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         }
-        
-        lastScrollTop = st <= 0 ? 0 : st;
     });
-
-    // Stats Animation
-    const statsSection = document.querySelector('#stats');
-    let animated = false;
-
-    function parseStatValue(text) {
-        text = text.trim();
-        if (text.endsWith('%')) {
-            return {
-                value: parseFloat(text.replace('%', '')),
-                suffix: '%',
-                decimals: 1
-            };
-        } else if (text.endsWith('M+')) {
-            return {
-                value: parseInt(text.replace('M+', '')),
-                suffix: 'M+',
-                decimals: 0
-            };
-        } else if (text.endsWith('K+')) {
-            return {
-                value: parseInt(text.replace('K+', '')),
-                suffix: 'K+',
-                decimals: 0
-            };
-        } else if (text.endsWith('/7')) {
-            return {
-                value: parseInt(text.replace('/7', '')),
-                suffix: '/7',
-                decimals: 0
-            };
-        }
-        return null;
-    }
-
-    function formatValue(value, data) {
-        if (data.decimals > 0) {
-            return value.toFixed(data.decimals) + data.suffix;
-        }
-        return Math.round(value) + data.suffix;
-    }
-
-    function easeOutExpo(x) {
-        return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
-    }
-
-    function animateValue(element, targetData, duration = 2000) {
-        const startTime = performance.now();
-        const startValue = 0;
-        const endValue = targetData.value;
-
-        function update(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Use easeOutExpo for smooth animation
-            const easedProgress = easeOutExpo(progress);
-            let currentValue = startValue + (endValue - startValue) * easedProgress;
-            
-            // Ensure we hit the exact target value at the end
-            if (progress === 1) {
-                currentValue = endValue;
-            }
-
-            element.textContent = formatValue(currentValue, targetData);
-
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            }
-        }
-
-        requestAnimationFrame(update);
-    }
-
-    function animateStats() {
-        if (animated) return;
-
-        const statElements = document.querySelectorAll('.stat-number');
-        statElements.forEach((element, index) => {
-            // Parse the original value from the HTML
-            const originalText = element.textContent;
-            const targetData = parseStatValue(originalText);
-            
-            if (targetData) {
-                // Start from 0
-                element.textContent = formatValue(0, targetData);
-                
-                // Animate to target value with staggered delay
-                setTimeout(() => {
-                    animateValue(element, targetData, 2000);
-                }, index * 200); // Increased delay between stats
-            }
+    
+    // Close the mobile menu when clicking a link
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         });
-        
-        animated = true;
-    }
+    });
+}
 
-    // Intersection Observer for stats animation
+/**
+ * Initialize the navbar scroll effect
+ */
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+}
+
+/**
+ * Animate number counting from 0 to target
+ * @param {HTMLElement} element - The element containing the number
+ * @param {number} target - The target number to count to
+ * @param {string} suffix - Optional suffix like '%' or 'M'
+ * @param {number} duration - Animation duration in milliseconds
+ */
+function animateNumber(element, target, suffix = '', duration = 2000) {
+    if (!element) return;
+    
+    let start = 0;
+    let startTime = null;
+    const targetNum = parseFloat(target);
+    
+    function easeOutQuart(x) {
+        return 1 - Math.pow(1 - x, 4);
+    }
+    
+    function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        
+        let currentValue = Math.floor(easedProgress * targetNum);
+        
+        // Handle special cases
+        if (suffix === '%') {
+            const decimal = (easedProgress * targetNum) % 1;
+            if (decimal > 0) {
+                currentValue = (easedProgress * targetNum).toFixed(1);
+            }
+        }
+        
+        element.textContent = `${currentValue}${suffix}`;
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            element.textContent = `${target}${suffix}`;
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
+/**
+ * Initialize the stats counter animation with Intersection Observer
+ */
+function initStatsAnimation() {
+    const statsSection = document.querySelector('.stats-section');
+    if (!statsSection) return;
+    
+    const statElements = {
+        accuracy: { elem: document.getElementById('statAccuracy'), target: '99.9', suffix: '%' },
+        sequences: { elem: document.getElementById('statSequences'), target: '50', suffix: 'M+' },
+        users: { elem: document.getElementById('statUsers'), target: '10', suffix: 'K+' }
+    };
+    
+    let animated = false;
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                requestAnimationFrame(() => {
-                    animateStats();
+            if (entry.isIntersecting && !animated) {
+                // Animate each stat with staggered delays
+                Object.values(statElements).forEach((stat, index) => {
+                    setTimeout(() => {
+                        if (stat.elem) {
+                            animateNumber(stat.elem, stat.target, stat.suffix, 2000);
+                        }
+                    }, index * 200);
                 });
+                
+                animated = true;
+                observer.unobserve(statsSection);
             }
         });
     }, { threshold: 0.5 });
-
-    if (statsSection) {
-        observer.observe(statsSection);
-    }
-
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Menu toggle functionality
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.floating-nav');
     
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            nav.classList.toggle('responsive');
-        });
-    }
+    observer.observe(statsSection);
+}
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!nav.contains(e.target) && nav.classList.contains('responsive')) {
-            nav.classList.remove('responsive');
+/**
+ * Add smooth scrolling for anchor links
+ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return; // Skip if it's just "#"
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
         }
     });
+});
 
-    // Timeline Data
-    const timelineData = [
-        { date: '2022-01-01', title: 'Project Initiation', description: 'DNAnalyzer project was initiated by Piyush Acharya.' },
-        { date: '2022-06-15', title: 'First Release', description: 'First version of DNAnalyzer was released.' },
-        { date: '2023-03-10', title: 'ML Integration', description: 'Integrated machine learning models for advanced DNA analysis.' },
-        { date: '2024-08-25', title: 'Web Interface', description: 'Launched the web-based user interface for DNAnalyzer.' },
-        { date: '2025-05-30', title: 'Community Growth', description: 'DNAnalyzer community reached 10,000+ users.' }
-    ];
+/**
+ * Add intersection observer for animating sections as they come into view
+ */
+const animateSections = document.querySelectorAll('.section, .feature-card, .card');
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
 
-    // Populate Timeline
-    const timelineContainer = document.querySelector('.timeline-container');
-    if (timelineContainer) {
-        timelineData.forEach(item => {
-            const timelineItem = document.createElement('div');
-            timelineItem.className = 'timeline-item';
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            sectionObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
 
-            const timelineDate = document.createElement('div');
-            timelineDate.className = 'timeline-date';
-            timelineDate.textContent = item.date;
-
-            const timelineContent = document.createElement('div');
-            timelineContent.className = 'timeline-content';
-
-            const timelineTitle = document.createElement('h3');
-            timelineTitle.textContent = item.title;
-
-            const timelineDescription = document.createElement('p');
-            timelineDescription.textContent = item.description;
-
-            timelineContent.appendChild(timelineTitle);
-            timelineContent.appendChild(timelineDescription);
-            timelineItem.appendChild(timelineDate);
-            timelineItem.appendChild(timelineContent);
-            timelineContainer.appendChild(timelineItem);
-        });
-    }
+animateSections.forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    sectionObserver.observe(section);
 });
