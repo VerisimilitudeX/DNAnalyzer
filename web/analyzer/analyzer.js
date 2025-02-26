@@ -291,9 +291,6 @@ function checkAPIStatus() {
                     <span>API Offline - Using Fallback Mode</span>
                 </div>
             `;
-            
-            // Show notice about server setup
-            showNotification('API server is offline. Running in fallback mode with limited functionality.', 'warning', 8000);
         });
 }
 
