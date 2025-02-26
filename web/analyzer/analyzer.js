@@ -1,107 +1,58 @@
 /**
- * DNAnalyzer Web Interface
- * Connects the web UI with the DNAnalyzer API
+ * DNAnalyzer - Analyzer Page JavaScript
+ * Handles all DNA analysis functionality, file handling, and result visualization
  */
 
-// Check if API is available on load
-document.addEventListener('DOMContentLoaded', async function() {
-    // Load the API client
-    if (!window.DNAnalyzerAPI) {
-        const script = document.createElement('script');
-        script.src = '../assets/js/api-client.js';
-        document.head.appendChild(script);
-        
-        // Wait for script to load
-        await new Promise(resolve => {
-            script.onload = resolve;
-        });
-    }
-
-    // Initialize API status check
-    initializeApiStatus();
-    
-    // Initialize the UI elements
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize UI components
     initializeUI();
+    
+    // Check API status
+    checkAPIStatus();
 });
 
 /**
- * Check API connectivity and update UI accordingly
+ * Initialize all UI components and event listeners
  */
-async function initializeApiStatus() {
-    const statusElement = document.createElement('div');
-    statusElement.className = 'api-status';
-    statusElement.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Connecting to API...';
-    document.querySelector('.analysis-main').appendChild(statusElement);
+function initializeUI() {
+    // Initialize file upload functionality
+    initFileUpload();
     
-    try {
-        // Try to connect to the API
-        const status = await DNAnalyzerAPI.checkStatus();
-        console.log('API Status:', status);
-        
-        statusElement.className = 'api-status api-online';
-        statusElement.innerHTML = `<i class="fas fa-check-circle"></i> API v${status.version} Connected`;
-        
-        // Enable analyze button
-        document.querySelector('.analyze-btn').disabled = false;
-    } catch (error) {
-        console.error('API connection failed:', error);
-        
-        statusElement.className = 'api-status api-offline';
-        statusElement.innerHTML = '<i class="fas fa-exclamation-circle"></i> API Offline - Using Fallback Mode';
-        
-        // Add notice about limited functionality with more accurate server instructions
-        const notice = document.createElement('div');
-        notice.className = 'api-notice';
-        notice.innerHTML = `
-            <p><strong>Note:</strong> The DNAnalyzer API server is not running. Some features will be limited.</p>
-            <p>Currently there are compiler errors in the server code. To run the web interface in fallback mode:</p>
-            <ol>
-                <li>Use the local file analysis options instead of API features</li>
-                <li>For simple DNA analysis, the client-side fallback mode will work</li>
-                <li>For advanced features, the server needs to be fixed</li>
-            </ol>
-            <p>For developers: Check the Java CI error log in the GitHub repository for compiler errors that need to be fixed.</p>
-            <a href="../server/server.html" class="notice-link">View server documentation</a>
-        `;
-        document.querySelector('.analysis-main').appendChild(notice);
-    }
+    // Initialize tabs
+    initTabs();
+    
+    // Initialize modals
+    initModals();
+    
+    // Initialize analyze button
+    document.getElementById('analyzeBtn').addEventListener('click', handleAnalysis);
+    
+    // Initialize quick action buttons
+    document.getElementById('importSampleBtn').addEventListener('click', importSample);
+    document.getElementById('clearOptionsBtn').addEventListener('click', clearOptions);
+    document.getElementById('helpBtn').addEventListener('click', showHelpModal);
 }
 
 /**
- * Initialize all UI elements and event handlers
+ * Initialize file upload area with drag and drop functionality
  */
-function initializeUI() {
-    // Tab switching functionality
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
+function initFileUpload() {
+    const dropZone = document.getElementById('fileDropZone');
+    const fileInput = document.getElementById('fileInput');
     
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabId = this.getAttribute('data-tab');
-            
-            // Deactivate all tabs
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // Activate selected tab
-            this.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        });
-    });
-    
-    // File drag and drop functionality
-    const dropZone = document.querySelector('.file-drop-zone');
-    const fileInput = dropZone.querySelector('input[type="file"]');
-    let uploadedFile = null;
-    
+    // Handle click on drop zone
     dropZone.addEventListener('click', function() {
         fileInput.click();
     });
     
+    // Handle file selection via input
     fileInput.addEventListener('change', function(e) {
-        handleFileSelection(e.target.files);
+        if (e.target.files.length > 0) {
+            handleFileSelection(e.target.files[0]);
+        }
     });
     
+    // Handle drag and drop events
     dropZone.addEventListener('dragover', function(e) {
         e.preventDefault();
         dropZone.classList.add('drag-over');
@@ -114,331 +65,901 @@ function initializeUI() {
     dropZone.addEventListener('drop', function(e) {
         e.preventDefault();
         dropZone.classList.remove('drag-over');
-        handleFileSelection(e.dataTransfer.files);
-    });
-    
-    function handleFileSelection(files) {
-        if (files.length > 0) {
-            uploadedFile = files[0];
-            
-            // Update drop zone to show selected file
-            const fileIcon = getFileIcon(uploadedFile.name);
-            dropZone.innerHTML = `
-                <div class="file-preview">
-                    <i class="${fileIcon}"></i>
-                    <div class="file-info">
-                        <div class="file-name">${uploadedFile.name}</div>
-                        <div class="file-size">${formatFileSize(uploadedFile.size)}</div>
-                    </div>
-                    <button class="remove-file-btn">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <p>File ready for analysis</p>
-            `;
-            
-            // Add event listener for remove button
-            document.querySelector('.remove-file-btn').addEventListener('click', function(e) {
-                e.stopPropagation();
-                resetFileUpload();
-            });
-        }
-    }
-    
-    function resetFileUpload() {
-        uploadedFile = null;
-        fileInput.value = '';
         
-        // Reset drop zone to original state
-        dropZone.innerHTML = `
-            <i class="fas fa-cloud-upload-alt"></i>
-            <h3>Upload DNA Sequence</h3>
-            <p>Drag and drop your sequence file here or click to browse</p>
-            <input type="file" hidden accept=".fa,.fasta,.fastq">
-            <p class="file-info">Supported formats: .fa, .fasta, .fastq</p>
-        `;
-    }
-    
-    // Analyze button functionality
-    const analyzeBtn = document.querySelector('.analyze-btn');
-    
-    analyzeBtn.addEventListener('click', async function() {
-        if (!uploadedFile) {
-            showNotification('Please upload a file first', 'error');
-            return;
+        if (e.dataTransfer.files.length > 0) {
+            handleFileSelection(e.dataTransfer.files[0]);
         }
-        
-        // Show loading state
-        analyzeBtn.disabled = true;
-        analyzeBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Analyzing...';
-        
-        try {
-            // Collect analysis options
-            const options = {
-                amino: 'M', // Default amino acid
-                format: 'json',
-                codons: document.querySelector('input[type="checkbox"][value="Start Codons"]').checked || 
-                        document.querySelector('input[type="checkbox"][value="Stop Codons"]').checked,
-                coverage: document.querySelector('input[type="checkbox"][value="Coverage Analysis"]').checked,
-                longest: document.querySelector('input[type="checkbox"][value="Protein Prediction"]').checked
-            };
-            
-            // Read file contents using the API
-            const parseResult = await DNAnalyzerAPI.parseFile(uploadedFile);
-            
-            // Update results section with basic info
-            const resultsSection = document.querySelector('.results-section');
-            resultsSection.style.display = 'block';
-            
-            // First, analyze basic info
-            let resultsContent = document.querySelector('.results-content');
-            resultsContent.innerHTML = '<div class="result-grid loading"><div class="loading-spinner"></div><p>Processing analysis...</p></div>';
-            
-            // Get base pair composition
-            const basePairResult = await DNAnalyzerAPI.analyzeBasePairs(parseResult.sequence);
-            
-            // Get proteins if needed
-            let proteins = [];
-            if (options.longest) {
-                const proteinResult = await DNAnalyzerAPI.findProteins(parseResult.sequence);
-                proteins = proteinResult.proteins || [];
-            }
-            
-            // Get reading frames if needed
-            let readingFrames = null;
-            if (document.querySelector('input[type="checkbox"][value="Reading Frames"]').checked) {
-                const framesResult = await DNAnalyzerAPI.analyzeReadingFrames(parseResult.sequence);
-                readingFrames = framesResult;
-            }
-            
-            // Display results
-            showAnalysisResults(parseResult, basePairResult, proteins, readingFrames);
-            
-            // Add to history
-            addAnalysisToHistory(uploadedFile.name);
-            
-            // Show success notification
-            showNotification('Analysis completed successfully', 'success');
-            
-        } catch (error) {
-            console.error('Analysis failed:', error);
-            showNotification('Analysis failed: ' + error.message, 'error');
-        } finally {
-            // Reset button state
-            analyzeBtn.disabled = false;
-            analyzeBtn.innerHTML = '<i class="fas fa-play"></i> Start Analysis';
-        }
-    });
-    
-    // Initialize sample import functionality
-    document.querySelector('.action-btn:nth-child(1)').addEventListener('click', function() {
-        importSampleFile();
     });
 }
 
 /**
- * Display analysis results in the results section
+ * Handle the selected file and update UI
+ * @param {File} file - The selected file
  */
-function showAnalysisResults(parseResult, basePairResult, proteins = [], readingFrames = null) {
-    const resultsContent = document.querySelector('.results-content');
+function handleFileSelection(file) {
+    // Check if file type is supported
+    const validExtensions = ['.fa', '.fasta', '.fastq', '.txt'];
+    const fileName = file.name.toLowerCase();
+    const isValid = validExtensions.some(ext => fileName.endsWith(ext));
     
-    // Build results grid
-    let resultHTML = '<div class="result-grid">';
+    if (!isValid) {
+        showNotification('Unsupported file format. Please upload a FASTA, FASTQ, or TXT file.', 'error');
+        return;
+    }
     
-    // Basic sequence info
-    resultHTML += `
-        <div class="result-card">
-            <div class="result-value">${parseResult.sequenceLength.toLocaleString()}</div>
-            <div class="result-label">Sequence Length</div>
-        </div>
-        <div class="result-card">
-            <div class="result-value">${basePairResult.gcContent}%</div>
-            <div class="result-label">GC Content</div>
+    // Store file in global state for later use
+    window.selectedFile = file;
+    
+    // Update UI with file info
+    const dropZone = document.getElementById('fileDropZone');
+    dropZone.innerHTML = `
+        <div class="file-preview">
+            <i class="fas fa-file-alt file-icon"></i>
+            <div class="file-info">
+                <div class="file-name">${file.name}</div>
+                <div class="file-size">${formatFileSize(file.size)}</div>
+            </div>
+            <button class="file-remove" id="removeFileBtn">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
     `;
     
-    // Base composition
-    if (document.querySelector('input[type="checkbox"][value="Base Composition"]').checked) {
-        resultHTML += `
-            <div class="result-card wide">
-                <div class="result-chart">
-                    <div class="base-bar">
-                        <div class="base-segment a-base" style="width: ${basePairResult.percentages.A}%">A</div>
-                        <div class="base-segment t-base" style="width: ${basePairResult.percentages.T}%">T</div>
-                        <div class="base-segment g-base" style="width: ${basePairResult.percentages.G}%">G</div>
-                        <div class="base-segment c-base" style="width: ${basePairResult.percentages.C}%">C</div>
-                    </div>
-                    <div class="base-legend">
-                        <div class="legend-item"><span class="color-box a-base"></span>A: ${basePairResult.percentages.A}%</div>
-                        <div class="legend-item"><span class="color-box t-base"></span>T: ${basePairResult.percentages.T}%</div>
-                        <div class="legend-item"><span class="color-box g-base"></span>G: ${basePairResult.percentages.G}%</div>
-                        <div class="legend-item"><span class="color-box c-base"></span>C: ${basePairResult.percentages.C}%</div>
-                    </div>
+    // Add event listener to remove button
+    document.getElementById('removeFileBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        resetFileUpload();
+    });
+    
+    // Enable analyze button
+    document.getElementById('analyzeBtn').disabled = false;
+    
+    showNotification(`File "${file.name}" ready for analysis.`, 'success');
+}
+
+/**
+ * Reset the file upload area to its initial state
+ */
+function resetFileUpload() {
+    const dropZone = document.getElementById('fileDropZone');
+    const fileInput = document.getElementById('fileInput');
+    
+    // Clear the file input
+    fileInput.value = '';
+    
+    // Reset global state
+    window.selectedFile = null;
+    
+    // Reset UI
+    dropZone.innerHTML = `
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Upload DNA Sequence</h3>
+        <p>Drag and drop your sequence file here or click to browse</p>
+        <span class="upload-formats">Supported formats: .fa, .fasta, .fastq, .txt</span>
+    `;
+    
+    // Disable analyze button
+    document.getElementById('analyzeBtn').disabled = true;
+}
+
+/**
+ * Initialize tab functionality
+ */
+function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            
+            // Remove active class from all tabs
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to current tab
+            this.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+}
+
+/**
+ * Initialize modal functionality
+ */
+function initModals() {
+    // Export modal
+    const exportModal = document.getElementById('exportModal');
+    const closeExportModal = document.getElementById('closeExportModal');
+    
+    if (exportModal && closeExportModal) {
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            exportModal.classList.add('active');
+        });
+        
+        closeExportModal.addEventListener('click', function() {
+            exportModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        exportModal.addEventListener('click', function(e) {
+            if (e.target === exportModal) {
+                exportModal.classList.remove('active');
+            }
+        });
+        
+        // Handle export format selection
+        document.querySelectorAll('.export-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const format = this.getAttribute('data-format');
+                downloadResults(format);
+                exportModal.classList.remove('active');
+            });
+        });
+    }
+    
+    // Help modal
+    const helpModal = document.getElementById('helpModal');
+    const closeHelpModal = document.getElementById('closeHelpModal');
+    
+    if (helpModal && closeHelpModal) {
+        closeHelpModal.addEventListener('click', function() {
+            helpModal.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        helpModal.addEventListener('click', function(e) {
+            if (e.target === helpModal) {
+                helpModal.classList.remove('active');
+            }
+        });
+    }
+}
+
+/**
+ * Show the help modal
+ */
+function showHelpModal() {
+    const helpModal = document.getElementById('helpModal');
+    if (helpModal) {
+        helpModal.classList.add('active');
+    }
+}
+
+/**
+ * Import a sample DNA file for demonstration
+ */
+function importSample() {
+    // Create a mock file from a predefined DNA sequence
+    const sampleDNA = '>Sample DNA Sequence\nATGGCCTAGCTAGCTGATCGATCGATCGATCGATCGATCGATCGATCGATCGACTGATCTAGCATCGATCGATCGAATCGCTAGCTAGCATCGATCGATCGATCGATCGACTAGCTAGCTATCAGCTAGCTAGCTAGCTAGCTCGATCGATCGATCGATCGATCGACTAGCTAGCAGACTAGCTAGCATCATCGACTAGCTGATGATGGATTAGCATCGATCGATAGCTACGAT';
+    
+    const blob = new Blob([sampleDNA], { type: 'text/plain' });
+    const file = new File([blob], 'sample_dna.fa', { type: 'text/plain' });
+    
+    // Process the sample file
+    handleFileSelection(file);
+}
+
+/**
+ * Reset all analysis options to default
+ */
+function clearOptions() {
+    document.querySelectorAll('input[name="analysis-option"]').forEach(checkbox => {
+        // Set default checkboxes (first 5) to checked, others to unchecked
+        const isDefault = ['sequence-length', 'gc-content', 'base-composition', 'start-codons', 'stop-codons'].includes(checkbox.value);
+        checkbox.checked = isDefault;
+    });
+    
+    showNotification('Analysis options reset to default.', 'success');
+}
+
+/**
+ * Check API connectivity status
+ */
+function checkAPIStatus() {
+    const apiStatus = document.getElementById('apiStatus');
+    
+    if (!apiStatus) return;
+    
+    // Check if API client is available
+    if (typeof DNAnalyzerAPI === 'undefined') {
+        apiStatus.innerHTML = `
+            <div class="status-indicator">
+                <div class="status-dot offline"></div>
+                <span>API not available</span>
+            </div>
+        `;
+        return;
+    }
+    
+    // Try to connect to the API
+    DNAnalyzerAPI.checkStatus()
+        .then(status => {
+            console.log('API Status:', status);
+            apiStatus.innerHTML = `
+                <div class="status-indicator">
+                    <div class="status-dot online"></div>
+                    <span>API Connected v${status.version || '1.0'}</span>
                 </div>
-                <div class="result-label">Base Composition</div>
+            `;
+        })
+        .catch(error => {
+            console.error('API Error:', error);
+            apiStatus.innerHTML = `
+                <div class="status-indicator">
+                    <div class="status-dot offline"></div>
+                    <span>API Offline - Using Fallback Mode</span>
+                </div>
+            `;
+            
+            // Show notice about server setup
+            showNotification('API server is offline. Running in fallback mode with limited functionality.', 'warning', 8000);
+        });
+}
+
+/**
+ * Handle the DNA analysis process
+ */
+function handleAnalysis() {
+    if (!window.selectedFile) {
+        showNotification('Please upload a DNA sequence file first.', 'error');
+        return;
+    }
+    
+    // Get selected analysis options
+    const options = getSelectedOptions();
+    
+    // Show loading state
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    analyzeBtn.disabled = true;
+    analyzeBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Analyzing...';
+    
+    // Show results section with loading state
+    const resultsSection = document.getElementById('resultsSection');
+    resultsSection.style.display = 'block';
+    
+    const resultsContent = document.getElementById('resultsContent');
+    resultsContent.innerHTML = `
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Analyzing DNA sequence...</p>
+        </div>
+    `;
+    
+    // Update file info in results header
+    document.getElementById('resultsFileInfo').innerHTML = `
+        <i class="fas fa-file-alt"></i>
+        <span>${window.selectedFile.name}</span>
+    `;
+    
+    // Scroll to results
+    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+    // Try using API if available, otherwise use fallback
+    if (typeof DNAnalyzerAPI !== 'undefined') {
+        try {
+            performAPIAnalysis(window.selectedFile, options);
+        } catch (error) {
+            console.error('API Error:', error);
+            performFallbackAnalysis(window.selectedFile, options);
+        }
+    } else {
+        performFallbackAnalysis(window.selectedFile, options);
+    }
+}
+
+/**
+ * Perform analysis using the API
+ * @param {File} file - The file to analyze
+ * @param {Object} options - Analysis options
+ */
+function performAPIAnalysis(file, options) {
+    // First try to analyze via API
+    DNAnalyzerAPI.analyzeDNA(file, options)
+        .then(results => {
+            displayResults(results);
+            
+            // Add to history
+            addToHistory(file.name);
+            
+            // Reset button
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            analyzeBtn.disabled = false;
+            analyzeBtn.innerHTML = '<i class="fas fa-play"></i> Start Analysis';
+            
+            showNotification('Analysis completed successfully!', 'success');
+        })
+        .catch(error => {
+            console.error('API Analysis Error:', error);
+            // Fallback to local analysis
+            performFallbackAnalysis(file, options);
+        });
+}
+
+/**
+ * Perform analysis using local fallback method
+ * @param {File} file - The file to analyze
+ * @param {Object} options - Analysis options
+ */
+function performFallbackAnalysis(file, options) {
+    // Read the file content
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        const sequence = parseFastaSequence(e.target.result);
+        
+        // Perform basic sequence analysis
+        const results = analyzeSequence(sequence, options);
+        
+        // Display results
+        displayResults(results);
+        
+        // Add to history
+        addToHistory(file.name);
+        
+        // Reset button
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        analyzeBtn.disabled = false;
+        analyzeBtn.innerHTML = '<i class="fas fa-play"></i> Start Analysis';
+        
+        showNotification('Analysis completed using fallback mode.', 'success');
+    };
+    
+    reader.onerror = function() {
+        showNotification('Failed to read file. Please try again.', 'error');
+        
+        // Reset button
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        analyzeBtn.disabled = false;
+        analyzeBtn.innerHTML = '<i class="fas fa-play"></i> Start Analysis';
+    };
+    
+    reader.readAsText(file);
+}
+
+/**
+ * Parse FASTA format sequence
+ * @param {string} fastaData - Raw FASTA file content
+ * @returns {string} - Cleaned DNA sequence
+ */
+function parseFastaSequence(fastaData) {
+    // Split by lines
+    const lines = fastaData.split(/\r?\n/);
+    
+    // Skip header lines (starting with '>') and join the rest
+    let sequence = '';
+    let foundHeader = false;
+    
+    for (let line of lines) {
+        line = line.trim();
+        
+        if (line.startsWith('>')) {
+            foundHeader = true;
+            continue;
+        }
+        
+        if (line.length > 0) {
+            sequence += line;
+        }
+    }
+    
+    // If no header was found, assume the entire content is the sequence
+    if (!foundHeader && sequence === '') {
+        sequence = fastaData.replace(/\s+/g, '');
+    }
+    
+    return sequence.toUpperCase();
+}
+
+/**
+ * Analyze DNA sequence
+ * @param {string} sequence - DNA sequence
+ * @param {Object} options - Analysis options
+ * @returns {Object} - Analysis results
+ */
+function analyzeSequence(sequence, options) {
+    const results = {
+        sequence: {
+            length: sequence.length,
+            sample: sequence.substring(0, 100) + (sequence.length > 100 ? '...' : '')
+        },
+        basePairs: analyzeBasePairs(sequence),
+        options: options
+    };
+    
+    // Codon analysis if selected
+    if (options.includes('start-codons') || options.includes('stop-codons')) {
+        results.codons = analyzeCodonFrequency(sequence);
+    }
+    
+    // Reading frames if selected
+    if (options.includes('reading-frames')) {
+        results.readingFrames = analyzeReadingFrames(sequence);
+    }
+    
+    // Protein prediction if selected
+    if (options.includes('protein-prediction')) {
+        results.proteins = findPotentialProteins(sequence);
+    }
+    
+    return results;
+}
+
+/**
+ * Analyze base pair composition
+ * @param {string} sequence - DNA sequence
+ * @returns {Object} - Base pair analysis results
+ */
+function analyzeBasePairs(sequence) {
+    const counts = {
+        A: 0,
+        T: 0,
+        G: 0,
+        C: 0,
+        other: 0
+    };
+    
+    // Count occurrences of each base
+    for (let i = 0; i < sequence.length; i++) {
+        const base = sequence[i];
+        if (counts.hasOwnProperty(base)) {
+            counts[base]++;
+        } else {
+            counts.other++;
+        }
+    }
+    
+    // Calculate percentages
+    const total = sequence.length;
+    const percentages = {};
+    
+    for (const base in counts) {
+        percentages[base] = parseFloat(((counts[base] / total) * 100).toFixed(1));
+    }
+    
+    // Calculate GC content
+    const gcContent = parseFloat(((counts.G + counts.C) / total * 100).toFixed(1));
+    
+    return {
+        counts,
+        percentages,
+        gcContent
+    };
+}
+
+/**
+ * Analyze codon frequency
+ * @param {string} sequence - DNA sequence
+ * @returns {Object} - Codon analysis results
+ */
+function analyzeCodonFrequency(sequence) {
+    const startCodon = 'ATG';
+    const stopCodons = ['TAA', 'TAG', 'TGA'];
+    
+    let startCount = 0;
+    let stopCount = 0;
+    
+    // Analyze each possible codon position
+    for (let i = 0; i < sequence.length - 2; i++) {
+        const codon = sequence.substring(i, i + 3);
+        
+        if (codon === startCodon) {
+            startCount++;
+        }
+        
+        if (stopCodons.includes(codon)) {
+            stopCount++;
+        }
+    }
+    
+    return {
+        startCodons: startCount,
+        stopCodons: stopCount
+    };
+}
+
+/**
+ * Analyze reading frames
+ * @param {string} sequence - DNA sequence
+ * @returns {Object} - Reading frames analysis
+ */
+function analyzeReadingFrames(sequence) {
+    const frames = [];
+    const startCodon = 'ATG';
+    const stopCodons = ['TAA', 'TAG', 'TGA'];
+    
+    // Analyze each of the three forward reading frames
+    for (let offset = 0; offset < 3; offset++) {
+        const frame = {
+            frame: offset + 1,
+            direction: 'forward',
+            genes: []
+        };
+        
+        let inGene = false;
+        let geneStart = 0;
+        
+        for (let i = offset; i < sequence.length - 2; i += 3) {
+            const codon = sequence.substring(i, i + 3);
+            
+            if (codon === startCodon && !inGene) {
+                inGene = true;
+                geneStart = i;
+            } else if (stopCodons.includes(codon) && inGene) {
+                inGene = false;
+                const gene = {
+                    start: geneStart,
+                    end: i + 2,
+                    length: i + 3 - geneStart
+                };
+                frame.genes.push(gene);
+            }
+        }
+        
+        frames.push(frame);
+    }
+    
+    // Get the reverse complement sequence
+    const reverseComplement = getReverseComplement(sequence);
+    
+    // Analyze each of the three reverse reading frames
+    for (let offset = 0; offset < 3; offset++) {
+        const frame = {
+            frame: offset + 4,
+            direction: 'reverse',
+            genes: []
+        };
+        
+        let inGene = false;
+        let geneStart = 0;
+        
+        for (let i = offset; i < reverseComplement.length - 2; i += 3) {
+            const codon = reverseComplement.substring(i, i + 3);
+            
+            if (codon === startCodon && !inGene) {
+                inGene = true;
+                geneStart = i;
+            } else if (stopCodons.includes(codon) && inGene) {
+                inGene = false;
+                const gene = {
+                    start: i + 2,
+                    end: geneStart,
+                    length: i + 3 - geneStart
+                };
+                frame.genes.push(gene);
+            }
+        }
+        
+        frames.push(frame);
+    }
+    
+    return {
+        frames: frames,
+        totalGenes: frames.reduce((total, frame) => total + frame.genes.length, 0)
+    };
+}
+
+/**
+ * Get reverse complement of DNA sequence
+ * @param {string} sequence - DNA sequence
+ * @returns {string} - Reverse complement
+ */
+function getReverseComplement(sequence) {
+    const complementMap = {
+        'A': 'T',
+        'T': 'A',
+        'G': 'C',
+        'C': 'G',
+        'N': 'N'
+    };
+    
+    let reverseComplement = '';
+    
+    for (let i = sequence.length - 1; i >= 0; i--) {
+        const base = sequence[i];
+        reverseComplement += complementMap[base] || base;
+    }
+    
+    return reverseComplement;
+}
+
+/**
+ * Find potential proteins in DNA sequence
+ * @param {string} sequence - DNA sequence
+ * @returns {Array} - List of potential proteins
+ */
+function findPotentialProteins(sequence) {
+    const startCodon = 'ATG';
+    const stopCodons = ['TAA', 'TAG', 'TGA'];
+    const proteins = [];
+    
+    // Genetic code for translation
+    const geneticCode = {
+        'TTT': 'F', 'TTC': 'F', 'TTA': 'L', 'TTG': 'L',
+        'CTT': 'L', 'CTC': 'L', 'CTA': 'L', 'CTG': 'L',
+        'ATT': 'I', 'ATC': 'I', 'ATA': 'I', 'ATG': 'M',
+        'GTT': 'V', 'GTC': 'V', 'GTA': 'V', 'GTG': 'V',
+        'TCT': 'S', 'TCC': 'S', 'TCA': 'S', 'TCG': 'S',
+        'CCT': 'P', 'CCC': 'P', 'CCA': 'P', 'CCG': 'P',
+        'ACT': 'T', 'ACC': 'T', 'ACA': 'T', 'ACG': 'T',
+        'GCT': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A',
+        'TAT': 'Y', 'TAC': 'Y', 'TAA': '*', 'TAG': '*',
+        'CAT': 'H', 'CAC': 'H', 'CAA': 'Q', 'CAG': 'Q',
+        'AAT': 'N', 'AAC': 'N', 'AAA': 'K', 'AAG': 'K',
+        'GAT': 'D', 'GAC': 'D', 'GAA': 'E', 'GAG': 'E',
+        'TGT': 'C', 'TGC': 'C', 'TGA': '*', 'TGG': 'W',
+        'CGT': 'R', 'CGC': 'R', 'CGA': 'R', 'CGG': 'R',
+        'AGT': 'S', 'AGC': 'S', 'AGA': 'R', 'AGG': 'R',
+        'GGT': 'G', 'GGC': 'G', 'GGA': 'G', 'GGG': 'G'
+    };
+    
+    // Search for proteins in all three reading frames
+    for (let offset = 0; offset < 3; offset++) {
+        let i = offset;
+        
+        while (i < sequence.length - 2) {
+            const codon = sequence.substring(i, i + 3);
+            
+            // If we find a start codon, begin translating
+            if (codon === startCodon) {
+                let proteinStart = i;
+                let protein = 'M'; // Start with methionine
+                let j = i + 3;
+                
+                // Continue until stop codon or end of sequence
+                while (j < sequence.length - 2) {
+                    const nextCodon = sequence.substring(j, j + 3);
+                    
+                    // Check if it's a stop codon
+                    if (stopCodons.includes(nextCodon)) {
+                        // We found a complete protein
+                        if (protein.length >= 10) { // Only include proteins of significant length
+                            proteins.push({
+                                start: proteinStart,
+                                end: j + 2,
+                                length: protein.length,
+                                sequence: protein
+                            });
+                        }
+                        
+                        // Move past this protein
+                        i = j + 3;
+                        break;
+                    }
+                    
+                    // Add amino acid to protein
+                    const aa = geneticCode[nextCodon] || 'X'; // X for unknown
+                    protein += aa;
+                    
+                    j += 3;
+                }
+                
+                // If we reached the end without finding a stop codon
+                if (j >= sequence.length - 2) {
+                    i = j;
+                }
+            } else {
+                i += 3;
+            }
+        }
+    }
+    
+    // Sort by length (longest first)
+    proteins.sort((a, b) => b.length - a.length);
+    
+    // Limit to top 10
+    return proteins.slice(0, 10);
+}
+
+/**
+ * Display analysis results
+ * @param {Object} results - Analysis results
+ */
+function displayResults(results) {
+    const resultsContent = document.getElementById('resultsContent');
+    const options = results.options;
+    
+    // Basic results grid
+    let html = '<div class="results-grid">';
+    
+    // Sequence length
+    if (options.includes('sequence-length')) {
+        html += `
+            <div class="result-card">
+                <div class="result-value">${results.sequence.length.toLocaleString()}</div>
+                <div class="result-label">Sequence Length</div>
             </div>
         `;
     }
     
-    // Codon info
-    if (document.querySelector('input[type="checkbox"][value="Start Codons"]').checked) {
-        // Count ATG codons from sequence
-        const countATG = countCodon(parseResult.sequence, 'ATG');
-        resultHTML += `
+    // GC content
+    if (options.includes('gc-content')) {
+        html += `
             <div class="result-card">
-                <div class="result-value">${countATG}</div>
+                <div class="result-value">${results.basePairs.gcContent}%</div>
+                <div class="result-label">GC Content</div>
+            </div>
+        `;
+    }
+    
+    // Start and stop codons
+    if (options.includes('start-codons') && results.codons) {
+        html += `
+            <div class="result-card">
+                <div class="result-value">${results.codons.startCodons}</div>
                 <div class="result-label">Start Codons</div>
             </div>
         `;
     }
     
-    if (document.querySelector('input[type="checkbox"][value="Stop Codons"]').checked) {
-        // Count stop codons from sequence
-        const stopCodons = countStopCodons(parseResult.sequence);
-        resultHTML += `
+    if (options.includes('stop-codons') && results.codons) {
+        html += `
             <div class="result-card">
-                <div class="result-value">${stopCodons}</div>
+                <div class="result-value">${results.codons.stopCodons}</div>
                 <div class="result-label">Stop Codons</div>
             </div>
         `;
     }
     
-    // Protein prediction
-    if (document.querySelector('input[type="checkbox"][value="Protein Prediction"]').checked && proteins.length > 0) {
-        resultHTML += `
+    // Reading frames
+    if (options.includes('reading-frames') && results.readingFrames) {
+        html += `
             <div class="result-card">
-                <div class="result-value">${proteins.length}</div>
+                <div class="result-value">${results.readingFrames.totalGenes}</div>
+                <div class="result-label">Potential Genes</div>
+            </div>
+        `;
+    }
+    
+    // Protein prediction
+    if (options.includes('protein-prediction') && results.proteins) {
+        html += `
+            <div class="result-card">
+                <div class="result-value">${results.proteins.length}</div>
                 <div class="result-label">Proteins Found</div>
             </div>
         `;
         
-        // Add longest protein info
-        if (proteins.length > 0) {
-            const longestProtein = proteins.reduce((a, b) => a.length > b.length ? a : b);
-            
-            resultHTML += `
-                <div class="result-card wide">
-                    <div class="result-value-small">${longestProtein.length} amino acids</div>
-                    <div class="result-label">Longest Protein</div>
-                    <div class="sequence-preview">${longestProtein.substring(0, 20)}...</div>
+        // Add longest protein info if available
+        if (results.proteins.length > 0) {
+            html += `
+                <div class="result-card">
+                    <div class="result-value">${results.proteins[0].length}</div>
+                    <div class="result-label">Longest Protein (aa)</div>
                 </div>
             `;
         }
     }
     
-    // Reading frames
-    if (document.querySelector('input[type="checkbox"][value="Reading Frames"]').checked && readingFrames) {
-        // Count total genes found across all frames
-        let totalGenes = 0;
-        if (readingFrames.frames) {
-            readingFrames.frames.forEach(frame => {
-                if (frame.genes) {
-                    totalGenes += frame.genes.length;
-                }
-            });
-        }
+    html += '</div>'; // End of results grid
+    
+    // Base composition chart
+    if (options.includes('base-composition')) {
+        const basePercentages = results.basePairs.percentages;
         
-        resultHTML += `
-            <div class="result-card">
-                <div class="result-value">${totalGenes}</div>
-                <div class="result-label">Potential Genes</div>
-            </div>
-            <div class="result-card">
-                <div class="result-value">${readingFrames.frameCount || 6}</div>
-                <div class="result-label">Reading Frames</div>
+        html += `
+            <div class="chart-container">
+                <h3>Base Composition</h3>
+                <div class="base-composition">
+                    <div class="base-bar">
+                        <div class="base-segment base-a" style="width: ${basePercentages.A}%">A</div>
+                        <div class="base-segment base-t" style="width: ${basePercentages.T}%">T</div>
+                        <div class="base-segment base-g" style="width: ${basePercentages.G}%">G</div>
+                        <div class="base-segment base-c" style="width: ${basePercentages.C}%">C</div>
+                        ${basePercentages.other > 0 ? `<div class="base-segment" style="width: ${basePercentages.other}%">N</div>` : ''}
+                    </div>
+                </div>
+                <div class="base-legend">
+                    <div class="legend-item">
+                        <div class="color-box base-a"></div>
+                        <span>Adenine (A): ${basePercentages.A}%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box base-t"></div>
+                        <span>Thymine (T): ${basePercentages.T}%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box base-g"></div>
+                        <span>Guanine (G): ${basePercentages.G}%</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box base-c"></div>
+                        <span>Cytosine (C): ${basePercentages.C}%</span>
+                    </div>
+                    ${basePercentages.other > 0 ? `
+                        <div class="legend-item">
+                            <div class="color-box" style="background: #888;"></div>
+                            <span>Other (N): ${basePercentages.other}%</span>
+                        </div>
+                    ` : ''}
+                </div>
             </div>
         `;
     }
     
-    resultHTML += '</div>';
-    
-    // Add detailed section if applicable
-    if ((proteins.length > 0 && proteins.length <= 10) || (readingFrames && readingFrames.frames)) {
-        resultHTML += '<div class="detailed-results">';
+    // Reading frames table
+    if (options.includes('reading-frames') && results.readingFrames && results.readingFrames.frames) {
+        html += `
+            <div class="results-table-container">
+                <h3>Reading Frames</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Frame</th>
+                            <th>Direction</th>
+                            <th>Genes Found</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
         
-        // Add proteins table
-        if (proteins.length > 0 && proteins.length <= 10) {
-            resultHTML += `
-                <div class="result-table-container">
-                    <h3>Proteins Found</h3>
-                    <table class="result-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Length</th>
-                                <th>Sequence</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+        results.readingFrames.frames.forEach(frame => {
+            html += `
+                <tr>
+                    <td>${frame.frame}</td>
+                    <td>${frame.direction}</td>
+                    <td>${frame.genes.length}</td>
+                </tr>
             `;
-            
-            proteins.forEach((protein, index) => {
-                resultHTML += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${protein.length}</td>
-                        <td class="sequence-cell">${protein.substring(0, 30)}${protein.length > 30 ? '...' : ''}</td>
-                    </tr>
-                `;
-            });
-            
-            resultHTML += `
-                        </tbody>
-                    </table>
-                </div>
-            `;
-        }
+        });
         
-        // Add reading frames table
-        if (readingFrames && readingFrames.frames) {
-            resultHTML += `
-                <div class="result-table-container">
-                    <h3>Reading Frames</h3>
-                    <table class="result-table">
-                        <thead>
-                            <tr>
-                                <th>Frame</th>
-                                <th>Direction</th>
-                                <th>Genes Found</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
-            
-            readingFrames.frames.forEach(frame => {
-                resultHTML += `
-                    <tr>
-                        <td>${frame.frame}</td>
-                        <td>${frame.direction}</td>
-                        <td>${frame.genes ? frame.genes.length : 0}</td>
-                    </tr>
-                `;
-            });
-            
-            resultHTML += `
-                        </tbody>
-                    </table>
-                </div>
-            `;
-        }
-        
-        resultHTML += '</div>';
+        html += `
+                    </tbody>
+                </table>
+            </div>
+        `;
     }
     
-    // Add download options
-    resultHTML += `
+    // Proteins table
+    if (options.includes('protein-prediction') && results.proteins && results.proteins.length > 0) {
+        html += `
+            <div class="results-table-container">
+                <h3>Predicted Proteins</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Length</th>
+                            <th>Sequence (First 30 aa)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        `;
+        
+        results.proteins.forEach((protein, index) => {
+            const proteinSeq = protein.sequence || protein;
+            const displaySeq = proteinSeq.substring(0, 30) + (proteinSeq.length > 30 ? '...' : '');
+            
+            html += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${protein.length || proteinSeq.length}</td>
+                    <td class="sequence-cell">${displaySeq}</td>
+                </tr>
+            `;
+        });
+        
+        html += `
+                    </tbody>
+                </table>
+            </div>
+        `;
+    }
+    
+    // Download options
+    html += `
         <div class="download-options">
             <h3>Download Results</h3>
-            <div class="download-buttons">
-                <button class="download-btn" data-format="json">
+            <div class="download-formats">
+                <button class="download-format" data-format="json">
                     <i class="fas fa-file-code"></i>
                     JSON
                 </button>
-                <button class="download-btn" data-format="csv">
+                <button class="download-format" data-format="csv">
                     <i class="fas fa-file-csv"></i>
                     CSV
                 </button>
-                <button class="download-btn" data-format="txt">
+                <button class="download-format" data-format="txt">
                     <i class="fas fa-file-alt"></i>
                     Text
                 </button>
@@ -446,324 +967,243 @@ function showAnalysisResults(parseResult, basePairResult, proteins = [], reading
         </div>
     `;
     
-    resultsContent.innerHTML = resultHTML;
+    // Update the results content
+    resultsContent.innerHTML = html;
     
-    // Add event listeners for download buttons
-    document.querySelectorAll('.download-btn').forEach(button => {
-        button.addEventListener('click', function() {
+    // Add event listeners to download buttons
+    document.querySelectorAll('.download-format').forEach(btn => {
+        btn.addEventListener('click', function() {
             const format = this.getAttribute('data-format');
-            downloadResults(format, parseResult, basePairResult, proteins, readingFrames);
+            downloadResults(format, results);
         });
     });
-}
-
-/**
- * Import a sample DNA file for demonstration
- */
-function importSampleFile() {
-    // Create a mock file object from the sample data
-    fetch('../assets/dna/sample/sample.fa')
-        .then(response => response.text())
-        .then(data => {
-            const blob = new Blob([data], { type: 'text/plain' });
-            const file = new File([blob], 'sample.fa', { type: 'text/plain' });
-            
-            // Manually trigger the file selection handler
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(file);
-            const event = { target: { files: dataTransfer.files } };
-            
-            // Find the file input and set its files
-            const fileInput = document.querySelector('.file-drop-zone input[type="file"]');
-            fileInput.files = dataTransfer.files;
-            
-            // Trigger the change event
-            const changeEvent = new Event('change', { bubbles: true });
-            fileInput.dispatchEvent(changeEvent);
-            
-            showNotification('Sample file loaded', 'success');
-        })
-        .catch(error => {
-            console.error('Failed to load sample file:', error);
-            showNotification('Failed to load sample file', 'error');
-        });
-}
-
-/**
- * Add an analysis to the history sidebar
- */
-function addAnalysisToHistory(fileName) {
-    const historyList = document.querySelector('.history-list');
     
-    // Remove "No recent analyses" message if present
-    const emptyHistory = historyList.querySelector('.history-item');
-    if (emptyHistory && emptyHistory.textContent.includes('No recent analyses')) {
-        historyList.innerHTML = '';
+    // Store results for later use
+    window.analysisResults = results;
+}
+
+/**
+ * Download analysis results
+ * @param {string} format - File format (json, csv, txt)
+ * @param {Object} results - Analysis results
+ */
+function downloadResults(format, results = window.analysisResults) {
+    if (!results) {
+        showNotification('No analysis results to download.', 'error');
+        return;
     }
     
-    // Add the new analysis to history
-    const timestamp = new Date().toLocaleTimeString();
-    const historyItem = document.createElement('div');
-    historyItem.className = 'history-item';
-    historyItem.innerHTML = `
-        <i class="fas fa-file-alt"></i>
-        <div class="history-details">
-            <span class="history-name">${fileName}</span>
-            <span class="history-time">${timestamp}</span>
-        </div>
-    `;
-    
-    // Prepend to put newest at the top
-    historyList.prepend(historyItem);
-    
-    // Limit history to 5 items
-    const historyItems = historyList.querySelectorAll('.history-item');
-    if (historyItems.length > 5) {
-        historyList.removeChild(historyItems[historyItems.length - 1]);
-    }
-}
-
-/**
- * Show a notification to the user
- */
-function showNotification(message, type = 'info') {
-    // Create notification element if it doesn't exist
-    let notificationContainer = document.querySelector('.notification-container');
-    
-    if (!notificationContainer) {
-        notificationContainer = document.createElement('div');
-        notificationContainer.className = 'notification-container';
-        document.body.appendChild(notificationContainer);
-    }
-    
-    // Create the notification
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    
-    // Add icon based on type
-    let icon = 'info-circle';
-    if (type === 'success') icon = 'check-circle';
-    if (type === 'error') icon = 'exclamation-circle';
-    if (type === 'warning') icon = 'exclamation-triangle';
-    
-    notification.innerHTML = `
-        <i class="fas fa-${icon}"></i>
-        <span>${message}</span>
-        <button class="close-notification">
-            <i class="fas fa-times"></i>
-        </button>
-    `;
-    
-    // Add to container
-    notificationContainer.appendChild(notification);
-    
-    // Add close functionality
-    notification.querySelector('.close-notification').addEventListener('click', function() {
-        notification.classList.add('closing');
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    });
-    
-    // Auto-remove after some time
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.classList.add('closing');
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 300);
-        }
-    }, 5000);
-}
-
-/**
- * Format file size in readable units
- */
-function formatFileSize(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
-    else return (bytes / 1048576).toFixed(1) + ' MB';
-}
-
-/**
- * Get appropriate icon for file type
- */
-function getFileIcon(fileName) {
-    if (fileName.endsWith('.fa') || fileName.endsWith('.fasta')) {
-        return 'fas fa-dna';
-    } else if (fileName.endsWith('.fastq')) {
-        return 'fas fa-file-medical-alt';
-    } else {
-        return 'fas fa-file-alt';
-    }
-}
-
-/**
- * Count occurrences of a specific codon in a DNA sequence
- */
-function countCodon(sequence, codon) {
-    const upperSeq = sequence.toUpperCase();
-    const upperCodon = codon.toUpperCase();
-    
-    let count = 0;
-    for (let i = 0; i < upperSeq.length - 2; i += 3) {
-        if (upperSeq.substr(i, 3) === upperCodon) {
-            count++;
-        }
-    }
-    
-    return count;
-}
-
-/**
- * Count all stop codons in a DNA sequence
- */
-function countStopCodons(sequence) {
-    const upperSeq = sequence.toUpperCase();
-    const stopCodons = ['TAA', 'TAG', 'TGA'];
-    
-    let count = 0;
-    for (let i = 0; i < upperSeq.length - 2; i += 3) {
-        const codon = upperSeq.substr(i, 3);
-        if (stopCodons.includes(codon)) {
-            count++;
-        }
-    }
-    
-    return count;
-}
-
-/**
- * Download analysis results in the selected format
- */
-function downloadResults(format, parseResult, basePairResult, proteins, readingFrames) {
     let content = '';
-    let fileName = `dna-analysis-${new Date().toISOString().split('T')[0]}`;
+    let fileName = `dna_analysis_${new Date().toISOString().slice(0, 10)}`;
     let mimeType = 'text/plain';
     
-    // Generate content based on format
     if (format === 'json') {
-        const results = {
-            sequence: {
-                fileName: parseResult.fileName,
-                length: parseResult.sequenceLength,
-                truncated: parseResult.truncated || false
-            },
-            basePairs: {
-                counts: basePairResult.counts,
-                percentages: basePairResult.percentages,
-                gcContent: basePairResult.gcContent
-            }
-        };
-        
-        if (proteins.length > 0) {
-            results.proteins = {
-                count: proteins.length,
-                proteins: proteins
-            };
-        }
-        
-        if (readingFrames) {
-            results.readingFrames = readingFrames;
-        }
-        
         content = JSON.stringify(results, null, 2);
         fileName += '.json';
         mimeType = 'application/json';
     } else if (format === 'csv') {
         // Basic info
-        content += `Sequence File,${parseResult.fileName}\n`;
-        content += `Sequence Length,${parseResult.sequenceLength}\n\n`;
+        content = 'Property,Value\n';
+        content += `Sequence Length,${results.sequence.length}\n`;
+        content += `GC Content,${results.basePairs.gcContent}%\n\n`;
         
         // Base pairs
-        content += 'Base Pair Counts\n';
-        content += `A,${basePairResult.counts.A}\n`;
-        content += `T,${basePairResult.counts.T}\n`;
-        content += `G,${basePairResult.counts.G}\n`;
-        content += `C,${basePairResult.counts.C}\n`;
-        content += `GC Content,${basePairResult.gcContent}%\n\n`;
+        content += 'Base,Count,Percentage\n';
+        for (const base in results.basePairs.counts) {
+            content += `${base},${results.basePairs.counts[base]},${results.basePairs.percentages[base]}%\n`;
+        }
+        content += '\n';
         
-        // Proteins
-        if (proteins.length > 0) {
-            content += `Protein Count,${proteins.length}\n\n`;
-            content += 'Protein Index,Length,Sequence\n';
-            
-            proteins.forEach((protein, index) => {
-                content += `${index + 1},${protein.length},"${protein}"\n`;
+        // Add codon info if available
+        if (results.codons) {
+            content += 'Codon Type,Count\n';
+            content += `Start Codons,${results.codons.startCodons}\n`;
+            content += `Stop Codons,${results.codons.stopCodons}\n\n`;
+        }
+        
+        // Add reading frames if available
+        if (results.readingFrames && results.readingFrames.frames) {
+            content += 'Frame,Direction,Genes Found\n';
+            results.readingFrames.frames.forEach(frame => {
+                content += `${frame.frame},${frame.direction},${frame.genes.length}\n`;
             });
             content += '\n';
         }
         
-        // Reading frames
-        if (readingFrames && readingFrames.frames) {
-            content += `Reading Frame Count,${readingFrames.frameCount}\n\n`;
-            content += 'Frame,Direction,Gene Count\n';
-            
-            readingFrames.frames.forEach(frame => {
-                content += `${frame.frame},${frame.direction},${frame.genes ? frame.genes.length : 0}\n`;
+        // Add proteins if available
+        if (results.proteins && results.proteins.length > 0) {
+            content += 'Protein,Length,Sequence\n';
+            results.proteins.forEach((protein, index) => {
+                const proteinSeq = protein.sequence || protein;
+                content += `${index + 1},${protein.length || proteinSeq.length},"${proteinSeq}"\n`;
             });
         }
         
         fileName += '.csv';
         mimeType = 'text/csv';
-    } else {
-        // Plain text format
-        content += `DNA Sequence Analysis\n`;
-        content += `===================\n\n`;
-        content += `File: ${parseResult.fileName}\n`;
-        content += `Length: ${parseResult.sequenceLength} base pairs\n\n`;
+    } else { // txt format
+        content = 'DNA Sequence Analysis Results\n';
+        content += '============================\n\n';
         
-        // Base pairs
-        content += `Base Composition:\n`;
-        content += `- Adenine (A): ${basePairResult.counts.A} (${basePairResult.percentages.A}%)\n`;
-        content += `- Thymine (T): ${basePairResult.counts.T} (${basePairResult.percentages.T}%)\n`;
-        content += `- Guanine (G): ${basePairResult.counts.G} (${basePairResult.percentages.G}%)\n`;
-        content += `- Cytosine (C): ${basePairResult.counts.C} (${basePairResult.percentages.C}%)\n\n`;
-        content += `GC Content: ${basePairResult.gcContent}%\n\n`;
+        // Basic info
+        content += `Sequence Length: ${results.sequence.length}\n`;
+        content += `GC Content: ${results.basePairs.gcContent}%\n\n`;
         
-        // Proteins
-        if (proteins.length > 0) {
-            content += `Proteins Found: ${proteins.length}\n\n`;
-            if (proteins.length <= 10) {
-                content += `Protein Details:\n`;
-                proteins.forEach((protein, index) => {
-                    content += `${index + 1}. Length: ${protein.length}\n   ${protein}\n\n`;
-                });
-            } else {
-                content += `First 5 Proteins:\n`;
-                for (let i = 0; i < 5; i++) {
-                    content += `${i + 1}. Length: ${proteins[i].length}\n   ${proteins[i].substring(0, 50)}...\n\n`;
-                }
-            }
+        // Base composition
+        content += 'Base Composition:\n';
+        for (const base in results.basePairs.counts) {
+            content += `${base}: ${results.basePairs.counts[base]} (${results.basePairs.percentages[base]}%)\n`;
+        }
+        content += '\n';
+        
+        // Add codon info if available
+        if (results.codons) {
+            content += 'Codon Analysis:\n';
+            content += `Start Codons (ATG): ${results.codons.startCodons}\n`;
+            content += `Stop Codons (TAA, TAG, TGA): ${results.codons.stopCodons}\n\n`;
         }
         
-        // Reading frames
-        if (readingFrames && readingFrames.frames) {
-            content += `Reading Frames: ${readingFrames.frameCount}\n\n`;
-            content += `Frame Details:\n`;
-            
-            readingFrames.frames.forEach(frame => {
-                content += `Frame ${frame.frame} (${frame.direction}): ${frame.genes ? frame.genes.length : 0} potential genes\n`;
+        // Add reading frames if available
+        if (results.readingFrames && results.readingFrames.frames) {
+            content += 'Reading Frames:\n';
+            results.readingFrames.frames.forEach(frame => {
+                content += `Frame ${frame.frame} (${frame.direction}): ${frame.genes.length} genes found\n`;
+            });
+            content += '\n';
+        }
+        
+        // Add proteins if available
+        if (results.proteins && results.proteins.length > 0) {
+            content += 'Predicted Proteins:\n';
+            results.proteins.forEach((protein, index) => {
+                const proteinSeq = protein.sequence || protein;
+                content += `Protein ${index + 1} (${protein.length || proteinSeq.length} aa): ${proteinSeq}\n`;
             });
         }
         
-        content += `\nAnalysis completed at: ${new Date().toLocaleString()}`;
+        content += '\nAnalysis Date: ' + new Date().toLocaleString();
         fileName += '.txt';
     }
     
-    // Create and trigger download
+    // Create download link
     const blob = new Blob([content], { type: mimeType });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.click();
     
-    // Clean up
-    URL.revokeObjectURL(link.href);
+    // Cleanup
+    setTimeout(() => URL.revokeObjectURL(url), 100);
     
-    showNotification(`Results downloaded as ${fileName}`, 'success');
+    showNotification(`Results saved as ${fileName}`, 'success');
+}
+
+/**
+ * Add an analysis to the history
+ * @param {string} fileName - Name of the analyzed file
+ */
+function addToHistory(fileName) {
+    const historyList = document.getElementById('historyList');
+    
+    // Remove empty state if present
+    const emptyState = historyList.querySelector('.history-empty');
+    if (emptyState) {
+        historyList.removeChild(emptyState);
+    }
+    
+    // Create new history item
+    const historyItem = document.createElement('div');
+    historyItem.className = 'history-item';
+    
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    
+    historyItem.innerHTML = `
+        <i class="fas fa-file-alt"></i>
+        <div class="history-details">
+            <div class="history-name">${fileName}</div>
+            <div class="history-time">${timeString}</div>
+        </div>
+    `;
+    
+    // Add to history (prepend)
+    historyList.insertBefore(historyItem, historyList.firstChild);
+    
+    // Limit to 5 items
+    const items = historyList.querySelectorAll('.history-item');
+    if (items.length > 5) {
+        historyList.removeChild(items[items.length - 1]);
+    }
+}
+
+/**
+ * Get selected analysis options
+ * @returns {Array} - List of selected option values
+ */
+function getSelectedOptions() {
+    const checkboxes = document.querySelectorAll('input[name="analysis-option"]:checked');
+    const options = [];
+    
+    checkboxes.forEach(checkbox => {
+        options.push(checkbox.value);
+    });
+    
+    return options;
+}
+
+/**
+ * Format file size in human-readable format
+ * @param {number} bytes - File size in bytes
+ * @returns {string} - Formatted file size
+ */
+function formatFileSize(bytes) {
+    if (bytes < 1024) {
+        return bytes + ' bytes';
+    } else if (bytes < 1024 * 1024) {
+        return (bytes / 1024).toFixed(1) + ' KB';
+    } else {
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+}
+
+/**
+ * Show a notification
+ * @param {string} message - Notification message
+ * @param {string} type - Notification type (success, error, warning, info)
+ * @param {number} duration - Duration in milliseconds
+ */
+function showNotification(message, type = 'info', duration = 5000) {
+    const container = document.getElementById('notificationContainer');
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    
+    // Set icon based on type
+    let icon = 'info-circle';
+    if (type === 'success') icon = 'check-circle';
+    if (type === 'error') icon = 'times-circle';
+    if (type === 'warning') icon = 'exclamation-triangle';
+    
+    notification.innerHTML = `
+        <i class="fas fa-${icon} notification-icon"></i>
+        <div class="notification-message">${message}</div>
+    `;
+    
+    // Add to container
+    container.appendChild(notification);
+    
+    // Remove after duration
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        
+        // Remove from DOM after animation
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, duration);
 }
