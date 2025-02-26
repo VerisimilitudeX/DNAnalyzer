@@ -958,3 +958,51 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* DNAnalyzer Disclaimer CSS Update */
+.disclaimer-section {
+  padding: 1rem 0;
+  background: transparent !important; /* Override any dark background */
+}
+
+.disclaimer-content {
+  max-width: 90%;
+  margin: 0 auto;
+  background-color: rgba(30, 30, 40, 0.4); /* Subtle dark background */
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.disclaimer-title {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.75;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.disclaimer-text {
+  font-size: 0.7rem;
+  opacity: 0.65;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.disclaimer-text p {
+  margin-bottom: 0.5rem;
+}
+
+.disclaimer-text p:last-child {
+  margin-bottom: 0;
+}
+
+.disclaimer-text strong {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+/* Add this to your existing CSS file */
