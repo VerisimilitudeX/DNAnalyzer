@@ -1,100 +1,198 @@
+/**
+ * DNAnalyzer - Features Page JavaScript
+ * Handles animations, scroll events and interactivity
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Intersection Observer for feature sections
+    // Initialize navbar
+    initializeNavbar();
+    
+    // Initialize animations
+    initializeAnimations();
+    
+    // Initialize smooth scrolling
+    initializeSmoothScroll();
+});
+
+/**
+ * Initialize navbar functionality
+ */
+function initializeNavbar() {
+    const navbar = document.getElementById('navbar');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    // Handle scroll event to change navbar style
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Handle mobile menu toggle
+    if (mobileToggle && navLinks) {
+        mobileToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Change the icon based on the state
+            const icon = mobileToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    }
+}
+
+/**
+ * Initialize animations for elements
+ */
+function initializeAnimations() {
+    // Get all elements with data-aos attribute
+    const animatedElements = document.querySelectorAll('[data-aos]');
+    
+    // Create Intersection Observer for animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Animate feature list items
-                const listItems = entry.target.querySelectorAll('.feature-list li');
-                listItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateX(0)';
-                    }, index * 200);
-                });
-
-                // Add animation class to feature visual
-                const visual = entry.target.querySelector('.feature-visual');
-                if (visual) {
-                    visual.style.opacity = '0';
-                    visual.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        visual.style.transition = 'all 0.8s ease';
-                        visual.style.opacity = '1';
-                        visual.style.transform = 'translateY(0)';
-                    }, 200);
-                }
+                entry.target.classList.add('aos-animate');
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.2
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
     });
-
-    // Observe all feature sections
-    document.querySelectorAll('.feature-section').forEach(section => {
-        observer.observe(section);
+    
+    // Observe all animated elements
+    animatedElements.forEach(element => {
+        observer.observe(element);
     });
-
-    // Parallax effect for gradient spheres
-    document.addEventListener('mousemove', (e) => {
-        const spheres = document.querySelectorAll('.gradient-sphere');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-
-        spheres.forEach((sphere, index) => {
-            const depth = index === 0 ? 20 : 10;
-            const translateX = (mouseX - 0.5) * depth;
-            const translateY = (mouseY - 0.5) * depth;
-            sphere.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    
+    // Add parallax effect to feature images
+    const featureImages = document.querySelectorAll('.feature-image-wrapper');
+    
+    window.addEventListener('scroll', () => {
+        featureImages.forEach(image => {
+            const rect = image.getBoundingClientRect();
+            const isVisible = (
+                rect.top <= window.innerHeight &&
+                rect.bottom >= 0
+            );
+            
+            if (isVisible) {
+                const scrollPos = window.scrollY;
+                const imgOffset = rect.top + scrollPos;
+                const parallaxOffset = (scrollPos - imgOffset) * 0.1;
+                
+                // Apply parallax effect
+                image.querySelector('img').style.transform = `translateY(${parallaxOffset}px)`;
+            }
         });
     });
+}
 
-    // Smooth scroll for navigation
+/**
+ * Initialize smooth scrolling for anchor links
+ */
+function initializeSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+            const targetId = this.getAttribute('href');
+            
+            // Skip if it's just "#" or not an ID selector
+            if (targetId === '#' || !targetId.startsWith('#')) return;
+            
+            const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
+                e.preventDefault();
+                
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+                
                 window.scrollTo({
-                    top: offsetPosition,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
             }
         });
     });
+}
 
-    // Initial animation for hero section
-    const heroSection = document.querySelector('.hero-section');
-    if (heroSection) {
-        heroSection.style.opacity = '0';
-        heroSection.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            heroSection.style.transition = 'all 1s ease';
-            heroSection.style.opacity = '1';
-            heroSection.style.transform = 'translateY(0)';
-        }, 100);
-    }
+/**
+ * Add hover effects for feature cards
+ */
+document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('.feature-icon');
+        if (icon) {
+            icon.style.transform = 'scale(1.1)';
+        }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('.feature-icon');
+        if (icon) {
+            icon.style.transform = 'scale(1)';
+        }
+    });
+});
 
-    // Hover effect for feature cards
-    document.querySelectorAll('.feature-content').forEach(content => {
-        content.addEventListener('mouseenter', () => {
-            const visual = content.parentElement.querySelector('.feature-visual');
-            if (visual) {
-                visual.style.transform = 'scale(1.02)';
-                visual.style.transition = 'transform 0.3s ease';
-            }
+/**
+ * Add hover effects for comparison table rows
+ */
+document.querySelectorAll('.comparison-table tr').forEach(row => {
+    row.addEventListener('mouseenter', function() {
+        const cells = this.querySelectorAll('td');
+        cells.forEach(cell => {
+            cell.style.transition = 'background-color 0.3s ease';
         });
+    });
+});
 
-        content.addEventListener('mouseleave', () => {
-            const visual = content.parentElement.querySelector('.feature-visual');
-            if (visual) {
-                visual.style.transform = 'scale(1)';
-            }
-        });
+/**
+ * Add animation for CTA buttons
+ */
+document.querySelectorAll('.cta-buttons .btn').forEach(button => {
+    button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+});
+
+// Add scale effect for feature images on hover
+document.querySelectorAll('.feature-image').forEach(image => {
+    image.addEventListener('mouseenter', function() {
+        const img = this.querySelector('img');
+        if (img) {
+            img.style.transform = 'scale(1.03)';
+        }
+    });
+    
+    image.addEventListener('mouseleave', function() {
+        const img = this.querySelector('img');
+        if (img) {
+            img.style.transform = 'scale(1)';
+        }
     });
 });

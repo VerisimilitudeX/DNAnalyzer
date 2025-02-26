@@ -4,239 +4,637 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation - DNAnalyzer</title>
+    <meta name="description" content="Comprehensive documentation for DNAnalyzer - Get started with our powerful DNA analysis tools and learn how to use all features.">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="docs.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
-    <div class="background-blur"></div>
-    <div class="gradient-sphere"></div>
-    <div class="gradient-sphere secondary"></div>
-    
-    <header class="floating-header">
-        <nav class="floating-nav">
-            <a href="../index.html" class="nav-link">
-                <img src="../assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="nav-logo">
+    <!-- Background effects -->
+    <div class="bg-gradient">
+        <div class="bg-blob bg-blob-1"></div>
+        <div class="bg-blob bg-blob-2"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+                <span class="logo-text">DNAnalyzer</span>
             </a>
-            <button class="menu-toggle" aria-label="Toggle navigation menu">
+            
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="nav-links-container">
-                <a href="../about/about.html" class="nav-link">About</a>
-                <a href="../features/features.html" class="nav-link">Features</a>
-                <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
-                <a href="../server/server.html" class="nav-link">Server</a>
-                <a href="index.html" class="nav-link active">Docs</a>
-            </div>
-            <div class="right-links">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">
-                    <i class="fab fa-github"></i> GitHub
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../features/features.html">Features</a></li>
+                <li><a href="../analyzer/analyzer.html">Analyzer</a></li>
+                <li><a href="../server/server.html">Server</a></li>
+                <li><a href="docs.html" class="active">Docs</a></li>
+                <li><a href="../about/about.html">About</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
+                    <i class="fab fa-github btn-icon"></i> GitHub
                 </a>
-                <a href="https://discord.gg/xNpujz49gj" class="glass-button">
-                    <i class="fab fa-discord"></i> Discord
-                </a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="docs-container">
-        <aside class="docs-sidebar">
-            <div class="search-container">
+    <!-- Documentation Layout -->
+    <div class="docs-layout">
+        <!-- Sidebar (Left) -->
+        <aside class="docs-sidebar" id="docsSidebar">
+            <div class="sidebar-header">
+                <h2>Documentation</h2>
+                <button class="mobile-close" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-search">
                 <div class="search-input-wrapper">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search documentation...">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="docsSearch" placeholder="Search documentation...">
                 </div>
-                <div id="searchResults" class="search-results"></div>
             </div>
-
-            <div class="sidebar-inner">
+            
+            <nav class="sidebar-nav">
                 <div class="nav-section">
                     <h3>Getting Started</h3>
-                    <ul class="nav-links">
-                        <li><a href="installation.html" class="nav-link">Installation</a></li>
-                        <li><a href="quickstart.html" class="nav-link">Quick Start</a></li>
-                        <li><a href="configuration.html" class="nav-link">Configuration</a></li>
+                    <ul>
+                        <li><a href="#introduction" class="active">Introduction</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#quick-start">Quick Start</a></li>
                     </ul>
                 </div>
-
+                
                 <div class="nav-section">
-                    <h3>Core Features</h3>
-                    <ul class="nav-links">
-                        <li><a href="sequence-analysis.html" class="nav-link">Sequence Analysis</a></li>
-                        <li><a href="codon-detection.html" class="nav-link">Codon Detection</a></li>
-                        <li><a href="coverage-analysis.html" class="nav-link">Coverage Analysis</a></li>
-                        <li><a href="disorder-analysis.html" class="nav-link">Disorder Analysis</a></li>
+                    <h3>Core Concepts</h3>
+                    <ul>
+                        <li><a href="#sequence-analysis">Sequence Analysis</a></li>
+                        <li><a href="#codon-detection">Codon Detection</a></li>
+                        <li><a href="#reading-frames">Reading Frames</a></li>
+                        <li><a href="#protein-prediction">Protein Prediction</a></li>
                     </ul>
                 </div>
-
+                
                 <div class="nav-section">
                     <h3>Advanced Usage</h3>
-                    <ul class="nav-links">
-                        <li><a href="cli-usage.html" class="nav-link">CLI Usage</a></li>
-                        <li><a href="api-reference.html" class="nav-link">API Reference</a></li>
-                        <li><a href="configuration-options.html" class="nav-link">Configuration Options</a></li>
+                    <ul>
+                        <li><a href="#server-setup">Server Setup</a></li>
+                        <li><a href="#api-reference">API Reference</a></li>
+                        <li><a href="#cli-usage">CLI Usage</a></li>
                     </ul>
                 </div>
-
+                
                 <div class="nav-section">
-                    <h3>Development</h3>
-                    <ul class="nav-links">
-                        <li><a href="building.html" class="nav-link">Building from Source</a></li>
-                        <li><a href="contributing.html" class="nav-link">Contributing</a></li>
-                        <li><a href="testing.html" class="nav-link">Testing</a></li>
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                        <li><a href="#community">Community</a></li>
                     </ul>
                 </div>
-
-                <div class="nav-section">
-                    <h3>Research & Comparison</h3>
-                    <ul class="nav-links">
-                        <li><a href="future-developments.html" class="nav-link">Future Developments</a></li>
-                        <li><a href="comparative-analysis.html" class="nav-link">Comparative Analysis</a></li>
-                    </ul>
-                </div>
-            </div>
+            </nav>
         </aside>
-
+        
+        <!-- Content (Right) -->
         <div class="docs-content">
-            <div class="docs-header">
-                <div class="breadcrumbs">
-                    <a href="index.html">Docs</a> / <span class="current-page">Installation</span>
-                </div>
-                <div class="page-actions">
-                    <button class="theme-toggle" aria-label="Toggle dark/light mode">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer/edit/main/docs/installation.md" class="edit-link">
-                        <i class="fas fa-pen"></i> Edit this page
-                    </a>
-                </div>
+            <div class="docs-mobile-header">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h2>Documentation</h2>
             </div>
+            
+            <div class="docs-container">
+                <!-- Introduction -->
+                <section id="introduction" class="doc-section">
+                    <h1>Introduction to DNAnalyzer</h1>
+                    <p class="lead">DNAnalyzer is a powerful, privacy-focused DNA analysis tool using advanced machine learning models for accurate, on-device genomic analysis.</p>
+                    
+                    <p>This documentation will guide you through the installation, setup, and usage of DNAnalyzer for various DNA analysis tasks. Whether you're a researcher, educator, or bioinformatics enthusiast, you'll find comprehensive information on all of DNAnalyzer's capabilities.</p>
+                    
+                    <div class="info-box">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><strong>Privacy-First Analysis:</strong> All processing occurs on your device, ensuring your genetic data never leaves your system.</li>
+                            <li><strong>Machine Learning Powered:</strong> Advanced ML algorithms provide exceptional accuracy in sequence analysis.</li>
+                            <li><strong>Comprehensive Tools:</strong> From basic sequence statistics to advanced protein prediction and promoter detection.</li>
+                            <li><strong>Open Source:</strong> DNAnalyzer is completely open source under the MIT License.</li>
+                        </ul>
+                    </div>
+                    
+                    <h2>System Requirements</h2>
+                    <p>Before getting started, ensure your system meets the following requirements:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-label">System Requirements</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code>- Operating System: Windows 10+, macOS 10.14+, or Linux (Ubuntu 18.04+)
+- Memory: 2GB RAM minimum (4GB+ recommended for large sequences)
+- Storage: 200MB for application, additional space for sequence files
+- Browser: Chrome 80+, Firefox 75+, Safari 13+, Edge 80+ (for web interface)
+- Java Runtime: Java 17+ (for server mode)</code></pre>
+                    </div>
+                </section>
+                
+                <!-- Installation -->
+                <section id="installation" class="doc-section">
+                    <h1>Installation</h1>
+                    <p>DNAnalyzer can be installed and used in multiple ways depending on your needs and technical preferences.</p>
+                    
+                    <h2>Web Interface (No Installation)</h2>
+                    <p>The simplest way to use DNAnalyzer is through our web interface, which requires no installation:</p>
+                    <ol>
+                        <li>Visit <a href="../analyzer/analyzer.html">DNAnalyzer Web App</a></li>
+                        <li>Upload your DNA sequence files</li>
+                        <li>Select analysis options and get results</li>
+                    </ol>
+                    <p>The web interface runs entirely in your browser, ensuring your data never leaves your device.</p>
+                    
+                    <h2>Local Server Installation</h2>
+                    <p>For more advanced usage or batch processing, you can install DNAnalyzer as a local server:</p>
+                    
+                    <div class="tabs">
+                        <div class="tab-header">
+                            <button class="tab-button active" data-tab="windows">Windows</button>
+                            <button class="tab-button" data-tab="macos">macOS</button>
+                            <button class="tab-button" data-tab="linux">Linux</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="windows">
+                            <ol>
+                                <li>Download the latest <a href="https://github.com/VerisimilitudeX/DNAnalyzer/releases">DNAnalyzer release</a> for Windows</li>
+                                <li>Extract the ZIP file to your preferred location</li>
+                                <li>Ensure Java 17 or newer is installed on your system</li>
+                                <li>Double-click on <code>dnanalyzer.bat</code> to start the server</li>
+                                <li>Access the interface at <code>http://localhost:8080</code> in your browser</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="tab-content" id="macos">
+                            <ol>
+                                <li>Download the latest <a href="https://github.com/VerisimilitudeX/DNAnalyzer/releases">DNAnalyzer release</a> for macOS</li>
+                                <li>Extract the ZIP file to your preferred location</li>
+                                <li>Ensure Java 17 or newer is installed on your system</li>
+                                <li>Open Terminal and navigate to the extracted folder</li>
+                                <li>Run <code>chmod +x dnanalyzer.sh</code> to make the script executable</li>
+                                <li>Execute <code>./dnanalyzer.sh</code> to start the server</li>
+                                <li>Access the interface at <code>http://localhost:8080</code> in your browser</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="tab-content" id="linux">
+                            <ol>
+                                <li>Download the latest <a href="https://github.com/VerisimilitudeX/DNAnalyzer/releases">DNAnalyzer release</a> for Linux</li>
+                                <li>Extract the archive to your preferred location</li>
+                                <li>Ensure Java 17 or newer is installed on your system</li>
+                                <li>Open Terminal and navigate to the extracted folder</li>
+                                <li>Run <code>chmod +x dnanalyzer.sh</code> to make the script executable</li>
+                                <li>Execute <code>./dnanalyzer.sh</code> to start the server</li>
+                                <li>Access the interface at <code>http://localhost:8080</code> in your browser</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <h2>Building from Source</h2>
+                    <p>For developers or those who want the latest features, you can build DNAnalyzer from source:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-label">Building from Source</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code># Clone the repository
+git clone https://github.com/VerisimilitudeX/DNAnalyzer.git
+cd DNAnalyzer
 
-            <div class="content-wrapper">
-                <!-- Content will be loaded here dynamically -->
-                <div id="contentArea">
-                    <h1>Welcome to DNAnalyzer Documentation</h1>
-                    <p class="lead">Comprehensive documentation for DNAnalyzer, a powerful tool for DNA sequence analysis.</p>
-                    
-                    <div class="cards-container">
-                        <div class="feature-card">
-                            <div class="card-icon"><i class="fas fa-download"></i></div>
-                            <h3>Installation</h3>
-                            <p>Learn how to install DNAnalyzer on your system.</p>
-                            <a href="installation.html" class="card-link">Get Started <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <div class="card-icon"><i class="fas fa-rocket"></i></div>
-                            <h3>Quick Start</h3>
-                            <p>Begin analyzing DNA sequences in minutes.</p>
-                            <a href="quickstart.html" class="card-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <div class="card-icon"><i class="fas fa-dna"></i></div>
-                            <h3>Sequence Analysis</h3>
-                            <p>Explore DNA sequence analysis capabilities.</p>
-                            <a href="sequence-analysis.html" class="card-link">Discover <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <div class="card-icon"><i class="fas fa-terminal"></i></div>
-                            <h3>CLI Usage</h3>
-                            <p>Master the command-line interface.</p>
-                            <a href="cli-usage.html" class="card-link">View Commands <i class="fas fa-arrow-right"></i></a>
-                        </div>
+# Make the Gradle wrapper executable
+chmod +x ./gradlew
+
+# Build the project
+./gradlew clean bootJar
+
+# Run the server
+java -jar build/libs/DNAnalyzer.jar</code></pre>
                     </div>
+                </section>
+                
+                <!-- Quick Start -->
+                <section id="quick-start" class="doc-section">
+                    <h1>Quick Start Guide</h1>
+                    <p>This guide will help you quickly get started with DNAnalyzer's basic features.</p>
                     
-                    <div class="section-separator">
-                        <h2>Getting Started</h2>
-                        <p>Follow these steps to begin your journey with DNAnalyzer:</p>
-                    </div>
+                    <h2>Analyzing Your First DNA Sequence</h2>
+                    <p>Follow these steps to perform your first DNA sequence analysis:</p>
                     
-                    <div class="steps-container">
-                        <div class="step-item">
+                    <div class="steps">
+                        <div class="step">
                             <div class="step-number">1</div>
                             <div class="step-content">
-                                <h3>Installation</h3>
-                                <p>Install DNAnalyzer on your system using our simple installation process.</p>
-                                <a href="installation.html" class="btn-primary">Installation Guide</a>
+                                <h3>Upload a Sequence</h3>
+                                <p>Navigate to the <a href="../analyzer/analyzer.html">DNA Analyzer</a> page and upload your FASTA or FASTQ file by dragging it to the upload area or clicking to browse.</p>
+                                <p><strong>Don't have a sequence file?</strong> Click "Import Sample" to use a pre-loaded sample sequence.</p>
                             </div>
                         </div>
                         
-                        <div class="step-item">
+                        <div class="step">
                             <div class="step-number">2</div>
                             <div class="step-content">
-                                <h3>Configuration</h3>
-                                <p>Configure DNAnalyzer to suit your specific needs and requirements.</p>
-                                <a href="configuration.html" class="btn-primary">Configuration Guide</a>
+                                <h3>Select Analysis Options</h3>
+                                <p>Choose which analysis features you want to run:</p>
+                                <ul>
+                                    <li><strong>Basic Analysis:</strong> Sequence length, GC content, base composition</li>
+                                    <li><strong>Codon Analysis:</strong> Start codons, stop codons, reading frames</li>
+                                    <li><strong>Advanced Features:</strong> Coverage analysis, protein prediction, promoter detection</li>
+                                </ul>
                             </div>
                         </div>
                         
-                        <div class="step-item">
+                        <div class="step">
                             <div class="step-number">3</div>
                             <div class="step-content">
                                 <h3>Run Analysis</h3>
-                                <p>Begin analyzing DNA sequences with our powerful tools and features.</p>
-                                <a href="quickstart.html" class="btn-primary">Analysis Guide</a>
+                                <p>Click the "Start Analysis" button to process your sequence. The analysis time depends on the sequence length and selected options.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Review Results</h3>
+                                <p>Examine the analysis results, which include visualizations, statistics, and detailed information about your sequence.</p>
+                                <p>You can export the results in JSON, CSV, or text format for further processing or documentation.</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    
+                    <div class="info-box tip">
+                        <h3>Pro Tip</h3>
+                        <p>For large sequences (>1MB), consider using the local server installation for better performance and additional analysis options.</p>
+                    </div>
+                </section>
+                
+                <!-- Sequence Analysis -->
+                <section id="sequence-analysis" class="doc-section">
+                    <h1>Sequence Analysis</h1>
+                    <p>DNAnalyzer provides comprehensive tools to analyze the basic properties of DNA sequences.</p>
+                    
+                    <h2>Base Composition Analysis</h2>
+                    <p>One of the fundamental analyses is determining the nucleotide composition of your DNA sequence:</p>
+                    
+                    <ul>
+                        <li><strong>Nucleotide Counts:</strong> Total count of A, T, G, C, and any other bases (N) in the sequence</li>
+                        <li><strong>Percentage Distribution:</strong> Proportion of each nucleotide type</li>
+                        <li><strong>Visualization:</strong> Interactive bar chart showing the distribution</li>
+                    </ul>
+                    
+                    <h2>GC Content Analysis</h2>
+                    <p>GC content is the percentage of nitrogenous bases in a DNA molecule that are either guanine (G) or cytosine (C):</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-label">GC Content Formula</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code>GC Content (%) = (G + C) / (A + T + G + C) × 100</code></pre>
+                    </div>
+                    
+                    <p>GC content is important because:</p>
+                    <ul>
+                        <li>It affects DNA stability (higher GC content = more stable)</li>
+                        <li>GC-rich regions often indicate regulatory elements and gene-dense areas</li>
+                        <li>Different organisms have characteristic GC content ranges</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <h3>Interpreting GC Content</h3>
+                        <ul>
+                            <li><strong>Low GC (< 40%):</strong> Common in AT-rich genomes like certain bacteria</li>
+                            <li><strong>Medium GC (40-60%):</strong> Typical of many eukaryotic genomes, including humans</li>
+                            <li><strong>High GC (> 60%):</strong> Often found in gene-rich regions and certain prokaryotes</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- More sections would continue here... -->
+                
+                <!-- API Reference -->
+                <section id="api-reference" class="doc-section">
+                    <h1>API Reference</h1>
+                    <p>DNAnalyzer provides a RESTful API when running in server mode, allowing programmatic access to all analysis features.</p>
+                    
+                    <h2>API Endpoints</h2>
+                    <p>The following endpoints are available when the server is running:</p>
+                    
+                    <div class="api-endpoint">
+                        <div class="endpoint-method get">GET</div>
+                        <div class="endpoint-path">/api/v1/status</div>
+                        <div class="endpoint-description">
+                            <p>Check server status and version information</p>
+                            <h4>Response</h4>
+                            <div class="code-block">
+                                <pre><code>{
+  "status": "running",
+  "version": "1.0.0",
+  "uptime": "12h 34m 56s"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <div class="endpoint-method post">POST</div>
+                        <div class="endpoint-path">/api/v1/analyze</div>
+                        <div class="endpoint-description">
+                            <p>Analyze a DNA sequence file</p>
+                            <h4>Request</h4>
+                            <p>Form data with the following parameters:</p>
+                            <ul>
+                                <li><code>dnaFile</code> (required): The DNA sequence file to analyze</li>
+                                <li><code>options</code>: JSON string with analysis options</li>
+                            </ul>
+                            <h4>Response</h4>
+                            <div class="code-block">
+                                <pre><code>{
+  "sequence": {
+    "length": 1234,
+    "filename": "example.fa"
+  },
+  "basePairs": {
+    "counts": { "A": 300, "T": 310, "G": 320, "C": 304 },
+    "percentages": { "A": 24.3, "T": 25.1, "G": 25.9, "C": 24.7 },
+    "gcContent": 50.6
+  },
+  "analysis": {
+    // Additional analysis results based on options
+  }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="api-endpoint">
+                        <div class="endpoint-method post">POST</div>
+                        <div class="endpoint-path">/api/v1/base-pairs</div>
+                        <div class="endpoint-description">
+                            <p>Analyze base pair composition of a DNA sequence</p>
+                            <h4>Request</h4>
+                            <div class="code-block">
+                                <pre><code>{
+  "sequence": "ATGCATGCATGC"
+}</code></pre>
+                            </div>
+                            <h4>Response</h4>
+                            <div class="code-block">
+                                <pre><code>{
+  "counts": { "A": 3, "T": 3, "G": 3, "C": 3 },
+  "percentages": { "A": 25, "T": 25, "G": 25, "C": 25 },
+  "gcContent": 50
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2>Python Client Example</h2>
+                    <p>Here's a simple Python example to interact with the DNAnalyzer API:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-label">Python</span>
+                            <button class="copy-button">Copy</button>
+                        </div>
+                        <pre><code>import requests
 
-            <div class="docs-footer">
+# API base URL
+BASE_URL = "http://localhost:8080/api/v1"
+
+# Check server status
+response = requests.get(f"{BASE_URL}/status")
+print("Server status:", response.json())
+
+# Analyze a sequence
+with open("sequence.fa", "rb") as f:
+    files = {"dnaFile": f}
+    options = {
+        "sequence-length": True,
+        "gc-content": True,
+        "base-composition": True,
+        "start-codons": True,
+        "stop-codons": True
+    }
+    data = {"options": json.dumps(options)}
+    response = requests.post(f"{BASE_URL}/analyze", files=files, data=data)
+    
+    # Print results
+    result = response.json()
+    print(f"Sequence length: {result['sequence']['length']}")
+    print(f"GC content: {result['basePairs']['gcContent']}%")</code></pre>
+                    </div>
+                </section>
+                
+                <!-- FAQ Section -->
+                <section id="faq" class="doc-section">
+                    <h1>Frequently Asked Questions</h1>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is my DNA data secure when using DNAnalyzer?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, DNAnalyzer is designed with privacy as a fundamental principle. All processing occurs locally on your device, and your DNA sequence data never leaves your system. In web mode, analysis runs directly in your browser, and in server mode, it runs only on your local machine. We don't collect, store, or transmit any of your sequence data.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What file formats does DNAnalyzer support?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>DNAnalyzer supports the following file formats:</p>
+                            <ul>
+                                <li>FASTA (.fa, .fasta)</li>
+                                <li>FASTQ (.fastq)</li>
+                                <li>Plain text (.txt) containing DNA sequences</li>
+                            </ul>
+                            <p>The sequences should contain only A, T, G, C, and N (unknown) nucleotides. Other characters will be treated as unknown bases.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How large of a sequence can DNAnalyzer handle?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The size limitations depend on the mode of operation:</p>
+                            <ul>
+                                <li><strong>Web Interface:</strong> Up to around 5MB sequence files, depending on your browser and device memory</li>
+                                <li><strong>Local Server:</strong> Can handle much larger sequences, typically up to several hundred MB</li>
+                            </ul>
+                            <p>For very large genomes (e.g., human genome), we recommend using the local server installation with a machine that has at least 8GB of RAM.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can DNAnalyzer analyze my 23andMe or Ancestry DNA data?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Not directly in the current version. DNAnalyzer is designed to work with full DNA sequences rather than SNP genotype data from consumer genetics services. However, we're developing a feature to support genotype data analysis in an upcoming version.</p>
+                            <p>If you have raw data from these services, you would need to convert it to a suitable format before using it with DNAnalyzer.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is DNAnalyzer open source?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, DNAnalyzer is completely open source under the MIT License. You can view, modify, and contribute to the code on our <a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub repository</a>.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Community Section -->
+                <section id="community" class="doc-section">
+                    <h1>Community & Support</h1>
+                    <p>DNAnalyzer has an active community of users and developers. Here's how you can get involved and find support.</p>
+                    
+                    <h2>Getting Help</h2>
+                    <p>If you need assistance with DNAnalyzer, there are several resources available:</p>
+                    
+                    <div class="community-resources">
+                        <div class="resource-card">
+                            <i class="fab fa-discord"></i>
+                            <h3>Discord Community</h3>
+                            <p>Join our Discord server for real-time assistance and discussions about DNAnalyzer.</p>
+                            <a href="https://discord.gg/xNpujz49gj" class="btn btn-secondary btn-sm">Join Discord</a>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <i class="fab fa-github"></i>
+                            <h3>GitHub Issues</h3>
+                            <p>Report bugs or request features through our GitHub issue tracker.</p>
+                            <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues" class="btn btn-secondary btn-sm">GitHub Issues</a>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <i class="fas fa-book"></i>
+                            <h3>Documentation</h3>
+                            <p>Browse comprehensive guides and tutorials in our documentation.</p>
+                            <a href="docs.html" class="btn btn-secondary btn-sm">View Docs</a>
+                        </div>
+                    </div>
+                    
+                    <h2>Contributing</h2>
+                    <p>DNAnalyzer is an open-source project, and we welcome contributions from the community. There are many ways to contribute:</p>
+                    
+                    <ul>
+                        <li><strong>Code Contributions:</strong> Help improve DNAnalyzer by fixing bugs or adding new features</li>
+                        <li><strong>Documentation:</strong> Improve our guides, tutorials, and API documentation</li>
+                        <li><strong>Testing:</strong> Test DNAnalyzer and report issues or suggest improvements</li>
+                        <li><strong>Translations:</strong> Help translate DNAnalyzer into different languages</li>
+                    </ul>
+                    
+                    <p>To get started with contributing, please read our <a href="https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/CONTRIBUTING.md">contribution guidelines</a>.</p>
+                    
+                    <div class="info-box">
+                        <h3>Code of Conduct</h3>
+                        <p>We're committed to providing a welcoming and inclusive environment for all contributors. Please read and follow our <a href="https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning models for accurate, on-device genomic analysis.</p>
+                    
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://discord.gg/xNpujz49gj" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
                 <div class="footer-nav">
-                    <a href="#" class="prev-link" style="visibility: hidden;">
-                        <i class="fas fa-arrow-left"></i> Previous
-                    </a>
-                    <a href="installation.html" class="next-link">
-                        Next: Installation <i class="fas fa-arrow-right"></i>
-                    </a>
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="../features/features.html">Features</a></li>
+                        <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
+                        <li><a href="../server/server.html">Server</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                    </ul>
                 </div>
-                <div class="last-updated">
-                    Last updated: February 25, 2025
+                
+                <div class="footer-nav">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="getting-started.md">Getting Started</a></li>
+                        <li><a href="citations.md">Citations</a></li>
+                        <li><a href="research/genes.md">Gene Research</a></li>
+                        <li><a href="samples/cli-arguments-examples.md">CLI Examples</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
+                        <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
+                        <li><a href="contributing/CONTRIBUTING.md">Contributing</a></li>
+                        <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>DNAnalyzer</h3>
-                <p>A powerful tool for DNA sequence analysis.</p>
-                <div class="social-links">
-                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer"><i class="fab fa-github"></i></a>
-                    <a href="https://discord.gg/xNpujz49gj"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.
+                </div>
+                
+                <div class="footer-links">
+                    <a href="../LICENSE.md">License</a>
+                    <a href="../SECURITY.md">Security</a>
+                    <a href="../CITATION.cff">Citation</a>
                 </div>
             </div>
-            <div class="footer-section">
-                <h3>Documentation</h3>
-                <ul>
-                    <li><a href="installation.html">Installation</a></li>
-                    <li><a href="quickstart.html">Quick Start</a></li>
-                    <li><a href="api-reference.html">API Reference</a></li>
-                    <li><a href="contributing.html">Contributing</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Community</h3>
-                <ul>
-                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues">Issues</a></li>
-                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer/discussions">Discussions</a></li>
-                    <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script src="docs.js"></script>
 </body>
 </html>
