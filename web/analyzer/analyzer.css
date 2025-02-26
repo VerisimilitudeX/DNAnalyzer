@@ -1131,35 +1131,3 @@
         gap: var(--space-sm);
     }
 }
-
-/* Additional Genetic Testing and Batch Processing Styles */
-.genetic-testing-upload.drag-over,
-.batch-upload.drag-over {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-}
-
-.genetic-testing-upload .file-preview,
-.batch-upload .file-preview {
-    max-width: 100%;
-    width: 100%;
-}
-
-.file-count {
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: var(--space-xs);
-}
-
-/* Ancestry chart */
-.ancestry-chart {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
-}
-
-.ancestry-bar {
-    display: flex;
-    align-items: center;
-}

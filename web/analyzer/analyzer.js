@@ -166,13 +166,6 @@ function initTabs() {
             // Add active class to current tab
             this.classList.add('active');
             document.getElementById(tabId).classList.add('active');
-            
-            // Initialize drag and drop functionality for genetic testing and batch processing tabs
-            if (tabId === 'genetic-testing') {
-                initGeneticTestingDropzone();
-            } else if (tabId === 'batch-processing') {
-                initBatchProcessingDropzone();
-            }
         });
     });
 }
@@ -1226,67 +1219,101 @@ function initGeneticTesting() {
     const geneticAnalyzeBtn = document.getElementById('geneticAnalyzeBtn');
     const import23andmeBtn = document.getElementById('import23andme');
     const importAncestryBtn = document.getElementById('importAncestryDNA');
-    const geneticTestingUpload = document.querySelector('.genetic-testing-upload');
     
     // File input change event
-    if (geneticFileInput) {
-        geneticFileInput.addEventListener('change', function(e) {
-            if (e.target.files.length > 0) {
-                handleGeneticFileSelection(e.target.files[0]);
-            }
-        });
-    }
-    
-    // Analyze button click event
-    if (geneticAnalyzeBtn) {
-        geneticAnalyzeBtn.addEventListener('click', handleGeneticAnalysis);
-    }
-    
-    // Sample data import
-    if (import23andmeBtn) {
-        import23andmeBtn.addEventListener('click', () => importSampleData('23andme'));
-    }
-    
-    if (importAncestryBtn) {
-        importAncestryBtn.addEventListener('click', () => importSampleData('ancestrydna'));
-    }
-    
-    // Initialize dropzone
-    initGeneticTestingDropzone();
-}
-
-/**
- * Initialize drag and drop functionality for genetic testing
- */
-function initGeneticTestingDropzone() {
-    const geneticTestingUpload = document.querySelector('.genetic-testing-upload');
-    const geneticFileInput = document.getElementById('geneticFileInput');
-    
-    if (!geneticTestingUpload || !geneticFileInput) return;
-    
-    // Handle click on upload area
-    geneticTestingUpload.addEventListener('click', function() {
-        geneticFileInput.click();
-    });
-    
-    // Handle drag and drop events
-    geneticTestingUpload.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        geneticTestingUpload.classList.add('drag-over');
-    });
-    
-    geneticTestingUpload.addEventListener('dragleave', function() {
-        geneticTestingUpload.classList.remove('drag-over');
-    });
-    
-    geneticTestingUpload.addEventListener('drop', function(e) {
-        e.preventDefault();
-        geneticTestingUpload.classList.remove('drag-over');
-        
-        if (e.dataTransfer.files.length > 0) {
-            handleGeneticFileSelection(e.dataTransfer.files[0]);
+    geneticFileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            handleGeneticFileSelection(e.target.files[0]);
         }
     });
+    
+    // Analyze button click event
+    geneticAnalyzeBtn.addEventListener('click', handleGeneticAnalysis);
+    
+    // Sample data import
+    import23andmeBtn.addEventListener('click', () => importSampleData('23andme'));
+    importAncestryBtn.addEventListener('click', () => importSampleData('ancestrydna'));
+    
+    // Function to handle file selection
+    function handleGeneticFileSelection(file) {
+        window.selectedGeneticFile = file;
+        geneticAnalyzeBtn.disabled = false;
+        showNotification(`Genetic data "${file.name}" ready for analysis.`, 'success');
+    }
+    
+    // Function to handle analysis
+    function handleGeneticAnalysis() {
+        if (!window.selectedGeneticFile) {
+            showNotification('Please upload genetic data first.', 'error');
+            return;
+        }
+        
+        const options = getSelectedGeneticOptions();
+        
+        // Show loading state
+        geneticAnalyzeBtn.disabled = true;
+        geneticAnalyzeBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Analyzing...';
+        
+        const geneticResultsSection = document.getElementById('geneticResultsSection');
+        geneticResultsSection.style.display = 'block';
+        const geneticResultsContent = document.getElementById('geneticResultsContent');
+        geneticResultsContent.innerHTML = `
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Analyzing genetic data...</p>
+            </div>
+        `;
+        
+        // Perform analysis (placeholder)
+        setTimeout(() => {
+            const results = {
+                options: options,
+                snps: 12345,
+                diseases: 10,
+                ancestry: 'European 80%, Asian 20%'
+            };
+            displayGeneticResults(results);
+            
+            geneticAnalyzeBtn.disabled = false;
+            geneticAnalyzeBtn.innerHTML = '<i class="fas fa-play"></i> Start Genetic Analysis';
+            showNotification('Genetic analysis completed!', 'success');
+        }, 2000);
+    }
+    
+    // Function to get selected options
+    function getSelectedGeneticOptions() {
+        const checkboxes = document.querySelectorAll('input[name="genetic-option"]:checked');
+        return Array.from(checkboxes).map(cb => cb.value);
+    }
+    
+    // Function to display results
+    function displayGeneticResults(results) {
+        let html = '<ul>';
+        html += `<li>SNPs Analyzed: ${results.snps}</li>`;
+        html += `<li>Disease Predispositions: ${results.diseases}</li>`;
+        html += `<li>Ancestry Composition: ${results.ancestry}</li>`;
+        html += '</ul>';
+        
+        document.getElementById('geneticResultsContent').innerHTML = html;
+    }
+    
+    // Function to import sample data
+    function importSampleData(type) {
+        let sampleData = '';
+        let fileName = '';
+        
+        if (type === '23andme') {
+            sampleData = '# This is a sample 23andMe data file...\nrs12345 A A\nrs67890 C T';
+            fileName = '23andme_sample.txt';
+        } else if (type === 'ancestrydna') {
+            sampleData = 'Sample ID,RSID,Chromosome,Position,Allele1,Allele2\nSample1,rs12345,1,12345,A,A\nSample1,rs67890,2,67890,C,T';
+            fileName = 'ancestrydna_sample.csv';
+        }
+        
+        const blob = new Blob([sampleData], { type: 'text/plain' });
+        const file = new File([blob], fileName, { type: 'text/plain' });
+        handleGeneticFileSelection(file);
+    }
 }
 
 /**
@@ -1297,214 +1324,74 @@ function initBatchProcessing() {
     const batchProcessBtn = document.getElementById('batchProcessBtn');
     
     // File input change event
-    if (batchFileInput) {
-        batchFileInput.addEventListener('change', function(e) {
-            if (e.target.files.length > 0) {
-                handleBatchFileSelection(e.target.files);
-            }
-        });
-    }
-    
-    // Analyze button click event
-    if (batchProcessBtn) {
-        batchProcessBtn.addEventListener('click', handleBatchProcessing);
-    }
-    
-    // Initialize dropzone
-    initBatchProcessingDropzone();
-}
-
-/**
- * Initialize drag and drop functionality for batch processing
- */
-function initBatchProcessingDropzone() {
-    const batchUpload = document.querySelector('.batch-upload');
-    const batchFileInput = document.getElementById('batchFileInput');
-    
-    if (!batchUpload || !batchFileInput) return;
-    
-    // Handle click on upload area
-    batchUpload.addEventListener('click', function() {
-        batchFileInput.click();
-    });
-    
-    // Handle drag and drop events
-    batchUpload.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        batchUpload.classList.add('drag-over');
-    });
-    
-    batchUpload.addEventListener('dragleave', function() {
-        batchUpload.classList.remove('drag-over');
-    });
-    
-    batchUpload.addEventListener('drop', function(e) {
-        e.preventDefault();
-        batchUpload.classList.remove('drag-over');
-        
-        if (e.dataTransfer.files.length > 0) {
-            handleBatchFileSelection(e.dataTransfer.files);
+    batchFileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            handleBatchFileSelection(e.target.files);
         }
     });
-}
-
-/**
- * Handle genetic file selection
- * @param {File} file - The selected file
- */
-function handleGeneticFileSelection(file) {
-    // Check if file type is supported
-    const validExtensions = ['.txt', '.csv'];
-    const fileName = file.name.toLowerCase();
-    const isValid = validExtensions.some(ext => fileName.endsWith(ext));
     
-    if (!isValid) {
-        showNotification('Unsupported file format. Please upload a TXT or CSV file.', 'error');
-        return;
+    // Analyze button click event
+    batchProcessBtn.addEventListener('click', handleBatchProcessing);
+    
+    // Function to handle file selection
+    function handleBatchFileSelection(files) {
+        window.selectedBatchFiles = files;
+        batchProcessBtn.disabled = false;
+        showNotification(`${files.length} files ready for batch processing.`, 'success');
     }
     
-    // Store file in global state
-    window.selectedGeneticFile = file;
-    
-    // Update UI
-    const uploadArea = document.querySelector('.genetic-testing-upload');
-    uploadArea.innerHTML = `
-        <div class="file-preview">
-            <i class="fas fa-file-alt file-icon"></i>
-            <div class="file-info">
-                <div class="file-name">${file.name}</div>
-                <div class="file-size">${formatFileSize(file.size)}</div>
+    // Function to handle batch processing
+    function handleBatchProcessing() {
+        if (!window.selectedBatchFiles || window.selectedBatchFiles.length === 0) {
+            showNotification('Please upload files for batch processing.', 'error');
+            return;
+        }
+        
+        const options = getSelectedBatchOptions();
+        
+        // Show loading state
+        batchProcessBtn.disabled = true;
+        batchProcessBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Processing...';
+        
+        const batchResultsSection = document.getElementById('batchResultsSection');
+        batchResultsSection.style.display = 'block';
+        const batchResultsContent = document.getElementById('batchResultsContent');
+        batchResultsContent.innerHTML = `
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Processing files...</p>
             </div>
-            <button class="file-remove" id="removeGeneticFileBtn">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    `;
-    
-    // Add event listener to remove button
-    document.getElementById('removeGeneticFileBtn').addEventListener('click', function(e) {
-        e.stopPropagation();
-        resetGeneticFileUpload();
-    });
-    
-    // Enable analyze button
-    document.getElementById('geneticAnalyzeBtn').disabled = false;
-    
-    showNotification(`File "${file.name}" ready for genetic analysis.`, 'success');
-}
-
-/**
- * Reset genetic file upload area
- */
-function resetGeneticFileUpload() {
-    const uploadArea = document.querySelector('.genetic-testing-upload');
-    const fileInput = document.getElementById('geneticFileInput');
-    
-    // Clear the file input
-    fileInput.value = '';
-    
-    // Reset global state
-    window.selectedGeneticFile = null;
-    
-    // Reset UI
-    uploadArea.innerHTML = `
-        <i class="fas fa-dna"></i>
-        <h3>Upload Genetic Testing Data</h3>
-        <p>Upload your genetic testing data file (e.g., from 23andMe, AncestryDNA)</p>
-        <span class="upload-formats">Supported formats: .txt, .csv</span>
-        <div class="sample-data-options">
-            <button id="import23andme" class="sample-btn">Import 23andMe Sample</button>
-            <button id="importAncestryDNA" class="sample-btn">Import AncestryDNA Sample</button>
-        </div>
-    `;
-    
-    // Re-add event listeners to sample buttons
-    document.getElementById('import23andme').addEventListener('click', () => importSampleData('23andme'));
-    document.getElementById('importAncestryDNA').addEventListener('click', () => importSampleData('ancestrydna'));
-    
-    // Disable analyze button
-    document.getElementById('geneticAnalyzeBtn').disabled = true;
-}
-
-/**
- * Handle batch file selection
- * @param {FileList} files - The selected files
- */
-function handleBatchFileSelection(files) {
-    // Store files in global state
-    window.selectedBatchFiles = files;
-    
-    // Update UI
-    const uploadArea = document.querySelector('.batch-upload');
-    
-    let fileList = '';
-    for (let i = 0; i < Math.min(files.length, 5); i++) {
-        fileList += `<div class="file-name">${files[i].name} (${formatFileSize(files[i].size)})</div>`;
+        `;
+        
+        // Simulate processing
+        setTimeout(() => {
+            const results = Array.from(window.selectedBatchFiles).map(file => ({
+                name: file.name,
+                length: 1234,
+                gcContent: '50.6%'
+            }));
+            displayBatchResults(results);
+            
+            batchProcessBtn.disabled = false;
+            batchProcessBtn.innerHTML = '<i class="fas fa-tasks"></i> Start Batch Processing';
+            showNotification('Batch processing completed!', 'success');
+        }, 3000);
     }
     
-    if (files.length > 5) {
-        fileList += `<div class="file-name">...and ${files.length - 5} more files</div>`;
+    // Function to get selected options
+    function getSelectedBatchOptions() {
+        const checkboxes = document.querySelectorAll('input[name="batch-option"]:checked');
+        return Array.from(checkboxes).map(cb => cb.value);
     }
     
-    uploadArea.innerHTML = `
-        <div class="file-preview">
-            <i class="fas fa-file-alt file-icon"></i>
-            <div class="file-info">
-                <div class="file-count">${files.length} files selected</div>
-                ${fileList}
-            </div>
-            <button class="file-remove" id="removeBatchFilesBtn">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    `;
-    
-    // Add event listener to remove button
-    document.getElementById('removeBatchFilesBtn').addEventListener('click', function(e) {
-        e.stopPropagation();
-        resetBatchFileUpload();
-    });
-    
-    // Enable process button
-    document.getElementById('batchProcessBtn').disabled = false;
-    
-    showNotification(`${files.length} files selected for batch processing.`, 'success');
-}
-
-/**
- * Reset batch file upload area
- */
-function resetBatchFileUpload() {
-    const uploadArea = document.querySelector('.batch-upload');
-    const fileInput = document.getElementById('batchFileInput');
-    
-    // Clear the file input
-    fileInput.value = '';
-    
-    // Reset global state
-    window.selectedBatchFiles = null;
-    
-    // Reset UI
-    uploadArea.innerHTML = `
-        <i class="fas fa-file-upload"></i>
-        <h3>Upload Multiple DNA Sequence Files</h3>
-        <p>Drag and drop multiple sequence files here or click to browse</p>
-        <span class="upload-formats">Supported formats: .fa, .fasta, .fastq, .txt</span>
-    `;
-    
-    // Disable process button
-    document.getElementById('batchProcessBtn').disabled = true;
-}
-
-/**
- * Handle genetic analysis
- */
-function handleGeneticAnalysis() {
-    if (!window.selectedGeneticFile) {
-        showNotification('Please upload a genetic data file first.', 'error');
-        return;
+    // Function to display results
+    function displayBatchResults(results) {
+        let html = '<ul>';
+        results.forEach(result => {
+            html += `<li>${result.name}: Length=${result.length}, GC=${result.gcContent}</li>`;
+        });
+        html += '</ul>';
+        
+        document.getElementById('batchResultsContent').innerHTML = html;
     }
-    
-    const options = getSelectedGeneticOptions();
-    
-    // Show loading state
+}
