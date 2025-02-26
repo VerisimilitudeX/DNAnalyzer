@@ -1308,3 +1308,90 @@ function initGeneticTesting() {
         } else if (type === 'ancestrydna') {
             sampleData = 'Sample ID,RSID,Chromosome,Position,Allele1,Allele2\nSample1,rs12345,1,12345,A,A\nSample1,rs67890,2,67890,C,T';
             fileName = 'ancestrydna_sample.csv';
+        }
+        
+        const blob = new Blob([sampleData], { type: 'text/plain' });
+        const file = new File([blob], fileName, { type: 'text/plain' });
+        handleGeneticFileSelection(file);
+    }
+}
+
+/**
+ * Initialize Batch Processing Tab
+ */
+function initBatchProcessing() {
+    const batchFileInput = document.getElementById('batchFileInput');
+    const batchProcessBtn = document.getElementById('batchProcessBtn');
+    
+    // File input change event
+    batchFileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            handleBatchFileSelection(e.target.files);
+        }
+    });
+    
+    // Analyze button click event
+    batchProcessBtn.addEventListener('click', handleBatchProcessing);
+    
+    // Function to handle file selection
+    function handleBatchFileSelection(files) {
+        window.selectedBatchFiles = files;
+        batchProcessBtn.disabled = false;
+        showNotification(`${files.length} files ready for batch processing.`, 'success');
+    }
+    
+    // Function to handle batch processing
+    function handleBatchProcessing() {
+        if (!window.selectedBatchFiles || window.selectedBatchFiles.length === 0) {
+            showNotification('Please upload files for batch processing.', 'error');
+            return;
+        }
+        
+        const options = getSelectedBatchOptions();
+        
+        // Show loading state
+        batchProcessBtn.disabled = true;
+        batchProcessBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Processing...';
+        
+        const batchResultsSection = document.getElementById('batchResultsSection');
+        batchResultsSection.style.display = 'block';
+        const batchResultsContent = document.getElementById('batchResultsContent');
+        batchResultsContent.innerHTML = `
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Processing files...</p>
+            </div>
+        `;
+        
+        // Simulate processing
+        setTimeout(() => {
+            const results = Array.from(window.selectedBatchFiles).map(file => ({
+                name: file.name,
+                length: 1234,
+                gcContent: '50.6%'
+            }));
+            displayBatchResults(results);
+            
+            batchProcessBtn.disabled = false;
+            batchProcessBtn.innerHTML = '<i class="fas fa-tasks"></i> Start Batch Processing';
+            showNotification('Batch processing completed!', 'success');
+        }, 3000);
+    }
+    
+    // Function to get selected options
+    function getSelectedBatchOptions() {
+        const checkboxes = document.querySelectorAll('input[name="batch-option"]:checked');
+        return Array.from(checkboxes).map(cb => cb.value);
+    }
+    
+    // Function to display results
+    function displayBatchResults(results) {
+        let html = '<ul>';
+        results.forEach(result => {
+            html += `<li>${result.name}: Length=${result.length}, GC=${result.gcContent}</li>`;
+        });
+        html += '</ul>';
+        
+        document.getElementById('batchResultsContent').innerHTML = html;
+    }
+}
