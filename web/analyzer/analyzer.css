@@ -292,6 +292,172 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Batch upload */
+.batch-upload {
+    margin-bottom: var(--space-xl);
+}
+
+.batch-files {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+}
+
+.batch-file {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+}
+
+.batch-status {
+    margin-left: auto;
+    font-size: 0.9rem;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.batch-status.queued {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.batch-status.processing {
+    background: rgba(0, 164, 239, 0.2);
+    color: var(--blue);
+}
+
+.batch-status.completed {
+    background: rgba(40, 167, 69, 0.2);
+    color: var(--success);
+}
+
+.batch-status.error {
+    background: rgba(220, 53, 69, 0.2);
+    color: var(--error);
+}
+
+.batch-progress {
+    margin-top: var(--space-lg);
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: var(--space-sm);
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--blue);
+    transition: width 0.3s ease;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Genetic testing forms */
+.genetic-testing-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.form-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-section h3 {
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--white);
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+    border-color: var(--blue);
+    outline: none;
+}
+
+.form-select {
+    height: 42px;
+}
+
+.testing-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.test-option {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.test-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+}
+
+.test-option.selected {
+    border-color: var(--blue);
+    background: rgba(0, 164, 239, 0.1);
+}
+
+.test-option-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.test-option-header i {
+    color: var(--blue);
+}
+
+.test-option p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 /* File preview */
 .file-preview {
     display: flex;
@@ -587,6 +753,10 @@
     transition: all var(--transition-normal);
 }
 
+.base-segment:hover {
+    filter: brightness(1.1);
+}
+
 .base-a { background-color: var(--magenta); }
 .base-t { background-color: var(--blue); }
 .base-g { background-color: var(--orange); }
@@ -653,6 +823,555 @@
 .sequence-cell {
     font-family: var(--font-mono);
     font-size: 0.85rem;
+}
+
+/* Sequence Visualization */
+.sequence-visualization {
+    margin-bottom: var(--space-xl);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    overflow: hidden;
+}
+
+.sequence-visualization h3 {
+    margin-bottom: var(--space-md);
+}
+
+.sequence-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(24px, 1fr));
+    gap: 2px;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.base-block {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: all var(--transition-fast);
+}
+
+.base-block:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.sequence-zoom {
+    margin-top: var(--space-md);
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.zoom-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--white);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.zoom-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.sequence-position {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-top: var(--space-sm);
+}
+
+/* Circular Visualization */
+.circular-genome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--space-lg) 0;
+    position: relative;
+}
+
+.circular-genome svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.genome-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+/* Codon Distribution */
+.codon-distribution {
+    margin-bottom: var(--space-xl);
+}
+
+.codon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.codon-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.codon-box-name {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: var(--space-xs);
+}
+
+.codon-count {
+    font-size: 0.85rem;
+    color: var(--blue);
+}
+
+.codon-amino {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 3D Protein Structure */
+.protein-structure {
+    width: 100%;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.structure-controls {
+    position: absolute;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.structure-control-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.structure-control-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Genetic Health Risk Display */
+.health-risk-section {
+    margin-bottom: var(--space-xl);
+}
+
+.risk-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.risk-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+}
+
+.risk-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.risk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.risk-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.risk-badge {
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.risk-badge.low {
+    background: rgba(40, 167, 69, 0.2);
+    color: var(--success);
+}
+
+.risk-badge.moderate {
+    background: rgba(255, 193, 7, 0.2);
+    color: var(--warning);
+}
+
+.risk-badge.elevated {
+    background: rgba(255, 105, 0, 0.2);
+    color: var(--orange);
+}
+
+.risk-badge.high {
+    background: rgba(220, 53, 69, 0.2);
+    color: var(--error);
+}
+
+.risk-genes {
+    margin-top: var(--space-md);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.risk-genes span {
+    display: inline-block;
+    font-family: var(--font-mono);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0 var(--space-xs);
+    border-radius: var(--radius-sm);
+    margin-right: var(--space-xs);
+}
+
+.risk-description {
+    margin-top: var(--space-md);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+}
+
+/* Ancestry Composition */
+.ancestry-map {
+    width: 100%;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.ancestry-chart {
+    display: flex;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.ancestry-donut {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.ancestry-categories {
+    flex: 1;
+    margin-left: var(--space-xl);
+}
+
+.ancestry-category {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.ancestry-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    margin-right: var(--space-sm);
+}
+
+.ancestry-label {
+    flex: 1;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.ancestry-percent {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+/* Trait Analysis */
+.traits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.trait-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trait-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.trait-icon {
+    font-size: 1.5rem;
+    color: var(--blue);
+}
+
+.trait-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+.trait-value {
+    margin-top: var(--space-sm);
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.trait-probability {
+    display: flex;
+    align-items: center;
+    margin-top: var(--space-md);
+}
+
+.probability-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-right: var(--space-sm);
+}
+
+.probability-fill {
+    height: 100%;
+    background: var(--blue);
+}
+
+.probability-value {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Batch results */
+.batch-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.batch-result-item {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-fast);
+}
+
+.batch-result-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.batch-result-icon {
+    font-size: 1.3rem;
+    color: var(--blue);
+    margin-right: var(--space-md);
+}
+
+.batch-result-details {
+    flex: 1;
+}
+
+.batch-result-name {
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: var(--space-xs);
+}
+
+.batch-result-stats {
+    display: flex;
+    gap: var(--space-lg);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.batch-actions {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.batch-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.batch-action-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+}
+
+/* Compare view */
+.compare-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.compare-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.compare-files {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.compare-file {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+}
+
+.compare-file.active {
+    background: rgba(0, 164, 239, 0.15);
+    color: var(--blue);
+}
+
+.compare-table {
+    width: 100%;
+}
+
+.compare-table th {
+    text-align: left;
+    padding: var(--space-md);
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--blue);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.compare-table th:first-child {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.compare-table td {
+    padding: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.compare-table tr:nth-child(odd) td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Nucleotide Distribution Hexplot */
+.nucleotide-hexplot {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-lg) 0;
+}
+
+/* Histogram */
+.histogram-container {
+    margin: var(--space-lg) 0;
+}
+
+.histogram-bars {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    gap: 2px;
+}
+
+.histogram-bar {
+    flex: 1;
+    background: var(--blue);
+    min-width: 4px;
+    border-radius: 2px 2px 0 0;
+    transition: all var(--transition-fast);
+}
+
+.histogram-bar:hover {
+    background: var(--magenta);
+}
+
+.histogram-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-xs);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Download options */
@@ -927,6 +1646,21 @@
     .export-options {
         grid-template-columns: 1fr;
     }
+    
+    .genetic-testing-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .ancestry-chart {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .ancestry-categories {
+        margin-left: 0;
+        margin-top: var(--space-lg);
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -936,6 +1670,18 @@
     
     .analyzer-tabs {
         flex-direction: column;
+    }
+    
+    .testing-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .risk-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .traits-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -960,5 +1706,10 @@
     .notification {
         min-width: auto;
         max-width: 90%;
+    }
+    
+    .batch-result-stats {
+        flex-direction: column;
+        gap: var(--space-xs);
     }
 }
