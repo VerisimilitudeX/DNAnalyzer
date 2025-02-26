@@ -1,15 +1,60 @@
-// Server page specific functionality
+/*
+ * DNAnalyzer Server Page JavaScript
+ * Copyright © 2025 Piyush Acharya
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile navigation toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (mobileToggle && navLinks) {
+        mobileToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            mobileToggle.querySelector('i').classList.toggle('fa-bars');
+            mobileToggle.querySelector('i').classList.toggle('fa-times');
+        });
+    }
+
+    // Navbar scroll behavior
+    const navbar = document.getElementById('navbar');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Server status check
     const serverStatusElement = document.getElementById('server-status');
     let statusCheckInterval;
     let retryCount = 0;
     const MAX_RETRIES = 3;
-    const SERVER_PORT = 8081; // Updated to match Spring Boot config
+    const SERVER_PORT = 8080;
     
     // Copy commands functionality
-    function copyToClipboardWithFeedback(command, buttonIndex) {
-        navigator.clipboard.writeText(command).then(() => {
-            const button = document.getElementsByClassName('copy-button')[buttonIndex];
+    window.copyCloneCommand = function() {
+        copyToClipboard('git clone https://github.com/VerisimilitudeX/DNAnalyzer.git && cd DNAnalyzer', 0);
+    };
+    
+    window.copyChmodCommand = function() {
+        copyToClipboard('chmod +x ./gradlew', 1);
+    };
+    
+    window.copyBuildCommand = function() {
+        copyToClipboard('./gradlew clean bootJar', 2);
+    };
+    
+    window.copyRunCommand = function() {
+        copyToClipboard('java -jar build/libs/DNAnalyzer.jar', 3);
+    };
+    
+    function copyToClipboard(text, buttonIndex) {
+        navigator.clipboard.writeText(text).then(() => {
+            const buttons = document.querySelectorAll('.copy-button');
+            const button = buttons[buttonIndex];
             button.textContent = 'Copied!';
             button.classList.add('success');
             setTimeout(() => {
@@ -17,8 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.classList.remove('success');
             }, 2000);
         }).catch(() => {
-            const button = document.getElementsByClassName('copy-button')[buttonIndex];
-            button.textContent = 'Failed!';
+            const buttons = document.querySelectorAll('.copy-button');
+            const button = buttons[buttonIndex];
+            button.textContent = 'Failed';
             button.classList.add('error');
             setTimeout(() => {
                 button.textContent = 'Copy';
@@ -27,11 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    window.copyCloneCommand = () => copyToClipboardWithFeedback('git clone https://github.com/VerisimilitudeX/DNAnalyzer.git && cd DNAnalyzer', 0);
-    window.copyChmodCommand = () => copyToClipboardWithFeedback('chmod +x ./gradlew', 1);
-    window.copyBuildCommand = () => copyToClipboardWithFeedback('./gradlew clean bootJar', 2);
-    window.copyRunCommand = () => copyToClipboardWithFeedback('java -jar build/libs/DNAnalyzer.jar', 3);
-
     // Server status check with retry logic
     async function checkServerStatus(isInitialCheck = false) {
         try {
@@ -39,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const timeoutId = setTimeout(() => controller.abort(), 5000);
 
             // Try the API status endpoint first
-            const response = await fetch(`http://localhost:${SERVER_PORT}/api/v1/status`, { // Updated endpoint path
+            const response = await fetch(`http://localhost:${SERVER_PORT}/api/v1/status`, {
                 method: 'GET',
                 signal: controller.signal,
                 headers: {
@@ -125,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showTroubleshooting() {
-        const troubleshootingSection = document.querySelector('.docs-section');
+        const troubleshootingSection = document.getElementById('troubleshooting');
         if (troubleshootingSection) {
             troubleshootingSection.classList.add('active');
             troubleshootingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -160,4 +201,31 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(statusCheckInterval);
         }
     });
+
+    // Add animated appearance for steps
+    const animateSteps = () => {
+        const stepCards = document.querySelectorAll('.step-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        stepCards.forEach((card, index) => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            card.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+    };
+
+    // Initialize animations
+    setTimeout(animateSteps, 500);
 });

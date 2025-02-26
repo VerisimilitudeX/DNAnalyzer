@@ -3,179 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Setup - DNAnalyzer</title>
+    <title>Server - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="server.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 <body>
-    <div class="background-blur"></div>
-    <div class="gradient-sphere"></div>
-    <div class="gradient-sphere secondary"></div>
-    
-    <header class="floating-header">
-        <nav class="floating-nav">
-            <a href="../index.html" class="nav-link">
-                <img src="../assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="nav-logo">
+    <!-- Background effects -->
+    <div class="bg-gradient">
+        <div class="bg-blob bg-blob-1"></div>
+        <div class="bg-blob bg-blob-2"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+                <span class="logo-text">DNAnalyzer</span>
             </a>
-            <a href="../about/about.html" class="nav-link">About</a>
-            <a href="../features/features.html" class="nav-link">Features</a>
-            <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
-            <a href="server.html" class="nav-link active">Server</a>
-            <a href="../docs/docs.html" class="nav-link">Docs</a>
-            <a href="../hiring/hiring.html" class="nav-link">Hiring</a>
-            <div class="right-links">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">GitHub</a>
-                <a href="https://discord.gg/xNpujz49gj" class="glass-button">Discord</a>
+            
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../features/features.html">Features</a></li>
+                <li><a href="../analyzer/analyzer.html">Analyzer</a></li>
+                <li><a href="server.html" class="active">Server</a></li>
+                <li><a href="../docs/docs.html">Docs</a></li>
+                <li><a href="../about/about.html">About</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
+                    <i class="fab fa-github btn-icon"></i> GitHub
+                </a>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="container">
+    <!-- Main Content -->
+    <main>
         <section class="hero">
-            <h1>Server Setup</h1>
-            <p>Get started with DNAnalyzer's local server deployment</p>
-        </section>
-
-        <section class="status-section">
-            <div class="status-grid">
-                <div class="status-card">
-                    <i class="fas fa-server status-icon"></i>
-                    <h3>Server Status</h3>
-                    <div id="server-status" class="status-value">Checking...</div>
-                    <p class="status-label">Local Server</p>
-                </div>
-                <div class="status-card">
-                    <i class="fas fa-memory status-icon"></i>
-                    <h3>System Requirements</h3>
-                    <div class="status-value">2GB+</div>
-                    <p class="status-label">Minimum RAM</p>
-                </div>
-                <div class="status-card">
-                    <i class="fas fa-code-branch status-icon"></i>
-                    <h3>Version</h3>
-                    <div class="status-value">Java 17+</div>
-                    <p class="status-label">Required Runtime</p>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-headings">
+                        <h1>DNAnalyzer <span>Server</span></h1>
+                        <p class="hero-subtitle">Set up and run your own DNAnalyzer server for local development and advanced genomic analysis</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="api-section">
-            <h2>Quick Start Guide</h2>
-            <div class="endpoint-list">
-                <div class="endpoint-card">
-                    <span class="endpoint-method method-get">Step 1</span>
-                    <div class="endpoint-url">
-                        git clone https://github.com/VerisimilitudeX/DNAnalyzer.git && cd DNAnalyzer
-                    </div>
-                    <p class="endpoint-description">Clone and navigate to the repository</p>
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Server Status</h2>
+                    <p>Check your local server installation status and requirements</p>
                 </div>
-
-                <div class="endpoint-card">
-                    <span class="endpoint-method method-post">Step 2</span>
-                    <div class="endpoint-url">
-                        chmod +x ./gradlew
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="card-title">Server Status</h3>
+                        <div id="server-status" class="status-value">Checking...</div>
+                        <p>Local Server</p>
                     </div>
-                    <p class="endpoint-description">Make the Gradle wrapper executable</p>
-                </div>
-
-                <div class="endpoint-card">
-                    <span class="endpoint-method method-post">Step 3</span>
-                    <div class="endpoint-url">
-                        ./gradlew clean bootJar
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-memory"></i>
+                        </div>
+                        <h3 class="card-title">System Requirements</h3>
+                        <div class="status-value">2GB+</div>
+                        <p>Minimum RAM</p>
                     </div>
-                    <p class="endpoint-description">Build the project (this may take a few minutes)</p>
-                </div>
-
-                <div class="endpoint-card">
-                    <span class="endpoint-method method-get">Step 4</span>
-                    <div class="endpoint-url">
-                        java -jar build/libs/DNAnalyzer.jar
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3 class="card-title">Version</h3>
+                        <div class="status-value">Java 17+</div>
+                        <p>Required Runtime</p>
                     </div>
-                    <p class="endpoint-description">Start the local server</p>
                 </div>
             </div>
         </section>
 
-        <section class="docs-section">
-            <h2>Troubleshooting</h2>
-            <div class="endpoint-list">
-                <div class="endpoint-card">
-                    <h3><i class="fas fa-network-wired"></i> Port Already in Use</h3>
-                    <p class="endpoint-description">
-                        If port 8080 is already in use, you may see an error like "Address already in use". To fix this:
-                    </p>
-                    <ul>
-                        <li>Close any other applications using port 8080</li>
-                        <li>Or modify the port in application.yml</li>
-                    </ul>
+        <section class="section section-bg-gradient">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Quick Start Guide</h2>
+                    <p>Follow these steps to set up your local DNAnalyzer server</p>
                 </div>
-
-                <div class="endpoint-card">
-                    <h3><i class="fab fa-java"></i> Java Version</h3>
-                    <p class="endpoint-description">
-                        If you see "UnsupportedClassVersionError", make sure you have Java 17+ installed:
-                    </p>
-                    <div class="endpoint-url">java -version</div>
+                
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h3>Clone the Repository</h3>
+                            <div class="code-block">
+                                <code>git clone https://github.com/VerisimilitudeX/DNAnalyzer.git && cd DNAnalyzer</code>
+                                <button class="copy-button" onclick="copyCloneCommand()">Copy</button>
+                            </div>
+                            <p>Clone the repository and navigate to the project directory</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h3>Setup Gradle</h3>
+                            <div class="code-block">
+                                <code>chmod +x ./gradlew</code>
+                                <button class="copy-button" onclick="copyChmodCommand()">Copy</button>
+                            </div>
+                            <p>Make the Gradle wrapper executable (Unix/macOS systems)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h3>Build the Project</h3>
+                            <div class="code-block">
+                                <code>./gradlew clean bootJar</code>
+                                <button class="copy-button" onclick="copyBuildCommand()">Copy</button>
+                            </div>
+                            <p>Build the project (this may take a few minutes on first run)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <h3>Start the Server</h3>
+                            <div class="code-block">
+                                <code>java -jar build/libs/DNAnalyzer.jar</code>
+                                <button class="copy-button" onclick="copyRunCommand()">Copy</button>
+                            </div>
+                            <p>Start the local server on port 8080</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="endpoint-card">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Build Failures</h3>
-                    <p class="endpoint-description">For build errors, try:</p>
-                    <ul>
-                        <li>Running './gradlew clean' first</li>
-                        <li>Checking your Java installation</li>
-                        <li>Ensuring you have write permissions in the directory</li>
-                    </ul>
+        <section class="section" id="troubleshooting">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Troubleshooting</h2>
+                    <p>Common issues and their solutions</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-magenta">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Port Already in Use</h3>
+                        <p>If port 8080 is already in use, you may see an error like "Address already in use". To fix this:</p>
+                        <ul>
+                            <li>Close any other applications using port 8080</li>
+                            <li>Or modify the port in application.yml to use a different port</li>
+                            <li>Alternatively, use the command line option to specify a different port</li>
+                        </ul>
+                        <div class="code-block">
+                            <code>java -jar build/libs/DNAnalyzer.jar --server.port=8090</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-blue">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Java Version Issues</h3>
+                        <p>If you see "UnsupportedClassVersionError", make sure you have Java 17+ installed:</p>
+                        <div class="code-block">
+                            <code>java -version</code>
+                        </div>
+                        <p>Download and install Java 17 or later if your version is outdated.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon feature-icon-orange">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Build Failures</h3>
+                        <p>If you encounter build errors, try these solutions:</p>
+                        <ul>
+                            <li>Run './gradlew clean' first to clear any cached files</li>
+                            <li>Make sure your Java installation is properly configured</li>
+                            <li>Ensure you have write permissions in the project directory</li>
+                            <li>Update Gradle wrapper if needed with './gradlew wrapper --gradle-version=7.5'</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-bg-dark">
+            <div class="container text-center">
+                <h2>Ready to Contribute?</h2>
+                <p class="mb-xl">Join our community and help improve DNAnalyzer's server capabilities.</p>
+                
+                <div class="hero-buttons" style="justify-content: center;">
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-primary">
+                        <i class="fab fa-github btn-icon"></i> Fork on GitHub
+                    </a>
+                    <a href="https://discord.gg/xNpujz49gj" class="btn btn-secondary">
+                        <i class="fab fa-discord btn-icon"></i> Join Discord
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer-content">
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h3>Product</h3>
-                <ul>
-                    <li><a href="../features/features.html">Features</a></li>
-                    <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
-                    <li><a href="../server/server.html">Server</a></li>
-                    <li><a href="../docs/docs.html">Documentation</a></li>
-                    <li><a href="../hiring/hiring.html">Hiring</a></li>
-                </ul>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning models for accurate, on-device genomic analysis.</p>
+                    
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://discord.gg/xNpujz49gj" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="../features/features.html">Features</a></li>
+                        <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
+                        <li><a href="server.html">Server</a></li>
+                        <li><a href="../docs/docs.html">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="../docs/getting-started.md">Getting Started</a></li>
+                        <li><a href="../docs/citations.md">Citations</a></li>
+                        <li><a href="../docs/research/genes.md">Gene Research</a></li>
+                        <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-nav">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
+                        <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
+                        <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
+                        <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="../docs/getting-started.md">Getting Started</a></li>
-                    <li><a href="../docs/citations.md">Citations</a></li>
-                    <li><a href="../docs/research/genes.md">Gene Research</a></li>
-                    <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
-                </ul>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.
+                </div>
+                
+                <div class="footer-links">
+                    <a href="../LICENSE.md">License</a>
+                    <a href="../SECURITY.md">Security</a>
+                    <a href="../CITATION.cff">Citation</a>
+                </div>
             </div>
-            <div class="footer-section">
-                <h3>Community</h3>
-                <ul>
-                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
-                    <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
-                    <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
-                    <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <ul>
-                    <li><a href="../LICENSE.md">License</a></li>
-                    <li><a href="../SECURITY.md">Security</a></li>
-                    <li><a href="../CITATION.cff">Citation</a></li>
-                    <li><a href="../humans.txt">Credits</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.</p>
         </div>
     </footer>
 

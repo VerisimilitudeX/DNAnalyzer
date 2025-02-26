@@ -170,8 +170,8 @@ function initStatsAnimation() {
     
     const statElements = {
         accuracy: { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
-        sequences: { elem: document.getElementById('statSequences'), target: '50', suffix: 'M+' },
-        users: { elem: document.getElementById('statUsers'), target: '10', suffix: 'K+' }
+        sequences: { elem: document.getElementById('statSequences'), target: '7', suffix: 'M+' },
+        users: { elem: document.getElementById('statUsers'), target: '46', suffix: '+' }
     };
     
     let animated = false;

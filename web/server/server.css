@@ -1,24 +1,120 @@
-.container {
-    max-width: 1200px;
-    margin: 6rem auto 2rem;
-    padding: 2rem;
+/* Server Page Custom Styles */
+
+/* Code blocks for server page */
+.code-block {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin: 1rem 0;
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    overflow-x: auto;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Hero Section */
-.hero {
-    text-align: center;
-    margin-bottom: 4rem;
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
+.copy-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.copy-button.success {
+    background: rgba(0, 200, 83, 0.2);
+    color: #00c853;
+}
+
+.copy-button.error {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
+/* Status Value styling */
+.status-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Status indicators */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.status-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.online .status-dot {
+    background: #00c853;
+    box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
+}
+
+.offline .status-dot {
+    background: #f44336;
+    box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+}
+
+.status-main {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.online .status-main {
+    color: #00c853;
+}
+
+.offline .status-main {
+    color: #f44336;
+}
+
+.status-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.5rem;
+}
+
+/* Troubleshooting section */
+#troubleshooting {
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+#troubleshooting.active {
+    animation: pulse 1s ease;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}5rem;
     margin-bottom: 1.5rem;
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
-.hero p {
+.server-hero-content p {
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
     max-width: 800px;
@@ -26,7 +122,7 @@
     line-height: 1.8;
 }
 
-/* Server Status Section */
+/* Status Cards Section */
 .status-section {
     margin: 4rem 0;
     padding: 2rem;
@@ -39,49 +135,100 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .status-card {
     background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 2rem;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
 .status-card:hover {
     transform: translateY(-5px);
-    border-color: var(--gradient-end);
-    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .status-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
-    color: var(--gradient-end);
+    background: linear-gradient(135deg, var(--magenta), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .status-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: var(--gradient-end);
+    color: var(--white);
 }
 
 .status-value {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .status-label {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    margin: 0;
 }
 
-/* API Key Section */
-.api-section {
+/* Status Indicators */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.status-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.online .status-dot {
+    background: #00c853;
+    box-shadow: 0 0 10px rgba(0, 200, 83, 0.5);
+}
+
+.offline .status-dot {
+    background: #f44336;
+    box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+}
+
+.status-main {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.online .status-main {
+    color: #00c853;
+}
+
+.offline .status-main {
+    color: #f44336;
+}
+
+.status-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.5rem;
+}
+
+/* Guide Section */
+.guide-section {
     margin: 4rem 0;
     padding: 2rem;
     background: rgba(0, 0, 0, 0.2);
@@ -89,188 +236,230 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.api-section h2 {
+.guide-section h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: var(--gradient-end);
-}
-
-.api-form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.1rem;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: white;
-    font-size: 1rem;
-    font-family: 'IBM Plex Mono', monospace;
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--gradient-start);
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
-}
-
-/* Documentation Section */
-.docs-section {
-    margin: 4rem 0;
-}
-
-.endpoint-list {
-    display: grid;
-    gap: 2rem;
-}
-
-.endpoint-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.endpoint-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gradient-end);
-    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
-}
-
-.endpoint-method {
+    background: linear-gradient(135deg, var(--magenta), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     display: inline-block;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
 }
 
-.method-get {
+.step-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.step-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--magenta), var(--blue));
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.step-command {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.8rem;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    overflow-x: auto;
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.copy-button.success {
     background: rgba(0, 200, 83, 0.2);
     color: #00c853;
 }
 
-.method-post {
-    background: rgba(0, 122, 255, 0.2);
-    color: #007bff;
+.copy-button.error {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
 }
 
-.endpoint-url {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
+.step-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Troubleshooting Section */
+.troubleshooting-section {
+    margin: 4rem 0;
+    opacity: 0.7;
+    transition: all 0.5s ease;
+}
+
+.troubleshooting-section.active {
+    opacity: 1;
+}
+
+.troubleshooting-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--magenta), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.issue-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.issue-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.issue-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.issue-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.3rem;
+    margin-top: 0;
     margin-bottom: 1rem;
-    padding: 1rem;
+}
+
+.issue-card h3 i {
+    color: var(--magenta);
+}
+
+.issue-card p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.issue-card ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.issue-card li {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+}
+
+.issue-command {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 1rem 0;
+    padding: 0.8rem;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 6px;
     overflow-x: auto;
 }
 
-.endpoint-description {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.endpoint-params {
-    margin-top: 1.5rem;
-}
-
-.param-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
-
-.param-table th,
-.param-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.param-table th {
-    color: var(--gradient-end);
-    font-weight: 600;
-}
-
-.param-required {
-    color: #dc3545;
-    font-weight: 600;
-}
-
-/* Response Section */
-.response-example {
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    font-family: 'IBM Plex Mono', monospace;
-    overflow-x: auto;
-}
-
-.response-example pre {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* Buttons */
-.submit-btn {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-}
-
-.submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
-}
-
 /* Responsive Design */
+@media screen and (max-width: 992px) {
+    .server-hero-content h1 {
+        font-size: 3rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .container {
         margin: 4rem 1rem 2rem;
         padding: 1rem;
     }
 
-    .hero h1 {
+    .server-hero-content h1 {
         font-size: 2.5rem;
+    }
+
+    .server-hero-content p {
+        font-size: 1.1rem;
     }
 
     .status-grid {
         grid-template-columns: 1fr;
     }
 
-    .endpoint-url {
-        font-size: 0.9rem;
+    .step-command {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .server-hero-content h1 {
+        font-size: 2rem;
     }
 
-    .param-table {
-        display: block;
-        overflow-x: auto;
+    .status-card {
+        padding: 1.5rem;
+    }
+
+    .step-card {
+        flex-direction: column;
+    }
+
+    .step-number {
+        margin-bottom: 0.5rem;
     }
 }
