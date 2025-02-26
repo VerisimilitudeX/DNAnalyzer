@@ -962,3 +962,172 @@
         max-width: 90%;
     }
 }
+
+/* Genetic Testing Styles */
+.genetic-testing-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xxl) var(--space-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-bottom: var(--space-xl);
+}
+
+.genetic-testing-upload:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--green);
+    transform: translateY(-2px);
+}
+
+.genetic-testing-upload i {
+    font-size: 3rem;
+    color: var(--green);
+    margin-bottom: var(--space-md);
+}
+
+.genetic-testing-upload h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--white);
+}
+
+.genetic-testing-upload p {
+    margin-bottom: var(--space-lg);
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 400px;
+}
+
+.genetic-testing-options {
+    margin-bottom: var(--space-xl);
+}
+
+.genetic-testing-options h3 {
+    margin-bottom: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+.genetic-analyze-btn {
+    width: 100%;
+    padding: var(--space-lg);
+    background-color: var(--green);
+    border-color: var(--green);
+}
+
+.genetic-analyze-btn:hover {
+    background-color: var(--success);
+    border-color: var(--success);
+}
+
+.genetic-testing-results {
+    margin-top: var(--space-xl);
+}
+
+.genetic-testing-results h3 {
+    margin-bottom: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+.sample-data-options {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.sample-btn {
+    padding: var(--space-md) var(--space-lg);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--white);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.sample-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Batch Processing Styles */
+.batch-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xxl) var(--space-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    margin-bottom: var(--space-xl);
+}
+
+.batch-upload:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--orange);
+    transform: translateY(-2px);
+}
+
+.batch-upload i {
+    font-size: 3rem;
+    color: var(--orange);
+    margin-bottom: var(--space-md);
+}
+
+.batch-upload h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--white);
+}
+
+.batch-upload p {
+    margin-bottom: var(--space-lg);
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 400px;
+}
+
+.batch-options {
+    margin-bottom: var(--space-xl);
+}
+
+.batch-options h3 {
+    margin-bottom: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+.batch-process-btn {
+    width: 100%;
+    padding: var(--space-lg);
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+.batch-process-btn:hover {
+    background-color: var(--warning);
+    border-color: var(--warning);
+}
+
+.batch-processing-results {
+    margin-top: var(--space-xl);
+}
+
+.batch-processing-results h3 {
+    margin-bottom: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .sample-data-options {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+}

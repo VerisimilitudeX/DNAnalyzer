@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check API status
     checkAPIStatus();
+    
+    // Initialize genetic testing tab
+    initGeneticTesting();
+    
+    // Initialize batch processing tab
+    initBatchProcessing();
 });
 
 /**
@@ -1204,3 +1210,101 @@ function showNotification(message, type = 'info', duration = 5000) {
         }, 300);
     }, duration);
 }
+
+/**
+ * Initialize Genetic Testing Tab
+ */
+function initGeneticTesting() {
+    const geneticFileInput = document.getElementById('geneticFileInput');
+    const geneticAnalyzeBtn = document.getElementById('geneticAnalyzeBtn');
+    const import23andmeBtn = document.getElementById('import23andme');
+    const importAncestryBtn = document.getElementById('importAncestryDNA');
+    
+    // File input change event
+    geneticFileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            handleGeneticFileSelection(e.target.files[0]);
+        }
+    });
+    
+    // Analyze button click event
+    geneticAnalyzeBtn.addEventListener('click', handleGeneticAnalysis);
+    
+    // Sample data import
+    import23andmeBtn.addEventListener('click', () => importSampleData('23andme'));
+    importAncestryBtn.addEventListener('click', () => importSampleData('ancestrydna'));
+    
+    // Function to handle file selection
+    function handleGeneticFileSelection(file) {
+        window.selectedGeneticFile = file;
+        geneticAnalyzeBtn.disabled = false;
+        showNotification(`Genetic data "${file.name}" ready for analysis.`, 'success');
+    }
+    
+    // Function to handle analysis
+    function handleGeneticAnalysis() {
+        if (!window.selectedGeneticFile) {
+            showNotification('Please upload genetic data first.', 'error');
+            return;
+        }
+        
+        const options = getSelectedGeneticOptions();
+        
+        // Show loading state
+        geneticAnalyzeBtn.disabled = true;
+        geneticAnalyzeBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Analyzing...';
+        
+        const geneticResultsSection = document.getElementById('geneticResultsSection');
+        geneticResultsSection.style.display = 'block';
+        const geneticResultsContent = document.getElementById('geneticResultsContent');
+        geneticResultsContent.innerHTML = `
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Analyzing genetic data...</p>
+            </div>
+        `;
+        
+        // Perform analysis (placeholder)
+        setTimeout(() => {
+            const results = {
+                options: options,
+                snps: 12345,
+                diseases: 10,
+                ancestry: 'European 80%, Asian 20%'
+            };
+            displayGeneticResults(results);
+            
+            geneticAnalyzeBtn.disabled = false;
+            geneticAnalyzeBtn.innerHTML = '<i class="fas fa-play"></i> Start Genetic Analysis';
+            showNotification('Genetic analysis completed!', 'success');
+        }, 2000);
+    }
+    
+    // Function to get selected options
+    function getSelectedGeneticOptions() {
+        const checkboxes = document.querySelectorAll('input[name="genetic-option"]:checked');
+        return Array.from(checkboxes).map(cb => cb.value);
+    }
+    
+    // Function to display results
+    function displayGeneticResults(results) {
+        let html = '<ul>';
+        html += `<li>SNPs Analyzed: ${results.snps}</li>`;
+        html += `<li>Disease Predispositions: ${results.diseases}</li>`;
+        html += `<li>Ancestry Composition: ${results.ancestry}</li>`;
+        html += '</ul>';
+        
+        document.getElementById('geneticResultsContent').innerHTML = html;
+    }
+    
+    // Function to import sample data
+    function importSampleData(type) {
+        let sampleData = '';
+        let fileName = '';
+        
+        if (type === '23andme') {
+            sampleData = '# This is a sample 23andMe data file...\nrs12345 A A\nrs67890 C T';
+            fileName = '23andme_sample.txt';
+        } else if (type === 'ancestrydna') {
+            sampleData = 'Sample ID,RSID,Chromosome,Position,Allele1,Allele2\nSample1,rs12345,1,12345,A,A\nSample1,rs67890,2,67890,C,T';
+            fileName = 'ancestrydna_sample.csv';
