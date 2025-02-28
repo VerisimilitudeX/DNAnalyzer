@@ -634,6 +634,24 @@
 .analyze-btn {
     width: 100%;
     padding: var(--space-lg);
+    background: linear-gradient(135deg, var(--magenta), var(--blue));
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.analyze-btn:hover {
+    background: linear-gradient(135deg, var(--blue), var(--magenta));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .analyze-btn:disabled {
