@@ -590,8 +590,8 @@
 .checkmark {
     position: absolute;
     left: 0;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-sm);
@@ -1006,7 +1006,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--space-lg);
-    margin-top: var (--space-lg);
+    margin-top: var(--space-lg);
 }
 
 .risk-card {
@@ -1167,7 +1167,7 @@
 .trait-name {
     font-size: 1.1rem;
     font-weight: 500;
-    color: var (--white);
+    color: var(--white);
 }
 
 .trait-value {
