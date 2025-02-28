@@ -572,6 +572,7 @@
     gap: var(--space-md);
     cursor: pointer;
     padding: var(--space-xs) 0;
+    padding-left: 36px; /* Add left padding to make room for the checkmark */
     user-select: none;
     color: rgba(255, 255, 255, 0.8);
     transition: all var(--transition-fast);
@@ -590,6 +591,8 @@
 .checkmark {
     position: absolute;
     left: 0;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Center vertically */
     width: 20px;
     height: 20px;
     background: rgba(255, 255, 255, 0.1);
