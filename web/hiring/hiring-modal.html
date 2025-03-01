@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - DNAnalyzer</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="hiring-modal.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="modal-container">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Apply for the Position</h2>
+            <form id="application-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <select id="position" name="position" required>
+                        <option value="software-engineer">Software Engineer</option>
+                        <option value="data-scientist">Data Scientist</option>
+                        <option value="ui-ux-designer">UI/UX Designer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resume">Upload Resume</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+                <div class="form-group">
+                    <label for="cover-letter">Cover Letter</label>
+                    <textarea id="cover-letter" name="cover-letter" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="primary-btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="hiring-modal.js"></script>
+</body>
+</html>

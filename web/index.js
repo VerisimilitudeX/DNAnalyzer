@@ -1,148 +1,244 @@
-// Constants
-const API_BASE_URL = 'http://localhost:8080/api';
+/**
+ * DNAnalyzer Main JavaScript
+ * Handles animations, interactivity and UI functionality
+ */
 
-// DOM Elements
-const fileInput = document.getElementById('dna-file');
-const startCodonSelect = document.getElementById('start-codon');
-const analysisForm = document.getElementById('analysis-form');
-const resultsDiv = document.getElementById('results');
-const loadingIndicator = document.createElement('div');
-loadingIndicator.className = 'loading-indicator';
-loadingIndicator.innerHTML = 'Analyzing DNA sequence...';
-
-// Event Listeners
-analysisForm.addEventListener('submit', handleAnalysis);
-fileInput.addEventListener('change', handleFileSelect);
-
-async function handleAnalysis(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize DNA Helix animation
+    initDNAHelix();
     
-    if (!fileInput.files[0]) {
-        displayError('Please select a DNA sequence file');
-        return;
+    // Initialize mobile menu toggle
+    initMobileMenu();
+    
+    // Initialize navbar scroll effect
+    initNavbarScroll();
+    
+    // Initialize stats counter animation
+    initStatsAnimation();
+});
+
+/**
+ * Initialize the DNA Helix animation on the homepage
+ */
+function initDNAHelix() {
+    const dnaHelix = document.getElementById('dnaHelix');
+    if (!dnaHelix) return;
+    
+    const numBases = 15;
+    const basePairs = [
+        ['A', 'T'],
+        ['T', 'A'],
+        ['G', 'C'],
+        ['C', 'G']
+    ];
+    
+    // Create base pairs
+    for (let i = 0; i < numBases; i++) {
+        const pairIndex = Math.floor(Math.random() * basePairs.length);
+        const [leftBase, rightBase] = basePairs[pairIndex];
+        
+        const basePair = document.createElement('div');
+        basePair.className = 'base-pair';
+        basePair.style.top = `${i * 40}px`;
+        basePair.style.animationDelay = `${i * 0.2}s`;
+        
+        const leftBaseElem = document.createElement('div');
+        leftBaseElem.className = 'base left-base';
+        leftBaseElem.textContent = leftBase;
+        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
+        
+        const rightBaseElem = document.createElement('div');
+        rightBaseElem.className = 'base right-base';
+        rightBaseElem.textContent = rightBase;
+        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
+        
+        const connector = document.createElement('div');
+        connector.className = 'base-connector';
+        connector.style.animationDelay = `${i * 0.2}s`;
+        
+        basePair.appendChild(leftBaseElem);
+        basePair.appendChild(connector);
+        basePair.appendChild(rightBaseElem);
+        
+        dnaHelix.appendChild(basePair);
     }
+}
 
-    // Show loading indicator
-    resultsDiv.innerHTML = '';
-    resultsDiv.appendChild(loadingIndicator);
-
-    const formData = new FormData();
-    formData.append('dnaFile', fileInput.files[0]);
+/**
+ * Initialize the mobile menu toggle functionality
+ */
+function initMobileMenu() {
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
     
-    // Add all parameters
-    const parameters = getAnalysisParameters();
-    Object.entries(parameters).forEach(([key, value]) => {
-        formData.append(key, value);
+    if (!mobileToggle || !navLinks) return;
+    
+    mobileToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        
+        // Change the icon based on the state
+        const icon = mobileToggle.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     });
-
-    try {
-        const response = await fetch(`${API_BASE_URL}/analyze`, {
-            method: 'POST',
-            body: formData
+    
+    // Close the mobile menu when clicking a link
+    const links = navLinks.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.text();
-        displayResults(result);
-    } catch (error) {
-        console.error('Error:', error);
-        displayError(`Error analyzing DNA: ${error.message}`);
-    }
+    });
 }
 
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    if (file) {
-        // Validate file type
-        if (!file.name.match(/\.(fa|fasta|fastq)$/i)) {
-            displayError('Please select a valid FASTA or FASTQ file');
-            fileInput.value = '';
-            return;
+/**
+ * Initialize the navbar scroll effect
+ */
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
-
-        // Update file name display
-        document.getElementById('file-name').textContent = file.name;
-    }
+    });
 }
 
-function getAnalysisParameters() {
-    return {
-        amino: startCodonSelect.value,
-        minCount: document.getElementById('min-count').value,
-        maxCount: document.getElementById('max-count').value,
-        reverse: document.getElementById('reverse').checked,
-        rcomplement: document.getElementById('rcomplement').checked,
-        codons: document.getElementById('codons').checked,
-        coverage: document.getElementById('coverage').checked,
-        longest: document.getElementById('longest').checked,
-        format: document.getElementById('format').value
+/**
+ * Animate number counting from 0 to target
+ * @param {HTMLElement} element - The element containing the number
+ * @param {number} target - The target number to count to
+ * @param {string} suffix - Optional suffix like '%' or 'M'
+ * @param {number} duration - Animation duration in milliseconds
+ */
+function animateNumber(element, target, suffix = '', duration = 2000) {
+    if (!element) return;
+    
+    let start = 0;
+    let startTime = null;
+    const targetNum = parseFloat(target);
+    
+    function easeOutQuart(x) {
+        return 1 - Math.pow(1 - x, 4);
+    }
+    
+    function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        
+        let currentValue = Math.floor(easedProgress * targetNum);
+        
+        // Handle special cases
+        if (suffix === '%') {
+            const decimal = (easedProgress * targetNum) % 1;
+            if (decimal > 0) {
+                currentValue = (easedProgress * targetNum).toFixed(1);
+            }
+        }
+        
+        element.textContent = `${currentValue}${suffix}`;
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            element.textContent = `${target}${suffix}`;
+        }
+    }
+    
+    requestAnimationFrame(animate);
+}
+
+/**
+ * Initialize the stats counter animation with Intersection Observer
+ */
+function initStatsAnimation() {
+    const statsSection = document.querySelector('.stats-section');
+    if (!statsSection) return;
+    
+    const statElements = {
+        accuracy: { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
+        sequences: { elem: document.getElementById('statSequences'), target: '7', suffix: 'M+' },
+        users: { elem: document.getElementById('statUsers'), target: '46', suffix: '+' }
     };
+    
+    let animated = false;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) {
+                // Animate each stat with staggered delays
+                Object.values(statElements).forEach((stat, index) => {
+                    setTimeout(() => {
+                        if (stat.elem) {
+                            animateNumber(stat.elem, stat.target, stat.suffix, 2000);
+                        }
+                    }, index * 200);
+                });
+                
+                animated = true;
+                observer.unobserve(statsSection);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    observer.observe(statsSection);
 }
 
-function displayResults(result) {
-    // Remove loading indicator
-    loadingIndicator.remove();
-
-    // Format the result based on the selected output format
-    const format = document.getElementById('format').value;
-    let formattedResult = result;
-
-    if (format === 'json') {
-        try {
-            const jsonObj = JSON.parse(result);
-            formattedResult = JSON.stringify(jsonObj, null, 2);
-        } catch (e) {
-            console.warn('Failed to parse JSON result:', e);
+/**
+ * Add smooth scrolling for anchor links
+ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return; // Skip if it's just "#"
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
         }
-    }
+    });
+});
 
-    resultsDiv.innerHTML = `
-        <div class="results-container">
-            <h3>Analysis Results</h3>
-            <pre>${formattedResult}</pre>
-            <div class="results-actions">
-                <button onclick="downloadResults('analysis_results.${format}', '${format}')">
-                    Download Results
-                </button>
-            </div>
-        </div>
-    `;
-    resultsDiv.scrollIntoView({ behavior: 'smooth' });
-}
+/**
+ * Add intersection observer for animating sections as they come into view
+ */
+const animateSections = document.querySelectorAll('.section, .feature-card, .card');
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
 
-function displayError(message) {
-    resultsDiv.innerHTML = `
-        <div class="error-container">
-            <h3>Error</h3>
-            <p>${message}</p>
-        </div>
-    `;
-    resultsDiv.scrollIntoView({ behavior: 'smooth' });
-}
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            sectionObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
 
-function downloadResults(filename, format) {
-    const resultText = document.querySelector('.results-container pre').textContent;
-    const blob = new Blob([resultText], { type: getContentType(format) });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
-}
-
-function getContentType(format) {
-    switch (format) {
-        case 'json':
-            return 'application/json';
-        case 'csv':
-            return 'text/csv';
-        default:
-            return 'text/plain';
-    }
-}
+animateSections.forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    sectionObserver.observe(section);
+});

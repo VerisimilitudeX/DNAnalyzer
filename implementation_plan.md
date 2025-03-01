@@ -19,7 +19,7 @@
 ## 2. Updating the Website for Local DNA Analyzer Integration
 
 ### 2.1. UI Updates
-- Modify `web/index.html` to include:
+- Modify `web/` to include:
   - An input field for the user to provide the file path of the DNA file to analyze.
   - A set of checkboxes for selecting command line features (e.g., "Verbose Mode", "Detailed Report", "Quick Analysis").
   - A "Run Analysis" button to initiate the process.
