@@ -25,7 +25,7 @@
 
 <br>
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [About DNAnalyzer](#-about-dnanalyzer)
 - [Why It Matters](#-why-it-matters)
@@ -39,7 +39,7 @@
 
 <br>
 
-## 🧪 About DNAnalyzer
+## About DNAnalyzer
 
 DNAnalyzer is a **fiscally sponsored 501(c)(3) nonprofit** (EIN: 81-2908499) revolutionizing DNA analysis by making machine learning-powered genomic insights accessible through efficient on-device computation.
 
@@ -49,7 +49,7 @@ Our impact has been recognized by the organizers of the [AI Engineer World's Fai
 
 <br>
 
-## 🔍 Why It Matters
+## Why It Matters
 
 <div align="center">
 
@@ -66,7 +66,7 @@ Our impact has been recognized by the organizers of the [AI Engineer World's Fai
 
 <br>
 
-## 🧬 Core Features
+## Core Features
 
 <table>
   <tr>
@@ -103,7 +103,7 @@ Our impact has been recognized by the organizers of the [AI Engineer World's Fai
 
 <br>
 
-## 🧠 Quick DNA Introduction
+## Quick DNA Introduction
 
 **DNA: The Programming Language of Life**
 
@@ -115,7 +115,7 @@ A DNA database is crucial for interpreting DNA sequences. By leveraging machine 
 
 <br>
 
-## 🚀 Getting Started
+## Getting Started
 
 Ready to explore your DNA? Follow our comprehensive guide to get started:
 
@@ -134,7 +134,7 @@ For detailed instructions, please refer to our [Getting Started Guide](docs/gett
 
 <br>
 
-## 🔮 Roadmap
+## Roadmap
 
 <div align="center">
 
@@ -148,7 +148,7 @@ For detailed instructions, please refer to our [Getting Started Guide](docs/gett
 
 <br>
 
-## 👥 Contributing
+## Contributing
 
 We welcome contributions from developers and researchers of all skill levels!
 
@@ -172,7 +172,7 @@ We welcome contributions from developers and researchers of all skill levels!
 
 <br>
 
-## 📚 Citations
+## Citations
 
 View our [detailed citations document](docs/citations.md) for all in-line references.
 
@@ -192,7 +192,7 @@ If you use DNAnalyzer in your research, please cite:
 
 <br>
 
-## ⚖️ Terms of Use
+## ⚖Terms of Use
 
 The use of this application is entirely at your own discretion and responsibility. While the DNAnalyzer team is committed to addressing significant issues, we disclaim liability for losses, damages, or consequences arising from the use of this application.
 
