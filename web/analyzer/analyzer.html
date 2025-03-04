@@ -211,11 +211,100 @@
                     </div>
                     
                     <div class="tab-content" id="genetic-testing">
-                        <div class="coming-soon">
-                            <i class="fas fa-flask"></i>
                             <h3>Genetic Testing Coming Soon</h3>
-                            <p>Our genetic testing module is currently under development. This feature will allow you to analyze data from consumer genetic testing services.</p>
+                        <div class="analyzer-upload" id="geneticFileDropZone">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Upload Genetic Data</h3>
+                            <p>Drag and drop your genetic data file here or click to browse</p>
+                            <input type="file" id="geneticFileInput" accept=".txt,.csv,.vcf" hidden>
+                            <span class="upload-formats">Supported formats: .txt, .csv, .vcf (23andMe, AncestryDNA, etc.)</span>
                         </div>
+                        
+                        <div class="genetic-testing-form">
+                            <div class="form-section">
+                                <h3>Personal Information</h3>
+                                <div class="form-group">
+                                    <label for="gender">Biological Sex</label>
+                                    <select id="gender" class="form-control form-select">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input type="number" id="age" class="form-control" min="0" max="120" placeholder="Enter your age">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ethnicity">Ethnicity</label>
+                                    <select id="ethnicity" class="form-control form-select">
+                                        <option value="">Select ethnicity</option>
+                                        <option value="european">European</option>
+                                        <option value="east-asian">East Asian</option>
+                                        <option value="south-asian">South Asian</option>
+                                        <option value="african">African</option>
+                                        <option value="middle-eastern">Middle Eastern</option>
+                                        <option value="latino">Latino/Hispanic</option>
+                                        <option value="pacific-islander">Pacific Islander</option>
+                                        <option value="native-american">Native American</option>
+                                        <option value="mixed">Mixed</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3>Testing Options</h3>
+                                <p>Select which genetic tests you'd like to run:</p>
+                                
+                                <div class="testing-options">
+                                    <div class="test-option" data-test="health">
+                                        <div class="test-option-header">
+                                            <i class="fas fa-heartbeat"></i>
+                                            <h4>Health Risks</h4>
+                                        </div>
+                                        <p>Analyze genetic predispositions to common health conditions</p>
+                                    </div>
+                                    
+                                    <div class="test-option" data-test="traits">
+                                        <div class="test-option-header">
+                                            <i class="fas fa-user"></i>
+                                            <h4>Traits</h4>
+                                        </div>
+                                        <p>Discover genetic traits that influence your appearance and abilities</p>
+                                    </div>
+                                    
+                                    <div class="test-option" data-test="ancestry">
+                                        <div class="test-option-header">
+                                            <i class="fas fa-globe"></i>
+                                            <h4>Ancestry</h4>
+                                        </div>
+                                        <p>Explore your genetic ancestry and ethnic composition</p>
+                                    </div>
+                                    
+                                    <div class="test-option" data-test="carrier">
+                                        <div class="test-option-header">
+                                            <i class="fas fa-baby"></i>
+                                            <h4>Carrier Status</h4>
+                                        </div>
+                                        <p>Screen for recessive genetic variants that could affect future generations</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group" style="margin-top: 1.5rem;">
+                                    <label class="option-checkbox">
+                                        <input type="checkbox" id="consentCheckbox">
+                                        <span class="checkmark"></span>
+                                        I understand that genetic testing results are for educational purposes only and are not medical advice
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary analyze-btn" id="geneticAnalyzeBtn" disabled>
+                            <i class="fas fa-vial"></i>
+                            Run Genetic Tests
+                        </button>
                     </div>
                     
                     <div class="tab-content" id="batch-processing">

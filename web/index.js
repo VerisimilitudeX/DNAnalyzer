@@ -15,7 +15,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize stats counter animation
     initStatsAnimation();
+    
+    // Initialize notification banner dismiss functionality
+    initNotificationBanner();
 });
+
+/**
+ * Initialize the notification banner dismiss functionality and adjust navbar positioning
+ */
+function initNotificationBanner() {
+    const banner = document.querySelector('.notification-banner');
+    const navbar = document.getElementById('navbar');
+    if (banner && navbar) {
+         // Position navbar below the notification banner
+         navbar.style.top = banner.offsetHeight + "px";
+    }
+    const closeBtn = document.querySelector('.notification-banner .notification-close');
+    if (!closeBtn) return;
+    closeBtn.addEventListener('click', function() {
+        const banner = this.closest('.notification-banner');
+        if (banner) {
+            banner.style.display = 'none';
+            if (navbar) {
+                // Reset navbar position when banner is dismissed
+                navbar.style.top = "0px";
+            }
+        }
+    });
+}
 
 /**
  * Initialize the DNA Helix animation on the homepage

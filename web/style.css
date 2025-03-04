@@ -1,6 +1,22 @@
 /* DNAnalyzer - Main Stylesheet
  * Global styles for all pages
  */
+/* Notification Banner Styling */
+.notification-banner {
+    background: linear-gradient(135deg, var(--blue), var(--light-blue));
+    color: var(--white);
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.notification-banner a {
+    color: inherit;
+    text-decoration: none;
+}
+.notification-banner a:hover {
+    text-decoration: underline;
+}
 
  :root {
     /* Brand colors from logo */
@@ -263,7 +279,7 @@
   }
   
   .btn-primary {
-    background: linear-gradient(135deg, var(--magenta), var(--blue));
+    background: linear-gradient(135deg, #FF7B00, #FFB347);
     color: var(--white);
   }
   
@@ -990,6 +1006,32 @@
   opacity: 0.65;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.7);
+/* Updated Notification Banner Styling */
+.notification-banner {
+    background: linear-gradient(135deg, var(--magenta), var(--blue));
+    color: var(--white);
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 250;
+}
+.notification-banner .notification-close {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    font-size: 1.25rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 }
 
 .disclaimer-text p {
