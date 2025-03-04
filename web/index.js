@@ -18,6 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize notification banner dismiss functionality
     initNotificationBanner();
+
+    // Initialize notification banner scroll behavior
+    initNotificationScroll();
+    
+    // Initialize navbar pulse effect
+    initNavbarPulse();
+    
+    // Initialize futuristic navbar effects
+    initFuturisticNavbar();
 });
 
 /**
@@ -26,21 +35,47 @@ document.addEventListener('DOMContentLoaded', function() {
 function initNotificationBanner() {
     const banner = document.querySelector('.notification-banner');
     const navbar = document.getElementById('navbar');
-    if (banner && navbar) {
-         // Position navbar below the notification banner
-         navbar.style.top = banner.offsetHeight + "px";
-    }
+    if (!banner || !navbar) return;
+
+    const bannerHeight = banner.offsetHeight;
+    document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
+
     const closeBtn = document.querySelector('.notification-banner .notification-close');
     if (!closeBtn) return;
+
     closeBtn.addEventListener('click', function() {
-        const banner = this.closest('.notification-banner');
-        if (banner) {
-            banner.style.display = 'none';
-            if (navbar) {
-                // Reset navbar position when banner is dismissed
-                navbar.style.top = "0px";
-            }
+        banner.style.display = 'none';
+        document.documentElement.style.setProperty('--notification-height', '0px');
+        navbar.style.top = '0';
+    });
+
+    // Initial positioning
+    navbar.style.top = `${bannerHeight}px`;
+}
+
+/**
+ * Initialize notification banner scroll behavior
+ */
+function initNotificationScroll() {
+    const banner = document.querySelector('.notification-banner');
+    const navbar = document.getElementById('navbar');
+    if (!banner || !navbar) return;
+
+    let lastScrollTop = 0;
+    const bannerHeight = banner.offsetHeight;
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > bannerHeight) {
+            // Scrolling down
+            banner.classList.add('hide-notification');
+            navbar.style.top = '0';
+        } else {
+            // Scrolling up
+            banner.classList.remove('hide-notification');
+            navbar.style.top = `${bannerHeight}px`;
         }
+        lastScrollTop = scrollTop;
     });
 }
 
@@ -242,9 +277,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-/*
- * Initialize futuristic navbar effects
+});
+/**
+ * Initialize navbar pulse effect for futuristic look
  */
+function initNavbarPulse() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    setInterval(() => {
+        navbar.classList.toggle('navbar-pulse');
+    }, 2000);
+}
+
+/**
+ * Initialize futuristic navbar effects
+ * Initialize futuristic notification effects on the notification banner
+ */
+function initFuturisticNotificationEffects() {
+    const banner = document.querySelector('.notification-banner');
+    if (!banner) return;
+    banner.addEventListener('mouseenter', () => {
+        banner.style.transition = 'filter 0.3s ease';
+        banner.style.filter = 'brightness(1.2) contrast(1.1)';
+    });
+    banner.addEventListener('mouseleave', () => {
+        banner.style.filter = 'none';
+    });
+}
+
 function initFuturisticNavbar() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
@@ -259,11 +319,6 @@ function initFuturisticNavbar() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initFuturisticNavbar();
-});
-
-});
 
 /**
  * Add intersection observer for animating sections as they come into view
