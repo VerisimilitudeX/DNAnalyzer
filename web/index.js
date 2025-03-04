@@ -242,6 +242,27 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+/*
+ * Initialize futuristic navbar effects
+ */
+function initFuturisticNavbar() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    navbar.addEventListener('mousemove', (e) => {
+        const rect = navbar.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        navbar.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2), transparent), linear-gradient(90deg, rgba(0,20,39,0.8), rgba(0,20,39,1))`;
+    });
+    navbar.addEventListener('mouseleave', () => {
+        navbar.style.background = '';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initFuturisticNavbar();
+});
+
 });
 
 /**
