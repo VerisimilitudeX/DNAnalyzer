@@ -90,7 +90,10 @@ function initDNAHelix() {
     const dnaHelix = document.getElementById('dnaHelix');
     if (!dnaHelix) return;
     
-    const numBases = 15;
+    // Clear any existing content
+    dnaHelix.innerHTML = '';
+    
+    const numBases = 25;
     const basePairs = [
         ['A', 'T'],
         ['T', 'A'],
@@ -98,15 +101,30 @@ function initDNAHelix() {
         ['C', 'G']
     ];
     
-    // Create base pairs
+    // Create base pairs with a proper twisted helix structure
     for (let i = 0; i < numBases; i++) {
         const pairIndex = Math.floor(Math.random() * basePairs.length);
         const [leftBase, rightBase] = basePairs[pairIndex];
         
         const basePair = document.createElement('div');
         basePair.className = 'base-pair';
-        basePair.style.top = `${i * 40}px`;
-        basePair.style.animationDelay = `${i * 0.2}s`;
+        
+        // Position each base pair with slightly smaller vertical spacing
+        basePair.style.top = `${i * 23}px`;
+        
+        // Calculate initial rotation angle to create the helix twist
+        // Each pair is rotated 25 degrees more than the previous one
+        const angle = (i * 25) % 360;
+        
+        // Calculate X offset based on the angle to create the curve effect
+        const xOffset = Math.sin(angle * Math.PI / 180) * 20;
+        
+        // Apply the 3D transformation to create the initial twisted shape
+        basePair.style.transform = `rotateY(${angle}deg) translateZ(40px) translateX(${xOffset}px)`;
+        
+        // Add animation with staggered delays
+        basePair.style.animation = 'rotate 8s linear infinite';
+        basePair.style.animationDelay = `${-i * 0.5}s`;
         
         const leftBaseElem = document.createElement('div');
         leftBaseElem.className = 'base left-base';
@@ -120,7 +138,6 @@ function initDNAHelix() {
         
         const connector = document.createElement('div');
         connector.className = 'base-connector';
-        connector.style.animationDelay = `${i * 0.2}s`;
         
         basePair.appendChild(leftBaseElem);
         basePair.appendChild(connector);

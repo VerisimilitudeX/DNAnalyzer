@@ -2,7 +2,7 @@
 .dna-helix {
     position: relative;
     width: 200px;
-    height: 600px;
+    height: 400px;
     margin: 0 auto;
     perspective: 1200px;
     transform-style: preserve-3d;
@@ -59,11 +59,8 @@
 }
 
 @keyframes rotate {
-    0% { transform: rotateY(0deg) translateZ(40px) translateX(-20px); }
-    25% { transform: rotateY(90deg) translateZ(40px) translateX(0px); }
-    50% { transform: rotateY(180deg) translateZ(40px) translateX(20px); }
-    75% { transform: rotateY(270deg) translateZ(40px) translateX(0px); }
-    100% { transform: rotateY(360deg) translateZ(40px) translateX(-20px); }
+    0% { transform: rotateY(0deg) translateZ(20px); }
+    100% { transform: rotateY(360deg) translateZ(20px); }
 }
 
 @keyframes pulse {

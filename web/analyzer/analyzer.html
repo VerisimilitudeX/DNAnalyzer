@@ -24,6 +24,13 @@
         <div class="bg-blob bg-blob-2"></div>
     </div>
 
+    <div class="notification-banner">
+        <span>Exclusive WSSEF Preview: </span>
+        <span>&nbsp;Transformer Architecture in Epigenomics!</span>
+        <a href="https://epiclassify.dnanalyzer.org" target="_blank" class="notification-link">Explore Now</a>
+        <button class="notification-close" aria-label="Dismiss notification"></button>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container navbar-container">
@@ -211,99 +218,37 @@
                     </div>
                     
                     <div class="tab-content" id="genetic-testing">
-                        <div class="analyzer-upload" id="geneticFileDropZone">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h3>Upload Genetic Data</h3>
-                            <p>Drag and drop your genetic data file here or click to browse</p>
-                            <input type="file" id="geneticFileInput" accept=".txt,.csv,.vcf" hidden>
-                            <span class="upload-formats">Supported formats: .txt, .csv, .vcf (23andMe, AncestryDNA, etc.)</span>
-                        </div>
-                        
-                        <div class="genetic-testing-form">
-                            <div class="form-section">
-                                <h3>Personal Information</h3>
-                                <div class="form-group">
-                                    <label for="gender">Biological Sex</label>
-                                    <select id="gender" class="form-control form-select">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
+                        <div class="genetic-testing-container">
+                            <div id="dropZone" class="drop-zone">
+                                <i class="fas fa-dna"></i>
+                                <h3>Upload DNA File or Drop Here</h3>
+                                <p>Supported formats: .fastq, .fasta, .sam, .bam, .vcf</p>
+                                <input type="file" id="dnaFileInput" accept=".fastq,.fasta,.sam,.bam,.vcf" />
                                 
-                                <div class="form-group">
-                                    <label for="age">Age</label>
-                                    <input type="number" id="age" class="form-control" min="0" max="120" placeholder="Enter your age">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="ethnicity">Ethnicity</label>
-                                    <select id="ethnicity" class="form-control form-select">
-                                        <option value="">Select ethnicity</option>
-                                        <option value="european">European</option>
-                                        <option value="east-asian">East Asian</option>
-                                        <option value="south-asian">South Asian</option>
-                                        <option value="african">African</option>
-                                        <option value="middle-eastern">Middle Eastern</option>
-                                        <option value="latino">Latino/Hispanic</option>
-                                        <option value="pacific-islander">Pacific Islander</option>
-                                        <option value="native-american">Native American</option>
-                                        <option value="mixed">Mixed</option>
+                                <div class="sample-selector">
+                                    <p>Or try with a sample file:</p>
+                                    <select id="sampleFileSelect">
+                                        <option value="">Select a sample file...</option>
                                     </select>
                                 </div>
                             </div>
+
+                            <div id="sequenceDisplay" class="sequence-display"></div>
                             
-                            <div class="form-section">
-                                <h3>Testing Options</h3>
-                                <p>Select which genetic tests you'd like to run:</p>
-                                
-                                <div class="testing-options">
-                                    <div class="test-option" data-test="health">
-                                        <div class="test-option-header">
-                                            <i class="fas fa-heartbeat"></i>
-                                            <h4>Health Risks</h4>
-                                        </div>
-                                        <p>Analyze genetic predispositions to common health conditions</p>
-                                    </div>
-                                    
-                                    <div class="test-option" data-test="traits">
-                                        <div class="test-option-header">
-                                            <i class="fas fa-user"></i>
-                                            <h4>Traits</h4>
-                                        </div>
-                                        <p>Discover genetic traits that influence your appearance and abilities</p>
-                                    </div>
-                                    
-                                    <div class="test-option" data-test="ancestry">
-                                        <div class="test-option-header">
-                                            <i class="fas fa-globe"></i>
-                                            <h4>Ancestry</h4>
-                                        </div>
-                                        <p>Explore your genetic ancestry and ethnic composition</p>
-                                    </div>
-                                    
-                                    <div class="test-option" data-test="carrier">
-                                        <div class="test-option-header">
-                                            <i class="fas fa-baby"></i>
-                                            <h4>Carrier Status</h4>
-                                        </div>
-                                        <p>Screen for recessive genetic variants that could affect future generations</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-group" style="margin-top: 1.5rem;">
-                                    <label class="option-checkbox">
-                                        <input type="checkbox" id="consentCheckbox">
-                                        <span class="checkmark"></span>
-                                        I understand that genetic testing results are for educational purposes only and are not medical advice
-                                    </label>
-                                </div>
+                            <button id="analyzeButton" class="analyze-btn">
+                                <i class="fas fa-microscope"></i>
+                                Analyze DNA
+                            </button>
+
+                            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                                <div class="spinner"></div>
+                                <p>Analyzing DNA sequence...</p>
                             </div>
+
+                            <div id="errorDisplay" class="error-display"></div>
+                            
+                            <div id="resultsContainer" class="results-container"></div>
                         </div>
-                        
-                        <button class="btn btn-primary analyze-btn" id="geneticAnalyzeBtn" disabled>
-                            <i class="fas fa-vial"></i>
-                            Run Genetic Tests
-                        </button>
                     </div>
                     
                     <div class="tab-content" id="batch-processing">
@@ -408,12 +353,15 @@
                     <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
                     <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning models for accurate, on-device genomic analysis.</p>
                     
-                    <div class="footer-social">
+                    <div class="social-links">
                         <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="https://discord.gg/xNpujz49gj" class="social-link">
                             <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://twitter.com/DNAnalyzer_" class="social-link">
+                            <i class="fab fa-twitter"></i>
                         </a>
                         <a href="https://www.x.com/DNAnalyzer_" class="social-link">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
@@ -454,7 +402,7 @@
             
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.
+                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.
                 </div>
                 
                 <div class="footer-links">
@@ -469,5 +417,9 @@
     <!-- JavaScript -->
     <script src="../assets/js/api-client.js"></script>
     <script src="analyzer.js"></script>
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <!-- Genetic Testing Script -->
+    <script src="genetic-testing.js"></script>
 </body>
 </html>
