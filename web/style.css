@@ -2,7 +2,7 @@
 .dna-helix {
     position: relative;
     width: 200px;
-    height: 600px;
+    height: 400px;
     margin: 0 auto;
     perspective: 1200px;
     transform-style: preserve-3d;

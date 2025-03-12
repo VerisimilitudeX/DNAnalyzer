@@ -93,7 +93,8 @@ function initDNAHelix() {
     // Clear any existing content
     dnaHelix.innerHTML = '';
     
-    const numBases = 25;
+    const numBasesUp = 5; // Number of bases to extend upward
+    const numBases = 25; 
     const basePairs = [
         ['A', 'T'],
         ['T', 'A'],
@@ -110,7 +111,7 @@ function initDNAHelix() {
         basePair.className = 'base-pair';
         
         // Position each base pair with slightly smaller vertical spacing
-        basePair.style.top = `${i * 23}px`;
+        basePair.style.top = `${i * 25}px`;
         
         // Calculate initial rotation angle to create the helix twist
         // Each pair is rotated 25 degrees more than the previous one
