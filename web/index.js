@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initFuturisticNavbar();
 });
 
+// Shared state for notification banner
+let notificationClosed = false;
+
 /**
  * Initialize the notification banner dismiss functionality and adjust navbar positioning
  */
@@ -44,9 +47,10 @@ function initNotificationBanner() {
     if (!closeBtn) return;
 
     closeBtn.addEventListener('click', function() {
-        banner.style.display = 'none';
+        banner.classList.add('closed');
         document.documentElement.style.setProperty('--notification-height', '0px');
         navbar.style.top = '0';
+        notificationClosed = true;
     });
 
     // Initial positioning
@@ -70,10 +74,13 @@ function initNotificationScroll() {
             // Scrolling down
             banner.classList.add('hide-notification');
             navbar.style.top = '0';
-        } else {
-            // Scrolling up
+        } else if (!notificationClosed) {
+            // Scrolling up and notification was not manually closed
             banner.classList.remove('hide-notification');
             navbar.style.top = `${bannerHeight}px`;
+        } else {
+            // Scrolling up but notification was manually closed
+            navbar.style.top = '0';
         }
         lastScrollTop = scrollTop;
     });
@@ -278,6 +285,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
 /**
  * Initialize navbar pulse effect for futuristic look
  */
@@ -318,7 +326,6 @@ function initFuturisticNavbar() {
         navbar.style.background = '';
     });
 }
-
 
 /**
  * Add intersection observer for animating sections as they come into view
