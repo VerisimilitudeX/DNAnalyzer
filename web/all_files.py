@@ -1,5 +1,6 @@
 import os
 
+
 def save_directory_structure_and_files(root_dir, output_file):
     with open(output_file, 'w', encoding='utf-8') as out:
         for dirpath, dirnames, filenames in os.walk(root_dir):
@@ -7,7 +8,7 @@ def save_directory_structure_and_files(root_dir, output_file):
             rel_path = os.path.relpath(dirpath, root_dir)
             out.write(f"Directory: {rel_path}\n")
             out.write("=" * 50 + "\n")
-            
+
             # Write file names and contents
             for file in filenames:
                 file_path = os.path.join(dirpath, file)
@@ -20,6 +21,7 @@ def save_directory_structure_and_files(root_dir, output_file):
                     out.write(f"[Could not read file: {e}]\n")
                 out.write("\n" + "-" * 50 + "\n")
             out.write("\n")
+
 
 if __name__ == "__main__":
     root_directory = "./web"
