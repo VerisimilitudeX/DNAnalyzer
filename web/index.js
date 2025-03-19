@@ -15,7 +15,73 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize stats counter animation
     initStatsAnimation();
+    
+    // Initialize notification banner dismiss functionality
+    initNotificationBanner();
+
+    // Initialize notification banner scroll behavior
+    initNotificationScroll();
+    
+    // Initialize navbar pulse effect
+    initNavbarPulse();
 });
+
+// Shared state for notification banner
+let notificationClosed = false;
+
+/**
+ * Initialize the notification banner dismiss functionality and adjust navbar positioning
+ */
+function initNotificationBanner() {
+    const banner = document.querySelector('.notification-banner');
+    const navbar = document.getElementById('navbar');
+    if (!banner || !navbar) return;
+
+    const bannerHeight = banner.offsetHeight;
+    document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
+
+    const closeBtn = document.querySelector('.notification-banner .notification-close');
+    if (!closeBtn) return;
+
+    closeBtn.addEventListener('click', function() {
+        banner.classList.add('closed');
+        document.documentElement.style.setProperty('--notification-height', '0px');
+        navbar.style.top = '0';
+        notificationClosed = true;
+    });
+
+    // Initial positioning
+    navbar.style.top = `${bannerHeight}px`;
+}
+
+/**
+ * Initialize notification banner scroll behavior
+ */
+function initNotificationScroll() {
+    const banner = document.querySelector('.notification-banner');
+    const navbar = document.getElementById('navbar');
+    if (!banner || !navbar) return;
+
+    let lastScrollTop = 0;
+    const bannerHeight = banner.offsetHeight;
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > bannerHeight) {
+            // Scrolling down
+            banner.classList.add('hide-notification');
+            navbar.style.top = '0';
+        } else if (!notificationClosed) {
+            // Scrolling up and notification was not manually closed
+            banner.classList.remove('hide-notification');
+            navbar.style.top = `${bannerHeight}px`;
+        } else {
+            // Scrolling up but notification was manually closed
+            navbar.style.top = '0';
+        }
+        lastScrollTop = scrollTop;
+    });
+}
 
 /**
  * Initialize the DNA Helix animation on the homepage
@@ -24,7 +90,11 @@ function initDNAHelix() {
     const dnaHelix = document.getElementById('dnaHelix');
     if (!dnaHelix) return;
     
-    const numBases = 15;
+    // Clear any existing content
+    dnaHelix.innerHTML = '';
+    
+    const numBasesUp = 5; // Number of bases to extend upward
+    const numBases = 25; 
     const basePairs = [
         ['A', 'T'],
         ['T', 'A'],
@@ -32,15 +102,30 @@ function initDNAHelix() {
         ['C', 'G']
     ];
     
-    // Create base pairs
+    // Create base pairs with a proper twisted helix structure
     for (let i = 0; i < numBases; i++) {
         const pairIndex = Math.floor(Math.random() * basePairs.length);
         const [leftBase, rightBase] = basePairs[pairIndex];
         
         const basePair = document.createElement('div');
         basePair.className = 'base-pair';
-        basePair.style.top = `${i * 40}px`;
-        basePair.style.animationDelay = `${i * 0.2}s`;
+        
+        // Position each base pair with slightly smaller vertical spacing
+        basePair.style.top = `${i * 25}px`;
+        
+        // Calculate initial rotation angle to create the helix twist
+        // Each pair is rotated 25 degrees more than the previous one
+        const angle = (i * 25) % 360;
+        
+        // Calculate X offset based on the angle to create the curve effect
+        const xOffset = Math.sin(angle * Math.PI / 180) * 20;
+        
+        // Apply the 3D transformation to create the initial twisted shape
+        basePair.style.transform = `rotateY(${angle}deg) translateZ(40px) translateX(${xOffset}px)`;
+        
+        // Add animation with staggered delays
+        basePair.style.animation = 'rotate 8s linear infinite';
+        basePair.style.animationDelay = `${-i * 0.5}s`;
         
         const leftBaseElem = document.createElement('div');
         leftBaseElem.className = 'base left-base';
@@ -54,7 +139,6 @@ function initDNAHelix() {
         
         const connector = document.createElement('div');
         connector.className = 'base-connector';
-        connector.style.animationDelay = `${i * 0.2}s`;
         
         basePair.appendChild(leftBaseElem);
         basePair.appendChild(connector);
@@ -216,6 +300,32 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+/**
+ * Initialize navbar pulse effect for futuristic look
+ */
+function initNavbarPulse() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+    setInterval(() => {
+        navbar.classList.toggle('navbar-pulse');
+    }, 2000);
+}
+
+/**
+ * Initialize futuristic notification effects on the notification banner
+ */
+function initFuturisticNotificationEffects() {
+    const banner = document.querySelector('.notification-banner');
+    if (!banner) return;
+    banner.addEventListener('mouseenter', () => {
+        banner.style.transition = 'filter 0.3s ease';
+        banner.style.filter = 'brightness(1.2) contrast(1.1)';
+    });
+    banner.addEventListener('mouseleave', () => {
+        banner.style.filter = 'none';
+    });
+}
 
 /**
  * Add intersection observer for animating sections as they come into view
