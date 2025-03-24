@@ -93,8 +93,9 @@ function initDNAHelix() {
     // Clear any existing content
     dnaHelix.innerHTML = '';
     
-    const numBasesUp = 5; // Number of bases to extend upward
-    const numBases = 25; 
+    const numBasesUp = 15; // Number of bases to extend upward
+    const numBasesDown = 25; // Number of bases to extend downward
+    const totalBases = numBasesUp + numBasesDown;
     const basePairs = [
         ['A', 'T'],
         ['T', 'A'],
@@ -103,15 +104,16 @@ function initDNAHelix() {
     ];
     
     // Create base pairs with a proper twisted helix structure
-    for (let i = 0; i < numBases; i++) {
+    // Start with negative indices for "upward" extension, then go to positive for "downward"
+    for (let i = -numBasesUp; i < numBasesDown; i++) {
         const pairIndex = Math.floor(Math.random() * basePairs.length);
         const [leftBase, rightBase] = basePairs[pairIndex];
         
         const basePair = document.createElement('div');
         basePair.className = 'base-pair';
         
-        // Position each base pair with slightly smaller vertical spacing
-        basePair.style.top = `${i * 25}px`;
+        // Position each base pair - adjust vertical position to account for bases extending upward
+        basePair.style.top = `${(i + numBasesUp) * 25}px`;
         
         // Calculate initial rotation angle to create the helix twist
         // Each pair is rotated 25 degrees more than the previous one
@@ -146,6 +148,9 @@ function initDNAHelix() {
         
         dnaHelix.appendChild(basePair);
     }
+    
+    // Adjust the container height to accommodate the extended helix
+    dnaHelix.style.height = `${totalBases * 25 + 50}px`;
 }
 
 /**
