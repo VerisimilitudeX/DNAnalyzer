@@ -26,12 +26,25 @@ public class DNAMutation {
   public static void generateAndWriteMutatedSequences(
       String dnaString, int numMutations, PrintStream out) {
     List<String> mutatedSequences = new ArrayList<>();
+    
+    // Create an index of available positions to mutate (remove indexes of unknown bases)
+    List<Integer> availablePositions = getKnownBaseIndexes(dnaString);
+
+    if (availablePositions.size() == 0) {
+      out.println("No valid bases to mutate, skipping mutation.");
+      return;
+    }
+
+    if (numMutations > availablePositions.size()) {
+      out.println("Warning: Number of mutations exceeds valid mutable bases. Limiting to: " + availablePositions.size());
+      numMutations = availablePositions.size();
+    }
 
     out.println("\nMutating DNA sequence...");
 
     // Generate 10 mutated sequences
     for (int i = 0; i < 10; i++) {
-      DNATools mutatedDna = new DNATools(mutate(dnaString, numMutations));
+      DNATools mutatedDna = new DNATools(mutate(dnaString, numMutations, availablePositions));
       mutatedSequences.add(mutatedDna.dna()); // Store the mutated DNA sequence to the list
     }
 
@@ -62,23 +75,11 @@ public class DNAMutation {
    *
    * @param dnaString Original DNA sequence to mutate
    * @param numMutations The number of mutations (substitutions) to apply to the sequence
+   * @param availablePositions A list of indices representing available positions for mutation 
    * @return A new mutated DNA sequence
    */
-  private static String mutate(String dnaString, int numMutations) {
+  private static String mutate(String dnaString, int numMutations, List<Integer> availablePositions) {
     StringBuilder mutatedDna = new StringBuilder(dnaString);
-
-    if (numMutations > mutatedDna.length()) {
-      System.out.println(
-          "Warning: Number of requested mutations exceeds DNA length. Limiting to "
-              + mutatedDna.length());
-      numMutations = mutatedDna.length();
-    }
-
-    // Create a list of all possible positions
-    List<Integer> availablePositions = new ArrayList<>();
-    for (int i = 0; i < dnaString.length(); i++) {
-      availablePositions.add(i);
-    }
 
     // Perform mutations
     for (int i = 0; i < numMutations; i++) {
@@ -93,6 +94,28 @@ public class DNAMutation {
     }
 
     return mutatedDna.toString();
+  }
+
+  /**
+   * Returns a list of indexes representing positions in the DNA string that contain known (valid) bases.
+   * A known base is any base that is not 'n' or 'N', which are considered unknown.
+   *
+   * @param dnaString The DNA sequence to check for valid base positions.
+   * @return A list of integers representing the indexes of known bases in the provided DNA sequence.
+   */
+  private static List<Integer> getKnownBaseIndexes(String dnaString) {
+    List<Integer> availablePositions = new ArrayList<>();
+    for (int i = 0; i < dnaString.length(); i++) {
+        if (isValidBase(dnaString.charAt(i))) {
+            availablePositions.add(i);
+        }
+    }
+    return availablePositions;
+  }
+
+  // Helper method to check if a provided base is valid (not unknown)
+  private static boolean isValidBase(char base) {
+    return base != 'n' && base != 'N';
   }
 
   /**
