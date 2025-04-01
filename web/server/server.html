@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0LTP0WK7EM');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server - DNAnalyzer</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="server.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
+
 <body>
     <!-- Background effects -->
     <div class="bg-gradient">
@@ -24,11 +37,11 @@
                 <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
                 <span class="logo-text">DNAnalyzer</span>
             </a>
-            
+
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../features/features.html">Features</a></li>
@@ -37,7 +50,7 @@
                 <li><a href="../docs/docs.html">Docs</a></li>
                 <li><a href="../about/about.html">About</a></li>
             </ul>
-            
+
             <div class="nav-buttons">
                 <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
                     <i class="fab fa-github btn-icon"></i> GitHub
@@ -53,7 +66,8 @@
                 <div class="hero-content">
                     <div class="hero-headings">
                         <h1>DNAnalyzer <span>Server</span></h1>
-                        <p class="hero-subtitle">Set up and run your own DNAnalyzer server for local development and advanced genomic analysis</p>
+                        <p class="hero-subtitle">Set up and run your own DNAnalyzer server for local development and
+                            advanced genomic analysis</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +79,7 @@
                     <h2>Server Status</h2>
                     <p>Check your local server installation status and requirements</p>
                 </div>
-                
+
                 <div class="card-grid">
                     <div class="card">
                         <div class="card-icon">
@@ -75,7 +89,7 @@
                         <div id="server-status" class="status-value">Checking...</div>
                         <p>Local Server</p>
                     </div>
-                    
+
                     <div class="card">
                         <div class="card-icon">
                             <i class="fas fa-memory"></i>
@@ -84,7 +98,7 @@
                         <div class="status-value">2GB+</div>
                         <p>Minimum RAM</p>
                     </div>
-                    
+
                     <div class="card">
                         <div class="card-icon">
                             <i class="fas fa-code-branch"></i>
@@ -103,7 +117,7 @@
                     <h2>Quick Start Guide</h2>
                     <p>Follow these steps to set up your local DNAnalyzer server</p>
                 </div>
-                
+
                 <div class="steps-container">
                     <div class="step-item">
                         <div class="step-content">
@@ -115,7 +129,7 @@
                             <p>Clone the repository and navigate to the project directory</p>
                         </div>
                     </div>
-                    
+
                     <div class="step-item">
                         <div class="step-content">
                             <h3>Setup Gradle</h3>
@@ -126,7 +140,7 @@
                             <p>Make the Gradle wrapper executable (Unix/macOS systems)</p>
                         </div>
                     </div>
-                    
+
                     <div class="step-item">
                         <div class="step-content">
                             <h3>Build the Project</h3>
@@ -137,7 +151,7 @@
                             <p>Build the project (this may take a few minutes on first run)</p>
                         </div>
                     </div>
-                    
+
                     <div class="step-item">
                         <div class="step-content">
                             <h3>Start the Server</h3>
@@ -158,14 +172,15 @@
                     <h2>Troubleshooting</h2>
                     <p>Common issues and their solutions</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon feature-icon-magenta">
                         <i class="fas fa-network-wired"></i>
                     </div>
                     <div class="feature-content">
                         <h3>Port Already in Use</h3>
-                        <p>If port 8080 is already in use, you may see an error like "Address already in use". To fix this:</p>
+                        <p>If port 8080 is already in use, you may see an error like "Address already in use". To fix
+                            this:</p>
                         <ul>
                             <li>Close any other applications using port 8080</li>
                             <li>Or modify the port in application.yml to use a different port</li>
@@ -176,7 +191,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon feature-icon-blue">
                         <i class="fab fa-java"></i>
@@ -190,7 +205,7 @@
                         <p>Download and install Java 17 or later if your version is outdated.</p>
                     </div>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon feature-icon-orange">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -213,7 +228,7 @@
             <div class="container text-center">
                 <h2>Ready to Contribute?</h2>
                 <p class="mb-xl">Join our community and help improve DNAnalyzer's server capabilities.</p>
-                
+
                 <div class="hero-buttons" style="justify-content: center;">
                     <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-primary">
                         <i class="fab fa-github btn-icon"></i> Fork on GitHub
@@ -232,8 +247,9 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning models for accurate, on-device genomic analysis.</p>
-                    
+                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning
+                        models for accurate, on-device genomic analysis.</p>
+
                     <div class="footer-social">
                         <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
                             <i class="fab fa-github"></i>
@@ -246,7 +262,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer-nav">
                     <h4>Product</h4>
                     <ul>
@@ -256,7 +272,7 @@
                         <li><a href="../docs/docs.html">Documentation</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-nav">
                     <h4>Resources</h4>
                     <ul>
@@ -266,7 +282,7 @@
                         <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-nav">
                     <h4>Community</h4>
                     <ul>
@@ -277,12 +293,13 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.
+                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
+                    81-2908499). MIT License.
                 </div>
-                
+
                 <div class="footer-links">
                     <a href="../LICENSE.md">License</a>
                     <a href="../SECURITY.md">Security</a>
@@ -294,4 +311,5 @@
 
     <script src="server.js"></script>
 </body>
+
 </html>

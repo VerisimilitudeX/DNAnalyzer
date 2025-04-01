@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0LTP0WK7EM');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Features - DNAnalyzer</title>
-    <meta name="description" content="Explore DNAnalyzer's advanced features for DNA sequence analysis, including codon detection, high coverage analysis, and more.">
-    
+    <meta name="description"
+        content="Explore DNAnalyzer's advanced features for DNA sequence analysis, including codon detection, high coverage analysis, and more.">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="features.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
+
 <body>
     <!-- Background effects -->
     <div class="bg-gradient">
@@ -38,11 +52,11 @@
                 <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
                 <span class="logo-text">DNAnalyzer</span>
             </a>
-            
+
             <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="features.html" class="active">Features</a></li>
@@ -51,7 +65,7 @@
                 <li><a href="../docs/docs.html">Docs</a></li>
                 <li><a href="../about/about.html">About</a></li>
             </ul>
-            
+
             <div class="nav-buttons">
                 <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
                     <i class="fab fa-github btn-icon"></i> GitHub
@@ -66,88 +80,102 @@
             <div class="container">
                 <div class="features-hero-content">
                     <h1>DNAnalyzer <span class="gradient-text">Features</span></h1>
-                    <p>Advanced DNA analysis capabilities powered by machine learning, designed for researchers, educators, and enthusiasts.</p>
+                    <p>Advanced DNA analysis capabilities powered by machine learning, designed for researchers,
+                        educators, and enthusiasts.</p>
                 </div>
             </div>
         </section>
-        
+
         <section class="section feature-highlights">
             <div class="container">
                 <div class="section-title">
                     <h2>Key Capabilities</h2>
-                    <p>Our comprehensive suite of DNA analysis tools provides insights from basic sequence statistics to advanced protein prediction</p>
+                    <p>Our comprehensive suite of DNA analysis tools provides insights from basic sequence statistics to
+                        advanced protein prediction</p>
                 </div>
-                
+
                 <div class="features-grid">
                     <div class="feature-card" data-aos="fade-up">
                         <div class="feature-icon">
                             <i class="fas fa-microscope"></i>
                         </div>
                         <h3>Sequence Analysis</h3>
-                        <p>Get detailed statistics about your DNA sequence, including length, GC content, and nucleotide composition with intuitive visualizations.</p>
-                        <a href="#sequence-analysis" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <p>Get detailed statistics about your DNA sequence, including length, GC content, and nucleotide
+                            composition with intuitive visualizations.</p>
+                        <a href="#sequence-analysis" class="feature-link">Learn more <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
-                    
+
                     <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="feature-icon">
                             <i class="fas fa-dna"></i>
                         </div>
                         <h3>Codon Detection</h3>
-                        <p>Identify start and stop codons across your sequence to locate potential protein-coding regions with high precision.</p>
-                        <a href="#codon-detection" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <p>Identify start and stop codons across your sequence to locate potential protein-coding
+                            regions with high precision.</p>
+                        <a href="#codon-detection" class="feature-link">Learn more <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
-                    
+
                     <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="feature-icon">
                             <i class="fas fa-project-diagram"></i>
                         </div>
                         <h3>Reading Frames</h3>
-                        <p>Analyze all six reading frames to identify potential protein-coding regions and open reading frames (ORFs).</p>
+                        <p>Analyze all six reading frames to identify potential protein-coding regions and open reading
+                            frames (ORFs).</p>
                         <a href="#reading-frames" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    
+
                     <div class="feature-card" data-aos="fade-up">
                         <div class="feature-icon">
                             <i class="fas fa-chart-bar"></i>
                         </div>
                         <h3>Coverage Analysis</h3>
-                        <p>Identify high-coverage (GC-rich) regions, often associated with gene-dense areas and promoter regions.</p>
-                        <a href="#coverage-analysis" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <p>Identify high-coverage (GC-rich) regions, often associated with gene-dense areas and promoter
+                            regions.</p>
+                        <a href="#coverage-analysis" class="feature-link">Learn more <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
-                    
+
                     <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="feature-icon">
                             <i class="fas fa-prescription"></i>
                         </div>
                         <h3>Protein Prediction</h3>
-                        <p>Predict potential proteins from your DNA sequence and analyze their amino acid composition.</p>
-                        <a href="#protein-prediction" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        <p>Predict potential proteins from your DNA sequence and analyze their amino acid composition.
+                        </p>
+                        <a href="#protein-prediction" class="feature-link">Learn more <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
-                    
+
                     <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="feature-icon">
                             <i class="fas fa-server"></i>
                         </div>
                         <h3>Local Server</h3>
-                        <p>Deploy DNAnalyzer as a local server for secure, high-throughput analysis of sensitive genomic data.</p>
+                        <p>Deploy DNAnalyzer as a local server for secure, high-throughput analysis of sensitive genomic
+                            data.</p>
                         <a href="#local-server" class="feature-link">Learn more <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="sequence-analysis" class="section section-detailed feature-section-odd">
             <div class="container">
                 <div class="feature-detailed">
                     <div class="feature-image" data-aos="fade-right">
                         <div class="feature-image-wrapper">
-                            <img src="../assets/screenshots/sequence-analysis.png" alt="Sequence Analysis" onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
+                            <img src="../assets/screenshots/sequence-analysis.png" alt="Sequence Analysis"
+                                onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
                         </div>
                     </div>
                     <div class="feature-content" data-aos="fade-left">
                         <h2>Sequence Analysis</h2>
-                        <p>Our basic sequence analysis tools give you immediate insights into your DNA sequence properties.</p>
-                        
+                        <p>Our basic sequence analysis tools give you immediate insights into your DNA sequence
+                            properties.</p>
+
                         <ul class="feature-list">
                             <li>
                                 <i class="fas fa-check-circle"></i>
@@ -160,36 +188,40 @@
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>GC Content Calculation</h4>
-                                    <p>Identify regions with high GC content, important for gene density and stability</p>
+                                    <p>Identify regions with high GC content, important for gene density and stability
+                                    </p>
                                 </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>Sequence Length Analysis</h4>
-                                    <p>Get exact measurements of your DNA sequence with support for very large genomes</p>
+                                    <p>Get exact measurements of your DNA sequence with support for very large genomes
+                                    </p>
                                 </div>
                             </li>
                         </ul>
-                        
+
                         <a href="../analyzer/analyzer.html" class="btn btn-primary">Try Sequence Analysis</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="codon-detection" class="section section-detailed feature-section-even">
             <div class="container">
                 <div class="feature-detailed reverse">
                     <div class="feature-image" data-aos="fade-left">
                         <div class="feature-image-wrapper">
-                            <img src="../assets/screenshots/codon-detection.png" alt="Codon Detection" onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
+                            <img src="../assets/screenshots/codon-detection.png" alt="Codon Detection"
+                                onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
                         </div>
                     </div>
                     <div class="feature-content" data-aos="fade-right">
                         <h2>Codon Detection</h2>
-                        <p>Identify critical codon patterns in your DNA sequence with our advanced detection algorithms.</p>
-                        
+                        <p>Identify critical codon patterns in your DNA sequence with our advanced detection algorithms.
+                        </p>
+
                         <ul class="feature-list">
                             <li>
                                 <i class="fas fa-check-circle"></i>
@@ -209,29 +241,32 @@
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>Codon Frequency Analysis</h4>
-                                    <p>Analyze codon usage patterns across your sequence to identify potential gene regions</p>
+                                    <p>Analyze codon usage patterns across your sequence to identify potential gene
+                                        regions</p>
                                 </div>
                             </li>
                         </ul>
-                        
+
                         <a href="../analyzer/analyzer.html" class="btn btn-primary">Try Codon Detection</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="reading-frames" class="section section-detailed feature-section-odd">
             <div class="container">
                 <div class="feature-detailed">
                     <div class="feature-image" data-aos="fade-right">
                         <div class="feature-image-wrapper">
-                            <img src="../assets/screenshots/reading-frames.png" alt="Reading Frames" onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
+                            <img src="../assets/screenshots/reading-frames.png" alt="Reading Frames"
+                                onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
                         </div>
                     </div>
                     <div class="feature-content" data-aos="fade-left">
                         <h2>Reading Frames Analysis</h2>
-                        <p>Comprehensive analysis of all six reading frames to identify potential genes and coding regions.</p>
-                        
+                        <p>Comprehensive analysis of all six reading frames to identify potential genes and coding
+                            regions.</p>
+
                         <ul class="feature-list">
                             <li>
                                 <i class="fas fa-check-circle"></i>
@@ -255,25 +290,27 @@
                                 </div>
                             </li>
                         </ul>
-                        
+
                         <a href="../analyzer/analyzer.html" class="btn btn-primary">Try Reading Frames Analysis</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="coverage-analysis" class="section section-detailed feature-section-even">
             <div class="container">
                 <div class="feature-detailed reverse">
                     <div class="feature-image" data-aos="fade-left">
                         <div class="feature-image-wrapper">
-                            <img src="../assets/screenshots/coverage-analysis.png" alt="Coverage Analysis" onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
+                            <img src="../assets/screenshots/coverage-analysis.png" alt="Coverage Analysis"
+                                onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
                         </div>
                     </div>
                     <div class="feature-content" data-aos="fade-right">
                         <h2>Coverage Analysis</h2>
-                        <p>Identify regions of interest with our powerful coverage analysis tools to spot regulatory elements and gene-dense areas.</p>
-                        
+                        <p>Identify regions of interest with our powerful coverage analysis tools to spot regulatory
+                            elements and gene-dense areas.</p>
+
                         <ul class="feature-list">
                             <li>
                                 <i class="fas fa-check-circle"></i>
@@ -293,35 +330,39 @@
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>Visualization Tools</h4>
-                                    <p>Graphical representation of coverage across your sequence for easy interpretation</p>
+                                    <p>Graphical representation of coverage across your sequence for easy interpretation
+                                    </p>
                                 </div>
                             </li>
                         </ul>
-                        
+
                         <a href="../analyzer/analyzer.html" class="btn btn-primary">Try Coverage Analysis</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="protein-prediction" class="section section-detailed feature-section-odd">
             <div class="container">
                 <div class="feature-detailed">
                     <div class="feature-image" data-aos="fade-right">
                         <div class="feature-image-wrapper">
-                            <img src="../assets/screenshots/protein-prediction.png" alt="Protein Prediction" onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
+                            <img src="../assets/screenshots/protein-prediction.png" alt="Protein Prediction"
+                                onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
                         </div>
                     </div>
                     <div class="feature-content" data-aos="fade-left">
                         <h2>Protein Prediction</h2>
-                        <p>Translate DNA sequences into proteins and analyze their properties with our advanced prediction tools.</p>
-                        
+                        <p>Translate DNA sequences into proteins and analyze their properties with our advanced
+                            prediction tools.</p>
+
                         <ul class="feature-list">
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>ORF Translation</h4>
-                                    <p>Convert open reading frames to amino acid sequences using the standard genetic code</p>
+                                    <p>Convert open reading frames to amino acid sequences using the standard genetic
+                                        code</p>
                                 </div>
                             </li>
                             <li>
@@ -339,62 +380,67 @@
                                 </div>
                             </li>
                         </ul>
-                        
+
                         <a href="../analyzer/analyzer.html" class="btn btn-primary">Try Protein Prediction</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="local-server" class="section section-detailed feature-section-even">
             <div class="container">
                 <div class="feature-detailed reverse">
                     <div class="feature-image" data-aos="fade-left">
                         <div class="feature-image-wrapper">
-                            <img src="../assets/screenshots/local-server.png" alt="Local Server" onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
+                            <img src="../assets/screenshots/local-server.png" alt="Local Server"
+                                onerror="this.src='../assets/icons/Icon_Dark_BG.svg'">
                         </div>
                     </div>
                     <div class="feature-content" data-aos="fade-right">
                         <h2>Local Server Deployment</h2>
-                        <p>Run DNAnalyzer as a local server for secure, high-throughput analysis of sensitive genomic data.</p>
-                        
+                        <p>Run DNAnalyzer as a local server for secure, high-throughput analysis of sensitive genomic
+                            data.</p>
+
                         <ul class="feature-list">
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>Privacy-Focused Analysis</h4>
-                                    <p>Keep sensitive genetic data on your own infrastructure with no external data transfer</p>
+                                    <p>Keep sensitive genetic data on your own infrastructure with no external data
+                                        transfer</p>
                                 </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>High-Performance Processing</h4>
-                                    <p>Optimized for multi-core systems to handle large datasets and batch processing</p>
+                                    <p>Optimized for multi-core systems to handle large datasets and batch processing
+                                    </p>
                                 </div>
                             </li>
                             <li>
                                 <i class="fas fa-check-circle"></i>
                                 <div>
                                     <h4>API Integration</h4>
-                                    <p>RESTful API for seamless integration with your existing bioinformatics pipelines</p>
+                                    <p>RESTful API for seamless integration with your existing bioinformatics pipelines
+                                    </p>
                                 </div>
                             </li>
                         </ul>
-                        
+
                         <a href="../server/server.html" class="btn btn-primary">Learn About Server Setup</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section class="section comparison-section">
             <div class="container">
                 <div class="section-title">
                     <h2>Why Choose DNAnalyzer?</h2>
                     <p>See how DNAnalyzer compares to traditional DNA analysis tools</p>
                 </div>
-                
+
                 <div class="comparison-table-container" data-aos="fade-up">
                     <table class="comparison-table">
                         <thead>
@@ -445,18 +491,20 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="section testimonials-section">
             <div class="container">
                 <div class="section-title">
                     <h2>What Our Users Say</h2>
                     <p>Hear from researchers and educators who use DNAnalyzer</p>
                 </div>
-                
+
                 <div class="testimonials-grid">
                     <div class="testimonial-card" data-aos="fade-up">
                         <div class="testimonial-content">
-                            <p>"DNAnalyzer has transformed how I teach genomics to undergraduates. The visual interface makes complex concepts accessible, and students can perform real analysis without a steep learning curve."</p>
+                            <p>"DNAnalyzer has transformed how I teach genomics to undergraduates. The visual interface
+                                makes complex concepts accessible, and students can perform real analysis without a
+                                steep learning curve."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-info">
@@ -465,10 +513,12 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="testimonial-content">
-                            <p>"As a researcher focusing on genetic disorders, I appreciate DNAnalyzer's privacy-first approach. The local server option allows me to analyze sensitive patient data without exposing it to third parties."</p>
+                            <p>"As a researcher focusing on genetic disorders, I appreciate DNAnalyzer's privacy-first
+                                approach. The local server option allows me to analyze sensitive patient data without
+                                exposing it to third parties."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-info">
@@ -477,10 +527,12 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="testimonial-content">
-                            <p>"The ability to quickly identify promoter regions and protein-coding sequences has accelerated my synthetic biology project significantly. DNAnalyzer is now a core part of our design verification process."</p>
+                            <p>"The ability to quickly identify promoter regions and protein-coding sequences has
+                                accelerated my synthetic biology project significantly. DNAnalyzer is now a core part of
+                                our design verification process."</p>
                         </div>
                         <div class="testimonial-author">
                             <div class="author-info">
@@ -492,12 +544,12 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="section cta-section">
             <div class="container text-center">
                 <h2>Ready to start analyzing DNA sequences?</h2>
                 <p>Experience the power of DNAnalyzer's features today</p>
-                
+
                 <div class="cta-buttons">
                     <a href="../analyzer/analyzer.html" class="btn btn-primary">
                         <i class="fas fa-dna btn-icon"></i> Try DNAnalyzer Now
@@ -516,8 +568,9 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning models for accurate, on-device genomic analysis.</p>
-                    
+                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning
+                        models for accurate, on-device genomic analysis.</p>
+
                     <div class="footer-social">
                         <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
                             <i class="fab fa-github"></i>
@@ -530,7 +583,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer-nav">
                     <h4>Product</h4>
                     <ul>
@@ -540,7 +593,7 @@
                         <li><a href="../docs/docs.html">Documentation</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-nav">
                     <h4>Resources</h4>
                     <ul>
@@ -550,7 +603,7 @@
                         <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-nav">
                     <h4>Community</h4>
                     <ul>
@@ -561,12 +614,13 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.
+                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
+                    81-2908499). MIT License.
                 </div>
-                
+
                 <div class="footer-links">
                     <a href="../LICENSE.md">License</a>
                     <a href="../SECURITY.md">Security</a>
@@ -579,4 +633,5 @@
     <!-- JavaScript -->
     <script src="features.js"></script>
 </body>
+
 </html>
