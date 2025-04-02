@@ -4,186 +4,154 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all components after the DOM is fully loaded
-    initNotificationBanner(); // Must run first to set initial offsets
+    // Initialize DNA Helix animation
     initDNAHelix();
+    
+    // Initialize mobile menu toggle
     initMobileMenu();
+    
+    // Initialize navbar scroll effect
     initNavbarScroll();
+    
+    // Initialize stats counter animation
     initStatsAnimation();
-    initSmoothScroll(); // Initialize smooth scrolling for anchor links
-    initScrollAnimations(); // Initialize general scroll-triggered animations
-    initNavbarPulse(); // Add subtle pulse effect to navbar
+    
+    // Initialize notification banner dismiss functionality
+    initNotificationBanner();
+
+    // Initialize notification banner scroll behavior
+    initNotificationScroll();
+    
+    // Initialize navbar pulse effect
+    initNavbarPulse();
 });
 
-// --- Component Initializations ---
+// Shared state for notification banner
+let notificationClosed = false;
 
 /**
- * Initialize the notification banner:
- * - Sets initial CSS variable for height offset.
- * - Handles the close button click.
- * - Manages scroll behavior (hiding/showing).
+ * Initialize the notification banner dismiss functionality and adjust navbar positioning
  */
 function initNotificationBanner() {
     const banner = document.querySelector('.notification-banner');
     const navbar = document.getElementById('navbar');
-    const body = document.body;
-    if (!banner || !navbar || !body) return; // Ensure all elements exist
+    if (!banner || !navbar) return;
 
-    const closeBtn = banner.querySelector('.notification-close');
-    let notificationClosedManually = false; // Track if closed by user click
+    const bannerHeight = banner.offsetHeight;
+    document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
 
-    // Function to update layout based on banner visibility
-    const updateLayout = () => {
-        // Ensure banner exists and is visible before getting height
-        if (!banner || banner.offsetParent === null) {
-             document.documentElement.style.setProperty('--notification-height', `0px`);
-             if(navbar) navbar.style.top = `0px`;
-             if(body) body.style.paddingTop = `0px`;
-             return;
-        }
+    const closeBtn = document.querySelector('.notification-banner .notification-close');
+    if (!closeBtn) return;
 
-        const bannerHeight = banner.offsetHeight;
-        const isBannerVisible = !banner.classList.contains('closed') && !banner.classList.contains('hide-notification');
+    closeBtn.addEventListener('click', function() {
+        banner.classList.add('closed');
+        document.documentElement.style.setProperty('--notification-height', '0px');
+        navbar.style.top = '0';
+        notificationClosed = true;
+    });
 
-        if (isBannerVisible) {
-            document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
-            if(navbar) navbar.style.top = `${bannerHeight}px`;
-            if(body) body.style.paddingTop = `${bannerHeight}px`;
-        } else {
-            document.documentElement.style.setProperty('--notification-height', '0px');
-            if(navbar) navbar.style.top = '0px';
-            if(body) body.style.paddingTop = '0px';
-        }
-    };
+    // Initial positioning
+    navbar.style.top = `${bannerHeight}px`;
+}
 
-    // Initial layout calculation
-    // Use setTimeout to ensure accurate height measurement after styles apply
-    setTimeout(updateLayout, 0);
+/**
+ * Initialize notification banner scroll behavior
+ */
+function initNotificationScroll() {
+    const banner = document.querySelector('.notification-banner');
+    const navbar = document.getElementById('navbar');
+    if (!banner || !navbar) return;
 
-
-    // Handle close button click
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            banner.classList.add('closed'); // Mark as closed
-            notificationClosedManually = true; // User closed it
-            updateLayout(); // Update layout immediately
-        });
-    }
-
-    // Handle scroll behavior
     let lastScrollTop = 0;
+    const bannerHeight = banner.offsetHeight;
+
     window.addEventListener('scroll', function() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-         // Ensure banner exists before proceeding
-        if (!banner || banner.offsetParent === null) return;
-
-        const bannerHeight = banner.offsetHeight; // Recalculate height in case it changes
-
-        // Don't hide/show if manually closed
-        if (notificationClosedManually) {
-             if(navbar) navbar.style.top = '0px'; // Ensure navbar stays at top if banner closed
-             if(body) body.style.paddingTop = '0px';
-             return;
-        }
-
-        // Hide on scroll down past banner height, show on scroll up
         if (scrollTop > lastScrollTop && scrollTop > bannerHeight) {
             // Scrolling down
             banner.classList.add('hide-notification');
-        } else if (scrollTop < lastScrollTop) {
-            // Scrolling up
-             banner.classList.remove('hide-notification');
+            navbar.style.top = '0';
+        } else if (!notificationClosed) {
+            // Scrolling up and notification was not manually closed
+            banner.classList.remove('hide-notification');
+            navbar.style.top = `${bannerHeight}px`;
+        } else {
+            // Scrolling up but notification was manually closed
+            navbar.style.top = '0';
         }
-
-        updateLayout(); // Update layout based on scroll changes
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-    }, { passive: true }); // Use passive listener for performance
-
-     // Update layout on resize as well
-     window.addEventListener('resize', updateLayout);
+        lastScrollTop = scrollTop;
+    });
 }
-
 
 /**
  * Initialize the DNA Helix animation on the homepage
  */
 function initDNAHelix() {
-    const dnaHelixContainer = document.getElementById('dnaHelix');
-    if (!dnaHelixContainer) return; // Exit if container not found
-
-    // Clear any existing content (e.g., if re-initializing)
-    dnaHelixContainer.innerHTML = '';
-
-    // Configuration for the helix
-    const numBasePairs = 20; // Total number of base pairs to generate
-    const verticalSpacing = 20; // Pixels between each base pair vertically
-    const rotationPerPair = 18; // Degrees of Y-rotation per base pair to create the twist
-    const horizontalAmplitude = 20; // Max horizontal displacement for the curve
-    const animationDuration = 8; // Seconds for one full rotation
-    const basePairTypes = [
-        ['A', 'T'], ['T', 'A'], ['G', 'C'], ['C', 'G']
+    const dnaHelix = document.getElementById('dnaHelix');
+    if (!dnaHelix) return;
+    
+    // Clear any existing content
+    dnaHelix.innerHTML = '';
+    
+    const numBasesUp = 15; // Number of bases to extend upward
+    const numBasesDown = 25; // Number of bases to extend downward
+    const totalBases = numBasesUp + numBasesDown;
+    const basePairs = [
+        ['A', 'T'],
+        ['T', 'A'],
+        ['G', 'C'],
+        ['C', 'G']
     ];
-
-    // Create and append each base pair
-    for (let i = 0; i < numBasePairs; i++) {
-        const pairIndex = Math.floor(Math.random() * basePairTypes.length);
-        const [leftBaseChar, rightBaseChar] = basePairTypes[pairIndex];
-
-        // Create the main div for the base pair
-        const basePairElement = document.createElement('div');
-        basePairElement.className = 'base-pair';
-
-        // --- Positioning and Initial Transform ---
-        // Calculate vertical position
-        const topPosition = i * verticalSpacing;
-        basePairElement.style.top = `${topPosition}px`;
-
-        // Calculate initial rotation angle for the helix twist
-        const initialAngle = (i * rotationPerPair) % 360;
-
-        // Calculate initial horizontal offset for the curve effect using sine wave
-        const initialXOffset = Math.sin(initialAngle * Math.PI / 180) * horizontalAmplitude;
-
-        // Apply the initial 3D transform (rotation, depth, horizontal offset)
-        basePairElement.style.transform = `rotateY(${initialAngle}deg) translateZ(40px) translateX(${initialXOffset}px)`;
-
-        // --- Animation ---
-        // Apply the rotation animation with a staggered delay for a wave effect
-        // Negative delay makes the animation appear to start partway through its cycle
-        const animationDelay = (i * -animationDuration / numBasePairs).toFixed(2);
-        basePairElement.style.animation = `rotate ${animationDuration}s linear infinite`;
-        basePairElement.style.animationDelay = `${animationDelay}s`;
-
-        // --- Create Bases and Connector ---
+    
+    // Create base pairs with a proper twisted helix structure
+    // Start with negative indices for "upward" extension, then go to positive for "downward"
+    for (let i = -numBasesUp; i < numBasesDown; i++) {
+        const pairIndex = Math.floor(Math.random() * basePairs.length);
+        const [leftBase, rightBase] = basePairs[pairIndex];
+        
+        const basePair = document.createElement('div');
+        basePair.className = 'base-pair';
+        
+        // Position each base pair - adjust vertical position to account for bases extending upward
+        basePair.style.top = `${(i + numBasesUp) * 25}px`;
+        
+        // Calculate initial rotation angle to create the helix twist
+        // Each pair is rotated 25 degrees more than the previous one
+        const angle = (i * 25) % 360;
+        
+        // Calculate X offset based on the angle to create the curve effect
+        const xOffset = Math.sin(angle * Math.PI / 180) * 20;
+        
+        // Apply the 3D transformation to create the initial twisted shape
+        basePair.style.transform = `rotateY(${angle}deg) translateZ(40px) translateX(${xOffset}px)`;
+        
+        // Add animation with staggered delays
+        basePair.style.animation = 'rotate 8s linear infinite';
+        basePair.style.animationDelay = `${-i * 0.5}s`;
+        
         const leftBaseElem = document.createElement('div');
         leftBaseElem.className = 'base left-base';
-        leftBaseElem.textContent = leftBaseChar;
-        // Stagger pulse animation delay for bases
-        leftBaseElem.style.animationDelay = `${(i * 0.1).toFixed(2)}s`;
-
+        leftBaseElem.textContent = leftBase;
+        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
+        
         const rightBaseElem = document.createElement('div');
         rightBaseElem.className = 'base right-base';
-        rightBaseElem.textContent = rightBaseChar;
-        // Stagger pulse animation delay (offset from left base)
-        rightBaseElem.style.animationDelay = `${(i * 0.1 + 0.5).toFixed(2)}s`; // 0.5s offset
-
+        rightBaseElem.textContent = rightBase;
+        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
+        
         const connector = document.createElement('div');
         connector.className = 'base-connector';
-
-        // Append bases and connector to the base pair element
-        basePairElement.appendChild(leftBaseElem);
-        basePairElement.appendChild(connector);
-        basePairElement.appendChild(rightBaseElem);
-
-        // Append the complete base pair to the main helix container
-        dnaHelixContainer.appendChild(basePairElement);
+        
+        basePair.appendChild(leftBaseElem);
+        basePair.appendChild(connector);
+        basePair.appendChild(rightBaseElem);
+        
+        dnaHelix.appendChild(basePair);
     }
-
-    // Optional: Adjust container height dynamically if needed, though fixed height in CSS is often better
-    // dnaHelixContainer.style.height = `${numBasePairs * verticalSpacing + 50}px`; // +50 for buffer
+    
+    // Adjust the container height to accommodate the extended helix
+    dnaHelix.style.height = `${totalBases * 25 + 50}px`;
 }
-
 
 /**
  * Initialize the mobile menu toggle functionality
@@ -191,251 +159,201 @@ function initDNAHelix() {
 function initMobileMenu() {
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
-
-    if (!mobileToggle || !navLinks) return; // Exit if elements not found
-
+    
+    if (!mobileToggle || !navLinks) return;
+    
     mobileToggle.addEventListener('click', function() {
-        const isActive = navLinks.classList.toggle('active'); // Toggle the 'active' class
-
-        // Change the icon based on the menu state (bars or times)
+        navLinks.classList.toggle('active');
+        
+        // Change the icon based on the state
         const icon = mobileToggle.querySelector('i');
-        if (isActive) {
+        if (navLinks.classList.contains('active')) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-times');
-            mobileToggle.setAttribute('aria-expanded', 'true'); // ARIA for accessibility
         } else {
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
-            mobileToggle.setAttribute('aria-expanded', 'false'); // ARIA for accessibility
         }
     });
-
-    // Close the mobile menu when a link inside it is clicked
+    
+    // Close the mobile menu when clicking a link
     const links = navLinks.querySelectorAll('a');
     links.forEach(link => {
         link.addEventListener('click', function() {
-            // Only close if the link is navigating within the page (hash link)
-            // or if it's navigating away (check this condition if needed)
-            if (navLinks.classList.contains('active')) {
-                 // Check if the link is a hash link for the current page
-                if (link.pathname === window.location.pathname && link.hash) {
-                     navLinks.classList.remove('active');
-                     const icon = mobileToggle.querySelector('i');
-                     icon.classList.remove('fa-times');
-                     icon.classList.add('fa-bars');
-                     mobileToggle.setAttribute('aria-expanded', 'false');
-                } else if (link.pathname !== window.location.pathname) {
-                    // If navigating to a different page, still close the menu
-                     navLinks.classList.remove('active');
-                     const icon = mobileToggle.querySelector('i');
-                     icon.classList.remove('fa-times');
-                     icon.classList.add('fa-bars');
-                     mobileToggle.setAttribute('aria-expanded', 'false');
-                }
-                // If it's just a link without hash or different pathname,
-                // default browser navigation will happen, menu state might persist briefly.
-            }
+            navLinks.classList.remove('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         });
     });
 }
 
 /**
- * Initialize the navbar scroll effect (changing background/padding)
+ * Initialize the navbar scroll effect
  */
 function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
-    if (!navbar) return; // Exit if navbar not found
-
-    const scrollThreshold = 50; // Pixels to scroll before effect triggers
-
+    if (!navbar) return;
+    
     window.addEventListener('scroll', function() {
-        if (window.scrollY > scrollThreshold) {
+        if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    }, { passive: true }); // Use passive listener for performance
-}
-
-/**
- * Animate number counting from 0 to target value.
- * @param {HTMLElement} element - The DOM element displaying the number.
- * @param {string} targetStr - The target value (as a string, e.g., "141", "7M+").
- * @param {number} duration - Animation duration in milliseconds.
- */
-function animateNumber(element, targetStr, duration = 2000) {
-    if (!element) return;
-
-    const targetNum = parseFloat(targetStr); // Get the numerical part
-    const suffix = targetStr.replace(/[0-9.,]/g, ''); // Extract suffix like M, +, %
-
-    if (isNaN(targetNum)) { // Handle cases where target is not a number (e.g., just "M+")
-        element.textContent = targetStr;
-        return;
-    }
-
-    let start = 0;
-    let startTime = null;
-
-    // Easing function (easeOutQuart)
-    function easeOutQuart(x) {
-        return 1 - Math.pow(1 - x, 4);
-    }
-
-    function animationStep(timestamp) {
-        if (!startTime) startTime = timestamp;
-
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1); // Ensure progress doesn't exceed 1
-        const easedProgress = easeOutQuart(progress);
-
-        let currentValue = Math.floor(easedProgress * targetNum);
-
-        // Format the number (e.g., add commas if needed, handle decimals)
-        // For simplicity, we'll just use floor here. Add formatting if required.
-        element.textContent = `${currentValue}${suffix}`; // Combine number and suffix
-
-        if (progress < 1) {
-            requestAnimationFrame(animationStep); // Continue animation
-        } else {
-            // Ensure final value is exact, handling potential floating point inaccuracies
-            const finalTargetNum = parseFloat(targetStr); // Re-parse to be sure
-             if (!isNaN(finalTargetNum)) {
-                 element.textContent = `${finalTargetNum}${suffix}`;
-             } else {
-                 element.textContent = targetStr; // Fallback if parsing fails again
-             }
-        }
-    }
-
-    requestAnimationFrame(animationStep); // Start the animation
-}
-
-
-/**
- * Initialize the stats counter animation using Intersection Observer.
- * Animates numbers when the stats section becomes visible.
- */
-function initStatsAnimation() {
-    const statsSection = document.querySelector('.stats-section');
-    if (!statsSection) return; // Exit if section not found
-
-    // Define the stats elements and their target values
-    const statElements = [
-        { elem: document.getElementById('statAccuracy'), target: '141' },
-        { elem: document.getElementById('statSequences'), target: '7M+' },
-        { elem: document.getElementById('statUsers'), target: '46+' },
-        // Add the Discord Members stat if its element exists
-        { elem: statsSection.querySelector('.stat-item:nth-child(4) .stat-number'), target: '86' }
-    ];
-
-    let animated = false; // Flag to ensure animation runs only once
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // If the section is intersecting and not yet animated
-            if (entry.isIntersecting && !animated) {
-                // Animate each stat element
-                statElements.forEach((stat, index) => {
-                    if (stat.elem && stat.target) { // Check if element and target exist
-                        // Use setTimeout for a staggered start effect
-                        setTimeout(() => {
-                            animateNumber(stat.elem, stat.target, 2000); // 2-second duration
-                        }, index * 200); // 200ms delay between each stat
-                    }
-                });
-
-                animated = true; // Mark as animated
-                observer.unobserve(statsSection); // Stop observing once animated
-            }
-        });
-    }, { threshold: 0.3 }); // Trigger when 30% of the section is visible
-
-    observer.observe(statsSection); // Start observing the stats section
-}
-
-
-/**
- * Add smooth scrolling behavior for anchor links (href="#...")
- */
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            // Ensure it's a valid ID selector and not just "#"
-            if (targetId.length > 1 && targetId.startsWith('#')) {
-                try {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault(); // Prevent default jump
-
-                        // Calculate offset (consider fixed navbar height)
-                        const navbar = document.getElementById('navbar');
-                        // Check if navbar exists and is visible before getting height
-                        const navbarHeight = (navbar && navbar.offsetParent !== null) ? navbar.offsetHeight : 0;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 20; // Extra 20px buffer
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth' // Enable smooth scrolling
-                        });
-                    }
-                } catch (error) {
-                    console.warn(`Smooth scroll target not found or invalid selector: ${targetId}`);
-                }
-            }
-        });
     });
 }
 
-
 /**
- * Initialize scroll-triggered animations for elements with 'scroll-animate' class.
+ * Animate number counting from 0 to target
+ * @param {HTMLElement} element - The element containing the number
+ * @param {number} target - The target number to count to
+ * @param {string} suffix - Optional suffix like '%' or 'M'
+ * @param {number} duration - Animation duration in milliseconds
  */
-function initScrollAnimations() {
-    const elementsToAnimate = document.querySelectorAll('.scroll-animate');
-    if (!elementsToAnimate.length) return; // Exit if no elements found
-
-    // Check if IntersectionObserver is supported
-    if ('IntersectionObserver' in window) {
-        const observerOptions = {
-            threshold: 0.1, // Trigger when 10% visible
-            rootMargin: '0px 0px -50px 0px' // Trigger slightly before element fully enters viewport bottom
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in'); // Add class to trigger animation
-                    observer.unobserve(entry.target); // Stop observing once animated
-                }
-            });
-        }, observerOptions);
-
-        elementsToAnimate.forEach(element => {
-            observer.observe(element); // Observe each element
-        });
-    } else {
-        // Fallback for browsers that don't support IntersectionObserver
-        // Simply make elements visible immediately
-        elementsToAnimate.forEach(element => {
-            element.classList.add('animate-in');
-        });
-        console.warn("IntersectionObserver not supported, scroll animations applied directly.");
+function animateNumber(element, target, suffix = '', duration = 2000) {
+    if (!element) return;
+    
+    let start = 0;
+    let startTime = null;
+    const targetNum = parseFloat(target);
+    
+    function easeOutQuart(x) {
+        return 1 - Math.pow(1 - x, 4);
     }
+    
+    function animate(timestamp) {
+        if (!startTime) startTime = timestamp;
+        
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        
+        let currentValue = Math.floor(easedProgress * targetNum);
+        
+        // Handle special cases
+        if (suffix === '%') {
+            const decimal = (easedProgress * targetNum) % 1;
+            if (decimal > 0) {
+                currentValue = (easedProgress * targetNum).toFixed(1);
+            }
+        }
+        
+        element.textContent = `${currentValue}${suffix}`;
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            element.textContent = `${target}${suffix}`;
+        }
+    }
+    
+    requestAnimationFrame(animate);
 }
 
+/**
+ * Initialize the stats counter animation with Intersection Observer
+ */
+function initStatsAnimation() {
+    const statsSection = document.querySelector('.stats-section');
+    if (!statsSection) return;
+    
+    const statElements = {
+        accuracy: { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
+        sequences: { elem: document.getElementById('statSequences'), target: '7', suffix: 'M+' },
+        users: { elem: document.getElementById('statUsers'), target: '46', suffix: '+' }
+    };
+    
+    let animated = false;
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) {
+                // Animate each stat with staggered delays
+                Object.values(statElements).forEach((stat, index) => {
+                    setTimeout(() => {
+                        if (stat.elem) {
+                            animateNumber(stat.elem, stat.target, stat.suffix, 2000);
+                        }
+                    }, index * 200);
+                });
+                
+                animated = true;
+                observer.unobserve(statsSection);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    observer.observe(statsSection);
+}
 
 /**
- * Add a subtle pulse effect to the navbar for a futuristic look.
+ * Add smooth scrolling for anchor links
+ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return; // Skip if it's just "#"
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            
+            window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+/**
+ * Initialize navbar pulse effect for futuristic look
  */
 function initNavbarPulse() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
-
-    // Toggle a class periodically to trigger the pulse animation defined in CSS
     setInterval(() => {
         navbar.classList.toggle('navbar-pulse');
-    }, 3000); // Pulse every 3 seconds
+    }, 2000);
 }
+
+/**
+ * Initialize futuristic notification effects on the notification banner
+ */
+function initFuturisticNotificationEffects() {
+    const banner = document.querySelector('.notification-banner');
+    if (!banner) return;
+    banner.addEventListener('mouseenter', () => {
+        banner.style.transition = 'filter 0.3s ease';
+        banner.style.filter = 'brightness(1.2) contrast(1.1)';
+    });
+    banner.addEventListener('mouseleave', () => {
+        banner.style.filter = 'none';
+    });
+}
+
+/**
+ * Add intersection observer for animating sections as they come into view
+ */
+const animateSections = document.querySelectorAll('.section, .feature-card, .card');
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            sectionObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+animateSections.forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    sectionObserver.observe(section);
+});
