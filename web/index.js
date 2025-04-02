@@ -6,24 +6,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize DNA Helix animation
     initDNAHelix();
-    
+
     // Initialize mobile menu toggle
     initMobileMenu();
-    
+
     // Initialize navbar scroll effect
     initNavbarScroll();
-    
+
     // Initialize stats counter animation
     initStatsAnimation();
-    
+
     // Initialize notification banner dismiss functionality
     initNotificationBanner();
 
     // Initialize notification banner scroll behavior
     initNotificationScroll();
-    
+
     // Initialize navbar pulse effect
     initNavbarPulse();
+
+    // Initialize futuristic notification effects
+    initFuturisticNotificationEffects();
+
+    // Initialize scroll animations for sections
+    initScrollAnimations();
 });
 
 // Shared state for notification banner
@@ -37,21 +43,36 @@ function initNotificationBanner() {
     const navbar = document.getElementById('navbar');
     if (!banner || !navbar) return;
 
-    const bannerHeight = banner.offsetHeight;
-    document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
+    // Use ResizeObserver to handle dynamic banner height changes (e.g., text wrap)
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            const bannerHeight = entry.target.offsetHeight;
+            document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
+            // Adjust navbar top only if notification isn't closed and banner is visible
+            if (!notificationClosed && !banner.classList.contains('hide-notification')) {
+                 navbar.style.top = `${bannerHeight}px`;
+            }
+        }
+    });
+
+    resizeObserver.observe(banner);
+
 
     const closeBtn = document.querySelector('.notification-banner .notification-close');
     if (!closeBtn) return;
 
     closeBtn.addEventListener('click', function() {
-        banner.classList.add('closed');
+        banner.classList.add('closed'); // Hide banner immediately
         document.documentElement.style.setProperty('--notification-height', '0px');
-        navbar.style.top = '0';
+        navbar.style.top = '0'; // Move navbar to top
         notificationClosed = true;
+        resizeObserver.unobserve(banner); // Stop observing banner size changes
     });
 
-    // Initial positioning
-    navbar.style.top = `${bannerHeight}px`;
+    // Set initial navbar position based on initial banner height
+    const initialBannerHeight = banner.offsetHeight;
+    document.documentElement.style.setProperty('--notification-height', `${initialBannerHeight}px`);
+    navbar.style.top = `${initialBannerHeight}px`;
 }
 
 /**
@@ -63,25 +84,35 @@ function initNotificationScroll() {
     if (!banner || !navbar) return;
 
     let lastScrollTop = 0;
-    const bannerHeight = banner.offsetHeight;
 
     window.addEventListener('scroll', function() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const bannerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--notification-height')) || 0;
+
         if (scrollTop > lastScrollTop && scrollTop > bannerHeight) {
-            // Scrolling down
-            banner.classList.add('hide-notification');
-            navbar.style.top = '0';
-        } else if (!notificationClosed) {
-            // Scrolling up and notification was not manually closed
-            banner.classList.remove('hide-notification');
-            navbar.style.top = `${bannerHeight}px`;
-        } else {
-            // Scrolling up but notification was manually closed
-            navbar.style.top = '0';
+            // Scrolling down past banner height
+             if (!notificationClosed) { // Only hide if not manually closed
+                 banner.classList.add('hide-notification');
+             }
+             navbar.style.top = '0'; // Move navbar up regardless
+        } else if (scrollTop < lastScrollTop) {
+            // Scrolling up
+            if (!notificationClosed) { // Only show if not manually closed
+                banner.classList.remove('hide-notification');
+                navbar.style.top = `${bannerHeight}px`; // Move navbar down
+            } else {
+                 navbar.style.top = '0'; // Keep navbar at top if banner closed
+            }
+        } else if (scrollTop <= bannerHeight && !notificationClosed) {
+             // Near the top, ensure banner is visible and navbar positioned correctly
+             banner.classList.remove('hide-notification');
+             navbar.style.top = `${bannerHeight}px`;
         }
-        lastScrollTop = scrollTop;
-    });
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    }, { passive: true }); // Improve scroll performance
 }
+
 
 /**
  * Initialize the DNA Helix animation on the homepage
@@ -89,10 +120,10 @@ function initNotificationScroll() {
 function initDNAHelix() {
     const dnaHelix = document.getElementById('dnaHelix');
     if (!dnaHelix) return;
-    
+
     // Clear any existing content
     dnaHelix.innerHTML = '';
-    
+
     const numBasesUp = 15; // Number of bases to extend upward
     const numBasesDown = 25; // Number of bases to extend downward
     const totalBases = numBasesUp + numBasesDown;
@@ -102,56 +133,62 @@ function initDNAHelix() {
         ['G', 'C'],
         ['C', 'G']
     ];
-    
+
     // Create base pairs with a proper twisted helix structure
     // Start with negative indices for "upward" extension, then go to positive for "downward"
     for (let i = -numBasesUp; i < numBasesDown; i++) {
         const pairIndex = Math.floor(Math.random() * basePairs.length);
         const [leftBase, rightBase] = basePairs[pairIndex];
-        
+
         const basePair = document.createElement('div');
         basePair.className = 'base-pair';
-        
+
         // Position each base pair - adjust vertical position to account for bases extending upward
         basePair.style.top = `${(i + numBasesUp) * 25}px`;
-        
+
         // Calculate initial rotation angle to create the helix twist
         // Each pair is rotated 25 degrees more than the previous one
         const angle = (i * 25) % 360;
-        
+
+        // --- FIX: Reduced the multiplier from 20 to 15 to decrease horizontal spread ---
         // Calculate X offset based on the angle to create the curve effect
-        const xOffset = Math.sin(angle * Math.PI / 180) * 20;
-        
+        const xOffset = Math.sin(angle * Math.PI / 180) * 15; // Reduced from 20
+
         // Apply the 3D transformation to create the initial twisted shape
-        basePair.style.transform = `rotateY(${angle}deg) translateZ(40px) translateX(${xOffset}px)`;
-        
+        // The CSS animation will handle the rotation, JS sets the initial position/shape
+        basePair.style.transform = `translateX(${xOffset}px)`; // Only set translateX here
+
         // Add animation with staggered delays
+        // The 'rotate' animation now only handles rotateY and translateZ (see CSS)
         basePair.style.animation = 'rotate 8s linear infinite';
-        basePair.style.animationDelay = `${-i * 0.5}s`;
-        
+        basePair.style.animationDelay = `${-i * 0.2}s`; // Stagger animation start
+
         const leftBaseElem = document.createElement('div');
         leftBaseElem.className = 'base left-base';
         leftBaseElem.textContent = leftBase;
-        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
-        
+        // Stagger pulse animation for bases
+        leftBaseElem.style.animationDelay = `${i * 0.15}s`;
+
         const rightBaseElem = document.createElement('div');
         rightBaseElem.className = 'base right-base';
         rightBaseElem.textContent = rightBase;
-        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
-        
+         // Stagger pulse animation for bases
+        rightBaseElem.style.animationDelay = `${i * 0.15 + 0.1}s`; // Slightly offset right base pulse
+
         const connector = document.createElement('div');
         connector.className = 'base-connector';
-        
+
         basePair.appendChild(leftBaseElem);
         basePair.appendChild(connector);
         basePair.appendChild(rightBaseElem);
-        
+
         dnaHelix.appendChild(basePair);
     }
-    
+
     // Adjust the container height to accommodate the extended helix
-    dnaHelix.style.height = `${totalBases * 25 + 50}px`;
+    dnaHelix.style.height = `${totalBases * 25 + 50}px`; // Add some padding
 }
+
 
 /**
  * Initialize the mobile menu toggle functionality
@@ -159,12 +196,14 @@ function initDNAHelix() {
 function initMobileMenu() {
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (!mobileToggle || !navLinks) return;
-    
+
     mobileToggle.addEventListener('click', function() {
+        const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+        mobileToggle.setAttribute('aria-expanded', !isExpanded);
         navLinks.classList.toggle('active');
-        
+
         // Change the icon based on the state
         const icon = mobileToggle.querySelector('i');
         if (navLinks.classList.contains('active')) {
@@ -175,17 +214,28 @@ function initMobileMenu() {
             icon.classList.add('fa-bars');
         }
     });
-    
+
     // Close the mobile menu when clicking a link
     const links = navLinks.querySelectorAll('a');
     links.forEach(link => {
         link.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-            const icon = mobileToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+            if (navLinks.classList.contains('active')) {
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     });
+
+     // Close menu if clicking outside the navbar when it's open
+     document.addEventListener('click', function(event) {
+        const isClickInsideNav = mobileToggle.contains(event.target) || navLinks.contains(event.target);
+        if (!isClickInsideNav && navLinks.classList.contains('active')) {
+             mobileToggle.click(); // Simulate a click on the toggle button to close
+        }
+     });
 }
 
 /**
@@ -194,61 +244,72 @@ function initMobileMenu() {
 function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
-    
+
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
+        // Add scrolled class if scrolled more than 10px, otherwise remove
+        if (window.scrollY > 10) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }, { passive: true });
 }
 
 /**
  * Animate number counting from 0 to target
  * @param {HTMLElement} element - The element containing the number
- * @param {number} target - The target number to count to
- * @param {string} suffix - Optional suffix like '%' or 'M'
+ * @param {string} targetStr - The target number as a string (e.g., "141", "7M+", "46+")
  * @param {number} duration - Animation duration in milliseconds
  */
-function animateNumber(element, target, suffix = '', duration = 2000) {
+function animateNumber(element, targetStr, duration = 2000) {
     if (!element) return;
-    
+
+    const match = targetStr.match(/([\d.]+)([M+]?)/); // Extract number and suffix
+    if (!match) {
+        element.textContent = targetStr; // Fallback if no number found
+        return;
+    }
+
+    const targetNum = parseFloat(match[1]);
+    const suffix = match[2] || '';
     let start = 0;
     let startTime = null;
-    const targetNum = parseFloat(target);
-    
-    function easeOutQuart(x) {
-        return 1 - Math.pow(1 - x, 4);
+
+    function easeOutQuart(t) {
+        return 1 - (--t * t * t * t);
     }
-    
+
+    function formatNumber(num) {
+        // Simple formatting for millions, adjust if needed for K, etc.
+        if (suffix === 'M+' && targetNum >= 1) {
+             // Show decimal place during animation for smoother transition for millions
+             return (num).toFixed(1) + suffix;
+        }
+        return Math.floor(num) + suffix; // Default: integer + suffix
+    }
+
     function animate(timestamp) {
         if (!startTime) startTime = timestamp;
-        
-        const progress = Math.min((timestamp - startTime) / duration, 1);
+
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1); // Ensure progress doesn't exceed 1
         const easedProgress = easeOutQuart(progress);
-        
-        let currentValue = Math.floor(easedProgress * targetNum);
-        
-        // Handle special cases
-        if (suffix === '%') {
-            const decimal = (easedProgress * targetNum) % 1;
-            if (decimal > 0) {
-                currentValue = (easedProgress * targetNum).toFixed(1);
-            }
-        }
-        
-        element.textContent = `${currentValue}${suffix}`;
-        
+
+        let currentValue = easedProgress * targetNum;
+
+        element.textContent = formatNumber(currentValue);
+
         if (progress < 1) {
             requestAnimationFrame(animate);
         } else {
-            element.textContent = `${target}${suffix}`;
+            // Ensure final value is exactly the target string
+            element.textContent = targetStr;
         }
     }
-    
+
     requestAnimationFrame(animate);
 }
+
 
 /**
  * Initialize the stats counter animation with Intersection Observer
@@ -256,35 +317,39 @@ function animateNumber(element, target, suffix = '', duration = 2000) {
 function initStatsAnimation() {
     const statsSection = document.querySelector('.stats-section');
     if (!statsSection) return;
-    
-    const statElements = {
-        accuracy: { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
-        sequences: { elem: document.getElementById('statSequences'), target: '7', suffix: 'M+' },
-        users: { elem: document.getElementById('statUsers'), target: '46', suffix: '+' }
-    };
-    
+
+    const statElements = [ // Use array for easier iteration
+        { elem: document.getElementById('statAccuracy'), target: '141' },
+        { elem: document.getElementById('statSequences'), target: '7M+' },
+        { elem: document.getElementById('statUsers'), target: '46+' },
+        // Assuming the 4th stat item also needs animation
+        { elem: statsSection.querySelector('.stats-grid .stat-item:nth-child(4) .stat-number'), target: '86'}
+    ];
+
     let animated = false;
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            // Start animation when the section is at least 50% visible
             if (entry.isIntersecting && !animated) {
                 // Animate each stat with staggered delays
-                Object.values(statElements).forEach((stat, index) => {
-                    setTimeout(() => {
-                        if (stat.elem) {
-                            animateNumber(stat.elem, stat.target, stat.suffix, 2000);
-                        }
-                    }, index * 200);
+                statElements.forEach((stat, index) => {
+                    if (stat.elem && stat.target) { // Check if element and target exist
+                         setTimeout(() => {
+                            animateNumber(stat.elem, stat.target, 2000 + index * 100); // Slightly increase duration for later items
+                         }, index * 200); // Stagger start time
+                    }
                 });
-                
-                animated = true;
-                observer.unobserve(statsSection);
+
+                animated = true; // Ensure animation runs only once
+                observer.unobserve(statsSection); // Stop observing once animated
             }
         });
-    }, { threshold: 0.5 });
-    
+    }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
     observer.observe(statsSection);
 }
+
 
 /**
  * Add smooth scrolling for anchor links
@@ -292,16 +357,23 @@ function initStatsAnimation() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
-        if (targetId === '#') return; // Skip if it's just "#"
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            e.preventDefault();
-            
-            window.scrollTo({
-                top: targetElement.offsetTop - 100,
-                behavior: 'smooth'
-            });
+        // Ensure it's a valid internal link and not just "#"
+        if (targetId && targetId.length > 1 && targetId.startsWith('#')) {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault(); // Prevent default jump
+
+                // Calculate offset considering the fixed navbar height
+                const navbar = document.getElementById('navbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                const bannerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--notification-height')) || 0;
+                const offsetTop = targetElement.offsetTop - navbarHeight - bannerHeight - 20; // Add extra 20px padding
+
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         }
     });
 });
@@ -312,9 +384,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 function initNavbarPulse() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
+    // Add a subtle pulse animation class via CSS instead of toggling
+    // Ensure .navbar-pulse class is defined in CSS
+    // Example: .navbar.navbar-pulse { animation: pulseBorder 3s infinite alternate; }
+    // @keyframes pulseBorder { 0% { border-color: rgba(255,255,255,0.1); } 100% { border-color: rgba(var(--blue-rgb), 0.5); } }
+    // This approach is generally better for performance than JS interval toggling.
+    // If you prefer JS toggling:
+    /*
     setInterval(() => {
-        navbar.classList.toggle('navbar-pulse');
+        navbar.classList.toggle('navbar-pulse-active'); // Use a dedicated class
     }, 2000);
+    */
 }
 
 /**
@@ -323,37 +403,38 @@ function initNavbarPulse() {
 function initFuturisticNotificationEffects() {
     const banner = document.querySelector('.notification-banner');
     if (!banner) return;
-    banner.addEventListener('mouseenter', () => {
-        banner.style.transition = 'filter 0.3s ease';
-        banner.style.filter = 'brightness(1.2) contrast(1.1)';
-    });
-    banner.addEventListener('mouseleave', () => {
-        banner.style.filter = 'none';
-    });
+    // Effects are handled by CSS (:hover, animation: notifPulse)
+    // JS function kept for structure, but no JS logic needed here for the effect itself.
 }
 
 /**
  * Add intersection observer for animating sections as they come into view
  */
-const animateSections = document.querySelectorAll('.section, .feature-card, .card');
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+function initScrollAnimations() {
+    // Select all elements intended for scroll animation
+    const elementsToAnimate = document.querySelectorAll('.section, .feature-card, .card, .step-item, .stat-item');
 
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            sectionObserver.unobserve(entry.target);
-        }
+    if (!elementsToAnimate.length) return; // Exit if no elements found
+
+    const observerOptions = {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before element fully enters viewport
+    };
+
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in'); // Add class to trigger animation
+                observerInstance.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, observerOptions);
+
+    elementsToAnimate.forEach(element => {
+        // Add base animation class (e.g., 'scroll-animate')
+        // You might want different base classes for different animation types
+        // Example: Add 'scroll-animate-fade-up' by default
+        element.classList.add('scroll-animate');
+        observer.observe(element);
     });
-}, observerOptions);
-
-animateSections.forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    sectionObserver.observe(section);
-});
+}
