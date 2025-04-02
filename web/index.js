@@ -34,17 +34,25 @@ function initNotificationBanner() {
 
     // Function to update layout based on banner visibility
     const updateLayout = () => {
+        // Ensure banner exists and is visible before getting height
+        if (!banner || banner.offsetParent === null) {
+             document.documentElement.style.setProperty('--notification-height', `0px`);
+             if(navbar) navbar.style.top = `0px`;
+             if(body) body.style.paddingTop = `0px`;
+             return;
+        }
+
         const bannerHeight = banner.offsetHeight;
         const isBannerVisible = !banner.classList.contains('closed') && !banner.classList.contains('hide-notification');
 
         if (isBannerVisible) {
             document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
-            navbar.style.top = `${bannerHeight}px`;
-            body.style.paddingTop = `${bannerHeight}px`;
+            if(navbar) navbar.style.top = `${bannerHeight}px`;
+            if(body) body.style.paddingTop = `${bannerHeight}px`;
         } else {
             document.documentElement.style.setProperty('--notification-height', '0px');
-            navbar.style.top = '0px';
-            body.style.paddingTop = '0px';
+            if(navbar) navbar.style.top = '0px';
+            if(body) body.style.paddingTop = '0px';
         }
     };
 
@@ -66,12 +74,15 @@ function initNotificationBanner() {
     let lastScrollTop = 0;
     window.addEventListener('scroll', function() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+         // Ensure banner exists before proceeding
+        if (!banner || banner.offsetParent === null) return;
+
         const bannerHeight = banner.offsetHeight; // Recalculate height in case it changes
 
         // Don't hide/show if manually closed
         if (notificationClosedManually) {
-             navbar.style.top = '0px'; // Ensure navbar stays at top if banner closed
-             body.style.paddingTop = '0px';
+             if(navbar) navbar.style.top = '0px'; // Ensure navbar stays at top if banner closed
+             if(body) body.style.paddingTop = '0px';
              return;
         }
 
@@ -203,12 +214,26 @@ function initMobileMenu() {
     const links = navLinks.querySelectorAll('a');
     links.forEach(link => {
         link.addEventListener('click', function() {
+            // Only close if the link is navigating within the page (hash link)
+            // or if it's navigating away (check this condition if needed)
             if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                const icon = mobileToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                mobileToggle.setAttribute('aria-expanded', 'false');
+                 // Check if the link is a hash link for the current page
+                if (link.pathname === window.location.pathname && link.hash) {
+                     navLinks.classList.remove('active');
+                     const icon = mobileToggle.querySelector('i');
+                     icon.classList.remove('fa-times');
+                     icon.classList.add('fa-bars');
+                     mobileToggle.setAttribute('aria-expanded', 'false');
+                } else if (link.pathname !== window.location.pathname) {
+                    // If navigating to a different page, still close the menu
+                     navLinks.classList.remove('active');
+                     const icon = mobileToggle.querySelector('i');
+                     icon.classList.remove('fa-times');
+                     icon.classList.add('fa-bars');
+                     mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+                // If it's just a link without hash or different pathname,
+                // default browser navigation will happen, menu state might persist briefly.
             }
         });
     });
@@ -273,7 +298,13 @@ function animateNumber(element, targetStr, duration = 2000) {
         if (progress < 1) {
             requestAnimationFrame(animationStep); // Continue animation
         } else {
-            element.textContent = `${targetNum}${suffix}`; // Ensure final value is exact
+            // Ensure final value is exact, handling potential floating point inaccuracies
+            const finalTargetNum = parseFloat(targetStr); // Re-parse to be sure
+             if (!isNaN(finalTargetNum)) {
+                 element.textContent = `${finalTargetNum}${suffix}`;
+             } else {
+                 element.textContent = targetStr; // Fallback if parsing fails again
+             }
         }
     }
 
@@ -340,7 +371,8 @@ function initSmoothScroll() {
 
                         // Calculate offset (consider fixed navbar height)
                         const navbar = document.getElementById('navbar');
-                        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                        // Check if navbar exists and is visible before getting height
+                        const navbarHeight = (navbar && navbar.offsetParent !== null) ? navbar.offsetHeight : 0;
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 20; // Extra 20px buffer
 
@@ -365,23 +397,33 @@ function initScrollAnimations() {
     const elementsToAnimate = document.querySelectorAll('.scroll-animate');
     if (!elementsToAnimate.length) return; // Exit if no elements found
 
-    const observerOptions = {
-        threshold: 0.1, // Trigger when 10% visible
-        rootMargin: '0px 0px -50px 0px' // Trigger slightly before element fully enters viewport bottom
-    };
+    // Check if IntersectionObserver is supported
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            threshold: 0.1, // Trigger when 10% visible
+            rootMargin: '0px 0px -50px 0px' // Trigger slightly before element fully enters viewport bottom
+        };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in'); // Add class to trigger animation
-                observer.unobserve(entry.target); // Stop observing once animated
-            }
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in'); // Add class to trigger animation
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, observerOptions);
+
+        elementsToAnimate.forEach(element => {
+            observer.observe(element); // Observe each element
         });
-    }, observerOptions);
-
-    elementsToAnimate.forEach(element => {
-        observer.observe(element); // Observe each element
-    });
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        // Simply make elements visible immediately
+        elementsToAnimate.forEach(element => {
+            element.classList.add('animate-in');
+        });
+        console.warn("IntersectionObserver not supported, scroll animations applied directly.");
+    }
 }
 
 

@@ -10,7 +10,7 @@
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
-  position: fixed; /* Changed from fixed to allow scrolling with page initially */
+  position: fixed; /* Keep fixed */
   top: 0;
   left: 0;
   width: 100%;
@@ -416,9 +416,8 @@ ul, ol {
 
 /* Hero section */
 .hero {
-  /* Adjust padding top to account for fixed navbar height */
-  /* Example: 60px (navbar height) + 40px (extra space) = 100px */
-  padding: 100px 0 100px;
+  /* Adjust padding top dynamically based on navbar height */
+  padding: 100px 0 100px; /* Default padding */
   position: relative;
   overflow: hidden; /* Prevent background blobs from overflowing */
   margin-top: 0; /* Remove potential default margin */
@@ -436,7 +435,7 @@ ul, ol {
   flex: 1 1 50%; /* Allow text content to take up roughly half the space */
   min-width: 300px; /* Minimum width before wrapping */
   position: relative; /* Ensure text stays above background effects */
-  z-index: 2;
+  z-index: 2; /* Keep text above animation */
 }
 
 .hero-headings {
@@ -482,11 +481,12 @@ ul, ol {
   max-width: 500px; /* Max width to prevent excessive size */
   margin: 0 auto; /* Center if it wraps */
   overflow: hidden; /* Hide parts of the animation extending outside */
+  z-index: 1; /* Ensure animation is behind text content */
 }
 
 /* DNA Helix Animation - Container and Structure */
 .dna-helix {
-  position: relative; /* Changed from relative to allow absolute positioning of pairs */
+  position: relative;
   width: 200px; /* Fixed width for the helix structure */
   height: 100%; /* Use full height of parent container */
   margin: 0 auto; /* Center within the animation container */
@@ -553,8 +553,6 @@ ul, ol {
 @keyframes rotate {
   /* Rotation around Y-axis */
   0% { transform: rotateY(0deg) translateZ(40px) translateX(-20px); }
-  /* Removed intermediate steps for smoother continuous rotation if desired */
-  /* Or keep them for a more defined turn */
   25% { transform: rotateY(90deg) translateZ(40px) translateX(0px); }
   50% { transform: rotateY(180deg) translateZ(40px) translateX(20px); }
   75% { transform: rotateY(270deg) translateZ(40px) translateX(0px); }
@@ -1244,3 +1242,4 @@ ul, ol {
 }
 
 /* Add more scroll animation variations if needed */
+
