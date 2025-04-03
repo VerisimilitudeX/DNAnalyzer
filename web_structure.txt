@@ -134,154 +134,196 @@ File: ./web/index.js
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize DNA Helix animation
-    initDNAHelix();
-    
-    // Initialize mobile menu toggle
-    initMobileMenu();
-    
-    // Initialize navbar scroll effect
-    initNavbarScroll();
-    
-    // Initialize stats counter animation
-    initStatsAnimation();
-    
-    // Initialize notification banner dismiss functionality
     initNotificationBanner();
+    initNotificationScroll(); // Must run after banner init to get height
+    initDNAHelix();
+    initMobileMenu();
+    initNavbarScroll();
+    initStatsAnimation();
+    initSmoothScroll();
+    initScrollAnimations(); // Initialize general scroll animations
 
-    // Initialize notification banner scroll behavior
-    initNotificationScroll();
-    
-    // Initialize navbar pulse effect
-    initNavbarPulse();
+    // Log initialization
+    console.log("DNAnalyzer UI Initialized");
 });
 
 // Shared state for notification banner
 let notificationClosed = false;
+let notificationHeight = 0; // Store banner height globally
 
 /**
- * Initialize the notification banner dismiss functionality and adjust navbar positioning
+ * Initialize the notification banner dismiss functionality and store its height
  */
 function initNotificationBanner() {
     const banner = document.querySelector('.notification-banner');
-    const navbar = document.getElementById('navbar');
-    if (!banner || !navbar) return;
+    if (!banner) return;
 
-    const bannerHeight = banner.offsetHeight;
-    document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
+    notificationHeight = banner.offsetHeight;
+    document.documentElement.style.setProperty('--notification-height', `${notificationHeight}px`);
+    console.log(`Notification banner height: ${notificationHeight}px`);
 
-    const closeBtn = document.querySelector('.notification-banner .notification-close');
+    const closeBtn = banner.querySelector('.notification-close');
     if (!closeBtn) return;
 
     closeBtn.addEventListener('click', function() {
-        banner.classList.add('closed');
+        banner.classList.add('closed'); // Hide immediately for visual feedback
+        notificationHeight = 0; // Set height to 0
         document.documentElement.style.setProperty('--notification-height', '0px');
-        navbar.style.top = '0';
         notificationClosed = true;
+        adjustNavbarPosition(); // Adjust navbar immediately
+        console.log("Notification banner closed");
     });
-
-    // Initial positioning
-    navbar.style.top = `${bannerHeight}px`;
 }
 
 /**
- * Initialize notification banner scroll behavior
+ * Adjusts the navbar's top position based on the notification banner's visibility.
+ */
+function adjustNavbarPosition() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    const banner = document.querySelector('.notification-banner');
+
+    // If banner is closed or hidden by scroll, navbar top is 0
+    if (notificationClosed || (banner && banner.classList.contains('hide-notification')) || currentScroll > notificationHeight) {
+         navbar.style.top = '0px';
+    }
+    // Otherwise, position navbar below the banner
+    else if (!notificationClosed && banner && !banner.classList.contains('hide-notification')) {
+         navbar.style.top = `${notificationHeight}px`;
+    }
+     // Default case if something goes wrong
+    else {
+        navbar.style.top = '0px';
+    }
+}
+
+
+/**
+ * Initialize notification banner scroll behavior (hide on scroll down, show on scroll up)
  */
 function initNotificationScroll() {
     const banner = document.querySelector('.notification-banner');
-    const navbar = document.getElementById('navbar');
-    if (!banner || !navbar) return;
+    if (!banner) return;
 
     let lastScrollTop = 0;
-    const bannerHeight = banner.offsetHeight;
+    const scrollThreshold = 50; // Pixels to scroll before hiding/showing
 
     window.addEventListener('scroll', function() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop && scrollTop > bannerHeight) {
-            // Scrolling down
-            banner.classList.add('hide-notification');
-            navbar.style.top = '0';
-        } else if (!notificationClosed) {
-            // Scrolling up and notification was not manually closed
-            banner.classList.remove('hide-notification');
-            navbar.style.top = `${bannerHeight}px`;
-        } else {
-            // Scrolling up but notification was manually closed
-            navbar.style.top = '0';
+
+        // Ignore minor scroll fluctuations
+        if (Math.abs(scrollTop - lastScrollTop) <= 5) {
+            return;
         }
-        lastScrollTop = scrollTop;
-    });
+
+        if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+            // Scrolling Down
+            if (!banner.classList.contains('hide-notification') && !notificationClosed) {
+                banner.classList.add('hide-notification');
+                adjustNavbarPosition(); // Adjust navbar when banner hides
+                 console.log("Hiding notification on scroll down");
+            }
+        } else if (scrollTop < lastScrollTop || scrollTop <= scrollThreshold) {
+            // Scrolling Up or near top
+            if (banner.classList.contains('hide-notification') && !notificationClosed) {
+                 banner.classList.remove('hide-notification');
+                 adjustNavbarPosition(); // Adjust navbar when banner shows
+                 console.log("Showing notification on scroll up");
+            }
+        }
+
+        // Ensure correct navbar position even if banner wasn't hidden/shown
+         if (scrollTop <= scrollThreshold && !notificationClosed) {
+              banner.classList.remove('hide-notification');
+              adjustNavbarPosition();
+         } else if (scrollTop > scrollThreshold && !notificationClosed && banner.classList.contains('hide-notification')) {
+              adjustNavbarPosition(); // Keep navbar at top if banner is hidden
+         } else if (notificationClosed) {
+              adjustNavbarPosition(); // Keep navbar at top if banner is closed
+         }
+
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    }, { passive: true }); // Improve scroll performance
 }
 
 /**
  * Initialize the DNA Helix animation on the homepage
  */
 function initDNAHelix() {
-    const dnaHelix = document.getElementById('dnaHelix');
-    if (!dnaHelix) return;
-    
-    // Clear any existing content
-    dnaHelix.innerHTML = '';
-    
-    const numBasesUp = 15; // Number of bases to extend upward
-    const numBasesDown = 25; // Number of bases to extend downward
-    const totalBases = numBasesUp + numBasesDown;
-    const basePairs = [
-        ['A', 'T'],
-        ['T', 'A'],
-        ['G', 'C'],
-        ['C', 'G']
+    const dnaHelixContainer = document.getElementById('dnaHelix');
+    if (!dnaHelixContainer) return;
+
+    dnaHelixContainer.innerHTML = ''; // Clear existing
+
+    const basePairsConfig = [
+        { pair: ['A', 'T'], leftColor: 'var(--magenta)', rightColor: 'var(--blue)' },
+        { pair: ['T', 'A'], leftColor: 'var(--blue)', rightColor: 'var(--magenta)' },
+        { pair: ['G', 'C'], leftColor: 'var(--orange)', rightColor: '#34c759' }, // Added green
+        { pair: ['C', 'G'], leftColor: '#34c759', rightColor: 'var(--orange)' }
     ];
-    
-    // Create base pairs with a proper twisted helix structure
-    // Start with negative indices for "upward" extension, then go to positive for "downward"
-    for (let i = -numBasesUp; i < numBasesDown; i++) {
-        const pairIndex = Math.floor(Math.random() * basePairs.length);
-        const [leftBase, rightBase] = basePairs[pairIndex];
-        
-        const basePair = document.createElement('div');
-        basePair.className = 'base-pair';
-        
-        // Position each base pair - adjust vertical position to account for bases extending upward
-        basePair.style.top = `${(i + numBasesUp) * 25}px`;
-        
-        // Calculate initial rotation angle to create the helix twist
-        // Each pair is rotated 25 degrees more than the previous one
-        const angle = (i * 25) % 360;
-        
-        // Calculate X offset based on the angle to create the curve effect
-        const xOffset = Math.sin(angle * Math.PI / 180) * 20;
-        
-        // Apply the 3D transformation to create the initial twisted shape
-        basePair.style.transform = `rotateY(${angle}deg) translateZ(40px) translateX(${xOffset}px)`;
-        
-        // Add animation with staggered delays
-        basePair.style.animation = 'rotate 8s linear infinite';
-        basePair.style.animationDelay = `${-i * 0.5}s`;
-        
-        const leftBaseElem = document.createElement('div');
-        leftBaseElem.className = 'base left-base';
-        leftBaseElem.textContent = leftBase;
-        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
-        
-        const rightBaseElem = document.createElement('div');
-        rightBaseElem.className = 'base right-base';
-        rightBaseElem.textContent = rightBase;
-        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
-        
+
+    const numBasePairs = 25; // Total number of pairs
+    const verticalSpacing = 20; // Space between pairs
+    const helixRadius = 50; // How far out the bases extend (Z-axis)
+    const rotationIncrement = 20; // Degrees twist per base pair
+    const animationDuration = 10; // seconds for full rotation
+
+    for (let i = 0; i < numBasePairs; i++) {
+        const config = basePairsConfig[i % basePairsConfig.length]; // Cycle through colors/pairs
+        const [leftBaseChar, rightBaseChar] = config.pair;
+
+        const basePairElement = document.createElement('div');
+        basePairElement.className = 'base-pair';
+
+        // Vertical position
+        const yPos = (i - numBasePairs / 2) * verticalSpacing; // Center the helix vertically
+        basePairElement.style.transform = `translateY(${yPos}px)`; // Initial Y position
+
+        // Calculate initial rotation angle and offsets for the helix shape
+        const angle = (i * rotationIncrement) % 360;
+        const xOffset = Math.sin(angle * Math.PI / 180) * 15; // Sideways curve
+
+        // Store initial transform values in CSS variables for the animation
+        basePairElement.style.setProperty('--start-angle', `${angle}deg`);
+        basePairElement.style.setProperty('--x-offset', `${xOffset}px`);
+
+        // Apply animation
+        const delay = (i * 0.1) % animationDuration; // Staggered animation start
+        basePairElement.style.animation = `rotate ${animationDuration}s linear infinite ${-delay}s`;
+
+        // Create Left Base
+        const leftBase = document.createElement('div');
+        leftBase.className = 'base left-base';
+        leftBase.textContent = leftBaseChar;
+        leftBase.style.background = config.leftColor;
+        leftBase.style.animationDelay = `${(i * 0.15)}s`; // Stagger pulse
+
+        // Create Right Base
+        const rightBase = document.createElement('div');
+        rightBase.className = 'base right-base';
+        rightBase.textContent = rightBaseChar;
+        rightBase.style.background = config.rightColor;
+        rightBase.style.animationDelay = `${(i * 0.15 + 0.1)}s`; // Stagger pulse slightly more
+
+        // Create Connector
         const connector = document.createElement('div');
         connector.className = 'base-connector';
-        
-        basePair.appendChild(leftBaseElem);
-        basePair.appendChild(connector);
-        basePair.appendChild(rightBaseElem);
-        
-        dnaHelix.appendChild(basePair);
+        // Optional: Style connector dynamically if needed
+
+        // Append elements
+        basePairElement.appendChild(leftBase);
+        basePairElement.appendChild(rightBase);
+        basePairElement.appendChild(connector); // Connector should be behind bases visually if needed
+        dnaHelixContainer.appendChild(basePairElement);
     }
-    
-    // Adjust the container height to accommodate the extended helix
-    dnaHelix.style.height = `${totalBases * 25 + 50}px`;
+
+     // Adjust container height if needed (optional)
+     // dnaHelixContainer.style.height = `${numBasePairs * verticalSpacing + 100}px`;
 }
+
 
 /**
  * Initialize the mobile menu toggle functionality
@@ -289,15 +331,15 @@ function initDNAHelix() {
 function initMobileMenu() {
     const mobileToggle = document.getElementById('mobileToggle');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (!mobileToggle || !navLinks) return;
-    
+
     mobileToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        
-        // Change the icon based on the state
+        const isActive = navLinks.classList.toggle('active');
+        mobileToggle.setAttribute('aria-expanded', isActive);
+
         const icon = mobileToggle.querySelector('i');
-        if (navLinks.classList.contains('active')) {
+        if (isActive) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-times');
         } else {
@@ -305,80 +347,97 @@ function initMobileMenu() {
             icon.classList.add('fa-bars');
         }
     });
-    
-    // Close the mobile menu when clicking a link
-    const links = navLinks.querySelectorAll('a');
-    links.forEach(link => {
-        link.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-            const icon = mobileToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     });
 }
 
 /**
- * Initialize the navbar scroll effect
+ * Initialize the navbar scroll effect (adding 'scrolled' class)
  */
 function initNavbarScroll() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
-    
+
+    const scrollThreshold = 30; // Pixels scrolled before adding class
+
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
+        if (window.pageYOffset > scrollThreshold) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }, { passive: true });
 }
 
 /**
- * Animate number counting from 0 to target
- * @param {HTMLElement} element - The element containing the number
- * @param {number} target - The target number to count to
- * @param {string} suffix - Optional suffix like '%' or 'M'
- * @param {number} duration - Animation duration in milliseconds
+ * Animate number counting from 0 to target with easing
  */
-function animateNumber(element, target, suffix = '', duration = 2000) {
+function animateNumber(element, targetString, suffix = '', duration = 2000) {
     if (!element) return;
-    
+
+    const target = parseFloat(targetString.replace(/[^0-9.]/g, '')); // Extract number
+    if (isNaN(target)) {
+        element.textContent = targetString + suffix; // Fallback for non-numeric targets
+        return;
+    }
+
     let start = 0;
     let startTime = null;
-    const targetNum = parseFloat(target);
-    
-    function easeOutQuart(x) {
-        return 1 - Math.pow(1 - x, 4);
+
+    // Easing function (easeOutExpo)
+    function easeOutExpo(t) {
+        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
     }
-    
-    function animate(timestamp) {
+
+    function animationStep(timestamp) {
         if (!startTime) startTime = timestamp;
-        
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const easedProgress = easeOutQuart(progress);
-        
-        let currentValue = Math.floor(easedProgress * targetNum);
-        
-        // Handle special cases
-        if (suffix === '%') {
-            const decimal = (easedProgress * targetNum) % 1;
-            if (decimal > 0) {
-                currentValue = (easedProgress * targetNum).toFixed(1);
-            }
-        }
-        
-        element.textContent = `${currentValue}${suffix}`;
-        
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutExpo(progress);
+
+        let currentValue = Math.floor(easedProgress * target);
+
+        // Handle M+ and + suffixes correctly
+        let displaySuffix = suffix;
+         if (targetString.includes('M+')) {
+             currentValue = (easedProgress * target).toFixed(1); // Show decimal during animation
+             displaySuffix = 'M+';
+              if (progress === 1) currentValue = target; // Ensure final value is integer if needed
+         } else if (targetString.includes('+') && suffix === '') { // Check if suffix wasn't passed but '+' exists
+             displaySuffix = '+';
+         }
+
+         // Prevent displaying 0M+ or 0+ initially
+         if (elapsed < 50 && currentValue === 0 && displaySuffix) {
+             element.textContent = 0;
+         } else {
+             element.textContent = `${currentValue}${displaySuffix}`;
+         }
+
+
         if (progress < 1) {
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animationStep);
         } else {
-            element.textContent = `${target}${suffix}`;
+            // Ensure final display is exactly the target string
+            element.textContent = targetString.replace(/([0-9.]+)/, target) + displaySuffix;
+
         }
     }
-    
-    requestAnimationFrame(animate);
+
+    requestAnimationFrame(animationStep);
 }
+
 
 /**
  * Initialize the stats counter animation with Intersection Observer
@@ -386,1378 +445,1059 @@ function animateNumber(element, target, suffix = '', duration = 2000) {
 function initStatsAnimation() {
     const statsSection = document.querySelector('.stats-section');
     if (!statsSection) return;
-    
-    const statElements = {
-        accuracy: { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
-        sequences: { elem: document.getElementById('statSequences'), target: '7', suffix: 'M+' },
-        users: { elem: document.getElementById('statUsers'), target: '46', suffix: '+' }
-    };
-    
+
+    const statElements = [ // Use array for easier iteration
+        { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
+        { elem: document.getElementById('statSequences'), target: '7M+', suffix: '' }, // Suffix handled in animateNumber
+        { elem: document.getElementById('statUsers'), target: '46+', suffix: '' }    // Suffix handled in animateNumber
+    ];
+
     let animated = false;
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !animated) {
-                // Animate each stat with staggered delays
-                Object.values(statElements).forEach((stat, index) => {
+                console.log("Stats section intersecting, animating numbers.");
+                statElements.forEach((stat, index) => {
                     setTimeout(() => {
                         if (stat.elem) {
-                            animateNumber(stat.elem, stat.target, stat.suffix, 2000);
+                            // Pass target string directly, animateNumber handles extraction
+                            animateNumber(stat.elem, stat.target, stat.suffix, 2000 + index * 100);
                         }
-                    }, index * 200);
+                    }, index * 200); // Stagger animation start
                 });
-                
+
                 animated = true;
-                observer.unobserve(statsSection);
+                observer.unobserve(statsSection); // Stop observing once animated
             }
         });
-    }, { threshold: 0.5 });
-    
+    }, { threshold: 0.3 }); // Trigger when 30% visible
+
     observer.observe(statsSection);
 }
 
 /**
- * Add smooth scrolling for anchor links
+ * Add smooth scrolling for anchor links within the page
  */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return; // Skip if it's just "#"
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            e.preventDefault();
-            
-            window.scrollTo({
-                top: targetElement.offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            // Ensure it's a valid internal link and not just "#"
+            if (targetId && targetId.length > 1 && targetId.startsWith('#')) {
+                try {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const navbarHeight = document.getElementById('navbar')?.offsetHeight || 70; // Get current navbar height or default
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 20; // Extra 20px padding
 
-/**
- * Initialize navbar pulse effect for futuristic look
- */
-function initNavbarPulse() {
-    const navbar = document.getElementById('navbar');
-    if (!navbar) return;
-    setInterval(() => {
-        navbar.classList.toggle('navbar-pulse');
-    }, 2000);
-}
-
-/**
- * Initialize futuristic notification effects on the notification banner
- */
-function initFuturisticNotificationEffects() {
-    const banner = document.querySelector('.notification-banner');
-    if (!banner) return;
-    banner.addEventListener('mouseenter', () => {
-        banner.style.transition = 'filter 0.3s ease';
-        banner.style.filter = 'brightness(1.2) contrast(1.1)';
-    });
-    banner.addEventListener('mouseleave', () => {
-        banner.style.filter = 'none';
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                } catch (error) {
+                     console.warn(`Smooth scroll target not found or invalid selector: ${targetId}`, error);
+                 }
+            }
+        });
     });
 }
 
 /**
- * Add intersection observer for animating sections as they come into view
+ * Initialize Intersection Observer for general scroll-triggered animations
  */
-const animateSections = document.querySelectorAll('.section, .feature-card, .card');
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
 
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            sectionObserver.unobserve(entry.target);
-        }
+    if (!animatedElements.length) return;
+
+    const observerOptions = {
+        threshold: 0.15, // Trigger when 15% of the element is visible
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before element fully enters viewport bottom
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, observerOptions);
+
+    animatedElements.forEach(el => {
+        observer.observe(el);
     });
-}, observerOptions);
 
-animateSections.forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    sectionObserver.observe(section);
-});
-
+    console.log(`Observing ${animatedElements.length} elements for scroll animations.`);
+}
 --------------------------------------------------
 File: ./web/style.css
 --------------------------------------------------
-/* DNA Helix Animation */
-.dna-helix {
-    position: relative;
-    width: 200px;
-    height: 400px;
-    margin: 0 auto;
-    perspective: 1200px;
-    transform-style: preserve-3d;
-}
-
-.base-pair {
-    position: absolute;
-    width: 100%;
-    height: 20px;
-    animation: rotate 8s linear infinite;
-    transform-style: preserve-3d;
-}
-
-.base {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-    text-shadow: 0 0 3px rgba(0,0,0,0.5);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-
-.left-base {
-    left: 35px;
-    background: #FF0066;
-    animation: pulse 3s ease-in-out infinite;
-    filter: brightness(1.1);
-}
-
-.right-base {
-    right: 35px;
-    background: #00B7FF;
-    animation: pulse 3s ease-in-out infinite;
-    filter: brightness(1.1);
-}
-
-.base-connector {
-    position: absolute;
-    left: 50%;
-    width: 90px;
-    height: 3px;
-    background: linear-gradient(90deg, 
-        rgba(255, 0, 102, 0.8), 
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(0, 183, 255, 0.8)
-    );
-    transform: translateX(-50%);
-    box-shadow: 0 0 8px rgba(0,0,0,0.15);
-}
-
-@keyframes rotate {
-    0% { transform: rotateY(0deg) translateZ(40px) translateX(-20px); }
-    25% { transform: rotateY(90deg) translateZ(40px) translateX(0px); }
-    50% { transform: rotateY(180deg) translateZ(40px) translateX(20px); }
-    75% { transform: rotateY(270deg) translateZ(40px) translateX(0px); }
-    100% { transform: rotateY(360deg) translateZ(40px) translateX(-20px); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 0.9; filter: brightness(1.1); }
-    50% { transform: scale(1.15); opacity: 1; filter: brightness(1.3); }
-    100% { transform: scale(1); opacity: 0.9; filter: brightness(1.1); }
-}
 /* DNAnalyzer - Main Stylesheet
  * Global styles for all pages
  */
+
 /* Notification Banner Styling */
 .notification-banner {
-    background: linear-gradient(135deg, #FF6F00, #FF9100);
-    color: var(--white);
-    padding: 0.75rem 1rem 0.75rem 0.75rem;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 600;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: var(--z-navbar);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    animation: notifPulse 3s infinite;
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  background: linear-gradient(135deg, var(--orange), #FFB347); /* Adjusted gradient slightly */
+  color: var(--dark-bg); /* Dark text for contrast */
+  padding: 0.75rem 2.5rem 0.75rem 1rem; /* More padding on right for close button */
+  text-align: center;
+  font-size: 0.95rem; /* Slightly smaller */
+  font-weight: 500; /* Normal weight */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* High z-index */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .notification-banner.hide-notification {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .notification-banner.closed {
-    display: none !important;
+  display: none !important; /* Use !important carefully, needed here to override */
 }
 
 .notification-banner .notification-link {
-    color: inherit;
-    text-decoration: none;
-    font-weight: 700;
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    margin: 0 0.5rem;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+  color: var(--dark-bg); /* Dark text */
+  text-decoration: underline;
+  font-weight: 600; /* Bold link */
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  margin: 0 0.4rem;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .notification-banner .notification-link:hover {
-    color: #FFD700;
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #000; /* Black on hover */
+  text-decoration: none;
 }
 
 .notification-banner .notification-close {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: var(--white);
-    font-size: 1.25rem;
-    line-height: 1;
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    padding: 0;
-}
-
-.notification-banner .notification-close::before {
-    content: "×";
-    display: block;
-    position: relative;
-    top: -1px;
+  background: none; /* Transparent background */
+  border: none;
+  color: var(--dark-bg); /* Dark color */
+  font-size: 1.5rem; /* Larger close icon */
+  line-height: 1;
+  position: absolute;
+  right: 0.75rem; /* Positioned closer */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 30px; /* Larger hit area */
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+  opacity: 0.7;
 }
 
 .notification-banner .notification-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) rotate(90deg);
-    color: #FFD700;
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transform: translateY(-50%) rotate(90deg);
 }
 
- :root {
-    /* Brand colors from logo */
-    --magenta: #ff0066;
-    --blue: #00a4ef;
-    --orange: #f48022;
-    --white: #ffffff;
-    --dark-bg: #001427;
-    
-    /* Additional UI colors */
-    --dark-blue: #051e3e;
-    --light-blue: #2596be;
-    --light-gray: #f5f5f7;
-    --medium-gray: #86868b;
-    --dark-gray: #333333;
-    
-    /* Functional colors */
-    --success: #34c759;
-    --warning: #ff9500;
-    --error: #ff3b30;
-    
-    /* Typography */
-    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    
-    /* Spacing */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-xxl: 3rem;
-    
-    /* Border radius */
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-xl: 20px;
-    
-    /* Shadows */
-    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.2);
-    
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
-    
-    /* Z-index layers */
-    --z-tooltip: 100;
-    --z-navbar: 200;
-    --z-modal: 300;
-  }
-  
-  /* Reset & Base Styles */
-  *, 
-  *::before, 
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: var(--font-body);
-    background-color: var(--dark-bg);
-    color: var(--white);
-    line-height: 1.6;
-    overflow-x: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    line-height: 1.2;
-    font-weight: 700;
-    margin-bottom: var(--space-md);
-  }
-  
-  h1 {
-    font-size: 3.5rem;
-    margin-bottom: var(--space-lg);
-  }
-  
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: var(--space-lg);
-  }
-  
-  h3 {
-    font-size: 1.75rem;
-  }
-  
-  h4 {
-    font-size: 1.375rem;
-  }
-  
-  p {
-    margin-bottom: var(--space-md);
-    color: rgba(255, 255, 255, 0.85);
-  }
-  
-  a {
-    color: var(--blue);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-  
-  a:hover {
-    color: var(--light-blue);
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  button {
-    font-family: var(--font-body);
-    cursor: pointer;
-  }
-  
-  code, pre {
-    font-family: var(--font-mono);
-  }
-  
-  ul, ol {
-    padding-left: var(--space-lg);
-    margin-bottom: var(--space-md);
-  }
-  
-  /* Container */
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-lg);
-  }
-  
-  .container-sm {
-    max-width: 800px;
-  }
-  
-  .container-lg {
-    max-width: 1400px;
-  }
-  
-  /* Navbar */
-  .navbar {
-    position: fixed;
-    top: var(--notification-height, 0);
-    left: 0;
-    right: 0;
-    background: var(--dark-bg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: var(--z-navbar);
-    padding: var(--space-md) 0;
-    transition: all var(--transition-normal), top 0.3s ease-in-out;
-  }
+/* --- Root Variables --- */
+:root {
+  /* Brand colors from logo */
+  --magenta: #ff0066;
+  --blue: #00a4ef;
+  --orange: #f48022;
+  --white: #ffffff;
+  --dark-bg: #001427; /* Deep Navy */
 
-  .navbar.scrolled {
-    background: var(--dark-blue);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    padding: var(--space-sm) 0;
-  }
-  
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo img {
-    height: 36px;
-    margin-right: var(--space-sm);
-  }
-  
-  .logo-text {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-  
-  .nav-links {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-links li {
-    margin: 0 var(--space-md);
-  }
-  
-  .nav-links a {
-    color: var(--white);
-    font-weight: 500;
-    position: relative;
-    padding: var(--space-xs) 0;
-  }
-  
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(90deg, var(--magenta), var(--blue));
-    transition: width var(--transition-normal);
-  }
-  
-  .nav-links a:hover::after,
-  .nav-links a.active::after {
-    width: 100%;
-  }
-  
-  .nav-buttons {
-    display: flex;
-    align-items: center;
-  }
-  
-  .mobile-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.5rem;
-  }
-  
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    transition: all var(--transition-fast);
-    border: none;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .btn-primary {
-    background: linear-gradient(135deg, #FF7B00, #FFB347);
-    color: var(--white);
-  }
-  
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 164, 239, 0.4);
-    color: var(--white);
-  }
-  
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--white);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    color: var(--white);
-  }
-  
-  .btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
-  
-  .btn-lg {
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
-  }
-  
-  .btn-icon {
-    margin-right: var(--space-xs);
-  }
-  
-  .btn-github {
-    background: #24292e;
-    color: var(--white);
-  }
-  
-  .btn-github:hover {
-    background: #2c3440;
-    color: var(--white);
-  }
-  
-  .btn-discord {
-    background: #5865F2;
-    color: var(--white);
-  }
-  
-  .btn-discord:hover {
-    background: #4752c4;
-    color: var(--white);
-  }
-  
-  /* Hero section */
-  .hero {
-    padding: 160px 0 100px;
-    position: relative;
-    overflow: hidden;
-  }
-  
+  /* Additional UI colors */
+  --dark-blue: #051e3e; /* Slightly lighter navy */
+  --light-blue: #2596be; /* Accent blue */
+  --light-gray: #f0f2f5; /* Off-white for light backgrounds if needed */
+  --medium-gray: #a0a8b1; /* Text subtle */
+  --dark-gray: #1e2a3a; /* Darker element backgrounds */
+
+  /* Functional colors */
+  --success: #34c759;
+  --warning: #ffcc00; /* Brighter warning */
+  --error: #ff3b30;
+
+  /* Typography */
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Spacing */
+  --space-xs: 0.25rem;  /* 4px */
+  --space-sm: 0.5rem;   /* 8px */
+  --space-md: 1rem;     /* 16px */
+  --space-lg: 1.5rem;   /* 24px */
+  --space-xl: 2.5rem;   /* 40px */
+  --space-xxl: 4rem;    /* 64px */
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-round: 50%;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 20, 39, 0.15);
+  --shadow-md: 0 5px 15px rgba(0, 20, 39, 0.2);
+  --shadow-lg: 0 10px 30px rgba(0, 20, 39, 0.25);
+  --shadow-glow-blue: 0 0 15px rgba(0, 164, 239, 0.3);
+  --shadow-glow-magenta: 0 0 15px rgba(255, 0, 102, 0.3);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s ease; /* Slightly slower for smoother effect */
+  --transition-slow: 0.6s ease;
+
+  /* Z-index layers */
+  --z-background: -1;
+  --z-base: 1;
+  --z-content: 10;
+  --z-sticky: 100;
+  --z-navbar: 900; /* Below notification */
+  --z-notification: 1000;
+  --z-modal: 1100;
+  --z-tooltip: 1200;
+
+  /* Notification Height - JS will set this */
+  --notification-height: 0px;
+}
+
+/* Reset & Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Adjust for fixed navbar height */
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--dark-bg);
+  color: var(--medium-gray); /* Default text slightly softer */
+  line-height: 1.7; /* Increased line-height */
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative; /* Needed for background elements */
+}
+
+/* Main content area */
+main {
+  flex-grow: 1; /* Ensure footer is pushed down */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.3;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  color: var(--white); /* Headings are white */
+}
+
+h1 { font-size: clamp(2.5rem, 5vw + 1rem, 3.8rem); margin-bottom: var(--space-lg); letter-spacing: -0.03em; }
+h2 { font-size: clamp(2rem, 4vw + 0.8rem, 2.8rem); margin-bottom: var(--space-lg); }
+h3 { font-size: clamp(1.3rem, 3vw + 0.5rem, 1.75rem); }
+h4 { font-size: clamp(1.1rem, 2.5vw + 0.4rem, 1.375rem); }
+
+p {
+  margin-bottom: var(--space-lg); /* More space after paragraphs */
+  max-width: 70ch; /* Improve readability */
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover { color: var(--light-blue); }
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Remove bottom space */
+}
+
+button { font-family: inherit; cursor: pointer; }
+
+code, pre { font-family: var(--font-mono); background-color: var(--dark-gray); padding: 0.2em 0.4em; border-radius: var(--radius-sm); font-size: 0.9em;}
+pre { padding: var(--space-md); overflow-x: auto; }
+
+ul, ol { list-style-position: outside; padding-left: var(--space-lg); }
+li { margin-bottom: var(--space-sm); }
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px; /* Slightly wider */
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* Background effects */
+.bg-gradient {
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  z-index: var(--z-background);
+  pointer-events: none; /* Allow clicks through */
+}
+
+.bg-blob {
+  position: absolute;
+  border-radius: var(--radius-round);
+  filter: blur(80px); /* More blur */
+  opacity: 0.25; /* More subtle */
+  will-change: transform; /* Optimize animation */
+}
+
+.bg-blob-1 {
+  width: 50vw;
+  height: 50vw;
+  min-width: 400px;
+  min-height: 400px;
+  max-width: 700px;
+  max-height: 700px;
+  top: -15%;
+  right: -10%;
+  background: radial-gradient(circle, var(--magenta) 0%, transparent 70%);
+  animation: float 25s ease-in-out infinite alternate;
+}
+
+.bg-blob-2 {
+  width: 45vw;
+  height: 45vw;
+  min-width: 350px;
+  min-height: 350px;
+  max-width: 600px;
+  max-height: 600px;
+  bottom: -10%;
+  left: -10%;
+  background: radial-gradient(circle, var(--blue) 0%, transparent 70%);
+  animation: float 30s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate(50px, -30px) rotate(25deg) scale(1.1); }
+}
+
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: var(--notification-height); /* Adjusted by JS */
+  left: 0;
+  right: 0;
+  background: rgba(0, 20, 39, 0.7); /* Semi-transparent */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: var(--z-navbar);
+  padding: var(--space-sm) 0; /* Consistent padding */
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal), padding var(--transition-normal), top var(--transition-fast);
+  will-change: background-color, box-shadow, padding;
+}
+
+.navbar.scrolled {
+  background: rgba(5, 30, 62, 0.9); /* Darker blue on scroll */
+  box-shadow: var(--shadow-md);
+  /* padding: var(--space-xs) 0; Slightly reduced padding */
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: var(--white); /* Ensure logo text is white */
+  gap: var(--space-sm);
+}
+.logo img { height: 32px; transition: transform var(--transition-fast); }
+.logo:hover img { transform: rotate(-5deg) scale(1.05); }
+.logo-text { font-size: 1.3rem; font-weight: 700; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links li { margin: 0 var(--space-sm); } /* Reduced margin */
+.nav-links a {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  padding: var(--space-xs) var(--space-sm); /* Padding for larger hit area */
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px; /* Position slightly below */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--magenta), var(--blue));
+  transition: width var(--transition-normal);
+  border-radius: 1px;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+.nav-links a.active::after { width: 60%; } /* Underline for active link */
+.nav-links a:hover::after { width: 80%; } /* Wider underline on hover */
+
+.nav-buttons { display: flex; align-items: center; }
+.mobile-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.75rem; padding: 0.5rem; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.8rem; /* Slightly adjusted padding */
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden; /* For hover effects */
+  white-space: nowrap;
+}
+.btn-icon { margin-right: var(--space-sm); font-size: 1.1em; }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange), var(--magenta)); /* Orange to Magenta gradient */
+  color: var(--white);
+  box-shadow: 0 4px 10px rgba(255, 0, 102, 0.2);
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(255, 0, 102, 0.3);
+  color: var(--white);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+  color: var(--white);
+}
+
+.btn-sm { padding: 0.6rem 1.2rem; font-size: 0.875rem; }
+.btn-lg { padding: 1rem 2.2rem; font-size: 1.05rem; }
+
+/* Hero Section */
+.hero {
+  padding: calc(var(--space-xxl) * 2 + var(--notification-height)) 0 var(--space-xxl); /* More top padding, account for notification */
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+.hero-headings { position: relative; z-index: var(--z-content); }
+.hero h1 { line-height: 1.2; }
+.hero h1 span.gradient-text { /* Style specifically for hero gradient */
+  background: linear-gradient(120deg, var(--magenta), var(--blue), var(--orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: hero-gradient-animation 5s linear infinite;
+}
+@keyframes hero-gradient-animation {
+  to { background-position: 200% center; }
+}
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw + 0.5rem, 1.3rem);
+  margin-bottom: var(--space-xl);
+  color: var(--medium-gray);
+  max-width: 550px;
+}
+.hero-buttons { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-xl); }
+.hero-animation {
+  position: relative;
+  width: 100%;
+  min-height: 450px; /* Ensure space for animation */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1500px; /* Increased perspective */
+}
+
+/* DNA Helix Animation */
+.dna-helix {
+  position: absolute;
+  width: 250px; /* Wider */
+  height: 100%; /* Fill the container */
+  transform-style: preserve-3d;
+  /* Removed perspective from here, placed on parent (.hero-animation) */
+}
+
+.base-pair {
+  position: absolute;
+  width: 100%;
+  height: 20px; /* Base height */
+  transform-style: preserve-3d;
+  /* Animation applied in JS */
+}
+
+.base {
+  position: absolute;
+  width: 28px; /* Slightly larger */
+  height: 28px;
+  border-radius: var(--radius-round);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--dark-bg); /* Dark text on bases */
+  text-shadow: none;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.3);
+  /* Animation applied in JS */
+}
+
+.left-base {
+  left: 30px; /* Adjusted positioning */
+  background: linear-gradient(135deg, #ff4d88, var(--magenta)); /* Gradient base */
+  animation: pulse 2.5s ease-in-out infinite;
+  filter: brightness(1.1);
+}
+
+.right-base {
+  right: 30px; /* Adjusted positioning */
+  background: linear-gradient(135deg, #4dd0ff, var(--blue)); /* Gradient base */
+  animation: pulse 2.5s ease-in-out infinite 0.2s; /* Staggered animation */
+  filter: brightness(1.1);
+}
+
+.base-connector {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 130px; /* Connects bases */
+  height: 4px;
+  background: linear-gradient(90deg,
+      rgba(255, 0, 102, 0.6),
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(0, 164, 239, 0.6)
+  );
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Keyframes for DNA animation */
+@keyframes rotate { /* Global rotation for each pair */
+  0% { transform: rotateY(var(--start-angle)) translateZ(50px) translateX(var(--x-offset)); }
+  100% { transform: rotateY(calc(var(--start-angle) + 360deg)) translateZ(50px) translateX(var(--x-offset)); }
+}
+
+@keyframes pulse { /* Base pulsing effect */
+  0%, 100% { transform: scale(1); opacity: 0.9; filter: brightness(1.1); }
+  50% { transform: scale(1.1); opacity: 1; filter: brightness(1.3); }
+}
+
+/* Section styling */
+.section {
+  padding: var(--space-xxl) 0;
+  position: relative;
+  overflow: hidden; /* Contain elements for animation */
+}
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-xl); /* Reduced bottom margin */
+}
+.section-title h2 { margin-bottom: var(--space-sm); }
+.section-title p {
+  max-width: 700px;
+  margin: 0 auto var(--space-lg); /* Center paragraph */
+  font-size: 1.1rem;
+  color: var(--medium-gray);
+}
+.section-bg-dark { background-color: var(--dark-blue); }
+.section-bg-gradient {
+  background: linear-gradient(160deg, rgba(5, 30, 62, 0.9), rgba(0, 20, 39, 0.9) 70%);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.03); /* More subtle */
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%; /* Ensure cards in grid have same height */
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.02); /* More lift */
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.card-title { font-size: 1.4rem; margin-bottom: var(--space-sm); color: var(--white); }
+.card-icon {
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, var(--magenta), var(--blue));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--white);
+  margin-bottom: var(--space-md);
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  box-shadow: var(--shadow-glow-blue);
+}
+.card p { flex-grow: 1; } /* Allow text to fill space */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  align-items: stretch; /* Make cards same height */
+}
+
+/* Feature List (Alternative Card Layout) */
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.feature-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.feature-card:hover {
+  transform: translateX(5px); /* Shift right on hover */
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: var(--shadow-md);
+  border-left: 3px solid; /* Add left border on hover */
+}
+.feature-card:hover.feature-icon-blue { border-left-color: var(--blue); }
+.feature-card:hover.feature-icon-magenta { border-left-color: var(--magenta); }
+.feature-card:hover.feature-icon-orange { border-left-color: var(--orange); }
+
+.feature-icon {
+  min-width: 50px; /* Slightly smaller */
+  height: 50px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+/* Distinct feature icon styles */
+.feature-icon-blue { background: rgba(0, 164, 239, 0.1); color: var(--blue); box-shadow: 0 0 10px rgba(0, 164, 239, 0.2); }
+.feature-icon-magenta { background: rgba(255, 0, 102, 0.1); color: var(--magenta); box-shadow: 0 0 10px rgba(255, 0, 102, 0.2); }
+.feature-icon-orange { background: rgba(244, 128, 34, 0.1); color: var(--orange); box-shadow: 0 0 10px rgba(244, 128, 34, 0.2); }
+
+.feature-content h3 { margin-bottom: var(--space-xs); font-size: 1.3rem; color: var(--white); }
+.feature-content p { margin-bottom: 0; font-size: 0.95rem; }
+
+/* Stats Section */
+.stats-section {
+  padding: var(--space-xl) 0;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-blue) 100%); /* Subtle vertical gradient */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-lg);
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.stat-item { padding: var(--space-sm); }
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-sm);
+  color: var(--blue); /* Use brand blue for icons */
+  opacity: 0.8;
+}
+.stat-number {
+  font-size: clamp(2.5rem, 6vw, 3.5rem); /* Responsive font size */
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--space-xs);
+  background: linear-gradient(135deg, var(--magenta), var(--light-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-label { color: var(--medium-gray); font-size: 0.95rem; font-weight: 500; }
+
+/* Steps Section (How it Works) */
+.steps-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 800px; /* Constrain width */
+  margin: var(--space-xl) auto 0; /* Add top margin */
+}
+.steps-container::before { /* Vertical connecting line */
+  content: '';
+  position: absolute;
+  left: 29px; /* Aligned with center of icons */
+  top: 30px; /* Start below first icon */
+  bottom: 30px; /* End above last icon */
+  width: 4px;
+  background: linear-gradient(to bottom,
+      rgba(0, 164, 239, 0.1),
+      rgba(0, 164, 239, 0.5),
+      rgba(0, 164, 239, 0.1)
+  );
+  border-radius: 2px;
+  z-index: var(--z-base);
+}
+
+.step-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start; /* Align items to top */
+  gap: var(--space-lg);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: var(--z-content); /* Above the line */
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+.step-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.step-icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue), var(--light-blue));
+  border-radius: var(--radius-round);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--white);
+  box-shadow: var(--shadow-glow-blue);
+  z-index: var(--z-content); /* Ensure icon is above line */
+}
+
+/* Alternate step icon colors */
+.step-item:nth-child(1) .step-icon { background: linear-gradient(135deg, var(--orange), #ffb347); box-shadow: 0 0 15px rgba(244, 128, 34, 0.3); }
+.step-item:nth-child(3) .step-icon { background: linear-gradient(135deg, var(--magenta), #ff4d88); box-shadow: var(--shadow-glow-magenta); }
+
+
+.step-content h3 { margin-bottom: var(--space-xs); font-size: 1.4rem; color: var(--white); }
+.step-content p { margin-bottom: 0; font-size: 1rem; }
+
+
+/* Footer */
+.footer {
+  background: var(--dark-blue);
+  padding: var(--space-xxl) 0 var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto; /* Push footer to bottom */
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+.footer-brand img { height: 36px; margin-bottom: var(--space-md); }
+.footer-brand p { margin-bottom: var(--space-lg); color: var(--medium-gray); font-size: 0.9rem; max-width: 300px;}
+.footer-social { display: flex; gap: var(--space-md); }
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-round);
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+}
+.social-link:hover {
+  background: var(--blue); /* Use brand color on hover */
+  transform: translateY(-3px) scale(1.05);
+  color: var(--white);
+}
+.footer-nav h4 {
+  margin-bottom: var(--space-md);
+  color: var(--white);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.footer-nav ul { list-style: none; padding: 0; margin: 0; }
+.footer-nav li { margin-bottom: var(--space-sm); }
+.footer-nav a { color: var(--medium-gray); font-size: 0.95rem; transition: color var(--transition-fast); }
+.footer-nav a:hover { color: var(--white); text-decoration: underline; }
+
+.footer-bottom {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  font-size: 0.85rem;
+  color: var(--medium-gray);
+}
+.footer-copyright a { color: var(--medium-gray); text-decoration: underline; }
+.footer-copyright a:hover { color: var(--white); }
+.footer-links { display: flex; gap: var(--space-lg); }
+.footer-links a { color: var(--medium-gray); }
+.footer-links a:hover { color: var(--white); }
+
+/* Disclaimer Section Specific Styles */
+.disclaimer-section {
+  padding: var(--space-lg) 0; /* Reduced padding */
+  background: transparent !important; /* Ensure no background override */
+}
+.disclaimer-content {
+  max-width: 900px; /* Wider */
+  margin: 0 auto;
+  background-color: rgba(0, 10, 20, 0.4); /* Darker, subtle background */
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.disclaimer-title {
+  font-size: 0.9rem;
+  margin-bottom: var(--space-sm);
+  color: var(--medium-gray); /* Softer title color */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+.disclaimer-text {
+  font-size: 0.75rem; /* Slightly larger */
+  opacity: 0.7; /* Slightly more visible */
+  line-height: 1.5;
+  color: var(--medium-gray);
+}
+.disclaimer-text p { margin-bottom: var(--space-sm); } /* Less space between paragraphs */
+.disclaimer-text strong { color: rgba(255, 255, 255, 0.8); font-weight: 600; }
+
+/* Utilities */
+.text-center { text-align: center; }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+.gradient-text {
+  background: linear-gradient(135deg, var(--magenta), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Scroll-based Animations */
+.scroll-animate,
+.scroll-animate-left,
+.scroll-animate-right,
+.scroll-animate-scale {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: opacity, transform; /* Performance hint */
+}
+
+.scroll-animate { transform: translateY(40px); }
+.scroll-animate-left { transform: translateX(-50px); }
+.scroll-animate-right { transform: translateX(50px); }
+.scroll-animate-scale { transform: scale(0.9); }
+
+.scroll-animate.animate-in,
+.scroll-animate-left.animate-in,
+.scroll-animate-right.animate-in,
+.scroll-animate-scale.animate-in {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+/* Delay classes */
+.scroll-animate-delay-1 { transition-delay: 0.15s; }
+.scroll-animate-delay-2 { transition-delay: 0.3s; }
+.scroll-animate-delay-3 { transition-delay: 0.45s; }
+
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
   .hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xxl);
-    align-items: center;
-  }
-  
-  .hero-headings {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .hero h1 {
-    margin-bottom: var(--space-md);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-  
-  .hero h1 span {
-    background: linear-gradient(135deg, var(--magenta), var(--blue));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-xl);
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 500px;
-  }
-  
-  .hero-buttons {
-    display: flex;
-    gap: var(--space-md);
-    margin-bottom: var(--space-xl);
-  }
-  
-  .hero-animation {
-    position: relative;
-    width: 100%;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* DNA Helix Animation */
-  .dna-helix {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    perspective: 1200px;
-  }
-  
-  .base-pair {
-    position: absolute;
-    width: 100%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: rotate3D 12s linear infinite;
-  }
-  
-  @keyframes rotate3D {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
-  }
-  
-  .base {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-    position: absolute;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  .left-base {
-    background: var(--magenta);
-    left: calc(50% - 120px);
-    animation: moveLeft 6s ease-in-out infinite;
-  }
-  
-  .right-base {
-    background: var(--blue);
-    right: calc(50% - 120px);
-    animation: moveRight 6s ease-in-out infinite;
-  }
-  
-  .base-connector {
-    width: 200px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--magenta), var(--blue));
-    position: absolute;
-    animation: stretch 6s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  @keyframes moveLeft {
-    0%, 100% { transform: translateX(-12px); }
-    50% { transform: translateX(12px); }
-  }
-  
-  @keyframes moveRight {
-    0%, 100% { transform: translateX(12px); }
-    50% { transform: translateX(-12px); }
-  }
-  
-  @keyframes stretch {
-    0%, 100% { width: 200px; }
-    50% { width: 220px; }
-  }
-  
-  /* Section styling */
-  .section {
-    padding: var(--space-xxl) 0;
-    position: relative;
-  }
-  
-  .section-title {
-    text-align: center;
-    margin-bottom: var(--space-xxl);
-  }
-  
-  .section-title h2 {
-    margin-bottom: var(--space-md);
-  }
-  
-  .section-title p {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-  }
-  
-  .section-bg-dark {
-    background-color: var(--dark-blue);
-  }
-  
-  .section-bg-gradient {
-    background: linear-gradient(135deg, rgba(5, 30, 62, 0.7), rgba(0, 20, 39, 0.7));
-  }
-  
-  /* Cards */
-  .card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-lg);
-    padding: var(--space-xl);
-    transition: all var(--transition-normal);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: var(--shadow-md);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-  
-  .card-title {
-    font-size: 1.3rem;
-    margin-bottom: var(--space-md);
-  }
-  
-  .card-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--magenta), var(--blue));
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--white);
-    margin-bottom: var(--space-md);
-  }
-  
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-xl);
-  }
-  
-  /* Feature cards */
-  .feature-card {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-lg);
-    padding: var(--space-xl);
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-normal);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: var(--space-xl);
-  }
-  
-  .feature-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: var(--shadow-md);
-    border-color: rgba(255, 255, 255, 0.15);
-  }
-  
-  .feature-icon {
-    min-width: 60px;
-    height: 60px;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-  }
-  
-  .feature-icon-blue {
-    background: rgba(0, 164, 239, 0.15);
-    color: var(--blue);
-    border: 1px solid rgba(0, 164, 239, 0.3);
-  }
-  
-  .feature-icon-magenta {
-    background: rgba(255, 0, 102, 0.15);
-    color: var(--magenta);
-    border: 1px solid rgba(255, 0, 102, 0.3);
-  }
-  
-  .feature-icon-orange {
-    background: rgba(244, 128, 34, 0.15);
-    color: var(--orange);
-    border: 1px solid rgba(244, 128, 34, 0.3);
-  }
-  
-  .feature-content h3 {
-    margin-bottom: var(--space-sm);
-  }
-  
-  /* Stats */
-  .stats-section {
-    padding: var(--space-xxl) 0;
-    text-align: center;
-    position: relative;
-    background: linear-gradient(135deg, rgba(5, 30, 62, 0.7), rgba(0, 20, 39, 0.7));
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-xl);
-    text-align: center;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .stat-item {
-    padding: var(--space-md);
-  }
-  
-  .stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: var(--space-xs);
-    background: linear-gradient(135deg, var(--magenta), var(--blue));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .stat-label {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1rem;
-    font-weight: 500;
-  }
-  
-  /* Steps */
-  .steps-container {
-    counter-reset: step;
-    position: relative;
-  }
-  
-  .step-item {
-    position: relative;
-    padding-left: 70px;
-    margin-bottom: var(--space-xl);
-  }
-  
-  .step-item::before {
-    counter-increment: step;
-    content: counter(step);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--magenta), var(--blue));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: var(--white);
-  }
-  
-  .step-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 25px;
-    top: 50px;
-    bottom: -40px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--blue), transparent);
-  }
-  
-  .step-content h3 {
-    margin-bottom: var(--space-sm);
-  }
-  
-  /* Footer */
-  .footer {
-    background: var(--dark-blue);
-    padding: var(--space-xxl) 0 var(--space-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: var(--space-xl);
-  }
-  
-  .footer-brand {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .footer-brand img {
-    height: 40px;
-    margin-bottom: var(--space-md);
-  }
-  
-  .footer-brand p {
-    margin-bottom: var(--space-lg);
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .footer-social {
-    display: flex;
-    gap: var(--space-md);
-  }
-  
-  .social-link {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    transition: all var(--transition-fast);
-  }
-  
-  .social-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    color: var(--white);
-  }
-  
-  .footer-nav h4 {
-    margin-bottom: var(--space-lg);
-    color: var(--white);
-    font-size: 1.1rem;
-  }
-  
-  .footer-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .footer-nav li {
-    margin-bottom: var(--space-sm);
-  }
-  
-  .footer-nav a {
-    color: rgba(255, 255, 255, 0.7);
-    transition: color var(--transition-fast);
-  }
-  
-  .footer-nav a:hover {
-    color: var(--white);
-  }
-  
-  .footer-bottom {
-    margin-top: var(--space-xxl);
-    padding-top: var(--space-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--space-md);
-  }
-  
-  .footer-copyright {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.875rem;
-  }
-  
-  .footer-links {
-    display: flex;
-    gap: var(--space-lg);
-  }
-  
-  .footer-links a {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.875rem;
-  }
-  
-  .footer-links a:hover {
-    color: var(--white);
-  }
-  
-  /* Background effects */
-  .bg-gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-  }
-  
-  .bg-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.5;
-  }
-  
-  .bg-blob-1 {
-    top: -200px;
-    right: -100px;
-    width: 600px;
-    height: 600px;
-    background: linear-gradient(135deg, rgba(255, 0, 102, 0.2), rgba(0, 0, 0, 0));
-    animation: float 20s ease-in-out infinite alternate;
-  }
-  
-  .bg-blob-2 {
-    bottom: -150px;
-    left: -100px;
-    width: 500px;
-    height: 500px;
-    background: linear-gradient(135deg, rgba(0, 164, 239, 0.2), rgba(0, 0, 0, 0));
-    animation: float 15s ease-in-out infinite alternate-reverse;
-  }
-  
-  @keyframes float {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    100% { transform: translate(40px, 40px) rotate(15deg); }
-  }
-  
-  /* Utilities */
-  .text-center {
-    text-align: center;
-  }
-  
-  .mb-sm {
-    margin-bottom: var(--space-sm);
-  }
-  
-  .mb-md {
-    margin-bottom: var(--space-md);
-  }
-  
-  .mb-lg {
-    margin-bottom: var(--space-lg);
-  }
-  
-  .mb-xl {
-    margin-bottom: var(--space-xl);
-  }
-  
-  .mt-sm {
-    margin-top: var(--space-sm);
-  }
-  
-  .mt-md {
-    margin-top: var(--space-md);
-  }
-  
-  .mt-lg {
-    margin-top: var(--space-lg);
-  }
-  
-  .mt-xl {
-    margin-top: var(--space-xl);
-  }
-  
-  .gradient-text {
-    background: linear-gradient(135deg, var(--magenta), var(--blue));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  /* Responsive styles */
-  @media screen and (max-width: 1024px) {
-    h1 {
-      font-size: 3rem;
-    }
-    
-    h2 {
-      font-size: 2.25rem;
-    }
-    
-    .hero-content {
       grid-template-columns: 1fr;
       text-align: center;
-    }
-    
-    .hero-subtitle {
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .hero-buttons {
-      justify-content: center;
-    }
-    
-    .hero-animation {
-      margin-top: var(--space-xl);
-    }
-    
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl) var(--space-xxl);
-    }
+      gap: var(--space-lg);
   }
-  
-  @media screen and (max-width: 768px) {
-    h1 {
-      font-size: 2.5rem;
-    }
-    
-    h2 {
-      font-size: 2rem;
-    }
-    
-    .navbar-container {
-      position: relative;
-    }
-    
-    .nav-links {
+  .hero-headings { order: 1; } /* Text below animation on smaller screens */
+  .hero-animation { order: 0; min-height: 350px; margin-bottom: var(--space-lg); }
+  .hero-subtitle { margin-left: auto; margin-right: auto; }
+  .hero-buttons { justify-content: center; }
+  .dna-helix { width: 200px; /* Smaller helix */ }
+  .base-connector { width: 100px; }
+  .left-base { left: 25px; }
+  .right-base { right: 25px; }
+
+  .footer-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } /* Adjust footer grid */
+  .steps-container::before { left: 29px; } /* Adjust step line position if needed */
+}
+
+@media screen and (max-width: 768px) {
+  html { scroll-padding-top: 80px; /* Adjust for potentially smaller navbar */ }
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 2.1rem; }
+
+  .navbar-container { position: relative; }
+  .mobile-toggle { display: block; }
+  .nav-links {
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
       flex-direction: column;
-      background: var(--dark-bg);
-      padding: var(--space-lg);
-      transform: translateY(-100%);
+      background: var(--dark-blue); /* Solid background for mobile menu */
+      padding: var(--space-lg) 0;
+      max-height: 0; /* Start closed */
+      overflow: hidden;
       opacity: 0;
       visibility: hidden;
-      transition: all var(--transition-normal);
+      transition: max-height 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .nav-links.active {
-      transform: translateY(0);
+  }
+  .nav-links.active {
+      max-height: 500px; /* Open height */
       opacity: 1;
       visibility: visible;
-    }
-    
-    .nav-links li {
-      margin: var(--space-sm) 0;
-    }
-    
-    .mobile-toggle {
-      display: block;
-    }
-    
-    .hero-buttons {
-      flex-direction: column;
-      width: 100%;
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .feature-card {
-      flex-direction: column;
-    }
-    
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-    }
-    
-    .footer-bottom {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
   }
-  
-  @media screen and (max-width: 480px) {
-    .container {
-      padding: 0 var(--space-md);
-    }
-    
-    h1 {
-      font-size: 2rem;
-    }
-    
-    h2 {
-      font-size: 1.75rem;
-    }
-    
-    .stats-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .notification-banner {
-      padding: 0.5rem 2rem 0.5rem 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    .notification-banner span {
-      display: inline;
-    }
-    
-    .notification-banner .notification-link {
-      margin: 0 0.25rem;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .notification-banner {
-      padding: 0.5rem 2rem 0.5rem 0.5rem;
-      font-size: 0.8rem;
+  .nav-links li { margin: var(--space-sm) 0; width: 100%; text-align: center; }
+  .nav-links a { display: block; padding: var(--space-md) 0; }
+  .nav-links a::after { display: none; } /* No underline in mobile */
+  .nav-buttons { display: none; } /* Hide GitHub button in mobile nav area, could move it inside */
+
+  .hero { padding-top: calc(var(--space-xl) * 2 + var(--notification-height)); } /* Adjust hero padding */
+  .hero-buttons { flex-direction: column; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto; }
+  .card-grid { grid-template-columns: 1fr; } /* Stack cards */
+  .feature-card { flex-direction: column; align-items: center; text-align: center; }
+  .feature-icon { margin-bottom: var(--space-md); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); } /* 2 columns for stats */
+  .steps-container { padding-left: 0; max-width: 100%;}
+  .steps-container::before { display: none; } /* Hide vertical line on mobile */
+  .step-item { flex-direction: column; align-items: center; text-align: center; }
+  .step-icon { margin-bottom: var(--space-md); }
+
+  .footer-grid { grid-template-columns: 1fr; gap: var(--space-xl); text-align: center;}
+  .footer-brand { align-items: center; }
+  .footer-social { justify-content: center; }
+  .footer-nav h4 { margin-top: var(--space-lg); margin-bottom: var(--space-sm); }
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .notification-banner {
+      padding: 0.6rem 2.5rem 0.6rem 1rem;
+      font-size: 0.85rem;
       line-height: 1.4;
-    }
-    
-    .notification-banner span {
-      display: inline;
-    }
-    
-    .notification-banner .notification-link {
-      margin: 0.25rem;
-      padding: 0.15rem 0.35rem;
-    }
   }
-  
-  /* DNAnalyzer Disclaimer CSS Update */
-.disclaimer-section {
-  padding: 1rem 0;
-  background: transparent !important; /* Override any dark background */
+  .notification-banner .notification-link { margin: 0.2rem; }
 }
 
-.disclaimer-content {
-  max-width: 90%;
-  margin: 0 auto;
-  background-color: rgba(30, 30, 40, 0.4); /* Subtle dark background */
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.disclaimer-title {
-  font-size: 0.85rem;
-  margin-bottom: 0.75rem;
-  opacity: 0.75;
-  color: rgba(255, 255, 255, 0.8);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.disclaimer-text {
-  font-size: 0.7rem;
-   opacity: 0.65;
-   line-height: 1.4;
-   color: rgba(255, 255, 255, 0.7);
-}
-
-/* Futuristic Notification Effects */
-@keyframes notifPulse {
-    0% { box-shadow: 0 0 5px #FF9100; }
-    50% { box-shadow: 0 0 20px #FF9100; }
-    100% { box-shadow: 0 0 5px #FF9100; }
-}
-
-/* JavaScript will add this class when scrolling down */
-.hide-notification {
-    transform: translateY(-100%);
-}
-
-/* Scroll-based animations */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-animate.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-animate-delay-1 {
-  transition-delay: 0.2s;
-}
-
-.scroll-animate-delay-2 {
-  transition-delay: 0.4s;
-}
-
-.scroll-animate-delay-3 {
-  transition-delay: 0.6s;
-}
-
-.scroll-animate-right {
-  opacity: 0;
-  transform: translateX(50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-animate-right.animate-in {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scroll-animate-left {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-animate-left.animate-in {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.scroll-animate-scale {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-animate-scale.animate-in {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Interactive particles */
-.particles-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.floating-particle {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  pointer-events: none;
-  transition: transform 0.3s ease;
+@media screen and (max-width: 480px) {
+  .container { padding: 0 var(--space-md); }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  .stats-grid { grid-template-columns: 1fr; } /* Stack stats fully */
+  .hero-buttons .btn { width: 100%; } /* Full width buttons */
+  .footer-bottom { font-size: 0.8rem; }
+  .footer-links { gap: var(--space-md); } /* Less gap for footer links */
+  .notification-banner { font-size: 0.8rem; }
+  .notification-banner .notification-close { font-size: 1.3rem; right: 0.5rem; width: 26px; height: 26px;}
 }
 --------------------------------------------------
 File: ./web/.htaccess
@@ -1775,13 +1515,11 @@ File: ./web/index.html
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-0LTP0WK7EM');
     </script>
     <meta charset="UTF-8">
@@ -1790,7 +1528,6 @@ File: ./web/index.html
     <meta name="description"
         content="DNAnalyzer is a powerful, privacy-focused DNA analysis tool using advanced machine learning for accurate, on-device genomic analysis.">
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1799,24 +1536,24 @@ File: ./web/index.html
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-    <!-- Favicon -->
     <link rel="shortcut icon" href="assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 
 <body>
-    <!-- Background effects -->
+    <div class="notification-banner">
+        <span>🚨 DNAnalyzer v2.0 is coming soon! Check out the</span>
+        <a href="https://github.com/VerisimilitudeX/DNAnalyzer/projects/1" class="notification-link" target="_blank" rel="noopener noreferrer">Roadmap</a>
+        <span>and join our</span>
+        <a href="https://discord.gg/xNpujz49gj" class="notification-link" target="_blank" rel="noopener noreferrer">Discord</a>
+        <span>for updates!</span>
+        <button class="notification-close" aria-label="Close notification">&times;</button>
+    </div>
+
     <div class="bg-gradient">
         <div class="bg-blob bg-blob-1"></div>
         <div class="bg-blob bg-blob-2"></div>
-    </div>
-    <div class="notification-banner">
-        <span>Exclusive WSSEF Preview: </span>
-        <span>&nbsp;Transformer Architecture in Epigenomics!</span>
-        <a href="https://epiclassify.dnanalyzer.org" target="_blank" class="notification-link">Explore Now</a>
-        <button class="notification-close" aria-label="Dismiss notification"></button>
-    </div>
+        </div>
 
-    <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container navbar-container">
             <a href="index.html" class="logo">
@@ -1838,76 +1575,72 @@ File: ./web/index.html
             </ul>
 
             <div class="nav-buttons">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm scroll-animate" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-github btn-icon"></i> GitHub
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-headings">
-                    <h1>Revolutionizing <span>DNA analysis</span> with machine learning</h1>
+                <div class="hero-headings scroll-animate scroll-animate-left">
+                    <h1>Revolutionizing <span class="gradient-text">DNA analysis</span> with machine learning</h1>
                     <p class="hero-subtitle">Powerful, privacy-focused DNA analysis using advanced ML algorithms
                         designed for both researchers and individuals.</p>
 
                     <div class="hero-buttons">
-                        <a href="analyzer/analyzer.html" class="btn btn-primary">
+                        <a href="analyzer/analyzer.html" class="btn btn-primary scroll-animate scroll-animate-delay-1">
                             <i class="fas fa-dna btn-icon"></i> Try DNA Analysis
                         </a>
-                        <a href="docs/docs.html" class="btn btn-secondary">
+                        <a href="docs/docs.html" class="btn btn-secondary scroll-animate scroll-animate-delay-2">
                             <i class="fas fa-book btn-icon"></i> Documentation
                         </a>
                     </div>
                 </div>
 
-                <div class="hero-animation">
-                    <div class="dna-helix" id="dnaHelix">
-                        <!-- DNA helix animation will be generated by JavaScript -->
-                    </div>
+                <div class="hero-animation scroll-animate scroll-animate-right">
+                     <div class="dna-helix" id="dnaHelix">
+                         </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
+    <section class="stats-section scroll-animate">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" id="statAccuracy">141</div>
-                    <div class="stat-label">Stars</div>
+                <div class="stat-item scroll-animate scroll-animate-scale scroll-animate-delay-1">
+                    <i class="fas fa-star stat-icon"></i>
+                    <div class="stat-number" id="statAccuracy">0</div> <div class="stat-label">GitHub Stars</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="statSequences">7M+</div>
-                    <div class="stat-label">DNA Sequences</div>
+                <div class="stat-item scroll-animate scroll-animate-scale scroll-animate-delay-2">
+                    <i class="fas fa-database stat-icon"></i>
+                    <div class="stat-number" id="statSequences">0M+</div> <div class="stat-label">DNA Sequences Analyzed</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="statUsers">46+</div>
-                    <div class="stat-label">Contributors</div>
+                <div class="stat-item scroll-animate scroll-animate-scale scroll-animate-delay-3">
+                    <i class="fas fa-users stat-icon"></i>
+                    <div class="stat-number" id="statUsers">0+</div> <div class="stat-label">Contributors</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">86</div>
-                    <div class="stat-label">Discord Members</div>
+                <div class="stat-item scroll-animate scroll-animate-scale scroll-animate-delay-3">
+                    <i class="fab fa-discord stat-icon"></i>
+                    <div class="stat-number">86</div> <div class="stat-label">Discord Members</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Overview -->
     <section class="section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title scroll-animate">
                 <h2>Why Choose <span class="gradient-text">DNAnalyzer</span>?</h2>
                 <p>Our cutting-edge technology provides unparalleled accuracy and insights while keeping your data
                     secure.</p>
             </div>
 
             <div class="card-grid">
-                <div class="card">
+                <div class="card scroll-animate scroll-animate-delay-1">
                     <div class="card-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
@@ -1916,7 +1649,7 @@ File: ./web/index.html
                         advanced on-device ML models.</p>
                 </div>
 
-                <div class="card">
+                <div class="card scroll-animate scroll-animate-delay-2">
                     <div class="card-icon">
                         <i class="fas fa-dna"></i>
                     </div>
@@ -1925,7 +1658,7 @@ File: ./web/index.html
                         binding sites with precision.</p>
                 </div>
 
-                <div class="card">
+                <div class="card scroll-animate scroll-animate-delay-3">
                     <div class="card-icon">
                         <i class="fas fa-brain"></i>
                     </div>
@@ -1937,87 +1670,80 @@ File: ./web/index.html
         </div>
     </section>
 
-    <!-- Workflow Section -->
     <section class="section section-bg-gradient">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title scroll-animate">
                 <h2>How It Works</h2>
                 <p>A simple three-step process to analyze your DNA sequences</p>
             </div>
 
             <div class="steps-container">
-                <div class="step-item">
+                <div class="step-item scroll-animate scroll-animate-left">
+                     <div class="step-icon"><i class="fas fa-upload"></i></div>
                     <div class="step-content">
-                        <h3>Upload Your Sequence</h3>
-                        <p>Upload your DNA sequence file in FASTA or FASTQ format. Your data stays on your device.</p>
+                        <h3>1. Upload Your Sequence</h3>
+                        <p>Upload your DNA sequence file in FASTA or FASTQ format. Your data stays securely on your device.</p>
                     </div>
                 </div>
 
-                <div class="step-item">
+                <div class="step-item scroll-animate scroll-animate-right scroll-animate-delay-1">
+                     <div class="step-icon"><i class="fas fa-cogs"></i></div>
                     <div class="step-content">
-                        <h3>Select Analysis Options</h3>
-                        <p>Choose from a variety of analysis options, including codon detection, coverage analysis, and
-                            protein prediction.</p>
+                        <h3>2. Select Analysis Options</h3>
+                        <p>Choose from a variety of analysis modules, including ORF detection, GC content analysis, and
+                            promoter identification.</p>
                     </div>
                 </div>
 
-                <div class="step-item">
+                <div class="step-item scroll-animate scroll-animate-left scroll-animate-delay-2">
+                     <div class="step-icon"><i class="fas fa-chart-line"></i></div>
                     <div class="step-content">
-                        <h3>Get Comprehensive Results</h3>
-                        <p>Receive detailed insights with visualizations and downloadable reports for your research.</p>
+                        <h3>3. Get Comprehensive Results</h3>
+                        <p>Receive detailed insights instantly with visualizations and downloadable reports for your research.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Feature Details Section -->
     <section class="section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title scroll-animate">
                 <h2>Powerful Analysis Features</h2>
                 <p>Comprehensive tools designed for researchers, students, and enthusiasts</p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon feature-icon-blue">
-                    <i class="fas fa-search"></i>
+            <div class="feature-list">
+                <div class="feature-card scroll-animate scroll-animate-right">
+                    <div class="feature-icon feature-icon-blue">
+                        <i class="fas fa-search-plus"></i> </div>
+                    <div class="feature-content">
+                        <h3>Open Reading Frame Identification</h3>
+                        <p>Scans DNA for start and stop codons to identify potential protein-coding sequences (ORFs). Recognizes canonical start/stop codons to pinpoint putative proteins within a genome.</p>
+                    </div>
                 </div>
-                <div class="feature-content">
-                    <h3>Open Reading Frame Identification</h3>
-                    <p>Scans DNA for start and stop codons to identify protein-coding sequences (open reading frames).
-                        Recognizes canonical start codons (e.g., ATG) and stop codons to pinpoint the locations of
-                        putative proteins within a genome.</p>
-                </div>
-            </div>
 
-            <div class="feature-card">
-                <div class="feature-icon feature-icon-magenta">
-                    <i class="fas fa-chart-bar"></i>
+                <div class="feature-card scroll-animate scroll-animate-left scroll-animate-delay-1">
+                    <div class="feature-icon feature-icon-magenta">
+                        <i class="fas fa-thermometer-half"></i> </div>
+                    <div class="feature-content">
+                        <h3>GC-Content Analysis</h3> <p>Calculates and visualizes GC content across the sequence, highlighting GC-rich regions often associated with gene density and regulatory elements.</p>
+                    </div>
                 </div>
-                <div class="feature-content">
-                    <h3>GC-Rich Region Detection</h3>
-                    <p>Locates high coverage (GC-rich) regions in the DNA, often associated with gene-dense areas and
-                        promoter regions. Flags GC-rich stretches to help identify potential regulatory regions.</p>
-                </div>
-            </div>
 
-            <div class="feature-card">
-                <div class="feature-icon feature-icon-orange">
-                    <i class="fas fa-microscope"></i>
+                <div class="feature-card scroll-animate scroll-animate-right scroll-animate-delay-2">
+                    <div class="feature-icon feature-icon-orange">
+                        <i class="fas fa-map-marker-alt"></i> </div>
+                    <div class="feature-content">
+                        <h3>Core Promoter Element Identification</h3>
+                        <p>Scans for known core promoter motifs (e.g., TATA box, BRE, INR, DPE). Detecting these elements helps locate potential gene start sites and regulatory regions.</p>
+                    </div>
                 </div>
-                <div class="feature-content">
-                    <h3>Core Promoter Element Identification</h3>
-                    <p>Scans for known core promoter motifs in the DNA sequence, such as the TATA box, BRE, INR, and DPE
-                        motifs. Detecting these elements can indicate the presence of gene promoters, helping you locate
-                        potential gene start sites.</p>
-                </div>
-            </div>
+             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section section-bg-dark">
+    <section class="section section-bg-dark scroll-animate">
         <div class="container text-center">
             <h2>Ready to Start Analyzing?</h2>
             <p class="mb-xl">Join thousands of researchers and scientists using DNAnalyzer for their genetic analysis
@@ -2025,7 +1751,7 @@ File: ./web/index.html
 
             <div class="hero-buttons" style="justify-content: center;">
                 <a href="analyzer/analyzer.html" class="btn btn-primary">
-                    <i class="fas fa-dna btn-icon"></i> Start Analyzing
+                    <i class="fas fa-dna btn-icon"></i> Start Analyzing Now
                 </a>
                 <a href="docs/docs.html" class="btn btn-secondary">
                     <i class="fas fa-book btn-icon"></i> Read Documentation
@@ -2034,62 +1760,37 @@ File: ./web/index.html
         </div>
     </section>
 
-    <!-- Disclaimer Section -->
-    <section class="section section-bg-dark disclaimer-section">
+    <section class="section section-bg-dark disclaimer-section scroll-animate">
         <div class="container">
             <div class="disclaimer-content">
                 <h4 class="disclaimer-title">DNAnalyzer Disclaimer</h4>
                 <div class="disclaimer-text">
-                    <p><strong>Limitation of Liability:</strong> The DNAnalyzer tool is intended for research,
-                        educational, and informational purposes only. The machine learning-based DNA analysis provides
-                        computational predictions that should not be used for medical diagnosis, clinical
-                        interpretation, or treatment decisions. DNAnalyzer is not a substitute for professional medical
-                        advice, diagnosis, or treatment.</p>
-
-                    <p><strong>Analysis Limitations:</strong> DNAnalyzer's computational analysis, including open
-                        reading frame identification, GC-rich region detection, and promoter element identification, is
-                        based on algorithmic predictions using machine learning models trained on public datasets.
-                        Results may vary in accuracy depending on the quality of input data, sequence type, and other
-                        biological factors. The absence of identified genomic features does not rule out their presence,
-                        and the identification of features does not guarantee their biological relevance or function.
-                    </p>
-
-                    <p><strong>Privacy Notice:</strong> While DNAnalyzer processes DNA sequences locally on your device
-                        to maximize privacy, users should exercise caution when uploading sensitive genetic information.
-                        We recommend against uploading human genomic data with identifiable personal information.
-                        DNAnalyzer is not responsible for any privacy implications resulting from user actions.</p>
-
-                    <p><strong>Research Use Only:</strong> Results generated by DNAnalyzer should be experimentally
-                        validated before being used in research publications or academic work. Citations of DNAnalyzer
-                        should acknowledge its computational nature and inherent limitations.</p>
-
-                    <p><strong>No Warranty:</strong> DNAnalyzer is provided "as is" without warranty of any kind,
-                        express or implied. The creators and contributors of DNAnalyzer disclaim all warranties,
-                        including but not limited to accuracy, reliability, and fitness for a particular purpose. In no
-                        event shall the creators, contributors, or copyright holders be liable for any claim, damages,
-                        or other liability arising from the use of this software.</p>
+                    <p><strong>Limitation of Liability:</strong> The DNAnalyzer tool is intended for research, educational, and informational purposes only. The machine learning-based DNA analysis provides computational predictions that should not be used for medical diagnosis, clinical interpretation, or treatment decisions. DNAnalyzer is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+                    <p><strong>Analysis Limitations:</strong> DNAnalyzer's computational analysis is based on algorithmic predictions using machine learning models trained on public datasets. Results may vary in accuracy. The absence of identified features does not rule out their presence, and identification does not guarantee biological relevance.</p>
+                    <p><strong>Privacy Notice:</strong> While DNAnalyzer processes data locally, users should exercise caution with sensitive genetic information. We recommend against uploading identifiable human genomic data. DNAnalyzer is not responsible for privacy implications from user actions.</p>
+                    <p><strong>Research Use Only:</strong> Results should be experimentally validated before use in publications. Citations should acknowledge its computational nature and limitations.</p>
+                    <p><strong>No Warranty:</strong> DNAnalyzer is provided "as is" without warranty of any kind. The creators and contributors disclaim all warranties. In no event shall creators/contributors be liable for any claim, damages, or liability arising from the use of this software.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning
-                        models for accurate, on-device genomic analysis.</p>
+                     <a href="index.html" class="logo mb-md"> <img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo" style="height: 36px;">
+                         </a>
+                    <p>DNAnalyzer: Powerful, privacy-focused DNA analysis with cutting-edge machine learning for on-device genomic insights.</p>
 
                     <div class="footer-social">
-                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://discord.gg/xNpujz49gj" class="social-link">
+                        <a href="https://discord.gg/xNpujz49gj" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Discord">
                             <i class="fab fa-discord"></i>
                         </a>
-                        <a href="https://twitter.com/DNAnalyzer_" class="social-link">
+                        <a href="https://twitter.com/DNAnalyzer_" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </div>
@@ -2128,8 +1829,7 @@ File: ./web/index.html
 
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    Copyright 2025 Piyush Acharya. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
-                    81-2908499). MIT License.
+                    Copyright © 2025 Piyush Acharya. DNAnalyzer is fiscally sponsored by <a href="https://theopensource.org/" target="_blank" rel="noopener">The Open Source Collective</a> 501(c)(3). MIT License.
                 </div>
 
                 <div class="footer-links">
@@ -2141,10 +1841,8 @@ File: ./web/index.html
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="index.js"></script>
 </body>
-
 </html>
 --------------------------------------------------
 File: ./web/style.css.bak
