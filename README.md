@@ -41,7 +41,7 @@
 
 ## About DNAnalyzer
 
-DNAnalyzer is a **fiscally sponsored 501(c)(3) nonprofit** (EIN: 81-2908499) revolutionizing DNA analysis by making machine learning-powered genomic insights accessible through efficient on-device computation.
+DNAnalyzer is a a biotechnology research and deployment company. Our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
 
 Founded by [Piyush Acharya](https://github.com/VerisimilitudeX) and co-led with [@LimesKey](https://github.com/LimesKey), our platform has attracted **45 computational biologists and computer scientists** from institutions including Microsoft Research, University of Macedonia, and Northeastern University.
 
