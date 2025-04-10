@@ -4,6 +4,8 @@
 <h3>Democratizing AI-Powered DNA Analysis</h3>
 <p><i>On-device genomic insights for everyone, everywhere</i></p>
 
+<!-- GitAds-Verify: LQ9SSI6U8AKHGL83YZKFVDTAG5Q9F2A3 -->
+
 [![Copyright](https://img.shields.io/badge/copyright-2025-blue?style=for-the-badge)](https://github.com/VERISIMILITUDEX/DNAnalyzer)
 [![Release](https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer?style=for-the-badge&color=green)](https://github.com/VERISIMILITUDEX/DNAnalyzer/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/VerisimilitudeX/DNAnalyzer/gradle.yml?style=for-the-badge)](https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml)
