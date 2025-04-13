@@ -103,6 +103,10 @@ function initDNAHelix() {
         ['C', 'G']
     ];
     
+    // Create all base pair elements first but don't append to DOM yet
+    const fragments = document.createDocumentFragment();
+    const allBasePairs = [];
+    
     // Create base pairs with a proper twisted helix structure
     // Start with negative indices for "upward" extension, then go to positive for "downward"
     for (let i = -numBasesUp; i < numBasesDown; i++) {
@@ -116,28 +120,26 @@ function initDNAHelix() {
         basePair.style.top = `${(i + numBasesUp) * 25}px`;
         
         // Calculate initial rotation angle to create the helix twist
-        // Each pair is rotated 25 degrees more than the previous one
+        // Each pair is rotated an incremental amount for the helix effect
         const angle = (i * 25) % 360;
         
         // Calculate X offset based on the angle to create the curve effect
         const xOffset = Math.sin(angle * Math.PI / 180) * 20;
         
-        // Apply the 3D transformation to create the initial twisted shape
+        // Start at the target position directly instead of animating to it
         basePair.style.transform = `rotateY(${angle}deg) translateZ(40px) translateX(${xOffset}px)`;
         
-        // Add animation with staggered delays
-        basePair.style.animation = 'rotate 8s linear infinite';
-        basePair.style.animationDelay = `${-i * 0.5}s`;
+        // Set initial opacity to 0 to avoid flash of content
+        basePair.style.opacity = '0';
         
+        // Create elements
         const leftBaseElem = document.createElement('div');
         leftBaseElem.className = 'base left-base';
         leftBaseElem.textContent = leftBase;
-        leftBaseElem.style.animationDelay = `${i * 0.2}s`;
         
         const rightBaseElem = document.createElement('div');
         rightBaseElem.className = 'base right-base';
         rightBaseElem.textContent = rightBase;
-        rightBaseElem.style.animationDelay = `${i * 0.2}s`;
         
         const connector = document.createElement('div');
         connector.className = 'base-connector';
@@ -146,11 +148,33 @@ function initDNAHelix() {
         basePair.appendChild(connector);
         basePair.appendChild(rightBaseElem);
         
-        dnaHelix.appendChild(basePair);
+        fragments.appendChild(basePair);
+        allBasePairs.push(basePair);
     }
+    
+    // Add all elements to the DOM at once to minimize reflow
+    dnaHelix.appendChild(fragments);
     
     // Adjust the container height to accommodate the extended helix
     dnaHelix.style.height = `${totalBases * 25 + 50}px`;
+    
+    // Add animations with staggered delays after elements are in the DOM
+    // This ensures smooth animation start
+    requestAnimationFrame(() => {
+        allBasePairs.forEach((basePair, index) => {
+            // Stagger animation delays for a smooth wave effect
+            const delay = (index * -0.1).toFixed(2);
+            
+            // Apply animation now that the element is in the DOM
+            basePair.style.animation = `rotate 8s linear infinite ${delay}s`;
+            
+            // Fade in elements smoothly over time
+            setTimeout(() => {
+                basePair.style.opacity = '1';
+                basePair.style.transition = 'opacity 0.5s ease-in-out';
+            }, 50 * index);
+        });
+    });
 }
 
 /**

@@ -6,6 +6,7 @@
   margin: 0 auto;
   perspective: 1200px;
   transform-style: preserve-3d;
+  will-change: transform; /* Optimize animation performance */
 }
 
 .base-pair {
@@ -14,6 +15,8 @@
   height: 20px;
   animation: rotate 8s linear infinite;
   transform-style: preserve-3d;
+  backface-visibility: hidden; /* Prevent flickering */
+  will-change: transform;
 }
 
 .base {
@@ -28,6 +31,7 @@
   color: white;
   text-shadow: 0 0 3px rgba(0,0,0,0.5);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  backface-visibility: hidden;
 }
 
 .left-base {
@@ -60,9 +64,13 @@
 
 @keyframes rotate {
   0% { transform: rotateY(0deg) translateZ(40px) translateX(-20px); }
+  12.5% { transform: rotateY(45deg) translateZ(40px) translateX(-15px); }
   25% { transform: rotateY(90deg) translateZ(40px) translateX(0px); }
+  37.5% { transform: rotateY(135deg) translateZ(40px) translateX(15px); }
   50% { transform: rotateY(180deg) translateZ(40px) translateX(20px); }
+  62.5% { transform: rotateY(225deg) translateZ(40px) translateX(15px); }
   75% { transform: rotateY(270deg) translateZ(40px) translateX(0px); }
+  87.5% { transform: rotateY(315deg) translateZ(40px) translateX(-15px); }
   100% { transform: rotateY(360deg) translateZ(40px) translateX(-20px); }
 }
 
