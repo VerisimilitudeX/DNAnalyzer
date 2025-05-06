@@ -1,8 +1,8 @@
 ![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 <div align="center">
-<h3>Democratizing AI-Powered DNA Analysis</h3>
-<p><i>On-device genomic insights for everyone, everywhere</i></p>
+<h3>Next-Generation On-Device DNA Insights</h3>
+<p><i>Private. Precise. Powered by AI.</i></p>
 
 [![Copyright](https://img.shields.io/badge/copyright-2025-blue?style=for-the-badge)](https://github.com/VERISIMILITUDEX/DNAnalyzer)
 [![Release](https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer?style=for-the-badge&color=green)](https://github.com/VERISIMILITUDEX/DNAnalyzer/releases)
@@ -41,11 +41,11 @@
 
 ## About DNAnalyzer
 
-DNAnalyzer is a a biotechnology research and deployment company. Our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation. DNAnalyzer is developed with support from [Anthropic AI](http://anthropic.com/).
+DNAnalyzer is a a biotechnology research and deployment company. Supported by [Anthropic](http://anthropic.com/), our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
 
-Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), our platform has attracted **45 computational biologists and computer scientists** from institutions including Microsoft Research, University of Macedonia, and Northeastern University.
+Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer's team includes **45 leading computational biologists and computer scientists** from Microsoft Research, University of Macedonia, and Northeastern University.
 
-Our impact has been recognized by the organizers of the [AI Engineer World's Fair](https://www.ai.engineer/worldsfair) (backed by OpenAI, Microsoft, Google DeepMind, and Anthropic) and the CEO of Forem.
+Our impact has been recognized by [Y Combinator](https://www.ycombinator.com/), the organizers of the [AI World's Fair Expo](https://www.ai.engineer/worldsfair), and the CEO of [DEV](https://dev.to/).
 
 <br>
 
