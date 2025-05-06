@@ -52,36 +52,7 @@ Our impact has been recognized by [Y Combinator](https://www.ycombinator.com/), 
 
 ## Core Capabilities
 
-<table>
-  <tr>
-    <td width="33%" align="center">
-      <h3>Start & Stop Codons</h3>
-      <p>Identify protein coding regions and analyze the 20 different amino acids in polypeptide chains</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>High Coverage Regions</h3>
-      <p>Detect promoter sequences with high GC-content (45-60%) that likely reveal crucial genomic information</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>Neural Disorder Analysis</h3>
-      <p>Identify genetic signatures related to neurodevelopmental disorders like autism, ADHD, and schizophrenia</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" align="center">
-      <h3>Core Promoter Elements</h3>
-      <p>Find key promoter sequences (BRE, TATA, INR, DPE) responsible for initiating transcription</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>FASTA Support</h3>
-      <p>Process multi-line and single-line FASTA database files through upload or web linking</p>
-    </td>
-    <td width="33%" align="center">
-      <h3>Command-Line Interface</h3>
-      <p>Access all core features through our powerful Methionine CLI (Met CLI) for scripting and automation</p>
-    </td>
-  </tr>
-</table>
+<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions (autism, ADHD, schizophrenia). </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with pinpoint accuracy. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Leverages a powerful CLI interface for scripting, automation, and large-scale analysis tasks. </td> </tr> </table> <br>
 
 > **Coming Soon:** Web-based user interface for enhanced accessibility
 
