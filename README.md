@@ -23,22 +23,6 @@
 
 </div>
 
-<br>
-
-## Table of Contents
-
-- [About DNAnalyzer](#-about-dnanalyzer)
-- [Why It Matters](#-why-it-matters)
-- [Core Features](#-core-features)
-- [Quick DNA Introduction](#-quick-dna-introduction)
-- [Getting Started](#-getting-started)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [Citations](#-citations)
-- [Terms of Use](#-terms-of-use)
-
-<br>
-
 ## About DNAnalyzer
 
 DNAnalyzer is a a biotechnology research and deployment company. Supported by [Anthropic](http://anthropic.com/), our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
@@ -49,24 +33,24 @@ Our impact has been recognized by [Y Combinator](https://www.ycombinator.com/), 
 
 <br>
 
-## Why It Matters
+## Why DNAnalyzer Matters
 
 <div align="center">
 
-| Current Reality | DNAnalyzer's Mission |
+| Today's Limitation | DNAnalyzer's Innovation |
 |---|---|
-| **$100** average cost for DNA sequencing | **Free** on-device analysis |
+| **$100** average cost for DNA sequencing | Completely **Free** |
 | Up to **$600** for basic health insights | **Accessible** to underserved communities |
-| **78%** of companies share genetic data with third parties | **Private, secure** analysis that stays on your device |
+| **78%** of companies share genetic data with third parties | 100% **Private**, local computation |
 | Data breaches expose millions (23andMe: 6.9M users in 2023) | **No central database** of sensitive genetic information |
 
 </div>
 
-> *"Unlike a credit card number or password, stolen or misused genetic information cannot be changed."*
+> *"Unlike a password, compromised genetic data is permanently exposed."*
 
 <br>
 
-## Core Features
+## Core Capabilities
 
 <table>
   <tr>
@@ -102,22 +86,11 @@ Our impact has been recognized by [Y Combinator](https://www.ycombinator.com/), 
 > **Coming Soon:** Web-based user interface for enhanced accessibility
 
 <br>
-
-## Quick DNA Introduction
-
-**DNA: The Programming Language of Life**
-
-DNA exists in most cells of the body and contains the blueprint for creating over 200 distinct cell types. Like a programming language exclusive to living organisms, it encodes the instructions for all biological processes.
-
-**Databases: The Foundation of Analysis**
-
-A DNA database is crucial for interpreting DNA sequences. By leveraging machine learning, we can make predictions on previously unseen DNA sequences, forming the foundation of modern genomic analysis.
-
 <br>
 
-## Getting Started
+## Quickstart Guide
 
-Ready to explore your DNA? Follow our comprehensive guide to get started:
+Ready to explore your DNA? Begin precise genomic analysis in seconds:
 
 ```bash
 # Clone the repository
@@ -130,30 +103,30 @@ cd DNAnalyzer
 ./gradlew build
 ```
 
-For detailed instructions, please refer to our [Getting Started Guide](docs/getting-started.md).
+Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for advanced configuration.
 
 <br>
 
-## Roadmap
+## Development Roadmap
 
 <div align="center">
 
 | Upcoming Development | Description |
 |---|---|
-| **Optimized SQL Database** | High-performance vertical scaling database to store genomic data from thousands of species |
-| **Enhanced Neural Network** | Support for genotyped data from 3rd-party DNA testing services ($99 compatibility) |
-| **DIAMOND Implementation** | Combining DIAMOND's performance with BLAST's powerful algorithm |
+| **Optimized SQL Database** | Scalable database for genomic datasets across diverse species |
+| **Enhanced Neural Network** | Integration with 3rd-party genotype datasets (23andMe, AncestryDNA) |
+| **DIAMOND Implementation** | Blending DIAMOND's speed with BLAST’s accuracy for cutting-edge analyses |
 
 </div>
 
 <br>
 
-## Contributing
+## Contribute to DNAnalyzer
 
-We welcome contributions from developers and researchers of all skill levels!
+We welcome contributions across experience levels:
 
-- [Contributing Guidelines](./docs/contributing/Contribution_Guidelines.md)
-- [How To Use Git](./docs/contributing/CONTRIBUTING.md)
+- [Guidelines for Contribution](./docs/contributing/Contribution_Guidelines.md)
+- [Git Usage Instructions](./docs/contributing/CONTRIBUTING.md)
 
 <div align="center">
   <a href="https://github.com/VerisimilitudeX/DNAnalyzer/stargazers">
@@ -172,11 +145,9 @@ We welcome contributions from developers and researchers of all skill levels!
 
 <br>
 
-## Citations
+## Academic Citations
 
-View our [detailed citations document](docs/citations.md) for all in-line references.
-
-If you use DNAnalyzer in your research, please cite:
+Please cite DNAnalyzer as follows:
 
 ```bibtex
 @software{Acharya_DNAnalyzer_ML-Powered_DNA_2022,
@@ -194,11 +165,11 @@ If you use DNAnalyzer in your research, please cite:
 
 ## ⚖Terms of Use
 
-The use of this application is entirely at your own discretion and responsibility. While the DNAnalyzer team is committed to addressing significant issues, we disclaim liability for losses, damages, or consequences arising from the use of this application.
+DNAnalyzer is provided "as-is." Usage of the software implies acceptance of risks and liabilities. DNAnalyzer disclaims responsibility for any loss or damage arising from its use.
 
-For questions or concerns, please contact us at help@dnanalyzer.org.
+For assistance or inquiries, contact: help@dnanalyzer.org.
 
-**Copyright © Piyush Acharya 2025.** DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit organization (EIN: 81-2908499) and is licensed under the MIT License.
+DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499), licensed under MIT License.
 
 <br>
 
