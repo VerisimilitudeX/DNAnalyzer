@@ -1,0 +1,22 @@
+name: Star reminder on issue close
+
+on:
+  issues:
+    types: [closed]
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post thank-you plus star prompt
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Glad the discussion is resolved.  
+            If DNAnalyzer saved you time, please ⭐ the repository.  
+            Your star boosts visibility for open genomics research.

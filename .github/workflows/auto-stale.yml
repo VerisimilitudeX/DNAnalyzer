@@ -1,0 +1,28 @@
+name: Auto stale issues and PRs
+
+on:
+  schedule:
+    - cron: '0 3 * * *'          # run daily at 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          days-before-stale: 30
+          days-before-close: 7
+          stale-issue-message: >
+            This issue is inactive. It will close in seven days.
+          close-issue-message: >
+            Closing due to inactivity. If DNAnalyzer helped, please star the repo.
+          stale-pr-message: >
+            This pull request is inactive. It will close in seven days.
+          close-pr-message: >
+            Closing due to inactivity. If DNAnalyzer helped, please star the repo.
