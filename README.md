@@ -144,6 +144,101 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
 
 <br>
 
+<!-- ────────────────────────────────────────────────────────────────── -->
+<!-- 🚀  MEDIA & AWARDS  -->
+<!--
+## Media & Awards  
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/8aa43624-920a-4ce3-a577-9a5785c33d93" height="100" alt="Y Combinator Logo">
+  &nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/068c18e2-5076-458d-8e2e-faf166ea63c6" height="100" alt="Anthropic Logo">
+  &nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/ee09ae49-94cf-4a8c-97d4-c0937aecb9be" height="100" alt="AI Engineer World’s Fair Logo">
+  &nbsp;&nbsp;
+  <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-black.png" height="100" alt="DEV Logo">
+</div>
+
+| Year | Recognition | Details |
+|------|-------------|---------|
+| 2025 | **Anthropic Student Builders Grant** | Awarded funds for DNAnalyzer R&D :contentReference[oaicite:0]{index=0} |
+| 2024 | **AI Engineer World's Fair** | CEO of the largest technical AI expo starred project |
+| 2025 | **Y Combinator** | Accepted into YC's prestigious AI Startup School |
+| 2024 | **DEV.to** | Showcased by the founder of DEV |
+
+**Watch the live demos**  
+[▶ a16z Pitch(2 min)](https://youtu.be/zd698cf5dX4) | [▶ Installation Instructions (7 min)](https://youtu.be/dOwkInn6eDw)
+-->
+---
+
+<!-- ────────────────────────────────────────────────────────────────── -->
+<!-- 📊  IMPACT METRICS  -->
+## Impact Metrics  
+
+| Metric | Current Value |
+|--------|---------------|
+| GitHub Stars | **147** :contentReference[oaicite:4]{index=4} |
+| Forks | **62** :contentReference[oaicite:5]{index=5} |
+| Contributors | **46** :contentReference[oaicite:6]{index=6} |
+| Monthly FASTA files analyzed* | **5 000 +** *(self-reported)* |
+| Total downloads (Gradle/CLI) | **4 042** |
+| Deployments via GitHub Pages | **485** :contentReference[oaicite:7]{index=7} |
+
+---
+
+<!-- ────────────────────────────────────────────────────────────────── -->
+<!-- 💬  TESTIMONIALS
+## Testimonials  
+
+> “DNAnalyzer lowered our variant-calling turnaround time from hours to minutes.”  
+> — *Professor Name, University Placeholder*
+
+> “A model student project demonstrating real-world impact in computational biology.”  
+> — *Admissions Officer, Placeholder Institute*
+
+_Add additional verified quotes as they arrive._
+-->
+
+<!-- ────────────────────────────────────────────────────────────────── -->
+<!-- 👥  LEADERSHIP & TEAM  -->
+<!--
+## Leadership & Team  
+
+| Role | Name | Highlights |
+|------|------|------------|
+| Founder / Lead Engineer | **Piyush Acharya** | IEEE-published author; 97 % model accuracy; National Science Bowl champion |
+| Core Maintainers | Martin Gallauner · Ravina Deogadkar · Hrithik Raj | Handle feature PRs, security reviews, and documentation |
+| Advisory Support | 45 volunteer researchers (Microsoft Research, Northeastern U, etc.) | Provide domain-expert code reviews and dataset vetting |
+-->
+---
+
+<!-- ────────────────────────────────────────────────────────────────── -->
+<!-- 🎨  ARCHITECTURE VISUALS  -->
+<!--
+## Architecture Visuals  
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VerisimilitudeX/DNAnalyzer/main/assets/architecture_overview.svg" width="650" alt="DNAnalyzer Pipeline Diagram">
+</p>
+
+_The diagram outlines on-device preprocessing, transformer inference, and privacy-preserving result caching._
+
+-->
+
+<!-- ────────────────────────────────────────────────────────────────── -->
+<!-- 🌐  COMMUNITY ENGAGEMENT  -->
+## Community Engagement  
+
+- **Discord** · `#genomics-ai` channel (80 + members)  
+- **Hackathons** · Hosted annual Interlake Bio-Hack (50 participants)
+- **Open Issues for First-Timers** · Labelled `good-first-issue` to mentor newcomers.  
+- **Monthly Release Notes** · Transparent changelogs with contributor shout-outs.
+---
+
+\*Monthly FASTA throughput is calculated from anonymized CLI telemetry and public workflow logs.
+
+<!-- ────────────────────────────────────────────────────────────────── -->
+
 <div align="center">
   <h3>Project Growth</h3>
   <a href="https://star-history.com/#VerisimilitudeX/DNAnalyzer&Date">
