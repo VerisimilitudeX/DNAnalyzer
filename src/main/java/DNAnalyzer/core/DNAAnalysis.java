@@ -11,22 +11,22 @@
 
 package DNAnalyzer.core;
 
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.Map;
-import DNAnalyzer.data.trait.TraitPrediction;
-import DNAnalyzer.data.trait.TraitPredictor;
 import static java.util.Optional.ofNullable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import DNAnalyzer.data.codon.CodonFrame;
+import DNAnalyzer.data.trait.TraitPrediction;
+import DNAnalyzer.data.trait.TraitPredictor;
 import DNAnalyzer.utils.core.BasePairCounter;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provides functionality to analyze the DNA

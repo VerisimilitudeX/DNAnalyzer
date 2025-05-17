@@ -11,13 +11,7 @@ class TraitPredictorTest {
   @Test
   void shouldPredictTraitsFromSnpData() {
     Map<String, String> snpData =
-        Map.of(
-            "rs72921001",
-            "AA",
-            "rs11121022",
-            "GG",
-            "rs17822931",
-            "AA");
+        Map.of("rs72921001", "AA", "rs11121022", "GG", "rs17822931", "AA");
 
     List<TraitPrediction> results = TraitPredictor.predictTraits(snpData);
 
