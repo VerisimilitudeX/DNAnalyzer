@@ -19,8 +19,9 @@ import DNAnalyzer.core.Properties;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
-import java.io.File;
+import DNAnalyzer.qc.QcStats;
 import java.io.IOException;
+import java.io.File;
 import java.util.Objects;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -179,6 +180,13 @@ public class CmdArgs implements Runnable {
       String protein = null;
       Utils.clearTerminal();
       final String dna = parseFile(dnaFile);
+      QcStats qc = new QcStats(dnaFile, dna);
+      qc.printSummary(System.out);
+      File reportDir = new File("assets/reports");
+      if (!reportDir.exists()) {
+        reportDir.mkdirs();
+      }
+      qc.writeChart(new File(reportDir, dnaFile.getName() + "_qc.png").getPath());
       if (proteinFile != null) {
         protein = parseFile(proteinFile);
       }

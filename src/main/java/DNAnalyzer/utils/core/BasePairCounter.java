@@ -108,9 +108,10 @@ public class BasePairCounter {
   }
 
   /**
-   * Count adenine in given dna string;
+   * Returns the counts for all nucleotide types.
    *
-   * @return long[] count of all four nucleotides for given dna string
+   * @return long[] counts for adenine, thymine, guanine, cytosine, and unknown
+   *     bases in the order listed
    */
   public long[] getCounts() {
     return new long[] {adenine, thymine, guanine, cytosine, unknown};

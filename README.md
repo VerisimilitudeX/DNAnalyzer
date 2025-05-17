@@ -25,7 +25,7 @@
 
 ## About DNAnalyzer
 
-DNAnalyzer is a a biotechnology research and deployment company. Supported by [Anthropic](http://anthropic.com/), our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
+DNAnalyzer is a biotechnology research and deployment company. Supported by [Anthropic](http://anthropic.com/), our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
 
 Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer's team includes **46 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
 
@@ -85,6 +85,26 @@ and your genotyping data to estimate risk for complex diseases directly on devic
 <br>
 
 
+### REST API
+
+For automated workflows, DNAnalyzer exposes a minimal REST endpoint. Start the
+Spring Boot application and send a FASTA file to `/server/analyze`:
+
+```bash
+curl -F file=@sample.fa http://localhost:8080/server/analyze
+```
+
+
+The response contains the core pipeline output serialized as JSON, allowing you
+to script DNAnalyzer from languages like Python or R without the GUI.
+
+## Polygenic Health-Risk Scores
+
+DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
+and your genotyping data to estimate risk for complex diseases directly on device.
+
+<br>
+
 ## Development Roadmap
 
 <div align="center">
@@ -95,6 +115,7 @@ and your genotyping data to estimate risk for complex diseases directly on devic
 | **Enhanced Neural Network** | Integration with 3rd-party genotype datasets (23andMe, AncestryDNA) |
 | **DIAMOND Implementation** | Blending DIAMOND's speed with BLAST’s accuracy for cutting-edge analyses |
 | **AI Trait Predictor Suite** | Fun, shareable predictions—taste for cilantro, chronotype, ear-wax type—backed by peer-reviewed SNP studies |
+| **Secure Share & Compare** | Offline-generated, QR-coded summaries let users share limited insights with doctors or friends—no raw genome ever exposed. |
 
 </div>
 

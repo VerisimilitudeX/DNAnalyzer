@@ -1,27 +1,23 @@
 package DNAnalyzer.utils.protein;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class ProteinAnalysisTest {
 
-  Path projectPath = Path.of("");
-  Path dnaLongTestInput = projectPath.resolve("assets/dna/random/dnalong.fa");
+  @Test
+  void printLongestProteinShouldOutputExpectedGene() {
+    String dnaSequence = "cccatgaaatga";
+    List<String> proteins = ProteinFinder.getProtein(dnaSequence, "met");
 
-  String dnaString = "";
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    ProteinAnalysis.printLongestProtein(proteins, new PrintStream(outContent));
 
-  @BeforeEach
-  void setUp() {
-    try {
-      List<String> inputLines = Files.readAllLines(dnaLongTestInput);
-      dnaString = inputLines.get(0);
-    } catch (IOException ex) {
-      Logger.getLogger(ProteinAnalysisTest.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    String output = outContent.toString();
+    assertTrue(output.contains("Longest gene (9 nucleotides): ATGAAATGA"));
   }
 }
