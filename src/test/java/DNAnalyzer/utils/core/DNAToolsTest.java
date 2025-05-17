@@ -60,4 +60,11 @@ class DNAToolsTest {
     var actual = newDnaTools.getDna();
     assertEquals(expected, actual);
   }
+
+  @Test
+  void shouldComputeGcWindow() {
+    dnaTools = new DNATools("atgcg");
+    double[] gc = dnaTools.gcContentWindow(3);
+    assertArrayEquals(new double[] {1.0 / 3, 2.0 / 3, 2.0 / 3}, gc, 1e-6);
+  }
 }

@@ -16,12 +16,12 @@ import static DNAnalyzer.data.Parser.parseFile;
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.DNAMutation;
 import DNAnalyzer.core.Properties;
+import DNAnalyzer.qc.QcStats;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
-import DNAnalyzer.qc.QcStats;
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -113,6 +113,11 @@ public class CmdArgs implements Runnable {
       description = "Quick analysis with basic features only")
   boolean quick;
 
+  @Option(
+      names = {"--gc-window"},
+      description = "Window size for GC content calculation")
+  Integer gcWindow;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -147,6 +152,15 @@ public class CmdArgs implements Runnable {
 
       if (rcomplement) {
         dnaAnalyzer = dnaAnalyzer.reverseComplement();
+      }
+
+      if (gcWindow != null) {
+        double[] gcs = dnaAnalyzer.dna().gcContentWindow(gcWindow);
+        for (int i = 0; i < gcs.length; i++) {
+          int start = i + 1;
+          int end = i + gcWindow;
+          System.out.printf("%d-%d: %.2f%%%n", start, end, gcs[i] * 100);
+        }
       }
 
       if (quick) {
