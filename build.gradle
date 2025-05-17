@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.theokanning.openai-gpt3-java:service:0.11.1'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     implementation 'org.apache.commons:commons-io:1.3.2'
+    implementation 'org.jfree:jfreechart:1.5.3'
 }
 
 application {
