@@ -34,4 +34,12 @@ class DNAAnalysisTest {
     long[] actual = DNAAnalysis.countBasePairs(null);
     assertArrayEquals(expected, actual);
   }
+
+  @Test
+  void testCountBasePairsWithUnknownBases() {
+    String dnaString = "AaTtGgCcNn";
+    long[] expected = {2, 2, 2, 2, 2};
+    long[] actual = DNAAnalysis.countBasePairs(dnaString);
+    assertArrayEquals(expected, actual);
+  }
 }
