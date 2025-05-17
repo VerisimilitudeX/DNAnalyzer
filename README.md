@@ -80,6 +80,13 @@ Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for 
 
 <br>
 
+## Polygenic Health-Risk Scores
+
+DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
+and your genotyping data to estimate risk for complex diseases directly on device.
+
+<br>
+
 ## Development Roadmap
 
 <div align="center">
