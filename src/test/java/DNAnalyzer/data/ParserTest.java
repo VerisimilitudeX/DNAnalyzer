@@ -11,4 +11,10 @@ class ParserTest {
     String seq = Parser.parseFile(new File("assets/dna/example/test.fa.gz"));
     assertTrue(seq.startsWith("atg"));
   }
+
+  @Test
+  void shouldReturnEmptyForUnknownType() throws Exception {
+    String seq = Parser.parseFile(new File("assets/dna/example/unknown.dat"));
+    assertTrue(seq.isEmpty());
+  }
 }
