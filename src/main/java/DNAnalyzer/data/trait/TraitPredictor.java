@@ -33,7 +33,20 @@ public class TraitPredictor {
               "rs762551",
               "A",
               "High caffeine sensitivity",
-              "Lower caffeine sensitivity"));
+              "Lower caffeine sensitivity"),
+          // Additional fun trait predictions
+          new Trait(
+              "Muscle Performance",
+              "rs1815739",
+              "T",
+              "Enhanced sprint/power potential",
+              "Typical muscle performance"),
+          new Trait(
+              "Alcohol Flush Reaction",
+              "rs671",
+              "A",
+              "Likely to experience facial flushing when drinking",
+              "Unlikely to experience flush reaction"));
 
   private TraitPredictor() {}
 

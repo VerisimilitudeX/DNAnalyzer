@@ -16,12 +16,18 @@ import static DNAnalyzer.data.Parser.parseFile;
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.DNAMutation;
 import DNAnalyzer.core.Properties;
+import DNAnalyzer.core.DNADataUploader;
+import DNAnalyzer.core.PolygenicRiskCalculator;
+import DNAnalyzer.data.trait.TraitPrediction;
+import DNAnalyzer.data.trait.TraitPredictor;
 import DNAnalyzer.qc.QcStats;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -118,6 +124,16 @@ public class CmdArgs implements Runnable {
       description = "Window size for GC content calculation")
   Integer gcWindow;
 
+  @Option(
+      names = {"--23andme"},
+      description = "Path to a 23andMe genotype file for trait analysis")
+  File genotypeFile;
+
+  @Option(
+      names = {"--prs"},
+      description = "CSV of SNP weights for polygenic risk scoring")
+  File prsWeights;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -176,6 +192,25 @@ public class CmdArgs implements Runnable {
             .printProteins(System.out)
             .printHighCoverageRegions(System.out)
             .printLongestProtein(System.out);
+      }
+
+      if (genotypeFile != null) {
+        try {
+          Map<String, String> snps = DNADataUploader.uploadFrom23andMe(genotypeFile.getPath());
+          List<TraitPrediction> traits = TraitPredictor.predictTraits(snps);
+          System.out.println("\nTrait Predictions:");
+          for (TraitPrediction t : traits) {
+            System.out.println(t.trait() + ": " + t.prediction() + " (" + t.genotype() + ")");
+          }
+          if (prsWeights != null) {
+            Map<String, PolygenicRiskCalculator.RiskWeight> weights =
+                PolygenicRiskCalculator.loadWeights(prsWeights.getPath());
+            double score = PolygenicRiskCalculator.computeScore(snps, weights);
+            System.out.printf("Polygenic Risk Score: %.3f%n", score);
+          }
+        } catch (IOException e) {
+          System.err.println("Error processing genotype data: " + e.getMessage());
+        }
       }
 
       if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
