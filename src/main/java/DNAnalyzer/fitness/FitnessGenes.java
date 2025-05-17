@@ -9,11 +9,8 @@
 package DNAnalyzer.fitness;
 
 /**
- * Container for basic genetic metrics related to fitness traits.
- * Values range from 0.0 to 1.0 and are purely illustrative.
+ * Container for basic genetic metrics related to fitness traits. Values range from 0.0 to 1.0 and
+ * are purely illustrative.
  */
 public record FitnessGenes(
-    double muscleFiberGene,
-    double vo2MaxGene,
-    double injuryRiskGene,
-    double recoveryGene) {}
+    double muscleFiberGene, double vo2MaxGene, double injuryRiskGene, double recoveryGene) {}

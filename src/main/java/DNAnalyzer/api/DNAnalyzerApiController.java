@@ -4,11 +4,11 @@ import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.readingframe.ReadingFrame;
 import DNAnalyzer.core.readingframe.ReadingFrameAnalyzer;
 import DNAnalyzer.data.Parser;
-import DNAnalyzer.utils.core.DNATools;
-import DNAnalyzer.utils.protein.ProteinFinder;
 import DNAnalyzer.fitness.FitnessBlueprintService;
 import DNAnalyzer.fitness.FitnessGenes;
 import DNAnalyzer.fitness.WorkoutPlan;
+import DNAnalyzer.utils.core.DNATools;
+import DNAnalyzer.utils.protein.ProteinFinder;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
@@ -635,10 +635,9 @@ public class DNAnalyzerApiController {
   /**
    * Generate a very basic fitness blueprint from genetic metrics.
    *
-   * <p>This endpoint expects four numeric values (0.0 - 1.0) representing
-   * muscle-fiber, VO2-max, injury-risk and recovery genes. The response
-   * contains a simple list of workout recommendations. The logic is purely
-   * illustrative and should not be considered medical advice.</p>
+   * <p>This endpoint expects four numeric values (0.0 - 1.0) representing muscle-fiber, VO2-max,
+   * injury-risk and recovery genes. The response contains a simple list of workout recommendations.
+   * The logic is purely illustrative and should not be considered medical advice.
    *
    * @param request Map containing the gene metrics
    * @return Workout plan suggestions
@@ -648,12 +647,10 @@ public class DNAnalyzerApiController {
     try {
       double muscleFiber =
           Double.parseDouble(request.getOrDefault("muscleFiberGene", "0").toString());
-      double vo2Max =
-          Double.parseDouble(request.getOrDefault("vo2MaxGene", "0").toString());
+      double vo2Max = Double.parseDouble(request.getOrDefault("vo2MaxGene", "0").toString());
       double injuryRisk =
           Double.parseDouble(request.getOrDefault("injuryRiskGene", "0").toString());
-      double recovery =
-          Double.parseDouble(request.getOrDefault("recoveryGene", "0").toString());
+      double recovery = Double.parseDouble(request.getOrDefault("recoveryGene", "0").toString());
 
       FitnessGenes genes = new FitnessGenes(muscleFiber, vo2Max, injuryRisk, recovery);
       WorkoutPlan plan = new FitnessBlueprintService().buildPlan(genes);

@@ -10,13 +10,12 @@ package DNAnalyzer.fitness;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Utility for building a minimal fitness blueprint from genetic data.
- */
+/** Utility for building a minimal fitness blueprint from genetic data. */
 public class FitnessBlueprintService {
 
   /**
    * Build a workout plan using basic heuristics.
+   *
    * @param genes Metrics representing relative trait values from 0.0 to 1.0
    * @return A basic workout plan
    */
