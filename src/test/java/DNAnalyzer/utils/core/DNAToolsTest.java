@@ -44,6 +44,12 @@ class DNAToolsTest {
   }
 
   @Test
+  void shouldAllowUppercaseInput() {
+    dnaTools = new DNATools("ATGC");
+    assertDoesNotThrow(() -> dnaTools.isValid());
+  }
+
+  @Test
   void shouldReplaceDNAString() {
     var expected = "AAAacggctcaaaacca";
     dnaTools = new DNATools("gagacggctcaaaacca");

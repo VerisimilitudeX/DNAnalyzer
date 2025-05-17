@@ -98,6 +98,9 @@ curl -F file=@sample.fa http://localhost:8080/server/analyze
 The response contains the core pipeline output serialized as JSON, allowing you
 to script DNAnalyzer from languages like Python or R without the GUI.
 
+Additionally, a `/api/file/parse` endpoint is available for simply uploading a
+FASTA or FASTQ file and receiving the parsed sequence.
+
 ## Polygenic Health-Risk Scores
 
 DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights

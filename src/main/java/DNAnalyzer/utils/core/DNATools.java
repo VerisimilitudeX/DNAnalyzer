@@ -24,7 +24,7 @@ public record DNATools(String dna) {
    * @throws IllegalArgumentException if the DNA sequence contains invalid characters.
    */
   public void isValid() {
-    if (!dna.matches("[atgcn]+")) {
+    if (!dna.toLowerCase().matches("[atgcn]+")) {
       throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
     }
   }

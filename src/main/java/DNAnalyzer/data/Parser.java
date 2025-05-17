@@ -106,6 +106,6 @@ public class Parser {
       return parseFastq(file);
     }
 
-    return null; // Error handling, handle more types of files
+    return ""; // Unsupported file type
   }
 }
