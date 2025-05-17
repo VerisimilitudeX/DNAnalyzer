@@ -30,8 +30,7 @@ public class FileController {
       String seq = Parser.parseFile(temp.toFile());
       Files.deleteIfExists(temp);
       if (seq == null || seq.isEmpty()) {
-        return ResponseEntity.badRequest()
-            .body(Map.of("error", "Unsupported file format"));
+        return ResponseEntity.badRequest().body(Map.of("error", "Unsupported file format"));
       }
       return ResponseEntity.ok(Map.of("sequence", seq));
     } catch (Exception e) {
