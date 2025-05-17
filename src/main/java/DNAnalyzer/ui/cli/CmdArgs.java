@@ -71,6 +71,11 @@ public class CmdArgs implements Runnable {
   File proteinFile;
 
   @Option(
+      names = {"--align"},
+      description = "Reference FASTA file to align against the main DNA file.")
+  File alignFile;
+
+  @Option(
       names = {"--reverse", "-r"},
       description = "Reverse the DNA sequence before processing.")
   boolean reverse;
@@ -140,6 +145,20 @@ public class CmdArgs implements Runnable {
       DNAnalyzerGUI.launchIt(args);
     } else {
       DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid).isValidDna().replaceDNA("u", "t");
+
+      if (alignFile != null) {
+        try {
+          String reference = parseFile(alignFile);
+          String query = dnaAnalyzer.dna().getDna();
+          var result = DNAnalyzer.utils.alignment.SequenceAligner.align(query, reference);
+          System.out.println("Alignment score: " + result.score());
+          System.out.println(result.alignedSeq1());
+          System.out.println(result.alignedSeq2());
+        } catch (IOException e) {
+          System.err.println("Alignment failed: " + e.getMessage());
+        }
+        return;
+      }
 
       if (mutationCount > 0) {
         DNAMutation.generateAndWriteMutatedSequences(
