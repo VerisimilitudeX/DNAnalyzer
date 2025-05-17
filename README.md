@@ -25,7 +25,7 @@
 
 ## About DNAnalyzer
 
-DNAnalyzer is a a biotechnology research and deployment company. Supported by [Anthropic](http://anthropic.com/), our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
+DNAnalyzer is a biotechnology research and deployment company. Supported by [Anthropic](http://anthropic.com/), our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
 
 Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer's team includes **46 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
 
@@ -89,6 +89,7 @@ Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for 
 | **Optimized SQL Database** | Scalable database for genomic datasets across diverse species |
 | **Enhanced Neural Network** | Integration with 3rd-party genotype datasets (23andMe, AncestryDNA) |
 | **DIAMOND Implementation** | Blending DIAMOND's speed with BLAST’s accuracy for cutting-edge analyses |
+| **Secure Share & Compare** | Offline-generated, QR-coded summaries let users share limited insights with doctors or friends—no raw genome ever exposed. |
 
 </div>
 

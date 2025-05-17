@@ -232,11 +232,13 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     public static final int UPPERCASE_T = 84;
     public static final int UPPERCASE_G = 71;
     public static final int UPPERCASE_C = 67;
-    public static final int UPPERCASE_UNKNOWN = 0;
+    // ASCII value for 'N'
+    public static final int UPPERCASE_UNKNOWN = 78;
     public static final int LOWERCASE_A = 97;
     public static final int LOWERCASE_T = 116;
     public static final int LOWERCASE_G = 103;
     public static final int LOWERCASE_C = 99;
-    public static final int LOWERCASE_UNKNOWN = 0;
+    // ASCII value for 'n'
+    public static final int LOWERCASE_UNKNOWN = 110;
   }
 }
