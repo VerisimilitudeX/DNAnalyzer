@@ -9,7 +9,7 @@
 
 const DNAnalyzerAPI = {
     // Base URL for API requests - configurable for different environments
-    baseUrl: 'http://localhost:8080/api/v1',
+    baseUrl: '/api/v1',
 
     /**
      * Set the base URL for the API
