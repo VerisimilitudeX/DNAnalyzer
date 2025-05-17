@@ -87,6 +87,7 @@ Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for 
 | **Optimized SQL Database** | Scalable database for genomic datasets across diverse species |
 | **Enhanced Neural Network** | Integration with 3rd-party genotype datasets (23andMe, AncestryDNA) |
 | **DIAMOND Implementation** | Blending DIAMOND's speed with BLAST’s accuracy for cutting-edge analyses |
+| **AI Trait Predictor Suite** | Fun, shareable predictions—taste for cilantro, chronotype, ear-wax type—backed by peer-reviewed SNP studies |
 
 </div>
 
