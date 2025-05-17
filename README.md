@@ -52,7 +52,8 @@ Our impact has been recognized by [Y Combinator](https://www.ycombinator.com/), 
 
 ## Core Capabilities
 
-<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions (autism, ADHD, schizophrenia). </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with pinpoint accuracy. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Leverages a powerful CLI interface for scripting, automation, and large-scale analysis tasks. </td> </tr> </table> <br>
+<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions (autism, ADHD, schizophrenia). </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with pinpoint accuracy. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Leverages a powerful CLI interface for scripting, automation, and large-scale analysis tasks. </td> </tr> <tr> <td width="33%" align="center"> <strong>Ancestry Snapshot (Privacy-Safe)</strong><br> Estimates continental origin using on-device reference panels. </td> <td></td> <td></td> </tr> </table> <br>
+See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for usage instructions.
 
 > **Coming Soon:** Web-based user interface for enhanced accessibility
 
@@ -77,6 +78,12 @@ cd DNAnalyzer
 Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for advanced configuration.
 
 <br>
+## Polygenic Health-Risk Scores
+
+DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
+and your genotyping data to estimate risk for complex diseases directly on device.
+<br>
+
 
 ## Development Roadmap
 
@@ -87,6 +94,7 @@ Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for 
 | **Optimized SQL Database** | Scalable database for genomic datasets across diverse species |
 | **Enhanced Neural Network** | Integration with 3rd-party genotype datasets (23andMe, AncestryDNA) |
 | **DIAMOND Implementation** | Blending DIAMOND's speed with BLAST’s accuracy for cutting-edge analyses |
+| **AI Trait Predictor Suite** | Fun, shareable predictions—taste for cilantro, chronotype, ear-wax type—backed by peer-reviewed SNP studies |
 
 </div>
 
