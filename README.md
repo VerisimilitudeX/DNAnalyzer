@@ -76,6 +76,8 @@ cd DNAnalyzer
 
 Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for advanced configuration.
 
+DNAnalyzer automatically detects FASTA, FASTQ and VCF formats, so you can drop in any common sequence file and start analyzing immediately.
+
 <br>
 
 ## Development Roadmap
