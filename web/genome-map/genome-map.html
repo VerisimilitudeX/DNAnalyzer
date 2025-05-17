@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genome Map - DNAnalyzer</title>
+    <meta name="description" content="Interactive genome map to explore genes, variants and promoters visually.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="genome-map.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+                <span class="logo-text">DNAnalyzer</span>
+            </a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../features/features.html">Features</a></li>
+                <li><a href="../analyzer/analyzer.html">Analyzer</a></li>
+                <li><a href="genome-map.html" class="active">Genome Map</a></li>
+                <li><a href="../server/server.html">Server</a></li>
+                <li><a href="../docs/docs.html">Docs</a></li>
+                <li><a href="../about/about.html">About</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
+                    <i class="fab fa-github btn-icon"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="genome-map-section">
+            <div class="container">
+                <h1>Interactive Genome Map</h1>
+                <p>Zoom and pan to explore sample genomic features.</p>
+                <div id="genomeMap"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-nav">
+                    <h4>DNAnalyzer</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../features/features.html">Features</a></li>
+                        <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
+                        <li><a href="genome-map.html" class="active">Genome Map</a></li>
+                        <li><a href="../server/server.html">Server</a></li>
+                        <li><a href="../docs/docs.html">Documentation</a></li>
+                        <li><a href="../about/about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="../docs/getting-started.md">Getting Started</a></li>
+                        <li><a href="../docs/citations.md">Citations</a></li>
+                        <li><a href="../docs/research/genes.md">Gene Research</a></li>
+                        <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
+                        <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
+                        <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
+                        <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499). MIT License.
+                </div>
+                <div class="footer-links">
+                    <a href="../LICENSE.md">License</a>
+                    <a href="../SECURITY.md">Security</a>
+                    <a href="../CITATION.cff">Citation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="genome-map.js"></script>
+    <script src="../index.js"></script>
+</body>
+</html>
