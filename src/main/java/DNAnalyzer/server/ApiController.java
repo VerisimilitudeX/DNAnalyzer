@@ -1,8 +1,8 @@
 package DNAnalyzer.server;
 
 import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.data.Parser;
+import DNAnalyzer.utils.core.DNATools;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.file.Files;
@@ -23,9 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * Minimal REST controller exposing the core analysis pipeline.
  *
- * <p>This endpoint accepts a FASTA file via multipart POST and returns the
- * printed analysis output as JSON lines. It allows scripting the analyzer from
- * languages like Python or R without interacting with the GUI.
+ * <p>This endpoint accepts a FASTA file via multipart POST and returns the printed analysis output
+ * as JSON lines. It allows scripting the analyzer from languages like Python or R without
+ * interacting with the GUI.
  */
 @RestController
 @RequestMapping("/server")
