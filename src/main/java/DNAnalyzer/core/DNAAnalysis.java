@@ -11,13 +11,7 @@
 
 package DNAnalyzer.core;
 
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.Map;
 import static java.util.Optional.ofNullable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import DNAnalyzer.data.codon.CodonFrame;
 import DNAnalyzer.utils.core.BasePairCounter;
@@ -25,6 +19,12 @@ import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provides functionality to analyze the DNA
@@ -105,8 +105,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
       Map<String, Double> results = snapshot.inferAncestry(snpData);
       System.out.println("Ancestry Snapshot:");
       results.forEach(
-          (continent, pct) ->
-              System.out.println(continent + ": " + String.format("%.2f%%", pct)));
+          (continent, pct) -> System.out.println(continent + ": " + String.format("%.2f%%", pct)));
     } catch (IOException e) {
       e.printStackTrace();
     }

@@ -18,11 +18,7 @@ class AncestrySnapshotTest {
     user.put("rs2814778", "CC");
 
     Map<String, Double> results = snapshot.inferAncestry(user);
-    String best =
-        results.entrySet().stream()
-            .max(Map.Entry.comparingByValue())
-            .get()
-            .getKey();
+    String best = results.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
     assertEquals("Europe", best);
   }
 }
