@@ -113,8 +113,7 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
       Map<String, Double> results = snapshot.inferAncestry(snpData);
       System.out.println("Ancestry Snapshot:");
       results.forEach(
-          (continent, pct) ->
-              System.out.println(continent + ": " + String.format("%.2f%%", pct)));
+          (continent, pct) -> System.out.println(continent + ": " + String.format("%.2f%%", pct)));
     } catch (IOException e) {
       e.printStackTrace();
     }
