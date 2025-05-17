@@ -1,8 +1,8 @@
 package DNAnalyzer.server;
 
 import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.alignment.SequenceAligner;
+import DNAnalyzer.utils.core.DNATools;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.file.Files;
@@ -98,7 +98,10 @@ public class ApiController {
           return ResponseEntity.badRequest()
               .body(
                   Map.of(
-                      "error", "Invalid sequence", "message", "Sequences contain invalid DNA characters"));
+                      "error",
+                      "Invalid sequence",
+                      "message",
+                      "Sequences contain invalid DNA characters"));
         }
 
         var result = SequenceAligner.align(qSeq, rSeq);

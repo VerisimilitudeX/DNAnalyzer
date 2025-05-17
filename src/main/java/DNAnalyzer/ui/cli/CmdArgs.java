@@ -20,7 +20,6 @@ import DNAnalyzer.qc.QcStats;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
-import DNAnalyzer.utils.alignment.SequenceAligner;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
