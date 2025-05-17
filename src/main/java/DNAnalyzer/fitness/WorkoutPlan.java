@@ -9,9 +9,7 @@ package DNAnalyzer.fitness;
 
 import java.util.List;
 
-/**
- * Represents a basic workout plan consisting of textual recommendations.
- */
+/** Represents a basic workout plan consisting of textual recommendations. */
 public class WorkoutPlan {
   private final List<String> workouts;
 
