@@ -94,6 +94,24 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     }
   }
 
+  /**
+   * Run a privacy-safe ancestry snapshot using on-device reference panels.
+   *
+   * @param snpData map of rsid to genotype
+   */
+  public void ancestrySnapshot(Map<String, String> snpData) {
+    try {
+      AncestrySnapshot snapshot = new AncestrySnapshot();
+      Map<String, Double> results = snapshot.inferAncestry(snpData);
+      System.out.println("Ancestry Snapshot:");
+      results.forEach(
+          (continent, pct) ->
+              System.out.println(continent + ": " + String.format("%.2f%%", pct)));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   // Creates protein list
   // Output the proteins, GC content, and nucleotide cnt found in the DNA
   public DNAAnalysis printProteins(PrintStream out) {
@@ -214,11 +232,13 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     public static final int UPPERCASE_T = 84;
     public static final int UPPERCASE_G = 71;
     public static final int UPPERCASE_C = 67;
-    public static final int UPPERCASE_UNKNOWN = 0;
+    // ASCII value for 'N'
+    public static final int UPPERCASE_UNKNOWN = 78;
     public static final int LOWERCASE_A = 97;
     public static final int LOWERCASE_T = 116;
     public static final int LOWERCASE_G = 103;
     public static final int LOWERCASE_C = 99;
-    public static final int LOWERCASE_UNKNOWN = 0;
+    // ASCII value for 'n'
+    public static final int LOWERCASE_UNKNOWN = 110;
   }
 }
