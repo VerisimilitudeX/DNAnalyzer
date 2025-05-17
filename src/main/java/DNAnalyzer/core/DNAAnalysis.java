@@ -11,20 +11,22 @@
 
 package DNAnalyzer.core;
 
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.List;
-import java.util.Map;
 import static java.util.Optional.ofNullable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import DNAnalyzer.data.codon.CodonFrame;
+import DNAnalyzer.data.trait.TraitPrediction;
+import DNAnalyzer.data.trait.TraitPredictor;
 import DNAnalyzer.utils.core.BasePairCounter;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.ReadingFrames;
 import DNAnalyzer.utils.protein.ProteinAnalysis;
 import DNAnalyzer.utils.protein.ProteinFinder;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provides functionality to analyze the DNA
@@ -78,7 +80,13 @@ public record DNAAnalysis(DNATools dna, String protein, String aminoAcid) {
     try {
       Map<String, String> data23andMe = DNADataUploader.uploadFrom23andMe(filePath);
       System.out.println("23andMe data loaded. Total SNPs: " + data23andMe.size());
-      // Perform further analysis with data23andMe
+      // Perform simple trait prediction
+      List<TraitPrediction> traitResults = TraitPredictor.predictTraits(data23andMe);
+      System.out.println("Trait predictions:");
+      for (TraitPrediction result : traitResults) {
+        System.out.println(
+            result.trait() + ": " + result.prediction() + " (" + result.genotype() + ")");
+      }
     } catch (IOException e) {
       e.printStackTrace();
     }
