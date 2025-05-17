@@ -14,10 +14,10 @@ package DNAnalyzer.ui.cli;
 import static DNAnalyzer.data.Parser.parseFile;
 
 import DNAnalyzer.core.DNAAnalysis;
-import DNAnalyzer.core.DNAMutation;
-import DNAnalyzer.core.Properties;
 import DNAnalyzer.core.DNADataUploader;
+import DNAnalyzer.core.DNAMutation;
 import DNAnalyzer.core.PolygenicRiskCalculator;
+import DNAnalyzer.core.Properties;
 import DNAnalyzer.data.trait.TraitPrediction;
 import DNAnalyzer.data.trait.TraitPredictor;
 import DNAnalyzer.qc.QcStats;
