@@ -21,7 +21,19 @@ public class TraitPredictor {
               "G",
               "Predisposed to be a morning person",
               "Predisposed to be an evening person"),
-          new Trait("Earwax Type", "rs17822931", "A", "Dry earwax type", "Wet earwax type"));
+          new Trait("Earwax Type", "rs17822931", "A", "Dry earwax type", "Wet earwax type"),
+          new Trait(
+              "Lactase Persistence",
+              "rs4988235",
+              "A",
+              "Likely lactose tolerant",
+              "Likely lactose intolerant"),
+          new Trait(
+              "Caffeine Sensitivity",
+              "rs762551",
+              "A",
+              "High caffeine sensitivity",
+              "Lower caffeine sensitivity"));
 
   private TraitPredictor() {}
 

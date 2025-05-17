@@ -160,6 +160,19 @@ public class ReadingFrames {
   }
 
   /**
+   * Get codon usage frequencies (0..1) across the DNA sequence.
+   */
+  public Map<String, Double> getCodonUsage() {
+    Map<String, Integer> counts = getCodonCounts();
+    int total = counts.values().stream().mapToInt(Integer::intValue).sum();
+    if (total == 0) {
+      return Map.of();
+    }
+    return counts.entrySet().stream()
+        .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue() / (double) total));
+  }
+
+  /**
    * Method to filter through the codon counts found in the specified reading frame based on the min
    * and max values
    *

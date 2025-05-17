@@ -113,6 +113,11 @@ public class CmdArgs implements Runnable {
       description = "Quick analysis with basic features only")
   boolean quick;
 
+  @Option(
+      names = {"--gc-window"},
+      description = "Window size for GC content calculation")
+  Integer gcWindow;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -147,6 +152,15 @@ public class CmdArgs implements Runnable {
 
       if (rcomplement) {
         dnaAnalyzer = dnaAnalyzer.reverseComplement();
+      }
+
+      if (gcWindow != null) {
+        double[] gcs = dnaAnalyzer.dna().gcContentWindow(gcWindow);
+        for (int i = 0; i < gcs.length; i++) {
+          int start = i + 1;
+          int end = i + gcWindow;
+          System.out.printf("%d-%d: %.2f%%%n", start, end, gcs[i] * 100);
+        }
       }
 
       if (quick) {
