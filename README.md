@@ -78,6 +78,18 @@ Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for 
 
 <br>
 
+### REST API
+
+For automated workflows, DNAnalyzer exposes a minimal REST endpoint. Start the
+Spring Boot application and send a FASTA file to `/server/analyze`:
+
+```bash
+curl -F file=@sample.fa http://localhost:8080/server/analyze
+```
+
+The response contains the core pipeline output serialized as JSON, allowing you
+to script DNAnalyzer from languages like Python or R without the GUI.
+
 ## Development Roadmap
 
 <div align="center">
