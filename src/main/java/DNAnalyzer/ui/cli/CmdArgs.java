@@ -119,6 +119,11 @@ public class CmdArgs implements Runnable {
   boolean quick;
 
   @Option(
+      names = {"--enable-plugins"},
+      description = "Load plugins from the plugins directory")
+  boolean enablePlugins;
+
+  @Option(
       names = {"--gc-window"},
       description = "Window size for GC content calculation")
   Integer gcWindow;
@@ -199,6 +204,10 @@ public class CmdArgs implements Runnable {
 
       if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
         System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
+      }
+
+      if (enablePlugins) {
+        new DNAnalyzer.plugin.PluginManager().runPlugins(dnaAnalyzer.dna(), System.out);
       }
     }
   }
