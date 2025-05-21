@@ -20,6 +20,7 @@ import DNAnalyzer.qc.QcStats;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
+import DNAnalyzer.utils.alignment.SequenceAligner;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -69,6 +70,11 @@ public class CmdArgs implements Runnable {
       names = {"--find"},
       description = "The DNA sequence to be found within the FASTA file.")
   File proteinFile;
+
+  @Option(
+      names = {"--align"},
+      description = "Reference FASTA file to align against the main DNA file.")
+  File alignFile;
 
   @Option(
       names = {"--reverse", "-r"},
@@ -140,6 +146,20 @@ public class CmdArgs implements Runnable {
       DNAnalyzerGUI.launchIt(args);
     } else {
       DNAAnalysis dnaAnalyzer = dnaAnalyzer(aminoAcid).isValidDna().replaceDNA("u", "t");
+
+      if (alignFile != null) {
+        try {
+          String reference = parseFile(alignFile);
+          String query = dnaAnalyzer.dna().getDna();
+          var result = DNAnalyzer.utils.alignment.SequenceAligner.align(query, reference);
+          System.out.println("Alignment score: " + result.score());
+          System.out.println(result.alignedSeq1());
+          System.out.println(result.alignedSeq2());
+        } catch (IOException e) {
+          System.err.println("Alignment failed: " + e.getMessage());
+        }
+        return;
+      }
 
       if (mutationCount > 0) {
         DNAMutation.generateAndWriteMutatedSequences(
