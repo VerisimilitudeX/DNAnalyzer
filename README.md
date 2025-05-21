@@ -80,8 +80,14 @@ Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for 
 <br>
 ## Polygenic Health-Risk Scores
 
-DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
-and your genotyping data to estimate risk for complex diseases directly on device.
+DNAnalyzer now includes a lightweight polygenic risk score calculator and fun trait predictions.
+Provide a 23andMe text file along with a CSV of SNP weights to compute scores and see traits:
+
+```bash
+./gradlew run --args='--23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa'
+```
+
+Trait predictions and the risk score are printed after the standard DNA analysis.
 <br>
 
 
