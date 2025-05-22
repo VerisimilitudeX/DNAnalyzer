@@ -1,11 +1,11 @@
 package DNAnalyzer.utils.ai;
 
-import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.ui.cli.CmdArgs;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
+import DNAnalyzer.core.DNAAnalysis;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,45 +19,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import picocli.CommandLine;
 
-/**
- * PathRouter class for the DNAnalyzer program.
- *
- * <p>This class handles the routing of the program's execution based on the command line arguments
- * passed to it.
- *
- * @see DNAnalyzer
- * @see CmdArgs
- * @see CommandLine
- * @see Utils
- * @see PathRouter
- * @see Parser
- * @see DNAAnalysis
- * @see DNATools
- * @see Properties
- * @see DNAnalyzerGUIFXMLController
- * @see DNAnalyzerGUI
- */
+/** PathRouter class for the DNAnalyzer program. */
 public class PathRouter {
-  /**
-   * Parses the message content from a given response string in JSON format.
-   *
-   * @param response the response string in JSON format from the OpenAI API
-   * @return the message content as a String
-   */
+
   private static String parseMessageContent(String response) {
-    String jsonString = response;
     try {
-      JSONObject jsonObject = new JSONObject(jsonString);
+      JSONObject jsonObject = new JSONObject(response);
       JSONArray choicesArray = jsonObject.getJSONArray("choices");
       JSONObject choiceObject = choicesArray.getJSONObject(0);
       JSONObject messageObject = choiceObject.getJSONObject("message");
-      String messageContent = messageObject.getString("content");
-      return messageContent;
+      return messageObject.getString("content");
     } catch (JSONException e) {
       return null;
     }
   }
 
+  /** Runs the regular analysis without any AI integration. */
   /**
    * Converts a natural language command to DNAnalyzer CLI arguments using the
    * OpenAI API.
@@ -228,21 +205,15 @@ public class PathRouter {
     }
 
     new CommandLine(new CmdArgs()).execute(args);
+    System.out.println("\n**Please configure an AI provider for enhanced analysis**");
 
     System.out.println(
         "\n**Please set your OPENAI_API_KEY environment variable for an AI analysis of the DNA**");
     System.exit(1);
   }
 
-  /**
-   * Runs the AI analysis.
-   *
-   * @param args the command line arguments
-   * @param apiKey the API key for the OpenAI API
-   * @throws InterruptedException
-   * @throws IOException
-   */
-  public static void runGptAnalysis(String[] args, String apiKey)
+  /** Runs the analysis with AI summary. */
+  public static void runAiAnalysis(String[] args, AIProvider provider, String apiKey)
       throws InterruptedException, IOException {
     Utils.clearTerminal();
     System.out.println(
@@ -257,22 +228,19 @@ public class PathRouter {
     // Create a ByteArrayOutputStream to hold the console output
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream ps = new PrintStream(baos);
-
-    // Save the old System.out
     PrintStream old = System.out;
-
-    // Set the new System.out to the PrintStream
     System.setOut(ps);
 
     new CommandLine(new CmdArgs()).execute(args);
 
-    // Restore the old System.out
     System.out.flush();
     System.setOut(old);
 
-    // Get the captured console output as a string
     String output = baos.toString();
-
+    System.out.println(output + "\n-----------------------\n\nAI Analysis:\n");
+    String response = AIService.call(output, provider, apiKey);
+    String parsed = parseMessageContent(response);
+    System.out.println(parsed != null ? parsed : response);
     System.out.println(output + "\n-----------------------\n\nAI Analysis (Powered by GPT 4o):\n");
     System.out.println("Researcher Report:\n");
     String resResearch = PathRouter.askGPT(output, apiKey, ReportAudience.RESEARCHER);
