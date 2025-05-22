@@ -30,6 +30,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
 /** The GUI for DNAnalyzer */
 public class DNAnalyzerGUIFXMLController {
@@ -74,7 +75,11 @@ public class DNAnalyzerGUIFXMLController {
    */
   @FXML
   private void menuOpenClicked(ActionEvent event) {
-    System.out.println("open clicked");
+    FileChooser chooser = new FileChooser();
+    File selected = chooser.showOpenDialog(minSlider.getScene().getWindow());
+    if (selected != null) {
+      txtDNAFile.setText(selected.getAbsolutePath());
+    }
   }
 
   /**

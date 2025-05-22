@@ -32,7 +32,9 @@ public class DNAnalyzerGUI extends Application {
     Parent root =
         FXMLLoader.load(DNAnalyzerGUI.class.getResource("/DNAnalyzer/gui/fxml/DNAnalyzerGUI.fxml"));
     Scene scene = new Scene(root);
-    // scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+    scene
+        .getStylesheets()
+        .add(DNAnalyzerGUI.class.getResource("/DNAnalyzer/gui/styles.css").toExternalForm());
 
     stage.setTitle("DNAnalyzer GUI");
     stage.setScene(scene);
