@@ -107,6 +107,28 @@ to script DNAnalyzer from languages like Python or R without the GUI.
 Additionally, a `/api/file/parse` endpoint is available for simply uploading a
 FASTA or FASTQ file and receiving the parsed sequence.
 
+## GPU-Accelerated Smith-Waterman
+
+An optional module using PyOpenCL provides GPU acceleration for local sequence
+alignment. If no compatible GPU is found, the implementation automatically
+falls back to a pure Python version.
+
+Run the module directly or via the CLI:
+
+```bash
+python -m src.python.gpu_smith_waterman SEQ1 SEQ2
+```
+
+From the DNAnalyzer CLI you can request a Smith-Waterman alignment by supplying
+`--sw-align` together with `--align`:
+
+```bash
+java -jar dnanalyzer.jar --align reference.fa --sw-align
+```
+
+See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for further
+details.
+
 ## Polygenic Health-Risk Scores
 
 DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights

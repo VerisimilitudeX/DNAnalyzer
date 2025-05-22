@@ -82,6 +82,11 @@ public class CmdArgs implements Runnable {
   File alignFile;
 
   @Option(
+      names = {"--sw-align"},
+      description = "Use GPU-accelerated Smith-Waterman local alignment")
+  boolean swAlign;
+
+  @Option(
       names = {"--reverse", "-r"},
       description = "Reverse the DNA sequence before processing.")
   boolean reverse;
@@ -171,11 +176,16 @@ public class CmdArgs implements Runnable {
         try {
           String reference = parseFile(alignFile);
           String query = dnaAnalyzer.dna().getDna();
-          var result = DNAnalyzer.utils.alignment.SequenceAligner.align(query, reference);
+          DNAnalyzer.utils.alignment.SequenceAligner.AlignmentResult result;
+          if (swAlign) {
+            result = DNAnalyzer.utils.alignment.SmithWatermanAligner.align(query, reference);
+          } else {
+            result = DNAnalyzer.utils.alignment.SequenceAligner.align(query, reference);
+          }
           System.out.println("Alignment score: " + result.score());
           System.out.println(result.alignedSeq1());
           System.out.println(result.alignedSeq2());
-        } catch (IOException e) {
+        } catch (Exception e) {
           System.err.println("Alignment failed: " + e.getMessage());
         }
         return;
