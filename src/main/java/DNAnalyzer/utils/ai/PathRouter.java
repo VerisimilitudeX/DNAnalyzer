@@ -59,6 +59,62 @@ public class PathRouter {
   }
 
   /**
+   * Converts a natural language command to DNAnalyzer CLI arguments using the
+   * OpenAI API.
+   *
+   * @param prompt a natural language instruction describing the desired
+   *     analysis
+   * @param apiKey the API key for accessing the OpenAI API
+   * @return an array of CLI arguments parsed from the instruction
+   */
+  public static String[] naturalArgsFromPrompt(String prompt, String apiKey) {
+    String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
+    String AUTHORIZATION_HEADER = "Bearer " + apiKey;
+
+    try {
+      URL url = new URL(API_ENDPOINT);
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("POST");
+      conn.setRequestProperty("Content-Type", "application/json");
+      conn.setRequestProperty("Authorization", AUTHORIZATION_HEADER);
+      conn.setDoOutput(true);
+
+      String requestBody =
+          """
+          {
+              "model": "gpt-4o-2025-05-13",
+              "messages": [
+                  {
+                      "role": "user",
+                      "content": "Convert the following instruction into DNAnalyzer command line arguments. Output only the arguments in a single line string, with no extra text: %s"
+                  }
+              ],
+              "temperature": 0.1
+          }
+          """
+              .formatted(prompt);
+      conn.getOutputStream().write(requestBody.getBytes());
+
+      String response;
+      try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+        response = reader.lines().collect(Collectors.joining());
+      } catch (IOException e) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
+          response = reader.lines().collect(Collectors.joining());
+        }
+      }
+
+      String result = parseMessageContent(response);
+      if (result == null) {
+        return new String[] {};
+      }
+      return result.trim().split("\\s+");
+    } catch (IOException e) {
+      return new String[] {};
+    }
+  }
+
+  /**
    * Sends a POST request to the OpenAI API with the specified output as the prompt for the GPT-3
    * model.
    *
@@ -165,7 +221,14 @@ public class PathRouter {
         """
                        Welcome to DNAnalyzer! Please allow up to 10 seconds for the analysis to complete (note: the time may vary based on your hardware).
                        """);
+
+    if (args.length > 0 && "--nl".equals(args[0])) {
+      System.err.println("The --nl option requires the OPENAI_API_KEY environment variable.");
+      System.exit(1);
+    }
+
     new CommandLine(new CmdArgs()).execute(args);
+
     System.out.println(
         "\n**Please set your OPENAI_API_KEY environment variable for an AI analysis of the DNA**");
     System.exit(1);
@@ -186,6 +249,11 @@ public class PathRouter {
         """
                        Welcome to DNAnalyzer! Please allow up to 15 seconds for the analysis to complete (note: the time may vary based on your hardware).
                        """);
+    if (args.length > 0 && "--nl".equals(args[0])) {
+      String prompt = String.join(" ", java.util.Arrays.copyOfRange(args, 1, args.length));
+      args = naturalArgsFromPrompt(prompt, apiKey);
+    }
+
     // Create a ByteArrayOutputStream to hold the console output
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream ps = new PrintStream(baos);
