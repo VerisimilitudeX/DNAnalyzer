@@ -137,6 +137,8 @@ To set the API key on Linux or macOS, run `export OPENAI_API_KEY=sk-xxxxxxxxxxxx
 
 For Windows, use `setx OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx` instead.
 
+When configured, DNAnalyzer will generate two natural language reports after each run: one aimed at researchers and another simplified for the layperson.
+
 
 ### Usage
 
