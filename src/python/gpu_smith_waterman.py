@@ -71,9 +71,12 @@ class SmithWatermanGPU:
         seq1_buf = np.frombuffer(seq1.encode("ascii"), dtype=np.int8)
         seq2_buf = np.frombuffer(seq2.encode("ascii"), dtype=np.int8)
         H = np.zeros((len1 + 1) * (len2 + 1), dtype=np.int32)
-        d_seq1 = cl.Buffer(self._ctx, cl.mem_flags.READ_ONLY | cl.mem_flags.COPY_HOST_PTR, hostbuf=seq1_buf)
-        d_seq2 = cl.Buffer(self._ctx, cl.mem_flags.READ_ONLY | cl.mem_flags.COPY_HOST_PTR, hostbuf=seq2_buf)
-        d_H = cl.Buffer(self._ctx, cl.mem_flags.READ_WRITE | cl.mem_flags.COPY_HOST_PTR, hostbuf=H)
+        d_seq1 = cl.Buffer(self._ctx, cl.mem_flags.READ_ONLY |
+                           cl.mem_flags.COPY_HOST_PTR, hostbuf=seq1_buf)
+        d_seq2 = cl.Buffer(self._ctx, cl.mem_flags.READ_ONLY |
+                           cl.mem_flags.COPY_HOST_PTR, hostbuf=seq2_buf)
+        d_H = cl.Buffer(self._ctx, cl.mem_flags.READ_WRITE |
+                        cl.mem_flags.COPY_HOST_PTR, hostbuf=H)
         for diag in range(2, len1 + len2 + 1):
             start_i = max(1, diag - len2)
             end_i = min(len1, diag - 1)
@@ -106,7 +109,8 @@ class SmithWatermanGPU:
         max_score = 0
         for i in range(1, len1 + 1):
             for j in range(1, len2 + 1):
-                match_score = self.match if seq1[i - 1] == seq2[j - 1] else self.mismatch
+                match_score = self.match if seq1[i -
+                                                 1] == seq2[j - 1] else self.mismatch
                 diag = H[i - 1][j - 1] + match_score
                 up = H[i - 1][j] + self.gap
                 left = H[i][j - 1] + self.gap
@@ -141,7 +145,8 @@ class SmithWatermanGPU:
             diag = H[i - 1][j - 1]
             up = H[i - 1][j]
             left = H[i][j - 1]
-            match_score = self.match if seq1[i - 1] == seq2[j - 1] else self.mismatch
+            match_score = self.match if seq1[i -
+                                             1] == seq2[j - 1] else self.mismatch
             if score == diag + match_score:
                 aligned1.append(seq1[i - 1])
                 aligned2.append(seq2[j - 1])
@@ -161,7 +166,8 @@ class SmithWatermanGPU:
 
 
 def _main() -> None:
-    import argparse, json
+    import argparse
+    import json
     parser = argparse.ArgumentParser(description="Smith-Waterman alignment")
     parser.add_argument("seq1")
     parser.add_argument("seq2")
@@ -178,8 +184,6 @@ def _main() -> None:
 
 if __name__ == "__main__":  # pragma: no cover - CLI entry
     _main()
-
-
 
 
 __all__ = ["SmithWatermanGPU", "_GPU_AVAILABLE"]

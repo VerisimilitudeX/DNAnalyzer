@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 public class SmithWatermanAlignerTest {
   @Test
   void cpuFallbackAlignment() throws Exception {
-    SequenceAligner.AlignmentResult res =
-        SmithWatermanAligner.align("ACACACTA", "AGCACACA");
+    SequenceAligner.AlignmentResult res = SmithWatermanAligner.align("ACACACTA", "AGCACACA");
     assertEquals(17, res.score());
   }
 }
