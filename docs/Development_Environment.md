@@ -18,6 +18,11 @@ Start an interactive shell with:
 docker run --rm -it -p 8080:8080 -v $(pwd):/workspace dnanalyzer-dev
 ```
 
+You can automate these steps with:
+```bash
+./scripts/start-dev-container.sh
+```
+
 The container executes `./scripts/run-tests.sh` after creation to verify the toolchain.
 
 ## Codespaces

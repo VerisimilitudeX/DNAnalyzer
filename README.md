@@ -57,6 +57,14 @@ See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for usage ins
 
 > **New:** Interactive web dashboard for in-browser visualization is now available under `web/dashboard` and communicates with the local REST API at `/api`.
 
+### Automatic Natural Language Reports
+After each CLI analysis, DNAnalyzer now requests two summaries from the OpenAI API:
+
+- **Researcher Report** – Technical explanation with detailed statistics and terminology.
+- **Layperson Report** – Plain-language overview highlighting key takeaways.
+
+Both reports are printed to the console once analysis completes if an `OPENAI_API_KEY` is configured.
+
 <br>
 <br>
 
@@ -88,6 +96,7 @@ Provide a 23andMe text file along with a CSV of SNP weights to compute scores an
 ```
 
 Trait predictions and the risk score are printed after the standard DNA analysis.
+**Disclaimer:** Trait predictions are provided for educational purposes only and should not be used for medical or health decisions.
 <br>
 
 

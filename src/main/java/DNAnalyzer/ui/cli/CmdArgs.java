@@ -236,6 +236,8 @@ public class CmdArgs implements Runnable {
           for (TraitPrediction t : traits) {
             System.out.println(t.trait() + ": " + t.prediction() + " (" + t.genotype() + ")");
           }
+          System.out.println();
+          System.out.println(TraitPredictor.DISCLAIMER);
           if (prsWeights != null) {
             Map<String, PolygenicRiskCalculator.RiskWeight> weights =
                 PolygenicRiskCalculator.loadWeights(prsWeights.getPath());
