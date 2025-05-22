@@ -1,11 +1,7 @@
 package DNAnalyzer.utils.ai;
 
 import DNAnalyzer.ui.cli.CmdArgs;
-import DNAnalyzer.ui.gui.DNAnalyzerGUI;
-import DNAnalyzer.ui.gui.DNAnalyzerGUIFXMLController;
-import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
-import DNAnalyzer.core.DNAAnalysis;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -36,11 +32,9 @@ public class PathRouter {
 
   /** Runs the regular analysis without any AI integration. */
   /**
-   * Converts a natural language command to DNAnalyzer CLI arguments using the
-   * OpenAI API.
+   * Converts a natural language command to DNAnalyzer CLI arguments using the OpenAI API.
    *
-   * @param prompt a natural language instruction describing the desired
-   *     analysis
+   * @param prompt a natural language instruction describing the desired analysis
    * @param apiKey the API key for accessing the OpenAI API
    * @return an array of CLI arguments parsed from the instruction
    */
@@ -73,10 +67,12 @@ public class PathRouter {
       conn.getOutputStream().write(requestBody.getBytes());
 
       String response;
-      try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+      try (BufferedReader reader =
+          new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
         response = reader.lines().collect(Collectors.joining());
       } catch (IOException e) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
+        try (BufferedReader reader =
+            new BufferedReader(new InputStreamReader(conn.getErrorStream()))) {
           response = reader.lines().collect(Collectors.joining());
         }
       }
