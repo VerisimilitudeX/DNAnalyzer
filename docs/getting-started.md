@@ -49,6 +49,18 @@ assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
 java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
 ```
 
+#### Natural Language Mode
+
+If you set the `OPENAI_API_KEY` environment variable, DNAnalyzer can interpret
+plain English instructions. Use the `--nl` option followed by your request:
+
+```bash
+java -jar build/libs/DNAnalyzer.jar --nl "Analyze assets/dna/random/dnalong.fa and show GC content with window 50"
+```
+
+The instruction will be converted to regular CLI arguments using the OpenAI
+API before execution.
+
 #### <a name="gradle-run"></a>Gradle Run
 
 If you prefer, you can also run it directly from Gradle:
