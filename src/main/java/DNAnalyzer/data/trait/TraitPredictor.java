@@ -9,7 +9,8 @@ public class TraitPredictor {
 
   /** Disclaimer shown alongside trait predictions. */
   public static final String DISCLAIMER =
-      "Trait predictions are for educational purposes only and should not be used for medical advice.";
+      "Trait predictions are for educational purposes only and should not be used for medical"
+          + " advice.";
 
   private static final List<Trait> TRAITS =
       List.of(
