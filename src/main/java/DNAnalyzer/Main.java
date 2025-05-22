@@ -4,8 +4,10 @@ import java.io.IOException;
 
 import org.springframework.boot.SpringApplication;
 
+import DNAnalyzer.utils.ai.AIProvider;
 import DNAnalyzer.utils.ai.PathRouter;
 import DNAnalyzer.utils.core.Utils;
+import DNAnalyzer.core.ApiKeyService;
 
 /**
  * Main Class for the DNAnalyzer program.
@@ -33,12 +35,14 @@ public class Main {
         }
 
         // Otherwise, run in CLI mode
-        String apiKey = System.getenv("OPENAI_API_KEY");
+        ApiKeyService keyService = new ApiKeyService();
+        AIProvider provider = keyService.getProvider();
+        String apiKey = keyService.getApiKey(provider);
         Utils.clearTerminal();
-        if (apiKey == null) {
+        if (apiKey == null || apiKey.isBlank()) {
             PathRouter.regular(args);
         } else {
-            PathRouter.runGptAnalysis(args, apiKey);
+            PathRouter.runAiAnalysis(args, provider, apiKey);
         }
     }
 }

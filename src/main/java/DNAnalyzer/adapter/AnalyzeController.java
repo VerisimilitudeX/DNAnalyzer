@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import DNAnalyzer.utils.ai.AIProvider;
 import DNAnalyzer.utils.ai.PathRouter;
+import DNAnalyzer.core.ApiKeyService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,11 +26,13 @@ public class AnalyzeController {
             String[] args = buildCommandLineArgs(request);
             
             // Run analysis
-            String apiKey = System.getenv("OPENAI_API_KEY");
-            if (apiKey == null) {
+            ApiKeyService keyService = new ApiKeyService();
+            AIProvider provider = keyService.getProvider();
+            String apiKey = keyService.getApiKey(provider);
+            if (apiKey == null || apiKey.isBlank()) {
                 PathRouter.regular(args);
             } else {
-                PathRouter.runGptAnalysis(args, apiKey);
+                PathRouter.runAiAnalysis(args, provider, apiKey);
             }
             
             return ResponseEntity.ok(Map.of(

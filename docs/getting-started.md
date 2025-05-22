@@ -118,12 +118,13 @@ export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
 ```
 If you see `Task :compileJava FAILED`, the program cannot find your Java installation. You may need to export your JAVA_HOME path again.
 
-## OpenAI API Key
-We use GPT-4 API to display the results of the analysis. To use the API, you'll need to get an API key from OpenAI. You can get one [here](https://platform.openai.com/). **Note, this is an optional step.** If you don't want to use the API, you can still use the program, but you won't be able to see the results of the analysis.
+## AI Provider Configuration
+DNAnalyzer can integrate with multiple AI services including OpenAI, Anthropic, Grok, Google Gemini, and local providers like Ollama and LM Studio. Add your API keys to `src/main/resources/ai-keys.properties` and select the provider you wish to use by setting the `provider` value or the `AI_PROVIDER` environment variable.
 
-To set the API key on Linux or macOS, run `export OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx` where `sk-xxxxxxxxxxxxxxxxxxxxxxxx` is your API key.
+Example environment variable usage on Linux or macOS:
+`export AI_PROVIDER=openai`
 
-For Windows, use `setx OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx` instead.
+Each provider may also use its own environment variable for the API key (e.g., `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`).
 
 
 ### Usage
