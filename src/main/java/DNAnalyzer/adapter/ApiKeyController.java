@@ -25,22 +25,21 @@ public class ApiKeyController {
     this.apiKeyService = apiKeyService;
   }
 
-  /**
-   * Get the current API key status for the selected provider.
-   */
+  /** Get the current API key status for the selected provider. */
   @GetMapping
   public ResponseEntity<ApiKeyResponse> getApiKeyStatus() {
     boolean hasKey = apiKeyService.hasApiKey(apiKeyService.getProvider());
     return ResponseEntity.ok(new ApiKeyResponse(hasKey));
   }
 
-  /**
-   * Set a new API key and optionally provider.
-   */
+  /** Set a new API key and optionally provider. */
   @PostMapping
   public ResponseEntity<?> setApiKey(@RequestBody SetApiKeyRequest request) {
     try {
-      AIProvider provider = request.getProvider() != null ? AIProvider.fromString(request.getProvider()) : apiKeyService.getProvider();
+      AIProvider provider =
+          request.getProvider() != null
+              ? AIProvider.fromString(request.getProvider())
+              : apiKeyService.getProvider();
       if (request.getApiKey() != null) {
         apiKeyService.setApiKey(provider, request.getApiKey());
       }

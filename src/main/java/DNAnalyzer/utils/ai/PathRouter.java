@@ -1,18 +1,16 @@
 package DNAnalyzer.utils.ai;
 
+import DNAnalyzer.ui.cli.CmdArgs;
+import DNAnalyzer.utils.core.Utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import DNAnalyzer.ui.cli.CmdArgs;
-import DNAnalyzer.utils.core.Utils;
 import picocli.CommandLine;
 
-/**
- * PathRouter class for the DNAnalyzer program.
- */
+/** PathRouter class for the DNAnalyzer program. */
 public class PathRouter {
 
   private static String parseMessageContent(String response) {
@@ -27,12 +25,11 @@ public class PathRouter {
     }
   }
 
-  /**
-   * Runs the regular analysis without any AI integration.
-   */
+  /** Runs the regular analysis without any AI integration. */
   public static void regular(String[] args) throws InterruptedException, IOException {
     Utils.clearTerminal();
-    System.out.println("""
+    System.out.println(
+        """
                        Welcome to DNAnalyzer! Please allow up to 10 seconds for the analysis to complete (note: the time may vary based on your hardware).
                        """);
     new CommandLine(new CmdArgs()).execute(args);
@@ -40,13 +37,12 @@ public class PathRouter {
     System.exit(1);
   }
 
-  /**
-   * Runs the analysis with AI summary.
-   */
+  /** Runs the analysis with AI summary. */
   public static void runAiAnalysis(String[] args, AIProvider provider, String apiKey)
       throws InterruptedException, IOException {
     Utils.clearTerminal();
-    System.out.println("""
+    System.out.println(
+        """
                        Welcome to DNAnalyzer! Please allow up to 15 seconds for the analysis to complete (note: the time may vary based on your hardware).
                        """);
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
