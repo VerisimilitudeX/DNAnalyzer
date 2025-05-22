@@ -43,5 +43,9 @@ gradle-app.setting
 # Ignore Gradle build output directory
 build/*
 
+# Ignore Python artifacts
+__pycache__/
+.pytest_cache/
+
 # Ignore macOS generated files
 **/.DS_Store
