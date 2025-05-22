@@ -88,6 +88,7 @@ Provide a 23andMe text file along with a CSV of SNP weights to compute scores an
 ```
 
 Trait predictions and the risk score are printed after the standard DNA analysis.
+**Disclaimer:** Trait predictions are provided for educational purposes only and should not be used for medical or health decisions.
 <br>
 
 
