@@ -417,6 +417,7 @@ function initScrollAnimations() {
     });
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 /**
  * Add intersection observer for animating sections as they come into view
@@ -443,5 +444,7 @@ animateSections.forEach(section => {
     section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     sectionObserver.observe(section);
 });
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
