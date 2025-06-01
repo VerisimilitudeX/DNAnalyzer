@@ -6,16 +6,12 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 import org.json.JSONObject;
 
-/**
- * Provides a simple on-device ancestry inference using reference panels.
- */
+/** Provides a simple on-device ancestry inference using reference panels. */
 public class AncestrySnapshot {
 
-  private static final Path REFERENCE_PATH =
-      Path.of("assets/ancestry/continental_reference.json");
+  private static final Path REFERENCE_PATH = Path.of("assets/ancestry/continental_reference.json");
 
   private final Map<String, Map<String, String>> referencePanels = new HashMap<>();
 
