@@ -138,6 +138,18 @@ java -jar dnanalyzer.jar --align reference.fa --sw-align
 See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for further
 details.
 
+### Packaging Analysis Sessions
+
+After running DNAnalyzer you can archive the inputs, logs, and an interactive
+HTML report using `package-session.sh`:
+
+```bash
+./scripts/package-session.sh sample.fa
+```
+
+This creates a time-stamped ZIP file containing the FASTA file, console log,
+generated report, and any QC chart.
+
 ## Polygenic Health-Risk Scores
 
 DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
