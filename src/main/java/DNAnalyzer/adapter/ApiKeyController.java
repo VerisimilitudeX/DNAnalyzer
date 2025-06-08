@@ -2,6 +2,8 @@ package DNAnalyzer.adapter;
 
 import DNAnalyzer.core.ApiKeyService;
 import DNAnalyzer.utils.ai.AIProvider;
+import DNAnalyzer.adapter.ApiKeyResponse;
+import DNAnalyzer.adapter.SetApiKeyRequest;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,38 +53,5 @@ public class ApiKeyController {
     } catch (IllegalArgumentException e) {
       return ResponseEntity.badRequest().body(Map.of("status", "error", "message", e.getMessage()));
     }
-  }
-}
-
-class ApiKeyResponse {
-  private boolean configured;
-
-  ApiKeyResponse(boolean configured) {
-    this.configured = configured;
-  }
-
-  public boolean isConfigured() {
-    return configured;
-  }
-}
-
-class SetApiKeyRequest {
-  private String apiKey;
-  private String provider;
-
-  public String getApiKey() {
-    return apiKey;
-  }
-
-  public void setApiKey(String apiKey) {
-    this.apiKey = apiKey;
-  }
-
-  public String getProvider() {
-    return provider;
-  }
-
-  public void setProvider(String provider) {
-    this.provider = provider;
   }
 }

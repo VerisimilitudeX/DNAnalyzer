@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
+import DNAnalyzer.core.readingframe.OpenReadingFrame;
+import DNAnalyzer.core.readingframe.PotentialGene;
+import DNAnalyzer.core.readingframe.PoissonCalculator;
+import DNAnalyzer.utils.protein.CodonTranslator;
+
 import org.springframework.stereotype.Component;
 
 /**
@@ -56,6 +61,35 @@ public class ReadingFrameAnalyzer {
 
         LOGGER.info("Found " + readingFrames.size() + " potential reading frames");
         return readingFrames;
+    }
+
+    /**
+     * Find open reading frames and translate them to amino acid sequences.
+     *
+     * @param sequence DNA sequence to analyze
+     * @param minLength Minimum ORF length
+     * @return List of open reading frames
+     */
+    public List<OpenReadingFrame> findOpenReadingFrames(String sequence, int minLength) {
+        validateInputParameters(sequence, Math.max(minLength, MIN_GENE_LENGTH));
+        List<OpenReadingFrame> orfs = new ArrayList<>();
+        findOrfsDirection(sequence, minLength, true, orfs);
+        findOrfsDirection(sequence, minLength, false, orfs);
+        return orfs;
+    }
+
+    private void findOrfsDirection(String sequence, int minLength, boolean forward,
+                                   List<OpenReadingFrame> orfs) {
+        String working = forward ? sequence : reverseComplement(sequence);
+        for (int frame = 0; frame < 3; frame++) {
+            List<PotentialGene> genes = findPotentialGenes(working, frame, minLength);
+            for (PotentialGene gene : genes) {
+                String orfSeq = working.substring(gene.getStartPosition(), gene.getEndPosition());
+                String aaSeq = CodonTranslator.translate(orfSeq);
+                orfs.add(new OpenReadingFrame(gene.getStartPosition(), gene.getEndPosition(),
+                        forward, frame, orfSeq, aaSeq));
+            }
+        }
     }
 
     /**
