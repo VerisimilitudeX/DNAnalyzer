@@ -1,7 +1,9 @@
-//導入os模塊
 import os
+//導入os模塊
 
 //一個名爲 save_directory_structure_and_files 的方法()
+
+
 def save_directory_structure_and_files(root_dir, output_file):
     //以UTF-8編碼寫入模式打開output_file，並賦值給變量out
     with open(output_file, 'w', encoding='utf-8') as out:
@@ -14,7 +16,7 @@ def save_directory_structure_and_files(root_dir, output_file):
             out.write(f"Directory: {rel_path}\n")
             //寫入分隔線到out
             out.write("=" * 50 + "\n")
-            
+
             # Write file names and contents
             //遍歷當前目錄下的所有文件名
             for file in filenames:
@@ -38,6 +40,7 @@ def save_directory_structure_and_files(root_dir, output_file):
                 out.write("\n" + "-" * 50 + "\n")
             //寫入一個換行符到out
             out.write("\n")
+
 
 //如果當前腳本是主程序執行的腳本
 if __name__ == "__main__":
