@@ -1,5 +1,5 @@
-//從random模塊導入choice方法
 from random import choice
+//從random模塊導入choice方法
 
 //變量__summary__賦值為字符串"Generate a random DNA file that is 100MB"
 __summary__ = "Generate a random DNA file that is 100MB"
