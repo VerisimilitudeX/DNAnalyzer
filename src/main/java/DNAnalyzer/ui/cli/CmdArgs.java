@@ -14,14 +14,20 @@ package DNAnalyzer.ui.cli;
 import static DNAnalyzer.data.Parser.parseFile;
 
 import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.core.DNADataUploader;
 import DNAnalyzer.core.DNAMutation;
+import DNAnalyzer.core.PolygenicRiskCalculator;
 import DNAnalyzer.core.Properties;
+import DNAnalyzer.data.trait.TraitPrediction;
+import DNAnalyzer.data.trait.TraitPredictor;
 import DNAnalyzer.qc.QcStats;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -76,6 +82,11 @@ public class CmdArgs implements Runnable {
   File alignFile;
 
   @Option(
+      names = {"--sw-align"},
+      description = "Use GPU-accelerated Smith-Waterman local alignment")
+  boolean swAlign;
+
+  @Option(
       names = {"--reverse", "-r"},
       description = "Reverse the DNA sequence before processing.")
   boolean reverse;
@@ -128,6 +139,21 @@ public class CmdArgs implements Runnable {
       description = "Window size for GC content calculation")
   Integer gcWindow;
 
+  @Option(
+      names = {"--23andme"},
+      description = "Path to a 23andMe genotype file for trait analysis")
+  File genotypeFile;
+
+  @Option(
+      names = {"--prs"},
+      description = "CSV of SNP weights for polygenic risk scoring")
+  File prsWeights;
+
+  @Option(
+      names = {"--orfs"},
+      description = "Display open reading frames with amino acid translation")
+  boolean showOrfs;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -155,11 +181,16 @@ public class CmdArgs implements Runnable {
         try {
           String reference = parseFile(alignFile);
           String query = dnaAnalyzer.dna().getDna();
-          var result = DNAnalyzer.utils.alignment.SequenceAligner.align(query, reference);
+          DNAnalyzer.utils.alignment.SequenceAligner.AlignmentResult result;
+          if (swAlign) {
+            result = DNAnalyzer.utils.alignment.SmithWatermanAligner.align(query, reference);
+          } else {
+            result = DNAnalyzer.utils.alignment.SequenceAligner.align(query, reference);
+          }
           System.out.println("Alignment score: " + result.score());
           System.out.println(result.alignedSeq1());
           System.out.println(result.alignedSeq2());
-        } catch (IOException e) {
+        } catch (Exception e) {
           System.err.println("Alignment failed: " + e.getMessage());
         }
         return;
@@ -202,12 +233,51 @@ public class CmdArgs implements Runnable {
             .printLongestProtein(System.out);
       }
 
+      if (genotypeFile != null) {
+        try {
+          Map<String, String> snps = DNADataUploader.uploadFrom23andMe(genotypeFile.getPath());
+          List<TraitPrediction> traits = TraitPredictor.predictTraits(snps);
+          System.out.println("\nTrait Predictions:");
+          for (TraitPrediction t : traits) {
+            System.out.println(t.trait() + ": " + t.prediction() + " (" + t.genotype() + ")");
+          }
+          System.out.println();
+          System.out.println(TraitPredictor.DISCLAIMER);
+          if (prsWeights != null) {
+            Map<String, PolygenicRiskCalculator.RiskWeight> weights =
+                PolygenicRiskCalculator.loadWeights(prsWeights.getPath());
+            double score = PolygenicRiskCalculator.computeScore(snps, weights);
+            System.out.printf("Polygenic Risk Score: %.3f%n", score);
+          }
+        } catch (IOException e) {
+          System.err.println("Error processing genotype data: " + e.getMessage());
+        }
+      }
+
       if (Properties.isRandomDNA(dnaAnalyzer.dna().getDna())) {
         System.out.println("\n" + dnaFile.getName() + " has been detected to be random.");
       }
 
       if (enablePlugins) {
         new DNAnalyzer.plugin.PluginManager().runPlugins(dnaAnalyzer.dna(), System.out);
+      }
+
+      if (showOrfs) {
+        DNAnalyzer.core.readingframe.ReadingFrameAnalyzer rfAnalyzer =
+            new DNAnalyzer.core.readingframe.ReadingFrameAnalyzer(
+                new DNAnalyzer.core.readingframe.PoissonCalculator());
+        var orfs = rfAnalyzer.findOpenReadingFrames(dnaAnalyzer.dna().getDna().toUpperCase(), 300);
+        System.out.println("\nOpen Reading Frames:");
+        for (var orf : orfs) {
+          System.out.printf(
+              "Frame %d (%s) %d-%d: %s -> %s%n",
+              orf.frame(),
+              orf.forward() ? "forward" : "reverse",
+              orf.start(),
+              orf.end(),
+              orf.sequence(),
+              orf.aminoAcids());
+        }
       }
     }
   }

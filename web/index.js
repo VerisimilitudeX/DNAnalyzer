@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize navbar pulse effect
     initNavbarPulse();
+
+    // Initialize scroll animations for sections
+    initScrollAnimations();
 });
 
 // Shared state for notification banner
@@ -35,23 +38,31 @@ let notificationClosed = false;
 function initNotificationBanner() {
     const banner = document.querySelector('.notification-banner');
     const navbar = document.getElementById('navbar');
+    const hero = document.querySelector('.hero'); // Get hero section
     if (!banner || !navbar) return;
 
     const bannerHeight = banner.offsetHeight;
     document.documentElement.style.setProperty('--notification-height', `${bannerHeight}px`);
 
-    const closeBtn = document.querySelector('.notification-banner .notification-close');
+    const closeBtn = banner.querySelector('.notification-close'); // Corrected selector
     if (!closeBtn) return;
 
     closeBtn.addEventListener('click', function() {
         banner.classList.add('closed');
         document.documentElement.style.setProperty('--notification-height', '0px');
         navbar.style.top = '0';
+        if (hero) {
+            hero.style.paddingTop = ''; // Reset hero padding
+        }
         notificationClosed = true;
     });
 
     // Initial positioning
     navbar.style.top = `${bannerHeight}px`;
+    // Adjust hero padding initially if banner is visible
+    if (hero && bannerHeight > 0) {
+         hero.style.paddingTop = `calc(10rem + ${bannerHeight}px)`;
+    }
 }
 
 /**
@@ -60,6 +71,7 @@ function initNotificationBanner() {
 function initNotificationScroll() {
     const banner = document.querySelector('.notification-banner');
     const navbar = document.getElementById('navbar');
+    const hero = document.querySelector('.hero'); // Get hero section
     if (!banner || !navbar) return;
 
     let lastScrollTop = 0;
@@ -71,15 +83,24 @@ function initNotificationScroll() {
             // Scrolling down
             banner.classList.add('hide-notification');
             navbar.style.top = '0';
+             if (hero) {
+                 hero.style.paddingTop = ''; // Reset hero padding
+             }
         } else if (!notificationClosed) {
             // Scrolling up and notification was not manually closed
             banner.classList.remove('hide-notification');
             navbar.style.top = `${bannerHeight}px`;
+             if (hero && bannerHeight > 0) {
+                 hero.style.paddingTop = `calc(10rem + ${bannerHeight}px)`; // Re-apply hero padding
+             }
         } else {
             // Scrolling up but notification was manually closed
             navbar.style.top = '0';
+             if (hero) {
+                 hero.style.paddingTop = ''; // Reset hero padding
+             }
         }
-        lastScrollTop = scrollTop;
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 }
 
@@ -117,17 +138,23 @@ function initDNAHelix() {
         basePair.className = 'base-pair';
         
         // Position each base pair - adjust vertical position to account for bases extending upward
-        basePair.style.top = `${(i + numBasesUp) * 25}px`;
+        // Adjust vertical spacing (e.g., 20px instead of 25px if needed)
+        const verticalSpacing = 20;
+        basePair.style.top = `${(i + numBasesUp) * verticalSpacing}px`;
         
         // Calculate initial rotation angle to create the helix twist
-        // Each pair is rotated an incremental amount for the helix effect
-        const angle = (i * 25) % 360;
+        // Adjust rotation increment (e.g., 20 degrees per pair)
+        const angleIncrement = 20;
+        const angle = (i * angleIncrement) % 360;
         
         // Calculate X offset based on the angle to create the curve effect
-        const xOffset = Math.sin(angle * Math.PI / 180) * 20;
+        // Adjust translateZ and xOffset multiplier if needed
+        const translateZ = 40;
+        const xOffsetMultiplier = 20;
+        const xOffset = Math.sin(angle * Math.PI / 180) * xOffsetMultiplier;
         
         // Start at the target position directly instead of animating to it
-        basePair.style.transform = `rotateY(${angle}deg) translateZ(40px) translateX(${xOffset}px)`;
+        basePair.style.transform = `rotateY(${angle}deg) translateZ(${translateZ}px) translateX(${xOffset}px)`;
         
         // Set initial opacity to 0 to avoid flash of content
         basePair.style.opacity = '0';
@@ -156,23 +183,30 @@ function initDNAHelix() {
     dnaHelix.appendChild(fragments);
     
     // Adjust the container height to accommodate the extended helix
-    dnaHelix.style.height = `${totalBases * 25 + 50}px`;
+    // Use the same vertical spacing
+    const containerHeight = totalBases * 20 + 50; // Adjusted spacing
+    const helixContainer = document.querySelector('.dna-helix-container');
+    if (helixContainer) {
+        helixContainer.style.height = `${containerHeight}px`;
+    }
     
     // Add animations with staggered delays after elements are in the DOM
     // This ensures smooth animation start
     requestAnimationFrame(() => {
         allBasePairs.forEach((basePair, index) => {
             // Stagger animation delays for a smooth wave effect
-            const delay = (index * -0.1).toFixed(2);
+            const delay = (index * -0.08).toFixed(2); // Slightly faster wave
             
             // Apply animation now that the element is in the DOM
-            basePair.style.animation = `rotate 8s linear infinite ${delay}s`;
+            // Adjust animation duration (e.g., 10s) and keyframes if needed
+            const animationDuration = 10; // seconds
+            basePair.style.animation = `rotate ${animationDuration}s linear infinite ${delay}s`;
             
             // Fade in elements smoothly over time
             setTimeout(() => {
                 basePair.style.opacity = '1';
                 basePair.style.transition = 'opacity 0.5s ease-in-out';
-            }, 50 * index);
+            }, 40 * index); // Slightly faster fade-in stagger
         });
     });
 }
@@ -275,39 +309,53 @@ function animateNumber(element, target, suffix = '', duration = 2000) {
 }
 
 /**
- * Initialize the stats counter animation with Intersection Observer
+ * Initialize the stats counter animation
  */
 function initStatsAnimation() {
-    const statsSection = document.querySelector('.stats-section');
-    if (!statsSection) return;
-    
-    const statElements = {
-        accuracy: { elem: document.getElementById('statAccuracy'), target: '141', suffix: '' },
-        sequences: { elem: document.getElementById('statSequences'), target: '7', suffix: 'M+' },
-        users: { elem: document.getElementById('statUsers'), target: '46', suffix: '+' }
+    const statsGrid = document.getElementById('statsGrid');
+    if (!statsGrid) return;
+
+    const statNumbers = statsGrid.querySelectorAll('.stat-number[data-count]');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the element is visible
     };
-    
-    let animated = false;
-    
-    const observer = new IntersectionObserver((entries) => {
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && !animated) {
-                // Animate each stat with staggered delays
-                Object.values(statElements).forEach((stat, index) => {
-                    setTimeout(() => {
-                        if (stat.elem) {
-                            animateNumber(stat.elem, stat.target, stat.suffix, 2000);
-                        }
-                    }, index * 200);
-                });
-                
-                animated = true;
-                observer.unobserve(statsSection);
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const targetNumber = parseInt(target.getAttribute('data-count'), 10);
+                const duration = 1500; // Animation duration in milliseconds
+                const startTime = performance.now();
+
+                function updateCounter(currentTime) {
+                    const elapsedTime = currentTime - startTime;
+                    const progress = Math.min(elapsedTime / duration, 1);
+                    // Use an easing function for smoother animation (e.g., easeOutQuad)
+                    const easeProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                    const currentCount = Math.floor(easeProgress * targetNumber);
+
+                    target.textContent = currentCount.toLocaleString(); // Format with commas if needed
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        target.textContent = targetNumber.toLocaleString(); // Ensure final value is exact
+                    }
+                }
+
+                requestAnimationFrame(updateCounter);
+                observer.unobserve(target); // Animate only once
             }
         });
-    }, { threshold: 0.5 });
-    
-    observer.observe(statsSection);
+    }, observerOptions);
+
+    statNumbers.forEach(statNumber => {
+        statsObserver.observe(statNumber);
+    });
 }
 
 /**
@@ -342,19 +390,34 @@ function initNavbarPulse() {
 }
 
 /**
- * Initialize futuristic notification effects on the notification banner
+ * Initialize scroll-triggered animations for sections/elements
  */
-function initFuturisticNotificationEffects() {
-    const banner = document.querySelector('.notification-banner');
-    if (!banner) return;
-    banner.addEventListener('mouseenter', () => {
-        banner.style.transition = 'filter 0.3s ease';
-        banner.style.filter = 'brightness(1.2) contrast(1.1)';
-    });
-    banner.addEventListener('mouseleave', () => {
-        banner.style.filter = 'none';
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+
+    if (!animatedElements.length) return;
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -10% 0px', // Trigger slightly before element is fully visible
+        threshold: 0.1 // Trigger when 10% is visible
+    };
+
+    const animationObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, observerOptions);
+
+    animatedElements.forEach(el => {
+        animationObserver.observe(el);
     });
 }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 /**
  * Add intersection observer for animating sections as they come into view
@@ -381,3 +444,7 @@ animateSections.forEach(section => {
     section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     sectionObserver.observe(section);
 });
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes

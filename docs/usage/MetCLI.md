@@ -27,4 +27,5 @@ A program to analyze DNA sequences.
       --min=<minCount>       The minimum count of the reading frame.
   -r, --reverse              Reverse the DNA sequence before processing.
   -V, --version              Print version information and exit.
+      --orfs                 Display open reading frames with translations.
   ```

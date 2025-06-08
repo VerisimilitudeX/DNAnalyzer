@@ -7,6 +7,11 @@ import java.util.Map;
 /** Predicts simple phenotypic traits from SNP data. */
 public class TraitPredictor {
 
+  /** Disclaimer shown alongside trait predictions. */
+  public static final String DISCLAIMER =
+      "Trait predictions are for educational purposes only and should not be used for medical"
+          + " advice.";
+
   private static final List<Trait> TRAITS =
       List.of(
           new Trait(
@@ -33,7 +38,20 @@ public class TraitPredictor {
               "rs762551",
               "A",
               "High caffeine sensitivity",
-              "Lower caffeine sensitivity"));
+              "Lower caffeine sensitivity"),
+          // Additional fun trait predictions
+          new Trait(
+              "Muscle Performance",
+              "rs1815739",
+              "T",
+              "Enhanced sprint/power potential",
+              "Typical muscle performance"),
+          new Trait(
+              "Alcohol Flush Reaction",
+              "rs671",
+              "A",
+              "Likely to experience facial flushing when drinking",
+              "Unlikely to experience flush reaction"));
 
   private TraitPredictor() {}
 
