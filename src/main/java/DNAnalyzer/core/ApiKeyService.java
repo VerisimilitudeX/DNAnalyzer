@@ -1,50 +1,84 @@
 package DNAnalyzer.core;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import DNAnalyzer.utils.ai.AIProvider;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- * Service for managing OpenAI API key.
- * Supports both environment variable and runtime configuration.
- */
-@Service
+/** Service for managing API keys and provider selection. */
 public class ApiKeyService {
-    
-    @Value("${openai.api.key:}")
-    private String apiKey;
+  private static final Logger LOGGER = Logger.getLogger(ApiKeyService.class.getName());
 
-    /**
-     * Gets the current API key.
-     *
-     * @return The API key if set, or null if not configured
-     */
-    public String getApiKey() {
-        if (apiKey == null || apiKey.trim().isEmpty()) {
-            // Try getting from environment variable as fallback
-            apiKey = System.getenv("OPENAI_API_KEY");
+  private final Map<AIProvider, String> apiKeys = new EnumMap<>(AIProvider.class);
+  private AIProvider provider = AIProvider.OPENAI;
+
+  public ApiKeyService() {
+    loadFromProperties();
+    loadFromEnv();
+  }
+
+  private void loadFromProperties() {
+    try (InputStream in = getClass().getClassLoader().getResourceAsStream("ai-keys.properties")) {
+      if (in == null) {
+        return;
+      }
+      Properties props = new Properties();
+      props.load(in);
+      for (AIProvider p : AIProvider.values()) {
+        String key = props.getProperty(p.name().toLowerCase());
+        if (key != null && !key.isBlank()) {
+          apiKeys.put(p, key.trim());
         }
-        return apiKey;
+      }
+      String prov = props.getProperty("provider");
+      if (prov != null) {
+        provider = AIProvider.fromString(prov);
+      }
+    } catch (IOException e) {
+      LOGGER.log(Level.WARNING, "Failed to load ai-keys.properties", e);
     }
+  }
 
-    /**
-     * Sets a new API key.
-     *
-     * @param newApiKey The new API key to set
-     */
-    public void setApiKey(String newApiKey) {
-        if (newApiKey == null || newApiKey.trim().isEmpty()) {
-            throw new IllegalArgumentException("API key cannot be null or empty");
+  private void loadFromEnv() {
+    for (AIProvider p : AIProvider.values()) {
+      if (!apiKeys.containsKey(p)) {
+        String env = System.getenv(p.envName());
+        if (env != null && !env.isBlank()) {
+          apiKeys.put(p, env.trim());
         }
-        this.apiKey = newApiKey.trim();
+      }
     }
+    String envProv = System.getenv("AI_PROVIDER");
+    if (envProv != null && !envProv.isBlank()) {
+      provider = AIProvider.fromString(envProv);
+    }
+  }
 
-    /**
-     * Checks if an API key is configured.
-     *
-     * @return true if an API key is set, false otherwise
-     */
-    public boolean hasApiKey() {
-        String key = getApiKey();
-        return key != null && !key.trim().isEmpty();
+  public String getApiKey(AIProvider p) {
+    return apiKeys.get(p);
+  }
+
+  public void setApiKey(AIProvider p, String key) {
+    if (key == null || key.trim().isEmpty()) {
+      throw new IllegalArgumentException("API key cannot be null or empty");
     }
+    apiKeys.put(p, key.trim());
+  }
+
+  public boolean hasApiKey(AIProvider p) {
+    String k = getApiKey(p);
+    return k != null && !k.isBlank();
+  }
+
+  public AIProvider getProvider() {
+    return provider;
+  }
+
+  public void setProvider(AIProvider provider) {
+    this.provider = provider;
+  }
 }
