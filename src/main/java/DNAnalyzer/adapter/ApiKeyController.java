@@ -2,8 +2,6 @@ package DNAnalyzer.adapter;
 
 import DNAnalyzer.core.ApiKeyService;
 import DNAnalyzer.utils.ai.AIProvider;
-import DNAnalyzer.adapter.ApiKeyResponse;
-import DNAnalyzer.adapter.SetApiKeyRequest;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -266,9 +266,7 @@ public class CmdArgs implements Runnable {
         DNAnalyzer.core.readingframe.ReadingFrameAnalyzer rfAnalyzer =
             new DNAnalyzer.core.readingframe.ReadingFrameAnalyzer(
                 new DNAnalyzer.core.readingframe.PoissonCalculator());
-        var orfs =
-            rfAnalyzer.findOpenReadingFrames(
-                dnaAnalyzer.dna().getDna().toUpperCase(), 300);
+        var orfs = rfAnalyzer.findOpenReadingFrames(dnaAnalyzer.dna().getDna().toUpperCase(), 300);
         System.out.println("\nOpen Reading Frames:");
         for (var orf : orfs) {
           System.out.printf(
