@@ -49,6 +49,18 @@ assets/dna/random/dnalong.fa --amino=arg --min=16450 --max=520218 -r
 java -jar build/libs/DNAnalyzer.jar assets/dna/random/dnalong.fa --amino=ser --min=16450 --max=520218 -r
 ```
 
+#### Natural Language Mode
+
+If you set the `OPENAI_API_KEY` environment variable, DNAnalyzer can interpret
+plain English instructions. Use the `--nl` option followed by your request:
+
+```bash
+java -jar build/libs/DNAnalyzer.jar --nl "Analyze assets/dna/random/dnalong.fa and show GC content with window 50"
+```
+
+The instruction will be converted to regular CLI arguments using the OpenAI
+API before execution.
+
 #### <a name="gradle-run"></a>Gradle Run
 
 If you prefer, you can also run it directly from Gradle:
@@ -118,12 +130,15 @@ export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
 ```
 If you see `Task :compileJava FAILED`, the program cannot find your Java installation. You may need to export your JAVA_HOME path again.
 
-## OpenAI API Key
-We use GPT-4 API to display the results of the analysis. To use the API, you'll need to get an API key from OpenAI. You can get one [here](https://platform.openai.com/). **Note, this is an optional step.** If you don't want to use the API, you can still use the program, but you won't be able to see the results of the analysis.
+## AI Provider Configuration
+DNAnalyzer can integrate with multiple AI services including OpenAI, Anthropic, Grok, Google Gemini, and local providers like Ollama and LM Studio. Add your API keys to `src/main/resources/ai-keys.properties` and select the provider you wish to use by setting the `provider` value or the `AI_PROVIDER` environment variable.
 
-To set the API key on Linux or macOS, run `export OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx` where `sk-xxxxxxxxxxxxxxxxxxxxxxxx` is your API key.
+Example environment variable usage on Linux or macOS:
+`export AI_PROVIDER=openai`
 
-For Windows, use `setx OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx` instead.
+Each provider may also use its own environment variable for the API key (e.g., `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`).
+
+When configured, DNAnalyzer will generate two natural language reports after each run: one aimed at researchers and another simplified for the layperson.
 
 
 ### Usage

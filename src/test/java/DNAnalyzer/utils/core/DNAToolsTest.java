@@ -44,6 +44,12 @@ class DNAToolsTest {
   }
 
   @Test
+  void shouldAllowUppercaseInput() {
+    dnaTools = new DNATools("ATGC");
+    assertDoesNotThrow(() -> dnaTools.isValid());
+  }
+
+  @Test
   void shouldReplaceDNAString() {
     var expected = "AAAacggctcaaaacca";
     dnaTools = new DNATools("gagacggctcaaaacca");
@@ -59,5 +65,12 @@ class DNAToolsTest {
     var newDnaTools = dnaTools.reverse();
     var actual = newDnaTools.getDna();
     assertEquals(expected, actual);
+  }
+
+  @Test
+  void shouldComputeGcWindow() {
+    dnaTools = new DNATools("atgcg");
+    double[] gc = dnaTools.gcContentWindow(3);
+    assertArrayEquals(new double[] {1.0 / 3, 2.0 / 3, 2.0 / 3}, gc, 1e-6);
   }
 }

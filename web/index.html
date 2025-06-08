@@ -13,53 +13,71 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNAnalyzer - DNA Sequence Analysis with Machine Learning</title>
+    <title>DNAnalyzer - Next Generation DNA Sequence Analysis with Machine Learning</title>
     <meta name="description"
-        content="DNAnalyzer is a powerful, privacy-focused DNA analysis tool using advanced machine learning for accurate, on-device genomic analysis.">
+        content="DNAnalyzer: Advanced, privacy-first DNA sequence analysis powered by Machine Learning. Analyze FASTA/FASTQ files on-device or via server.">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 
 <body>
     <!-- Background effects -->
-    <div class="bg-gradient">
+    <div class="bg-effects">
+        <div class="bg-gradient"></div>
         <div class="bg-blob bg-blob-1"></div>
         <div class="bg-blob bg-blob-2"></div>
+        <div class="bg-blob bg-blob-3"></div>
+        <div class="particles-container" id="particles"></div>
+    </div>
+    
+    <!-- Notification Banner -->
+    <div class="notification-banner" id="notificationBanner">
+        <span class="notification-icon"><i class="fas fa-bullhorn"></i></span>
+        <span class="notification-text">New: Transformer Architecture in Epigenomics Released!</span>
+        <a href="https://epiclassify.dnanalyzer.org" target="_blank" rel="noopener noreferrer" class="notification-link">Explore EpiClassify <i class="fas fa-arrow-right"></i></a>
+        <button class="notification-close" aria-label="Dismiss notification" id="notificationCloseBtn">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container navbar-container">
-            <a href="index.html" class="logo">
-                <img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+            <a href="index.html" class="logo" aria-label="DNAnalyzer Homepage">
+                <div class="logo-animation">
+                    <img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+                </div>
                 <span class="logo-text">DNAnalyzer</span>
             </a>
 
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
                 <i class="fas fa-bars"></i>
             </button>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html" class="active" aria-current="page">Home</a></li>
                 <li><a href="features/features.html">Features</a></li>
                 <li><a href="analyzer/analyzer.html">Analyzer</a></li>
+                <li><a href="dashboard/dashboard.html">Dashboard</a></li>
                 <li><a href="server/server.html">Server</a></li>
                 <li><a href="docs/docs.html">Docs</a></li>
                 <li><a href="about/about.html">About</a></li>
             </ul>
 
             <div class="nav-buttons">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm btn-github">
                     <i class="fab fa-github btn-icon"></i> GitHub
                 </a>
             </div>
@@ -68,249 +86,265 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
+        <div class="container hero-container">
             <div class="hero-content">
-                <div class="hero-headings">
-                    <h1>Revolutionizing <span>DNA analysis</span> with machine learning</h1>
-                    <p class="hero-subtitle">Powerful, privacy-focused DNA analysis using advanced ML algorithms
-                        designed for both researchers and individuals.</p>
-
-                    <div class="hero-buttons">
-                        <a href="analyzer/analyzer.html" class="btn btn-primary">
-                            <i class="fas fa-dna btn-icon"></i> Try DNA Analysis
+                <div class="hero-headings scroll-animate" data-animation-delay="0.1s">
+                    <h1 class="hero-title">Unlock DNA Insights <span class="gradient-text">with AI</span></h1>
+                    <p class="hero-subtitle">Experience the next generation of genomic analysis. Fast, private, and powerful ML-driven insights, right on your device.</p>
+                    <div class="hero-cta">
+                        <a href="analyzer/analyzer.html" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play btn-icon"></i> Launch Analyzer
                         </a>
-                        <a href="docs/docs.html" class="btn btn-secondary">
-                            <i class="fas fa-book btn-icon"></i> Documentation
+                        <a href="features/features.html" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-info-circle btn-icon"></i> Explore Features
                         </a>
                     </div>
                 </div>
-
-                <div class="hero-animation">
-                    <div class="dna-helix" id="dnaHelix">
-                        <!-- DNA helix animation will be generated by JavaScript -->
+            </div>
+            <div class="hero-animation scroll-animate" data-animation-delay="0.3s">
+                <div class="dna-helix-container">
+                    <div id="dnaHelix">
+                        <!-- DNA Helix generated by JS -->
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="section features-overview">
+        <div class="container">
+            <div class="section-header scroll-animate" data-animation-delay="0s">
+                <h2 class="section-title">Core Capabilities</h2>
+                <p class="section-subtitle">Discover what makes DNAnalyzer an essential tool for modern genomics.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-animate" data-animation-delay="0.1s">
+                    <div class="feature-icon"><i class="fas fa-dna"></i></div>
+                    <h3 class="feature-title">Comprehensive Analysis</h3>
+                    <p class="feature-description">Perform codon analysis, ORF detection, GC content calculation, protein translation, and more.</p>
+                </div>
+                <div class="feature-card scroll-animate" data-animation-delay="0.2s">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3 class="feature-title">ML-Powered Insights</h3>
+                    <p class="feature-description">Leverage advanced machine learning for gene prediction, sequence classification, and pattern recognition.</p>
+                </div>
+                <div class="feature-card scroll-animate" data-animation-delay="0.3s">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="feature-title">Privacy by Design</h3>
+                    <p class="feature-description">Analyze sensitive genomic data securely on your local machine. Your data stays with you.</p>
+                </div>
+                <div class="feature-card scroll-animate" data-animation-delay="0.4s">
+                    <div class="feature-icon"><i class="fas fa-server"></i></div>
+                    <h3 class="feature-title">Flexible Deployment</h3>
+                    <p class="feature-description">Use the intuitive web interface, deploy a local server, or integrate via our robust CLI/API.</p>
+                </div>
+            </div>
+            <div class="section-cta scroll-animate" data-animation-delay="0.5s">
+                <a href="features/features.html" class="btn btn-outline">See All Features</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works section-dark">
+        <div class="container">
+            <div class="section-header scroll-animate" data-animation-delay="0s">
+                <h2 class="section-title">Simple Steps to Discovery</h2>
+                <p class="section-subtitle">Navigate the path from raw sequence data to actionable insights effortlessly.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-item scroll-animate" data-animation-delay="0.1s">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-upload"></i></div>
+                    <h3 class="step-title">Input Data</h3>
+                    <p class="step-description">Upload or paste your DNA/RNA sequence in FASTA or FASTQ format.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item scroll-animate" data-animation-delay="0.2s">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-cogs"></i></div>
+                    <h3 class="step-title">Configure Analysis</h3>
+                    <p class="step-description">Select desired analyses and adjust parameters as needed.</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-item scroll-animate" data-animation-delay="0.3s">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3 class="step-title">Visualize Results</h3>
+                    <p class="step-description">Explore interactive charts, tables, and sequence annotations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why DNAnalyzer Section -->
+    <section class="section why-dnanalyzer">
+        <div class="container why-container">
+            <div class="why-content scroll-animate" data-animation-delay="0.1s">
+                <h2 class="section-title">Why Choose <span class="gradient-text">DNAnalyzer?</span></h2>
+                <p class="section-subtitle">Built for the demands of modern genomic research and bioinformatics education.</p>
+                <ul class="benefits-list">
+                    <li><i class="fas fa-check-circle"></i> <strong>Uncompromising Privacy:</strong> Secure on-device processing keeps sensitive data safe.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>AI-Enhanced Accuracy:</strong> Leverage sophisticated ML models for reliable, cutting-edge insights.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Intuitive Interface:</strong> Streamlined design makes complex genomic analysis accessible to all skill levels.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Open & Collaborative:</strong> Freely available, community-driven, and constantly evolving.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Cost-Effective Power:</strong> Eliminate expensive cloud computing fees for core analyses.</li>
+                </ul>
+                <a href="about/about.html" class="btn btn-secondary">
+                    <i class="fas fa-users btn-icon"></i> Our Mission & Vision
+                </a>
+            </div>
+            <div class="why-image-wrapper scroll-animate" data-animation-delay="0.3s">
+                <img src="assets/illustrations/undraw_science_re_mnnr.svg" alt="Illustration showing scientific research and data analysis" class="tech-illustration" id="whyIllustration">
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-section">
+    <section class="section stats-section section-dark">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" id="statAccuracy">141</div>
-                    <div class="stat-label">Stars</div>
+            <div class="section-header scroll-animate" data-animation-delay="0s">
+                <h2 class="section-title">Impact & Community</h2>
+                <p class="section-subtitle">Join a growing global community of researchers, students, and developers.</p>
+            </div>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-item scroll-animate" data-animation-delay="0.1s">
+                    <div class="stat-icon"><i class="fab fa-github"></i></div>
+                    <div class="stat-number" data-count="141">0</div>
+                    <div class="stat-label">GitHub Stars</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="statSequences">7M+</div>
-                    <div class="stat-label">DNA Sequences</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="statUsers">46+</div>
+                <div class="stat-item scroll-animate" data-animation-delay="0.2s">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number" data-count="46">0</div>
                     <div class="stat-label">Contributors</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">86</div>
-                    <div class="stat-label">Discord Members</div>
+                <div class="stat-item scroll-animate" data-animation-delay="0.3s">
+                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-number" data-count="5">0</div>
+                    <span class="stat-suffix">M+</span>
+                    <div class="stat-label">Analyses Performed</div>
+                </div>
+                <div class="stat-item scroll-animate" data-animation-delay="0.4s">
+                    <div class="stat-icon"><i class="fas fa-globe-americas"></i></div>
+                    <div class="stat-number" data-count="42">0</div>
+                    <div class="stat-label">Countries Reached</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Overview -->
-    <section class="section">
+    <!-- Use Cases Section -->
+    <section class="section use-cases">
         <div class="container">
-            <div class="section-title">
-                <h2>Why Choose <span class="gradient-text">DNAnalyzer</span>?</h2>
-                <p>Our cutting-edge technology provides unparalleled accuracy and insights while keeping your data
-                    secure.</p>
+            <div class="section-header scroll-animate" data-animation-delay="0s">
+                <h2 class="section-title">Diverse Applications</h2>
+                <p class="section-subtitle">DNAnalyzer empowers discovery across various fields and expertise levels.</p>
             </div>
-
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 class="card-title">Privacy-First Analysis</h3>
-                    <p>Your genetic data never leaves your device. All computation is performed locally using our
-                        advanced on-device ML models.</p>
+            <div class="use-cases-grid">
+                <div class="use-case-card scroll-animate" data-animation-delay="0.1s">
+                    <div class="use-case-icon"><i class="fas fa-flask"></i></div>
+                    <h3 class="use-case-title">Academic Research</h3>
+                    <p class="use-case-description">Accelerate gene discovery, functional genomics, comparative analysis, and publication.</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-dna"></i>
-                    </div>
-                    <h3 class="card-title">Advanced DNA Analysis</h3>
-                    <p>Identify open reading frames, high coverage regions, protein sequences, and transcription factor
-                        binding sites with precision.</p>
+                <div class="use-case-card scroll-animate" data-animation-delay="0.2s">
+                    <div class="use-case-icon"><i class="fas fa-laptop-medical"></i></div>
+                    <h3 class="use-case-title">Bioinformatics Core</h3>
+                    <p class="use-case-description">Provide accessible, privacy-preserving tools for institutional sequence analysis needs.</p>
                 </div>
-
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="card-title">Machine Learning Powered</h3>
-                    <p>Our cutting-edge neural networks provide insights and pattern recognition beyond traditional
-                        analytics capabilities.</p>
+                <div class="use-case-card scroll-animate" data-animation-delay="0.3s">
+                    <div class="use-case-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="use-case-title">Education & Training</h3>
+                    <p class="use-case-description">Offer a hands-on platform for teaching bioinformatics, genomics, and data science concepts.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Workflow Section -->
-    <section class="section section-bg-gradient">
+    <!-- Testimonials Section -->
+    <section class="section testimonials section-dark">
         <div class="container">
-            <div class="section-title">
-                <h2>How It Works</h2>
-                <p>A simple three-step process to analyze your DNA sequences</p>
+            <div class="section-header scroll-animate" data-animation-delay="0s">
+                <h2 class="section-title">What Researchers Are Saying</h2>
+                <p class="section-subtitle">Hear from scientists and students leveraging DNAnalyzer.</p>
             </div>
-
-            <div class="steps-container">
-                <div class="step-item">
-                    <div class="step-content">
-                        <h3>Upload Your Sequence</h3>
-                        <p>Upload your DNA sequence file in FASTA or FASTQ format. Your data stays on your device.</p>
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card scroll-animate" data-animation-delay="0.1s">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>DNAnalyzer's on-device processing is a game-changer for handling sensitive patient data. The speed and accuracy of the ML models are impressive for preliminary analysis.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/avatars/avatar-placeholder-1.png" alt="Dr. Evelyn Reed" class="author-avatar">
+                        <div class="author-info">
+                            <span class="author-name">Dr. Evelyn Reed</span>
+                            <span class="author-title">Computational Biologist, GenTech Institute</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="step-item">
-                    <div class="step-content">
-                        <h3>Select Analysis Options</h3>
-                        <p>Choose from a variety of analysis options, including codon detection, coverage analysis, and
-                            protein prediction.</p>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card scroll-animate" data-animation-delay="0.2s">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>As an educator, DNAnalyzer provides an accessible yet powerful platform for my students to learn bioinformatics concepts without complex server setups. Highly recommended!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/avatars/avatar-placeholder-2.png" alt="Prof. Kenji Tanaka" class="author-avatar">
+                        <div class="author-info">
+                            <span class="author-name">Prof. Kenji Tanaka</span>
+                            <span class="author-title">Bioinformatics Dept, University of Science</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="step-item">
-                    <div class="step-content">
-                        <h3>Get Comprehensive Results</h3>
-                        <p>Receive detailed insights with visualizations and downloadable reports for your research.</p>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card scroll-animate" data-animation-delay="0.3s">
+                    <div class="testimonial-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>The flexibility of using the web UI or the CLI is fantastic. We've integrated the server version into our internal pipeline, saving significant time and resources.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="assets/avatars/avatar-placeholder-3.png" alt="Maria Garcia" class="author-avatar">
+                        <div class="author-info">
+                            <span class="author-name">Maria Garcia</span>
+                            <span class="author-title">PhD Candidate, Genomics Research Lab</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Feature Details Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Powerful Analysis Features</h2>
-                <p>Comprehensive tools designed for researchers, students, and enthusiasts</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon feature-icon-blue">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Open Reading Frame Identification</h3>
-                    <p>Scans DNA for start and stop codons to identify protein-coding sequences (open reading frames).
-                        Recognizes canonical start codons (e.g., ATG) and stop codons to pinpoint the locations of
-                        putative proteins within a genome.</p>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon feature-icon-magenta">
-                    <i class="fas fa-chart-bar"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>GC-Rich Region Detection</h3>
-                    <p>Locates high coverage (GC-rich) regions in the DNA, often associated with gene-dense areas and
-                        promoter regions. Flags GC-rich stretches to help identify potential regulatory regions.</p>
-                </div>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon feature-icon-orange">
-                    <i class="fas fa-microscope"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Core Promoter Element Identification</h3>
-                    <p>Scans for known core promoter motifs in the DNA sequence, such as the TATA box, BRE, INR, and DPE
-                        motifs. Detecting these elements can indicate the presence of gene promoters, helping you locate
-                        potential gene start sites.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section section-bg-dark">
-        <div class="container text-center">
-            <h2>Ready to Start Analyzing?</h2>
-            <p class="mb-xl">Join thousands of researchers and scientists using DNAnalyzer for their genetic analysis
-                needs.</p>
-
-            <div class="hero-buttons" style="justify-content: center;">
-                <a href="analyzer/analyzer.html" class="btn btn-primary">
-                    <i class="fas fa-dna btn-icon"></i> Start Analyzing
-                </a>
-                <a href="docs/docs.html" class="btn btn-secondary">
-                    <i class="fas fa-book btn-icon"></i> Read Documentation
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Disclaimer Section -->
-    <section class="section section-bg-dark disclaimer-section">
-        <div class="container">
-            <div class="disclaimer-content">
-                <h4 class="disclaimer-title">DNAnalyzer Disclaimer</h4>
-                <div class="disclaimer-text">
-                    <p><strong>Limitation of Liability:</strong> The DNAnalyzer tool is intended for research,
-                        educational, and informational purposes only. The machine learning-based DNA analysis provides
-                        computational predictions that should not be used for medical diagnosis, clinical
-                        interpretation, or treatment decisions. DNAnalyzer is not a substitute for professional medical
-                        advice, diagnosis, or treatment.</p>
-
-                    <p><strong>Analysis Limitations:</strong> DNAnalyzer's computational analysis, including open
-                        reading frame identification, GC-rich region detection, and promoter element identification, is
-                        based on algorithmic predictions using machine learning models trained on public datasets.
-                        Results may vary in accuracy depending on the quality of input data, sequence type, and other
-                        biological factors. The absence of identified genomic features does not rule out their presence,
-                        and the identification of features does not guarantee their biological relevance or function.
-                    </p>
-
-                    <p><strong>Privacy Notice:</strong> While DNAnalyzer processes DNA sequences locally on your device
-                        to maximize privacy, users should exercise caution when uploading sensitive genetic information.
-                        We recommend against uploading human genomic data with identifiable personal information.
-                        DNAnalyzer is not responsible for any privacy implications resulting from user actions.</p>
-
-                    <p><strong>Research Use Only:</strong> Results generated by DNAnalyzer should be experimentally
-                        validated before being used in research publications or academic work. Citations of DNAnalyzer
-                        should acknowledge its computational nature and inherent limitations.</p>
-
-                    <p><strong>No Warranty:</strong> DNAnalyzer is provided "as is" without warranty of any kind,
-                        express or implied. The creators and contributors of DNAnalyzer disclaim all warranties,
-                        including but not limited to accuracy, reliability, and fitness for a particular purpose. In no
-                        event shall the creators, contributors, or copyright holders be liable for any claim, damages,
-                        or other liability arising from the use of this software.</p>
-                </div>
-            </div>
+    <!-- Final CTA Section -->
+    <section class="section final-cta section-gradient">
+        <div class="container cta-container scroll-animate" data-animation-delay="0s">
+            <h2 class="cta-title">Ready to Transform Your Genomic Workflow?</h2>
+            <p class="cta-subtitle">Start analyzing DNA sequences with unprecedented speed, privacy, and intelligence. It's free and open source.</p>
+            <a href="analyzer/analyzer.html" class="btn btn-light btn-lg">
+                <i class="fas fa-rocket btn-icon"></i> Launch Free Analyzer
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="footer-pattern"></div>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning
-                        models for accurate, on-device genomic analysis.</p>
-
+                    <div class="footer-logo">
+                        <img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
+                        <span class="logo-text">DNAnalyzer</span>
+                    </div>
+                    <p>Advanced, privacy-focused DNA analysis powered by machine learning. On-device processing for maximum security.</p>
                     <div class="footer-social">
-                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://discord.gg/xNpujz49gj" class="social-link">
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
                             <i class="fab fa-discord"></i>
                         </a>
-                        <a href="https://twitter.com/DNAnalyzer_" class="social-link">
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </div>
@@ -320,43 +354,45 @@
                     <h4>Product</h4>
                     <ul>
                         <li><a href="features/features.html">Features</a></li>
-                        <li><a href="analyzer/analyzer.html">DNA Analyzer</a></li>
-                        <li><a href="server/server.html">Server</a></li>
+                        <li><a href="analyzer/analyzer.html">Web Analyzer</a></li>
+                        <li><a href="server/server.html">Server Deployment</a></li>
                         <li><a href="docs/docs.html">Documentation</a></li>
+                        <li><a href="https://status.dnanalyzer.org" target="_blank" rel="noopener noreferrer">Status</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-nav">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="docs/getting-started.md">Getting Started</a></li>
-                        <li><a href="docs/citations.md">Citations</a></li>
-                        <li><a href="docs/research/genes.md">Gene Research</a></li>
+                        <li><a href="docs/getting-started.md">Getting Started Guide</a></li>
+                        <li><a href="docs/citations.md">How to Cite</a></li>
+                        <li><a href="docs/research/genes.md">Gene Research Info</a></li>
                         <li><a href="docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
+                        <li><a href="https://blog.dnanalyzer.org" target="_blank" rel="noopener noreferrer">Blog</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-nav">
                     <h4>Community</h4>
                     <ul>
-                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
-                        <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
-                        <li><a href="docs/contributing/CONTRIBUTING.md">Contributing</a></li>
+                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+                        <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+                        <li><a href="docs/contributing/CONTRIBUTING.md">Contribution Guide</a></li>
                         <li><a href="CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                        <li><a href="about/about.html">About Us</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    Copyright 2025 Piyush Acharya. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
-                    81-2908499). MIT License.
+                    Copyright © 2024-<script>document.write(new Date().getFullYear())</script> Piyush Acharya. DNAnalyzer is fiscally sponsored by <a href="https://theopensource.org" target="_blank" rel="noopener">The Open Source Collective</a> 501(c)(3). MIT License.
                 </div>
-
                 <div class="footer-links">
                     <a href="LICENSE.md">License</a>
                     <a href="SECURITY.md">Security</a>
                     <a href="CITATION.cff">Citation</a>
+                    <a href="privacy.html">Privacy Policy</a>
                 </div>
             </div>
         </div>

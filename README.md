@@ -52,9 +52,18 @@ Our impact has been recognized by [Y Combinator](https://www.ycombinator.com/), 
 
 ## Core Capabilities
 
-<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions (autism, ADHD, schizophrenia). </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with pinpoint accuracy. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Leverages a powerful CLI interface for scripting, automation, and large-scale analysis tasks. </td> </tr> </table> <br>
+<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions (autism, ADHD, schizophrenia). </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with pinpoint accuracy. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Leverages a powerful CLI interface for scripting, automation, and large-scale analysis tasks. </td> </tr> <tr> <td width="33%" align="center"> <strong>Ancestry Snapshot (Privacy-Safe)</strong><br> Estimates continental origin using on-device reference panels. </td> <td></td> <td></td> </tr> </table> <br>
+See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for usage instructions.
 
-> **Coming Soon:** Web-based user interface for enhanced accessibility
+> **New:** Interactive web dashboard for in-browser visualization is now available under `web/dashboard` and communicates with the local REST API at `/api`.
+
+### Automatic Natural Language Reports
+After each CLI analysis, DNAnalyzer now requests two summaries from the OpenAI API:
+
+- **Researcher Report** – Technical explanation with detailed statistics and terminology.
+- **Layperson Report** – Plain-language overview highlighting key takeaways.
+
+Both reports are printed to the console once analysis completes if an `OPENAI_API_KEY` is configured.
 
 <br>
 <br>
@@ -77,6 +86,76 @@ cd DNAnalyzer
 Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for advanced configuration.
 
 <br>
+## Polygenic Health-Risk Scores
+
+DNAnalyzer now includes a lightweight polygenic risk score calculator and fun trait predictions.
+Provide a 23andMe text file along with a CSV of SNP weights to compute scores and see traits:
+
+```bash
+./gradlew run --args='--23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa'
+```
+
+Trait predictions and the risk score are printed after the standard DNA analysis.
+**Disclaimer:** Trait predictions are provided for educational purposes only and should not be used for medical or health decisions.
+<br>
+
+
+### REST API
+
+For automated workflows, DNAnalyzer exposes a minimal REST endpoint. Start the
+Spring Boot application and send a FASTA file to `/server/analyze`:
+
+```bash
+curl -F file=@sample.fa http://localhost:8080/server/analyze
+```
+
+
+The response contains the core pipeline output serialized as JSON, allowing you
+to script DNAnalyzer from languages like Python or R without the GUI.
+
+Additionally, a `/api/file/parse` endpoint is available for simply uploading a
+FASTA or FASTQ file and receiving the parsed sequence.
+
+## GPU-Accelerated Smith-Waterman
+
+An optional module using PyOpenCL provides GPU acceleration for local sequence
+alignment. If no compatible GPU is found, the implementation automatically
+falls back to a pure Python version.
+
+Run the module directly or via the CLI:
+
+```bash
+python -m src.python.gpu_smith_waterman SEQ1 SEQ2
+```
+
+From the DNAnalyzer CLI you can request a Smith-Waterman alignment by supplying
+`--sw-align` together with `--align`:
+
+```bash
+java -jar dnanalyzer.jar --align reference.fa --sw-align
+```
+
+See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for further
+details.
+
+### Packaging Analysis Sessions
+
+After running DNAnalyzer you can archive the inputs, logs, and an interactive
+HTML report using `package-session.sh`:
+
+```bash
+./scripts/package-session.sh sample.fa
+```
+
+This creates a time-stamped ZIP file containing the FASTA file, console log,
+generated report, and any QC chart.
+
+## Polygenic Health-Risk Scores
+
+DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
+and your genotyping data to estimate risk for complex diseases directly on device.
+
+<br>
 
 ## Development Roadmap
 
@@ -87,6 +166,8 @@ Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for 
 | **Optimized SQL Database** | Scalable database for genomic datasets across diverse species |
 | **Enhanced Neural Network** | Integration with 3rd-party genotype datasets (23andMe, AncestryDNA) |
 | **DIAMOND Implementation** | Blending DIAMOND's speed with BLAST’s accuracy for cutting-edge analyses |
+| **AI Trait Predictor Suite** | Fun, shareable predictions—taste for cilantro, chronotype, ear-wax type—backed by peer-reviewed SNP studies |
+| **Secure Share & Compare** | Offline-generated, QR-coded summaries let users share limited insights with doctors or friends—no raw genome ever exposed. |
 
 </div>
 
@@ -98,6 +179,7 @@ We welcome contributions across experience levels:
 
 - [Guidelines for Contribution](./docs/contributing/Contribution_Guidelines.md)
 - [Git Usage Instructions](./docs/contributing/CONTRIBUTING.md)
+- [Development Environment](./docs/Development_Environment.md)
 
 <div align="center">
   <a href="https://github.com/VerisimilitudeX/DNAnalyzer/stargazers">
@@ -177,12 +259,12 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
 
 | Metric | Current Value |
 |--------|---------------|
-| GitHub Stars | **147** :contentReference[oaicite:4]{index=4} |
-| Forks | **62** :contentReference[oaicite:5]{index=5} |
-| Contributors | **46** :contentReference[oaicite:6]{index=6} |
-| Monthly FASTA files analyzed* | **5 000 +** *(self-reported)* |
+| GitHub Stars | **147** |
+| Forks | **62** |
+| Contributors | **46** |
+| Monthly FASTA files analyzed* | **5 000+ |
 | Total downloads (Gradle/CLI) | **4 042** |
-| Deployments via GitHub Pages | **485** :contentReference[oaicite:7]{index=7} |
+| Deployments via GitHub Pages | **485** |
 
 ---
 
@@ -230,7 +312,6 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
 ## Community Engagement  
 
 - **Discord** · `#genomics-ai` channel (80 + members)  
-- **Hackathons** · Hosted annual Interlake Bio-Hack (50 participants)
 - **Open Issues for First-Timers** · Labelled `good-first-issue` to mentor newcomers.  
 - **Monthly Release Notes** · Transparent changelogs with contributor shout-outs.
 ---
@@ -254,8 +335,6 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
 
 <div align="center">
   <h3>Support DNAnalyzer</h3>
-  <p>Every referral helps fund our nonprofit mission</p>
-
   <table>
     <tr>
       <td align="center">

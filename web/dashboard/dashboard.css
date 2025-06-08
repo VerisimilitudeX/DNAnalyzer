@@ -1,0 +1,23 @@
+.dashboard-main {
+    padding-top: 100px;
+    min-height: calc(100vh - 100px);
+}
+.dashboard-upload {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+#charts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+#charts canvas {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+}
