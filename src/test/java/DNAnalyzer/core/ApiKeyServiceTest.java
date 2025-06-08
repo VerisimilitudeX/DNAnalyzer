@@ -2,6 +2,7 @@ package DNAnalyzer.core;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import DNAnalyzer.utils.ai.AIProvider;
 import org.junit.jupiter.api.Test;
 
 class ApiKeyServiceTest {
@@ -11,18 +12,18 @@ class ApiKeyServiceTest {
   @Test
   void shouldSetAndGetApiKey() {
     String newKey = "test-api-key";
-    apiKeyService.setApiKey(newKey);
-    assertEquals(newKey, apiKeyService.getApiKey());
+    apiKeyService.setApiKey(AIProvider.OPENAI, newKey);
+    assertEquals(newKey, apiKeyService.getApiKey(AIProvider.OPENAI));
   }
 
   @Test
   void shouldReturnFalseWhenNoKeySet() {
-    assertFalse(apiKeyService.hasApiKey());
+    assertFalse(apiKeyService.hasApiKey(AIProvider.OPENAI));
   }
 
   @Test
   void shouldReturnTrueWhenKeySet() {
-    apiKeyService.setApiKey("test-key");
-    assertTrue(apiKeyService.hasApiKey());
+    apiKeyService.setApiKey(AIProvider.OPENAI, "test-key");
+    assertTrue(apiKeyService.hasApiKey(AIProvider.OPENAI));
   }
 }

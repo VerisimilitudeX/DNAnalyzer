@@ -11,6 +11,8 @@
 
 package DNAnalyzer.utils.core;
 
+import DNAnalyzer.data.codon.CodonDataUtils;
+import DNAnalyzer.data.codon.CodonFrame;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,9 +21,6 @@ import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import DNAnalyzer.data.codon.CodonDataUtils;
-import DNAnalyzer.data.codon.CodonFrame;
 
 /**
  * Reading frame data for the highest occurring codons.
@@ -157,6 +156,17 @@ public class ReadingFrames {
       this.buildCodonMap(codonFrame.getDna());
     }
     return codonCounts;
+  }
+
+  /** Get codon usage frequencies (0..1) across the DNA sequence. */
+  public Map<String, Double> getCodonUsage() {
+    Map<String, Integer> counts = getCodonCounts();
+    int total = counts.values().stream().mapToInt(Integer::intValue).sum();
+    if (total == 0) {
+      return Map.of();
+    }
+    return counts.entrySet().stream()
+        .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue() / (double) total));
   }
 
   /**

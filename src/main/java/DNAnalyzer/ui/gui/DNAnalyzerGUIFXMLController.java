@@ -11,15 +11,15 @@
 
 package DNAnalyzer.ui.gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import static DNAnalyzer.utils.core.Utils.readFile;
 
 import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.Properties;
 import DNAnalyzer.utils.core.DNATools;
-import static DNAnalyzer.utils.core.Utils.readFile;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /** The GUI for DNAnalyzer */
@@ -74,7 +75,11 @@ public class DNAnalyzerGUIFXMLController {
    */
   @FXML
   private void menuOpenClicked(ActionEvent event) {
-    System.out.println("open clicked");
+    FileChooser chooser = new FileChooser();
+    File selected = chooser.showOpenDialog(minSlider.getScene().getWindow());
+    if (selected != null) {
+      txtDNAFile.setText(selected.getAbsolutePath());
+    }
   }
 
   /**

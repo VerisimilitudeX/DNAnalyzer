@@ -1,6 +1,7 @@
 package DNAnalyzer.server;
 
 import DNAnalyzer.core.DNAAnalysis;
+import DNAnalyzer.utils.alignment.SequenceAligner;
 import DNAnalyzer.utils.core.DNATools;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -72,6 +73,50 @@ public class ApiController {
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
           .body(Map.of("error", "Analysis failed", "message", e.getMessage()));
+    }
+  }
+
+  @PostMapping(value = "/align", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  public ResponseEntity<?> align(
+      @RequestParam("query") MultipartFile query,
+      @RequestParam("reference") MultipartFile reference) {
+    try {
+      if (query.isEmpty() || reference.isEmpty()) {
+        return ResponseEntity.badRequest()
+            .body(Map.of("error", "Files empty", "message", "Provide both FASTA files"));
+      }
+      Path qTemp = Files.createTempFile("query-", ".fa");
+      Path rTemp = Files.createTempFile("ref-", ".fa");
+      query.transferTo(qTemp.toFile());
+      reference.transferTo(rTemp.toFile());
+
+      try {
+        String qSeq = Files.readString(qTemp);
+        String rSeq = Files.readString(rTemp);
+
+        if (!isValidDNASequence(qSeq) || !isValidDNASequence(rSeq)) {
+          return ResponseEntity.badRequest()
+              .body(
+                  Map.of(
+                      "error",
+                      "Invalid sequence",
+                      "message",
+                      "Sequences contain invalid DNA characters"));
+        }
+
+        var result = SequenceAligner.align(qSeq, rSeq);
+        Map<String, Object> resp = new HashMap<>();
+        resp.put("score", result.score());
+        resp.put("alignedQuery", result.alignedSeq1());
+        resp.put("alignedReference", result.alignedSeq2());
+        return ResponseEntity.ok(resp);
+      } finally {
+        Files.deleteIfExists(qTemp);
+        Files.deleteIfExists(rTemp);
+      }
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .body(Map.of("error", "Alignment failed", "message", e.getMessage()));
     }
   }
 

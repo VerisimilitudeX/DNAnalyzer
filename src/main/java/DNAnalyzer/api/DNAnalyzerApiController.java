@@ -4,6 +4,7 @@ import DNAnalyzer.core.DNAAnalysis;
 import DNAnalyzer.core.readingframe.ReadingFrame;
 import DNAnalyzer.core.readingframe.ReadingFrameAnalyzer;
 import DNAnalyzer.data.Parser;
+import DNAnalyzer.plugin.PluginManager;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.protein.ProteinFinder;
 import java.io.BufferedReader;
@@ -87,7 +88,8 @@ public class DNAnalyzerApiController {
       @RequestParam(value = "codons", defaultValue = "false") boolean codons,
       @RequestParam(value = "coverage", defaultValue = "false") boolean coverage,
       @RequestParam(value = "longest", defaultValue = "false") boolean longest,
-      @RequestParam(value = "format", defaultValue = "json") String format) {
+      @RequestParam(value = "format", defaultValue = "json") String format,
+      @RequestParam(value = "plugins", defaultValue = "false") boolean plugins) {
 
     try {
       // Validate file
@@ -150,6 +152,10 @@ public class DNAnalyzerApiController {
         }
         if (longest) {
           analysis.printLongestProtein(System.out);
+        }
+
+        if (plugins) {
+          new PluginManager().runPlugins(analysis.dna(), System.out);
         }
 
         // Get output

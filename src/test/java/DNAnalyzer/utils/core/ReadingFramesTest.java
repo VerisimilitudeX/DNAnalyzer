@@ -349,4 +349,12 @@ class ReadingFramesTest {
 
     assertEquals(expectedResults, actualResults);
   }
+
+  @Test
+  void shouldComputeCodonUsage() {
+    CodonFrame cf = new CodonFrame("atgatg", (short) 1, 0, 10);
+    ReadingFrames rf = new ReadingFrames(cf);
+    Map<String, Double> usage = rf.getCodonUsage();
+    assertEquals(1.0, usage.get("ATG"), 1e-6);
+  }
 }
