@@ -1,0 +1,4 @@
+#SNP,RiskAllele,Weight
+rs123,A,1.2
+rs456,G,0.8
+rs789,T,1.5

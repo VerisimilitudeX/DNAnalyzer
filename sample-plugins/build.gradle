@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+}
+repositories { mavenCentral() }
+dependencies {
+    implementation files('../build/libs/dnanalyzer-3.0.0-beta.0.jar')
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}

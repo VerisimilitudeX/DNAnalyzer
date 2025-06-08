@@ -24,7 +24,7 @@ public record DNATools(String dna) {
    * @throws IllegalArgumentException if the DNA sequence contains invalid characters.
    */
   public void isValid() {
-    if (!dna.matches("[atgcn]+")) {
+    if (!dna.toLowerCase().matches("[atgcn]+")) {
       throw new IllegalArgumentException("Invalid characters present in DNA sequence.");
     }
   }
@@ -59,5 +59,30 @@ public record DNATools(String dna) {
         .replace("g", "C")
         .replace("c", "G")
         .toLowerCase();
+  }
+
+  /**
+   * Calculate GC content in sliding windows across the sequence.
+   *
+   * @param window window size in bases
+   * @return array of GC fractions for each window
+   */
+  public double[] gcContentWindow(int window) {
+    if (window <= 0 || window > dna.length()) {
+      throw new IllegalArgumentException("Invalid window size");
+    }
+    int count = dna.length() - window + 1;
+    double[] result = new double[count];
+    for (int i = 0; i < count; i++) {
+      String sub = dna.substring(i, i + window);
+      int gc = 0;
+      for (char c : sub.toCharArray()) {
+        if (c == 'g' || c == 'c') {
+          gc++;
+        }
+      }
+      result[i] = (double) gc / window;
+    }
+    return result;
   }
 }
