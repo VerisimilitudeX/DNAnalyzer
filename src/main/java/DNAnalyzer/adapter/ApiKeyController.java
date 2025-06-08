@@ -1,6 +1,7 @@
 package DNAnalyzer.adapter;
 
 import DNAnalyzer.core.ApiKeyService;
+import DNAnalyzer.utils.ai.AIProvider;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** REST controller for managing OpenAI API key. */
+/** REST controller for managing AI API keys. */
 @RestController
 @RequestMapping("/api-key")
 @CrossOrigin(origins = "*")
@@ -24,27 +25,25 @@ public class ApiKeyController {
     this.apiKeyService = apiKeyService;
   }
 
-  /**
-   * Get the current API key status.
-   *
-   * @return Response indicating if API key is configured
-   */
+  /** Get the current API key status for the selected provider. */
   @GetMapping
   public ResponseEntity<ApiKeyResponse> getApiKeyStatus() {
-    boolean hasKey = apiKeyService.hasApiKey();
+    boolean hasKey = apiKeyService.hasApiKey(apiKeyService.getProvider());
     return ResponseEntity.ok(new ApiKeyResponse(hasKey));
   }
 
-  /**
-   * Set a new API key.
-   *
-   * @param request Request containing the new API key
-   * @return Response indicating success
-   */
+  /** Set a new API key and optionally provider. */
   @PostMapping
   public ResponseEntity<?> setApiKey(@RequestBody SetApiKeyRequest request) {
     try {
-      apiKeyService.setApiKey(request.getApiKey());
+      AIProvider provider =
+          request.getProvider() != null
+              ? AIProvider.fromString(request.getProvider())
+              : apiKeyService.getProvider();
+      if (request.getApiKey() != null) {
+        apiKeyService.setApiKey(provider, request.getApiKey());
+      }
+      apiKeyService.setProvider(provider);
       return ResponseEntity.ok(
           Map.of(
               "status", "success",

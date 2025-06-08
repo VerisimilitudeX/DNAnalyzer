@@ -11,10 +11,9 @@
 
 package DNAnalyzer.utils.core;
 
+import DNAnalyzer.core.DNAAnalysis;
 import java.util.Optional;
 import java.util.function.IntPredicate;
-
-import DNAnalyzer.core.DNAAnalysis;
 
 /**
  * BasePairCounter is Fluent Interface implementation used to count the nucleotides in given dna
@@ -110,8 +109,8 @@ public class BasePairCounter {
   /**
    * Returns the counts for all nucleotide types.
    *
-   * @return long[] counts for adenine, thymine, guanine, cytosine, and unknown
-   *     bases in the order listed
+   * @return long[] counts for adenine, thymine, guanine, cytosine, and unknown bases in the order
+   *     listed
    */
   public long[] getCounts() {
     return new long[] {adenine, thymine, guanine, cytosine, unknown};
