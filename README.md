@@ -138,6 +138,18 @@ java -jar dnanalyzer.jar --align reference.fa --sw-align
 See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for further
 details.
 
+### Packaging Analysis Sessions
+
+After running DNAnalyzer you can archive the inputs, logs, and an interactive
+HTML report using `package-session.sh`:
+
+```bash
+./scripts/package-session.sh sample.fa
+```
+
+This creates a time-stamped ZIP file containing the FASTA file, console log,
+generated report, and any QC chart.
+
 ## Polygenic Health-Risk Scores
 
 DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
@@ -247,12 +259,12 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
 
 | Metric | Current Value |
 |--------|---------------|
-| GitHub Stars | **147** :contentReference[oaicite:4]{index=4} |
-| Forks | **62** :contentReference[oaicite:5]{index=5} |
-| Contributors | **46** :contentReference[oaicite:6]{index=6} |
-| Monthly FASTA files analyzed* | **5 000 +** *(self-reported)* |
+| GitHub Stars | **147** |
+| Forks | **62** |
+| Contributors | **46** |
+| Monthly FASTA files analyzed* | **5 000+ |
 | Total downloads (Gradle/CLI) | **4 042** |
-| Deployments via GitHub Pages | **485** :contentReference[oaicite:7]{index=7} |
+| Deployments via GitHub Pages | **485** |
 
 ---
 
@@ -300,7 +312,6 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
 ## Community Engagement  
 
 - **Discord** · `#genomics-ai` channel (80 + members)  
-- **Hackathons** · Hosted annual Interlake Bio-Hack (50 participants)
 - **Open Issues for First-Timers** · Labelled `good-first-issue` to mentor newcomers.  
 - **Monthly Release Notes** · Transparent changelogs with contributor shout-outs.
 ---
@@ -324,8 +335,6 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
 
 <div align="center">
   <h3>Support DNAnalyzer</h3>
-  <p>Every referral helps fund our nonprofit mission</p>
-
   <table>
     <tr>
       <td align="center">

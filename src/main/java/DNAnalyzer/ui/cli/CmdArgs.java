@@ -149,6 +149,11 @@ public class CmdArgs implements Runnable {
       description = "CSV of SNP weights for polygenic risk scoring")
   File prsWeights;
 
+  @Option(
+      names = {"--orfs"},
+      description = "Display open reading frames with amino acid translation")
+  boolean showOrfs;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -255,6 +260,24 @@ public class CmdArgs implements Runnable {
 
       if (enablePlugins) {
         new DNAnalyzer.plugin.PluginManager().runPlugins(dnaAnalyzer.dna(), System.out);
+      }
+
+      if (showOrfs) {
+        DNAnalyzer.core.readingframe.ReadingFrameAnalyzer rfAnalyzer =
+            new DNAnalyzer.core.readingframe.ReadingFrameAnalyzer(
+                new DNAnalyzer.core.readingframe.PoissonCalculator());
+        var orfs = rfAnalyzer.findOpenReadingFrames(dnaAnalyzer.dna().getDna().toUpperCase(), 300);
+        System.out.println("\nOpen Reading Frames:");
+        for (var orf : orfs) {
+          System.out.printf(
+              "Frame %d (%s) %d-%d: %s -> %s%n",
+              orf.frame(),
+              orf.forward() ? "forward" : "reverse",
+              orf.start(),
+              orf.end(),
+              orf.sequence(),
+              orf.aminoAcids());
+        }
       }
     }
   }
