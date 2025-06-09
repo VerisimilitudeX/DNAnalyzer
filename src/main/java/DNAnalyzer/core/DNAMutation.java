@@ -25,6 +25,20 @@ public class DNAMutation {
    */
   public static void generateAndWriteMutatedSequences(
       String dnaString, int numMutations, PrintStream out) {
+    generateAndWriteMutatedSequences(dnaString, numMutations, out, null);
+  }
+
+  /**
+   * Generates a list of 10 mutated DNA sequences based on the specified number of base mutations
+   * and prints them to the console.
+   *
+   * @param dnaString Original DNA sequence to mutate
+   * @param numMutations The number of base mutations to apply to each mutated sequence
+   * @param out PrintStream for output
+   * @param customFilePath Custom file path for mutations, if null uses default naming
+   */
+  public static void generateAndWriteMutatedSequences(
+      String dnaString, int numMutations, PrintStream out, String customFilePath) {
     List<String> mutatedSequences = new ArrayList<>();
     
     // Create an index of available positions to mutate (remove indexes of unknown bases)
@@ -48,9 +62,14 @@ public class DNAMutation {
       mutatedSequences.add(mutatedDna.dna()); // Store the mutated DNA sequence to the list
     }
 
-    // Dynamically generate the file name based on the current timestamp
-    String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-    String fileName = "mutated_dna_" + timestamp + ".fa";
+    // Use custom file path or generate default name
+    String fileName;
+    if (customFilePath != null) {
+      fileName = customFilePath;
+    } else {
+      String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+      fileName = "mutated_dna_" + timestamp + ".fa";
+    }
 
     // Write the mutated sequences to a file
     try (FileWriter writer = new FileWriter(fileName)) {

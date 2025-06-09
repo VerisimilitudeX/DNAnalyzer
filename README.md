@@ -83,7 +83,48 @@ cd DNAnalyzer
 ./gradlew build
 ```
 
-Refer to our comprehensive [Getting Started Guide](docs/getting-started.md) for advanced configuration.
+### 🚀 **NEW: Easy Launch Script**
+We've made DNAnalyzer much more user-friendly! Instead of memorizing complex command-line options:
+
+```bash
+# Simple preset modes
+./easy_dna.sh your_file.fa basic      # Standard analysis
+./easy_dna.sh your_file.fa detailed   # Comprehensive analysis  
+./easy_dna.sh your_file.fa mutations  # Generate mutations
+./easy_dna.sh your_file.fa all        # Run everything!
+./easy_dna.sh your_file.fa custom     # Interactive mode
+
+# Or use the traditional Java method
+java -jar build/libs/DNAnalyzer-1.2.1.jar your_file.fa
+```
+
+### 📁 **NEW: Organized Output Structure**
+All generated files are now organized in a clear directory structure:
+
+```
+output/dnanalyzer_output_{filename}_{timestamp}/
+├── charts/          # Quality control and analysis charts (PNG)
+├── sequences/       # Generated mutations and processed sequences (FASTA)
+└── reports/         # Analysis reports and summaries (HTML)
+```
+
+### 🎯 **NEW: Analysis Profiles**
+Use predefined profiles instead of complex command-line flags:
+
+```bash
+# Use analysis profiles for common workflows
+java -jar build/libs/DNAnalyzer-1.2.1.jar --profile research your_file.fa
+java -jar build/libs/DNAnalyzer-1.2.1.jar --profile clinical your_file.fa
+java -jar build/libs/DNAnalyzer-1.2.1.jar --profile mutation your_file.fa
+
+# Available profiles: basic, detailed, quick, research, mutation, clinical
+```
+
+### 📚 Documentation
+- [Getting Started Guide](docs/getting-started.md) - Basic setup and configuration
+- [Enhanced Features Guide](docs/usage/enhanced-features.md) - **NEW!** Complete guide to all user experience improvements
+- [Command Reference](docs/usage/) - Complete command-line options and examples
+- [Changelog](CHANGELOG.md) - **NEW!** Detailed release notes and version history
 
 <br>
 ## Polygenic Health-Risk Scores

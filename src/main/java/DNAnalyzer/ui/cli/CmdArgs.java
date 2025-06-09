@@ -24,6 +24,7 @@ import DNAnalyzer.qc.QcStats;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
 import DNAnalyzer.utils.core.Utils;
+import DNAnalyzer.utils.core.OutputManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -154,6 +155,13 @@ public class CmdArgs implements Runnable {
       description = "Display open reading frames with amino acid translation")
   boolean showOrfs;
 
+  @Option(
+      names = {"--profile", "-p"},
+      description = "Use predefined analysis profile: basic, detailed, quick, research, mutation, clinical")
+  String profile;
+
+  private OutputManager outputManager;
+
   /**
    * Output a list of proteins, GC content, Nucleotide content, and other information found in a DNA
    * sequence.
@@ -163,6 +171,9 @@ public class CmdArgs implements Runnable {
   @Override
   public void run() {
     if (help) {
+      if (profile != null && profile.equals("list")) {
+        System.out.println(AnalysisProfile.getProfileList());
+      }
       return;
     }
 
@@ -170,6 +181,19 @@ public class CmdArgs implements Runnable {
       System.out.println("===========================");
       System.out.println("| DNAnalyzer " + Properties.getVersion() + " |");
       System.out.println("===========================\n");
+    }
+
+    // Apply profile if specified
+    if (profile != null && !profile.equals("list")) {
+      try {
+        AnalysisProfile selectedProfile = AnalysisProfile.valueOf(profile.toUpperCase());
+        selectedProfile.applyTo(this);
+        System.out.println("🔬 Using " + selectedProfile.name().toLowerCase() + " analysis profile: " + selectedProfile.getDescription());
+      } catch (IllegalArgumentException e) {
+        System.err.println("❌ Unknown profile: " + profile);
+        System.err.println(AnalysisProfile.getProfileList());
+        return;
+      }
     }
     if (Objects.equals(Boolean.TRUE, startGUI)) {
       String[] args = new String[0];
@@ -197,8 +221,11 @@ public class CmdArgs implements Runnable {
       }
 
       if (mutationCount > 0) {
+        String mutationFilePath = outputManager.getMutationFilePath().toString();
         DNAMutation.generateAndWriteMutatedSequences(
-            dnaAnalyzer.dna().getDna(), mutationCount, System.out);
+            dnaAnalyzer.dna().getDna(), mutationCount, System.out, mutationFilePath);
+        outputManager.registerFile("Sequence Analysis", outputManager.getMutationFilePath(), 
+            String.format("Generated %d mutations of the input sequence", mutationCount));
       }
 
       if (reverse) {
@@ -279,6 +306,11 @@ public class CmdArgs implements Runnable {
               orf.aminoAcids());
         }
       }
+
+      // Print file summary at the end
+      if (outputManager != null) {
+        outputManager.printFileSummary();
+      }
     }
   }
 
@@ -292,13 +324,21 @@ public class CmdArgs implements Runnable {
       String protein = null;
       Utils.clearTerminal();
       final String dna = parseFile(dnaFile);
+      
+      // Initialize OutputManager
+      this.outputManager = new OutputManager(dnaFile.getName());
+      
       QcStats qc = new QcStats(dnaFile, dna);
       qc.printSummary(System.out);
-      File reportDir = new File("assets/reports");
-      if (!reportDir.exists()) {
-        reportDir.mkdirs();
-      }
-      qc.writeChart(new File(reportDir, dnaFile.getName() + "_qc.png").getPath());
+      
+      // Generate QC chart with organized output
+      String qcChartPath = outputManager.getQcChartPath(dnaFile.getName()).toString();
+      qc.writeChart(qcChartPath);
+      outputManager.registerFile("Quality Control", outputManager.getQcChartPath(dnaFile.getName()), 
+          "Base composition and quality metrics chart");
+      
+      System.out.println("📊 Quality control chart generated: " + qcChartPath);
+      
       if (proteinFile != null) {
         protein = parseFile(proteinFile);
       }
