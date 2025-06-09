@@ -23,8 +23,8 @@ import DNAnalyzer.data.trait.TraitPredictor;
 import DNAnalyzer.qc.QcStats;
 import DNAnalyzer.ui.gui.DNAnalyzerGUI;
 import DNAnalyzer.utils.core.DNATools;
-import DNAnalyzer.utils.core.Utils;
 import DNAnalyzer.utils.core.OutputManager;
+import DNAnalyzer.utils.core.Utils;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -157,7 +157,8 @@ public class CmdArgs implements Runnable {
 
   @Option(
       names = {"--profile", "-p"},
-      description = "Use predefined analysis profile: basic, detailed, quick, research, mutation, clinical")
+      description =
+          "Use predefined analysis profile: basic, detailed, quick, research, mutation, clinical")
   String profile;
 
   private OutputManager outputManager;
@@ -188,7 +189,11 @@ public class CmdArgs implements Runnable {
       try {
         AnalysisProfile selectedProfile = AnalysisProfile.valueOf(profile.toUpperCase());
         selectedProfile.applyTo(this);
-        System.out.println("🔬 Using " + selectedProfile.name().toLowerCase() + " analysis profile: " + selectedProfile.getDescription());
+        System.out.println(
+            "🔬 Using "
+                + selectedProfile.name().toLowerCase()
+                + " analysis profile: "
+                + selectedProfile.getDescription());
       } catch (IllegalArgumentException e) {
         System.err.println("❌ Unknown profile: " + profile);
         System.err.println(AnalysisProfile.getProfileList());
@@ -224,7 +229,9 @@ public class CmdArgs implements Runnable {
         String mutationFilePath = outputManager.getMutationFilePath().toString();
         DNAMutation.generateAndWriteMutatedSequences(
             dnaAnalyzer.dna().getDna(), mutationCount, System.out, mutationFilePath);
-        outputManager.registerFile("Sequence Analysis", outputManager.getMutationFilePath(), 
+        outputManager.registerFile(
+            "Sequence Analysis",
+            outputManager.getMutationFilePath(),
             String.format("Generated %d mutations of the input sequence", mutationCount));
       }
 
@@ -324,21 +331,23 @@ public class CmdArgs implements Runnable {
       String protein = null;
       Utils.clearTerminal();
       final String dna = parseFile(dnaFile);
-      
+
       // Initialize OutputManager
       this.outputManager = new OutputManager(dnaFile.getName());
-      
+
       QcStats qc = new QcStats(dnaFile, dna);
       qc.printSummary(System.out);
-      
+
       // Generate QC chart with organized output
       String qcChartPath = outputManager.getQcChartPath(dnaFile.getName()).toString();
       qc.writeChart(qcChartPath);
-      outputManager.registerFile("Quality Control", outputManager.getQcChartPath(dnaFile.getName()), 
+      outputManager.registerFile(
+          "Quality Control",
+          outputManager.getQcChartPath(dnaFile.getName()),
           "Base composition and quality metrics chart");
-      
+
       System.out.println("📊 Quality control chart generated: " + qcChartPath);
-      
+
       if (proteinFile != null) {
         protein = parseFile(proteinFile);
       }
