@@ -25,11 +25,11 @@
 
 ## About DNAnalyzer
 
-DNAnalyzer is a biotechnology research and deployment company. Supported by [Anthropic for Startups](http://anthropic.com/), our mission is to revolutionize DNA analysis by making AI-powered genomic insights accessible to all through on-device computation.
+DNAnalyzer is a biotechnology research and deployment company revolutionizing genomic analysis through AI-powered, privacy-first technology. Supported by [Anthropic for Startups](http://anthropic.com/), our mission is to democratize DNA analysis by delivering enterprise-grade genomic insights through secure on-device computation.
 
-Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer's team includes **46 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
+Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer brings together **46 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
 
-Our impact has been presented at [Y Combinator's Mini YC](https://www.ycombinator.com/), starred by the organizer of the [AI World's Fair Expo](https://www.ai.engineer/worldsfair), and liked by the CEO of [DEV](https://dev.to/).
+Our groundbreaking work has been presented at [Y Combinator's Mini YC](https://www.ycombinator.com/), starred by the organizer of the [AI World's Fair Expo](https://www.ai.engineer/worldsfair), and recognized by the CEO of [DEV.to](https://dev.to/).
 
 <br>
 
@@ -37,40 +37,43 @@ Our impact has been presented at [Y Combinator's Mini YC](https://www.ycombinato
 
 <div align="center">
 
-| Today's Limitation | DNAnalyzer's Innovation |
+| Industry Standard | DNAnalyzer's Innovation |
 |---|---|
-| **$100** average cost for DNA sequencing | Completely **Free** |
-| Up to **$600** for basic health insights | **Accessible** to underserved communities |
-| **78%** of companies share genetic data with third parties | 100% **Private**, local computation |
-| Data breaches expose millions (23andMe: 6.9M users in 2023) | **No central database** of sensitive genetic information |
+| **$100** average cost for DNA sequencing | Completely **Free** analysis |
+| Up to **$600** for basic health insights | **Universally accessible**, empowering underserved communities worldwide* |
+| **78%** of companies share genetic data with third parties | **100% Private**: All computation happens locally on your device |
+| Data breaches compromise millions (23andMe: 6.9M users in 2023) | **Zero central storage**: Your genetic data never leaves your device |
 
 </div>
 
-> *"Unlike a password, compromised genetic data is permanently exposed."*
+> *"Unlike a password, compromised genetic data is permanently exposed. You cannot change it."*
+
+<small>*Excluding testing costs. We're developing an affordable in-house testing kit to eliminate this final barrier.</small>
 
 <br>
 
 ## Core Capabilities
 
-<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions (autism, ADHD, schizophrenia). </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with pinpoint accuracy. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Leverages a powerful CLI interface for scripting, automation, and large-scale analysis tasks. </td> </tr> <tr> <td width="33%" align="center"> <strong>Ancestry Snapshot (Privacy-Safe)</strong><br> Estimates continental origin using on-device reference panels. </td> <td></td> <td></td> </tr> </table> <br>
-See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for usage instructions.
+<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators with unprecedented accuracy. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Precisely pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions including autism, ADHD, and schizophrenia. </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with surgical precision. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Seamlessly supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Harnesses a powerful CLI interface for scripting, automation, and enterprise-scale analysis tasks. </td> </tr> <tr> <td width="33%" align="center"> <strong>Privacy-First Ancestry Insights</strong><br> Estimates continental origin using on-device reference panels without compromising privacy. </td> <td></td> <td></td> </tr> </table> <br>
 
-> **New:** Interactive web dashboard for in-browser visualization is now available under `web/dashboard` and communicates with the local REST API at `/api`.
+See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for detailed usage instructions.
 
-### Automatic Natural Language Reports
-After each CLI analysis, DNAnalyzer now requests two summaries from the OpenAI API:
+> **New:** Interactive web dashboard for real-time visualization is now available under `web/dashboard`, seamlessly communicating with the local REST API at `/api`.
 
-- **Researcher Report** – Technical explanation with detailed statistics and terminology.
-- **Layperson Report** – Plain-language overview highlighting key takeaways.
+### Intelligent Natural Language Reports
+Following each CLI analysis, DNAnalyzer automatically generates two AI-powered summaries via the OpenAI API:
 
-Both reports are printed to the console once analysis completes if an `OPENAI_API_KEY` is configured.
+- **Researcher Report** – Technical analysis featuring detailed statistics and professional terminology
+- **Layperson Report** – Clear, accessible overview highlighting actionable insights
+
+Both reports are displayed in the console upon analysis completion when an `OPENAI_API_KEY` is configured.
 
 <br>
 <br>
 
 ## Quickstart Guide
 
-Ready to explore your DNA? Begin precise genomic analysis in seconds:
+Ready to unlock your genomic insights? Begin precision DNA analysis in seconds:
 
 ```bash
 # Clone the repository
@@ -83,36 +86,36 @@ cd DNAnalyzer
 ./gradlew build
 ```
 
-### 🚀 **NEW: Easy Launch Script**
-We've made DNAnalyzer much more user-friendly! Instead of memorizing complex command-line options:
+### 🚀 **NEW: Intuitive Launch Script**
+We've transformed DNAnalyzer's user experience! Say goodbye to complex command-line options:
 
 ```bash
 # Simple preset modes
 ./easy_dna.sh your_file.fa basic      # Standard analysis
 ./easy_dna.sh your_file.fa detailed   # Comprehensive analysis  
 ./easy_dna.sh your_file.fa mutations  # Generate mutations
-./easy_dna.sh your_file.fa all        # Run everything!
+./easy_dna.sh your_file.fa all        # Complete suite
 ./easy_dna.sh your_file.fa custom     # Interactive mode
 
 # Or use the traditional Java method
 java -jar build/libs/DNAnalyzer-1.2.1.jar your_file.fa
 ```
 
-### 📁 **NEW: Organized Output Structure**
-All generated files are now organized in a clear directory structure:
+### 📁 **NEW: Intelligent Output Organization**
+All generated files are automatically organized in a clean, intuitive directory structure:
 
 ```
 output/dnanalyzer_output_{filename}_{timestamp}/
-├── charts/          # Quality control and analysis charts (PNG)
+├── charts/          # Quality control and analysis visualizations (PNG)
 ├── sequences/       # Generated mutations and processed sequences (FASTA)
-└── reports/         # Analysis reports and summaries (HTML)
+└── reports/         # Comprehensive analysis reports and summaries (HTML)
 ```
 
-### 🎯 **NEW: Analysis Profiles**
-Use predefined profiles instead of complex command-line flags:
+### 🎯 **NEW: Smart Analysis Profiles**
+Leverage predefined profiles tailored to your workflow:
 
 ```bash
-# Use analysis profiles for common workflows
+# Select analysis profiles optimized for common use cases
 java -jar build/libs/DNAnalyzer-1.2.1.jar --profile research your_file.fa
 java -jar build/libs/DNAnalyzer-1.2.1.jar --profile clinical your_file.fa
 java -jar build/libs/DNAnalyzer-1.2.1.jar --profile mutation your_file.fa
@@ -121,80 +124,75 @@ java -jar build/libs/DNAnalyzer-1.2.1.jar --profile mutation your_file.fa
 ```
 
 ### 📚 Documentation
-- [Getting Started Guide](docs/getting-started.md) - Basic setup and configuration
-- [Enhanced Features Guide](docs/usage/enhanced-features.md) - **NEW!** Complete guide to all user experience improvements
+- [Getting Started Guide](docs/getting-started.md) - Essential setup and configuration
+- [Enhanced Features Guide](docs/usage/enhanced-features.md) - **NEW!** Comprehensive guide to all user experience improvements
 - [Command Reference](docs/usage/) - Complete command-line options and examples
 - [Changelog](CHANGELOG.md) - **NEW!** Detailed release notes and version history
 
 <br>
+
 ## Polygenic Health-Risk Scores
 
-DNAnalyzer now includes a lightweight polygenic risk score calculator and fun trait predictions.
-Provide a 23andMe text file along with a CSV of SNP weights to compute scores and see traits:
+DNAnalyzer now features an advanced polygenic risk score calculator alongside engaging trait predictions.
+Simply provide your 23andMe data file with a CSV of SNP weights to compute personalized scores:
 
 ```bash
 ./gradlew run --args='--23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa'
 ```
 
-Trait predictions and the risk score are printed after the standard DNA analysis.
+Trait predictions and risk scores are displayed following standard DNA analysis.
 **Disclaimer:** Trait predictions are provided for educational purposes only and should not be used for medical or health decisions.
-<br>
 
+<br>
 
 ### REST API
 
-For automated workflows, DNAnalyzer exposes a minimal REST endpoint. Start the
-Spring Boot application and send a FASTA file to `/server/analyze`:
+For seamless automated workflows, DNAnalyzer exposes a robust REST endpoint. Launch the
+Spring Boot application and send your FASTA file to `/server/analyze`:
 
 ```bash
 curl -F file=@sample.fa http://localhost:8080/server/analyze
 ```
 
+The response delivers core pipeline output as JSON, enabling effortless
+scripting from Python, R, or any preferred language without GUI dependencies.
 
-The response contains the core pipeline output serialized as JSON, allowing you
-to script DNAnalyzer from languages like Python or R without the GUI.
-
-Additionally, a `/api/file/parse` endpoint is available for simply uploading a
-FASTA or FASTQ file and receiving the parsed sequence.
+Additionally, the `/api/file/parse` endpoint enables straightforward FASTA or FASTQ file
+upload and sequence parsing.
 
 ## GPU-Accelerated Smith-Waterman
 
-An optional module using PyOpenCL provides GPU acceleration for local sequence
-alignment. If no compatible GPU is found, the implementation automatically
-falls back to a pure Python version.
+Our optional PyOpenCL module delivers GPU acceleration for local sequence
+alignment. When no compatible GPU is detected, the implementation gracefully
+falls back to optimized Python execution.
 
-Run the module directly or via the CLI:
+Execute the module directly or via CLI:
 
 ```bash
 python -m src.python.gpu_smith_waterman SEQ1 SEQ2
 ```
 
-From the DNAnalyzer CLI you can request a Smith-Waterman alignment by supplying
-`--sw-align` together with `--align`:
+From the DNAnalyzer CLI, request Smith-Waterman alignment by combining
+`--sw-align` with `--align`:
 
 ```bash
 java -jar dnanalyzer.jar --align reference.fa --sw-align
 ```
 
-See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for further
-details.
+See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for comprehensive
+technical details.
 
 ### Packaging Analysis Sessions
 
-After running DNAnalyzer you can archive the inputs, logs, and an interactive
-HTML report using `package-session.sh`:
+After completing your DNAnalyzer run, archive inputs, logs, and interactive
+HTML reports using `package-session.sh`:
 
 ```bash
 ./scripts/package-session.sh sample.fa
 ```
 
-This creates a time-stamped ZIP file containing the FASTA file, console log,
-generated report, and any QC chart.
-
-## Polygenic Health-Risk Scores
-
-DNAnalyzer now includes a lightweight polygenic risk score calculator. Supply a CSV file of SNP weights
-and your genotyping data to estimate risk for complex diseases directly on device.
+This generates a time-stamped ZIP archive containing the FASTA file, console output,
+generated reports, and all QC visualizations.
 
 <br>
 
@@ -202,13 +200,13 @@ and your genotyping data to estimate risk for complex diseases directly on devic
 
 <div align="center">
 
-| Upcoming Development | Description |
+| Upcoming Innovation | Description |
 |---|---|
-| **Optimized SQL Database** | Scalable database for genomic datasets across diverse species |
-| **Enhanced Neural Network** | Integration with 3rd-party genotype datasets (23andMe, AncestryDNA) |
-| **DIAMOND Implementation** | Blending DIAMOND's speed with BLAST’s accuracy for cutting-edge analyses |
-| **AI Trait Predictor Suite** | Fun, shareable predictions—taste for cilantro, chronotype, ear-wax type—backed by peer-reviewed SNP studies |
-| **Secure Share & Compare** | Offline-generated, QR-coded summaries let users share limited insights with doctors or friends—no raw genome ever exposed. |
+| **Optimized SQL Database** | Scalable architecture supporting genomic datasets across diverse species |
+| **Enhanced Neural Network** | Seamless integration with third-party genotype datasets (23andMe, AncestryDNA) |
+| **DIAMOND Implementation** | Harmonizing DIAMOND's speed with BLAST's accuracy for next-generation analyses |
+| **AI Trait Predictor Suite** | Engaging, shareable predictions—from cilantro taste to chronotype—validated by peer-reviewed SNP studies |
+| **Secure Share & Compare** | Offline-generated QR summaries enable selective insight sharing with healthcare providers—raw genome remains private |
 
 </div>
 
@@ -216,7 +214,7 @@ and your genotyping data to estimate risk for complex diseases directly on devic
 
 ## Contribute to DNAnalyzer
 
-We welcome contributions across experience levels:
+We enthusiastically welcome contributions from all experience levels:
 
 - [Guidelines for Contribution](./docs/contributing/Contribution_Guidelines.md)
 - [Git Usage Instructions](./docs/contributing/CONTRIBUTING.md)
@@ -241,7 +239,7 @@ We welcome contributions across experience levels:
 
 ## Academic Citations
 
-Please cite DNAnalyzer as follows:
+When referencing DNAnalyzer in academic work, please cite:
 
 ```bibtex
 @software{Acharya_DNAnalyzer_ML-Powered_DNA_2022,
@@ -257,11 +255,11 @@ Please cite DNAnalyzer as follows:
 
 <br>
 
-## ⚖Terms of Use
+## ⚖ Terms of Use
 
-DNAnalyzer is provided "as-is." Usage of the software implies acceptance of risks and liabilities. DNAnalyzer disclaims responsibility for any loss or damage arising from its use.
+DNAnalyzer is provided "as-is." Usage of this software implies acceptance of all associated risks and liabilities. DNAnalyzer disclaims responsibility for any loss or damage arising from its use.
 
-For assistance or inquiries, contact: help@dnanalyzer.org.
+For assistance or inquiries: help@dnanalyzer.org
 
 DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499), licensed under MIT License.
 
@@ -277,7 +275,7 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
   &nbsp;&nbsp;
   <img src="https://github.com/user-attachments/assets/068c18e2-5076-458d-8e2e-faf166ea63c6" height="100" alt="Anthropic Logo">
   &nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/ee09ae49-94cf-4a8c-97d4-c0937aecb9be" height="100" alt="AI Engineer World’s Fair Logo">
+  <img src="https://github.com/user-attachments/assets/ee09ae49-94cf-4a8c-97d4-c0937aecb9be" height="100" alt="AI Engineer World's Fair Logo">
   &nbsp;&nbsp;
   <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-black.png" height="100" alt="DEV Logo">
 </div>
@@ -290,7 +288,7 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
 | 2024 | **DEV.to** | Showcased by the founder of DEV |
 
 **Watch the live demos**  
-[▶ a16z Pitch(2 min)](https://youtu.be/zd698cf5dX4) | [▶ Installation Instructions (7 min)](https://youtu.be/dOwkInn6eDw)
+[▶ a16z Pitch(2 min)](https://youtu.be/zd698cf5dX4) | [▶ Installation Instructions (7 min)](https://youtu.be/dOwkInn6eDw)
 -->
 ---
 
@@ -303,8 +301,8 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
 | GitHub Stars | **147** |
 | Forks | **62** |
 | Contributors | **46** |
-| Monthly FASTA files analyzed* | **5 000+ |
-| Total downloads (Gradle/CLI) | **4 042** |
+| Monthly FASTA files analyzed* | **5,000+** |
+| Total downloads (Gradle/CLI) | **4,042** |
 | Deployments via GitHub Pages | **485** |
 
 ---
@@ -313,10 +311,10 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
 <!-- 💬  TESTIMONIALS
 ## Testimonials  
 
-> “DNAnalyzer lowered our variant-calling turnaround time from hours to minutes.”  
+> "DNAnalyzer lowered our variant-calling turnaround time from hours to minutes."  
 > — *Professor Name, University Placeholder*
 
-> “A model student project demonstrating real-world impact in computational biology.”  
+> "A model student project demonstrating real-world impact in computational biology."  
 > — *Admissions Officer, Placeholder Institute*
 
 _Add additional verified quotes as they arrive._
@@ -329,7 +327,7 @@ _Add additional verified quotes as they arrive._
 
 | Role | Name | Highlights |
 |------|------|------------|
-| Founder / Lead Engineer | **Piyush Acharya** | IEEE-published author; 97 % model accuracy; National Science Bowl champion |
+| Founder / Lead Engineer | **Piyush Acharya** | IEEE-published author; 97% model accuracy; National Science Bowl champion |
 | Core Maintainers | Martin Gallauner · Ravina Deogadkar · Hrithik Raj | Handle feature PRs, security reviews, and documentation |
 | Advisory Support | 45 volunteer researchers (Microsoft Research, Northeastern U, etc.) | Provide domain-expert code reviews and dataset vetting |
 -->
@@ -352,12 +350,13 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
 <!-- 🌐  COMMUNITY ENGAGEMENT  -->
 ## Community Engagement  
 
-- **Discord** · `#genomics-ai` channel (80 + members)  
-- **Open Issues for First-Timers** · Labelled `good-first-issue` to mentor newcomers.  
-- **Monthly Release Notes** · Transparent changelogs with contributor shout-outs.
+- **Discord** · Active `#genomics-ai` channel (80+ members)  
+- **Open Issues for First-Timers** · Labeled `good-first-issue` to mentor newcomers  
+- **Monthly Release Notes** · Transparent changelogs with contributor recognition
+
 ---
 
-\*Monthly FASTA throughput is calculated from anonymized CLI telemetry and public workflow logs.
+\*Monthly FASTA throughput calculated from anonymized CLI telemetry and public workflow logs.
 
 <!-- ────────────────────────────────────────────────────────────────── -->
 
