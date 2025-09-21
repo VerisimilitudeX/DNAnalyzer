@@ -131,14 +131,19 @@ export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
 If you see `Task :compileJava FAILED`, the program cannot find your Java installation. You may need to export your JAVA_HOME path again.
 
 ## AI Provider Configuration
-DNAnalyzer can integrate with multiple AI services including OpenAI, Anthropic, Grok, Google Gemini, and local providers like Ollama and LM Studio. Add your API keys to `src/main/resources/ai-keys.properties` and select the provider you wish to use by setting the `provider` value or the `AI_PROVIDER` environment variable.
+DNAnalyzer now ships with built-in OpenAI support for the Researcher/Layperson summaries printed after every CLI run. The summaries are optional; if no key is present the analysis completes normally.
 
-Example environment variable usage on Linux or macOS:
-`export AI_PROVIDER=openai`
+1. Export your key before launching the CLI:
+   ```bash
+   export OPENAI_API_KEY=sk-...
+   # optional tweaks
+   export OPENAI_MODEL=gpt-4o-mini
+   export OPENAI_TEMPERATURE=0.2
+   ```
+2. Run DNAnalyzer as usual. Two files—`researcher_report.txt` and `layperson_report.txt`—will be written under `analysis_output/<session>/reports/` in addition to being echoed to the terminal.
+3. Pass `--no-ai` on the command line whenever you want to skip the OpenAI call for a single run.
 
-Each provider may also use its own environment variable for the API key (e.g., `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`).
-
-When configured, DNAnalyzer will generate two natural language reports after each run: one aimed at researchers and another simplified for the layperson.
+If you prefer to centralise secrets, you can also place the key in `src/main/resources/ai-keys.properties` (use the property name `openai.apiKey`) or set `AI_PROVIDER=openai` to be explicit about the provider.
 
 
 ### Usage

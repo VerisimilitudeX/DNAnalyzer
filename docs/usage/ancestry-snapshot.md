@@ -1,13 +1,3 @@
-# Ancestry Snapshot
-
-The Ancestry Snapshot estimates your broad continental origins using reference panels processed entirely on device. Supply a genotyping data file (for example, a 23andMe text export) to generate a summary.
-
-```
-java -jar DNAnalyzer.jar --ancestry path/to/genome.txt
-```
-
-The tool outputs a simple breakdown by continent without transmitting any data to external servers.
-=======
 # Ancestry Snapshot (Privacy-Safe)
 
 The `AncestrySnapshot` utility compares your genotype to a small on-device
@@ -16,15 +6,17 @@ and no raw data is sent to third-party services.
 
 ## How it works
 - Reference markers are packaged in `assets/ancestry/continental_reference.json`.
-- `AncestrySnapshot` loads these panels at runtime and scores your genotype.
-- The continent with the highest match percentage is reported.
+- `AncestrySnapshot` loads these markers at runtime and scores your genotype.
+- The continent with the highest match percentage is highlighted in the report.
 
-## Usage Example
+## Quick start
 ```java
-Map<String, String> snps = DNADataUploader.uploadFromAncestryDNA("my_data.txt");
-DNAAnalysis analysis = new DNAAnalysis(new DNATools(""), null, "M");
-analysis.ancestrySnapshot(snps);
+Path export = Paths.get("my_23andme_data.txt");
+Map<String, String> snps = DNADataUploader.uploadFrom23AndMe(export);
+AncestrySnapshot snapshot = AncestrySnapshot.usingBundledReference();
+System.out.println(snapshot.formatResults(snps));
 ```
 
-This prints a simple breakdown of continental matches without leaving your
-machine.
+`formatResults` produces a concise text summary (for example `Top match: Europe
+(100.0%)`). If additional detail is required, inspect the `Result` objects
+returned by `analyze` to see missing or mismatched markers per population.

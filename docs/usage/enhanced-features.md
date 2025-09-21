@@ -76,6 +76,11 @@ The `easy_dna.sh` script provides intuitive preset modes instead of complex comm
 ./easy_dna.sh your_file.fa custom
 ```
 
+> The launcher checks `build/libs/` for a feature-complete DNAnalyzer jar, otherwise it falls back to
+> `./gradlew run`. Advanced presets (detailed/quick/mutations/reverse/all/custom) are only available when
+> those CLI flags are supported by the runtime. Build a fresh jar with `./gradlew jar` or set
+> `DNANALYZER_JAR=/path/to/dnanalyzer.jar` to point at your preferred binary.
+
 ### Interactive Custom Mode
 
 The custom mode asks simple yes/no questions instead of requiring command-line expertise:
@@ -144,9 +149,10 @@ java -jar build/libs/DNAnalyzer-1.2.1.jar --profile mutation your_file.fa
 ### Listing Available Profiles
 
 ```bash
-java -jar build/libs/DNAnalyzer-1.2.1.jar --profile list --help
+java -jar build/libs/DNAnalyzer-1.2.1.jar --profile list
 ```
 
+Running `--profile list` prints the preset names so you can discover every workflow from the terminal.
 ## 📊 Enhanced File Notifications
 
 ### Real-time Progress Updates
@@ -217,7 +223,7 @@ java -jar DNAnalyzer.jar --detailed --verbose --mutate=5 --gc-window=50 file.fa
 ```bash
 ./easy_dna.sh file.fa detailed
 # or
-java -jar DNAnalyzer.jar --profile research file.fa
+java -jar build/libs/DNAnalyzer-1.2.1.jar --profile research file.fa
 ```
 
 ## 🛠️ Advanced Usage

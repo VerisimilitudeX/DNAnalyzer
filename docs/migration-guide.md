@@ -39,11 +39,14 @@ java -jar DNAnalyzer.jar --detailed --verbose --mutate=5 test.fa
 ./easy_dna.sh test.fa detailed
 
 # Or use analysis profiles
-java -jar DNAnalyzer.jar --profile research test.fa
+java -jar build/libs/DNAnalyzer-1.2.1.jar --profile research test.fa
 
 # Traditional method still works
-java -jar DNAnalyzer.jar --detailed --verbose --mutate=5 test.fa
+java -jar build/libs/DNAnalyzer-1.2.1.jar --detailed --verbose --mutate 5 test.fa
 ```
+
+> Tip: `easy_dna.sh` uses `scripts/launcher-common.sh` to detect the rebuilt jar in `build/libs/` and will
+> fall back to `./gradlew run` if necessary. Set `DNANALYZER_JAR` to override the jar path when scripting.
 
 ## 📋 Migration Checklist
 
@@ -83,7 +86,7 @@ ls assets/reports/$1_qc.png
 ```bash
 #!/bin/bash
 ./easy_dna.sh $1 detailed
-# Or use profile: java -jar DNAnalyzer.jar --profile detailed $1
+# Or use profile: java -jar build/libs/DNAnalyzer-1.2.1.jar --profile detailed $1
 # Files now organized in output/ directory with clear summary
 ```
 

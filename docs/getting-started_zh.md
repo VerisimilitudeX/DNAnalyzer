@@ -121,6 +121,10 @@ export JAVA_HOME="/workspaces/DNAnalyzer/jdk-17.0.7"
 
 要在Linux或macOS上设置API密钥，请运行 `export OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx`，其中 `sk-xxxxxxxxxxxxxxxxxxxxxxxx` 是您的API密钥。
 
+当密钥可用时，CLI 会在分析结果之后自动生成两份说明：一份面向研究人员（包含详细统计数据），另一份面向普通读者（提供可执行的建议）。两份文本会打印在终端，并保存在 `analysis_output/<会话>/reports/` 目录中的 `researcher_report.txt` 与 `layperson_report.txt`。
+
+如果您只想在某次运行中跳过 OpenAI 请求，可添加 `--no-ai` 参数；所有本地分析仍会执行。
+
 对于Windows，请改用 `setx OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx`。
 
 ### 用法

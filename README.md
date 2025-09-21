@@ -58,12 +58,12 @@ See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for detailed 
 > **New:** Interactive web dashboard for real-time visualization is now available under `web/dashboard`, seamlessly communicating with the local REST API at `/api`.
 
 ### Intelligent Natural Language Reports
-Following each CLI analysis, DNAnalyzer automatically generates two AI-powered summaries via the OpenAI API:
+When an OpenAI key is available, each CLI run now produces two narratives immediately after the metrics:
 
-- **Researcher Report** – Technical analysis featuring detailed statistics and professional terminology
-- **Layperson Report** – Clear, accessible overview highlighting actionable insights
+- **Researcher Report** – Technical interpretation with references to the detected GC windows, ORFs, PRS coverage, etc.
+- **Layperson Report** – Plain-language explainer that highlights the most actionable findings.
 
-Both reports are displayed in the console upon analysis completion when an `OPENAI_API_KEY` is configured.
+Set `OPENAI_API_KEY` (or `AI_PROVIDER=openai` plus the corresponding key) before launching DNAnalyzer and the summaries will appear in the terminal and be saved to `analysis_output/.../reports/`. Use `--no-ai` if you want to skip the call for a particular run.
 
 <br>
 <br>
@@ -83,6 +83,16 @@ cd DNAnalyzer
 ./gradlew build
 ```
 
+> **Enable AI summaries (optional):** export your API key before running the CLI, e.g.
+
+```bash
+export OPENAI_API_KEY=sk-...
+# optionally pick a model
+export OPENAI_MODEL=gpt-4o-mini
+```
+
+Pass `--no-ai` if you prefer a run without contacting the API; all analytic outputs still generate.
+
 ### 🚀 **NEW: Intuitive Launch Script**
 We've transformed DNAnalyzer's user experience! Say goodbye to complex command-line options:
 
@@ -97,6 +107,10 @@ We've transformed DNAnalyzer's user experience! Say goodbye to complex command-l
 # Or use the traditional Java method
 java -jar build/libs/DNAnalyzer-1.2.1.jar your_file.fa
 ```
+
+> `easy_dna.sh` automatically uses a feature-complete jar from `build/libs/` when available,
+> falls back to `./gradlew run`, and warns if only the legacy basic jar is present.
+> Override the jar path with `DNANALYZER_JAR=/path/to/dnanalyzer.jar` if needed.
 
 ### 📁 **NEW: Intelligent Output Organization**
 All generated files are automatically organized in a clean, intuitive directory structure:
@@ -118,6 +132,8 @@ java -jar build/libs/DNAnalyzer-1.2.1.jar --profile clinical your_file.fa
 java -jar build/libs/DNAnalyzer-1.2.1.jar --profile mutation your_file.fa
 
 # Available profiles: basic, detailed, quick, research, mutation, clinical
+# List available presets directly from the CLI
+java -jar build/libs/DNAnalyzer-1.2.1.jar --profile list
 ```
 
 ### 📚 Documentation
@@ -135,7 +151,14 @@ Simply provide your 23andMe data file with a CSV of SNP weights to compute perso
 
 ```bash
 ./gradlew run --args='--23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa'
+java -jar build/libs/DNAnalyzer-1.2.1.jar --23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa
 ```
+
+The CLI now parses the standard tab-delimited 23andMe export, aligns it with each provided
+weight table, and reports the raw and normalized contribution of every SNP in the trait.
+Missing or uncallable variants are clearly identified so you can assess coverage before
+acting on a score. See the [Polygenic Risk Scoring guide](docs/usage/polygenic-risk-scoring.md)
+for a detailed walkthrough and example outputs.
 
 Trait predictions and risk scores are displayed following standard DNA analysis.
 **Disclaimer:** Trait predictions are provided for educational purposes only and should not be used for medical or health decisions.
@@ -144,18 +167,49 @@ Trait predictions and risk scores are displayed following standard DNA analysis.
 
 ### REST API
 
-For seamless automated workflows, DNAnalyzer exposes a robust REST endpoint. Launch the
-Spring Boot application and send your FASTA file to `/server/analyze`:
+The project now ships with a production-ready Spring Boot service that powers the web dashboard
+and external integrations. Start it locally with:
 
 ```bash
-curl -F file=@sample.fa http://localhost:8080/server/analyze
+./gradlew bootRun
 ```
 
-The response delivers core pipeline output as JSON, enabling effortless
-scripting from Python, R, or any preferred language without GUI dependencies.
+The API is exposed under `/api/v1` and returns JSON. Key endpoints include:
 
-Additionally, the `/api/file/parse` endpoint enables straightforward FASTA or FASTQ file
-upload and sequence parsing.
+| Endpoint | Method | Description |
+| --- | --- | --- |
+| `/api/v1/status` | GET | Health check and version metadata |
+| `/api/v1/analyze` | POST (multipart) | Run the full analysis pipeline on an uploaded FASTA/FASTQ/plain-text sequence |
+| `/api/v1/base-pairs` | POST (JSON) | Return base pair counts, percentages, and GC content for a sequence |
+| `/api/v1/reading-frames` | POST (JSON) | Identify open reading frames in forward and reverse directions |
+| `/api/v1/find-proteins` | POST (JSON) | Predict candidate proteins (top 10 by length) |
+| `/api/v1/manipulate` | POST (JSON) | Reverse, complement, or reverse-complement a sequence |
+| `/api/v1/parse` | POST (multipart) | Extract the first sequence record from FASTA, FASTQ, or plain text uploads |
+| `/api/v1/analyze-genetic` | POST (multipart) | Score 23andMe/Ancestry genotype files for ancestry matches and bundled polygenic risk panels |
+
+Example: analyze a sequence file and receive the same payload used by the dashboard visualizations.
+
+```bash
+curl -F dnaFile=@sample.fa http://localhost:8080/api/v1/analyze
+```
+
+Need just the base-pair breakdown? Send the raw sequence as JSON:
+
+```bash
+curl -X POST http://localhost:8080/api/v1/base-pairs \
+     -H 'Content-Type: application/json' \
+     -d '{"sequence": "ATGCGCATTA"}'
+```
+
+Genotype data uploads are also supported. Include `snpAnalysis=true` to stream per-SNP contributions in the response.
+
+```bash
+curl -F geneticFile=@my_23andme.txt -F snpAnalysis=true \
+     http://localhost:8080/api/v1/analyze-genetic
+```
+
+All responses include descriptive error messages for invalid payloads, making the API easy to
+drive from scripts in Python, R, or any other environment.
 
 ## GPU-Accelerated Smith-Waterman
 
@@ -170,10 +224,18 @@ python -m src.python.gpu_smith_waterman SEQ1 SEQ2
 ```
 
 From the DNAnalyzer CLI, request Smith-Waterman alignment by combining
-`--sw-align` with `--align`:
+`--sw-align` with `--align`. If you already provided a primary FASTA file, pass
+the reference sequence to `--align`:
 
 ```bash
-java -jar dnanalyzer.jar --align reference.fa --sw-align
+java -jar dnanalyzer.jar sample.fa --align reference.fa --sw-align
+```
+
+Alternatively, supply both query and reference sequences directly to
+`--align`:
+
+```bash
+java -jar dnanalyzer.jar --align query.fa reference.fa --sw-align
 ```
 
 See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for comprehensive
@@ -188,8 +250,9 @@ HTML reports using `package-session.sh`:
 ./scripts/package-session.sh sample.fa
 ```
 
-This generates a time-stamped ZIP archive containing the FASTA file, console output,
-generated reports, and all QC visualizations.
+The generated time-stamped ZIP archive includes the original FASTA, the captured
+`analysis.log`, a self-contained `report.html` summarizing base counts and
+percentages, plus any QC images found in `assets/reports`.
 
 <br>
 
