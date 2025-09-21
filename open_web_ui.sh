@@ -30,10 +30,10 @@ cleanup() {
 trap cleanup EXIT
 
 echo "Building DNAnalyzer backend (bootJar)..."
-"$GRADLE_WRAPPER" bootJar -x test >/dev/null 2>&1 || {
+if ! "$GRADLE_WRAPPER" bootJar -x test >/dev/null 2>&1; then
   echo "Gradle bootJar build failed. Check the console output above." >&2
   exit 1
-}
+fi
 
 if [[ ! -f "$BOOT_JAR" ]]; then
   echo "Boot jar not found at $BOOT_JAR" >&2
