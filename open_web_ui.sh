@@ -8,6 +8,7 @@ SERVER_PORT="${DNANALYZER_SERVER_PORT:-8080}"
 UI_FILE="$SCRIPT_DIR/web/dashboard/dashboard.html"
 BACKEND_LOG_DIR="$SCRIPT_DIR/build"
 BACKEND_LOG_FILE="$BACKEND_LOG_DIR/web-ui-backend.log"
+BOOT_JAR="$SCRIPT_DIR/build/libs/DNAnalyzer-1.2.1.jar"
 
 if [[ ! -x "$GRADLE_WRAPPER" ]]; then
   echo "Gradle wrapper not found at $GRADLE_WRAPPER" >&2
@@ -28,9 +29,21 @@ cleanup() {
 
 trap cleanup EXIT
 
+echo "Building DNAnalyzer backend (bootJar)..."
+"$GRADLE_WRAPPER" bootJar -x test >/dev/null 2>&1 || {
+  echo "Gradle bootJar build failed. Check the console output above." >&2
+  exit 1
+}
+
+if [[ ! -f "$BOOT_JAR" ]]; then
+  echo "Boot jar not found at $BOOT_JAR" >&2
+  exit 1
+}
+
 echo "Starting DNAnalyzer backend on port $SERVER_PORT..."
-"$GRADLE_WRAPPER" -Dspring-boot.run.main-class=DNAnalyzer.api.ApiApplication \
-  bootRun --args="--server.port=$SERVER_PORT" \
+java -Dloader.main=DNAnalyzer.api.ApiApplication \
+  -jar "$BOOT_JAR" \
+  --server.port="$SERVER_PORT" \
   >"$BACKEND_LOG_FILE" 2>&1 &
 BACKEND_PID=$!
 
