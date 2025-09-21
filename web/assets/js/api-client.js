@@ -7,9 +7,23 @@
  * @version 1.0.0
  */
 
+const resolveDefaultBaseUrl = () => {
+    if (typeof window !== 'undefined' && window.location) {
+        const { protocol, host, origin } = window.location;
+        const isHttp = protocol === 'http:' || protocol === 'https:';
+        if (isHttp && origin) {
+            return `${origin.replace(/\/$/, '')}/api/v1`;
+        }
+        if (host) {
+            return `http://${host.replace(/\/$/, '')}/api/v1`;
+        }
+    }
+    return 'http://localhost:8080/api/v1';
+};
+
 const DNAnalyzerAPI = {
     // Base URL for API requests - configurable for different environments
-    baseUrl: '/api/v1',
+    baseUrl: resolveDefaultBaseUrl(),
 
     /**
      * Set the base URL for the API
@@ -46,17 +60,25 @@ const DNAnalyzerAPI = {
         try {
             const formData = new FormData();
             formData.append('dnaFile', dnaFile);
-            
-            // Add options to form data
-            if (options.amino) formData.append('amino', options.amino);
-            if (options.minCount) formData.append('minCount', options.minCount);
-            if (options.maxCount) formData.append('maxCount', options.maxCount);
-            if (options.reverse) formData.append('reverse', options.reverse);
-            if (options.rcomplement) formData.append('rcomplement', options.rcomplement);
-            if (options.codons) formData.append('codons', options.codons);
-            if (options.coverage) formData.append('coverage', options.coverage);
-            if (options.longest) formData.append('longest', options.longest);
-            if (options.format) formData.append('format', options.format);
+
+            if (Array.isArray(options)) {
+                if (options.length > 0) {
+                    formData.append('options', JSON.stringify(options));
+                }
+            } else if (options && typeof options === 'object') {
+                if (options.amino) formData.append('amino', options.amino);
+                if (options.minCount) formData.append('minCount', options.minCount);
+                if (options.maxCount) formData.append('maxCount', options.maxCount);
+                if (options.reverse) formData.append('reverse', options.reverse);
+                if (options.rcomplement) formData.append('rcomplement', options.rcomplement);
+                if (options.codons) formData.append('codons', options.codons);
+                if (options.coverage) formData.append('coverage', options.coverage);
+                if (options.longest) formData.append('longest', options.longest);
+                if (options.format) formData.append('format', options.format);
+                if (Array.isArray(options.options) && options.options.length > 0) {
+                    formData.append('options', JSON.stringify(options.options));
+                }
+            }
             
             const response = await fetch(`${this.baseUrl}/analyze`, {
                 method: 'POST',
