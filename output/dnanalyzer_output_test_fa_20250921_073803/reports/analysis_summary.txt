@@ -1,0 +1,28 @@
+DNAnalyzer Analysis Report
+==========================
+
+Input file: /Users/piyushacharya/Documents/GitHub/DNAnalyzer/assets/dna/example/test.fa
+Sequence header: Test DNA Sequence
+Length: 1,120 bases
+GC content: 50.09%
+
+Nucleotide counts:
+  A: 279
+  C: 280
+  G: 281
+  N: 0
+  T: 280
+
+Most common codons:
+  ATC: 92
+  TCG: 91
+  GAT: 91
+  CGA: 91
+  CCA: 1
+  ATG: 1
+  GTA: 1
+  CTG: 1
+  GTC: 1
+  GCT: 1
+
+Generated 3 mutations (3 edits each): /Users/piyushacharya/Documents/GitHub/DNAnalyzer/./output/dnanalyzer_output_test_fa_20250921_073803/sequences/mutations_20250921_003804.fa

@@ -1,0 +1,19 @@
+DNAnalyzer Analysis Report
+==========================
+
+Input file: /Users/piyushacharya/Documents/GitHub/DNAnalyzer/test_sample.fasta
+Sequence header: sample
+Length: 9 bases
+GC content: 44.44%
+
+Nucleotide counts:
+  A: 2
+  C: 2
+  G: 2
+  N: 1
+  T: 2
+
+Most common codons:
+  TGC: 1
+  ATG: 1
+
