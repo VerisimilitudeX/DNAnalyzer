@@ -1,5 +1,11 @@
-#!/bin/bash
-cd /Volumes/T9/DNAnalyzer
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/scripts/launcher-common.sh"
+
+dnanalyzer_init "$SCRIPT_DIR"
 
 echo "Running DNAnalyzer..."
-java -jar build/libs/DNAnalyzer-1.2.1.jar assets/dna/example/test.fa 2>&1 
+dnanalyzer_run "$SCRIPT_DIR/assets/dna/example/test.fa"

@@ -1,11 +1,20 @@
-#!/bin/bash
-cd /Volumes/T9/DNAnalyzer
+#!/usr/bin/env bash
 
-echo "=== Running DNAnalyzer with DETAILED analysis ==="
-java -jar build/libs/DNAnalyzer-1.2.1.jar --detailed --verbose assets/dna/example/test.fa 2>&1
+set -euo pipefail
 
-echo -e "\n=== Running with REVERSE COMPLEMENT ==="
-java -jar build/libs/DNAnalyzer-1.2.1.jar --rcomplement assets/dna/example/test.fa 2>&1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/scripts/launcher-common.sh"
 
-echo -e "\n=== Running with MUTATION GENERATION (5 mutations) ==="
-java -jar build/libs/DNAnalyzer-1.2.1.jar --mutate=5 assets/dna/example/test.fa 2>&1 
+dnanalyzer_init "$SCRIPT_DIR"
+dnanalyzer_require_advanced
+
+echo "Running detailed DNAnalyzer workflow..."
+dnanalyzer_run --detailed --verbose "$SCRIPT_DIR/assets/dna/example/test.fa"
+echo ""
+
+echo "Generating reverse complement..."
+dnanalyzer_run --rcomplement "$SCRIPT_DIR/assets/dna/example/test.fa"
+echo ""
+
+echo "Generating mutations..."
+dnanalyzer_run --mutate 5 "$SCRIPT_DIR/assets/dna/example/test.fa"

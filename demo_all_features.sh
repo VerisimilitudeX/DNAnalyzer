@@ -1,43 +1,52 @@
-#!/bin/bash
-cd /Volumes/T9/DNAnalyzer
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/scripts/launcher-common.sh"
+
+dnanalyzer_init "$SCRIPT_DIR"
+dnanalyzer_require_advanced
+
+FASTA_FILE="$SCRIPT_DIR/assets/dna/example/test.fa"
 
 echo "🧬 DNAnalyzer Complete Feature Demo 🧬"
 echo "======================================="
 echo ""
 
 echo "📋 Sample DNA file content:"
-head -3 assets/dna/example/test.fa
+head -3 "$FASTA_FILE"
 echo "..."
 echo ""
 
 echo "1️⃣ BASIC ANALYSIS (Default mode):"
 echo "-----------------------------------"
-java -jar build/libs/DNAnalyzer-1.2.1.jar assets/dna/example/test.fa 2>&1
+dnanalyzer_run "$FASTA_FILE"
 echo ""
 
 echo "2️⃣ DETAILED ANALYSIS with verbose output:"
 echo "-------------------------------------------"
-java -jar build/libs/DNAnalyzer-1.2.1.jar --detailed --verbose assets/dna/example/test.fa 2>&1
+dnanalyzer_run --detailed --verbose "$FASTA_FILE"
 echo ""
 
 echo "3️⃣ QUICK ANALYSIS:"
 echo "-------------------"
-java -jar build/libs/DNAnalyzer-1.2.1.jar --quick assets/dna/example/test.fa 2>&1
+dnanalyzer_run --quick "$FASTA_FILE"
 echo ""
 
 echo "4️⃣ MUTATION GENERATION:"
 echo "------------------------"
-java -jar build/libs/DNAnalyzer-1.2.1.jar --mutate=3 assets/dna/example/test.fa 2>&1
+dnanalyzer_run --mutate 3 "$FASTA_FILE"
 echo ""
 
 echo "5️⃣ REVERSE COMPLEMENT ANALYSIS:"
 echo "--------------------------------"
-java -jar build/libs/DNAnalyzer-1.2.1.jar --rcomplement assets/dna/example/test.fa 2>&1
+dnanalyzer_run --rcomplement "$FASTA_FILE"
 echo ""
 
 echo "6️⃣ AVAILABLE COMMAND-LINE OPTIONS:"
 echo "-----------------------------------"
-java -jar build/libs/DNAnalyzer-1.2.1.jar --help 2>&1
+dnanalyzer_run --help
 echo ""
 
 echo "✅ All features demonstrated successfully!"
@@ -55,4 +64,4 @@ echo "   - Research, Clinical, Basic, Detailed, Quick, Mutation"
 echo ""
 echo "4. Clear error messages and helpful guidance"
 echo ""
-echo "5. Sample usage examples and documentation" 
+echo "5. Sample usage examples and documentation"

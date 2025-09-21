@@ -1,8 +1,15 @@
-#!/bin/bash
-cd /Volumes/T9/DNAnalyzer
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/scripts/launcher-common.sh"
+
+dnanalyzer_init "$SCRIPT_DIR"
 
 echo "=== DNAnalyzer Version ==="
-java -jar build/libs/DNAnalyzer-1.2.1.jar --version 2>&1
+dnanalyzer_run --version
 
-echo -e "\n=== DNAnalyzer Help ==="
-java -jar build/libs/DNAnalyzer-1.2.1.jar --help 2>&1 
+echo ""
+echo "=== DNAnalyzer Help ==="
+dnanalyzer_run --help

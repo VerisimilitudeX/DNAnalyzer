@@ -1,36 +1,39 @@
-#!/bin/bash
-cd /Volumes/T9/DNAnalyzer
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/scripts/launcher-common.sh"
 
 echo "🧬 Testing Enhanced DNAnalyzer with Better Output Organization 🧬"
 echo "=================================================================="
 echo ""
 
 echo "📋 Building the enhanced version..."
-./gradlew build -x test 2>/dev/null
-
-if [ $? -eq 0 ]; then
-    echo "✅ Build successful!"
+if "$SCRIPT_DIR/gradlew" build -x test >/dev/null 2>&1; then
+  echo "✅ Build successful!"
 else
-    echo "❌ Build failed, trying with existing JAR..."
+  echo "❌ Build failed, continuing with existing runtime..."
 fi
+
+dnanalyzer_init "$SCRIPT_DIR"
+dnanalyzer_require_advanced
+
+FASTA_FILE="$SCRIPT_DIR/assets/dna/example/test.fa"
 
 echo ""
 echo "🔬 Running enhanced analysis..."
-echo ""
-
-java -jar build/libs/DNAnalyzer-1.2.1.jar assets/dna/example/test.fa 2>&1
+dnanalyzer_run "$FASTA_FILE"
 
 echo ""
 echo "🧪 Running with mutations to test file organization..."
-echo ""
-
-java -jar build/libs/DNAnalyzer-1.2.1.jar --mutate=3 assets/dna/example/test.fa 2>&1
+dnanalyzer_run --mutate 3 "$FASTA_FILE"
 
 echo ""
 echo "📁 Checking output directory structure..."
-if [ -d "output" ]; then
-    echo "Output directory structure:"
-    find output -type f -name "*" | head -10
+if [[ -d "$SCRIPT_DIR/output" ]]; then
+  echo "Output directory structure:"
+  find "$SCRIPT_DIR/output" -type f | head -10
 else
-    echo "No output directory found (expected if using fallback)"
-fi 
+  echo "No output directory found (expected if using fallback runtime)"
+fi
