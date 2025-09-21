@@ -50,6 +50,15 @@ dependencies {
     implementation 'org.jfree:jfreechart:1.5.3'
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/resources'
+            srcDir 'src/python'
+        }
+    }
+}
+
 application {
     mainClass = 'DNAnalyzer.Main'
 }
