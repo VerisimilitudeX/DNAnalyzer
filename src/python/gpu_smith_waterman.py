@@ -6,6 +6,8 @@ fallback implementation is used.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 try:
     import pyopencl as cl
     import numpy as np
@@ -165,17 +167,49 @@ class SmithWatermanGPU:
         return "".join(reversed(aligned1)), "".join(reversed(aligned2))
 
 
+def _resolve_sequence(inline: str | None, file_arg: str | None, label: str) -> str:
+    if file_arg:
+        return _read_sequence_from_file(Path(file_arg), label)
+    if inline:
+        return inline
+    raise SystemExit(f"{label} sequence missing: provide a value or --{label}-file")
+
+
+def _read_sequence_from_file(path: Path, label: str) -> str:
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError as exc:  # pragma: no cover - file IO error
+        raise SystemExit(f"Failed to read {label} sequence file '{path}': {exc}") from exc
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    if not lines:
+        raise SystemExit(f"Sequence file '{path}' is empty")
+    if lines[0].startswith(">"):
+        sequence_parts: list[str] = []
+        for line in lines:
+            if line.startswith(">"):
+                continue
+            sequence_parts.append(line)
+        if not sequence_parts:
+            raise SystemExit(f"Sequence file '{path}' does not contain FASTA sequence data")
+        return "".join(sequence_parts)
+    return "".join(lines)
+
+
 def _main() -> None:
     import argparse
     import json
     parser = argparse.ArgumentParser(description="Smith-Waterman alignment")
-    parser.add_argument("seq1")
-    parser.add_argument("seq2")
+    parser.add_argument("seq1", nargs="?", help="Sequence 1 (optional if --seq1-file is provided)")
+    parser.add_argument("seq2", nargs="?", help="Sequence 2 (optional if --seq2-file is provided)")
+    parser.add_argument("--seq1-file", help="Path to file containing the first sequence (plain or FASTA)")
+    parser.add_argument("--seq2-file", help="Path to file containing the second sequence (plain or FASTA)")
     parser.add_argument("--json", action="store_true", help="output JSON")
     args = parser.parse_args()
+    seq1 = _resolve_sequence(args.seq1, args.seq1_file, "seq1")
+    seq2 = _resolve_sequence(args.seq2, args.seq2_file, "seq2")
     sw = SmithWatermanGPU()
-    score, matrix = sw.align(args.seq1, args.seq2)
-    a1, a2 = sw.traceback(args.seq1, args.seq2, matrix)
+    score, matrix = sw.align(seq1, seq2)
+    a1, a2 = sw.traceback(seq1, seq2, matrix)
     if args.json:
         print(json.dumps({"score": score, "aligned1": a1, "aligned2": a2}))
     else:

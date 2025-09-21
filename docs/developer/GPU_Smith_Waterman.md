@@ -12,7 +12,15 @@ python -m src.python.gpu_smith_waterman SEQ1 SEQ2
 ```
 
 To call the module from Java, the CLI flag `--sw-align` triggers the Python
-implementation if `--align` is also supplied.
+implementation when used alongside `--align`.
+
+```bash
+# Analyse sample.fa and align against reference.fa
+java -jar dnanalyzer.jar sample.fa --align reference.fa --sw-align
+
+# Or specify both query and reference explicitly
+java -jar dnanalyzer.jar --align query.fa reference.fa --sw-align
+```
 
 Or import the class in your own scripts:
 
