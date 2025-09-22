@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize scroll animations for sections
     initScrollAnimations();
+
+    // Reveal other sections/cards as they enter the viewport
+    initSectionReveal();
 });
 
 // Shared state for notification banner
@@ -416,35 +419,40 @@ function initScrollAnimations() {
         animationObserver.observe(el);
     });
 }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
 /**
- * Add intersection observer for animating sections as they come into view
+ * Reveal sections and cards when they enter the viewport
  */
-const animateSections = document.querySelectorAll('.section, .feature-card, .card');
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+function initSectionReveal() {
+    const targets = document.querySelectorAll('.section, .feature-card, .card');
+    if (!targets.length) return;
 
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            }
             entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            sectionObserver.unobserve(entry.target);
-        }
+            entry.target.style.transform = entry.target.style.transform
+                .replace('translateY(20px)', '')
+                .trim();
+            obs.unobserve(entry.target);
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
     });
-}, observerOptions);
 
-animateSections.forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    sectionObserver.observe(section);
-});
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    targets.forEach(target => {
+        if (!target.dataset.revealInitialized) {
+            const existingTransform = target.style.transform || '';
+            target.style.opacity = '0';
+            target.style.transform = `${existingTransform} translateY(20px)`.trim();
+            target.style.transition = target.style.transition
+                ? `${target.style.transition}, opacity 0.6s ease, transform 0.6s ease`
+                : 'opacity 0.6s ease, transform 0.6s ease';
+            target.dataset.revealInitialized = 'true';
+        }
+        observer.observe(target);
+    });
+}

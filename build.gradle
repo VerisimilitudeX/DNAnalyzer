@@ -31,7 +31,7 @@ dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.2.0'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.2"
@@ -61,6 +61,10 @@ sourceSets {
 
 application {
     mainClass = 'DNAnalyzer.Main'
+}
+
+bootRun {
+    mainClass.set('DNAnalyzer.api.ApiApplication')
 }
 
 publishing {

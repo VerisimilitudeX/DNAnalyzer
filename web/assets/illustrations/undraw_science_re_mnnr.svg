@@ -1,0 +1,40 @@
+<svg width="420" height="320" viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1d3d"/>
+      <stop offset="100%" stop-color="#1f2c54"/>
+    </linearGradient>
+    <linearGradient id="dnaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00a4ef"/>
+      <stop offset="100%" stop-color="#ff0066"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="320" rx="24" fill="url(#bgGradient)"/>
+  <g transform="translate(40 40)" fill="none" stroke-width="4">
+    <path d="M40 0 C80 40, 20 80, 60 120 C100 160, 20 200, 60 240" stroke="#3b8ef2" stroke-linecap="round"/>
+    <path d="M120 0 C80 40, 140 80, 100 120 C60 160, 140 200, 100 240" stroke="#ff4f9a" stroke-linecap="round"/>
+    <g stroke="#ffffff" stroke-linecap="round">
+      <line x1="40" y1="0" x2="120" y2="0"/>
+      <line x1="32" y1="30" x2="128" y2="30" opacity="0.6"/>
+      <line x1="26" y1="60" x2="134" y2="60" opacity="0.45"/>
+      <line x1="22" y1="90" x2="138" y2="90" opacity="0.3"/>
+      <line x1="22" y1="120" x2="138" y2="120" opacity="0.3"/>
+      <line x1="26" y1="150" x2="134" y2="150" opacity="0.45"/>
+      <line x1="32" y1="180" x2="128" y2="180" opacity="0.6"/>
+      <line x1="40" y1="210" x2="120" y2="210"/>
+    </g>
+  </g>
+  <g transform="translate(210 50)">
+    <rect x="0" y="0" width="160" height="100" rx="14" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)"/>
+    <text x="18" y="36" font-family="'Inter', sans-serif" font-size="18" fill="#ffffff" font-weight="600">Genomic Report</text>
+    <text x="18" y="64" font-family="'Inter', sans-serif" font-size="12" fill="rgba(255,255,255,0.7)">• Variant scoring</text>
+    <text x="18" y="84" font-family="'Inter', sans-serif" font-size="12" fill="rgba(255,255,255,0.7)">• Polygenic risk summary</text>
+  </g>
+  <g transform="translate(210 178)">
+    <rect x="0" y="0" width="180" height="110" rx="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.18)"/>
+    <circle cx="40" cy="55" r="34" fill="url(#dnaGradient)" opacity="0.9"/>
+    <path d="M22 70 L58 40" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+    <text x="86" y="50" font-family="'Inter', sans-serif" font-size="26" fill="#ffffff" font-weight="700">99.2%</text>
+    <text x="86" y="76" font-family="'Inter', sans-serif" font-size="12" fill="rgba(255,255,255,0.65)">Coverage score</text>
+  </g>
+</svg>

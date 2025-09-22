@@ -1,0 +1,21 @@
+<svg width="960" height="600" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10142c"/>
+      <stop offset="100%" stop-color="#1a1f3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="600" rx="32" fill="url(#grad)"/>
+  <rect x="60" y="60" width="840" height="480" rx="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <g fill="none" stroke="rgba(0,164,239,0.6)" stroke-width="10" stroke-linecap="round">
+    <path d="M140 400 C260 320, 320 320, 440 400"/>
+    <path d="M440 400 C560 480, 620 480, 740 400"/>
+  </g>
+  <g fill="none" stroke="#ff0066" stroke-width="6" stroke-linecap="round">
+    <path d="M220 260 L360 260"/>
+    <path d="M420 260 L560 260"/>
+    <path d="M620 260 L760 260"/>
+  </g>
+  <text x="80" y="150" font-family="'Inter', sans-serif" font-size="42" fill="#ffffff" font-weight="600">DNAnalyzer Visualization</text>
+  <text x="80" y="200" font-family="'Inter', sans-serif" font-size="20" fill="rgba(255,255,255,0.7)">Representative placeholder chart for feature showcase</text>
+</svg>
