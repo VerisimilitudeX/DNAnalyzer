@@ -26,7 +26,7 @@ DNAnalyzer is a biotechnology research and deployment company revolutionizing ge
 
 Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer brings together **46 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
 
-Our groundbreaking work has been presented at [Y Combinator's Mini YC](https://www.ycombinator.com/), starred by the organizer of the [AI World's Fair Expo](https://www.ai.engineer/worldsfair), and recognized by the CEO of [DEV.to](https://dev.to/).
+Our groundbreaking work has been presented at [Y Combinator's Mini YC](https://www.ycombinator.com/) and reached semifinals (top 10%) for a16z's $1M investment.
 
 <br>
 
