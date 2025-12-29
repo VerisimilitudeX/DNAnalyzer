@@ -172,14 +172,16 @@ def _resolve_sequence(inline: str | None, file_arg: str | None, label: str) -> s
         return _read_sequence_from_file(Path(file_arg), label)
     if inline:
         return inline
-    raise SystemExit(f"{label} sequence missing: provide a value or --{label}-file")
+    raise SystemExit(
+        f"{label} sequence missing: provide a value or --{label}-file")
 
 
 def _read_sequence_from_file(path: Path, label: str) -> str:
     try:
         text = path.read_text(encoding="utf-8")
     except OSError as exc:  # pragma: no cover - file IO error
-        raise SystemExit(f"Failed to read {label} sequence file '{path}': {exc}") from exc
+        raise SystemExit(
+            f"Failed to read {label} sequence file '{path}': {exc}") from exc
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     if not lines:
         raise SystemExit(f"Sequence file '{path}' is empty")
@@ -190,7 +192,8 @@ def _read_sequence_from_file(path: Path, label: str) -> str:
                 continue
             sequence_parts.append(line)
         if not sequence_parts:
-            raise SystemExit(f"Sequence file '{path}' does not contain FASTA sequence data")
+            raise SystemExit(
+                f"Sequence file '{path}' does not contain FASTA sequence data")
         return "".join(sequence_parts)
     return "".join(lines)
 
@@ -199,10 +202,14 @@ def _main() -> None:
     import argparse
     import json
     parser = argparse.ArgumentParser(description="Smith-Waterman alignment")
-    parser.add_argument("seq1", nargs="?", help="Sequence 1 (optional if --seq1-file is provided)")
-    parser.add_argument("seq2", nargs="?", help="Sequence 2 (optional if --seq2-file is provided)")
-    parser.add_argument("--seq1-file", help="Path to file containing the first sequence (plain or FASTA)")
-    parser.add_argument("--seq2-file", help="Path to file containing the second sequence (plain or FASTA)")
+    parser.add_argument(
+        "seq1", nargs="?", help="Sequence 1 (optional if --seq1-file is provided)")
+    parser.add_argument(
+        "seq2", nargs="?", help="Sequence 2 (optional if --seq2-file is provided)")
+    parser.add_argument(
+        "--seq1-file", help="Path to file containing the first sequence (plain or FASTA)")
+    parser.add_argument(
+        "--seq2-file", help="Path to file containing the second sequence (plain or FASTA)")
     parser.add_argument("--json", action="store_true", help="output JSON")
     args = parser.parse_args()
     seq1 = _resolve_sequence(args.seq1, args.seq1_file, "seq1")
