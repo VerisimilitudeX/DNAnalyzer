@@ -1,0 +1,11 @@
+.git
+.gradle
+build
+output
+*.md
+docs
+assets
+installer
+sample-plugins
+scripts
+web
