@@ -67,6 +67,10 @@ bootRun {
     mainClass.set('DNAnalyzer.api.ApiApplication')
 }
 
+bootJar {
+    mainClass = 'DNAnalyzer.api.ApiApplication'
+}
+
 publishing {
     repositories {
         maven {
