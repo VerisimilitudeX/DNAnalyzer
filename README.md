@@ -72,6 +72,29 @@ Set `OPENAI_API_KEY` (or `AI_PROVIDER=openai` plus the corresponding key) before
 
 Ready to unlock your genomic insights? Begin precision DNA analysis in seconds:
 
+### Docker (easiest — no Java install required)
+
+```bash
+# Clone the repository
+git clone https://github.com/VerisimilitudeX/DNAnalyzer.git
+cd DNAnalyzer
+
+# Build and start everything in containers
+docker compose up --build
+```
+
+| Service | URL |
+|---|---|
+| Web UI | http://localhost:3000 |
+| REST API | http://localhost:8080 |
+| Swagger / API docs | http://localhost:8080/swagger-ui/index.html |
+
+To stop: `docker compose down`
+
+---
+
+### Manual setup
+
 ```bash
 # Clone the repository
 git clone https://github.com/VerisimilitudeX/DNAnalyzer.git
