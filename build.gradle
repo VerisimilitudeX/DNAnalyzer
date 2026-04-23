@@ -40,7 +40,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
 
     implementation 'com.google.guava:guava:31.0.1-jre'
-    implementation 'io.sentry:sentry:6.10.0'
+    implementation 'io.sentry:sentry:8.40.0'
     implementation 'org.controlsfx:controlsfx:11.1.2'
     implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.0.1'
     implementation 'com.theokanning.openai-gpt3-java:service:0.11.1'
