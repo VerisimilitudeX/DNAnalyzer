@@ -11,48 +11,48 @@ dnanalyzer_require_advanced
 
 FASTA_FILE="$REPO_ROOT/assets/dna/example/test.fa"
 
-echo "🧬 DNAnalyzer Complete Feature Demo 🧬"
+echo " DNAnalyzer Complete Feature Demo "
 echo "======================================="
 echo ""
 
-echo "📋 Sample DNA file content:"
+echo " Sample DNA file content:"
 head -3 "$FASTA_FILE"
 echo "..."
 echo ""
 
-echo "1️⃣ BASIC ANALYSIS (Default mode):"
+echo "1⃣ BASIC ANALYSIS (Default mode):"
 echo "-----------------------------------"
 dnanalyzer_run "$FASTA_FILE"
 echo ""
 
-echo "2️⃣ DETAILED ANALYSIS with verbose output:"
+echo "2⃣ DETAILED ANALYSIS with verbose output:"
 echo "-------------------------------------------"
 dnanalyzer_run --detailed --verbose "$FASTA_FILE"
 echo ""
 
-echo "3️⃣ QUICK ANALYSIS:"
+echo "3⃣ QUICK ANALYSIS:"
 echo "-------------------"
 dnanalyzer_run --quick "$FASTA_FILE"
 echo ""
 
-echo "4️⃣ MUTATION GENERATION:"
+echo "4⃣ MUTATION GENERATION:"
 echo "------------------------"
 dnanalyzer_run --mutate 3 "$FASTA_FILE"
 echo ""
 
-echo "5️⃣ REVERSE COMPLEMENT ANALYSIS:"
+echo "5⃣ REVERSE COMPLEMENT ANALYSIS:"
 echo "--------------------------------"
 dnanalyzer_run --rcomplement "$FASTA_FILE"
 echo ""
 
-echo "6️⃣ AVAILABLE COMMAND-LINE OPTIONS:"
+echo "6⃣ AVAILABLE COMMAND-LINE OPTIONS:"
 echo "-----------------------------------"
 dnanalyzer_run --help
 echo ""
 
-echo "✅ All features demonstrated successfully!"
+echo " All features demonstrated successfully!"
 echo ""
-echo "🚀 USER-FRIENDLY IMPROVEMENTS CREATED:"
+echo " USER-FRIENDLY IMPROVEMENTS CREATED:"
 echo "======================================="
 echo ""
 echo "1. Easy launch script (easy_dna.sh) with preset modes:"

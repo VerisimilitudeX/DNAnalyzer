@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/scripts/launcher-common.sh"
 
-echo "🧬 DNAnalyzer Easy Mode 🧬"
+echo " DNAnalyzer Easy Mode "
 echo "=========================="
 echo ""
 
@@ -34,23 +34,23 @@ if [[ "$DNA_FILE" != /* ]]; then
 fi
 
 if [[ ! -f "$DNA_FILE" ]]; then
-  echo "❌ Error: DNA file '$DNA_FILE' not found!"
+  echo " Error: DNA file '$DNA_FILE' not found!"
   exit 1
 fi
 
 dnanalyzer_init "$SCRIPT_DIR"
 
 if [[ "$DNANALYZER_USE_GRADLE_RUN" == "true" ]]; then
-  echo "ℹ️  Using Gradle runtime (feature-complete CLI)."
+  echo "ℹ  Using Gradle runtime (feature-complete CLI)."
 elif [[ "$DNANALYZER_SUPPORTS_ADVANCED" == "true" ]]; then
-  echo "📦 Using DNAnalyzer JAR: $DNANALYZER_JAR_PATH"
+  echo " Using DNAnalyzer JAR: $DNANALYZER_JAR_PATH"
 else
-  echo "⚠️  Using basic DNAnalyzer JAR: $DNANALYZER_JAR_PATH"
-  echo "⚠️  Advanced modes require rebuilding with Gradle or providing an updated CLI JAR."
+  echo "  Using basic DNAnalyzer JAR: $DNANALYZER_JAR_PATH"
+  echo "  Advanced modes require rebuilding with Gradle or providing an updated CLI JAR."
 fi
 
-echo "📁 Analyzing: $DNA_FILE"
-echo "🔬 Mode: $MODE"
+echo " Analyzing: $DNA_FILE"
+echo " Mode: $MODE"
 echo ""
 
 run_mode() {
@@ -62,34 +62,34 @@ run_mode() {
 }
 case "$MODE" in
   basic)
-    run_mode "🔍 Running basic analysis..." "$DNA_FILE"
+    run_mode " Running basic analysis..." "$DNA_FILE"
     ;;
   detailed)
     dnanalyzer_require_advanced
-    run_mode "🔍 Running detailed analysis with verbose output..." --detailed --verbose "$DNA_FILE"
+    run_mode " Running detailed analysis with verbose output..." --detailed --verbose "$DNA_FILE"
     ;;
   quick)
     dnanalyzer_require_advanced
-    run_mode "⚡ Running quick analysis..." --quick "$DNA_FILE"
+    run_mode " Running quick analysis..." --quick "$DNA_FILE"
     ;;
   mutations)
     dnanalyzer_require_advanced
-    run_mode "🧪 Generating mutations..." --mutate 5 "$DNA_FILE"
+    run_mode " Generating mutations..." --mutate 5 "$DNA_FILE"
     ;;
   reverse)
     dnanalyzer_require_advanced
-    run_mode "↔️ Running reverse complement analysis..." --rcomplement "$DNA_FILE"
+    run_mode " Running reverse complement analysis..." --rcomplement "$DNA_FILE"
     ;;
   all)
     dnanalyzer_require_advanced
-    run_mode "1️⃣ BASIC ANALYSIS:" "$DNA_FILE"
-    run_mode "2️⃣ DETAILED ANALYSIS:" --detailed --verbose "$DNA_FILE"
-    run_mode "3️⃣ MUTATIONS:" --mutate 3 "$DNA_FILE"
-    run_mode "4️⃣ REVERSE COMPLEMENT:" --rcomplement "$DNA_FILE"
+    run_mode "1⃣ BASIC ANALYSIS:" "$DNA_FILE"
+    run_mode "2⃣ DETAILED ANALYSIS:" --detailed --verbose "$DNA_FILE"
+    run_mode "3⃣ MUTATIONS:" --mutate 3 "$DNA_FILE"
+    run_mode "4⃣ REVERSE COMPLEMENT:" --rcomplement "$DNA_FILE"
     ;;
   custom)
     dnanalyzer_require_advanced
-    echo "🎛️ Custom analysis mode:"
+    echo " Custom analysis mode:"
     echo ""
     read -r -p "Detailed analysis? (y/n): " detailed
     read -r -p "Verbose output? (y/n): " verbose
@@ -108,14 +108,14 @@ case "$MODE" in
     args+=("$DNA_FILE")
 
     echo ""
-    echo "🔍 Running custom analysis with: ${args[*]}"
+    echo " Running custom analysis with: ${args[*]}"
     dnanalyzer_run "${args[@]}"
     ;;
   *)
-    echo "❌ Unknown mode: $MODE"
+    echo " Unknown mode: $MODE"
     echo "Available modes: basic, detailed, quick, mutations, reverse, all, custom"
     exit 1
     ;;
 esac
 
-echo "✅ Analysis complete!"
+echo " Analysis complete!"

@@ -2,7 +2,7 @@
 
 DNAnalyzer v1.2.1+ includes significant user experience improvements that make the tool much more accessible and organized. This guide covers all the new features designed to make your DNA analysis workflow smoother and more intuitive.
 
-## 📁 Organized Output Management
+##  Organized Output Management
 
 ### Automatic Directory Structure
 
@@ -29,25 +29,25 @@ output/dnanalyzer_output_{filename}_{timestamp}/
 After each analysis, DNAnalyzer provides a comprehensive summary of all generated files:
 
 ```
-📁 Generated Files Summary
+ Generated Files Summary
 ==========================
 Output directory: /absolute/path/to/output/dnanalyzer_output_test_20250608_184523
 
-📂 Quality Control:
-   ✓ Base composition and quality metrics chart
-     📄 /absolute/path/to/charts/test.fa_qc_chart.png
-     📊 Size: 15.2 KB
+ Quality Control:
+    Base composition and quality metrics chart
+      /absolute/path/to/charts/test.fa_qc_chart.png
+      Size: 15.2 KB
 
-📂 Sequence Analysis:
-   ✓ Generated 3 mutations of the input sequence
-     📄 /absolute/path/to/sequences/mutations_20250608_184523.fa
-     📊 Size: 3.4 KB
+ Sequence Analysis:
+    Generated 3 mutations of the input sequence
+      /absolute/path/to/sequences/mutations_20250608_184523.fa
+      Size: 3.4 KB
 
-💡 Tip: You can find all output files in the directory above.
+ Tip: You can find all output files in the directory above.
    Open PNG files to view charts, and FA files contain DNA sequences.
 ```
 
-## 🚀 Easy Launch Script
+##  Easy Launch Script
 
 ### Simple Preset Modes
 
@@ -90,7 +90,7 @@ The custom mode asks simple yes/no questions instead of requiring command-line e
 
 # Prompts:
 # Detailed analysis? (y/n): y
-# Verbose output? (y/n): y  
+# Verbose output? (y/n): y
 # Generate mutations? (y/n): n
 # Reverse complement? (y/n): n
 ```
@@ -109,7 +109,7 @@ Running the script without arguments shows usage information and examples:
 # - Command-line options
 ```
 
-## 🎯 Analysis Profiles
+##  Analysis Profiles
 
 ### Predefined Workflow Profiles
 
@@ -119,7 +119,7 @@ Instead of memorizing command-line flags, use predefined profiles for common wor
 # Research-grade analysis
 java -jar build/libs/DNAnalyzer-1.2.1.jar --profile research your_file.fa
 
-# Clinical-grade analysis  
+# Clinical-grade analysis
 java -jar build/libs/DNAnalyzer-1.2.1.jar --profile clinical your_file.fa
 
 # Basic analysis
@@ -153,7 +153,7 @@ java -jar build/libs/DNAnalyzer-1.2.1.jar --profile list
 ```
 
 Running `--profile list` prints the preset names so you can discover every workflow from the terminal.
-## 📊 Enhanced File Notifications
+##  Enhanced File Notifications
 
 ### Real-time Progress Updates
 
@@ -163,10 +163,10 @@ DNAnalyzer now provides clear notifications as files are generated:
 Reading DNA: Test DNA Sequence
 === QC Summary ===
 GC Content: 50.09%
-📊 Quality control chart generated: /path/to/output/charts/test.fa_qc_chart.png
+ Quality control chart generated: /path/to/output/charts/test.fa_qc_chart.png
 
 Mutating DNA sequence...
-🧪 Mutations written to: /path/to/output/sequences/mutations_20250608_184523.fa
+ Mutations written to: /path/to/output/sequences/mutations_20250608_184523.fa
 ```
 
 ### File Size Information
@@ -177,7 +177,7 @@ All generated files include size information in the final summary:
 - Helps users understand output file sizes
 - Useful for storage planning and file sharing
 
-## 🔧 Technical Implementation
+##  Technical Implementation
 
 ### OutputManager Class
 
@@ -201,7 +201,7 @@ Enhanced error handling includes:
 - Graceful fallbacks when directory creation fails
 - User-friendly guidance for common issues
 
-## 📝 Migration Guide
+##  Migration Guide
 
 ### From Previous Versions
 
@@ -226,7 +226,7 @@ java -jar DNAnalyzer.jar --detailed --verbose --mutate=5 --gc-window=50 file.fa
 java -jar build/libs/DNAnalyzer-1.2.1.jar --profile research file.fa
 ```
 
-## 🛠️ Advanced Usage
+##  Advanced Usage
 
 ### Custom Output Directories
 
@@ -257,7 +257,7 @@ convert output/*/charts/*.png output/combined_charts.pdf
 cat output/*/sequences/*.fa > output/all_mutations.fa
 ```
 
-## 🔍 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -286,4 +286,4 @@ For additional support:
 
 ---
 
-*This documentation covers DNAnalyzer v1.2.1+. For older versions, refer to the legacy documentation in the `docs/legacy/` directory.* 
+*This documentation covers DNAnalyzer v1.2.1+. For older versions, refer to the legacy documentation in the `docs/legacy/` directory.*

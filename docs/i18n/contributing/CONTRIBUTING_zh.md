@@ -1,12 +1,12 @@
-# 贡献步骤 📜
+# 贡献步骤
 
-## 1. Fork 项目 🍴
+## 1. Fork 项目
 
 您可以通过点击此页面右上角的 `Fork` 按钮来获取您自己的 [DNAnalyzer](https://github.com/VerisimilitudeX/DNAnalyzer) 分支（副本）。
 
 ![Fork 按钮](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
 
-## 2. Clone 项目 👥
+## 2. Clone 项目
 
 您必须转到您的仓库分支，并使用以下命令将其克隆（下载）到您的本地计算机：
 
@@ -39,7 +39,7 @@ $ cd DNAnalyzer
  upstream https://github.com/VerisimilitudeX/DNAnalyzer.git (push)
  ```
 
-## 3. 与远程仓库同步 🔄
+## 3. 与远程仓库同步
 
 请记住保持您的本地仓库与远程仓库同步。
 

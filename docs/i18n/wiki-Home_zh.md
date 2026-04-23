@@ -11,13 +11,13 @@
 
 ## 贡献
 
-### 遵循步骤 📜
+### 遵循步骤
 
-1.  **Fork 项目 🍴**  
+1.  **Fork 项目 **
     通过点击此页面右上角的 `Fork` 按钮，获取您自己的 [DNAnalyzer](https://github.com/VerisimilitudeX/DNAnalyzer) 分支。
     ![](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
 
-2.  **Clone 项目 👥**  
+2.  **Clone 项目 **
     将您的分支克隆到本地计算机：
     ```bash
     git clone https://github.com/您的用户名/DNAnalyzer.git
@@ -25,12 +25,12 @@
     ```
     然后，添加对原始仓库的引用：
     ```bash
-    git remote add upstream https://github.com/VerisimilitudeX/DNAnalyzer.git 
+    git remote add upstream https://github.com/VerisimilitudeX/DNAnalyzer.git
     # 注意：原始文档中此处为 theabhishek07/DNAnalyzer.git，通常应为项目主仓库 VerisimilitudeX/DNAnalyzer.git
     git remote -v
     ```
 
-3.  **与远程仓库同步 🔄**  
+3.  **与远程仓库同步 **
     保持您的本地仓库更新：
     ```bash
     git fetch --all --prune
@@ -39,7 +39,7 @@
     git push origin main
     ```
 
-4.  **创建新分支**  
+4.  **创建新分支**
     为您的贡献创建一个新分支：
     ```bash
     git checkout -b <分支名称>
@@ -61,7 +61,7 @@
 
 ### 贡献指南
 
-- ⭐ 给 GitHub 仓库点个星标（可选）。
+-  给 GitHub 仓库点个星标（可选）。
 - 在贡献之前，请阅读 [`贡献指南 (Contribution_Guidelines_zh.md)`](contributing/Contribution_Guidelines_zh.md) 和 [`行为准则 (CODE_OF_CONDUCT_zh.md)`](contributing/CODE_OF_CONDUCT_zh.md)。
 - 创建一个 issue 或提出一个功能/错误修复建议。
 - Fork 仓库，克隆它，创建分支，添加您的更改，提交并推送。

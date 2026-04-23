@@ -39,11 +39,11 @@ An optional FASTA may be supplied as the final positional argument if you want t
 
 The CLI prints a summary per weight table:
 
-- **Variants** – Total variants in the weight table, how many were matched in the genotype file, and coverage percentage.
-- **Raw score** – Sum of (allele dosage × weight) across all SNPs.
-- **Normalised** – Raw score divided by the theoretical maximum magnitude (`Σ|weight| × 2`). Use this to compare scores across traits.
+- **Variants** - Total variants in the weight table, how many were matched in the genotype file, and coverage percentage.
+- **Raw score** - Sum of (allele dosage × weight) across all SNPs.
+- **Normalised** - Raw score divided by the theoretical maximum magnitude (`Σ|weight| × 2`). Use this to compare scores across traits.
 
-Each SNP contribution is displayed as a row showing the genotype call, requested risk allele, matched dosage (`0–2`), the weight, and the contribution added to the raw score. Missing genotypes or uncallable entries are flagged with a `--` genotype and a note such as “No genotype call”.
+Each SNP contribution is displayed as a row showing the genotype call, requested risk allele, matched dosage (`0-2`), the weight, and the contribution added to the raw score. Missing genotypes or uncallable entries are flagged with a `--` genotype and a note such as “No genotype call”.
 
 ## Quality Checks
 

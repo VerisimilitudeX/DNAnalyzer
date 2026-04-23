@@ -17,7 +17,7 @@ Please **do not** open a public GitHub issue or Discord message for security
 reports. Use one of the private channels below so we can investigate and
 release a fix before the details are disclosed.
 
-1. **Preferred — GitHub private vulnerability reporting:** open a report at
+1. **Preferred - GitHub private vulnerability reporting:** open a report at
    <https://github.com/VerisimilitudeX/DNAnalyzer/security/advisories/new>.
    This creates a private advisory visible only to maintainers.
 2. **Email:** send details to `help@dnanalyzer.org` with the subject line
