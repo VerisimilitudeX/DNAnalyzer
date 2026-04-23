@@ -84,20 +84,18 @@
 
 以下是项目根目录下一些重要文件的说明：
 
-*   **`.classpath`**: 通常由 Eclipse IDE 生成，用于定义项目的类路径。
 *   **`.deepsource.toml`**: DeepSource（一个静态代码分析工具）的配置文件。
 *   **`.gitattributes`**: 定义 Git 如何处理特定路径下的文件，例如行尾符转换。
 *   **`.gitignore`**: 指定 Git 版本控制系统应忽略的文件和目录。
 *   **`CITATION.cff`**: (Citation File Format) 提供项目的标准引用信息，方便学术引用。
 *   **`CODE_OF_CONDUCT.md`**: 社区行为准则，定义了贡献者和维护者的行为期望。
-*   **`LICENSE.md`**: 项目的开源许可证文件，规定了软件的使用、修改和分发条款。
+*   **`LICENSE`**: 项目的开源许可证文件，规定了软件的使用、修改和分发条款。
 *   **`README.md`**: 项目的主要介绍文件，通常包含项目概述、功能、安装步骤和基本用法。
 *   **`SECURITY.md`**: 描述项目的安全策略，包括如何报告漏洞和支持的版本。
 *   **`build.gradle`**: Gradle 项目的主要构建配置文件，定义了项目依赖、插件、任务等。
 *   **`settings.gradle.kts`**: Gradle 的设置文件（Kotlin脚本），用于多项目构建配置。
 *   **`gradlew`**: Gradle Wrapper 的 Unix/Linux/macOS 执行脚本。
 *   **`gradlew.bat`**: Gradle Wrapper 的 Windows 执行脚本。
-*   **`implementation_plan.md`**: 可能包含项目实施计划、里程碑或架构设计思路的文档。
-*   **`web_structure.txt`**: 可能是一个自动生成的文本文件，用于概述 `web/` 目录的结构。
+*   **`docs/history/implementation_plan.md`**: 早期项目实施计划及架构设计记录（已存档）。
 
 希望这份指南能帮助您更好地理解 DNAnalyzer 项目的组织方式！如果您有任何疑问，请查阅相关文档或联系项目维护者。
