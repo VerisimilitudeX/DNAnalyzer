@@ -4,7 +4,7 @@
 <h3>Next-Generation On-Device DNA Insights</h3>
 <p><i>Private. Precise. Powered by AI.</i></p>
 
-[![Copyright](https://img.shields.io/badge/copyright-2025-blue?style=for-the-badge)](https://github.com/VERISIMILITUDEX/DNAnalyzer)
+[![Copyright](https://img.shields.io/badge/copyright-2026-blue?style=for-the-badge)](https://github.com/VerisimilitudeX/DNAnalyzer)
 [![Release](https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer?style=for-the-badge&color=green)](https://github.com/VERISIMILITUDEX/DNAnalyzer/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/VerisimilitudeX/DNAnalyzer/gradle.yml?style=for-the-badge)](https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.14556578-blue?style=for-the-badge)](https://zenodo.org/records/14556578)
@@ -24,7 +24,7 @@
 
 DNAnalyzer is a biotechnology research and deployment company revolutionizing genomic analysis through AI-powered, privacy-first technology. Supported by [Anthropic for Startups](http://anthropic.com/), our mission is to democratize DNA analysis by delivering enterprise-grade genomic insights through secure on-device computation.
 
-Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer brings together **46 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
+Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer brings together **50 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
 
 Our groundbreaking work has been presented at [Y Combinator's Mini YC](https://www.ycombinator.com/) and reached semifinals (top 10%) for a16z's $1M investment.
 
@@ -51,7 +51,7 @@ Our groundbreaking work has been presented at [Y Combinator's Mini YC](https://w
 
 ## Core Capabilities
 
-<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators with unprecedented accuracy. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Precisely pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions including autism, ADHD, and schizophrenia. </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with surgical precision. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Seamlessly supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Met CLI Automation</strong><br> Harnesses a powerful CLI interface for scripting, automation, and enterprise-scale analysis tasks. </td> </tr> <tr> <td width="33%" align="center"> <strong>Privacy-First Ancestry Insights</strong><br> Estimates continental origin using on-device reference panels without compromising privacy. </td> <td></td> <td></td> </tr> </table> <br>
+<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators with unprecedented accuracy. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Precisely pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions including autism, ADHD, and schizophrenia. </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with surgical precision. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Seamlessly supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Powerful CLI Automation</strong><br> Harnesses a rich command-line interface for scripting, automation, and enterprise-scale analysis tasks. </td> </tr> <tr> <td width="33%" align="center"> <strong>Privacy-First Ancestry Insights</strong><br> Estimates continental origin using on-device reference panels without compromising privacy. </td> <td></td> <td></td> </tr> </table> <br>
 
 See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for detailed usage instructions.
 
@@ -331,7 +331,7 @@ When referencing DNAnalyzer in academic work, please cite:
   month = oct,
   title = {{DNAnalyzer: ML-Powered DNA Analysis Platform}},
   url = {https://github.com/VerisimilitudeX/DNAnalyzer},
-  version = {3.5.0-beta.0},
+  version = {3.6.1},
   year = {2022}
 }
 ```
@@ -344,7 +344,7 @@ DNAnalyzer is provided "as-is." Usage of this software implies acceptance of all
 
 For assistance or inquiries: help@dnanalyzer.org
 
-DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499), licensed under MIT License.
+DNAnalyzer, © Piyush Acharya 2026. A fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499), licensed under MIT License.
 
 <br>
 
@@ -381,12 +381,12 @@ DNAnalyzer, © Piyush Acharya 2025. A fiscally sponsored 501(c)(3) nonprofit (EI
 
 | Metric | Current Value |
 |--------|---------------|
-| GitHub Stars | **147** |
-| Forks | **62** |
-| Contributors | **46** |
-| Monthly FASTA files analyzed* | **5,000+** |
-| Total downloads (Gradle/CLI) | **4,042** |
-| Deployments via GitHub Pages | **485** |
+| GitHub Stars | **177** |
+| Forks | **74** |
+| Contributors | **50** |
+| Merged pull requests | **317** |
+| Release asset downloads | **247** |
+| GitHub Pages deployments | **100** |
 
 ---
 
@@ -439,7 +439,7 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
 
 ---
 
-\*Monthly FASTA throughput calculated from anonymized CLI telemetry and public workflow logs.
+<!-- Metrics refreshed from the GitHub API; rerun the API queries in CONTRIBUTING to pick up drift. -->
 
 <!-- ────────────────────────────────────────────────────────────────── -->
 
