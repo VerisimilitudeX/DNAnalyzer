@@ -49,3 +49,21 @@ __pycache__/
 
 # Ignore macOS generated files
 **/.DS_Store
+
+# DNAnalyzer runtime output (created by CLI runs)
+output/
+session_*/
+session_*.zip
+
+# Firebase Studio / Project IDX workspace scaffold (regenerated on demand)
+.idx/
+
+# Never commit pre-built artifacts or source archives under lib/
+lib/*.jar
+lib/*.war
+lib/*.ear
+lib/*.zip
+lib/*.rar
+lib/*.tar
+lib/*.tar.gz
+lib/*.tgz
