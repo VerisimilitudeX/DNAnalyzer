@@ -5,9 +5,15 @@
 <p><i>Private. Precise. Powered by AI.</i></p>
 
 [![Copyright](https://img.shields.io/badge/copyright-2026-blue?style=for-the-badge)](https://github.com/VerisimilitudeX/DNAnalyzer)
-[![Release](https://img.shields.io/github/v/release/VERISIMILITUDEX/DNAnalyzer?style=for-the-badge&color=green)](https://github.com/VERISIMILITUDEX/DNAnalyzer/releases)
+[![Release](https://img.shields.io/github/v/release/VerisimilitudeX/DNAnalyzer?style=for-the-badge&color=green)](https://github.com/VerisimilitudeX/DNAnalyzer/releases)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/VerisimilitudeX/DNAnalyzer/gradle.yml?style=for-the-badge)](https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/gradle.yml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.14556578-blue?style=for-the-badge)](https://zenodo.org/records/14556578)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/VerisimilitudeX/DNAnalyzer/codeql.yml?style=flat-square&label=CodeQL&logo=github)](https://github.com/VerisimilitudeX/DNAnalyzer/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/VerisimilitudeX/DNAnalyzer/badge)](https://scorecard.dev/viewer/?uri=github.com/VerisimilitudeX/DNAnalyzer)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-025e8c?style=flat-square&logo=dependabot)](.github/dependabot.yml)
+[![DeepSource](https://app.deepsource.com/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&show_trend=true)](https://app.deepsource.com/gh/VerisimilitudeX/DNAnalyzer/)
 
 <br>
 
