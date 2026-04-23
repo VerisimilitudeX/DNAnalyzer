@@ -33,5 +33,13 @@ jobs:
   GUI-Build:
     runs-on: ubuntu-latest
     steps:
-      - name: Launch GUI
-        run: ./gradlew run --args="--gui assets/dna/random/dnalong.fa"
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      # Headless CI cannot launch the JavaFX window, so verify the GUI sources
+      # compile instead of running the application.
+      - name: Compile GUI sources
+        run: ./gradlew compileJava

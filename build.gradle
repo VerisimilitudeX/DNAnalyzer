@@ -69,6 +69,7 @@ bootRun {
 
 bootJar {
     mainClass = 'DNAnalyzer.api.ApiApplication'
+    archiveClassifier = 'boot'
 }
 
 publishing {

@@ -136,10 +136,19 @@ class SmithWatermanGPU:
 
     def traceback(self, seq1: str, seq2: str, matrix) -> tuple[str, str]:
         """Reconstruct the best local alignment from a score matrix."""
-        import numpy as _np  # local import for type check
-
-        H = _np.array(matrix)
-        i, j = _np.unravel_index(H.argmax(), H.shape)
+        # The GPU path returns a numpy array; the CPU fallback returns a
+        # list-of-lists. Both support H[i][j] indexing, so do not depend on
+        # numpy here — CI runners without numpy still need the traceback to work.
+        H = matrix
+        rows = len(H)
+        cols = len(H[0]) if rows else 0
+        i, j = 0, 0
+        max_val = 0
+        for r in range(rows):
+            for c in range(cols):
+                if H[r][c] > max_val:
+                    max_val = H[r][c]
+                    i, j = r, c
         aligned1: list[str] = []
         aligned2: list[str] = []
         while i > 0 and j > 0 and H[i][j] > 0:

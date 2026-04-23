@@ -19,7 +19,7 @@ FROM eclipse-temurin:17-jre-jammy
 
 WORKDIR /app
 
-COPY --from=builder /app/build/libs/*.jar app.jar
+COPY --from=builder /app/build/libs/DNAnalyzer-*-boot.jar app.jar
 
 EXPOSE 8080
 
