@@ -66,7 +66,8 @@ def main() -> int:
     stars = repo.get("stargazers_count", 0)
     forks = repo.get("forks_count", 0)
 
-    contributors = count_paginated(f"/repos/{REPO_SLUG}/contributors?per_page=100")
+    contributors = count_paginated(
+        f"/repos/{REPO_SLUG}/contributors?per_page=100")
     merged_prs = count_paginated(
         f"/search/issues?q=repo:{REPO_SLUG}+is:pr+is:merged&per_page=100"
     )

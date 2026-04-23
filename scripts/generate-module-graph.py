@@ -22,7 +22,8 @@ BEGIN_MARKER = "<!-- MODULE-GRAPH:START -->"
 END_MARKER = "<!-- MODULE-GRAPH:END -->"
 
 PACKAGE_RE = re.compile(r"^\s*package\s+([\w\.]+)\s*;", re.MULTILINE)
-IMPORT_RE = re.compile(r"^\s*import\s+(static\s+)?(DNAnalyzer\.[\w\.]+)\s*;", re.MULTILINE)
+IMPORT_RE = re.compile(
+    r"^\s*import\s+(static\s+)?(DNAnalyzer\.[\w\.]+)\s*;", re.MULTILINE)
 
 
 def toplevel_module(fqn: str) -> str:
