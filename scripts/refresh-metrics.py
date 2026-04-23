@@ -8,6 +8,7 @@ have to ship a PAT. The block is delimited by IMPACT-METRICS markers.
 from __future__ import annotations
 
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -17,11 +18,16 @@ README = REPO_ROOT / "README.md"
 BEGIN_MARKER = "<!-- IMPACT-METRICS:START -->"
 END_MARKER = "<!-- IMPACT-METRICS:END -->"
 REPO_SLUG = "VerisimilitudeX/DNAnalyzer"
+GH_BINARY = shutil.which("gh") or "/usr/bin/gh"
 
 
 def gh_api(path: str) -> object:
+    """Invoke `gh api <path> --paginate` and return the parsed JSON payload."""
     result = subprocess.run(
-        ["gh", "api", path, "--paginate"], check=True, capture_output=True, text=True
+        [GH_BINARY, "api", path, "--paginate"],
+        check=True,
+        capture_output=True,
+        text=True,
     )
     out = result.stdout.strip()
     if not out:
@@ -52,6 +58,7 @@ def gh_api(path: str) -> object:
 
 
 def count_paginated(path: str) -> int:
+    """Return the length of a paginated `gh api` response (0 if not a list)."""
     data = gh_api(path)
     if isinstance(data, list):
         return len(data)
@@ -59,6 +66,7 @@ def count_paginated(path: str) -> int:
 
 
 def main() -> int:
+    """Refresh the impact-metrics block in README.md from the GitHub API."""
     repo = gh_api(f"/repos/{REPO_SLUG}")
     if not isinstance(repo, dict):
         print("could not fetch repo metadata", file=sys.stderr)

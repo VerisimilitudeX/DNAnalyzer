@@ -57,6 +57,7 @@ def collect() -> dict[str, set[str]]:
 
 
 def render(graph: dict[str, set[str]]) -> str:
+    """Render the dependency graph as a Mermaid flowchart block."""
     modules = sorted(graph.keys())
     lines = ["```mermaid", "flowchart LR"]
     for module in modules:
@@ -75,6 +76,7 @@ def render(graph: dict[str, set[str]]) -> str:
 
 
 def splice(doc: str, block: str) -> str:
+    """Return `doc` with the MODULE-GRAPH markers' contents replaced by `block`."""
     start = doc.find(BEGIN_MARKER)
     end = doc.find(END_MARKER)
     if start == -1 or end == -1 or end < start:
@@ -87,6 +89,7 @@ def splice(doc: str, block: str) -> str:
 
 
 def main(argv: list[str]) -> int:
+    """CLI entry point. Pass `--check` to fail when the graph is stale."""
     check_only = "--check" in argv
     graph = collect()
     block = render(graph)

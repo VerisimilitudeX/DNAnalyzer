@@ -37,6 +37,7 @@ COMBINING = re.compile(r"[︀-️‍]")
 
 
 def clean(text: str) -> str:
+    """Return `text` with em-dashes, en-dashes, and emojis normalized out."""
     # Em-dash and en-dash replacement. Handle spaced forms first.
     text = text.replace(" — ", " - ")
     text = text.replace(" – ", " - ")
@@ -51,6 +52,7 @@ def clean(text: str) -> str:
 
 
 def main(paths):
+    """Rewrite each given file in place, printing a summary of changes."""
     changed = 0
     for p in paths:
         path = Path(p)
