@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+source "$SCRIPT_DIR/launcher-common.sh"
+dnanalyzer_init "$REPO_ROOT"
+
 if [ $# -lt 1 ]; then
   echo "Usage: $0 <fasta_file> [DNAnalyzer options]" >&2
   exit 1
@@ -21,8 +26,9 @@ mkdir "$SESSION_DIR"
 LOG_FILE="$SESSION_DIR/analysis.log"
 REPORT_FILE="$SESSION_DIR/report.html"
 
-# Run DNAnalyzer CLI and capture output
-java -jar lib/DNAnalyzer.jar "$INPUT" "$@" --detailed > "$LOG_FILE" 2>&1
+# Run DNAnalyzer CLI via launcher-common.sh so we use the freshly-built jar
+# instead of a stale artifact checked into the repo.
+dnanalyzer_run "$INPUT" "$@" --detailed > "$LOG_FILE" 2>&1
 
 # Generate HTML report using existing utilities
 cat > "$SESSION_DIR/GenerateReport.java" <<'JAVA'

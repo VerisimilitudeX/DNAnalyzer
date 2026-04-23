@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+source "$SCRIPT_DIR/launcher-common.sh"
+
+dnanalyzer_init "$REPO_ROOT"
+
+echo "=== DNAnalyzer Version ==="
+dnanalyzer_run --version
+
+echo ""
+echo "=== DNAnalyzer Help ==="
+dnanalyzer_run --help
