@@ -1,6 +1,6 @@
 # GPU-Accelerated Smith-Waterman
 
-This module provides an optional GPU implementation of the Smith–Waterman
+This module provides an optional GPU implementation of the Smith-Waterman
 local alignment algorithm using [PyOpenCL](https://pypi.org/project/pyopencl/).
 When a compatible GPU or OpenCL runtime is unavailable, the code falls back to a
 pure Python implementation.
@@ -36,7 +36,7 @@ contains the dynamic programming matrix.
 ## Dependencies
 
 * Python 3.8+
-* `pyopencl` (optional – falls back to CPU if not installed)
+* `pyopencl` (optional - falls back to CPU if not installed)
 
 Install dependencies via:
 

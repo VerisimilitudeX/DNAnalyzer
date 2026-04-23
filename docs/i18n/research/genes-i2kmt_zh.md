@@ -7,7 +7,7 @@
 - 苯丙酮尿症 (Phenylketonuria)
 - 常染色体显性多囊肾病 (Autosomal dominant polycystic kidney disease, ADPKD)
 - 镰状细胞病 (Sickle cell disease)
-- 泰-萨克斯病 (Tay–Sachs disease)
+- 泰-萨克斯病 (Tay-Sachs disease)
 
 #### 提供进化优势/差异的突变和表型
 - 地中海贫血 (Thalassemia)

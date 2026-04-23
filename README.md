@@ -1,4 +1,4 @@
-![DNAnalyzer-modified](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
+![DNAnalyzer](https://user-images.githubusercontent.com/96280466/221687615-698969a1-8d39-4278-aa92-8f713625f165.png)
 
 <div align="center">
 <h3>Next-Generation On-Device DNA Insights</h3>
@@ -15,439 +15,253 @@
 [![Dependabot](https://img.shields.io/badge/Dependabot-enabled-025e8c?style=flat-square&logo=dependabot)](.github/dependabot.yml)
 [![DeepSource](https://app.deepsource.com/gh/VerisimilitudeX/DNAnalyzer.svg/?label=active+issues&show_trend=true)](https://app.deepsource.com/gh/VerisimilitudeX/DNAnalyzer/)
 
-<br>
-
-<a href="https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=519909104&machine=largePremiumLinux&location=WestUs&skip_quickstart=true&geo=UsWest">
-    <img src="https://github.com/codespaces/badge.svg" alt="Open in GitHub Codespaces" style="height: 35px" />
-</a>&nbsp;&nbsp;
-<a href="https://huggingface.co/DNAnalyzer">
-    <img src="https://huggingface.co/datasets/huggingface/badges/resolve/main/sign-in-with-huggingface-xl-dark.svg" alt="Model in Hugging Face" style="height: 35px" />
-</a>&nbsp;&nbsp;
-
 </div>
 
-## About DNAnalyzer
+## About
 
-DNAnalyzer is a biotechnology research and deployment company revolutionizing genomic analysis through AI-powered, privacy-first technology. Supported by [Anthropic for Startups](http://anthropic.com/), our mission is to democratize DNA analysis by delivering enterprise-grade genomic insights through secure on-device computation.
+DNAnalyzer is an AI-powered, privacy-first platform for genomic analysis. All computation happens locally on your device, so genetic data never leaves your machine. The project is fiscally sponsored by Hack Club's 501(c)(3) (EIN 81-2908499).
 
-Founded by [Piyush Acharya](https://github.com/VerisimilitudeX), DNAnalyzer brings together **50 leading computational biologists and computer scientists** from Microsoft Research, the University of Macedonia, and Northeastern University.
+Founded by [Piyush Acharya](https://github.com/VerisimilitudeX) with 50 contributors drawn from Microsoft Research, the University of Macedonia, and Northeastern University.
 
-Our groundbreaking work has been presented at [Y Combinator's Mini YC](https://www.ycombinator.com/) and reached semifinals (top 10%) for a16z's $1M investment.
+Supported by the [Claude for Student Builders](https://claude.com/programs/campus) program (Anthropic API credits) and the [YC AI Student Starter Pack](https://www.ycombinator.com/blog/the-yc-ai-student-starter-pack) (over $25,000 in AI-devtool credits across Azure, AWS, OpenAI, Anthropic, xAI, and more) as a participant in [YC AI Startup School](https://events.ycombinator.com/ai-sus).
 
-<br>
+## Why It Matters
 
-## Why DNAnalyzer Matters
-
-<div align="center">
-
-| Industry Standard | DNAnalyzer's Innovation |
+| Industry Standard | DNAnalyzer |
 |---|---|
-| **$100** average cost for DNA sequencing | Completely **Free** analysis |
-| Up to **$600** for basic health insights | **Universally accessible**, empowering underserved communities worldwide* |
-| **78%** of companies share genetic data with third parties | **100% Private**: All computation happens locally on your device |
-| Data breaches compromise millions (23andMe: 6.9M users in 2023) | **Zero central storage**: Your genetic data never leaves your device |
+| $100 average cost for DNA sequencing | Free analysis |
+| Up to $600 for basic health insights | No usage fees |
+| 78% of testing companies share genetic data with third parties | 100% local: no data leaves your device |
+| Breaches regularly expose millions of users (e.g. 23andMe, 6.9M users in 2023) | Zero central storage |
 
-</div>
-
-> *"Unlike a password, compromised genetic data is permanently exposed. You cannot change it."*
-
-<small>*Excluding testing costs. We're developing an affordable in-house testing kit to eliminate this final barrier.</small>
-
-<br>
+> Compromised genetic data is permanent. Unlike a password, you cannot change it.
 
 ## Core Capabilities
 
-<table> <tr> <td width="33%" align="center"> <strong>Codon & Protein Detection</strong><br> Rapidly identifies protein-coding regions, amino acid chains, and critical genomic indicators with unprecedented accuracy. </td> <td width="33%" align="center"> <strong>GC-rich Region Analysis</strong><br> Precisely pinpoints genomic promoter areas with significant biological implications (45-60% GC-content). </td> <td width="33%" align="center"> <strong>Neurological Genomics</strong><br> Detects genetic markers associated with neurological conditions including autism, ADHD, and schizophrenia. </td> </tr> <tr> <td width="33%" align="center"> <strong>Promoter Element Identification</strong><br> Locates key transcription initiation sequences (BRE, TATA, INR, DPE) with surgical precision. </td> <td width="33%" align="center"> <strong>Multi-format FASTA Integration</strong><br> Seamlessly supports comprehensive DNA database analysis from uploads or external sources. </td> <td width="33%" align="center"> <strong>Powerful CLI Automation</strong><br> Harnesses a rich command-line interface for scripting, automation, and enterprise-scale analysis tasks. </td> </tr> <tr> <td width="33%" align="center"> <strong>Privacy-First Ancestry Insights</strong><br> Estimates continental origin using on-device reference panels without compromising privacy. </td> <td></td> <td></td> </tr> </table> <br>
+| Capability | Description |
+|---|---|
+| Codon and protein detection | Identifies protein-coding regions, amino-acid chains, and genomic indicators |
+| GC-rich region analysis | Locates promoter regions by 45 to 60 percent GC content |
+| Promoter element identification | Detects BRE, TATA, INR, and DPE transcription initiation elements |
+| Neurological genomic markers | Screens for variants linked to autism, ADHD, and schizophrenia |
+| Multi-format FASTA integration | Parses FASTA, FASTQ, and plain-text input from uploads or external sources |
+| CLI automation | Command-line interface for scripting and batch analysis |
+| Ancestry estimation | Continental ancestry from 23andMe or AncestryDNA exports, on device |
+| Polygenic risk scoring | Per-variant contribution reports with missing-variant flags |
+| Smith-Waterman alignment | Optional PyOpenCL GPU acceleration with a pure-Python CPU fallback |
 
-See the [Ancestry Snapshot guide](docs/usage/ancestry-snapshot.md) for detailed usage instructions.
+## Quickstart
 
-> **New:** Interactive web dashboard for real-time visualization is now available under `web/dashboard`, seamlessly communicating with the local REST API at `/api`.
-
-### Intelligent Natural Language Reports
-When an OpenAI key is available, each CLI run now produces two narratives immediately after the metrics:
-
-- **Researcher Report** – Technical interpretation with references to the detected GC windows, ORFs, PRS coverage, etc.
-- **Layperson Report** – Plain-language explainer that highlights the most actionable findings.
-
-Set `OPENAI_API_KEY` (or `AI_PROVIDER=openai` plus the corresponding key) before launching DNAnalyzer and the summaries will appear in the terminal and be saved to `analysis_output/.../reports/`. Use `--no-ai` if you want to skip the call for a particular run.
-
-<br>
-<br>
-
-## Quickstart Guide
-
-Ready to unlock your genomic insights? Begin precision DNA analysis in seconds:
-
-### Docker (easiest — no Java install required)
+### Docker (no Java install required)
 
 ```bash
-# Clone the repository
 git clone https://github.com/VerisimilitudeX/DNAnalyzer.git
 cd DNAnalyzer
-
-# Build and start everything in containers
 docker compose up --build
 ```
 
+Once the containers are up, the stack listens on your machine at:
+
 | Service | URL |
 |---|---|
-| Web UI | http://localhost:3000 |
-| REST API | http://localhost:8080 |
-| Swagger / API docs | http://localhost:8080/swagger-ui/index.html |
+| Web UI | `http://localhost:3000` |
+| REST API | `http://localhost:8080` |
+| Swagger docs | `http://localhost:8080/swagger-ui/index.html` |
 
-To stop: `docker compose down`
+Stop with `docker compose down`.
 
----
-
-### Manual setup
+### Manual build
 
 ```bash
-# Clone the repository
 git clone https://github.com/VerisimilitudeX/DNAnalyzer.git
-
-# Navigate to project directory
 cd DNAnalyzer
-
-# Install dependencies
 ./gradlew build
 ```
 
-> **Enable AI summaries (optional):** export your API key before running the CLI, e.g.
+This produces two jars under `build/libs/`:
+
+| Jar | Purpose | Entry point |
+|---|---|---|
+| `DNAnalyzer-<version>-boot.jar` | Spring Boot REST API | `DNAnalyzer.api.ApiApplication` |
+| `DNAnalyzer-<version>-plain.jar` | CLI fat jar | `DNAnalyzer.Main` |
+
+### Running the CLI
+
+The simplest path is the launcher script, which auto-selects a jar or falls back to `gradle run`:
+
+```bash
+./easy_dna.sh your_file.fa basic       # Standard analysis
+./easy_dna.sh your_file.fa detailed    # Comprehensive analysis
+./easy_dna.sh your_file.fa mutations   # Generate mutations
+./easy_dna.sh your_file.fa all         # Complete suite
+./easy_dna.sh your_file.fa custom      # Interactive mode
+```
+
+Override the jar path with `DNANALYZER_JAR=/path/to/jar` if needed.
+
+The equivalent direct invocation:
+
+```bash
+java -jar build/libs/DNAnalyzer-1.2.1-plain.jar your_file.fa
+```
+
+### Analysis profiles
+
+```bash
+java -jar build/libs/DNAnalyzer-1.2.1-plain.jar --profile research your_file.fa
+# Available: basic, detailed, quick, research, mutation, clinical
+java -jar build/libs/DNAnalyzer-1.2.1-plain.jar --profile list
+```
+
+### Output layout
+
+Each CLI run writes into a timestamped directory under `output/`:
+
+```text
+output/dnanalyzer_output_<filename>_<timestamp>/
+  charts/     # QC visualizations (PNG)
+  sequences/  # Generated mutations and processed sequences (FASTA)
+  reports/    # Analysis reports and summaries (HTML)
+```
+
+### Optional: AI-generated reports
+
+When an OpenAI key is available, each run produces a researcher report and a layperson report alongside the numeric output.
 
 ```bash
 export OPENAI_API_KEY=sk-...
-# optionally pick a model
-export OPENAI_MODEL=gpt-4o-mini
+export OPENAI_MODEL=gpt-4o-mini     # optional
 ```
 
-Pass `--no-ai` if you prefer a run without contacting the API; all analytic outputs still generate.
+Pass `--no-ai` to skip the model call.
 
-### 🚀 **NEW: Intuitive Launch Script**
-We've transformed DNAnalyzer's user experience! Say goodbye to complex command-line options:
+## REST API
 
-```bash
-# Simple preset modes
-./easy_dna.sh your_file.fa basic      # Standard analysis
-./easy_dna.sh your_file.fa detailed   # Comprehensive analysis  
-./easy_dna.sh your_file.fa mutations  # Generate mutations
-./easy_dna.sh your_file.fa all        # Complete suite
-./easy_dna.sh your_file.fa custom     # Interactive mode
-
-# Or use the traditional Java method
-java -jar build/libs/DNAnalyzer-1.2.1.jar your_file.fa
-```
-
-> `easy_dna.sh` automatically uses a feature-complete jar from `build/libs/` when available,
-> falls back to `./gradlew run`, and warns if only the legacy basic jar is present.
-> Override the jar path with `DNANALYZER_JAR=/path/to/dnanalyzer.jar` if needed.
-
-### 📁 **NEW: Intelligent Output Organization**
-All generated files are automatically organized in a clean, intuitive directory structure:
-
-```
-output/dnanalyzer_output_{filename}_{timestamp}/
-├── charts/          # Quality control and analysis visualizations (PNG)
-├── sequences/       # Generated mutations and processed sequences (FASTA)
-└── reports/         # Comprehensive analysis reports and summaries (HTML)
-```
-
-### 🎯 **NEW: Smart Analysis Profiles**
-Leverage predefined profiles tailored to your workflow:
-
-```bash
-# Select analysis profiles optimized for common use cases
-java -jar build/libs/DNAnalyzer-1.2.1.jar --profile research your_file.fa
-java -jar build/libs/DNAnalyzer-1.2.1.jar --profile clinical your_file.fa
-java -jar build/libs/DNAnalyzer-1.2.1.jar --profile mutation your_file.fa
-
-# Available profiles: basic, detailed, quick, research, mutation, clinical
-# List available presets directly from the CLI
-java -jar build/libs/DNAnalyzer-1.2.1.jar --profile list
-```
-
-### 📚 Documentation
-- [Getting Started Guide](docs/getting-started.md) - Essential setup and configuration
-- [Enhanced Features Guide](docs/usage/enhanced-features.md) - **NEW!** Comprehensive guide to all user experience improvements
-- [Command Reference](docs/usage/) - Complete command-line options and examples
-- [Changelog](CHANGELOG.md) - **NEW!** Detailed release notes and version history
-
-<br>
-
-## Polygenic Health-Risk Scores
-
-DNAnalyzer now features an advanced polygenic risk score calculator alongside engaging trait predictions.
-Simply provide your 23andMe data file with a CSV of SNP weights to compute personalized scores:
-
-```bash
-./gradlew run --args='--23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa'
-java -jar build/libs/DNAnalyzer-1.2.1.jar --23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa
-```
-
-The CLI now parses the standard tab-delimited 23andMe export, aligns it with each provided
-weight table, and reports the raw and normalized contribution of every SNP in the trait.
-Missing or uncallable variants are clearly identified so you can assess coverage before
-acting on a score. See the [Polygenic Risk Scoring guide](docs/usage/polygenic-risk-scoring.md)
-for a detailed walkthrough and example outputs.
-
-Trait predictions and risk scores are displayed following standard DNA analysis.
-**Disclaimer:** Trait predictions are provided for educational purposes only and should not be used for medical or health decisions.
-
-<br>
-
-### REST API
-
-The project now ships with a production-ready Spring Boot service that powers the web dashboard
-and external integrations. Start it locally with:
-
-```bash
-./gradlew bootRun
-```
-
-The API is exposed under `/api/v1` and returns JSON. Key endpoints include:
+Start the API alone with `./gradlew bootRun`. All endpoints live under `/api/v1`.
 
 | Endpoint | Method | Description |
-| --- | --- | --- |
+|---|---|---|
 | `/api/v1/status` | GET | Health check and version metadata |
-| `/api/v1/analyze` | POST (multipart) | Run the full analysis pipeline on an uploaded FASTA/FASTQ/plain-text sequence |
-| `/api/v1/base-pairs` | POST (JSON) | Return base pair counts, percentages, and GC content for a sequence |
-| `/api/v1/reading-frames` | POST (JSON) | Identify open reading frames in forward and reverse directions |
-| `/api/v1/find-proteins` | POST (JSON) | Predict candidate proteins (top 10 by length) |
+| `/api/v1/analyze` | POST (multipart) | Full analysis pipeline on an uploaded FASTA/FASTQ/plain-text sequence |
+| `/api/v1/base-pairs` | POST (JSON) | Base-pair counts, percentages, and GC content |
+| `/api/v1/reading-frames` | POST (JSON) | Open reading frames (forward and reverse) |
+| `/api/v1/find-proteins` | POST (JSON) | Top 10 candidate proteins by length |
 | `/api/v1/manipulate` | POST (JSON) | Reverse, complement, or reverse-complement a sequence |
-| `/api/v1/parse` | POST (multipart) | Extract the first sequence record from FASTA, FASTQ, or plain text uploads |
-| `/api/v1/analyze-genetic` | POST (multipart) | Score 23andMe/Ancestry genotype files for ancestry matches and bundled polygenic risk panels |
-
-Example: analyze a sequence file and receive the same payload used by the dashboard visualizations.
+| `/api/v1/parse` | POST (multipart) | Extract the first sequence record from FASTA/FASTQ/plain uploads |
+| `/api/v1/analyze-genetic` | POST (multipart) | Score 23andMe/AncestryDNA genotype files against bundled PRS panels |
 
 ```bash
 curl -F dnaFile=@sample.fa http://localhost:8080/api/v1/analyze
-```
 
-Need just the base-pair breakdown? Send the raw sequence as JSON:
-
-```bash
 curl -X POST http://localhost:8080/api/v1/base-pairs \
      -H 'Content-Type: application/json' \
      -d '{"sequence": "ATGCGCATTA"}'
-```
 
-Genotype data uploads are also supported. Include `snpAnalysis=true` to stream per-SNP contributions in the response.
-
-```bash
 curl -F geneticFile=@my_23andme.txt -F snpAnalysis=true \
      http://localhost:8080/api/v1/analyze-genetic
 ```
 
-All responses include descriptive error messages for invalid payloads, making the API easy to
-drive from scripts in Python, R, or any other environment.
+Full reference: [docs/API_REFERENCE.md](docs/API_REFERENCE.md).
+
+## Polygenic Risk Scores
+
+```bash
+./gradlew run --args='--23andme my_data.txt --prs assets/risk/heart_disease_prs.csv sample.fa'
+```
+
+The CLI parses the standard tab-delimited 23andMe export, aligns it with each provided weight table, and reports the raw and normalized contribution of every SNP. Missing or uncallable variants are flagged so you can assess coverage before acting on a score.
+
+Walkthrough and example outputs: [docs/usage/polygenic-risk-scoring.md](docs/usage/polygenic-risk-scoring.md).
+
+Trait predictions are educational only. Do not use them for medical decisions.
 
 ## GPU-Accelerated Smith-Waterman
 
-Our optional PyOpenCL module delivers GPU acceleration for local sequence
-alignment. When no compatible GPU is detected, the implementation gracefully
-falls back to optimized Python execution.
-
-Execute the module directly or via CLI:
+Run the Python module directly:
 
 ```bash
 python -m src.python.gpu_smith_waterman SEQ1 SEQ2
 ```
 
-From the DNAnalyzer CLI, request Smith-Waterman alignment by combining
-`--sw-align` with `--align`. If you already provided a primary FASTA file, pass
-the reference sequence to `--align`:
+Or invoke it from the CLI by combining `--sw-align` with `--align`:
 
 ```bash
-java -jar dnanalyzer.jar sample.fa --align reference.fa --sw-align
+java -jar build/libs/DNAnalyzer-1.2.1-plain.jar sample.fa --align reference.fa --sw-align
+java -jar build/libs/DNAnalyzer-1.2.1-plain.jar --align query.fa reference.fa --sw-align
 ```
 
-Alternatively, supply both query and reference sequences directly to
-`--align`:
+Implementation notes: [docs/developer/GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md).
 
-```bash
-java -jar dnanalyzer.jar --align query.fa reference.fa --sw-align
-```
+## Packaging Analysis Sessions
 
-See [GPU_Smith_Waterman.md](docs/developer/GPU_Smith_Waterman.md) for comprehensive
-technical details.
-
-### Packaging Analysis Sessions
-
-After completing your DNAnalyzer run, archive inputs, logs, and interactive
-HTML reports using `package-session.sh`:
+Archive a run (inputs, logs, HTML report) into a timestamped ZIP:
 
 ```bash
 ./scripts/package-session.sh sample.fa
 ```
 
-The generated time-stamped ZIP archive includes the original FASTA, the captured
-`analysis.log`, a self-contained `report.html` summarizing base counts and
-percentages, plus any QC images found in `assets/reports`.
+## Documentation
 
-<br>
+Entry points for humans and AI agents:
 
-## Development Roadmap
-
-<div align="center">
-
-| Upcoming Innovation | Description |
+| Doc | Purpose |
 |---|---|
-| **Optimized SQL Database** | Scalable architecture supporting genomic datasets across diverse species |
-| **Enhanced Neural Network** | Seamless integration with third-party genotype datasets (23andMe, AncestryDNA) |
-| **DIAMOND Implementation** | Harmonizing DIAMOND's speed with BLAST's accuracy for next-generation analyses |
-| **AI Trait Predictor Suite** | Engaging, shareable predictions—from cilantro taste to chronotype—validated by peer-reviewed SNP studies |
-| **Secure Share & Compare** | Offline-generated QR summaries enable selective insight sharing with healthcare providers—raw genome remains private |
+| [AGENTS.md](AGENTS.md) | Orientation for agentic AI and automation |
+| [docs/README.md](docs/README.md) | Index of all documentation |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | System architecture and diagrams |
+| [docs/REPOSITORY_MAP.md](docs/REPOSITORY_MAP.md) | Directory-by-directory guide |
+| [docs/API_REFERENCE.md](docs/API_REFERENCE.md) | REST and CLI reference |
+| [docs/getting-started.md](docs/getting-started.md) | First-time setup |
+| [SECURITY.md](SECURITY.md) | Security policy and private reporting |
 
-</div>
+## Contributing
 
-<br>
+Contributions are welcome at every experience level.
 
-## Contribute to DNAnalyzer
-
-We enthusiastically welcome contributions from all experience levels:
-
-- [Guidelines for Contribution](./docs/contributing/Contribution_Guidelines.md)
-- [Git Usage Instructions](./docs/contributing/CONTRIBUTING.md)
-- [Development Environment](./docs/Development_Environment.md)
+- [Contribution guidelines](./docs/contributing/Contribution_Guidelines.md)
+- [Git workflow](./docs/contributing/CONTRIBUTING.md)
+- [Development environment](./docs/Development_Environment.md)
 
 <div align="center">
-  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/stargazers">
-    <img src="https://img.shields.io/github/stars/VerisimilitudeX/DNAnalyzer?style=for-the-badge&color=yellow" alt="Stars">
-  </a>
-  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues">
-    <img src="https://img.shields.io/github/issues/VerisimilitudeX/DNAnalyzer?style=for-the-badge" alt="Issues">
-  </a>
-  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/pulls">
-    <img src="https://img.shields.io/github/issues-pr/VerisimilitudeX/DNAnalyzer?style=for-the-badge" alt="Pull Requests">
-  </a>
-  <a href="https://discord.gg/X3YCvGf2Ug">
-    <img src="https://img.shields.io/discord/1033196198816915516?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
-  </a>
+  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/stargazers"><img src="https://img.shields.io/github/stars/VerisimilitudeX/DNAnalyzer?style=for-the-badge&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues"><img src="https://img.shields.io/github/issues/VerisimilitudeX/DNAnalyzer?style=for-the-badge" alt="Issues"></a>
+  <a href="https://github.com/VerisimilitudeX/DNAnalyzer/pulls"><img src="https://img.shields.io/github/issues-pr/VerisimilitudeX/DNAnalyzer?style=for-the-badge" alt="Pull Requests"></a>
+  <a href="https://discord.gg/X3YCvGf2Ug"><img src="https://img.shields.io/discord/1033196198816915516?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
 </div>
 
-<br>
+## Impact Metrics
 
-## Academic Citations
+<!-- IMPACT-METRICS:START -->
+| Metric | Current Value |
+|---|---|
+| GitHub Stars | 177 |
+| Forks | 74 |
+| Contributors | 50 |
+| Merged pull requests | 0 |
+| Release asset downloads | 247 |
+<!-- IMPACT-METRICS:END -->
 
-When referencing DNAnalyzer in academic work, please cite:
+These numbers are refreshed by the `metrics-refresh.yml` workflow.
+
+## Academic Citation
 
 ```bibtex
 @software{Acharya_DNAnalyzer_ML-Powered_DNA_2022,
-  author = {Acharya, Piyush},
-  doi = {10.5281/zenodo.14556577},
-  month = oct,
-  title = {{DNAnalyzer: ML-Powered DNA Analysis Platform}},
-  url = {https://github.com/VerisimilitudeX/DNAnalyzer},
+  author  = {Acharya, Piyush},
+  doi     = {10.5281/zenodo.14556577},
+  month   = oct,
+  title   = {{DNAnalyzer: ML-Powered DNA Analysis Platform}},
+  url     = {https://github.com/VerisimilitudeX/DNAnalyzer},
   version = {3.6.1},
-  year = {2022}
+  year    = {2022}
 }
 ```
 
-<br>
+## Terms of Use
 
-## ⚖ Terms of Use
+DNAnalyzer is provided "as-is". Use of this software implies acceptance of all associated risks and liabilities. DNAnalyzer disclaims responsibility for any loss or damage arising from its use. Contact: help@dnanalyzer.org.
 
-DNAnalyzer is provided "as-is." Usage of this software implies acceptance of all associated risks and liabilities. DNAnalyzer disclaims responsibility for any loss or damage arising from its use.
-
-For assistance or inquiries: help@dnanalyzer.org
-
-DNAnalyzer, © Piyush Acharya 2026. A fiscally sponsored 501(c)(3) nonprofit (EIN: 81-2908499), licensed under MIT License.
-
-<br>
-
-<!-- ────────────────────────────────────────────────────────────────── -->
-<!-- 🚀  MEDIA & AWARDS  -->
-<!--
-## Media & Awards  
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/8aa43624-920a-4ce3-a577-9a5785c33d93" height="100" alt="Y Combinator Logo">
-  &nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/068c18e2-5076-458d-8e2e-faf166ea63c6" height="100" alt="Anthropic Logo">
-  &nbsp;&nbsp;
-  <img src="https://github.com/user-attachments/assets/ee09ae49-94cf-4a8c-97d4-c0937aecb9be" height="100" alt="AI Engineer World's Fair Logo">
-  &nbsp;&nbsp;
-  <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-black.png" height="100" alt="DEV Logo">
-</div>
-
-| Year | Recognition | Details |
-|------|-------------|---------|
-| 2025 | **Anthropic Student Builders Grant** | Awarded funds for DNAnalyzer R&D :contentReference[oaicite:0]{index=0} |
-| 2024 | **AI Engineer World's Fair** | CEO of the largest technical AI expo starred project |
-| 2025 | **Y Combinator** | Accepted into YC's prestigious AI Startup School |
-| 2024 | **DEV.to** | Showcased by the founder of DEV |
-
-**Watch the live demos**  
-[▶ a16z Pitch(2 min)](https://youtu.be/zd698cf5dX4) | [▶ Installation Instructions (7 min)](https://youtu.be/dOwkInn6eDw)
--->
----
-
-<!-- ────────────────────────────────────────────────────────────────── -->
-<!-- 📊  IMPACT METRICS  -->
-## Impact Metrics  
-
-| Metric | Current Value |
-|--------|---------------|
-| GitHub Stars | **177** |
-| Forks | **74** |
-| Contributors | **50** |
-| Merged pull requests | **317** |
-| Release asset downloads | **247** |
-| GitHub Pages deployments | **100** |
-
----
-
-<!-- ────────────────────────────────────────────────────────────────── -->
-<!-- 💬  TESTIMONIALS
-## Testimonials  
-
-> "DNAnalyzer lowered our variant-calling turnaround time from hours to minutes."  
-> — *Professor Name, University Placeholder*
-
-> "A model student project demonstrating real-world impact in computational biology."  
-> — *Admissions Officer, Placeholder Institute*
-
-_Add additional verified quotes as they arrive._
--->
-
-<!-- ────────────────────────────────────────────────────────────────── -->
-<!-- 👥  LEADERSHIP & TEAM  -->
-<!--
-## Leadership & Team  
-
-| Role | Name | Highlights |
-|------|------|------------|
-| Founder / Lead Engineer | **Piyush Acharya** | IEEE-published author; 97% model accuracy; National Science Bowl champion |
-| Core Maintainers | Martin Gallauner · Ravina Deogadkar · Hrithik Raj | Handle feature PRs, security reviews, and documentation |
-| Advisory Support | 45 volunteer researchers (Microsoft Research, Northeastern U, etc.) | Provide domain-expert code reviews and dataset vetting |
--->
----
-
-<!-- ────────────────────────────────────────────────────────────────── -->
-<!-- 🎨  ARCHITECTURE VISUALS  -->
-<!--
-## Architecture Visuals  
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/VerisimilitudeX/DNAnalyzer/main/assets/architecture_overview.svg" width="650" alt="DNAnalyzer Pipeline Diagram">
-</p>
-
-_The diagram outlines on-device preprocessing, transformer inference, and privacy-preserving result caching._
-
--->
-
-<!-- ────────────────────────────────────────────────────────────────── -->
-<!-- 🌐  COMMUNITY ENGAGEMENT  -->
-## Community Engagement  
-
-- **Discord** · Active `#genomics-ai` channel (80+ members)  
-- **Open Issues for First-Timers** · Labeled `good-first-issue` to mentor newcomers  
-- **Monthly Release Notes** · Transparent changelogs with contributor recognition
-
----
-
-<!-- Metrics refreshed from the GitHub API; rerun the API queries in CONTRIBUTING to pick up drift. -->
-
-<!-- ────────────────────────────────────────────────────────────────── -->
+DNAnalyzer, (C) Piyush Acharya 2026. Fiscally sponsored 501(c)(3) nonprofit (EIN 81-2908499), licensed under the MIT License.
 
 <div align="center">
   <h3>Project Growth</h3>
@@ -460,8 +274,6 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
   </a>
 </div>
 
-<br>
-
 <div align="center">
   <h3>Support DNAnalyzer</h3>
   <table>
@@ -469,16 +281,12 @@ _The diagram outlines on-device preprocessing, transformer inference, and privac
       <td align="center">
         <h4>23andMe</h4>
         <p>Get <strong>10% off</strong> your order<br>DNAnalyzer earns <strong>$20</strong> per referral</p>
-        <a href="https://refer.23andme.com/s/ruxd4" target="_blank">
-          <img src="https://img.shields.io/badge/Get_10%25_Off-23andMe-4285F4?style=for-the-badge" alt="23andMe Referral">
-        </a>
+        <a href="https://refer.23andme.com/s/ruxd4" target="_blank"><img src="https://img.shields.io/badge/Get_10%25_Off-23andMe-4285F4?style=for-the-badge" alt="23andMe Referral"></a>
       </td>
       <td align="center">
-        <h4>Ancestry® Membership</h4>
+        <h4>Ancestry Membership</h4>
         <p>Get up to <strong>24% off</strong> membership<br>DNAnalyzer earns <strong>$10</strong> per referral</p>
-        <a href="https://refer.ancestry.com/verisimilitude11!6699046cdf!a" target="_blank">
-          <img src="https://img.shields.io/badge/Get_24%25_Off-Ancestry-83C36D?style=for-the-badge" alt="Ancestry Referral">
-        </a>
+        <a href="https://refer.ancestry.com/verisimilitude11!6699046cdf!a" target="_blank"><img src="https://img.shields.io/badge/Get_24%25_Off-Ancestry-83C36D?style=for-the-badge" alt="Ancestry Referral"></a>
       </td>
     </tr>
   </table>

@@ -1,13 +1,13 @@
-# Steps to follow 📜
+# Steps to follow
 
-## 1. Fork it 🍴
+## 1. Fork it
 
 You can get your own fork (copy) of [DNAnalyzer](https://github.com/VerisimilitudeX/DNAnalyzer) by using the `Fork`
 button at the top right of this page.
 
 ![Fork Button](https://github-images.s3.amazonaws.com/help/bootcamp/Bootcamp-Fork.png)
 
-## 2. Clone it 👥
+## 2. Clone it
 
 You must move to your fork of the repository and clone (download) it to your local machine using
 
@@ -19,7 +19,7 @@ After cloning the `DNAnalyzer` repository on GitHub, use the change directory co
 folder.
 
 ```python
-# This will change directory to a folder DNAnalyzer                                                                   
+# This will change directory to a folder DNAnalyzer
 $ cd
 DNAnalyzer
 ```
@@ -36,13 +36,13 @@ Examine the modifications using:
 
 ```git
  $ git remote -v
- origin https://github.com/Your_Username/DNAnalyzer.git (fetch)                                                      
- origin https://github.com/Your_Username/DNAnalyzer.git (push)                                                        
- upstream https://github.com/VerisimilitudeX/DNAnalyzer.git (fetch)                                                     
+ origin https://github.com/Your_Username/DNAnalyzer.git (fetch)
+ origin https://github.com/Your_Username/DNAnalyzer.git (push)
+ upstream https://github.com/VerisimilitudeX/DNAnalyzer.git (fetch)
  upstream https://github.com/VerisimilitudeX/DNAnalyzer.git (push)
  ```
 
-## 3. Sync with the Remote 🔄
+## 3. Sync with the Remote
 
 Remember to keep your local repository up to date with the remote repository.
 

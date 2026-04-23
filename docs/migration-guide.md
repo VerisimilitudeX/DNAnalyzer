@@ -2,7 +2,7 @@
 
 This guide helps existing DNAnalyzer users understand and adopt the new user experience improvements introduced in v1.2.1.
 
-## 🔄 What's Changed
+##  What's Changed
 
 ### Output File Locations
 
@@ -20,7 +20,7 @@ DNAnalyzer/
 └── output/dnanalyzer_output_test_20250608_184523/
     ├── charts/
     │   └── test.fa_qc_chart.png         # Clearly named and located
-    ├── sequences/ 
+    ├── sequences/
     │   └── mutations_20250608_184523.fa # Organized by type
     └── reports/
         └── (future HTML reports)
@@ -48,7 +48,7 @@ java -jar build/libs/DNAnalyzer-1.2.1.jar --detailed --verbose --mutate 5 test.f
 > Tip: `easy_dna.sh` uses `scripts/launcher-common.sh` to detect the rebuilt jar in `build/libs/` and will
 > fall back to `./gradlew run` if necessary. Set `DNANALYZER_JAR` to override the jar path when scripting.
 
-## 📋 Migration Checklist
+##  Migration Checklist
 
 ### For Individual Users
 
@@ -70,7 +70,7 @@ java -jar build/libs/DNAnalyzer-1.2.1.jar --detailed --verbose --mutate 5 test.f
 - [ ] **Update backup scripts**: Include the new `output/` directory structure
 - [ ] **Review file permissions**: Ensure write access to create organized directories
 
-## 🛠️ Specific Migration Tasks
+##  Specific Migration Tasks
 
 ### Update Existing Scripts
 
@@ -115,7 +115,7 @@ If you have internal documentation, update it to reflect:
 - Analysis profiles (`--profile` option)
 - Enhanced file notifications and summaries
 
-## 🔍 Testing Your Migration
+##  Testing Your Migration
 
 ### Verification Steps
 
@@ -147,13 +147,13 @@ If you have internal documentation, update it to reflect:
 **Issue: "Easy script not found"**
 - **Solution**: Ensure you're in the DNAnalyzer root directory, make script executable
 
-**Issue: "Profile not recognized"**  
+**Issue: "Profile not recognized"**
 - **Solution**: Use lowercase profile names, check spelling, ensure v1.2.1+
 
 **Issue: "Can't find output files"**
 - **Solution**: Look in the new `output/` directory structure, check the file summary
 
-## 📈 Benefits of Upgrading
+##  Benefits of Upgrading
 
 ### Immediate Benefits
 - **No more scattered files**: Everything organized in logical directories
@@ -167,7 +167,7 @@ If you have internal documentation, update it to reflect:
 - **Enhanced workflows**: Profiles make common tasks one-command simple
 - **Future compatibility**: Foundation for additional features
 
-## 🆘 Getting Help
+##  Getting Help
 
 If you encounter issues during migration:
 
@@ -186,7 +186,7 @@ If you encounter issues during migration:
    - You can ignore new features and use traditional commands
    - Previous versions available in GitHub releases
 
-## 🚀 What's Next
+##  What's Next
 
 After migrating, consider exploring:
 - **Interactive custom mode**: `./easy_dna.sh file.fa custom`
@@ -196,4 +196,4 @@ After migrating, consider exploring:
 
 ---
 
-*This migration guide covers the transition from pre-v1.2.1 to v1.2.1+. For future migrations, refer to the [Changelog](../CHANGELOG.md) for version-specific changes.* 
+*This migration guide covers the transition from pre-v1.2.1 to v1.2.1+. For future migrations, refer to the [Changelog](../CHANGELOG.md) for version-specific changes.*
