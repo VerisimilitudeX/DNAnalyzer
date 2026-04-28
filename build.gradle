@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.5'
+    id 'org.springframework.boot' version '4.0.6'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
     id 'application'
@@ -41,7 +41,7 @@ dependencies {
 
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation 'io.sentry:sentry:8.40.0'
-    implementation 'org.controlsfx:controlsfx:11.1.2'
+    implementation 'org.controlsfx:controlsfx:11.2.3'
     implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.0.1'
     implementation 'com.theokanning.openai-gpt3-java:service:0.11.1'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
