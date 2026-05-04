@@ -39,7 +39,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
 
-    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'com.google.guava:guava:33.6.0-jre'
     implementation 'io.sentry:sentry:8.40.0'
     implementation 'org.controlsfx:controlsfx:11.2.3'
     implementation group: 'com.github.plexpt', name: 'chatgpt', version: '4.0.1'
