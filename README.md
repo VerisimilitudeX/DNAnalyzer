@@ -234,11 +234,11 @@ Contributions are welcome at every experience level.
 <!-- IMPACT-METRICS:START -->
 | Metric | Current Value |
 |---|---|
-| GitHub Stars | 179 |
+| GitHub Stars | 180 |
 | Forks | 76 |
 | Contributors | 51 |
 | Merged pull requests | 0 |
-| Release asset downloads | 249 |
+| Release asset downloads | 250 |
 <!-- IMPACT-METRICS:END -->
 
 These numbers are refreshed by the `metrics-refresh.yml` workflow.
