@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 
-def junitVersion = "5.8.2"
+def junitVersion = "6.0.3"
 
 javafx {
     version = "19"
