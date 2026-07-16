@@ -316,20 +316,11 @@ function handleGeneticAnalysis() {
         analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
     }
     
-    // Simulate processing delay
-    setTimeout(() => {
-        // Perform analysis
-        const results = performGeneticAnalysis(file, selectedTests, formData);
-        
-        // Display results
-        displayGeneticResults(results);
-        
-        // Reset button
-        if (analyzeBtn) {
-            analyzeBtn.disabled = false;
-            analyzeBtn.innerHTML = '<i class="fas fa-vial"></i> Run Genetic Tests';
-        }
-    }, 2000);
+    // The previous in-tab genetic report returned hardcoded placeholder results
+    // that ignored the uploaded file. It has been replaced by the on-device
+    // polygenic score tool, which parses the real file and computes it in the
+    // browser. Route the user there instead of rendering fabricated output.
+    window.location.href = '../prs/index.html';
 }
 
 /**

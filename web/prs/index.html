@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On-device Polygenic Score . DNAnalyzer</title>
+    <meta name="description"
+        content="Upload your 23andMe or AncestryDNA export and compute a published polygenic score entirely in your browser. Your DNA file never leaves your device.">
+
+    <!-- Privacy-respecting, cookieless analytics (Cloudflare Web Analytics).
+         Replace CF_BEACON_TOKEN with the token from the Cloudflare dashboard.
+         Deliberately no Google Analytics on this page: the whole point is that
+         nothing about the visitor's DNA is shared with a third party. -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="prs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="prs-body">
+    <header class="prs-topbar">
+        <a class="prs-brand" href="../index.html">
+            <i class="fas fa-dna"></i> DNAnalyzer
+        </a>
+        <a class="prs-topbar-link" href="../index.html">
+            <i class="fas fa-arrow-left"></i> Home
+        </a>
+    </header>
+
+    <main class="prs-main">
+        <section class="prs-hero">
+            <span class="prs-kicker"><i class="fas fa-lock"></i> Runs entirely in your browser</span>
+            <h1>Score your DNA without uploading it.</h1>
+            <p class="prs-sub">
+                Drop in your 23andMe or AncestryDNA export and compute a published
+                polygenic score on this page. Your genotype file is read and scored
+                locally in your browser. It is never sent to a server, and there is
+                nothing to sign up for.
+            </p>
+        </section>
+
+        <!-- STEP 1: input -->
+        <section class="prs-card" id="inputCard">
+            <div class="prs-dropzone" id="dropZone" tabindex="0" role="button"
+                aria-label="Upload your genotype file">
+                <input type="file" id="fileInput" accept=".txt,.csv,.tsv" hidden>
+                <i class="fas fa-file-arrow-up prs-dropzone-icon"></i>
+                <p class="prs-dropzone-title">Drag your DNA file here, or click to browse</p>
+                <p class="prs-dropzone-hint">
+                    23andMe (<code>genome_*.txt</code>) or AncestryDNA (<code>AncestryDNA.txt</code>).
+                    Nothing is uploaded.
+                </p>
+            </div>
+            <div class="prs-actions">
+                <button class="prs-btn prs-btn-ghost" id="sampleBtn" type="button">
+                    <i class="fas fa-vial"></i> Try a sample file
+                </button>
+                <span class="prs-privacy-note">
+                    <i class="fas fa-shield-halved"></i>
+                    Open your browser's Network tab and watch: no request carries your file.
+                </span>
+            </div>
+        </section>
+
+        <!-- transient states -->
+        <section class="prs-status" id="statusArea" hidden></section>
+
+        <!-- STEP 2: result -->
+        <section class="prs-result" id="resultArea" hidden></section>
+
+        <!-- honest framing, always visible -->
+        <section class="prs-disclaimer" id="disclaimer">
+            <h2><i class="fas fa-circle-info"></i> What this is, and what it is not</h2>
+            <ul>
+                <li><strong>Educational demonstration, not a medical or diagnostic test.</strong>
+                    Nothing here is medical advice. Do not make health decisions from it.
+                    Talk to a clinician or genetic counselor about real concerns.</li>
+                <li><strong>One published research score.</strong> It computes a single
+                    polygenic score from the <a href="https://www.pgscatalog.org/" target="_blank"
+                        rel="noopener">PGS Catalog</a>, shown with full attribution below once your file loads.</li>
+                <li><strong>Not calibrated to you.</strong> A raw polygenic score is not a
+                    percentile, a probability, or a risk. It is not adjusted for your ancestry,
+                    which strongly affects how these scores should be read.</li>
+                <li><strong>Limited by your array.</strong> Consumer tests genotype only a
+                    fraction of a research score's variants, so coverage is partial. The result
+                    shows exactly how many variants were found.</li>
+                <li><strong>Cookieless analytics.</strong> This page counts anonymous page views
+                    with Cloudflare Web Analytics (no cookies, no fingerprinting). It records that
+                    the page was viewed, never anything about your DNA.</li>
+            </ul>
+            <p class="prs-attribution" id="attribution"></p>
+        </section>
+    </main>
+
+    <footer class="prs-footer">
+        <p>
+            <a href="../index.html">DNAnalyzer</a> . Privacy-first genomics .
+            Computation happens on your device.
+        </p>
+    </footer>
+
+    <script src="../analyzer/prs-engine.js"></script>
+    <script src="prs.js"></script>
+</body>
+
+</html>
