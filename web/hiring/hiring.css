@@ -1,198 +1,36 @@
-/* General Styles */
-body {
-    font-family: 'IBM Plex Mono', monospace;
-    background-color: #0a0c1b;
-    color: #ffffff;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-}
+/* ==========================================================================
+   Contribute page. Care design system additions only. Everything structural
+   comes from base.css. Content is visible by default. No dashes anywhere.
+   ========================================================================== */
 
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 6rem auto 2rem;
-    padding: 2rem;
-}
+.anncmt{background:var(--ink);color:#e9e4d6;font-size:var(--fs-mono);font-weight:500;text-align:center;padding:.55rem 1rem}
+.anncmt .dot{color:var(--apricot);margin:0 .4rem}
 
-/* Hero Section */
-.hero {
-    text-align: center;
-    margin-bottom: 4rem;
-}
+/* hero */
+.hero{padding-top:var(--sp-7)}
+.hero-head{max-width:18ch}
+.hero .lede{font-size:var(--fs-lg);color:var(--ink-soft);margin-top:var(--sp-5);max-width:52ch}
+.hero-cta{display:flex;gap:var(--sp-3);margin-top:var(--sp-6);flex-wrap:wrap;align-items:center}
+.hero-note{margin-top:var(--sp-4);font-size:var(--fs-sm);color:var(--ink-faint);display:flex;align-items:center;gap:.5em}
+.hero-note i{color:var(--sage-deep)}
 
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+/* split color block (image beside copy) */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-7);align-items:center}
+.statement{font-size:var(--fs-2xl);line-height:1.05;letter-spacing:-0.03em;max-width:18ch}
 
-.hero p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.8;
-}
+/* three step block (matches homepage) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-6)}
+.step .sn{font-family:var(--font-mono);font-size:var(--fs-mono);color:var(--clay);font-weight:600}
+.step h3{font-size:var(--fs-xl);margin-top:var(--sp-3)}
+.step p{color:var(--ink-soft);margin-top:var(--sp-2)}
+.block--sage .step .sn{color:#f6d9a0}
+.block--sage .step p{color:rgba(255,255,255,0.82)}
+.block--sage .step a.link{color:#fff;text-decoration-color:rgba(255,255,255,0.55)}
+.block--sage .step a.link:hover{text-decoration-color:#fff}
 
-/* Positions Section */
-.positions-section {
-    margin: 4rem 0;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+/* contribute cards: action pinned to the bottom */
+.contribute-card{display:flex;flex-direction:column}
+.contribute-card p{flex:1}
+.contribute-card .btn{align-self:flex-start;margin-top:var(--sp-2)}
 
-.positions-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--gradient-end);
-}
-
-.positions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.position-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.position-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gradient-end);
-    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
-}
-
-.position-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--gradient-end);
-}
-
-.position-card p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.primary-btn {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    border: none;
-    padding: 0.8rem 1.6rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    min-width: 160px;
-    text-decoration: none;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.primary-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 122, 255, 0.4);
-    filter: brightness(1.1);
-}
-
-/* Benefits Section */
-.benefits-section {
-    margin: 4rem 0;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.benefits-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--gradient-end);
-}
-
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.benefit-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.benefit-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--gradient-end);
-    box-shadow: 0 4px 20px rgba(0, 122, 255, 0.2);
-}
-
-.benefit-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--gradient-end);
-}
-
-.benefit-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--gradient-end);
-}
-
-.benefit-card p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .container {
-        margin: 4rem 1rem 2rem;
-        padding: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-
-    .positions-section,
-    .benefits-section {
-        padding: 1.5rem;
-    }
-
-    .positions-grid,
-    .benefits-grid {
-        grid-template-columns: 1fr;
-    }
-}
+@media (max-width:900px){.split{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}

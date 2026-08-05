@@ -1,0 +1,469 @@
+{
+  "meta": {
+    "panel": "Ancestry-informative SNP panel (subset of published AISNP / pigmentation markers)",
+    "panel_size": 29,
+    "source": "Alt-allele frequencies: 1000 Genomes Project Phase 3, retrieved live from the Ensembl REST API (variation endpoint, 1000GENOMES:phase_3 superpopulations). Positions and alleles: GRCh38 Ensembl variation mapping.",
+    "citation": "1000 Genomes Project Consortium. A global reference for human genetic variation. Nature (2015). doi:10.1038/nature15393. SNPs drawn from published ancestry-informative marker sets (Kidd et al. AISNP panels) and classic pigmentation markers (e.g. SLC24A5 rs1426654, SLC45A2 rs16891982, EDAR rs3827760).",
+    "genome_build": "GRCh38",
+    "strand": "GRCh38 forward / dbSNP reference strand",
+    "populations_described": {
+      "AFR": "African",
+      "AMR": "Admixed American",
+      "EAS": "East Asian",
+      "EUR": "European",
+      "SAS": "South Asian"
+    },
+    "population_labels": {
+      "AFR": "African (AFR)",
+      "AMR": "Admixed American (AMR)",
+      "EAS": "East Asian (EAS)",
+      "EUR": "European (EUR)",
+      "SAS": "South Asian (SAS)"
+    },
+    "honesty": "Every frequency here is a real value returned by the Ensembl 1000 Genomes Phase 3 API; none was invented. SNPs whose Phase 3 frequencies were split across multiple non-reference alleles (e.g. rs2814778 Duffy, rs4988235 LCT, rs1800414) were DROPPED rather than guessed, so the panel is honestly sized. Palindromic (A/T, C/G) SNPs carry palindromic:true and are flagged in the app's show-the-math table because their strand is ambiguous. Continental-scale and educational only; not calibrated to any individual. See aim_panel.README.md for full provenance and method."
+  },
+  "populations": [
+    "AFR",
+    "AMR",
+    "EAS",
+    "EUR",
+    "SAS"
+  ],
+  "markers": [
+    {
+      "rsid": "rs1426654",
+      "chr": "15",
+      "pos": 48134287,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.9259,
+        "AMR": 0.4107,
+        "EAS": 0.9881,
+        "EUR": 0.003,
+        "SAS": 0.3149
+      }
+    },
+    {
+      "rsid": "rs16891982",
+      "chr": "5",
+      "pos": 33951588,
+      "ref": "C",
+      "alt": "G",
+      "palindromic": true,
+      "freq": {
+        "AFR": 0.0356,
+        "AMR": 0.464,
+        "EAS": 0.006,
+        "EUR": 0.9384,
+        "SAS": 0.0593
+      }
+    },
+    {
+      "rsid": "rs3827760",
+      "chr": "2",
+      "pos": 108897145,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.003,
+        "AMR": 0.3919,
+        "EAS": 0.873,
+        "EUR": 0.0109,
+        "SAS": 0.0133
+      }
+    },
+    {
+      "rsid": "rs1042602",
+      "chr": "11",
+      "pos": 89178528,
+      "ref": "C",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0121,
+        "AMR": 0.2378,
+        "EAS": 0.001,
+        "EUR": 0.3718,
+        "SAS": 0.0634
+      }
+    },
+    {
+      "rsid": "rs2470102",
+      "chr": "15",
+      "pos": 48141297,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.9251,
+        "AMR": 0.3386,
+        "EAS": 0.753,
+        "EUR": 0.006,
+        "SAS": 0.272
+      }
+    },
+    {
+      "rsid": "rs12913832",
+      "chr": "15",
+      "pos": 28120472,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.028,
+        "AMR": 0.2017,
+        "EAS": 0.002,
+        "EUR": 0.6362,
+        "SAS": 0.0706
+      }
+    },
+    {
+      "rsid": "rs174570",
+      "chr": "11",
+      "pos": 61829740,
+      "ref": "C",
+      "alt": "T",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0091,
+        "AMR": 0.487,
+        "EAS": 0.5556,
+        "EUR": 0.16,
+        "SAS": 0.0736
+      }
+    },
+    {
+      "rsid": "rs260690",
+      "chr": "2",
+      "pos": 108963282,
+      "ref": "C",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.3707,
+        "AMR": 0.536,
+        "EAS": 0.0635,
+        "EUR": 0.9225,
+        "SAS": 0.8865
+      }
+    },
+    {
+      "rsid": "rs7554936",
+      "chr": "1",
+      "pos": 151150013,
+      "ref": "C",
+      "alt": "T",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0303,
+        "AMR": 0.6801,
+        "EAS": 0.8562,
+        "EUR": 0.666,
+        "SAS": 0.7812
+      }
+    },
+    {
+      "rsid": "rs4918664",
+      "chr": "10",
+      "pos": 93161308,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0189,
+        "AMR": 0.3963,
+        "EAS": 0.8651,
+        "EUR": 0.1233,
+        "SAS": 0.3926
+      }
+    },
+    {
+      "rsid": "rs2065160",
+      "chr": "1",
+      "pos": 204821849,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.4539,
+        "AMR": 0.4409,
+        "EAS": 0.7817,
+        "EUR": 0.1014,
+        "SAS": 0.1207
+      }
+    },
+    {
+      "rsid": "rs6548616",
+      "chr": "3",
+      "pos": 79350425,
+      "ref": "T",
+      "alt": "C",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.9213,
+        "AMR": 0.2594,
+        "EAS": 0.1637,
+        "EUR": 0.3032,
+        "SAS": 0.2025
+      }
+    },
+    {
+      "rsid": "rs772262",
+      "chr": "12",
+      "pos": 55769950,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.8003,
+        "AMR": 0.3055,
+        "EAS": 0.1597,
+        "EUR": 0.0905,
+        "SAS": 0.1472
+      }
+    },
+    {
+      "rsid": "rs1129038",
+      "chr": "15",
+      "pos": 28111713,
+      "ref": "C",
+      "alt": "T",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.028,
+        "AMR": 0.2032,
+        "EAS": 0.001,
+        "EUR": 0.6352,
+        "SAS": 0.0695
+      }
+    },
+    {
+      "rsid": "rs1876482",
+      "chr": "2",
+      "pos": 17181301,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0023,
+        "AMR": 0.2305,
+        "EAS": 0.7748,
+        "EUR": 0.0775,
+        "SAS": 0.2249
+      }
+    },
+    {
+      "rsid": "rs1834619",
+      "chr": "2",
+      "pos": 17720218,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0061,
+        "AMR": 0.3991,
+        "EAS": 0.7063,
+        "EUR": 0.0636,
+        "SAS": 0.3589
+      }
+    },
+    {
+      "rsid": "rs3737576",
+      "chr": "1",
+      "pos": 101244007,
+      "ref": "T",
+      "alt": "C",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0166,
+        "AMR": 0.3256,
+        "EAS": 0.0804,
+        "EUR": 0.0527,
+        "SAS": 0.0399
+      }
+    },
+    {
+      "rsid": "rs7657799",
+      "chr": "4",
+      "pos": 104454266,
+      "ref": "T",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.7943,
+        "AMR": 0.0562,
+        "EAS": 0.1637,
+        "EUR": 0.0219,
+        "SAS": 0.0695
+      }
+    },
+    {
+      "rsid": "rs4833103",
+      "chr": "4",
+      "pos": 38813881,
+      "ref": "A",
+      "alt": "C",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.9818,
+        "AMR": 0.7925,
+        "EAS": 1,
+        "EUR": 0.495,
+        "SAS": 0.9857
+      }
+    },
+    {
+      "rsid": "rs10496971",
+      "chr": "2",
+      "pos": 145012376,
+      "ref": "T",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0719,
+        "AMR": 0.2637,
+        "EAS": 0.7937,
+        "EUR": 0.0656,
+        "SAS": 0.3374
+      }
+    },
+    {
+      "rsid": "rs2196051",
+      "chr": "8",
+      "pos": 121112062,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.9675,
+        "AMR": 0.6326,
+        "EAS": 0.999,
+        "EUR": 0.2952,
+        "SAS": 0.8108
+      }
+    },
+    {
+      "rsid": "rs12498138",
+      "chr": "3",
+      "pos": 121740742,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0068,
+        "AMR": 0.3617,
+        "EAS": 0.0843,
+        "EUR": 0.0696,
+        "SAS": 0.0368
+      }
+    },
+    {
+      "rsid": "rs385194",
+      "chr": "4",
+      "pos": 84387925,
+      "ref": "A",
+      "alt": "G",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0386,
+        "AMR": 0.4035,
+        "EAS": 0.4315,
+        "EUR": 0.6889,
+        "SAS": 0.3661
+      }
+    },
+    {
+      "rsid": "rs2040411",
+      "chr": "22",
+      "pos": 47440662,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.8298,
+        "AMR": 0.6527,
+        "EAS": 0.3006,
+        "EUR": 0.669,
+        "SAS": 0.4724
+      }
+    },
+    {
+      "rsid": "rs1462906",
+      "chr": "8",
+      "pos": 32039076,
+      "ref": "T",
+      "alt": "C",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.2655,
+        "AMR": 0.9395,
+        "EAS": 0.994,
+        "EUR": 0.9742,
+        "SAS": 0.9571
+      }
+    },
+    {
+      "rsid": "rs6451722",
+      "chr": "5",
+      "pos": 43711276,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.8767,
+        "AMR": 0.2104,
+        "EAS": 0.2183,
+        "EUR": 0.2087,
+        "SAS": 0.2178
+      }
+    },
+    {
+      "rsid": "rs2166624",
+      "chr": "13",
+      "pos": 42005849,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0182,
+        "AMR": 0.5778,
+        "EAS": 0.3968,
+        "EUR": 0.3738,
+        "SAS": 0.3446
+      }
+    },
+    {
+      "rsid": "rs1871428",
+      "chr": "6",
+      "pos": 168265080,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.9644,
+        "AMR": 0.6441,
+        "EAS": 0.8075,
+        "EUR": 0.3559,
+        "SAS": 0.5961
+      }
+    },
+    {
+      "rsid": "rs4471745",
+      "chr": "17",
+      "pos": 55491523,
+      "ref": "G",
+      "alt": "A",
+      "palindromic": false,
+      "freq": {
+        "AFR": 0.0552,
+        "AMR": 0.0375,
+        "EAS": 0.129,
+        "EUR": 0.0547,
+        "SAS": 0.0951
+      }
+    }
+  ]
+}

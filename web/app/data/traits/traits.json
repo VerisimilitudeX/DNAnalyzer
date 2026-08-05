@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "title": "Single-SNP trait associations",
+    "description": "Seven well-established, consumer-array-covered single-SNP traits. Each entry lists the effect allele, its dosage-keyed interpretations, and a citation. Alleles are given on the GRCh38 forward (plus / dbSNP reference) strand, matching how 23andMe and AncestryDNA report genotypes. Interpretation is withheld when the observed genotype contains an allele not expected at the locus.",
+    "source": "Effect alleles and directions verified individually against NCBI dbSNP (build 156, GRCh38.p14) and the cited primary literature.",
+    "strand": "GRCh38 forward / dbSNP reference strand",
+    "not_medical_advice": true
+  },
+  "traits": [
+    {
+      "id": "caffeine",
+      "trait": "Caffeine metabolism",
+      "gene": "CYP1A2",
+      "rsid": "rs762551",
+      "chromosome": "15",
+      "ref": "C",
+      "alt": "A",
+      "effect_allele": "A",
+      "palindromic": false,
+      "summary": "The A allele tags the CYP1A2*1F 'fast metaboliser' variant; the C allele is the slower-metabolising form.",
+      "interpretations": {
+        "2": "Two copies of the fast (A) allele (AA): associated with faster caffeine clearance ('fast metaboliser'). Fast metabolisers tend to clear caffeine more quickly.",
+        "1": "One fast (A) and one slow (C) allele (AC): intermediate caffeine metabolism.",
+        "0": "No fast (A) allele (CC): associated with slower caffeine clearance ('slow metaboliser'). Slow metabolisers clear caffeine more slowly."
+      },
+      "citation": "Cornelis MC et al. Coffee, CYP1A2 genotype, and risk of myocardial infarction. JAMA (2006). PMID:16522833",
+      "note": "An association, not a diagnosis. Caffeine response is also shaped by dose, tolerance, sleep, and other genes."
+    },
+    {
+      "id": "lactase",
+      "trait": "Lactase persistence (adult lactose tolerance)",
+      "gene": "MCM6 / LCT",
+      "rsid": "rs4988235",
+      "chromosome": "2",
+      "ref": "G",
+      "alt": "A",
+      "effect_allele": "A",
+      "palindromic": false,
+      "summary": "The A allele (the European -13910*T variant on the forward strand) keeps the lactase gene switched on into adulthood.",
+      "interpretations": {
+        "2": "Two persistence (A) alleles (AA): likely lactase-persistent (can typically digest lactose as an adult).",
+        "1": "One persistence (A) allele (AG): likely lactase-persistent (one copy is usually enough).",
+        "0": "No persistence (A) allele (GG): likely lactase non-persistent for this European variant. Note: other populations carry different persistence variants this SNP does not capture, so a GG result does not rule out tolerance."
+      },
+      "citation": "Enattah NS et al. Identification of a variant associated with adult-type hypolactasia. Nat Genet (2002). PMID:11788828",
+      "note": "This SNP explains European lactase persistence. African and Middle-Eastern persistence variants are elsewhere and are not tested here."
+    },
+    {
+      "id": "bitter",
+      "trait": "Bitter taste perception (PTC / PROP)",
+      "gene": "TAS2R38",
+      "rsid": "rs713598",
+      "chromosome": "7",
+      "ref": "C",
+      "alt": "G",
+      "effect_allele": "G",
+      "palindromic": false,
+      "proxy": true,
+      "summary": "This is one of three TAS2R38 sites that together form the taster (PAV) vs non-taster (AVI) haplotypes. It is used here as a PROXY for the haplotype. The G allele encodes proline (P), part of the taster haplotype.",
+      "interpretations": {
+        "2": "Two taster-tagging (G) alleles (GG): likely a 'taster' of bitter PTC/PROP compounds (proxy; assumes the common PAV/AVI haplotype pairing).",
+        "1": "One taster-tagging (G) allele (CG): often an intermediate taster (proxy).",
+        "0": "No taster-tagging (G) allele (CC): more likely a 'non-taster' of PTC/PROP (proxy)."
+      },
+      "citation": "Kim UK et al. Positional cloning of the human quantitative trait locus underlying taste sensitivity to phenylthiocarbamide. Science (2003). PMID:12595690",
+      "note": "PROXY only. Taster status is set by the full three-site TAS2R38 haplotype (rs713598, rs1726866, rs10246939); reading a single site can misclassify people carrying uncommon haplotypes."
+    },
+    {
+      "id": "earwax",
+      "trait": "Earwax type and body-odour tendency",
+      "gene": "ABCC11",
+      "rsid": "rs17822931",
+      "chromosome": "16",
+      "ref": "C",
+      "alt": "T",
+      "effect_allele": "T",
+      "palindromic": false,
+      "summary": "The T allele (Gly180 loss of function) produces dry earwax and less apocrine body odour; the C allele produces wet earwax.",
+      "interpretations": {
+        "2": "Two dry-type (T) alleles (TT): dry earwax and typically reduced underarm body odour.",
+        "1": "One dry-type (T) allele (CT): usually wet earwax (the C/wet allele is dominant).",
+        "0": "No dry-type (T) allele (CC): wet earwax and typically more apocrine body odour."
+      },
+      "citation": "Yoshiura K et al. A SNP in the ABCC11 gene is the determinant of human earwax type. Nat Genet (2006). PMID:16444273",
+      "note": "One of the cleanest single-gene traits in humans, but still a tendency, not a certainty."
+    },
+    {
+      "id": "muscle",
+      "trait": "Fast-twitch muscle (ACTN3 'sprint gene')",
+      "gene": "ACTN3",
+      "rsid": "rs1815739",
+      "chromosome": "11",
+      "ref": "C",
+      "alt": "T",
+      "effect_allele": "T",
+      "palindromic": false,
+      "summary": "The T allele is the R577X stop that switches off alpha-actinin-3 in fast-twitch fibres; the C allele (R577) keeps it working.",
+      "interpretations": {
+        "2": "Two stop (T) alleles (TT, 'XX'): no alpha-actinin-3. Common in the general population and over-represented in elite endurance athletes.",
+        "1": "One working and one stop allele (CT, 'RX'): mixed; the most common genotype.",
+        "0": "No stop (T) allele (CC, 'RR'): full alpha-actinin-3, over-represented in elite sprint/power athletes."
+      },
+      "citation": "Yang N et al. ACTN3 genotype is associated with human elite athletic performance. Am J Hum Genet (2003). PMID:12879365",
+      "note": "A single gene nudges muscle fibre type; training, and dozens of other genes, matter far more for athletic performance."
+    },
+    {
+      "id": "eyecolor",
+      "trait": "Eye colour (blue vs brown tendency)",
+      "gene": "HERC2 / OCA2",
+      "rsid": "rs12913832",
+      "chromosome": "15",
+      "ref": "A",
+      "alt": "G",
+      "effect_allele": "G",
+      "palindromic": false,
+      "probabilistic": true,
+      "summary": "This HERC2 site is the strongest single predictor of blue vs brown eyes. The G allele drives brown pigmentation; the A allele is permissive of blue eyes. This is PROBABILISTIC, not deterministic.",
+      "interpretations": {
+        "2": "Two brown-driving (G) alleles (GG): most likely brown eyes.",
+        "1": "One brown-driving (G) allele (AG): usually brown or intermediate (green/hazel) eyes.",
+        "0": "No brown-driving (G) allele (AA): most likely blue eyes, though other pigment genes can shift this."
+      },
+      "citation": "Sturm RA et al. A single SNP in an evolutionary conserved region within intron 86 of the HERC2 gene determines human blue-brown eye color. Am J Hum Genet (2008). PMID:18252222",
+      "note": "PROBABILISTIC. Eye colour is polygenic; this one SNP predicts blue vs brown well but cannot call green/hazel reliably."
+    },
+    {
+      "id": "alcohol_flush",
+      "trait": "Alcohol flush reaction (ALDH2 deficiency)",
+      "gene": "ALDH2",
+      "rsid": "rs671",
+      "chromosome": "12",
+      "ref": "G",
+      "alt": "A",
+      "effect_allele": "A",
+      "palindromic": false,
+      "health_note": true,
+      "summary": "The A allele (ALDH2*2, Glu504Lys) cripples the enzyme that clears acetaldehyde after alcohol, causing facial flushing, nausea and rapid heartbeat. Common in East Asian ancestry.",
+      "interpretations": {
+        "2": "Two deficiency (A) alleles (AA): near-total ALDH2 deficiency; strong flushing and poor alcohol tolerance. People with this genotype are strongly advised to avoid alcohol.",
+        "1": "One deficiency (A) allele (AG): partial ALDH2 deficiency; noticeable flushing and elevated acetaldehyde after drinking.",
+        "0": "No deficiency (A) allele (GG): normal ALDH2 activity; typical alcohol metabolism."
+      },
+      "citation": "Brooks PJ et al. The alcohol flushing response: an unrecognized risk factor for esophageal cancer from alcohol consumption. PLoS Med (2009). PMID:19320537",
+      "health": "HEALTH NOTE: ALDH2-deficient people (A allele) who drink alcohol have a substantially increased risk of oesophageal (squamous-cell) cancer, because acetaldehyde — a carcinogen — accumulates. This is a genuine, well-documented health consideration, not just a cosmetic 'Asian flush'. Discuss with a clinician if relevant."
+    }
+  ]
+}

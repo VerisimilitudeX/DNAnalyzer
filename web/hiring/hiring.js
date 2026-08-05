@@ -1,41 +1,24 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Add smooth scrolling for any anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+/**
+ * Contribute page behavior. Minimal: fill the year and toggle the mobile menu.
+ * No scroll-hidden content, no gimmicks.
+ */
+(function () {
+  "use strict";
 
-    // Add hover effects for position cards
-    document.querySelectorAll('.position-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
-            this.style.borderColor = 'var(--gradient-end)';
-        });
+  document.addEventListener("DOMContentLoaded", function () {
+    var year = document.getElementById("year");
+    if (year) year.textContent = String(new Date().getFullYear());
 
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = 'none';
-            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-        });
-    });
-
-    // Add hover effects for benefit cards
-    document.querySelectorAll('.benefit-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
-            this.style.borderColor = 'var(--gradient-end)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = 'none';
-            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-        });
-    });
-});
+    var toggle = document.getElementById("navToggle");
+    var links = document.getElementById("navLinks");
+    if (toggle && links) {
+      toggle.addEventListener("click", function () {
+        var open = links.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      links.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") links.classList.remove("open");
+      });
+    }
+  });
+})();

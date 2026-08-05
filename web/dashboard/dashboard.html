@@ -3,56 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNAnalyzer Dashboard</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Redirecting to the Sequence Analyzer &middot; DNAnalyzer</title>
+    <!-- The old API-only dashboard has been retired. Its charts now live in the
+         on-device analyzer. This page is a client-side redirect that keeps the
+         old path alive. It intentionally loads NO api-client.js. -->
+    <meta http-equiv="refresh" content="0; url=../analyzer/analyzer.html">
+    <link rel="canonical" href="../analyzer/analyzer.html">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
+    <script>
+        // Immediate client-side redirect (replace() so Back does not loop here).
+        window.location.replace("../analyzer/analyzer.html");
+    </script>
 </head>
 <body>
-    <nav class="navbar" id="navbar">
-        <div class="container navbar-container">
-            <a href="../index.html" class="logo">
-                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                <span class="logo-text">DNAnalyzer</span>
-            </a>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../features/features.html">Features</a></li>
-                <li><a href="../analyzer/analyzer.html">Analyzer</a></li>
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="../server/server.html">Server</a></li>
-                <li><a href="../docs/docs.html">Docs</a></li>
-                <li><a href="../about/about.html">About</a></li>
-            </ul>
-            <div class="nav-buttons">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
-                    <i class="fab fa-github btn-icon"></i> GitHub
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <main class="dashboard-main">
-        <div class="container">
-            <h1>Interactive Dashboard</h1>
-            <p>Upload a DNA file to visualize base composition and gene locations.</p>
-            <div class="dashboard-upload">
-                <input type="file" id="dnaFile" accept=".fa,.fasta,.fastq,.txt">
-                <button id="analyzeBtn" class="btn btn-primary">Analyze</button>
-            </div>
-            <div id="charts">
-                <canvas id="baseChart"></canvas>
-                <canvas id="geneChart"></canvas>
-            </div>
-        </div>
+    <main class="container" style="max-width:640px;margin-top:16vh;text-align:center;">
+        <span class="label label--accent">Moved</span>
+        <h1 style="margin-top:var(--sp-3);">The dashboard is now the Analyzer.</h1>
+        <p class="soft" style="margin:var(--sp-4) auto 0;">Its charts now live in the on-device DNA Sequence Analyzer, which runs entirely in your browser with no server. Redirecting you now.</p>
+        <p style="margin-top:var(--sp-5);"><a class="btn btn-primary" href="../analyzer/analyzer.html">Open the Analyzer</a></p>
     </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../assets/js/api-client.js"></script>
-    <script src="dashboard.js"></script>
-    <script src="../index.js"></script>
 </body>
 </html>

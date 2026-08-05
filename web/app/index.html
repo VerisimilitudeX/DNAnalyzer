@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understand your DNA file, on your device &middot; DNAnalyzer</title>
+    <meta name="description"
+        content="Upload your 23andMe or AncestryDNA export and understand it entirely in your browser: ancestry, traits, polygenic scores and notable variants. Your DNA file is never uploaded. Free and open source.">
+
+    <!-- Privacy-respecting, cookieless analytics (Cloudflare Web Analytics).
+         Replace CF_BEACON_TOKEN with the token from the Cloudflare dashboard.
+         Deliberately NO Google Analytics on this page: the whole point is that
+         nothing about the visitor's DNA is shared with a third party. -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <div class="anncmt"><b>Free forever.</b><span class="dot">&bull;</span>Your DNA never leaves your device<span class="dot">&bull;</span>No account, no lab, no waiting</div>
+
+    <!-- Nav (matches the homepage) -->
+    <nav class="nav">
+        <div class="container">
+            <a href="../index.html" class="brand"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html" class="active">My DNA</a></li>
+                <li><a href="../features/features.html">Features</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
+                <li><a href="../docs/docs.html">Docs</a></li>
+                <li><a href="../about/about.html">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="index.html" class="btn btn-primary btn-sm">Get started</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <main class="app-main">
+        <!-- Hero -->
+        <header class="hero section app-hero">
+            <div class="container">
+                <div class="app-hero-grid">
+                    <div class="reveal reveal-1">
+                        <span class="label label--sage app-hero-label"><i class="fas fa-lock"></i> Runs entirely in your browser</span>
+                        <h1>Your DNA file, finally <span class="script script-sage">explained</span>.</h1>
+                        <p class="app-hero-sub">
+                            Drop in your 23andMe or AncestryDNA export for ancestry, traits,
+                            polygenic scores and notable variants. Read on this page, never uploaded.
+                        </p>
+                        <div class="app-hero-note"><i class="fas fa-shield-halved"></i> No account. Free. Runs in your browser.</div>
+                    </div>
+                    <div class="block block--sage app-hero-block reveal reveal-2">
+                        <img src="../assets/img/helix.svg" alt="DNA double helix" class="app-hero-helix">
+                        <p class="app-hero-block-kicker">On your device</p>
+                        <p class="app-hero-block-text">No server here could keep a copy. Your file stays where it already lives.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container app-body">
+            <!-- STEP 1: input -->
+            <section class="card card--soft app-input-card" id="inputCard">
+                <div class="app-dropzone" id="dropZone" tabindex="0" role="button"
+                    aria-label="Upload your genotype file">
+                    <input type="file" id="fileInput" accept=".txt,.csv,.tsv" hidden>
+                    <i class="fas fa-file-arrow-up app-dropzone-icon"></i>
+                    <p class="app-dropzone-title">Analyze my DNA</p>
+                    <p class="app-dropzone-hint">
+                        Drop your file or click to browse. 23andMe (<code>genome_*.txt</code>)
+                        or AncestryDNA (<code>AncestryDNA.txt</code>). Nothing is uploaded.
+                    </p>
+                </div>
+                <div class="app-actions">
+                    <button class="btn btn-sage" id="sampleBtn" type="button">
+                        <i class="fas fa-vial"></i> Try a sample file
+                    </button>
+                    <span class="app-privacy-note">
+                        <i class="fas fa-shield-halved"></i>
+                        Watch your Network tab: no request carries your file.
+                    </span>
+                </div>
+            </section>
+
+            <!-- transient states -->
+            <section class="prs-status" id="statusArea" hidden></section>
+
+            <!-- section nav, revealed after a file loads -->
+            <nav class="app-nav" id="sectionNav" hidden aria-label="Report sections">
+                <a href="#sec-ancestry"><i class="fas fa-earth-americas"></i> Ancestry</a>
+                <a href="#sec-traits"><i class="fas fa-person"></i> Traits</a>
+                <a href="#sec-prs"><i class="fas fa-chart-line"></i> Polygenic scores</a>
+                <a href="#sec-carrier"><i class="fas fa-heart-pulse"></i> Notable variants</a>
+                <a href="#sec-explorer"><i class="fas fa-table"></i> Data explorer</a>
+                <a href="#sec-report"><i class="fas fa-download"></i> Report</a>
+            </nav>
+
+            <!-- report container: each section renders into its own card -->
+            <div id="report" class="app-report" hidden>
+                <section class="card card--soft app-section" id="sec-ancestry"></section>
+                <section class="card card--soft app-section" id="sec-traits"></section>
+                <section class="card card--soft app-section" id="sec-prs"></section>
+                <section class="card card--soft app-section" id="sec-carrier"></section>
+                <section class="card card--soft app-section" id="sec-explorer"></section>
+                <section class="card card--soft app-section" id="sec-report"></section>
+            </div>
+
+            <!-- honest framing, always visible -->
+            <section class="block block--cream app-disclaimer" id="disclaimer">
+                <div class="app-section-head">
+                    <i class="fas fa-circle-info"></i>
+                    <h2>What this is, and what it is <span class="script script-clay">not</span></h2>
+                </div>
+                <ul>
+                    <li><strong>Educational, not diagnostic.</strong> Not medical advice.
+                        Talk to a clinician or genetic counselor about real concerns.</li>
+                    <li><strong>Nothing is uploaded.</strong> Your file is read with your browser's
+                        <code>FileReader</code> and analyzed on this page. Open your Network tab: no
+                        request carries your file.</li>
+                    <li><strong>Ancestry is a coarse estimate.</strong> Continental scale only, not
+                        calibrated to you, and can be wrong for mixed or under-represented ancestry.</li>
+                    <li><strong>Polygenic scores are relative positions, not risks.</strong> Not
+                        percentiles or diagnoses, and <em>not adjusted for your ancestry</em>
+                        (<a class="link" href="#sec-ancestry">see your ancestry section</a>).</li>
+                    <li><strong>Limited by your array.</strong> Consumer tests read only a fraction of
+                        the genome. Every section shows how many markers were found.</li>
+                    <li><strong>Cookieless analytics.</strong> Anonymous page views via Cloudflare,
+                        never anything about your DNA.</li>
+                </ul>
+                <p class="app-attribution" id="attribution">
+                    Free and open source. Ancestry from 1000&nbsp;Genomes Phase&nbsp;3. Polygenic
+                    scores from the PGS Catalog (Lambert et al., Nature Genetics 2021 and 2024).
+                    Trait and variant alleles verified against NCBI dbSNP and ClinVar.
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="brand" style="color:#fff"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="index.html">My DNA</a></li>
+                    <li><a href="../analyzer/analyzer.html">Sequence tools</a></li>
+                    <li><a href="../features/features.html">Features</a></li>
+                    <li><a href="../server/server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="../docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="../hiring/hiring.html">Contribute</a></li>
+                    <li><a href="../privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="../about/about.html">About</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy</a>
+                    <a href="../index.html">Home</a>
+                    <a href="../analyzer/analyzer.html">Sequence Analyzer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Canonical engine (do not fork) + section engines + controller. -->
+    <script src="../analyzer/prs-engine.js"></script>
+    <script src="engine/ancestry-engine.js"></script>
+    <script src="engine/traits-engine.js"></script>
+    <script src="engine/variants-engine.js"></script>
+    <script src="engine/report-engine.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Mobile nav toggle + footer year, matching the homepage. -->
+    <script>
+        (function () {
+            var t = document.getElementById("navToggle");
+            var l = document.getElementById("navLinks");
+            if (t && l) {
+                t.addEventListener("click", function () {
+                    var open = l.classList.toggle("open");
+                    t.setAttribute("aria-expanded", open ? "true" : "false");
+                });
+            }
+            var y = document.getElementById("year");
+            if (y) y.textContent = new Date().getFullYear();
+        })();
+    </script>
+</body>
+
+</html>

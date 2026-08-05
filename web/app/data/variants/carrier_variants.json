@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "title": "Notable pathogenic variants on consumer arrays",
+    "description": "The most conservative section. Only well-established pathogenic variants that are actually genotyped on 23andMe / AncestryDNA arrays. Alleles are on the GRCh38 forward (dbSNP reference) strand. Each row carries a ClinVar Variation ID and a citation.",
+    "source": "Alleles and pathogenicity verified against NCBI dbSNP (build 156) and NCBI ClinVar.",
+    "strand": "GRCh38 forward / dbSNP reference strand",
+    "hard_disclaimer": [
+      "This is NOT a diagnostic test and NOT medical advice.",
+      "A negative result does NOT rule anything out. Consumer arrays test a few specific spelling-changes, not whole genes; you can carry a disease variant this test does not look at.",
+      "A positive result is not a diagnosis. Array genotyping calls can be wrong and must be confirmed with clinical-grade testing.",
+      "Carrier status and low-penetrance risk are not the same as having, or being certain to develop, a disease.",
+      "Discuss any result here with a physician or a certified genetic counselor before acting on it."
+    ],
+    "excluded": {
+      "APOE_alzheimers": "APOE (rs429358 / rs7412) Alzheimer's-risk alleles are deliberately excluded from this section. Learning APOE status can have serious, non-actionable psychological consequences and is normally disclosed only with genetic counseling and explicit consent."
+    }
+  },
+  "variants": [
+    {
+      "id": "hfe_c282y",
+      "condition": "Hereditary haemochromatosis type 1 (iron overload)",
+      "gene": "HFE",
+      "protein_change": "p.Cys282Tyr (C282Y)",
+      "rsid": "rs1800562",
+      "chromosome": "6",
+      "ref": "G",
+      "alt": "A",
+      "risk_allele": "A",
+      "palindromic": false,
+      "clinvar_id": "9",
+      "clinvar_accession": "VCV000000009",
+      "clinical_significance": "Pathogenic (low/variable penetrance)",
+      "inheritance": "Autosomal recessive (two copies confer the main risk)",
+      "interpretations": {
+        "2": "Homozygous for C282Y (A/A): the classic high-risk genotype for hereditary haemochromatosis. Many, but not all, people with this genotype develop iron overload; penetrance is incomplete and it is treatable if caught. This warrants a conversation with a clinician about iron studies (ferritin, transferrin saturation).",
+        "1": "One copy of C282Y (carrier, G/A): usually unaffected. A single copy rarely causes overload on its own, but combined with an H63D copy (compound heterozygote) it can raise risk modestly.",
+        "0": "No C282Y allele (G/G): the C282Y variant was not found. This does NOT rule out haemochromatosis from other variants or genes."
+      },
+      "citation": "Feder JN et al. A novel MHC class I-like gene mutated in hereditary haemochromatosis. Nat Genet (1996). PMID:8696333"
+    },
+    {
+      "id": "hfe_h63d",
+      "condition": "Hereditary haemochromatosis type 1 (iron overload), modifier",
+      "gene": "HFE",
+      "protein_change": "p.His63Asp (H63D)",
+      "rsid": "rs1799945",
+      "chromosome": "6",
+      "ref": "C",
+      "alt": "G",
+      "risk_allele": "G",
+      "palindromic": false,
+      "clinvar_id": "10",
+      "clinvar_accession": "VCV000000010",
+      "clinical_significance": "Pathogenic, low penetrance (modifier)",
+      "inheritance": "Autosomal recessive; mainly relevant compound with C282Y",
+      "interpretations": {
+        "2": "Homozygous for H63D (G/G): usually low risk on its own; rarely causes significant iron overload without other factors.",
+        "1": "One copy of H63D (carrier, C/G): common and usually benign alone. Combined with a C282Y copy (compound heterozygote) it can modestly raise iron-overload risk.",
+        "0": "No H63D allele (C/C): the H63D variant was not found. This does NOT rule out haemochromatosis from other variants."
+      },
+      "citation": "Feder JN et al. A novel MHC class I-like gene mutated in hereditary haemochromatosis. Nat Genet (1996). PMID:8696333"
+    }
+  ]
+}

@@ -2,178 +2,144 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-0LTP0WK7EM');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNA Analyzer - DNAnalyzer</title>
+    <title>DNA Sequence Workbench &middot; DNAnalyzer</title>
     <meta name="description"
-        content="Analyze DNA sequences with advanced ML-powered tools. Upload FASTA or FASTQ files and get comprehensive analysis.">
+        content="Analyze DNA sequences in your browser with a deterministic, on-device bioinformatics workbench. Upload a FASTA or FASTQ file and compute GC content, base composition, codon usage, open reading frames, proteins, and promoter motifs. Nothing is uploaded.">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="analyzer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Privacy-respecting, cookieless analytics (Cloudflare Web Analytics).
+         Deliberately NO Google Analytics on this page: the point is that
+         nothing about the visitor's sequence is shared with a third party. -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="analyzer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 
 <body>
-    <!-- Background effects -->
-    <div class="bg-gradient">
-        <div class="bg-blob bg-blob-1"></div>
-        <div class="bg-blob bg-blob-2"></div>
-    </div>
+    <div class="anncmt"><b>Free forever.</b><span class="dot">&bull;</span>Your sequence never leaves your device<span class="dot">&bull;</span>No account, no server, no upload</div>
 
-    <div class="notification-banner">
-        <span>Exclusive WSSEF Preview: </span>
-        <span>&nbsp;Transformer Architecture in Epigenomics!</span>
-        <a href="https://epiclassify.dnanalyzer.org" target="_blank" class="notification-link">Explore Now</a>
-        <button class="notification-close" aria-label="Dismiss notification"></button>
-    </div>
-
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="container navbar-container">
-            <a href="../index.html" class="logo">
-                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                <span class="logo-text">DNAnalyzer</span>
-            </a>
-
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-
+    <!-- Nav (matches homepage) -->
+    <nav class="nav">
+        <div class="container">
+            <a href="../index.html" class="brand"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Home</a></li>
+                <li><a href="../app/index.html">My DNA</a></li>
                 <li><a href="../features/features.html">Features</a></li>
-                <li><a href="analyzer.html" class="active">Analyzer</a></li>
-                <li><a href="../dashboard/dashboard.html">Dashboard</a></li>
-                <li><a href="../server/server.html">Server</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
                 <li><a href="../docs/docs.html">Docs</a></li>
                 <li><a href="../about/about.html">About</a></li>
             </ul>
-
-            <div class="nav-buttons">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
-                    <i class="fab fa-github btn-icon"></i> GitHub
-                </a>
+            <div class="nav-cta">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="../app/index.html" class="btn btn-primary btn-sm">Get started</a>
             </div>
+            <button class="nav-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="analyzer-main">
+    <!-- Hero -->
+    <header class="hero section">
         <div class="container">
-            <div class="analyzer-header">
-                <h1>DNA Sequence <span class="gradient-text">Analysis</span></h1>
-                <p>Analyze DNA sequences with advanced machine learning tools</p>
+            <div class="reveal reveal-1 analyzer-header">
+                <span class="label label--sage"><i class="fas fa-lock"></i> Runs entirely in your browser</span>
+                <h1 style="margin-top:var(--sp-4)">The DNA sequence workbench, <span class="script script-sage">decoded</span> on your device.</h1>
+                <p class="lede">Drop in a FASTA or FASTQ file. GC content, codons, reading frames, proteins and promoter motifs. Deterministic math, no upload.</p>
+                <div class="hero-cta" style="display:flex;gap:var(--sp-3);margin-top:var(--sp-5);flex-wrap:wrap;align-items:center">
+                    <a href="#fileDropZone" class="btn btn-primary btn-lg"><i class="fas fa-cloud-upload-alt"></i> Analyze my DNA</a>
+                    <a href="../app/index.html" class="btn btn-outline btn-lg"><i class="fas fa-dna"></i> Read my raw file</a>
+                </div>
+                <div class="hero-note"><i class="fas fa-shield-halved"></i> No account. Free. In your browser. Open the Network tab and see.</div>
             </div>
 
-            <div class="analyzer-dashboard">
-                <div class="dashboard-sidebar">
-                    <div class="sidebar-section">
-                        <h3>Analysis History</h3>
-                        <div class="history-list" id="historyList">
-                            <div class="history-empty">
-                                <i class="fas fa-history"></i>
-                                <p>No recent analyses</p>
+            <!-- Workbench, laid out in a soft cream block -->
+            <div class="block block--cream analyzer-shell reveal reveal-2">
+                <div class="analyzer-dashboard">
+                    <!-- Sidebar -->
+                    <aside class="dashboard-sidebar">
+                        <div class="card card--soft sidebar-section">
+                            <span class="label label--sage">Get started</span>
+                            <div class="quick-actions">
+                                <button id="importSampleBtn" class="btn btn-outline sidebar-btn">
+                                    <i class="fas fa-file-import"></i>
+                                    Import sample FASTA
+                                </button>
+                                <button id="resetOptionsBtn" class="btn btn-ghost sidebar-btn">
+                                    <i class="fas fa-undo"></i>
+                                    Reset options
+                                </button>
+                            </div>
+                            <p class="sidebar-note">
+                                <i class="fas fa-shield-halved"></i>
+                                Nothing is uploaded. Watch the Network tab.
+                            </p>
+                        </div>
+
+                        <!-- Optional self-host toggle. Default OFF. -->
+                        <div class="card card--soft sidebar-section">
+                            <span class="label label--sage">Advanced</span>
+                            <label class="selfhost-toggle">
+                                <input type="checkbox" id="selfHostToggle">
+                                <span>Use a local DNAnalyzer server (advanced, self-host)</span>
+                            </label>
+                            <p class="sidebar-note">
+                                Off by default. When on, analysis routes through a DNAnalyzer server you
+                                run yourself. Off, everything works fully on-device.
+                            </p>
+                            <div class="api-status-container" id="apiStatusContainer" hidden>
+                                <div class="api-status" id="apiStatus">
+                                    <div class="status-indicator">
+                                        <div class="status-dot pulse"></div>
+                                        <span>Checking connection...</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </aside>
 
-                    <div class="sidebar-section">
-                        <h3>Quick Actions</h3>
-                        <div class="quick-actions">
-                            <button id="importSampleBtn" class="sidebar-btn">
-                                <i class="fas fa-file-import"></i>
-                                Import Sample
-                            </button>
-                            <button id="clearOptionsBtn" class="sidebar-btn">
-                                <i class="fas fa-undo"></i>
-                                Reset Options
-                            </button>
-                            <button id="helpBtn" class="sidebar-btn">
-                                <i class="fas fa-question-circle"></i>
-                                Help Guide
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-section api-status-container">
-                        <h3>API Status</h3>
-                        <div class="api-status" id="apiStatus">
-                            <div class="status-indicator">
-                                <div class="status-dot pulse"></div>
-                                <span>Checking connection...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-content">
-                    <div class="analyzer-tabs">
-                        <button class="tab-btn active" data-tab="dna-analysis">
-                            <i class="fas fa-dna"></i>
-                            DNA Analysis
-                        </button>
-                        <button class="tab-btn" data-tab="genetic-testing">
-                            <i class="fas fa-vial"></i>
-                            Genetic Testing
-                        </button>
-                        <button class="tab-btn" data-tab="batch-processing">
-                            <i class="fas fa-layer-group"></i>
-                            Batch Processing
-                        </button>
-                    </div>
-
-                    <div class="tab-content active" id="dna-analysis">
-                        <div class="analyzer-upload" id="fileDropZone">
+                    <!-- Content -->
+                    <div class="dashboard-content">
+                        <div class="analyzer-upload" id="fileDropZone" tabindex="0" role="button"
+                            aria-label="Upload your DNA sequence file">
                             <i class="fas fa-cloud-upload-alt"></i>
-                            <h3>Upload DNA Sequence</h3>
-                            <p>Drag and drop your sequence file here or click to browse</p>
+                            <h3>Upload DNA sequence</h3>
+                            <p>Drag a file here, or click to browse.</p>
                             <input type="file" id="fileInput" accept=".fa,.fasta,.fastq,.txt" hidden>
                             <span class="upload-formats">Supported formats: .fa, .fasta, .fastq, .txt</span>
                         </div>
 
-                        <div class="analysis-options">
-                            <h3>Analysis Options</h3>
+                        <div class="analysis-options card card--soft">
+                            <span class="label label--sage">Analysis options</span>
                             <div class="options-grid">
                                 <div class="option-card">
                                     <div class="option-header">
                                         <i class="fas fa-microscope"></i>
-                                        <h4>Basic Analysis</h4>
+                                        <h4>Composition</h4>
                                     </div>
                                     <div class="option-content">
                                         <label class="option-checkbox">
-                                            <input type="checkbox" name="analysis-option" value="sequence-length"
-                                                checked>
+                                            <input type="checkbox" name="analysis-option" value="sequence-length" checked>
                                             <span class="checkmark"></span>
-                                            Sequence Length
+                                            Sequence length
                                         </label>
                                         <label class="option-checkbox">
                                             <input type="checkbox" name="analysis-option" value="gc-content" checked>
                                             <span class="checkmark"></span>
-                                            GC Content
+                                            GC content
                                         </label>
                                         <label class="option-checkbox">
-                                            <input type="checkbox" name="analysis-option" value="base-composition"
-                                                checked>
+                                            <input type="checkbox" name="analysis-option" value="base-composition" checked>
                                             <span class="checkmark"></span>
-                                            Base Composition
+                                            Base composition
                                         </label>
                                     </div>
                                 </div>
@@ -181,23 +147,18 @@
                                 <div class="option-card">
                                     <div class="option-header">
                                         <i class="fas fa-dna"></i>
-                                        <h4>Codon Analysis</h4>
+                                        <h4>Codons &amp; frames</h4>
                                     </div>
                                     <div class="option-content">
                                         <label class="option-checkbox">
-                                            <input type="checkbox" name="analysis-option" value="start-codons" checked>
+                                            <input type="checkbox" name="analysis-option" value="codon-usage" checked>
                                             <span class="checkmark"></span>
-                                            Start Codons
+                                            Codon usage
                                         </label>
                                         <label class="option-checkbox">
-                                            <input type="checkbox" name="analysis-option" value="stop-codons" checked>
+                                            <input type="checkbox" name="analysis-option" value="orfs" checked>
                                             <span class="checkmark"></span>
-                                            Stop Codons
-                                        </label>
-                                        <label class="option-checkbox">
-                                            <input type="checkbox" name="analysis-option" value="reading-frames">
-                                            <span class="checkmark"></span>
-                                            Reading Frames
+                                            Open reading frames (ORFs)
                                         </label>
                                     </div>
                                 </div>
@@ -205,262 +166,184 @@
                                 <div class="option-card">
                                     <div class="option-header">
                                         <i class="fas fa-chart-line"></i>
-                                        <h4>Advanced Features</h4>
+                                        <h4>Features</h4>
                                     </div>
                                     <div class="option-content">
                                         <label class="option-checkbox">
-                                            <input type="checkbox" name="analysis-option" value="coverage">
+                                            <input type="checkbox" name="analysis-option" value="protein-prediction" checked>
                                             <span class="checkmark"></span>
-                                            Coverage Analysis
-                                        </label>
-                                        <label class="option-checkbox">
-                                            <input type="checkbox" name="analysis-option" value="protein-prediction">
-                                            <span class="checkmark"></span>
-                                            Protein Prediction
+                                            Protein prediction
                                         </label>
                                         <label class="option-checkbox">
                                             <input type="checkbox" name="analysis-option" value="promoter-detection">
                                             <span class="checkmark"></span>
-                                            Promoter Detection
+                                            Promoter motifs (educational)
+                                        </label>
+                                        <label class="option-checkbox">
+                                            <input type="checkbox" name="analysis-option" value="charts">
+                                            <span class="checkmark"></span>
+                                            Charts (pie + ORF bar)
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="btn btn-primary analyze-btn" id="analyzeBtn" disabled>
+                            <button class="btn btn-primary btn-lg analyze-btn" id="analyzeBtn" disabled>
                                 <i class="fas fa-play"></i>
-                                Start Analysis
+                                Run analysis
                             </button>
                         </div>
-                    </div>
 
-                    <div class="tab-content" id="genetic-testing">
-                        <div class="genetic-testing-container">
-                            <div style="background: rgba(0,164,239,0.08); border:1px solid rgba(0,164,239,0.3); border-radius:12px; padding:1rem 1.25rem; margin-bottom:1.25rem;">
-                                <p style="margin:0 0 .5rem; font-weight:600; color:#fff;">
-                                    <i class="fas fa-lock"></i> This moved to the on-device Polygenic Score tool
-                                </p>
-                                <p style="margin:0 0 .8rem; color:#a0a0c0; font-size:.9rem; line-height:1.5;">
-                                    Upload a 23andMe or AncestryDNA export and compute a published polygenic score entirely in your browser. Your file never leaves your device.
-                                </p>
-                                <a href="../prs/index.html" class="analyze-btn" style="display:inline-flex; align-items:center; gap:.5rem; text-decoration:none;">
-                                    <i class="fas fa-dna"></i> Open the Polygenic Score tool
-                                </a>
-                            </div>
-                            <div id="dropZone" class="drop-zone">
-                                <i class="fas fa-dna"></i>
-                                <h3>Upload DNA File or Drop Here</h3>
-                                <p>Supported formats: .fastq, .fasta, .sam, .bam, .vcf</p>
-                                <input type="file" id="dnaFileInput" accept=".fastq,.fasta,.sam,.bam,.vcf" />
-
-                                <div class="sample-selector">
-                                    <p>Or try with a sample file:</p>
-                                    <select id="sampleFileSelect">
-                                        <option value="">Select a sample file...</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div id="sequenceDisplay" class="sequence-display"></div>
-
-                            <button id="analyzeButton" class="analyze-btn">
-                                <i class="fas fa-microscope"></i>
-                                Analyze DNA
-                            </button>
-
-                            <div id="loadingSpinner" class="loading-spinner" style="display: none;">
-                                <div class="spinner"></div>
-                                <p>Analyzing DNA sequence...</p>
-                            </div>
-
-                            <div id="errorDisplay" class="error-display"></div>
-
-                            <div id="resultsContainer" class="results-container"></div>
-                        </div>
-                    </div>
-
-                    <div class="tab-content" id="batch-processing">
-                        <div class="coming-soon">
-                            <i class="fas fa-layer-group"></i>
-                            <h3>Batch Processing Coming Soon</h3>
-                            <p>Process multiple DNA sequence files simultaneously for high-throughput analysis. Sign up
-                                for our newsletter to be notified when this feature launches.</p>
-                        </div>
+                        <!-- transient status / error -->
+                        <div class="analyzer-status" id="statusArea" hidden></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Results Section (initially hidden) -->
+            <!-- Results section (initially hidden) -->
             <div class="analyzer-results" id="resultsSection" style="display: none;">
                 <div class="results-header">
-                    <h2>Analysis Results</h2>
+                    <h2>Analysis results</h2>
                     <div class="results-actions">
                         <div class="results-file-info" id="resultsFileInfo">
-                            <i class="fas fa-file-alt"></i>
-                            <span>sample.fa</span>
+                            <i class="fas fa-lock"></i>
+                            <span id="resultsFileName">sample.fa</span>
                         </div>
-                        <button class="btn btn-secondary" id="exportBtn">
+                        <button class="btn btn-outline" id="exportBtn">
                             <i class="fas fa-download"></i>
-                            Export Results
+                            Export JSON
                         </button>
                     </div>
                 </div>
 
                 <div class="results-content" id="resultsContent">
-                    <!-- Results will be inserted here by JavaScript -->
+                    <!-- Results inserted by JavaScript -->
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- Export Modal -->
-        <div class="modal" id="exportModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Export Results</h3>
-                    <button class="close-modal" id="closeExportModal">&times;</button>
+    <!-- What it computes -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="section-head">
+                <span class="label label--sage">What it computes</span>
+                <h2>Real bioinformatics, in a tab you can <span class="script script-clay">check</span>.</h2>
+                <p>Each result is a documented calculation on your sequence.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card card--soft"><div class="card-icon"><i class="fas fa-percent"></i></div><h3>GC content</h3><p>The share of G and C bases.</p></div>
+                <div class="card card--soft"><div class="card-icon apricot"><i class="fas fa-chart-simple"></i></div><h3>Base composition</h3><p>A, T, G, C and N counts, with a live bar.</p></div>
+                <div class="card card--soft"><div class="card-icon teal"><i class="fas fa-dna"></i></div><h3>Codon usage</h3><p>Every triplet mapped to its amino acid.</p></div>
+                <div class="card card--soft"><div class="card-icon clay"><i class="fas fa-arrows-left-right"></i></div><h3>Open reading frames</h3><p>ATG to stop runs on both strands.</p></div>
+                <div class="card card--soft"><div class="card-icon"><i class="fas fa-vial"></i></div><h3>Protein prediction</h3><p>Candidate proteins, longest first.</p></div>
+                <div class="card card--soft"><div class="card-icon apricot"><i class="fas fa-magnifying-glass"></i></div><h3>Promoter motifs</h3><p>TATA, BRE, INR and DPE matches.</p></div>
+            </div>
+            <img class="chromo" src="../assets/img/chromosomes.svg" alt="Chromosome ideogram">
+        </div>
+    </section>
+
+    <!-- On-device statement block -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--teal split">
+                <div>
+                    <span class="label" style="color:#bcd6d2">Deterministic by design</span>
+                    <h2 style="margin-top:var(--sp-3)">Same input, same output, <span class="script">every</span> time.</h2>
+                    <p style="margin-top:var(--sp-4);color:#dbeae7;font-size:var(--fs-lg);max-width:42ch">No model, no randomness. A faithful port of the tested DNAnalyzer Java core: same sequence, same result.</p>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-light btn-lg" style="margin-top:var(--sp-5)"><i class="fab fa-github"></i> Read the source</a>
                 </div>
-                <div class="modal-body">
-                    <p>Choose format to download your analysis results:</p>
-                    <div class="export-options">
-                        <button class="export-option" data-format="json">
-                            <i class="fas fa-file-code"></i>
-                            <span>JSON</span>
-                        </button>
-                        <button class="export-option" data-format="csv">
-                            <i class="fas fa-file-csv"></i>
-                            <span>CSV</span>
-                        </button>
-                        <button class="export-option" data-format="txt">
-                            <i class="fas fa-file-alt"></i>
-                            <span>Text</span>
-                        </button>
-                    </div>
+                <div style="text-align:center"><img src="../assets/img/helix.svg" alt="DNA double helix" style="height:340px;margin:0 auto"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Honest framing, always visible -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--sage-tint analyzer-disclaimer" id="disclaimer">
+                <span class="label label--sage"><i class="fas fa-circle-info"></i> What this is, and what it is not</span>
+                <ul>
+                    <li><strong>Deterministic, not AI.</strong> Fixed, documented algorithms ported from
+                        the DNAnalyzer Java engine. No model, no prediction.</li>
+                    <li><strong>On-device by default.</strong> Your file is read with the browser's
+                        <code>FileReader</code> and analyzed here, never sent to a server.</li>
+                    <li><strong>Educational tooling.</strong> ORF, protein and promoter results are simple
+                        scans, not curated annotation pipelines.</li>
+                    <li><strong>Cookieless analytics.</strong> Anonymous page views via Cloudflare Web
+                        Analytics, never anything about your sequence.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--ink center">
+                <h2>Your sequence is <span class="script script-apricot">yours</span>. Explore it.</h2>
+                <p style="color:#c9d0c0;font-size:var(--fs-lg);max-width:46ch;margin:var(--sp-3) auto 0">Drop a FASTA or FASTQ file above. No account. Free.</p>
+                <div style="margin-top:var(--sp-6);display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
+                    <a href="#fileDropZone" class="btn btn-light btn-lg"><i class="fas fa-cloud-upload-alt"></i> Analyze my DNA</a>
+                    <a href="../app/index.html" class="btn btn-outline btn-lg" style="background:transparent;color:#fff;border-color:#54604a"><i class="fas fa-dna"></i> Read my DNA file</a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Help Modal -->
-        <div class="modal" id="helpModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>DNA Analyzer Help</h3>
-                    <button class="close-modal" id="closeHelpModal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <h4>Getting Started</h4>
-                    <p>To analyze DNA sequences, follow these steps:</p>
-                    <ol>
-                        <li>Upload a DNA sequence file (.fa, .fasta, .fastq, .txt) by dragging it to the upload area or
-                            clicking to browse.</li>
-                        <li>Select the analysis options you want to run on your sequence.</li>
-                        <li>Click "Start Analysis" to process your sequence.</li>
-                        <li>View the results and download them if needed.</li>
-                    </ol>
-
-                    <h4>Analysis Options</h4>
-                    <p>DNAnalyzer offers several types of analysis:</p>
-                    <ul>
-                        <li><strong>Basic Analysis:</strong> Calculates sequence length, GC content percentage, and
-                            nucleotide composition.</li>
-                        <li><strong>Codon Analysis:</strong> Identifies start codons (ATG), stop codons (TAA, TAG, TGA),
-                            and reading frames.</li>
-                        <li><strong>Advanced Features:</strong> Performs coverage analysis, protein prediction, and
-                            promoter sequence detection.</li>
-                    </ul>
-
-                    <h4>Need More Help?</h4>
-                    <p>Check out our <a href="../docs/docs.html">Documentation</a> for detailed guides or join our <a
-                            href="https://discord.gg/xNpujz49gj">Discord community</a> for support.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Notification container -->
-    <div class="notification-container" id="notificationContainer"></div>
-
-    <!-- Footer -->
+    <!-- Footer (matches homepage) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning
-                        models for accurate, on-device genomic analysis.</p>
-
-                    <div class="social-links">
-                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://discord.gg/xNpujz49gj" class="social-link">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://twitter.com/DNAnalyzer_" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://www.x.com/DNAnalyzer_" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                                <path
-                                    d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-                            </svg>
-                        </a>
+                    <a href="../index.html" class="brand" style="color:#fff"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-
-                <div class="footer-nav">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="../features/features.html">Features</a></li>
-                        <li><a href="analyzer.html">DNA Analyzer</a></li>
-                        <li><a href="../server/server.html">Server</a></li>
-                        <li><a href="../docs/docs.html">Documentation</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="../docs/getting-started.md">Getting Started</a></li>
-                        <li><a href="../docs/citations.md">Citations</a></li>
-                        <li><a href="../docs/research/genes.md">Gene Research</a></li>
-                        <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
-                        <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
-                        <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
-                        <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-                    </ul>
-                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="../app/index.html">My DNA</a></li>
+                    <li><a href="analyzer.html">Sequence tools</a></li>
+                    <li><a href="../features/features.html">Features</a></li>
+                    <li><a href="../server/server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="../docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="../hiring/hiring.html">Contribute</a></li>
+                    <li><a href="../privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="../about/about.html">About</a></li>
+                </ul></div>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-copyright">
-                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
-                    81-2908499). MIT License.
-                </div>
-
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
                 <div class="footer-links">
-                    <a href="../LICENSE.md">License</a>
-                    <a href="../SECURITY.md">Security</a>
-                    <a href="../CITATION.cff">Citation</a>
+                    <a href="../privacy.html">Privacy</a><a href="../LICENSE.md">License</a><a href="../SECURITY.md">Security</a><a href="../CITATION.cff">Citation</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Notification container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+
     <!-- JavaScript -->
-    <script src="../assets/js/api-client.js"></script>
-    <script src="analyzer.js"></script>
-    <!-- Chart.js for visualizations -->
+    <!-- On-device sequence engine (window.SequenceEngine). No server required. -->
+    <script src="../assets/js/sequence-engine.js"></script>
+    <!-- Chart.js for the optional base-composition pie + ORF bar charts. -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    <!-- Genetic Testing Script -->
-    <script src="genetic-testing.js"></script>
+    <!-- Thin controller. Note: api-client.js is loaded lazily ONLY when the
+         self-host toggle is enabled (see analyzer.js), never in the default path. -->
+    <script src="analyzer.js"></script>
 </body>
 
 </html>

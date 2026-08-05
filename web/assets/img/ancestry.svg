@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" fill="none" role="img" aria-label="Ancestry composition donut">
+<path d="M 130.0 34.0 A 96 96 0 1 1 60.0 195.7" stroke="#6f8a5a" stroke-width="34" fill="none" stroke-linecap="butt"/><path d="M 58.1 193.6 A 96 96 0 0 1 39.6 97.6" stroke="#f0b45f" stroke-width="34" fill="none" stroke-linecap="butt"/><path d="M 40.6 94.9 A 96 96 0 0 1 83.5 46.0" stroke="#2f5d63" stroke-width="34" fill="none" stroke-linecap="butt"/><path d="M 86.1 44.6 A 96 96 0 0 1 120.6 34.5" stroke="#c15f3c" stroke-width="34" fill="none" stroke-linecap="butt"/><path d="M 123.4 34.2 A 96 96 0 0 1 141.5 34.7" stroke="#6f97b8" stroke-width="34" fill="none" stroke-linecap="butt"/>
+<text x="130" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="30" font-weight="600" fill="#1c2118">63%</text>
+<text x="130" y="148" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#1c2118" fill-opacity="0.6">European</text>
+</svg>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date()); gtag('config', 'G-0LTP0WK7EM');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNAnalyzer &middot; Pricing</title>
+    <meta name="description"
+        content="The core is free forever and runs in your browser. Optional plans support a nonprofit that keeps genomics free and private. No account. Nothing uploaded.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
+    <style>
+        .anncmt{background:var(--ink);color:#e9e4d6;font-size:var(--fs-mono);font-weight:500;text-align:center;padding:.55rem 1rem}
+        .anncmt .dot{color:var(--apricot);margin:0 .4rem}
+
+        .hero{padding-top:var(--sp-7)}
+        .hero-head{max-width:16ch}
+        .hero .lede{font-size:var(--fs-lg);color:var(--ink-soft);margin-top:var(--sp-5);max-width:46ch}
+        .hero-note{margin-top:var(--sp-5);font-size:var(--fs-sm);color:var(--ink-faint);display:flex;align-items:center;gap:.5em}
+        .hero-note i{color:var(--sage-deep)}
+
+        /* pricing grid */
+        .plans{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:var(--sp-5);margin-top:var(--sp-7);align-items:stretch}
+        .plan{display:flex;flex-direction:column}
+        .plan .ptop{display:flex;align-items:center;gap:.6em;font-weight:600;font-size:var(--fs-sm)}
+        .plan .price{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,1.4rem+2.2vw,3rem);letter-spacing:-0.03em;line-height:1;margin-top:var(--sp-4)}
+        .plan .per{font-family:var(--font-body);font-size:var(--fs-sm);color:var(--ink-faint);font-weight:500}
+        .plan .psub{margin-top:var(--sp-3);font-size:var(--fs-base)}
+        .plan .plist{list-style:none;padding:0;margin:var(--sp-5) 0 var(--sp-6);display:grid;gap:.65em;font-size:var(--fs-sm)}
+        .plan .plist li{display:flex;align-items:flex-start;gap:.6em}
+        .plan .plist i{margin-top:.2em}
+        .plan .btn{width:100%;justify-content:center}
+        .plan .pfoot{margin-top:auto}
+        .plan .tag{margin-left:auto;font-family:var(--font-mono);font-size:var(--fs-mono);letter-spacing:.06em;text-transform:uppercase;padding:.3em .8em;border-radius:var(--radius-pill)}
+
+        /* free = emphasized sage block */
+        .plan--free{color:#fff}
+        .plan--free .price,.plan--free .per{color:#fff}
+        .plan--free .psub{color:rgba(255,255,255,0.9)}
+        .plan--free .plist i{color:#f6d9a0}
+        .plan--free .tag{background:rgba(255,255,255,0.18);color:#fff}
+        .plan--free .plist{color:rgba(255,255,255,0.92)}
+
+        .plan--card .plist i{color:var(--sage-deep)}
+        .plan--card .tag{background:var(--apricot-tint);color:var(--apricot-deep)}
+
+        .reassure{margin-top:var(--sp-6);display:flex;align-items:center;gap:.7em;font-size:var(--fs-base);color:var(--ink-soft);justify-content:center;text-align:center}
+        .reassure i{color:var(--sage-deep)}
+
+        /* credibility band */
+        .cred{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-top:var(--sp-6)}
+        .cred .chip b{color:var(--ink);font-weight:600}
+        .cred .chip i{color:var(--sage-deep)}
+
+        /* faq */
+        .faq{display:grid;gap:var(--sp-4)}
+        .faq .card h3{font-size:var(--fs-lg)}
+
+        @media (max-width:900px){.plans{grid-template-columns:1fr}}
+    </style>
+</head>
+
+<body>
+    <div class="anncmt"><b>Free forever.</b><span class="dot">&bull;</span>Your DNA never leaves your device<span class="dot">&bull;</span>Paid plans only fund the mission</div>
+
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="brand"><img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="app/index.html">My DNA</a></li>
+                <li><a href="features/features.html">Features</a></li>
+                <li><a href="pricing.html" class="active">Pricing</a></li>
+                <li><a href="docs/docs.html">Docs</a></li>
+                <li><a href="about/about.html">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="app/index.html" class="btn btn-primary btn-sm">Get started</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero section">
+        <div class="container center" style="margin-inline:auto">
+            <div class="reveal reveal-1" style="max-width:46rem;margin-inline:auto">
+                <span class="label label--sage">Pricing</span>
+                <h1 class="hero-head" style="margin:var(--sp-4) auto 0">Genomics that stays <span class="script script-sage">free</span>.</h1>
+                <p class="lede" style="margin-inline:auto">The core is free forever and runs in your browser. Paid plans just support the project.</p>
+                <div class="hero-note" style="justify-content:center"><i class="fas fa-lock"></i> No account. Nothing uploaded. Cancel anytime.</div>
+            </div>
+
+            <!-- Plans -->
+            <div class="plans reveal reveal-2" style="text-align:left">
+                <!-- FREE -->
+                <div class="block block--sage plan plan--free">
+                    <div class="ptop"><i class="fas fa-dna"></i> Free<span class="tag">Most popular</span></div>
+                    <div class="price">$0<span class="per"> / forever</span></div>
+                    <p class="psub">Everything you need to understand your DNA.</p>
+                    <ul class="plist">
+                        <li><i class="fas fa-check"></i> Read your 23andMe or AncestryDNA file on device</li>
+                        <li><i class="fas fa-check"></i> Ancestry, traits and notable variants</li>
+                        <li><i class="fas fa-check"></i> Real polygenic scores from the PGS Catalog</li>
+                        <li><i class="fas fa-check"></i> Data explorer for every genotype</li>
+                        <li><i class="fas fa-check"></i> Downloadable report you own</li>
+                        <li><i class="fas fa-check"></i> Nothing uploaded, no account</li>
+                    </ul>
+                    <div class="pfoot">
+                        <a href="app/index.html" class="btn btn-light btn-lg"><i class="fas fa-dna"></i> Analyze my DNA</a>
+                    </div>
+                </div>
+
+                <!-- SUPPORTER -->
+                <div class="card plan plan--card">
+                    <div class="ptop"><i class="fas fa-heart" style="color:var(--clay)"></i> Supporter<span class="tag">Coming soon</span></div>
+                    <div class="price">$5<span class="per"> / mo, pay what you want</span></div>
+                    <p class="psub">Help fund a nonprofit keeping genomics free and private.</p>
+                    <ul class="plist">
+                        <li><i class="fas fa-check"></i> Everything in Free</li>
+                        <li><i class="fas fa-check"></i> Supporter badge</li>
+                        <li><i class="fas fa-check"></i> Polished PDF report</li>
+                        <li><i class="fas fa-check"></i> Early access to new scores and traits</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> A vote on the roadmap</li>
+                    </ul>
+                    <div class="pfoot">
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" class="btn btn-clay btn-lg" style="width:100%;justify-content:center"><i class="fas fa-bell"></i> Get notified at launch</a>
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin-top:.5em"><i class="fab fa-github"></i> Or star the project</a>
+                    </div>
+                </div>
+
+                <!-- TEAMS -->
+                <div class="card plan plan--card">
+                    <div class="ptop"><i class="fas fa-flask" style="color:var(--teal)"></i> Teams and research<span class="tag" style="background:var(--teal-tint);color:var(--teal)">Open</span></div>
+                    <div class="price">Free<span class="per"> / open source</span></div>
+                    <p class="psub">Self-host the engine for labs and clinics.</p>
+                    <ul class="plist">
+                        <li><i class="fas fa-check"></i> Self-host the open-source engine</li>
+                        <li><i class="fas fa-check"></i> Local REST API, runs on your hardware</li>
+                        <li><i class="fas fa-check"></i> Your data stays inside your network</li>
+                        <li><i class="fas fa-check"></i> MIT licensed, no seat limits</li>
+                        <li><i class="fas fa-check"></i> Reach out for help at scale</li>
+                    </ul>
+                    <div class="pfoot">
+                        <a href="server/server.html" class="btn btn-outline btn-lg" style="width:100%;justify-content:center"><i class="fas fa-server"></i> Self-host guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reassure reveal">
+                <i class="fas fa-shield-halved"></i> The core will always be free and private. Paid plans only add extras and support the project.
+            </div>
+
+            <!-- credibility strip -->
+            <div class="cred reveal">
+                <span class="chip"><i class="fab fa-github"></i> <b data-github-stat="stars">&hellip;</b>&nbsp;stars</span>
+                <span class="chip"><b data-github-stat="forks">&hellip;</b>&nbsp;forks</span>
+                <span class="chip"><b data-github-stat="contributors">&hellip;</b>&nbsp;contributors</span>
+                <span class="chip"><i class="fas fa-book"></i> Published, DOI 10.5281/zenodo.14556578</span>
+                <span class="chip"><i class="fas fa-code-branch"></i> Open source, MIT</span>
+                <span class="chip"><i class="fas fa-flask"></i> Backed by YC AI Startup School and Claude for Student Builders</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="section-head center" style="margin-inline:auto">
+                <span class="label">Questions</span>
+                <h2>The honest <span class="script script-sage">answers</span>.</h2>
+            </div>
+            <div class="faq" style="max-width:var(--maxw-prose);margin-inline:auto">
+                <div class="card"><h3>Is my data really private?</h3><p>Yes. Your file is read in your browser and never uploaded. Check the Network tab yourself.</p></div>
+                <div class="card"><h3>Is it really free?</h3><p>Yes. Every core feature is free forever, with no account and no paywall.</p></div>
+                <div class="card"><h3>How do you make money?</h3><p>We do not sell data. Optional supporters fund a Hack Club sponsored nonprofit.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--ink center">
+                <h2>Your DNA is <span class="script script-apricot">yours</span>. Read it free.</h2>
+                <p style="color:#c9d0c0;font-size:var(--fs-lg);max-width:44ch;margin:var(--sp-3) auto 0">Nothing uploaded, nothing to sign up for, free forever.</p>
+                <div style="margin-top:var(--sp-6);display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
+                    <a href="app/index.html" class="btn btn-light btn-lg"><i class="fas fa-dna"></i> Analyze my DNA</a>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-outline btn-lg" style="background:transparent;color:#fff;border-color:#54604a"><i class="fas fa-star"></i> Star the project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand" style="color:#fff"><img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="app/index.html">My DNA</a></li>
+                    <li><a href="analyzer/analyzer.html">Sequence tools</a></li>
+                    <li><a href="features/features.html">Features</a></li>
+                    <li><a href="server/server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="hiring/hiring.html">Contribute</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="about/about.html">About</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy</a><a href="LICENSE.md">License</a><a href="SECURITY.md">Security</a><a href="CITATION.cff">Citation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/github-stats.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

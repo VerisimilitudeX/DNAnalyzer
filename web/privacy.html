@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy &middot; DNAnalyzer</title>
+    <meta name="description"
+        content="DNAnalyzer's privacy policy. Your DNA file is read entirely in your browser and is never uploaded. No accounts, no genetic database, and no tracking of your DNA. Free and open source.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
+    <style>
+        .anncmt{background:var(--ink);color:#e9e4d6;font-size:var(--fs-mono);font-weight:500;text-align:center;padding:.55rem 1rem}
+        .anncmt .dot{color:var(--apricot);margin:0 .4rem}
+
+        .privacy-hero{padding-top:var(--sp-7)}
+        .privacy-hero .lede{font-size:var(--fs-lg);color:var(--ink-soft);margin-top:var(--sp-4);max-width:52ch}
+
+        /* short version list inside a color block */
+        .short-list{list-style:none;padding:0;margin-top:var(--sp-5);display:grid;gap:var(--sp-5)}
+        .short-list li{display:flex;gap:var(--sp-4);align-items:flex-start}
+        .short-list .si{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none;background:rgba(255,255,255,0.9);color:var(--sage-deep);font-size:1.15rem}
+        .short-list h3{font-size:var(--fs-lg)}
+        .short-list p{color:#3a3417;margin-top:var(--sp-2);max-width:52ch}
+        .short-list a{text-decoration:underline;text-underline-offset:2px;font-weight:600}
+
+        /* prose sections */
+        .policy{max-width:var(--maxw-prose)}
+        .policy h2{font-size:var(--fs-xl);margin-top:var(--sp-7)}
+        .policy h2:first-of-type{margin-top:var(--sp-6)}
+        .policy p{color:var(--ink-soft);margin-top:var(--sp-3)}
+        .policy code{background:var(--cream);border-radius:6px;padding:.1em .4em}
+
+        .no-list{list-style:none;padding:0;margin-top:var(--sp-4);display:grid;gap:var(--sp-3)}
+        .no-list li{display:flex;gap:.7em;align-items:flex-start;color:var(--ink-soft)}
+        .no-list li i{color:var(--danger);margin-top:.28em}
+        .no-list li strong{color:var(--ink)}
+
+        .helix-note{display:flex;align-items:center;gap:var(--sp-6);flex-wrap:wrap}
+        .helix-note img{height:220px;flex:none}
+        .helix-note .body{flex:1;min-width:260px}
+
+        @media (max-width:900px){.helix-note{justify-content:center;text-align:left}}
+    </style>
+</head>
+
+<body>
+    <div class="anncmt"><b>Free forever.</b><span class="dot">&bull;</span>Your DNA never leaves your device<span class="dot">&bull;</span>No account, no lab, no waiting</div>
+
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="brand"><img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="app/index.html">My DNA</a></li>
+                <li><a href="features/features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="docs/docs.html">Docs</a></li>
+                <li><a href="about/about.html">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="app/index.html" class="btn btn-primary btn-sm">Get started</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="privacy-hero section">
+        <div class="container">
+            <div class="reveal reveal-1 prose">
+                <span class="label label--sage">Privacy policy</span>
+                <h1 style="margin-top:var(--sp-4)">Your DNA never <span class="script script-sage">leaves</span> your device.</h1>
+                <p class="lede">Plain language, true to the code. Updated 2026.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- The short version -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--apricot reveal reveal-2">
+                <span class="label" style="color:#7a5a17">The short version</span>
+                <h2 style="margin-top:var(--sp-3)">Three things worth <span class="script script-clay">knowing</span>.</h2>
+                <ul class="short-list">
+                    <li>
+                        <div class="si"><i class="fas fa-shield-halved"></i></div>
+                        <div>
+                            <h3>Your DNA file stays on your device</h3>
+                            <p>Every page that reads a genetic file (23andMe, AncestryDNA, FASTA, FASTQ) processes it in your browser. Nothing uploaded.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="si"><i class="fas fa-user-slash"></i></div>
+                        <div>
+                            <h3>No accounts, no genetic database</h3>
+                            <p>We never ask who you are and store nothing about your DNA. No server could hold a copy.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="si"><i class="fas fa-code-branch"></i></div>
+                        <div>
+                            <h3>Open source, so you can check</h3>
+                            <p>The code is <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">public</a>. Open your Network tab: no request carries your file.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prose sections -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="policy">
+                <h2>What runs on your device</h2>
+                <p>Our web tools are static pages plus JavaScript. Your file is read locally with the browser's <code>FileReader</code> and analyzed on your machine. Pages fetch only their own assets: code, reference data (polygenic scores, ancestry markers), fonts and styles. Your genotypes are never in any request.</p>
+
+                <h2>Analytics</h2>
+                <p>Pages where you upload a genetic file use <strong>cookieless</strong> analytics (Cloudflare Web Analytics): one anonymous page view, no cookies, no fingerprinting, nothing about your DNA. Marketing pages like the homepage also use Google Analytics for aggregate traffic, and never read genetic files.</p>
+
+                <h2>What we do not collect</h2>
+                <ul class="no-list">
+                    <li><i class="fas fa-circle-xmark"></i> <span><strong>Your DNA, genotypes, or sequence files.</strong> They stay in your browser.</span></li>
+                    <li><i class="fas fa-circle-xmark"></i> <span><strong>Names, emails, or accounts.</strong> None to create.</span></li>
+                    <li><i class="fas fa-circle-xmark"></i> <span><strong>Your results.</strong> Generated locally, saved by you.</span></li>
+                </ul>
+
+                <h2>Third-party services</h2>
+                <p>Your browser fetches fonts (Google Fonts), icons and libraries from public CDNs, and live star counts from the GitHub API. These providers see standard request data like your IP, as on any site. None receive your genetic data, because it never leaves your browser.</p>
+
+                <h2>Self-hosting</h2>
+                <p>You can also run DNAnalyzer as a local server or command line tool. See <a class="link" href="server/server.html">Self-host</a> and <a class="link" href="docs/docs.html">Docs</a>. Then all processing happens on infrastructure you control.</p>
+            </div>
+
+            <!-- A note on genetic data, in a color block with a real helix visual -->
+            <div class="block block--teal helix-note reveal" style="margin-top:var(--sp-7)">
+                <img src="assets/img/helix.svg" alt="DNA double helix">
+                <div class="body">
+                    <span class="label label--on-dark">A note on genetic data</span>
+                    <h2 style="margin-top:var(--sp-3)">Genes are <span class="script script-apricot">permanent</span>. Passwords are not.</h2>
+                    <p style="color:#d3e5e2;margin-top:var(--sp-4);max-width:46ch">Leaked genetic data cannot be changed. That is why DNAnalyzer computes on your device, not the cloud. Nothing here is a medical test; results are educational. For health questions, see a clinician or genetic counselor.</p>
+                </div>
+            </div>
+
+            <div class="policy">
+                <h2>Changes and contact</h2>
+                <p>If this changes, we update this page and the date above. Questions? Open an issue on <a class="link" href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a> or <a class="link" href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a>.</p>
+            </div>
+
+            <div class="block block--ink center reveal" style="margin-top:var(--sp-7)">
+                <h2>See it for <span class="script script-apricot">yourself</span>.</h2>
+                <p style="color:#c9d0c0;font-size:var(--fs-lg);max-width:44ch;margin:var(--sp-3) auto 0">Drop in your file and watch the Network tab.</p>
+                <div style="margin-top:var(--sp-6)">
+                    <a href="app/index.html" class="btn btn-light btn-lg"><i class="fas fa-dna"></i> Analyze my DNA</a>
+                </div>
+                <p style="color:#8f9a86;font-size:var(--fs-sm);margin-top:var(--sp-4)">No account. Free. Runs in your browser.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand" style="color:#fff"><img src="assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="app/index.html">My DNA</a></li>
+                    <li><a href="analyzer/analyzer.html">Sequence tools</a></li>
+                    <li><a href="features/features.html">Features</a></li>
+                    <li><a href="server/server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="hiring/hiring.html">Contribute</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="about/about.html">About</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy</a><a href="LICENSE.md">License</a><a href="SECURITY.md">Security</a><a href="CITATION.cff">Citation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

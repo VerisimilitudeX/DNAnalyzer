@@ -67,3 +67,4 @@ lib/*.rar
 lib/*.tar
 lib/*.tar.gz
 lib/*.tgz
+.gstack/

@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Bundled PGS Catalog scoring files",
+    "description": "Real, unmodified polygenic score files from the PGS Catalog (https://www.pgscatalog.org). Each file keeps its published #key=value header, citation and weights exactly as distributed. Scores are matched to your genotype by rsID, which is genome-build independent.",
+    "source": "PGS Catalog (Lambert et al., Nature Genetics 2021 & 2024). Individual score citations are inside each file header and shown per card.",
+    "note": "Weight types differ across scores (beta, log(OR), odds ratios). The relative-position bar shows where your dosage-weighted total sits between the minimum and maximum attainable for the variants present in your file. It is NOT a percentile, probability, or calibrated risk, and is NOT adjusted for ancestry."
+  },
+  "scores": [
+    {
+      "file": "PGS000730.txt",
+      "pgs_id": "PGS000730",
+      "trait": "Basal cell carcinoma",
+      "variants": 47,
+      "genome_build": "hg19",
+      "citation": "Fontanillas P et al. Nat Commun (2021). doi:10.1038/s41467-020-20246-5",
+      "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    },
+    {
+      "file": "PGS000011.txt",
+      "pgs_id": "PGS000011",
+      "trait": "Coronary artery disease",
+      "variants": 50,
+      "genome_build": "NR",
+      "citation": "Tada H et al. Eur Heart J (2015). doi:10.1093/eurheartj/ehv462",
+      "license": "PGS Catalog terms (CC BY 4.0)"
+    },
+    {
+      "file": "PGS000031.txt",
+      "pgs_id": "PGS000031",
+      "trait": "Type 2 diabetes",
+      "variants": 62,
+      "genome_build": "NCBI36",
+      "citation": "Vassy JL et al. Diabetes (2014). doi:10.2337/db13-1663",
+      "license": "PGS Catalog terms (CC BY 4.0)"
+    },
+    {
+      "file": "PGS000065.txt",
+      "pgs_id": "PGS000065",
+      "trait": "LDL cholesterol",
+      "variants": 103,
+      "genome_build": "hg19",
+      "citation": "Kuchenbaecker K et al. Nat Commun (2019). doi:10.1038/s41467-019-12026-7",
+      "license": "PGS Catalog terms (CC BY 4.0)"
+    },
+    {
+      "file": "PGS000127.txt",
+      "pgs_id": "PGS000127",
+      "trait": "HbA1c (glycated haemoglobin)",
+      "variants": 21,
+      "genome_build": "NCBI36",
+      "citation": "Wheeler E et al. PLoS Med (2017). doi:10.1371/journal.pmed.1002383",
+      "license": "PGS Catalog terms (CC BY 4.0)"
+    }
+  ]
+}

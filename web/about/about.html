@@ -2,532 +2,212 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-0LTP0WK7EM');
+        gtag('js', new Date()); gtag('config', 'G-0LTP0WK7EM');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - DNAnalyzer</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>About DNAnalyzer &middot; Your DNA is yours</title>
+    <meta name="description"
+        content="DNAnalyzer is a free, open source project that reads your DNA privately on your own device. Learn the mission, the people, and how it stays honest.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="about.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 
 <body>
-    <!-- Background effects -->
-    <div class="bg-gradient">
-        <div class="bg-blob bg-blob-1"></div>
-        <div class="bg-blob bg-blob-2"></div>
-    </div>
+    <div class="anncmt"><b>Free forever.</b><span class="dot">&bull;</span>Your DNA never leaves your device<span class="dot">&bull;</span>No account, no lab, no waiting</div>
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="container navbar-container">
-            <a href="../index.html" class="logo">
-                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                <span class="logo-text">DNAnalyzer</span>
-            </a>
-
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-
+    <nav class="nav">
+        <div class="container">
+            <a href="../index.html" class="brand"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Home</a></li>
+                <li><a href="../app/index.html">My DNA</a></li>
                 <li><a href="../features/features.html">Features</a></li>
-                <li><a href="../analyzer/analyzer.html">Analyzer</a></li>
-                <li><a href="../dashboard/dashboard.html">Dashboard</a></li>
-                <li><a href="../server/server.html">Server</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
                 <li><a href="../docs/docs.html">Docs</a></li>
                 <li><a href="about.html" class="active">About</a></li>
             </ul>
-
-            <div class="nav-buttons">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
-                    <i class="fab fa-github btn-icon"></i> GitHub
-                </a>
+            <div class="nav-cta">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="../app/index.html" class="btn btn-primary btn-sm">Get started</a>
             </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        <section class="about-hero">
-            <div class="container">
-                <div class="about-hero-content">
-                    <h1>About <span class="gradient-text">DNAnalyzer</span></h1>
-                    <p>Revolutionizing DNA analysis through advanced machine learning and efficient computation</p>
+    <!-- Hero -->
+    <header class="hero section">
+        <div class="container">
+            <div class="reveal reveal-1">
+                <span class="label">About DNAnalyzer</span>
+                <h1 class="hero-head" style="margin-top:var(--sp-4)">Your DNA is <span class="script script-sage">yours</span>. We read it without taking it.</h1>
+                <p class="lede">A free, open source project that turns your 23andMe or AncestryDNA file into insights, without sending your genome anywhere.</p>
+                <div class="hero-cta">
+                    <a href="../app/index.html" class="btn btn-primary btn-lg"><i class="fas fa-dna"></i> Analyze my DNA</a>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-outline btn-lg"><i class="fab fa-github"></i> Read the code</a>
                 </div>
+                <div class="hero-note"><i class="fas fa-lock"></i> No account. Free. Runs in your browser.</div>
             </div>
-        </section>
+        </div>
+    </header>
 
-        <section class="section mission-section">
-            <div class="container">
-                <div class="section-content">
-                    <div class="section-header">
-                        <h2>Our Mission</h2>
-                        <div class="section-divider"></div>
-                    </div>
-                    <p class="mission-text">DNAnalyzer aims to democratize DNA analysis by providing powerful,
-                        accessible tools for researchers, clinicians, and scientists worldwide. We're committed to
-                        advancing genomic research through innovative technology and open collaboration.</p>
+    <!-- Mission -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--sage split">
+                <div>
+                    <span class="label label--on-dark">Our mission</span>
+                    <h2 style="margin-top:var(--sp-3)">Learn from your genome without <span class="script">giving it away</span>.</h2>
+                    <p style="margin-top:var(--sp-4);color:rgba(255,255,255,0.88);font-size:var(--fs-lg);max-width:42ch">Your genes are the most personal data you own, and you cannot change them after a leak.</p>
+                    <p style="margin-top:var(--sp-3);color:rgba(255,255,255,0.82);max-width:42ch">So we read the file you already have, in your browser, with code anyone can inspect. No server holds your data.</p>
                 </div>
+                <div style="text-align:center"><img src="../assets/img/helix.svg" alt="DNA double helix" style="height:340px;margin:0 auto"></div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section values-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our Core Values</h2>
-                    <div class="section-divider"></div>
-                </div>
-
-                <div class="values-grid">
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-dna"></i>
-                        </div>
-                        <h3>Innovation</h3>
-                        <p>Leveraging cutting-edge technology and machine learning to provide accurate, comprehensive
-                            DNA analysis capabilities.</p>
-                    </div>
-
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h3>Accessibility</h3>
-                        <p>Making advanced DNA analysis tools available to researchers and clinicians worldwide through
-                            an intuitive interface.</p>
-                    </div>
-
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Privacy</h3>
-                        <p>Ensuring user data remains secure and private with our on-device processing approach and
-                            transparent practices.</p>
-                    </div>
-
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3>Scientific Rigor</h3>
-                        <p>Maintaining the highest standards of accuracy and reliability through extensive testing and
-                            validation.</p>
-                    </div>
-                </div>
+    <!-- Trust grid -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="section-head">
+                <span class="label">How we stay honest</span>
+                <h2>Built to be <span class="script script-teal">checked</span>, not believed.</h2>
+                <p>Every claim here you can verify yourself.</p>
             </div>
-        </section>
+            <div class="grid grid-4">
+                <div class="card card--soft"><div class="card-icon"><i class="fas fa-shield-halved"></i></div><h3>Private by design</h3><p>Never uploaded. Watch your Network tab.</p></div>
+                <div class="card card--soft"><div class="card-icon clay"><i class="fab fa-github"></i></div><h3>Open source</h3><p>Every line public under the MIT License.</p></div>
+                <div class="card card--soft"><div class="card-icon teal"><i class="fas fa-book-open"></i></div><h3>Real, cited data</h3><p>PGS Catalog, 1000 Genomes, ClinVar, dbSNP.</p></div>
+                <div class="card card--soft"><div class="card-icon apricot"><i class="fas fa-circle-info"></i></div><h3>Honest about limits</h3><p>Educational, not a diagnosis.</p></div>
+            </div>
+        </div>
+    </section>
 
-        <section class="section technology-section section-dark">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our Technology</h2>
-                    <div class="section-divider"></div>
-                </div>
-
-                <div class="tech-showcase">
-                    <div class="tech-image">
-                        <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Technology" class="tech-logo">
+    <!-- Team -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="section-head">
+                <span class="label label--sage">The people</span>
+                <h2>A small team, building in the <span class="script script-sage">open</span>.</h2>
+                <p>Real names, real GitHub profiles.</p>
+            </div>
+            <div class="grid grid-2">
+                <div class="card card--soft team-card">
+                    <div class="team-mark"><i class="fas fa-dna"></i></div>
+                    <div>
+                        <h3>Piyush Acharya</h3>
+                        <div class="team-role">Creator and maintainer</div>
+                        <p>Building genomics you can understand, without privacy tradeoffs.</p>
+                        <a href="https://github.com/VerisimilitudeX" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><i class="fab fa-github"></i> github.com/VerisimilitudeX</a>
                     </div>
-
-                    <div class="tech-features">
-                        <div class="tech-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-microchip"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Advanced Analysis</h3>
-                                <p>Identifies proteins, amino acids, start and stop codons, high coverage regions, and
-                                    regulatory elements with high accuracy.</p>
-                            </div>
-                        </div>
-
-                        <div class="tech-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Machine Learning</h3>
-                                <p>Utilizes advanced algorithms and ML models to process and analyze DNA sequences
-                                    efficiently.</p>
-                            </div>
-                        </div>
-
-                        <div class="tech-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Scalable Platform</h3>
-                                <p>Built on modern technology stack ensuring fast processing of large sequences and
-                                    reliable performance.</p>
-                            </div>
-                        </div>
-
-                        <div class="tech-feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-user-shield"></i>
-                            </div>
-                            <div class="feature-content">
-                                <h3>Privacy-First Design</h3>
-                                <p>All processing happens on your device, ensuring your genetic data remains private and
-                                    secure.</p>
-                            </div>
-                        </div>
+                </div>
+                <div class="card card--soft team-card">
+                    <div class="team-mark clay"><i class="fas fa-code"></i></div>
+                    <div>
+                        <h3>@LimesKey</h3>
+                        <div class="team-role">Core contributor</div>
+                        <p>Keeps the project open, buildable, and easy to run.</p>
+                        <a href="https://github.com/LimesKey" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><i class="fab fa-github"></i> github.com/LimesKey</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section timeline-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Our Journey</h2>
-                    <div class="section-divider"></div>
-                    <p class="section-subtitle">The evolution of DNAnalyzer from concept to cutting-edge DNA analysis
-                        platform</p>
+    <!-- Community + live stats + credibility -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--teal">
+                <div class="section-head" style="margin-bottom:var(--sp-6)">
+                    <span class="label label--on-dark">Built in the open</span>
+                    <h2>A free project, powered by <span class="script script-apricot">people</span>.</h2>
+                    <p style="color:rgba(234,243,242,0.85)">Live from GitHub.</p>
                 </div>
-
-                <div class="vertical-timeline">
-                    <!-- First milestone -->
-                    <div class="timeline-milestone">
-                        <div class="milestone-year">2022</div>
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-card">
-                            <h3>Project Inception</h3>
-                            <p>Piyush Acharya initiates DNAnalyzer as a response to privacy concerns and high costs in
-                                the field of personal genomics.</p>
-                        </div>
-                    </div>
-
-                    <!-- Second milestone -->
-                    <div class="timeline-milestone milestone-right">
-                        <div class="milestone-year">2023</div>
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-card">
-                            <h3>Team Expansion</h3>
-                            <p>Collaborator @LimesKey joins, and the project attracts its first contributors from the
-                                computational biology community.</p>
-                        </div>
-                    </div>
-
-                    <!-- Third milestone -->
-                    <div class="timeline-milestone">
-                        <div class="milestone-year">2023</div>
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-card">
-                            <h3>Nonprofit Foundation</h3>
-                            <p>DNAnalyzer becomes a fiscally sponsored 501(c)(3) nonprofit organization (EIN:
-                                81-2908499) to advance DNA analysis technology.</p>
-                        </div>
-                    </div>
-
-                    <!-- Fourth milestone -->
-                    <div class="timeline-milestone milestone-right">
-                        <div class="milestone-year">2024</div>
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-card">
-                            <h3>ML Integration</h3>
-                            <p>Launch of machine learning components with the "DNAI" model, significantly enhancing
-                                analysis capabilities.</p>
-                        </div>
-                    </div>
-
-                    <!-- Fifth milestone -->
-                    <div class="timeline-milestone">
-                        <div class="milestone-year">2024</div>
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-card">
-                            <h3>Web Platform</h3>
-                            <p>Release of the comprehensive web interface, making DNA analysis accessible to researchers
-                                worldwide.</p>
-                        </div>
-                    </div>
-
-                    <!-- Sixth milestone -->
-                    <div class="timeline-milestone milestone-right">
-                        <div class="milestone-year">2025</div>
-                        <div class="milestone-dot"></div>
-                        <div class="milestone-card">
-                            <h3>Open Source Growth</h3>
-                            <p>Community expands to 46+ contributors, including scientists from leading research
-                                institutions around the world.</p>
-                        </div>
-                    </div>
+                <div class="grid grid-4" id="statsGrid">
+                    <div><div class="stat-num on-dark" data-github-stat="stars">&hellip;</div><div class="stat-label on-dark">GitHub stars</div></div>
+                    <div><div class="stat-num on-dark" data-github-stat="forks">&hellip;</div><div class="stat-label on-dark">Forks</div></div>
+                    <div><div class="stat-num on-dark" data-github-stat="contributors">&hellip;</div><div class="stat-label on-dark">Contributors</div></div>
+                    <div><div class="stat-num on-dark" data-github-stat="issues">&hellip;</div><div class="stat-label on-dark">Open issues</div></div>
+                </div>
+                <div class="cred-strip">
+                    <a href="https://doi.org/10.5281/zenodo.14556578" target="_blank" rel="noopener" class="cred-chip"><i class="fas fa-quote-right"></i> Published: Zenodo DOI 10.5281/zenodo.14556578</a>
+                    <span class="cred-chip"><i class="fas fa-scale-balanced"></i> MIT licensed</span>
+                    <span class="cred-chip"><i class="fas fa-graduation-cap"></i> YC AI Startup School</span>
+                    <span class="cred-chip"><i class="fas fa-star"></i> Claude for Student Builders</span>
+                    <span class="cred-chip"><i class="fas fa-heart"></i> Sponsored by Hack Club 501(c)(3)</span>
+                </div>
+                <div style="margin-top:var(--sp-6);display:flex;gap:var(--sp-3);flex-wrap:wrap">
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-light"><i class="fab fa-github"></i> Star on GitHub</a>
+                    <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" class="btn btn-outline" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.4)"><i class="fab fa-discord"></i> Join the Discord</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section team-section section-dark">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Meet Our Leadership</h2>
-                    <div class="section-divider"></div>
-                </div>
-
-                <div class="team-horizontal">
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="../assets/icons/Icon_Dark_BG.svg" alt="Piyush Acharya">
-                        </div>
-                        <div class="team-info">
-                            <h3>Piyush Acharya</h3>
-                            <p class="team-role">Founder & Lead Developer</p>
-                            <p class="team-bio">Initiated DNAnalyzer to democratize genome analysis and make it
-                                accessible while ensuring privacy.</p>
-                            <div class="team-social">
-                                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                                <a href="https://www.x.com/DNAnalyzer_" class="social-icon"><i
-                                        class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-avatar">
-                            <img src="../assets/icons/Icon_Dark_BG.svg" alt="LimesKey">
-                        </div>
-                        <div class="team-info">
-                            <h3>@LimesKey</h3>
-                            <p class="team-role">Co-Lead & ML Specialist</p>
-                            <p class="team-bio">Leads the machine learning initiatives and computational biology aspects
-                                of DNAnalyzer.</p>
-                            <div class="team-social">
-                                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                                <a href="https://www.x.com/DNAnalyzer_" class="social-icon"><i
-                                        class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="community-card">
-                    <div class="community-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Open Source Community</h3>
-                    <p class="community-count">46+ Contributors</p>
-                    <p class="community-description">Dedicated contributors from Microsoft Research, University of
-                        Macedonia, Northeastern University, and more.</p>
-                    <div class="community-links">
-                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
-                            <i class="fab fa-github btn-icon"></i> GitHub
-                        </a>
-                        <a href="https://discord.gg/xNpujz49gj" class="btn btn-secondary btn-sm">
-                            <i class="fab fa-discord btn-icon"></i> Discord
-                        </a>
-                    </div>
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--ink center">
+                <img src="../assets/img/dna-strip.svg" alt="DNA sequence strip" class="cta-strip">
+                <h2>Your DNA is <span class="script script-apricot">yours</span>. Get to know it.</h2>
+                <p style="color:#c9d0c0;font-size:var(--fs-lg);max-width:44ch;margin:var(--sp-3) auto 0">Read your file in your browser. No account. Free.</p>
+                <div style="margin-top:var(--sp-6);display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
+                    <a href="../app/index.html" class="btn btn-light btn-lg"><i class="fas fa-dna"></i> Analyze my DNA</a>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-outline btn-lg" style="background:transparent;color:#fff;border-color:#54604a"><i class="fab fa-github"></i> Star on GitHub</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section stats-section">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="stat-number" data-count="141">141</div>
-                        <div class="stat-label">GitHub Stars</div>
-                    </div>
-
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-code-branch"></i>
-                        </div>
-                        <div class="stat-number" data-count="46">46</div>
-                        <div class="stat-label">Contributors</div>
-                    </div>
-
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-dna"></i>
-                        </div>
-                        <div class="stat-number" data-count="5">5</div>
-                        <div class="stat-suffix">M+</div>
-                        <div class="stat-label">DNA Sequences Analyzed</div>
-                    </div>
-
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="stat-label">Global Impact</div>
-                        <div class="stat-description">Users from 42 countries</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section future-vision-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>The Future of DNAnalyzer</h2>
-                    <div class="section-divider"></div>
-                </div>
-
-                <div class="future-grid-container">
-                    <div class="future-center">
-                        <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo" class="center-logo">
-                    </div>
-
-                    <div class="future-card top-left">
-                        <div class="future-card-inner">
-                            <div class="future-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h3>Neural Networks</h3>
-                            <div class="future-detail">
-                                <p>Our next-generation neural networks will process genotyped data from consumer DNA
-                                    tests with unprecedented accuracy.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="future-card top-right">
-                        <div class="future-card-inner">
-                            <div class="future-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <h3>DIAMOND Integration</h3>
-                            <div class="future-detail">
-                                <p>Integration with the DIAMOND sequence aligner will deliver up to 20,000x faster
-                                    sequence alignment compared to traditional methods.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="future-card bottom-left">
-                        <div class="future-card-inner">
-                            <div class="future-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <h3>Genomic Database</h3>
-                            <div class="future-detail">
-                                <p>A high-performance SQL database architecture specially designed for genomic data
-                                    integration across thousands of species.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="future-card bottom-right">
-                        <div class="future-card-inner">
-                            <div class="future-icon">
-                                <i class="fas fa-layer-group"></i>
-                            </div>
-                            <h3>Advanced Analysis</h3>
-                            <div class="future-detail">
-                                <p>Upcoming modules for repeat element detection, CRISPR site identification, and
-                                    comprehensive protein domain searches.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section cta-section section-dark">
-            <div class="container">
-                <div class="cta-content">
-                    <h2>Join Our Community</h2>
-                    <p>Contribute to the future of DNA analysis technology and help us make genomic insights accessible
-                        to all.</p>
-                    <div class="cta-buttons">
-                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-primary">
-                            <i class="fab fa-github btn-icon"></i> Join on GitHub
-                        </a>
-                        <a href="https://discord.gg/xNpujz49gj" class="btn btn-secondary">
-                            <i class="fab fa-discord btn-icon"></i> Join Discord
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning
-                        models for accurate, on-device genomic analysis.</p>
-
+                    <a href="../index.html" class="brand" style="color:#fff"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
                     <div class="footer-social">
-                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://discord.gg/xNpujz49gj" class="social-link">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://www.x.com/DNAnalyzer_" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-
-                <div class="footer-nav">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="../features/features.html">Features</a></li>
-                        <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
-                        <li><a href="../server/server.html">Server</a></li>
-                        <li><a href="../docs/docs.html">Documentation</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="../docs/getting-started.md">Getting Started</a></li>
-                        <li><a href="../docs/citations.md">Citations</a></li>
-                        <li><a href="../docs/research/genes.md">Gene Research</a></li>
-                        <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
-                        <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
-                        <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
-                        <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-                    </ul>
-                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="../app/index.html">My DNA</a></li>
+                    <li><a href="../features/features.html">Features</a></li>
+                    <li><a href="../pricing.html">Pricing</a></li>
+                    <li><a href="../server/server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="../docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="../hiring/hiring.html">Contribute</a></li>
+                    <li><a href="../privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul></div>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-copyright">
-                    Copyright Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
-                    81-2908499). MIT License.
-                </div>
-
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
                 <div class="footer-links">
-                    <a href="../LICENSE.md">License</a>
-                    <a href="../SECURITY.md">Security</a>
-                    <a href="../CITATION.cff">Citation</a>
+                    <a href="../privacy.html">Privacy</a><a href="../LICENSE.md">License</a><a href="../SECURITY.md">Security</a><a href="../CITATION.cff">Citation</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script src="../assets/js/github-stats.js"></script>
     <script src="about.js"></script>
 </body>
 

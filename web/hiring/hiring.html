@@ -2,140 +2,189 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-0LTP0WK7EM');
+        gtag('js', new Date()); gtag('config', 'G-0LTP0WK7EM');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiring - DNAnalyzer</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>Contribute &middot; Help build DNAnalyzer</title>
+    <meta name="description"
+        content="DNAnalyzer is free and open source, built by volunteers. No paid roles. Contribute code, genomics data, or docs and design. Real GitHub issues, contributing guide, and Discord.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="hiring.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 
 <body>
-    <div class="background-blur"></div>
-    <div class="gradient-sphere"></div>
-    <div class="gradient-sphere secondary"></div>
+    <div class="anncmt"><b>Free forever.</b><span class="dot">&bull;</span>Your DNA never leaves your device<span class="dot">&bull;</span>No account, no lab, no waiting</div>
 
-    <header class="floating-header">
-        <nav class="floating-nav">
-            <a href="../index.html" class="nav-link">
-                <img src="../assets/icons/Icon_Base.svg" alt="DNAnalyzer Logo" class="nav-logo">
-            </a>
-            <a href="../about/about.html" class="nav-link">About</a>
-            <a href="../features/features.html" class="nav-link">Features</a>
-            <a href="../analyzer/analyzer.html" class="nav-link">Analyzer</a>
-            <a href="../server/server.html" class="nav-link">Server</a>
-            <a href="../docs/docs.html" class="nav-link">Docs</a>
-            <a href="hiring.html" class="nav-link active">Hiring</a>
-            <div class="right-links">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="glass-button">GitHub</a>
-                <a href="https://discord.gg/xNpujz49gj" class="glass-button">Discord</a>
+    <nav class="nav">
+        <div class="container">
+            <a href="../index.html" class="brand"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../app/index.html">My DNA</a></li>
+                <li><a href="../features/features.html">Features</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
+                <li><a href="../docs/docs.html">Docs</a></li>
+                <li><a href="../about/about.html">About</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="../app/index.html" class="btn btn-primary btn-sm">Get started</a>
             </div>
-        </nav>
-    </header>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
 
-    <main class="container">
-        <section class="hero">
-            <h1>Join Our Team</h1>
-            <p>We're looking for talented individuals to help us revolutionize DNA analysis.</p>
-        </section>
-
-        <section class="positions-section">
-            <h2>Open Positions</h2>
-            <div class="positions-grid">
-                <div class="position-card">
-                    <h3>Software Engineer</h3>
-                    <p>Develop and maintain our DNA analysis tools and infrastructure.</p>
-                    <a href="hiring-modal.html" class="primary-btn">Apply Now</a>
+    <!-- Hero -->
+    <header class="hero section">
+        <div class="container">
+            <div class="reveal reveal-1">
+                <span class="label">Contribute</span>
+                <h1 class="hero-head" style="margin-top:var(--sp-4)">Help build genomics people can <span class="script script-sage">trust</span>.</h1>
+                <p class="lede">Free, open source, built by volunteers. If you write code, know genomics, or care about docs and design, there is a place for you.</p>
+                <div class="hero-cta">
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues" target="_blank" rel="noopener" class="btn btn-primary btn-lg"><i class="fab fa-github"></i> Browse open issues</a>
+                    <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" class="btn btn-outline btn-lg"><i class="fab fa-discord"></i> Join the Discord</a>
                 </div>
-                <div class="position-card">
-                    <h3>Data Scientist</h3>
-                    <p>Analyze genetic data and develop machine learning models for DNA analysis.</p>
-                    <a href="hiring-modal.html" class="primary-btn">Apply Now</a>
-                </div>
-                <div class="position-card">
-                    <h3>UI/UX Designer</h3>
-                    <p>Design intuitive and engaging user interfaces for our web and mobile applications.</p>
-                    <a href="hiring-modal.html" class="primary-btn">Apply Now</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="benefits-section">
-            <h2>Why Work With Us?</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <i class="fas fa-rocket benefit-icon"></i>
-                    <h3>Innovative Projects</h3>
-                    <p>Work on cutting-edge technology and make a real impact in the field of genomics.</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-users benefit-icon"></i>
-                    <h3>Collaborative Environment</h3>
-                    <p>Join a team of passionate professionals who are dedicated to advancing DNA analysis.</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-heart benefit-icon"></i>
-                    <h3>Comprehensive Benefits</h3>
-                    <p>Enjoy competitive salaries, health insurance, and other great perks.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer-content">
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h3>Product</h3>
-                <ul>
-                    <li><a href="../features/features.html">Features</a></li>
-                    <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
-                    <li><a href="../server/server.html">Server</a></li>
-                    <li><a href="../docs/docs.html">Documentation</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul>
-                    <li><a href="../docs/getting-started.md">Getting Started</a></li>
-                    <li><a href="../docs/citations.md">Citations</a></li>
-                    <li><a href="../docs/research/genes.md">Gene Research</a></li>
-                    <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Community</h3>
-                <ul>
-                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
-                    <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
-                    <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
-                    <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Legal</h3>
-                <ul>
-                    <li><a href="../LICENSE.md">License</a></li>
-                    <li><a href="../SECURITY.md">Security</a></li>
-                    <li><a href="../CITATION.cff">Citation</a></li>
-                    <li><a href="../humans.txt">Credits</a></li>
-                </ul>
+                <div class="hero-note"><i class="fas fa-circle-info"></i> Volunteer and unpaid. MIT licensed.</div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Copyright © Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
-                81-2908499). MIT License.</p>
+    </header>
+
+    <!-- Honest, up front (color block with genomic visual) -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--apricot split reveal">
+                <div>
+                    <span class="label" style="color:#7a5a17">Honest, up front</span>
+                    <p class="statement" style="margin-top:var(--sp-3)">No salary. No equity. Real <span class="script script-clay">work</span> you can point to.</p>
+                    <p style="margin-top:var(--sp-4);color:#4a3a17;max-width:44ch">A nonprofit, volunteer effort sponsored by Hack Club. You get public commits with your name on them and a project that helps people read their own DNA privately.</p>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn btn-primary btn-lg" style="margin-top:var(--sp-5)"><i class="fas fa-book-open"></i> Read the contributing guide</a>
+                </div>
+                <div style="text-align:center"><img src="../assets/img/helix.svg" alt="DNA double helix" style="height:320px;margin:0 auto"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ways to contribute -->
+    <section class="section" id="ways" style="padding-top:0">
+        <div class="container">
+            <div class="section-head">
+                <span class="label label--sage">Ways to contribute</span>
+                <h2>Three tracks, whatever your <span class="script script-clay">background</span>.</h2>
+                <p>Every link goes somewhere real. Pick the one that fits.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card card--soft contribute-card">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>Code</h3>
+                    <p>Java scoring engine, on device browser tools, or the website. Try a good first issue.</p>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Open issues <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card card--soft contribute-card">
+                    <div class="card-icon clay"><i class="fas fa-dna"></i></div>
+                    <h3>Genomics data</h3>
+                    <p>Curate polygenic scores, ancestry markers, and variant annotations, always cited.</p>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Contributing guide <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card card--soft contribute-card">
+                    <div class="card-icon teal"><i class="fas fa-pen-ruler"></i></div>
+                    <h3>Docs &amp; design</h3>
+                    <p>Sharpen the docs, accessibility, and interface so more people understand their DNA.</p>
+                    <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Say hi on Discord <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- First contribution steps (color block) -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--sage">
+                <div class="section-head" style="margin-bottom:var(--sp-6)">
+                    <span class="label label--on-dark">How to start</span>
+                    <h2>Your first <span class="script">contribution</span>, step by step.</h2>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="sn">STEP 01</div>
+                        <h3>Read the guide</h3>
+                        <p><a href="https://github.com/VerisimilitudeX/DNAnalyzer/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="link">CONTRIBUTING.md</a> covers build, test, and pull requests.</p>
+                    </div>
+                    <div class="step">
+                        <div class="sn">STEP 02</div>
+                        <h3>Pick an issue</h3>
+                        <p>Grab one from the <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues" target="_blank" rel="noopener" class="link">issue tracker</a>, or open your own.</p>
+                    </div>
+                    <div class="step">
+                        <div class="sn">STEP 03</div>
+                        <h3>Ask in Discord</h3>
+                        <p>Stuck? The <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" class="link">Discord</a> is the fastest way to get a hand.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--ink center">
+                <h2>Pick something and <span class="script script-apricot">dive in</span>.</h2>
+                <p style="color:#c9d0c0;font-size:var(--fs-lg);max-width:46ch;margin:var(--sp-3) auto 0">Browse the issues or just say hi. First time contributors are especially welcome.</p>
+                <div style="margin-top:var(--sp-6);display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer/issues" target="_blank" rel="noopener" class="btn btn-light btn-lg"><i class="fab fa-github"></i> Browse open issues</a>
+                    <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" class="btn btn-outline btn-lg" style="background:transparent;color:#fff;border-color:#54604a"><i class="fab fa-discord"></i> Join the Discord</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="brand" style="color:#fff"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="../app/index.html">My DNA</a></li>
+                    <li><a href="../analyzer/analyzer.html">Sequence tools</a></li>
+                    <li><a href="../features/features.html">Features</a></li>
+                    <li><a href="../server/server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="../docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="hiring.html">Contribute</a></li>
+                    <li><a href="../privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="../about/about.html">About</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy</a><a href="../LICENSE.md">License</a><a href="../SECURITY.md">Security</a><a href="../CITATION.cff">Citation</a>
+                </div>
+            </div>
         </div>
     </footer>
 

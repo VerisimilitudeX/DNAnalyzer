@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>On-device Polygenic Score . DNAnalyzer</title>
+    <title>On-device Polygenic Score &middot; DNAnalyzer</title>
     <meta name="description"
         content="Upload your 23andMe or AncestryDNA export and compute a published polygenic score entirely in your browser. Your DNA file never leaves your device.">
 
@@ -15,58 +15,84 @@
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
 
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="prs.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="prs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 
 <body class="prs-body">
     <header class="prs-topbar">
-        <a class="prs-brand" href="../index.html">
-            <i class="fas fa-dna"></i> DNAnalyzer
-        </a>
-        <a class="prs-topbar-link" href="../index.html">
-            <i class="fas fa-arrow-left"></i> Home
-        </a>
+        <div class="prs-topbar-inner">
+            <a class="brand" href="../index.html">
+                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer">
+                DNAnalyzer
+            </a>
+            <nav class="prs-topbar-links">
+                <a class="prs-topbar-link" href="../app/index.html"><i class="fas fa-dna"></i> My DNA</a>
+                <a class="prs-topbar-link" href="../pricing.html"><i class="fas fa-tag"></i> Pricing</a>
+                <a class="prs-topbar-link" href="../index.html"><i class="fas fa-arrow-left"></i> Home</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="prs-main">
-        <section class="prs-hero">
-            <span class="prs-kicker"><i class="fas fa-lock"></i> Runs entirely in your browser</span>
-            <h1>Score your DNA without uploading it.</h1>
+    <main class="prs-main container">
+        <!-- HERO -->
+        <section class="prs-hero reveal reveal-1">
+            <span class="label label--sage prs-kicker"><i class="fas fa-lock"></i> Runs in your browser</span>
+            <h1>Score your DNA without ever <span class="script script-sage">uploading</span> it.</h1>
             <p class="prs-sub">
-                Drop in your 23andMe or AncestryDNA export and compute a published
-                polygenic score on this page. Your genotype file is read and scored
-                locally in your browser. It is never sent to a server, and there is
-                nothing to sign up for.
+                Drop in your 23andMe or AncestryDNA file and compute a published
+                polygenic score right here. It is scored on your device and never sent anywhere.
             </p>
+            <div class="hero-cta" style="display:flex;gap:var(--sp-3);margin-top:var(--sp-5);flex-wrap:wrap;align-items:center">
+                <a href="#inputCard" class="btn btn-primary btn-lg"><i class="fas fa-dna"></i> Score my DNA</a>
+            </div>
+            <p class="hero-note" style="margin-top:var(--sp-4);font-size:var(--fs-sm);color:var(--ink-faint)">
+                <i class="fas fa-lock" style="color:var(--sage-deep)"></i> No account. Free. Runs in your browser.
+            </p>
+            <div class="prs-hero-chips">
+                <span class="chip"><i class="fas fa-shield-halved"></i> Nothing uploaded</span>
+                <span class="chip"><i class="fas fa-bolt"></i> Scored on your device</span>
+                <span class="chip"><i class="fab fa-github"></i> Open source</span>
+            </div>
         </section>
 
-        <!-- STEP 1: input -->
-        <section class="prs-card" id="inputCard">
-            <div class="prs-dropzone" id="dropZone" tabindex="0" role="button"
-                aria-label="Upload your genotype file">
-                <input type="file" id="fileInput" accept=".txt,.csv,.tsv" hidden>
-                <i class="fas fa-file-arrow-up prs-dropzone-icon"></i>
-                <p class="prs-dropzone-title">Drag your DNA file here, or click to browse</p>
-                <p class="prs-dropzone-hint">
-                    23andMe (<code>genome_*.txt</code>) or AncestryDNA (<code>AncestryDNA.txt</code>).
-                    Nothing is uploaded.
+        <!-- STEP 1: input, warm color block -->
+        <section class="block block--sage prs-input-block reveal reveal-2">
+            <div class="prs-input-copy">
+                <span class="label label--on-dark">Step one</span>
+                <h2>Drop in your <span class="script script-apricot">file</span>.</h2>
+                <p>
+                    Use your raw data download from 23andMe or AncestryDNA. Open the Network
+                    tab and watch: no request ever carries your DNA.
                 </p>
+                <img class="prs-input-helix" src="../assets/img/helix.svg" alt="DNA double helix">
             </div>
-            <div class="prs-actions">
-                <button class="prs-btn prs-btn-ghost" id="sampleBtn" type="button">
-                    <i class="fas fa-vial"></i> Try a sample file
-                </button>
-                <span class="prs-privacy-note">
-                    <i class="fas fa-shield-halved"></i>
-                    Open your browser's Network tab and watch: no request carries your file.
-                </span>
+
+            <div class="prs-card card" id="inputCard">
+                <div class="prs-dropzone" id="dropZone" tabindex="0" role="button"
+                    aria-label="Upload your genotype file">
+                    <input type="file" id="fileInput" accept=".txt,.csv,.tsv" hidden>
+                    <i class="fas fa-file-arrow-up prs-dropzone-icon"></i>
+                    <p class="prs-dropzone-title">Drag your DNA file here, or click to browse</p>
+                    <p class="prs-dropzone-hint">
+                        23andMe (<code>genome_*.txt</code>) or AncestryDNA (<code>AncestryDNA.txt</code>).
+                    </p>
+                </div>
+                <div class="prs-actions">
+                    <button class="prs-btn prs-btn-ghost" id="sampleBtn" type="button">
+                        <i class="fas fa-vial"></i> Try a sample file
+                    </button>
+                    <span class="prs-privacy-note">
+                        <i class="fas fa-shield-halved"></i>
+                        No request carries your file. Check it yourself.
+                    </span>
+                </div>
             </div>
         </section>
 
@@ -77,36 +103,71 @@
         <section class="prs-result" id="resultArea" hidden></section>
 
         <!-- honest framing, always visible -->
-        <section class="prs-disclaimer" id="disclaimer">
-            <h2><i class="fas fa-circle-info"></i> What this is, and what it is not</h2>
+        <section class="block block--cream prs-disclaimer" id="disclaimer">
+            <span class="label"><i class="fas fa-circle-info"></i> What this is, and what it is not</span>
+            <h2>Built to be <span class="script script-teal">understood</span>, not oversold.</h2>
             <ul>
-                <li><strong>Educational demonstration, not a medical or diagnostic test.</strong>
-                    Nothing here is medical advice. Do not make health decisions from it.
-                    Talk to a clinician or genetic counselor about real concerns.</li>
-                <li><strong>One published research score.</strong> It computes a single
-                    polygenic score from the <a href="https://www.pgscatalog.org/" target="_blank"
-                        rel="noopener">PGS Catalog</a>, shown with full attribution below once your file loads.</li>
-                <li><strong>Not calibrated to you.</strong> A raw polygenic score is not a
-                    percentile, a probability, or a risk. It is not adjusted for your ancestry,
-                    which strongly affects how these scores should be read.</li>
-                <li><strong>Limited by your array.</strong> Consumer tests genotype only a
-                    fraction of a research score's variants, so coverage is partial. The result
-                    shows exactly how many variants were found.</li>
-                <li><strong>Cookieless analytics.</strong> This page counts anonymous page views
-                    with Cloudflare Web Analytics (no cookies, no fingerprinting). It records that
-                    the page was viewed, never anything about your DNA.</li>
+                <li><strong>Educational, not a medical test.</strong> Not medical advice. Talk to a
+                    clinician or genetic counselor about real concerns.</li>
+                <li><strong>One published score.</strong> A single polygenic score from the
+                    <a class="link" href="https://www.pgscatalog.org/" target="_blank" rel="noopener">PGS Catalog</a>,
+                    fully attributed below once your file loads.</li>
+                <li><strong>Not calibrated to you.</strong> A raw score is not a percentile, probability,
+                    or risk, and is not adjusted for ancestry, which strongly affects how it reads.</li>
+                <li><strong>Limited by your array.</strong> Consumer tests cover only a fraction of a
+                    score's variants. Your result shows exactly how many were found.</li>
+                <li><strong>Cookieless analytics.</strong> Anonymous page views via Cloudflare, no cookies,
+                    no fingerprinting. Never anything about your DNA.</li>
             </ul>
             <p class="prs-attribution" id="attribution"></p>
         </section>
     </main>
 
-    <footer class="prs-footer">
-        <p>
-            <a href="../index.html">DNAnalyzer</a> . Privacy-first genomics .
-            Computation happens on your device.
-        </p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="brand" style="color:#fff"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="../app/index.html">My DNA</a></li>
+                    <li><a href="../analyzer/analyzer.html">Sequence tools</a></li>
+                    <li><a href="../features/features.html">Features</a></li>
+                    <li><a href="../server/server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="../docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="../hiring/hiring.html">Contribute</a></li>
+                    <li><a href="../privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="../about/about.html">About</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
+                <div class="footer-links">
+                    <a href="../privacy.html">Privacy</a><a href="../LICENSE.md">License</a><a href="../SECURITY.md">Security</a><a href="../CITATION.cff">Citation</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <script>
+        (function () {
+            var y = document.getElementById("year");
+            if (y) y.textContent = String(new Date().getFullYear());
+        })();
+    </script>
     <script src="../analyzer/prs-engine.js"></script>
     <script src="prs.js"></script>
 </body>

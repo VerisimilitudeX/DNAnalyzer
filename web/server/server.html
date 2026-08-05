@@ -2,309 +2,361 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0LTP0WK7EM"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-0LTP0WK7EM');
+        gtag('js', new Date()); gtag('config', 'G-0LTP0WK7EM');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server - DNAnalyzer</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>Self-host DNAnalyzer &middot; The optional Java server, for power users</title>
+    <meta name="description"
+        content="Run the optional DNAnalyzer Java server and CLI on your own machine. Java 17, gradlew bootRun, Docker, and a local REST API at /api/v1. The website itself needs no server. This guide is for batch work and research pipelines.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500;0,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="server.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="../assets/icons/Icon_Dark_BG.svg" type="image/svg+xml">
 </head>
 
 <body>
-    <!-- Background effects -->
-    <div class="bg-gradient">
-        <div class="bg-blob bg-blob-1"></div>
-        <div class="bg-blob bg-blob-2"></div>
-    </div>
+    <div class="anncmt"><b>Optional.</b><span class="dot">&bull;</span>The website reads your DNA on-device, no backend<span class="dot">&bull;</span>This guide is for the CLI and a local API</div>
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="container navbar-container">
-            <a href="../index.html" class="logo">
-                <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                <span class="logo-text">DNAnalyzer</span>
-            </a>
-
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-
+    <nav class="nav">
+        <div class="container">
+            <a href="../index.html" class="brand"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Home</a></li>
+                <li><a href="../app/index.html">My DNA</a></li>
                 <li><a href="../features/features.html">Features</a></li>
-                <li><a href="../analyzer/analyzer.html">Analyzer</a></li>
-                <li><a href="../dashboard/dashboard.html">Dashboard</a></li>
-                <li><a href="server.html" class="active">Server</a></li>
+                <li><a href="../pricing.html">Pricing</a></li>
                 <li><a href="../docs/docs.html">Docs</a></li>
                 <li><a href="../about/about.html">About</a></li>
             </ul>
-
-            <div class="nav-buttons">
-                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-secondary btn-sm">
-                    <i class="fab fa-github btn-icon"></i> GitHub
-                </a>
+            <div class="nav-cta">
+                <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"><i class="fab fa-github"></i> GitHub</a>
+                <a href="../app/index.html" class="btn btn-primary btn-sm">Get started</a>
             </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-headings">
-                        <h1>DNAnalyzer <span>Server</span></h1>
-                        <p class="hero-subtitle">Set up and run your own DNAnalyzer server for local development and
-                            advanced genomic analysis</p>
-                    </div>
+    <!-- Hero -->
+    <header class="hero section">
+        <div class="container">
+            <div class="reveal reveal-1">
+                <span class="label">Self-hosting guide</span>
+                <h1 class="hero-head" style="margin-top:var(--sp-4)">Run the DNAnalyzer server <span class="script script-sage">yourself</span>.</h1>
+                <p class="lede">The optional Java server and CLI on your machine: batch runs, scripting, a private REST API.</p>
+                <div class="hero-cta">
+                    <a href="#quick-start" class="btn btn-primary btn-lg"><i class="fas fa-terminal"></i> Quick start</a>
+                    <a href="#api" class="btn btn-outline btn-lg">REST API</a>
+                </div>
+                <div class="hero-note"><i class="fas fa-circle-check"></i> Java 17+, one Gradle command, everything local.</div>
+            </div>
+
+            <!-- prominent optional callout, in a color block with a helix -->
+            <div class="block block--sage hero-block reveal reveal-2">
+                <div>
+                    <span class="label label--on-dark">You do not need this</span>
+                    <h2 style="margin-top:var(--sp-3);font-size:var(--fs-xl)">The website itself needs no server.</h2>
+                    <p style="margin-top:var(--sp-4);color:rgba(255,255,255,0.86);max-width:42ch">My DNA runs in your browser. Self-host only for a local API or CLI.</p>
+                    <a href="../app/index.html" class="btn btn-light" style="margin-top:var(--sp-5)"><i class="fas fa-dna"></i> Analyze my DNA instead</a>
+                </div>
+                <div style="text-align:center"><img src="../assets/img/helix.svg" alt="DNA double helix" style="height:300px;margin:0 auto"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Requirements -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="section-head">
+                <span class="label label--sage">Before you start</span>
+                <h2>What you <span class="script script-clay">need</span>.</h2>
+                <p>A standard Java and Spring Boot app. Any modern JDK, or Docker.</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card card--soft">
+                    <div class="card-icon"><i class="fab fa-java"></i></div>
+                    <h3>Java 17 or newer</h3>
+                    <p>Runs the server and CLI. Check with <span class="chip">java -version</span></p>
+                </div>
+                <div class="card card--soft">
+                    <div class="card-icon apricot"><i class="fas fa-memory"></i></div>
+                    <h3>2 GB RAM minimum</h3>
+                    <p>4 GB or more for large files.</p>
+                </div>
+                <div class="card card--soft">
+                    <div class="card-icon teal"><i class="fab fa-docker"></i></div>
+                    <h3>Docker, if you like</h3>
+                    <p>No JDK needed. It all ships in the image.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Server Status</h2>
-                    <p>Check your local server installation status and requirements</p>
+    <!-- Quick start -->
+    <section class="section" id="quick-start" style="padding-top:0">
+        <div class="container">
+            <div class="block block--cream">
+                <div class="section-head" style="margin-bottom:var(--sp-6)">
+                    <span class="label">Quick start</span>
+                    <h2>Build and run <span class="script script-teal">from source</span>.</h2>
+                    <p>Clone, build with the Gradle wrapper, start. Listens on port 8080.</p>
                 </div>
 
-                <div class="card-grid">
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <h3 class="card-title">Server Status</h3>
-                        <div id="server-status" class="status-value">Checking...</div>
-                        <p>Local Server</p>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-memory"></i>
-                        </div>
-                        <h3 class="card-title">System Requirements</h3>
-                        <div class="status-value">2GB+</div>
-                        <p>Minimum RAM</p>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-code-branch"></i>
-                        </div>
-                        <h3 class="card-title">Version</h3>
-                        <div class="status-value">Java 17+</div>
-                        <p>Required Runtime</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section section-bg-gradient">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Quick Start Guide</h2>
-                    <p>Follow these steps to set up your local DNAnalyzer server</p>
-                </div>
-
-                <div class="steps-container">
-                    <div class="step-item">
-                        <div class="step-content">
-                            <h3>Clone the Repository</h3>
+                <div class="steps-list">
+                    <div class="step-row">
+                        <div class="step-n">STEP 01</div>
+                        <div class="step-body">
+                            <h3>Clone the repository</h3>
                             <div class="code-block">
-                                <code>git clone https://github.com/VerisimilitudeX/DNAnalyzer.git && cd DNAnalyzer</code>
-                                <button class="copy-button" onclick="copyCloneCommand()">Copy</button>
+                                <button class="copy-button" data-copy="git clone https://github.com/VerisimilitudeX/DNAnalyzer.git &amp;&amp; cd DNAnalyzer">Copy</button>
+                                <pre><code>git clone https://github.com/VerisimilitudeX/DNAnalyzer.git
+cd DNAnalyzer</code></pre>
                             </div>
-                            <p>Clone the repository and navigate to the project directory</p>
                         </div>
                     </div>
 
-                    <div class="step-item">
-                        <div class="step-content">
-                            <h3>Setup Gradle</h3>
+                    <div class="step-row">
+                        <div class="step-n">STEP 02</div>
+                        <div class="step-body">
+                            <h3>Make the Gradle wrapper executable</h3>
+                            <p>macOS and Linux, once. On Windows use <span class="chip">gradlew.bat</span>.</p>
                             <div class="code-block">
-                                <code>chmod +x ./gradlew</code>
-                                <button class="copy-button" onclick="copyChmodCommand()">Copy</button>
+                                <button class="copy-button" data-copy="chmod +x ./gradlew">Copy</button>
+                                <pre><code>chmod +x ./gradlew</code></pre>
                             </div>
-                            <p>Make the Gradle wrapper executable (Unix/macOS systems)</p>
                         </div>
                     </div>
 
-                    <div class="step-item">
-                        <div class="step-content">
-                            <h3>Build the Project</h3>
+                    <div class="step-row">
+                        <div class="step-n">STEP 03</div>
+                        <div class="step-body">
+                            <h3>Run the server</h3>
+                            <p><span class="chip">bootRun</span> builds and starts in one step. First run pulls dependencies.</p>
                             <div class="code-block">
-                                <code>./gradlew clean bootJar</code>
-                                <button class="copy-button" onclick="copyBuildCommand()">Copy</button>
+                                <button class="copy-button" data-copy="./gradlew bootRun">Copy</button>
+                                <pre><code>./gradlew bootRun</code></pre>
                             </div>
-                            <p>Build the project (this may take a few minutes on first run)</p>
                         </div>
                     </div>
 
-                    <div class="step-item">
-                        <div class="step-content">
-                            <h3>Start the Server</h3>
+                    <div class="step-row">
+                        <div class="step-n">STEP 04</div>
+                        <div class="step-body">
+                            <h3>Open the local server</h3>
+                            <p>The REST API is live at the address below, on your machine.</p>
                             <div class="code-block">
-                                <code>java -jar build/libs/DNAnalyzer.jar</code>
-                                <button class="copy-button" onclick="copyRunCommand()">Copy</button>
+                                <button class="copy-button" data-copy="http://localhost:8080/api/v1/status">Copy</button>
+                                <pre><code>http://localhost:8080/api/v1/status</code></pre>
                             </div>
-                            <p>Start the local server on port 8080</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="section" id="troubleshooting">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Troubleshooting</h2>
-                    <p>Common issues and their solutions</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon feature-icon-magenta">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Port Already in Use</h3>
-                        <p>If port 8080 is already in use, you may see an error like "Address already in use". To fix
-                            this:</p>
-                        <ul>
-                            <li>Close any other applications using port 8080</li>
-                            <li>Or modify the port in application.yml to use a different port</li>
-                            <li>Alternatively, use the command line option to specify a different port</li>
-                        </ul>
+                <div class="split-cards">
+                    <div class="card card--soft">
+                        <h3>Build a standalone jar</h3>
+                        <p>Prefer one artifact? Build a boot jar, run it with Java.</p>
                         <div class="code-block">
-                            <code>java -jar build/libs/DNAnalyzer.jar --server.port=8090</code>
+                            <button class="copy-button" data-copy="./gradlew clean bootJar&#10;java -jar build/libs/DNAnalyzer.jar">Copy</button>
+                            <pre><code>./gradlew clean bootJar
+java -jar build/libs/DNAnalyzer.jar</code></pre>
                         </div>
                     </div>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon feature-icon-blue">
-                        <i class="fab fa-java"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Java Version Issues</h3>
-                        <p>If you see "UnsupportedClassVersionError", make sure you have Java 17+ installed:</p>
+                    <div class="card card--soft">
+                        <h3>Run with Docker</h3>
+                        <p>Build the image, map port 8080. No JDK.</p>
                         <div class="code-block">
-                            <code>java -version</code>
+                            <button class="copy-button" data-copy="docker build -t dnanalyzer .&#10;docker run -p 8080:8080 dnanalyzer">Copy</button>
+                            <pre><code>docker build -t dnanalyzer .
+docker run -p 8080:8080 dnanalyzer</code></pre>
                         </div>
-                        <p>Download and install Java 17 or later if your version is outdated.</p>
-                    </div>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon feature-icon-orange">
-                        <i class="fas fa-exclamation-triangle"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h3>Build Failures</h3>
-                        <p>If you encounter build errors, try these solutions:</p>
-                        <ul>
-                            <li>Run './gradlew clean' first to clear any cached files</li>
-                            <li>Make sure your Java installation is properly configured</li>
-                            <li>Ensure you have write permissions in the project directory</li>
-                            <li>Update Gradle wrapper if needed with './gradlew wrapper --gradle-version=7.5'</li>
-                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section section-bg-dark">
-            <div class="container text-center">
-                <h2>Ready to Contribute?</h2>
-                <p class="mb-xl">Join our community and help improve DNAnalyzer's server capabilities.</p>
+    <!-- REST API -->
+    <section class="section" id="api" style="padding-top:0">
+        <div class="container">
+            <div class="section-head">
+                <span class="label label--sage">REST API</span>
+                <h2>Every endpoint lives under <span class="script script-clay">/api/v1</span>.</h2>
+                <p>They accept sequence data, return deterministic JSON, all local.</p>
+            </div>
 
-                <div class="hero-buttons" style="justify-content: center;">
-                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="btn btn-primary">
-                        <i class="fab fa-github btn-icon"></i> Fork on GitHub
-                    </a>
-                    <a href="https://discord.gg/xNpujz49gj" class="btn btn-secondary">
-                        <i class="fab fa-discord btn-icon"></i> Join Discord
-                    </a>
+            <div class="table-wrap" style="margin-bottom: var(--sp-6);">
+                <table class="data">
+                    <thead>
+                        <tr><th>Method</th><th>Path</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>GET</td><td>/api/v1/status</td><td>Server status and version</td></tr>
+                        <tr><td>POST</td><td>/api/v1/analyze</td><td>Full analysis of a sequence file</td></tr>
+                        <tr><td>POST</td><td>/api/v1/base-pairs</td><td>Counts, percentages, GC content</td></tr>
+                        <tr><td>POST</td><td>/api/v1/reading-frames</td><td>Reading frames</td></tr>
+                        <tr><td>POST</td><td>/api/v1/find-proteins</td><td>Candidate protein coding regions</td></tr>
+                        <tr><td>POST</td><td>/api/v1/manipulate</td><td>Transform, e.g. reverse complement</td></tr>
+                        <tr><td>POST</td><td>/api/v1/parse</td><td>Parse and validate a file</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="split-cards">
+                <div class="card card--soft">
+                    <h3>Check the server</h3>
+                    <p>A GET returns status and version.</p>
+                    <div class="code-block">
+                        <button class="copy-button" data-copy="curl http://localhost:8080/api/v1/status">Copy</button>
+                        <pre><code>curl http://localhost:8080/api/v1/status</code></pre>
+                    </div>
+                    <p class="small muted" style="margin-top: var(--sp-3);">Example response:</p>
+                    <div class="code-block">
+                        <pre><code>{
+  "status": "running",
+  "version": "1.0.0"
+}</code></pre>
+                    </div>
+                </div>
+                <div class="card card--soft">
+                    <h3>Analyze a base pair sequence</h3>
+                    <p>POST a sequence, get counts, percentages, GC content.</p>
+                    <div class="code-block">
+                        <button class="copy-button" data-copy='curl -X POST http://localhost:8080/api/v1/base-pairs -H &quot;Content-Type: application/json&quot; -d &apos;{&quot;sequence&quot;:&quot;ATGCATGCATGC&quot;}&apos;'>Copy</button>
+                        <pre><code>curl -X POST \
+  http://localhost:8080/api/v1/base-pairs \
+  -H "Content-Type: application/json" \
+  -d '{"sequence":"ATGCATGCATGC"}'</code></pre>
+                    </div>
+                    <p class="small muted" style="margin-top: var(--sp-3);">Example response:</p>
+                    <div class="code-block">
+                        <pre><code>{
+  "counts": { "A": 3, "T": 3, "G": 3, "C": 3 },
+  "percentages": { "A": 25, "T": 25, "G": 25, "C": 25 },
+  "gcContent": 50
+}</code></pre>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Footer -->
+    <!-- CLI -->
+    <section class="section" id="cli" style="padding-top:0">
+        <div class="container">
+            <div class="block block--teal split">
+                <div>
+                    <span class="label label--on-dark">Command line</span>
+                    <h2 style="margin-top:var(--sp-3)">The same engine, from your <span class="script">terminal</span>.</h2>
+                    <p style="margin-top:var(--sp-4);color:#d7e6e4;font-size:var(--fs-lg);max-width:42ch">For automation and reproducible research. Pass a file and analyses.</p>
+                    <p class="small" style="margin-top:var(--sp-4);color:#bcd6d3">All flags in the <a href="../docs/docs.html#cli" class="link" style="color:#fff;text-decoration-color:rgba(255,255,255,0.5)">CLI docs</a> and the <a href="../docs/samples/cli-arguments-examples.md" class="link" style="color:#fff;text-decoration-color:rgba(255,255,255,0.5)">examples file</a>.</p>
+                </div>
+                <div class="code-block">
+                    <button class="copy-button" data-copy="java -jar build/libs/DNAnalyzer.jar --gc-content --base-composition path/to/sequence.fa">Copy</button>
+                    <pre><code>java -jar build/libs/DNAnalyzer.jar \
+  --gc-content \
+  --base-composition \
+  path/to/sequence.fa</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="section" id="troubleshooting" style="padding-top:0">
+        <div class="container">
+            <div class="section-head">
+                <span class="label label--sage">Troubleshooting</span>
+                <h2>If something goes <span class="script script-clay">sideways</span>.</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="card card--soft">
+                    <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>Port already in use</h3>
+                    <p>If 8080 is taken, pick another.</p>
+                    <div class="code-block">
+                        <pre><code>java -jar build/libs/DNAnalyzer.jar \
+  --server.port=8090</code></pre>
+                    </div>
+                </div>
+                <div class="card card--soft">
+                    <div class="card-icon apricot"><i class="fab fa-java"></i></div>
+                    <h3>Unsupported class version</h3>
+                    <p>Java older than 17. Check, then install a newer JDK.</p>
+                    <div class="code-block">
+                        <pre><code>java -version</code></pre>
+                    </div>
+                </div>
+                <div class="card card--soft">
+                    <div class="card-icon clay"><i class="fas fa-triangle-exclamation"></i></div>
+                    <h3>Build failures</h3>
+                    <p>Clear cached files and rebuild. Confirm write access.</p>
+                    <div class="code-block">
+                        <pre><code>./gradlew clean
+./gradlew bootRun</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--ink center">
+                <span class="label" style="color:#f6d9a0">Open source, MIT licensed</span>
+                <h2 style="margin-top:var(--sp-3)">Fork it, run it, <span class="script script-apricot">improve</span> it.</h2>
+                <p style="color:#c9d0c0;font-size:var(--fs-lg);max-width:46ch;margin:var(--sp-3) auto 0">Server, CLI, and scoring engine are all public. Or read your DNA in the browser.</p>
+                <div style="margin-top:var(--sp-6);display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
+                    <a href="../app/index.html" class="btn btn-light btn-lg"><i class="fas fa-dna"></i> Analyze my DNA</a>
+                    <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" class="btn btn-outline btn-lg" style="background:transparent;color:#fff;border-color:#54604a"><i class="fab fa-github"></i> View on GitHub</a>
+                </div>
+                <p class="small" style="color:#9aa591;margin-top:var(--sp-4)">No account. Free. Runs in your browser.</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer Logo">
-                    <p>DNAnalyzer is a powerful, privacy-focused DNA analysis tool using cutting-edge machine learning
-                        models for accurate, on-device genomic analysis.</p>
-
+                    <a href="../index.html" class="brand" style="color:#fff"><img src="../assets/icons/Icon_Dark_BG.svg" alt="DNAnalyzer"> DNAnalyzer</a>
+                    <p>Understand your DNA privately. Everything runs on your device, and your genetic data is never uploaded.</p>
                     <div class="footer-social">
-                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://discord.gg/xNpujz49gj" class="social-link">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="https://twitter.com/DNAnalyzer_" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
+                        <a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/DNAnalyzer_" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-
-                <div class="footer-nav">
-                    <h4>Product</h4>
-                    <ul>
-                        <li><a href="../features/features.html">Features</a></li>
-                        <li><a href="../analyzer/analyzer.html">DNA Analyzer</a></li>
-                        <li><a href="server.html">Server</a></li>
-                        <li><a href="../docs/docs.html">Documentation</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="../docs/getting-started.md">Getting Started</a></li>
-                        <li><a href="../docs/citations.md">Citations</a></li>
-                        <li><a href="../docs/research/genes.md">Gene Research</a></li>
-                        <li><a href="../docs/samples/cli-arguments-examples.md">CLI Examples</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-nav">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer">GitHub</a></li>
-                        <li><a href="https://discord.gg/xNpujz49gj">Discord</a></li>
-                        <li><a href="../docs/contributing/CONTRIBUTING.md">Contributing</a></li>
-                        <li><a href="../CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-                    </ul>
-                </div>
+                <div><h4>Product</h4><ul>
+                    <li><a href="../app/index.html">My DNA</a></li>
+                    <li><a href="../analyzer/analyzer.html">Sequence tools</a></li>
+                    <li><a href="../features/features.html">Features</a></li>
+                    <li><a href="server.html">Self-host</a></li>
+                </ul></div>
+                <div><h4>Resources</h4><ul>
+                    <li><a href="../docs/docs.html">Documentation</a></li>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">Source code</a></li>
+                    <li><a href="../hiring/hiring.html">Contribute</a></li>
+                    <li><a href="../privacy.html">Privacy</a></li>
+                </ul></div>
+                <div><h4>Community</h4><ul>
+                    <li><a href="https://github.com/VerisimilitudeX/DNAnalyzer" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="https://discord.gg/xNpujz49gj" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="../about/about.html">About</a></li>
+                </ul></div>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-copyright">
-                    Copyright &copy; Piyush Acharya 2025. DNAnalyzer is a fiscally sponsored 501(c)(3) nonprofit (EIN:
-                    81-2908499). MIT License.
-                </div>
-
+                <div>Copyright &copy; 2022 to <span id="year"></span> Piyush Acharya. Fiscally sponsored by <a href="https://hackclub.com" target="_blank" rel="noopener">Hack Club</a>'s 501(c)(3) (EIN 81-2908499). MIT License.</div>
                 <div class="footer-links">
-                    <a href="../LICENSE.md">License</a>
-                    <a href="../SECURITY.md">Security</a>
-                    <a href="../CITATION.cff">Citation</a>
+                    <a href="../privacy.html">Privacy</a><a href="../LICENSE.md">License</a><a href="../SECURITY.md">Security</a><a href="../CITATION.cff">Citation</a>
                 </div>
             </div>
         </div>
