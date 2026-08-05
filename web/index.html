@@ -159,6 +159,18 @@
         </div>
     </header>
 
+    <!-- Helix photo band -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div style="position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)">
+                <img src="assets/img/photos/helix.jpg" alt="DNA double helix" style="width:100%;height:300px;object-fit:cover;display:block">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;padding:clamp(1.5rem,5vw,3.5rem);background:linear-gradient(90deg,rgba(29,34,26,0.82),rgba(29,34,26,0.2) 62%,transparent)">
+                    <h2 style="color:#fff;max-width:22ch;font-size:var(--fs-2xl)">The most personal data you own, <span class="script script-apricot">kept yours</span>.</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- What you'll learn -->
     <section class="section">
         <div class="container">
@@ -193,19 +205,35 @@
         </div>
     </section>
 
+    <!-- Ancestry / family photo -->
+    <section class="section" style="padding-top:0">
+        <div class="container">
+            <div class="block block--apricot split" style="align-items:center">
+                <img src="assets/img/photos/family.jpg" alt="A family together outdoors" style="border-radius:var(--radius);width:100%;box-shadow:var(--shadow)">
+                <div>
+                    <span class="label" style="color:#7a5a17">Your roots</span>
+                    <h2 style="margin-top:var(--sp-3)">Your DNA is a story of <span class="script script-clay">where you came from</span>.</h2>
+                    <p style="margin-top:var(--sp-4);color:#4a3a17;max-width:40ch">See your ancestry from real population data, and keep every bit of it on your own device.</p>
+                    <a href="app/index.html" class="btn btn-primary btn-lg" style="margin-top:var(--sp-5)"><i class="fas fa-dna"></i> See my ancestry</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- How it works -->
     <section class="section" style="padding-top:0">
         <div class="container">
-            <div class="block block--sage">
-                <div class="section-head" style="margin-bottom:var(--sp-6)">
+            <div class="block block--sage split" style="align-items:center">
+                <div>
                     <span class="label label--on-dark">How it works</span>
-                    <h2>Three steps. Nothing <span class="script">leaves</span> your device.</h2>
+                    <h2 style="margin-top:var(--sp-3)">Three steps. Nothing <span class="script">leaves</span> your device.</h2>
+                    <div class="steps" style="grid-template-columns:1fr;gap:var(--sp-4);margin-top:var(--sp-5)">
+                        <div class="step"><div class="sn">STEP 01</div><h3>Drop in your file</h3><p>Your 23andMe or AncestryDNA download. No sign up.</p></div>
+                        <div class="step"><div class="sn">STEP 02</div><h3>Read on your device</h3><p>Open source code runs in your browser.</p></div>
+                        <div class="step"><div class="sn">STEP 03</div><h3>Get your results</h3><p>Cited insights, plus a report you can save.</p></div>
+                    </div>
                 </div>
-                <div class="steps">
-                    <div class="step"><div class="sn">STEP 01</div><h3>Drop in your file</h3><p>Your 23andMe or AncestryDNA download. No sign up.</p></div>
-                    <div class="step"><div class="sn">STEP 02</div><h3>Read on your device</h3><p>Open source code runs in your browser.</p></div>
-                    <div class="step"><div class="sn">STEP 03</div><h3>Get your results</h3><p>Cited insights, plus a report you can save.</p></div>
-                </div>
+                <img src="assets/img/photos/device.jpg" alt="Reading a DNA report privately on a phone" style="border-radius:var(--radius);width:100%;box-shadow:var(--shadow)">
             </div>
         </div>
     </section>
@@ -283,6 +311,7 @@
                 <div class="footer-links">
                     <a href="privacy.html">Privacy</a><a href="LICENSE.md">License</a><a href="SECURITY.md">Security</a><a href="CITATION.cff">Citation</a>
                 </div>
+                <div style="width:100%;margin-top:.75rem;color:#9aa791">Photography from <a href="https://stocksnap.io" target="_blank" rel="noopener">StockSnap</a> (CC0). DNA helix, ancestry and chromosome graphics are original to DNAnalyzer.</div>
             </div>
         </div>
     </footer>
