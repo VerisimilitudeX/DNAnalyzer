@@ -238,7 +238,7 @@ Contributions are welcome at every experience level.
 | Forks | 73 |
 | Contributors | 51 |
 | Merged pull requests | 0 |
-| Release asset downloads | 250 |
+| Release asset downloads | 255 |
 <!-- IMPACT-METRICS:END -->
 
 These numbers are refreshed by the `metrics-refresh.yml` workflow.
