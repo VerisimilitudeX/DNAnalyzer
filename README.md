@@ -235,7 +235,7 @@ Contributions are welcome at every experience level.
 | Metric | Current Value |
 |---|---|
 | GitHub Stars | 185 |
-| Forks | 72 |
+| Forks | 71 |
 | Contributors | 51 |
 | Merged pull requests | 0 |
 | Release asset downloads | 255 |
